@@ -1,0 +1,2 @@
+/Users/osamahabib/StudioProjects/urfit/android/app/.cxx/RelWithDebInfo/31675p5y/x86/CMakeFiles/edit_cache.dir
+/Users/osamahabib/StudioProjects/urfit/android/app/.cxx/RelWithDebInfo/31675p5y/x86/CMakeFiles/rebuild_cache.dir
