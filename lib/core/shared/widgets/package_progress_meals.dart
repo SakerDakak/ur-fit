@@ -44,6 +44,10 @@ class PackageProgressMeals extends StatelessWidget {
                 SvgPicture.asset(
                   AppAssets.iconsCalender,
                   height: 16,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
                 ),
                 const SizedBox(width: 4),
                 Expanded(
@@ -76,7 +80,7 @@ class PackageProgressMeals extends StatelessWidget {
 
             // progress bar
             LinearPercentIndicator(
-              percent: weekNum / 4,
+              percent: weekNum / 4 > 1 ? 1 : weekNum / 4,
               padding: EdgeInsets.zero,
               progressColor: Theme
                   .of(context)

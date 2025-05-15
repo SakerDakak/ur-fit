@@ -36,6 +36,10 @@ class AssetsManager {
   static String verify_otp = 'assets/icons/verify_otp.svg';
   static String msg = 'assets/icons/msg.svg';
   static String email_large = 'assets/icons/email_large.svg';
+  static String onboarding2_1 = 'assets/image/onboarding2_1.png';
+  static String onboarding2_2 = 'assets/image/onboarding2_2.png';
+  static String onboarding2_3 = 'assets/image/onboarding2_3.png';
+  static String medical = 'assets/image/medical.jpg';
 // static String aiIcon = 'assets/icons/ai.svg';
   // static String editIcon = 'assets/icons/edit.svg';
   // static String bookIcon = 'assets/icons/book.svg';

@@ -130,7 +130,9 @@ class LoginForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<LoginBloc>().add(GoogleLoginEvent());
+                  },
                   icon: SvgPicture.asset(
                     AssetsManager.google,
                     width: 33.px,

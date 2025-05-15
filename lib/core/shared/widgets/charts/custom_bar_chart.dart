@@ -14,6 +14,7 @@ class CustomBarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return BarChart(
       BarChartData(
+
         titlesData: const FlTitlesData(show: false),
         alignment: BarChartAlignment.center,
         borderData: FlBorderData(show: false),
@@ -26,7 +27,7 @@ class CustomBarChart extends StatelessWidget {
             barRods: [
               BarChartRodData(
                 toY: data[i].amountOfWater,
-                color: AppColors.whiteColor,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(8),
                 width: 2,
               ),

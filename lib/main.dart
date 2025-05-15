@@ -29,7 +29,8 @@ import 'core/utils/pref_utils.dart';
 import 'core/utils/service_locator.dart';
 import 'generated/codegen_loader.g.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -41,7 +42,9 @@ Future<void> main() async {
   await HiveServices().openBoxes();
   await sl<DioServices>().init();
   Bloc.observer = MyBlocObserver();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     DevicePreview(
       enabled: false, // Disable in release mode
@@ -103,8 +106,8 @@ class MyApp extends StatelessWidget {
                     return SpinKitWaveSpinner(
                       size: 100,
                       color: AppColors.secondaryColor,
-                      waveColor: AppColors.primaryColor,
-                      trackColor: AppColors.primaryColor,
+                      waveColor: Theme.of(context).colorScheme.primary,
+                      trackColor: Theme.of(context).colorScheme.primary,
                     );
                   },
                 ),
@@ -120,7 +123,7 @@ class MyApp extends StatelessWidget {
                 //   return previous != current;
                 // },
                 builder: (context, state) {
-                  // PrefUtils().setLang("en");
+                  // PrefUtils().setLang("ar");
                   final String? lang = PrefUtils().getLang();
                   print('lang: $lang');
                   EasyLocalization.of(context)

@@ -73,7 +73,7 @@ class DiscountSection extends StatelessWidget {
                         top: -45,
                         start: -22,
                         textDirection: Directionality.of(context),
-                        child: _buildTheStackedCircles(),
+                        child: _buildTheStackedCircles(context),
                       ),
                     ],
                   ),
@@ -142,7 +142,7 @@ class DiscountSection extends StatelessWidget {
                               text: LocaleKeys.customizedForYou.tr(),
                               style: CustomTextStyle.semiBold_16.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.primaryColor,
+                                color: Theme.of(context).colorScheme.primary,
                                 shadows: [
                                   BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
@@ -206,21 +206,21 @@ class DiscountSection extends StatelessWidget {
     );
   }
 
-  Stack _buildTheStackedCircles() {
-    return const Stack(
+  Stack _buildTheStackedCircles(BuildContext context) {
+    return  Stack(
       alignment: Alignment.center,
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 100,
           backgroundColor: Color(0xff484848),
         ),
-        CircleAvatar(
+        const CircleAvatar(
           radius: 80,
           backgroundColor: Color(0xff575757),
         ),
         CircleAvatar(
           radius: 60,
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
       ],
     );

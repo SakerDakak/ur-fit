@@ -19,7 +19,7 @@ class CaloriesAndSteps extends StatelessWidget {
           child: _InfoCard(
             iconPath: AppAssets.iconsFlam,
             contentColor: AppColors.selectedFont,
-            cardColor: AppColors.primaryColor,
+            cardColor: Theme.of(context).colorScheme.primary,
             value: calories.round(),
             unit: 'سعرحرارى',
           ),

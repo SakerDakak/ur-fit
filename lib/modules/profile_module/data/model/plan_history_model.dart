@@ -88,7 +88,7 @@ class ExpectedResultOfMealPlans with _$ExpectedResultOfMealPlans {
   const factory ExpectedResultOfMealPlans({
     required num calories,
     required num protein,
-    required num fat,
+    required num? fat,
   }) = _ExpectedResultOfMealPlans;
 
   factory ExpectedResultOfMealPlans.fromJson(Map<String, dynamic> json) => _$ExpectedResultOfMealPlansFromJson(json);

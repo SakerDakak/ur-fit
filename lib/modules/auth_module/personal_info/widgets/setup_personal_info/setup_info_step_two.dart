@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,8 @@ import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_p
 import 'package:urfit/modules/auth_module/personal_info/data/models/user_goals_model.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/goals_item.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/shimmer_widgets/goals_shimmer.dart';
+
+import '../../../../../generated/locale_keys.g.dart';
 
 class SetupInfoStepTwo extends StatefulWidget {
   const SetupInfoStepTwo({super.key});
@@ -34,11 +37,12 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
           (p.userInfo.selectedGaols != c.userInfo.selectedGaols) ||
           (p.getGoalsState != c.getGoalsState),
       builder: (context, state) {
+        bool canProssed = state.userInfo.selectedGaols.isNotEmpty;
         return ListView(
           children: [
             // title
             Text(
-              'ماهى اهدافك؟ ',
+              LocaleKeys.whatIsyourGoals.tr(),
               style: CustomTextStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -48,7 +52,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
 
             // goals section one
             Text(
-              'القسم الاول',
+             LocaleKeys.sectionOne.tr(),
               style: CustomTextStyle.semiBold_16,
             ),
             const SizedBox(height: 16),
@@ -60,7 +64,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
 
             // goals section two
             Text(
-              'القسم الثاني',
+              LocaleKeys.sectionTwo.tr(),
               style: CustomTextStyle.semiBold_16,
             ),
 
@@ -73,9 +77,9 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
 
             // continue button
             CustomElevatedButton(
-              text: 'استمر',
+              text: LocaleKeys.continuee.tr(),
               padding: EdgeInsets.zero,
-              onPressed: () => cubit.goToNextInfoStep(),
+              onPressed:canProssed ? () => cubit.goToNextInfoStep() : null,
             ),
           ],
         );

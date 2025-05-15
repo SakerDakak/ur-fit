@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:urfit/core/shared/widgets/compact_form_field.dart';
@@ -6,6 +7,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
@@ -14,7 +16,7 @@ class ChangePasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('تغير كلمة المرور'),
+        title:  Text(LocaleKeys.resetPassword.tr()),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -26,17 +28,17 @@ class ChangePasswordScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'اعادة تعين كلمة المرور الخاصة بك.',
+            LocaleKeys.resetPasswordPhrase.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           const SizedBox(height: 32),
 
           // old password field
           CompactPasswordTextFormField(
-            title: 'كلمة المرور  الحالية',
+            title: LocaleKeys.currentPassword.tr(),
             hintText: '12345678',
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -47,7 +49,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // new password field
           CompactPasswordTextFormField(
-            title: 'كلمة المرور  الجديدة',
+            title: LocaleKeys.newPassword.tr(),
             hintText: '12345678',
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -58,7 +60,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // confirm new password field
           CompactPasswordTextFormField(
-            title: 'تاكيد كلمة المرور  الجديدة',
+            title: LocaleKeys.confirmPassword.tr(),
             hintText: '12345678',
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -69,7 +71,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // change button
           CustomElevatedButton(
-            text: 'تغير',
+            text:LocaleKeys.confirm.tr(),
             onPressed: () {
 
             },

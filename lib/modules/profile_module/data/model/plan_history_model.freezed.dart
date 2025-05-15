@@ -1563,7 +1563,7 @@ ExpectedResultOfMealPlans _$ExpectedResultOfMealPlansFromJson(
 mixin _$ExpectedResultOfMealPlans {
   num get calories => throw _privateConstructorUsedError;
   num get protein => throw _privateConstructorUsedError;
-  num get fat => throw _privateConstructorUsedError;
+  num? get fat => throw _privateConstructorUsedError;
 
   /// Serializes this ExpectedResultOfMealPlans to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1581,7 +1581,7 @@ abstract class $ExpectedResultOfMealPlansCopyWith<$Res> {
           $Res Function(ExpectedResultOfMealPlans) then) =
       _$ExpectedResultOfMealPlansCopyWithImpl<$Res, ExpectedResultOfMealPlans>;
   @useResult
-  $Res call({num calories, num protein, num fat});
+  $Res call({num calories, num protein, num? fat});
 }
 
 /// @nodoc
@@ -1602,7 +1602,7 @@ class _$ExpectedResultOfMealPlansCopyWithImpl<$Res,
   $Res call({
     Object? calories = null,
     Object? protein = null,
-    Object? fat = null,
+    Object? fat = freezed,
   }) {
     return _then(_value.copyWith(
       calories: null == calories
@@ -1613,10 +1613,10 @@ class _$ExpectedResultOfMealPlansCopyWithImpl<$Res,
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as num,
-      fat: null == fat
+      fat: freezed == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
-              as num,
+              as num?,
     ) as $Val);
   }
 }
@@ -1630,7 +1630,7 @@ abstract class _$$ExpectedResultOfMealPlansImplCopyWith<$Res>
       __$$ExpectedResultOfMealPlansImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({num calories, num protein, num fat});
+  $Res call({num calories, num protein, num? fat});
 }
 
 /// @nodoc
@@ -1650,7 +1650,7 @@ class __$$ExpectedResultOfMealPlansImplCopyWithImpl<$Res>
   $Res call({
     Object? calories = null,
     Object? protein = null,
-    Object? fat = null,
+    Object? fat = freezed,
   }) {
     return _then(_$ExpectedResultOfMealPlansImpl(
       calories: null == calories
@@ -1661,10 +1661,10 @@ class __$$ExpectedResultOfMealPlansImplCopyWithImpl<$Res>
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as num,
-      fat: null == fat
+      fat: freezed == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
-              as num,
+              as num?,
     ));
   }
 }
@@ -1683,7 +1683,7 @@ class _$ExpectedResultOfMealPlansImpl implements _ExpectedResultOfMealPlans {
   @override
   final num protein;
   @override
-  final num fat;
+  final num? fat;
 
   @override
   String toString() {
@@ -1726,7 +1726,7 @@ abstract class _ExpectedResultOfMealPlans implements ExpectedResultOfMealPlans {
   const factory _ExpectedResultOfMealPlans(
       {required final num calories,
       required final num protein,
-      required final num fat}) = _$ExpectedResultOfMealPlansImpl;
+      required final num? fat}) = _$ExpectedResultOfMealPlansImpl;
 
   factory _ExpectedResultOfMealPlans.fromJson(Map<String, dynamic> json) =
       _$ExpectedResultOfMealPlansImpl.fromJson;
@@ -1736,7 +1736,7 @@ abstract class _ExpectedResultOfMealPlans implements ExpectedResultOfMealPlans {
   @override
   num get protein;
   @override
-  num get fat;
+  num? get fat;
 
   /// Create a copy of ExpectedResultOfMealPlans
   /// with the given fields replaced by the non-null parameter values.

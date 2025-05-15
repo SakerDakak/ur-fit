@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 
 import '../../auth_module/bloc/authentication_bloc.dart';
 
@@ -21,7 +23,7 @@ class ChangeEmailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('تغير البريد الالكترونى'),
+        title:  Text(LocaleKeys.changeEmail.tr()),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -33,16 +35,16 @@ class ChangeEmailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'اعادة تعين البريد الالكترونى الخاص بك.',
+            LocaleKeys.changeEmailPhrase.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           const SizedBox(height: 32),
           CompactTextFormField(
-            title: 'البريد الالكترونى',
-            hintText: 'البريد الالكترونى',
+            title: LocaleKeys.email.tr(),
+            hintText: LocaleKeys.email.tr(),
             initialValue: user?.email.toString(),
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -50,7 +52,7 @@ class ChangeEmailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           CustomElevatedButton(
-            text: 'تغير',
+            text: LocaleKeys.confirm.tr(),
             onPressed: () => GoRouter.of(context).push(Routes.otpScreenNew),
             padding: EdgeInsets.zero,
           ),

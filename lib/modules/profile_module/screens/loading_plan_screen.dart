@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 
 import '../../auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
@@ -57,12 +59,12 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
               children: [
                 const SizedBox(height: 28),
                 Text(
-                  'تحديث الخطة',
+                  LocaleKeys.planUpdate.tr(),
                   style: CustomTextStyle.bold_16,
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'رجاء الانتظار لاتمام تحديث خطتك الخاصة',
+                  LocaleKeys.planUpdatePhrase1.tr(),
                   textAlign: TextAlign.center,
                   style: CustomTextStyle.semiBold_16.copyWith(
                     color: Theme.of(context).colorScheme.primary,
@@ -94,7 +96,7 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
                 ),
                 const Spacer(flex: 1),
                 Text(
-                  'نقوم بتحديث خطتك الغذائية والرياضية بناءا على المعلومات التى قمت بتعديلها سابقا .',
+                  LocaleKeys.planUpdatePhrase2.tr(),
                   textAlign: TextAlign.center,
                   style: CustomTextStyle.semiBold_16,
                 ),

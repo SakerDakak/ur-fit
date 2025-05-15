@@ -66,7 +66,7 @@ abstract class BaseAuthenticationRepo {
   Future<Either<Failure,List<CountryModel>>> getCities({required int countryId});
   Future<Either<Failure,CacheUser>> getUserDataFromServer();
   Future<Either<Failure,List<SliderImageModel>>> getSliderImages();
-
+  Future<Either<Failure, CacheUser?>> loginWithGoogle(String accessToken);
 }
 
 class AuthenticationRepo extends BaseAuthenticationRepo {
@@ -471,6 +471,29 @@ class AuthenticationRepo extends BaseAuthenticationRepo {
       return Right(result);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, CacheUser?>> loginWithGoogle(String accessToken) async {
+    try {
+      final result = await authenticationRemoteDataSource.loginWithGoogle(accessToken);
+
+      await userLocalDataSource.saveUserToken(result["token"]);
+      await sl<DioServices>().init();
+    // print(await sl<BaseUserLocalDataSource>().getUserToken());
+    await saveUser(
+    CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
+    final user =
+    CacheUser.fromUserModel(UserModel.fromJson(result['user']));
+    return Right(user);
+
+    } on Exception catch (e) {
+    print("e $e");
+    if(e.runtimeType == DioException){
+    return left(ServerFailure((e as DioException).response?.data?['data'].toString() ?? ""));
+    }
+    return left(ServerFailure(e.toString()));
     }
   }
 

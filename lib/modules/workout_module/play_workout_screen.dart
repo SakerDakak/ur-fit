@@ -161,7 +161,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen>
                           style: CustomTextStyle.semiBold_24.copyWith(
                               color: cubit.state.progressValue !=
                                       cubit.getPlanForToday()!.exercises.length
-                                  ? AppColors.primaryColor
+                                  ? Theme.of(context).colorScheme.primary
                                   : AppColors.greyColor,
                               fontSize: 18),
                         )),
@@ -184,7 +184,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen>
                               fontSize: 18,
                               color: cubit.state.progressValue ==
                                       cubit.getPlanForToday()!.exercises.length
-                                  ? AppColors.primaryColor
+                                  ? Theme.of(context).colorScheme.primary
                                   : AppColors.greyColor),
                         )),
                   ],

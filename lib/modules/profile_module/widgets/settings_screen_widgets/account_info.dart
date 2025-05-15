@@ -47,7 +47,7 @@ class AccountInfo extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: CustomTextStyle.regular_16.copyWith(
-                  color: AppColors.primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ],

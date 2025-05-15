@@ -73,6 +73,12 @@ class DoneOnBoardingEvent extends AuthenticationEvent {
   @override
   String toString() => 'onboarding';
 }
+class GoToOnBoardingTwo extends AuthenticationEvent {
+
+  GoToOnBoardingTwo();
+  @override
+  String toString() => 'GoToOnBoardingTwo';
+}
 class GoToChooseCity extends AuthenticationEvent {
   final CountryModel country;
 

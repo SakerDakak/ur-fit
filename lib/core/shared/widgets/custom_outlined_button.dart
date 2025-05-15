@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../style/colors.dart';
+
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton(
       {super.key, required this.text, required this.onPressed});
@@ -15,7 +17,7 @@ class CustomOutlinedButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: Color(0xFF0F8FAB)),
+          side:   BorderSide(color: Theme.of(context).colorScheme.primary),
           padding: EdgeInsets.all(12.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.h),
@@ -25,7 +27,7 @@ class CustomOutlinedButton extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: const Color(0xFF0F8FAB),
+              color: Theme.of(context).colorScheme.primary,
               fontSize: 16.sp,
               fontFamily: 'Cairo',
               fontWeight: FontWeight.w700,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/shared/appCubit/app_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:urfit/core/shared/widgets/weak_days_date.dart';
 import '../../../core/shared/widgets/package_progress_meals.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/service_locator.dart';
+import '../../../generated/locale_keys.g.dart';
 import '../widgets/shimmer/meals_list_shimmer.dart';
 import '../widgets/shimmer/what_ur_body_needs_shimmer.dart';
 
@@ -85,8 +87,8 @@ class MealsScreen extends StatelessWidget {
             },
           ),
         ],
-      ) : const Center(
-          child: Text('لا يوجد اشتراك لباقة تغزية')),
+      ) :  Center(
+          child: Text(LocaleKeys.noSubscription.tr())),
     );
   }
 }

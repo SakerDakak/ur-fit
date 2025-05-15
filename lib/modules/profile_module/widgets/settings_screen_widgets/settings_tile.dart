@@ -37,8 +37,8 @@ class SettingsTile extends StatelessWidget {
                   width: 22,
                   child: SvgPicture.asset(
                     svgIconPath,
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.primaryColor,
+                    colorFilter:  ColorFilter.mode(
+                      Theme.of(context).colorScheme.primary,
                       BlendMode.srcIn,
                     ),
                   ),

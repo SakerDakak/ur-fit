@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/shared/widgets/default_animated_switcher.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/custom_navigation_bar.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/equipments_page.dart';
@@ -49,7 +51,7 @@ class MyPlanScreen extends StatelessWidget {
                     // page title
                     Expanded(
                       child: Text(
-                        'خطتى',
+                        LocaleKeys.myPlan.tr(),
                         textAlign: TextAlign.center,
                         style: CustomTextStyle.bold_16,
                       ),
@@ -108,7 +110,7 @@ class MyPlanScreen extends StatelessWidget {
             horizontal: kHorizontalPadding,
           ),
           child: Text(
-            'تستطيع الاطلاع وتغير معلوماتك الشخصية واهدافك التى\n تم تحديدها من قبل',
+            LocaleKeys.MyPlanPhrase.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyle.semiBold_12.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -122,9 +124,9 @@ class MyPlanScreen extends StatelessWidget {
         CustomNavigationBar(
           onTap: (index) => cubit.goToPage(index),
           tabs: [
-            Text('معلومات شخصية', style: CustomTextStyle.semiBold_14),
-            Text('اهدافك', style: CustomTextStyle.semiBold_14),
-            Text('اختياراتك', style: CustomTextStyle.semiBold_14),
+            Text(LocaleKeys.personalInfo.tr(), style: CustomTextStyle.semiBold_14),
+            Text(LocaleKeys.goal.tr(), style: CustomTextStyle.semiBold_14),
+            Text(LocaleKeys.yourChoices.tr(), style: CustomTextStyle.semiBold_14),
           ],
         ),
 
@@ -140,7 +142,7 @@ class MyPlanScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () => cubit.goToNextPage(),
               child: Text(
-                'تخطى',
+                LocaleKeys.skip.tr(),
                 style: CustomTextStyle.semiBold_14.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                 ),

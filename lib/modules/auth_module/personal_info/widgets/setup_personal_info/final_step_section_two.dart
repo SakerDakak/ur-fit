@@ -5,6 +5,7 @@ import 'package:urfit/core/shared/widgets/range_bar.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/enums.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/animated_value_container.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/values_gridview.dart';
@@ -38,7 +39,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
       children: [
         // title
         Text(
-          'القسم الثانى',
+          LocaleKeys.sectionTwo.tr(),
           style: CustomTextStyle.bold_16.copyWith(
             color: Theme.of(context).colorScheme.primary,
           ),
@@ -53,7 +54,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
 
         // focus part
         Text(
-          'الجزء الذى تريد التركيز عليه؟',
+          LocaleKeys.focusedBodyPart.tr(),
           style: CustomTextStyle.bold_14,
         ),
 
@@ -84,7 +85,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
 
         // preferred training
         Text(
-          'ما الذى تفضله فى التمرين؟',
+          LocaleKeys.preferredEquipment.tr(),
           style: CustomTextStyle.bold_14,
         ),
 

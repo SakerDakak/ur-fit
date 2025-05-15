@@ -59,8 +59,6 @@ class CodegenLoader extends AssetLoader{
   "three": "last",
   "skip": "Skip",
   "areYou": "Are you ?",
-  "male": "Male",
-  "female": "Female",
   "age": "Age",
   "height": "Height",
   "cm": "cm",
@@ -157,7 +155,20 @@ class CodegenLoader extends AssetLoader{
   "fullNameIsRequired": "Full name is required",
   "fullNameMustBeAtLeast3Characters": "Full name must be at least 3 characters",
   "passwordsDoNotMatch": "Passwords do not match",
-  "unverifiedCode": "Code is unverified"
+  "unverifiedCode": "Code is unverified",
+  "becauseWeKeenToProvideAnIntegratedService": "Because we keen to provide an integrated service",
+  "waitFor": "Wait for",
+  "launching": "launching",
+  "ourMedicalServicesSoon": "Our medical services soon",
+  "firstStep": "first Step",
+  "secondStep": "Second Step",
+  "thirdStep": "Third Step",
+  "letUsKnowYouWell": "Let Us Know You Well!",
+  "male": "Male",
+  "female": "Female",
+  "weightSelectionIsRequired": "Weight selection is required",
+  "dietTypeSelectionIsRequired": "Diet type selection is required",
+  "dietType": "Whats is your diet type?"
 };
 static const Map<String,dynamic> ar = {
   "app_name": "يورفيت",
@@ -204,8 +215,6 @@ static const Map<String,dynamic> ar = {
   "three": "الاخيرة",
   "skip": "تخطى",
   "areYou": "هل انت ؟",
-  "male": "ذكر",
-  "female": "انثى",
   "age": "السن",
   "height": "الطول",
   "cm": "سم",
@@ -280,7 +289,7 @@ static const Map<String,dynamic> ar = {
   "deleteAccount": "حذف الحساب",
   "aboutUs": "عن التطبيق",
   "contactUs": "تواصل معنا",
-  "medicalSection": "القسم الطبي",
+  "medicalSection": "صحتي",
   "soon": "قريبا",
   "notification": "التنبيهات",
   "sets": "مجموعة",
@@ -302,7 +311,20 @@ static const Map<String,dynamic> ar = {
   "fullNameIsRequired": "يجب ادخال الاسم كامل",
   "fullNameMustBeAtLeast3Characters": "يجب ان لا يقل الاسم عن 3 احرف",
   "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
-  "unverifiedCode": "الكود غير صحيح"
+  "unverifiedCode": "الكود غير صحيح",
+  "becauseWeKeenToProvideAnIntegratedService": "ولاننا نحرص على تقديم خدمة متكاملة",
+  "waitFor": "ترقبوا",
+  "launching": "اطلاق",
+  "ourMedicalServicesSoon": "خدماتنا الصحية قريبًا",
+  "firstStep": "الخطوة الاولي",
+  "secondStep": "الخطوة الثانية",
+  "thirdStep": "الخطوة الثالثة",
+  "letUsKnowYouWell": "دعنا نتعرف عليك جيدا!",
+  "male": "ذكر",
+  "female": "انثى",
+  "weightSelectionIsRequired": "يجب تحديد الوزن الذي تريد الوصول الية",
+  "dietTypeSelectionIsRequired": "يجب تحديد نوع الحمية",
+  "dietType": "نوع الحميه الغذائية؟"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "ar": ar};
 }

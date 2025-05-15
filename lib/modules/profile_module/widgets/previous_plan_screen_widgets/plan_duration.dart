@@ -24,8 +24,8 @@ class PlanDuration extends StatelessWidget {
             SvgPicture.asset(
               AppAssets.iconsCalender,
               width: 22,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primaryColor,
+              colorFilter:  ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
                 BlendMode.srcIn,
               ),
             ),
@@ -54,9 +54,9 @@ class PlanDuration extends StatelessWidget {
         const SizedBox(height: 16),
         Row(
           children: [
-            const Icon(
+             Icon(
               Icons.arrow_forward,
-              color: AppColors.primaryColor,
+              color: Theme.of(context).colorScheme.primary,
               size: 18,
             ),
             Flexible(
@@ -69,9 +69,9 @@ class PlanDuration extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Icon(
+             Icon(
               Icons.arrow_back,
-              color: AppColors.primaryColor,
+              color:Theme.of(context).colorScheme.primary,
               size: 18,
             ),
             Flexible(

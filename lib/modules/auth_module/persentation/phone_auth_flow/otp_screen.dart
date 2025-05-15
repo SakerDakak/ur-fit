@@ -119,7 +119,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       // mainAxisAlignment: ,
                       // contentPadding: EdgeInsets.symmetric(horizontal: 20),
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      focusedBorderColor: AppColors.primaryColor,
+                      focusedBorderColor: Theme.of(context).colorScheme.primary,
                       borderRadius: BorderRadius.circular(8),
                       showFieldAsBox: true,
                       //runs when a code is typed in
@@ -158,7 +158,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                 child: Text(
                                   LocaleKeys.pressToResendOtp.tr(),
                                   style: CustomTextStyle.regular_16.copyWith(
-                                      color: AppColors.primaryColor),
+                                      color: Theme.of(context).colorScheme.primary),
                                 ),
                               )
                           )

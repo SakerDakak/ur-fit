@@ -1,4 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:urfit/core/style/colors.dart';
 
@@ -18,7 +19,7 @@ class CustomLineChart extends StatelessWidget {
         titlesData: const FlTitlesData(show: false),
         gridData: const FlGridData(show: false),
         lineBarsData: [
-          LineChartBarData(
+          LineChartBarData(color: Theme.of(context).colorScheme.primary,
             dotData: const FlDotData(show: false),
             isCurved: true,
             preventCurveOverShooting: true,

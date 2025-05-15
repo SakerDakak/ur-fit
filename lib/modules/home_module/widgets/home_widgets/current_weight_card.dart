@@ -110,6 +110,10 @@ class WeightInfoItem extends StatelessWidget {
           svgIconPath,
           height: 16,
           width: 16,
+          colorFilter: ColorFilter.mode(
+            Theme.of(context).colorScheme.primary,
+            BlendMode.srcIn,
+          ),
         ),
         const SizedBox(width: 4),
         Column(

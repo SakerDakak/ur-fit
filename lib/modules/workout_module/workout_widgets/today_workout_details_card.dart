@@ -29,7 +29,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
         // title
         Row(
           children: [
-            SvgPicture.asset(AppAssets.iconsDumbbell, width: 16),
+            SvgPicture.asset(AppAssets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
             const SizedBox(width: 8),
             Text(
               LocaleKeys.todayExerciseDetails.tr(),

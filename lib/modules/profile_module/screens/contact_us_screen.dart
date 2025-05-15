@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/shared/widgets/compact_form_field.dart';
@@ -6,6 +7,8 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
+
+import '../../../generated/locale_keys.g.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
@@ -19,7 +22,7 @@ class ContactUsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('تواصل معنا'),
+        title:  Text(LocaleKeys.contactUs.tr()),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -30,7 +33,7 @@ class ContactUsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'نحن سعداء بتلقى رسائلك واستفساراتك',
+            LocaleKeys.weAreHappyToGetYourFeedback.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyle.semiBold_14.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -46,8 +49,8 @@ class ContactUsScreen extends StatelessWidget {
                children: [
                  CompactTextFormField(
 
-                  title: 'الاسم الكامل',
-                  hintText: 'رجاء ادخال الاسم كاملا',
+                  title: LocaleKeys.fullName.tr(),
+                  hintText: LocaleKeys.enterFullName.tr(),
                   padding: EdgeInsets.zero,
                   controller: _nameController,
                            ),
@@ -56,8 +59,8 @@ class ContactUsScreen extends StatelessWidget {
 
                            // email
                  CompactTextFormField(
-                  title: 'البريد الالكترونى',
-                  hintText: 'ادخل البريد الالكترونى',
+                  title: LocaleKeys.email.tr(),
+                  hintText: LocaleKeys.enterEmail.tr(),
                   padding: EdgeInsets.zero,
                   controller: _emailController,
                            ),
@@ -75,8 +78,8 @@ class ContactUsScreen extends StatelessWidget {
 
                            // message
                  CompactTextFormField(
-                  title: 'الرسالة',
-                  hintText: 'رجاء ادخال رسالتك',
+                  title: LocaleKeys.message.tr(),
+                  hintText: LocaleKeys.pleaseEnterYourMessage.tr(),
                   padding: EdgeInsets.zero,
                   controller: _messageController,
                   contentPadding: EdgeInsets.symmetric(
@@ -93,7 +96,7 @@ class ContactUsScreen extends StatelessWidget {
 
           // send button
           CustomElevatedButton(
-            text: 'ارسال',
+            text: LocaleKeys.send.tr(),
             onPressed: () {
 
             },

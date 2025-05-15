@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
+import 'package:urfit/core/utils/enums.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 
 class CaloriesIndicator extends StatelessWidget {
   const CaloriesIndicator({
@@ -16,12 +19,13 @@ class CaloriesIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final user = context.read<AuthenticationBloc>().currentUser;
     return FittedBox(
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           SvgPicture.asset(
-            AppAssets.imageCaloriesIndicator,
+            Theme.of(context).colorScheme.primary == AppColors.primaryColor ?  AppAssets.imageCaloriesIndicator : AppAssets.imageCaloriesIndicatorFemale,
             width: 185,
           ),
           SizedBox(
@@ -37,6 +41,10 @@ class CaloriesIndicator extends StatelessWidget {
                       SvgPicture.asset(
                         AppAssets.iconsFlam,
                         width: 10,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn,
+                        ),
                       ),
                       const SizedBox(width: 4),
                       Text(

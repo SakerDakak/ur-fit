@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/core/utils/enums.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/equipment_item.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/shimmer_widgets/equipment_shimmer.dart';
@@ -53,7 +55,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
               // page title
               Expanded(
                 child: Text(
-                  'معلومات شخصية',
+                  LocaleKeys.personalInfo.tr(),
                   textAlign: TextAlign.center,
                   style: CustomTextStyle.bold_16,
                 ),
@@ -64,7 +66,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
           const SizedBox(height: 20),
 
           Text(
-            'اختيار المعدات؟ ',
+            LocaleKeys.preferredEquipment.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -85,7 +87,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
   ),
   builder: (context, isSectionTwoSelected) {
     return CustomElevatedButton(
-            text: 'انشاء خططى الخاصة',
+            text: LocaleKeys.createMyPlan.tr(),
             padding: EdgeInsets.zero,
             onPressed: () {
               context.read<SetupPersonalInfoCubit>().updatePersonalData();

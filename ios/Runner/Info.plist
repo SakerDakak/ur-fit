@@ -4,6 +4,25 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>GIDClientID</key>
+    <!-- TODO Replace this value: -->
+    <!-- Copied from GoogleService-Info.plist key CLIENT_ID -->
+	<string>459205756320-mqh79aqgm89bbbmc9m68dje12gma8mqr.apps.googleusercontent.com</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>This app does not access or use the microphone.</string>
+	<key>CFBundleURLTypes</key>
+    <array>
+    	<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Editor</string>
+    		<key>CFBundleURLSchemes</key>
+    		<array>
+    			<!-- TODO Replace this value: -->
+    			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+	            <string>com.googleusercontent.apps.459205756320-mqh79aqgm89bbbmc9m68dje12gma8mqr</string>
+    		</array>
+    	</dict>
+    </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

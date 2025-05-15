@@ -19,9 +19,12 @@ mixin _$SubscriptionState {
   List<PackageModel> get packages => throw _privateConstructorUsedError;
   int? get selectedPackage => throw _privateConstructorUsedError;
   String get paymentUrl => throw _privateConstructorUsedError;
+  DiscountValueModel? get discountValue => throw _privateConstructorUsedError;
+  String? get coupon => throw _privateConstructorUsedError;
   RequestState get getPackagesState => throw _privateConstructorUsedError;
   RequestState get getPaymentUrlState => throw _privateConstructorUsedError;
   RequestState get paymentResponseState => throw _privateConstructorUsedError;
+  RequestState get couponState => throw _privateConstructorUsedError;
   String get errMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of SubscriptionState
@@ -41,10 +44,15 @@ abstract class $SubscriptionStateCopyWith<$Res> {
       {List<PackageModel> packages,
       int? selectedPackage,
       String paymentUrl,
+      DiscountValueModel? discountValue,
+      String? coupon,
       RequestState getPackagesState,
       RequestState getPaymentUrlState,
       RequestState paymentResponseState,
+      RequestState couponState,
       String errMessage});
+
+  $DiscountValueModelCopyWith<$Res>? get discountValue;
 }
 
 /// @nodoc
@@ -65,9 +73,12 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
     Object? packages = null,
     Object? selectedPackage = freezed,
     Object? paymentUrl = null,
+    Object? discountValue = freezed,
+    Object? coupon = freezed,
     Object? getPackagesState = null,
     Object? getPaymentUrlState = null,
     Object? paymentResponseState = null,
+    Object? couponState = null,
     Object? errMessage = null,
   }) {
     return _then(_value.copyWith(
@@ -83,6 +94,14 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
           ? _value.paymentUrl
           : paymentUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      discountValue: freezed == discountValue
+          ? _value.discountValue
+          : discountValue // ignore: cast_nullable_to_non_nullable
+              as DiscountValueModel?,
+      coupon: freezed == coupon
+          ? _value.coupon
+          : coupon // ignore: cast_nullable_to_non_nullable
+              as String?,
       getPackagesState: null == getPackagesState
           ? _value.getPackagesState
           : getPackagesState // ignore: cast_nullable_to_non_nullable
@@ -95,11 +114,29 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
           ? _value.paymentResponseState
           : paymentResponseState // ignore: cast_nullable_to_non_nullable
               as RequestState,
+      couponState: null == couponState
+          ? _value.couponState
+          : couponState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
       errMessage: null == errMessage
           ? _value.errMessage
           : errMessage // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  /// Create a copy of SubscriptionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DiscountValueModelCopyWith<$Res>? get discountValue {
+    if (_value.discountValue == null) {
+      return null;
+    }
+
+    return $DiscountValueModelCopyWith<$Res>(_value.discountValue!, (value) {
+      return _then(_value.copyWith(discountValue: value) as $Val);
+    });
   }
 }
 
@@ -115,10 +152,16 @@ abstract class _$$SubscriptionStateImplCopyWith<$Res>
       {List<PackageModel> packages,
       int? selectedPackage,
       String paymentUrl,
+      DiscountValueModel? discountValue,
+      String? coupon,
       RequestState getPackagesState,
       RequestState getPaymentUrlState,
       RequestState paymentResponseState,
+      RequestState couponState,
       String errMessage});
+
+  @override
+  $DiscountValueModelCopyWith<$Res>? get discountValue;
 }
 
 /// @nodoc
@@ -137,9 +180,12 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
     Object? packages = null,
     Object? selectedPackage = freezed,
     Object? paymentUrl = null,
+    Object? discountValue = freezed,
+    Object? coupon = freezed,
     Object? getPackagesState = null,
     Object? getPaymentUrlState = null,
     Object? paymentResponseState = null,
+    Object? couponState = null,
     Object? errMessage = null,
   }) {
     return _then(_$SubscriptionStateImpl(
@@ -155,6 +201,14 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
           ? _value.paymentUrl
           : paymentUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      discountValue: freezed == discountValue
+          ? _value.discountValue
+          : discountValue // ignore: cast_nullable_to_non_nullable
+              as DiscountValueModel?,
+      coupon: freezed == coupon
+          ? _value.coupon
+          : coupon // ignore: cast_nullable_to_non_nullable
+              as String?,
       getPackagesState: null == getPackagesState
           ? _value.getPackagesState
           : getPackagesState // ignore: cast_nullable_to_non_nullable
@@ -166,6 +220,10 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
       paymentResponseState: null == paymentResponseState
           ? _value.paymentResponseState
           : paymentResponseState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      couponState: null == couponState
+          ? _value.couponState
+          : couponState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       errMessage: null == errMessage
           ? _value.errMessage
@@ -182,9 +240,12 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
       {final List<PackageModel> packages = const [],
       this.selectedPackage = null,
       this.paymentUrl = '',
+      this.discountValue = null,
+      this.coupon = null,
       this.getPackagesState = RequestState.initial,
       this.getPaymentUrlState = RequestState.initial,
       this.paymentResponseState = RequestState.initial,
+      this.couponState = RequestState.initial,
       this.errMessage = ''})
       : _packages = packages;
 
@@ -205,6 +266,12 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
   final String paymentUrl;
   @override
   @JsonKey()
+  final DiscountValueModel? discountValue;
+  @override
+  @JsonKey()
+  final String? coupon;
+  @override
+  @JsonKey()
   final RequestState getPackagesState;
   @override
   @JsonKey()
@@ -214,11 +281,14 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
   final RequestState paymentResponseState;
   @override
   @JsonKey()
+  final RequestState couponState;
+  @override
+  @JsonKey()
   final String errMessage;
 
   @override
   String toString() {
-    return 'SubscriptionState(packages: $packages, selectedPackage: $selectedPackage, paymentUrl: $paymentUrl, getPackagesState: $getPackagesState, getPaymentUrlState: $getPaymentUrlState, paymentResponseState: $paymentResponseState, errMessage: $errMessage)';
+    return 'SubscriptionState(packages: $packages, selectedPackage: $selectedPackage, paymentUrl: $paymentUrl, discountValue: $discountValue, coupon: $coupon, getPackagesState: $getPackagesState, getPaymentUrlState: $getPaymentUrlState, paymentResponseState: $paymentResponseState, couponState: $couponState, errMessage: $errMessage)';
   }
 
   @override
@@ -231,12 +301,17 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
                 other.selectedPackage == selectedPackage) &&
             (identical(other.paymentUrl, paymentUrl) ||
                 other.paymentUrl == paymentUrl) &&
+            (identical(other.discountValue, discountValue) ||
+                other.discountValue == discountValue) &&
+            (identical(other.coupon, coupon) || other.coupon == coupon) &&
             (identical(other.getPackagesState, getPackagesState) ||
                 other.getPackagesState == getPackagesState) &&
             (identical(other.getPaymentUrlState, getPaymentUrlState) ||
                 other.getPaymentUrlState == getPaymentUrlState) &&
             (identical(other.paymentResponseState, paymentResponseState) ||
                 other.paymentResponseState == paymentResponseState) &&
+            (identical(other.couponState, couponState) ||
+                other.couponState == couponState) &&
             (identical(other.errMessage, errMessage) ||
                 other.errMessage == errMessage));
   }
@@ -247,9 +322,12 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
       const DeepCollectionEquality().hash(_packages),
       selectedPackage,
       paymentUrl,
+      discountValue,
+      coupon,
       getPackagesState,
       getPaymentUrlState,
       paymentResponseState,
+      couponState,
       errMessage);
 
   /// Create a copy of SubscriptionState
@@ -267,9 +345,12 @@ abstract class _SubscriptionState implements SubscriptionState {
       {final List<PackageModel> packages,
       final int? selectedPackage,
       final String paymentUrl,
+      final DiscountValueModel? discountValue,
+      final String? coupon,
       final RequestState getPackagesState,
       final RequestState getPaymentUrlState,
       final RequestState paymentResponseState,
+      final RequestState couponState,
       final String errMessage}) = _$SubscriptionStateImpl;
 
   @override
@@ -279,11 +360,17 @@ abstract class _SubscriptionState implements SubscriptionState {
   @override
   String get paymentUrl;
   @override
+  DiscountValueModel? get discountValue;
+  @override
+  String? get coupon;
+  @override
   RequestState get getPackagesState;
   @override
   RequestState get getPaymentUrlState;
   @override
   RequestState get paymentResponseState;
+  @override
+  RequestState get couponState;
   @override
   String get errMessage;
 

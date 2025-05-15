@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/data/models/user_goals_model.dart';
@@ -29,7 +31,7 @@ class GoalsPage extends StatelessWidget {
           children: [
             // title
             Text(
-              'اهدافك؟',
+              LocaleKeys.whatIsyourGoals.tr(),
               style: CustomTextStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -39,7 +41,7 @@ class GoalsPage extends StatelessWidget {
 
             // goals section one
             Text(
-              'القسم الاول',
+              LocaleKeys.sectionOne.tr(),
               style: CustomTextStyle.semiBold_14,
             ),
             const SizedBox(height: 16),
@@ -54,7 +56,7 @@ class GoalsPage extends StatelessWidget {
 
             // goals section two
             Text(
-              'القسم الثاني',
+              LocaleKeys.sectionTwo.tr(),
               style: CustomTextStyle.semiBold_16,
             ),
 
@@ -67,7 +69,7 @@ class GoalsPage extends StatelessWidget {
 
             // continue button
             CustomElevatedButton(
-              text: 'استمر',
+              text: LocaleKeys.continuee.tr(),
               padding: EdgeInsets.zero,
               onPressed: () => cubit.goToNextPage(),
             ),

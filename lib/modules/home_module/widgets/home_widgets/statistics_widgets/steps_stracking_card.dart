@@ -66,12 +66,12 @@ class StepsTrackingCard extends StatelessWidget {
                                 .toString()
                                 .split("numericValue: ")
                                 .last) ??
-                            0,
+                            10,
                       );
                     }),
                     if (healthData.where((element) => element.type == HealthDataType.STEPS).isEmpty)
                       ...List.generate(
-                          6, (index) => FlSpot(index.toDouble(), 1)),
+                          6, (index) => FlSpot(index.toDouble(), 6)),
                   ],
                 );
               },

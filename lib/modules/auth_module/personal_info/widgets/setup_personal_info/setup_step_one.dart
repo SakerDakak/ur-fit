@@ -1,4 +1,5 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,6 +10,7 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/core/utils/enums.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
@@ -24,11 +26,15 @@ class SetupInfoStepOne extends StatelessWidget {
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (previous, current) => previous.userInfo != current.userInfo,
       builder: (context, state) {
+        bool canProssed = state.userInfo.gender != null &&
+            state.userInfo.age != null &&
+            state.userInfo.height != null &&
+            state.userInfo.current_weight != null;
         return ListView(
           children: [
             // title
             Text(
-              'دعنا نتعرف عليك جيدا!',
+              LocaleKeys.letUsKnowYouWell.tr(),
               style: CustomTextStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -38,7 +44,7 @@ class SetupInfoStepOne extends StatelessWidget {
 
             // gender
             Text(
-              'هل انت ؟',
+              LocaleKeys.areYou.tr(),
               style: CustomTextStyle.semiBold_16,
             ),
             const SizedBox(height: 16),
@@ -50,7 +56,7 @@ class SetupInfoStepOne extends StatelessWidget {
 
             // age
             _SliderTitle(
-              title: 'السن',
+              title: LocaleKeys.age.tr(),
               value: state.userInfo.age,
               valueFractionDigits: 0,
             ),
@@ -69,9 +75,9 @@ class SetupInfoStepOne extends StatelessWidget {
 
             // height
             _SliderTitle(
-              title: 'الطول',
+              title: LocaleKeys.height.tr(),
               value: state.userInfo.height,
-              suffix: Text('سم', style: CustomTextStyle.semiBold_16),
+              suffix: Text(LocaleKeys.cm.tr(), style: CustomTextStyle.semiBold_16),
             ),
             const SizedBox(height: 12),
             CustomCurveSlider(
@@ -89,9 +95,9 @@ class SetupInfoStepOne extends StatelessWidget {
 
             // weight
             _SliderTitle(
-              title: 'الوزن',
+              title: LocaleKeys.weight.tr(),
               value: state.userInfo.current_weight,
-              suffix: Text('كجم', style: CustomTextStyle.semiBold_16),
+              suffix: Text(LocaleKeys.kg.tr(), style: CustomTextStyle.semiBold_16),
             ),
             const SizedBox(height: 12),
             CustomCurveSlider(
@@ -107,9 +113,12 @@ class SetupInfoStepOne extends StatelessWidget {
 
             // continue button
             CustomElevatedButton(
-              text: 'استمر',
+              text: LocaleKeys.continuee.tr(),
               padding: EdgeInsets.zero,
-              onPressed: () => cubit.goToNextInfoStep(),
+              onPressed:canProssed ? () {
+
+                cubit.goToNextInfoStep();
+              } : null,
             ),
           ],
         );
@@ -190,7 +199,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = sl<AuthenticationBloc>().currentUser?.gender?.index;
+    _selectedIndex = sl<AuthenticationBloc>().currentUser?.gender?.index ;
   }
 
   @override
@@ -201,9 +210,9 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
         (i) => Expanded(
           child: GestureDetector(
             onTap: () {
-              if (_selectedIndex != i) {
+              if (_selectedIndex != i +1) {
                 setState(() {
-                  _selectedIndex = i;
+                  _selectedIndex = i + 1;
                 });
                 widget.onChanged(GenderEnum.values[i]);
               }
@@ -214,7 +223,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
               padding: const EdgeInsets.all(12),
               margin: EdgeInsetsDirectional.only(end: i == 0 ? 16 : 0),
               decoration: BoxDecoration(
-                color: i == _selectedIndex
+                color: i + 1 == _selectedIndex
                     ? Theme.of(context).colorScheme.primary
                     : AppColors.cardColor,
                 borderRadius: BorderRadius.circular(kBorderRadius),
@@ -236,7 +245,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      GenderEnum.values[i] == GenderEnum.male ? 'ذكر' : 'انثى',
+                      GenderEnum.values[i] == GenderEnum.male ? LocaleKeys.Male.tr(): LocaleKeys.Female.tr(),
                       style: CustomTextStyle.bold_16,
                     ),
                   ],

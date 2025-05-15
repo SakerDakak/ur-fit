@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // import 'package:recaptcha_enterprise_flutter/recaptcha_action.dart';
 // import 'package:recaptcha_enterprise_flutter/recaptcha_enterprise.dart';
@@ -78,6 +80,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<RegisterVerifyCode>(_registerVerifyCode);
     on<SetCountryEvent>(_setCountry);
     on<SetCityEvent>(_setCity);
+    on<GoogleLoginEvent>(_googleLogin);
   }
 
   // _onInitialize(LoginInitialEvent event, Emitter<LoginState> emit) async {
@@ -570,6 +573,59 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _setCity(SetCityEvent event, Emitter<LoginState> emit) {
     emit(state.copyWith(cityId: event.city));
 
+  }
+
+  Future<void> _googleLogin(GoogleLoginEvent event, Emitter<LoginState> emit) async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn(scopes: ["email","profile"]).signIn();
+
+    print("Google user name: ${googleUser?.displayName}");
+    print("Google email: ${googleUser?.email}");
+    print("Google photo url: ${googleUser?.photoUrl}");
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    try {
+
+      final cred = await  FirebaseAuth.instance.signInWithCredential(credential);
+
+      print("user name : ${cred.user?.displayName.toString()}");
+      if(cred.credential?.accessToken != null) {
+       final result = await  authenticationRepo.loginWithGoogle(cred.credential!.accessToken!);
+
+       result.fold((l) async {
+         print("l.message : ${l.message}");
+         emit(state.copyWith(
+             pageState: PageState.error,
+             errMessage: l.message,
+             otpErrMessage: ''));
+         // emit(LoginFailure(error: l.message));
+         // scaffoldMessengerKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
+         // await authenticationRepo.deleteToken();
+         // add(AppStarted());
+         LoadingHelper.stopLoading();
+       }, (u) async {
+
+
+
+
+         authenticationBloc.add(GetUserData());
+
+
+       });
+      }
+
+      // In mobile, being authenticated means being authorized...// However, on web...
+
+    } catch (error) {
+      print(error);
+    }
   }
 }
 

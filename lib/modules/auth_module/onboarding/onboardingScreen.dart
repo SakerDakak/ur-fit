@@ -166,7 +166,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onPressed: () {
                           context
                               .read<AuthenticationBloc>()
-                              .add(GoToChooseLanguage());
+                              .add(GoToOnBoardingTwo());
+                          // context
+                          //     .read<AuthenticationBloc>()
+                          //     .add(GoToChooseLanguage());
                         }),
                     SizedBox(
                       height: 20.px,

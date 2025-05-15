@@ -73,20 +73,20 @@ class SetupPersonalInfoOnboarding extends StatelessWidget {
               const SizedBox(height: 10),
 
               // skip button
-              TextButton(
-                onPressed: () {
-                  context.pushNamed(Routes.authenticationScreen);
-                  context
-                      .read<AuthenticationBloc>()
-                      .add(LoggedIn(token: 'token'));
-                },
-                child: Text(
-                  LocaleKeys.later.tr(),
-                  style: CustomTextStyle.bold_16.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ),
+              // TextButton(
+              //   onPressed: () {
+              //     context.pushNamed(Routes.authenticationScreen);
+              //     context
+              //         .read<AuthenticationBloc>()
+              //         .add(LoggedIn(token: 'token'));
+              //   },
+              //   child: Text(
+              //     LocaleKeys.later.tr(),
+              //     style: CustomTextStyle.bold_16.copyWith(
+              //       color: Theme.of(context).colorScheme.primary,
+              //     ),
+              //   ),
+              // ),
 
               const SizedBox(height: 30),
             ],

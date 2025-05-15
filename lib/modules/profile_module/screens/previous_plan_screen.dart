@@ -68,7 +68,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   Text(
                     LocaleKeys.congratulationsYouHaveDoneAGreatWork.tr(),
                     style: CustomTextStyle.bold_14.copyWith(
-                      color: AppColors.primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
 
@@ -79,8 +79,8 @@ class PreviousPlanScreen extends StatelessWidget {
                       SvgPicture.asset(
                         AppAssets.iconsArrowProgress,
                         width: 12,
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.primaryColor,
+                        colorFilter:  ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
                           BlendMode.srcIn,
                         ),
                       ),

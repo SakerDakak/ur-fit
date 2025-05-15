@@ -190,6 +190,13 @@ class SubscriptionInfoEvent extends LoginEvent {
   List<Object> get props => [token];
 }
 
+class GoogleLoginEvent extends LoginEvent {
+
+  GoogleLoginEvent();
+
+  @override
+  List<Object?> get props => [];
+}
 
 
 class VerifyOtpCodeEvent extends LoginEvent {

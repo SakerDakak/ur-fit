@@ -45,7 +45,7 @@ class GoalItem extends StatelessWidget {
               top: -10,
               start: -5,
               bottom: -10,
-              child: _goalImage(),
+              child: _goalImage(context),
             ),
 
             // workout title and start button
@@ -95,7 +95,7 @@ class GoalItem extends StatelessWidget {
     );
   }
 
-  Stack _goalImage() {
+  Stack _goalImage(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -109,7 +109,7 @@ class GoalItem extends StatelessWidget {
         ),
         CircleAvatar(
           radius: 25,
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           backgroundImage: customImageView(goal.imageUrl),
         ),
       ],

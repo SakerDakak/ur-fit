@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +8,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 
 class LogoutDialog extends StatelessWidget {
@@ -50,8 +52,8 @@ class LogoutDialog extends StatelessWidget {
           SvgPicture.asset(
             AppAssets.iconsLogout,
             height: 20,
-            colorFilter: const ColorFilter.mode(
-              AppColors.primaryColor,
+            colorFilter:  ColorFilter.mode(
+              Theme.of(context).colorScheme.primary,
               BlendMode.srcIn,
             ),
           ),
@@ -64,7 +66,7 @@ class LogoutDialog extends StatelessWidget {
               horizontal: kHorizontalPadding * 2,
             ),
             child: Text(
-              'هل تريد تسجيل خروج\n من حسابك الشخصى؟',
+              LocaleKeys.areYouSureYouWantToLogout.tr(),
               textAlign: TextAlign.center,
               style: CustomTextStyle.bold_14.copyWith(
                 color: AppColors.selectedFont,
@@ -82,7 +84,7 @@ class LogoutDialog extends StatelessWidget {
                 // cancel
                 Expanded(
                   child: CustomElevatedButton(
-                    text: 'لا',
+                    text: LocaleKeys.no.tr(),
                     onPressed: () => Navigator.pop(context),
                     padding: EdgeInsets.zero,
                     backgroundColor: AppColors.notActive,
@@ -94,7 +96,7 @@ class LogoutDialog extends StatelessWidget {
                 // confirm
                 Expanded(
                   child: CustomElevatedButton(
-                    text: 'نعم',
+                    text: LocaleKeys.yes.tr(),
                     onPressed: () {
                       context.read<AuthenticationBloc>().add(LoggedOut());
                     },

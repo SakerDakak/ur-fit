@@ -71,7 +71,7 @@ class OtpScreen extends StatelessWidget {
                     child: Text(
                       'اضغط هنا لاعادة الارسال',
                       style: CustomTextStyle.regular_14.copyWith(
-                        color: AppColors.primaryColor,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   )

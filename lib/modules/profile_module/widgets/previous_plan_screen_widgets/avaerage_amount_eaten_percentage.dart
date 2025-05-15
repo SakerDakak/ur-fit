@@ -27,7 +27,7 @@ class AverageAmountEatenPercentage extends StatelessWidget {
         ),
         _ProgressItem(
           title: LocaleKeys.carbs.tr(),
-          percent:(planHistoryModel.mealPlans.carbs /planHistoryModel.expectedResultOfMealPlans!.fat),
+          percent:(planHistoryModel.mealPlans.carbs /(planHistoryModel.expectedResultOfMealPlans?.fat ?? 0)),
           bottomTxt: LocaleKeys.unit.tr(),
         ),
       ],

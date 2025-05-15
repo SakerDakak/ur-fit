@@ -39,6 +39,7 @@ abstract class BaseAuthenticationRemoteDataSource {
   Future<List<CountryModel>> getCities({required int countryId});
   Future<UserModel> getUserData();
   Future<List<SliderImageModel>> getSliderImages();
+  Future<Map<String, dynamic>> loginWithGoogle(String accessToken);
 
 
 }
@@ -211,6 +212,20 @@ class AuthenticationRemoteDataSource
       EndPoints.getSliderImages,);
     print(response.data);
     return (response.data['data'] as List).map((e) => SliderImageModel.fromJson(e)).toList();
+  }
+
+  @override
+  Future<Map<String, dynamic>> loginWithGoogle(String accessToken) async {
+    // TODO: implement loginWithGoogle
+    final response = await dioServices.post(
+      EndPoints.loginWithGoogle,
+      parameter: {
+        'access_token': accessToken,
+      },
+      data: null,
+    );
+    print(response.data);
+    return response.data['data'];
   }
 
   // @override

@@ -91,6 +91,8 @@ class AppAssets {
   static const String iconsYaminFlag = "assets/icons/yamin_flag.svg";
 
   static const String imageCaloriesIndicator = "assets/image/calories_indicator.svg";
+  static const String imageCaloriesIndicatorFemale = "assets/image/calories_indicator_female.svg";
+
 
   static const String imageIntroScreen = "assets/image/intro_screen.zip";
 

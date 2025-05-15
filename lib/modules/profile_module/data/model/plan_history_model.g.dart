@@ -140,7 +140,7 @@ _$ExpectedResultOfMealPlansImpl _$$ExpectedResultOfMealPlansImplFromJson(
     _$ExpectedResultOfMealPlansImpl(
       calories: json['calories'] as num,
       protein: json['protein'] as num,
-      fat: json['fat'] as num,
+      fat: json['fat'] as num?,
     );
 
 Map<String, dynamic> _$$ExpectedResultOfMealPlansImplToJson(

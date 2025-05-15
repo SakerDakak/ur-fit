@@ -93,7 +93,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             Text(
               'سعر حرارى',
               style: CustomTextStyle.bold_14.copyWith(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ],

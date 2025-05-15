@@ -27,6 +27,7 @@ mixin _$PackageModel {
   PlanType get type => throw _privateConstructorUsedError;
   int get is_active => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   /// Serializes this PackageModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +52,8 @@ abstract class $PackageModelCopyWith<$Res> {
       String price,
       PlanType type,
       int is_active,
-      String? image});
+      String? image,
+      String? description});
 }
 
 /// @nodoc
@@ -76,6 +78,7 @@ class _$PackageModelCopyWithImpl<$Res, $Val extends PackageModel>
     Object? type = null,
     Object? is_active = null,
     Object? image = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,6 +109,10 @@ class _$PackageModelCopyWithImpl<$Res, $Val extends PackageModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -125,7 +132,8 @@ abstract class _$$PackageImplCopyWith<$Res>
       String price,
       PlanType type,
       int is_active,
-      String? image});
+      String? image,
+      String? description});
 }
 
 /// @nodoc
@@ -148,6 +156,7 @@ class __$$PackageImplCopyWithImpl<$Res>
     Object? type = null,
     Object? is_active = null,
     Object? image = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$PackageImpl(
       id: null == id
@@ -178,6 +187,10 @@ class __$$PackageImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -192,7 +205,8 @@ class _$PackageImpl implements _Package {
       required this.price,
       required this.type,
       required this.is_active,
-      required this.image});
+      required this.image,
+      required this.description});
 
   factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
       _$$PackageImplFromJson(json);
@@ -211,10 +225,12 @@ class _$PackageImpl implements _Package {
   final int is_active;
   @override
   final String? image;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'PackageModel(id: $id, name: $name, duration: $duration, price: $price, type: $type, is_active: $is_active, image: $image)';
+    return 'PackageModel(id: $id, name: $name, duration: $duration, price: $price, type: $type, is_active: $is_active, image: $image, description: $description)';
   }
 
   @override
@@ -230,13 +246,15 @@ class _$PackageImpl implements _Package {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.is_active, is_active) ||
                 other.is_active == is_active) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, duration, price, type, is_active, image);
+  int get hashCode => Object.hash(runtimeType, id, name, duration, price, type,
+      is_active, image, description);
 
   /// Create a copy of PackageModel
   /// with the given fields replaced by the non-null parameter values.
@@ -262,7 +280,8 @@ abstract class _Package implements PackageModel {
       required final String price,
       required final PlanType type,
       required final int is_active,
-      required final String? image}) = _$PackageImpl;
+      required final String? image,
+      required final String? description}) = _$PackageImpl;
 
   factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
 
@@ -280,6 +299,8 @@ abstract class _Package implements PackageModel {
   int get is_active;
   @override
   String? get image;
+  @override
+  String? get description;
 
   /// Create a copy of PackageModel
   /// with the given fields replaced by the non-null parameter values.

@@ -1,4 +1,5 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,7 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/core/utils/enums.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
@@ -25,7 +27,7 @@ class PersonalInfoPage extends StatelessWidget {
       children: [
         // gender
         Text(
-          'هل انت ؟',
+          LocaleKeys.areYou.tr(),
           style: CustomTextStyle.semiBold_16,
         ),
         const SizedBox(height: 16),
@@ -37,7 +39,7 @@ class PersonalInfoPage extends StatelessWidget {
 
         // age
          _SliderTitle(
-          title: 'السن',
+          title: LocaleKeys.age.tr(),
           value: user?.age, // this value will come from the server
           valueFractionDigits: 0,
         ),
@@ -56,9 +58,9 @@ class PersonalInfoPage extends StatelessWidget {
 
         // height
         _SliderTitle(
-          title: 'الطول',
+          title: LocaleKeys.height.tr(),
           value: user?.height, // this value will come from the server
-          suffix: Text('سم', style: CustomTextStyle.semiBold_16),
+          suffix: Text(LocaleKeys.cm.tr(), style: CustomTextStyle.semiBold_16),
         ),
         const SizedBox(height: 12),
         CustomCurveSlider(
@@ -76,9 +78,9 @@ class PersonalInfoPage extends StatelessWidget {
 
         // weight
         _SliderTitle(
-          title: 'الوزن',
+          title:LocaleKeys.currentWeight.tr(),
           value: user?.currentWeight, // this value will come from the server
-          suffix: Text('كجم', style: CustomTextStyle.semiBold_16),
+          suffix: Text(LocaleKeys.kg.tr(), style: CustomTextStyle.semiBold_16),
         ),
         const SizedBox(height: 12),
         CustomCurveSlider(
@@ -94,7 +96,7 @@ class PersonalInfoPage extends StatelessWidget {
 
         // continue button
         CustomElevatedButton(
-          text: 'استمر',
+          text: LocaleKeys.continuee.tr(),
           padding: EdgeInsets.zero,
           onPressed: () => cubit.goToNextPage(),
         ),
@@ -223,7 +225,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      GenderEnum.values[i] == GenderEnum.male ? 'ذكر' : 'انثى',
+                      GenderEnum.values[i] == GenderEnum.male ? LocaleKeys.Male.tr() : LocaleKeys.Female.tr(),
                       style: CustomTextStyle.bold_16,
                     ),
                   ],

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 
 import '../../../../core/routes/routes.dart';
@@ -22,7 +24,7 @@ class ActionButtons extends StatelessWidget {
     return CustomElevatedButton(
           text:sl<AuthenticationBloc>().currentUser?.hasValidSubscription ==
               false ||
-              sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage ? 'الانتقال للدفع' : "انت مشترك بالفعل في هذه الخطة",
+              sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage ? LocaleKeys.paymentGetWay.tr() : LocaleKeys.youAreAlreadySubscribedToThisPlan.tr(),
           onPressed:sl<AuthenticationBloc>().currentUser?.hasValidSubscription ==
               false ||
               sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage ? () async {
@@ -46,7 +48,7 @@ class ActionButtons extends StatelessWidget {
                 .add(LoggedIn(token: 'token'));
           },
           child: Text(
-            'ليس الان',
+            LocaleKeys.later.tr(),
             style: CustomTextStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),

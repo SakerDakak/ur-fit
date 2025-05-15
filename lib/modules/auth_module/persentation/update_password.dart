@@ -36,7 +36,7 @@ class UpdatePasswordScreen extends StatelessWidget {
               'اعادة تعين كلمة المرور الخاصة بك.',
               textAlign: TextAlign.center,
               style: CustomTextStyle.bold_16.copyWith(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             const SizedBox(height: 32),

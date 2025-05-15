@@ -19,6 +19,7 @@ required String price,
 required PlanType type,
 required int is_active,
 required String? image,
+required String? description,
 // required String? recaptcha_token,
 
 

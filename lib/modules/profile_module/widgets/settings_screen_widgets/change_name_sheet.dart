@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +8,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 
 import '../../../auth_module/bloc/authentication_bloc.dart';
 
@@ -63,8 +65,8 @@ class ChangeNameSheet extends StatelessWidget {
             SvgPicture.asset(
               AppAssets.iconsProfile,
               height: 24,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primaryColor,
+              colorFilter:  ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
                 BlendMode.srcIn,
               ),
             ),
@@ -73,9 +75,9 @@ class ChangeNameSheet extends StatelessWidget {
 
             // title
             Text(
-              'تغير الاسم',
+              LocaleKeys.changeName.tr(),
               style: CustomTextStyle.bold_16.copyWith(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
 
@@ -84,7 +86,7 @@ class ChangeNameSheet extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
-                'الاسم كامل',
+                LocaleKeys.fullName.tr(),
                 style: CustomTextStyle.regular_14.copyWith(
                   color: AppColors.selectedFont,
                 ),
@@ -95,7 +97,7 @@ class ChangeNameSheet extends StatelessWidget {
 
             // name text field
             CompactTextFormField(
-              hintText: 'الاسم',
+              hintText: LocaleKeys.fullName.tr(),
               initialValue: user?.name.toString(),
               padding: EdgeInsets.zero,
               borderColor: AppColors.strockColor,
@@ -108,7 +110,7 @@ class ChangeNameSheet extends StatelessWidget {
 
             // confirm button
             CustomElevatedButton(
-              text: 'تاكيد',
+              text: LocaleKeys.confirm.tr(),
               onPressed: () {},
               padding: EdgeInsets.zero,
             ),

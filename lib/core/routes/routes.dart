@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/modules/auth_module/onboarding/choose_city.dart';
 import 'package:urfit/modules/auth_module/onboarding/choose_language.dart';
+import 'package:urfit/modules/auth_module/onboarding/on_boarding_2.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/screens/setup_personal_info_screen.dart';
 import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
@@ -46,6 +47,8 @@ class Routes {
   static const splashScreen = "splash";
   static const authenticationScreen = "/";
   static const onBoarding = "onBoarding";
+  static const onBoarding2 = "onBoarding2";
+
   static const emailLogin = "emailLogin";
   static const registerFlow = "registerFlow";
   static const phoneLoginFlow = "phoneLoginFlow";
@@ -107,6 +110,11 @@ class Routes {
               path: onBoarding,
               name: onBoarding,
               builder: (context, state) => const OnboardingScreen(),
+            ),
+            GoRoute(
+              path: onBoarding2,
+              name: onBoarding2,
+              builder: (context, state) => const OnBoarding2(),
             ),
             GoRoute(
               path: chooseLang,
@@ -268,6 +276,8 @@ class Routes {
                 return "/$chooseCountry";
               case AuthenticationPersonalInfo:
                 return "$setupPersonalInfo";
+              case AuthenticationOnBoardingTwo:
+                return "/$onBoarding2";
             }
             return null;
           }),

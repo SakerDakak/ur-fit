@@ -48,5 +48,6 @@ class EndPoints {
   static const getPlanHistory ='/api/getHistoryMealsAndExercisesPlans';
   static const staticPages = '/api/staticPages';
   static const getSliderImages = '/api/sliderImages';
-
+  static const loginWithGoogle = '/api/auth/google';
+  static const discountValue = '/api/get-the-discount-value';
 }

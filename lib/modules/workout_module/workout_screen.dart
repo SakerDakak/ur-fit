@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/utils/constants.dart';
@@ -13,6 +14,7 @@ import 'package:urfit/modules/workout_module/workout_widgets/today_workout_detai
 import 'package:urfit/modules/workout_module/workout_widgets/weight_progress_card.dart';
 
 import '../../core/utils/enums.dart';
+import '../../generated/locale_keys.g.dart';
 
 class WorkoutScreen extends StatelessWidget {
   const WorkoutScreen({super.key});
@@ -96,8 +98,8 @@ class WorkoutScreen extends StatelessWidget {
                 }),
 
           ],
-        ) :const Center(
-            child: Text('لا يوجد اشتراك لباقة تمارين')),
+        ) : Center(
+            child: Text(LocaleKeys.noSubscription.tr())),
       ) ;
 
   }

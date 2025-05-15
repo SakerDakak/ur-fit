@@ -15,6 +15,7 @@ _$PackageImpl _$$PackageImplFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$PlanTypeEnumMap, json['type']),
       is_active: (json['is_active'] as num).toInt(),
       image: json['image'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$PackageImplToJson(_$PackageImpl instance) =>
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$PackageImplToJson(_$PackageImpl instance) =>
       'type': _$PlanTypeEnumMap[instance.type]!,
       'is_active': instance.is_active,
       'image': instance.image,
+      'description': instance.description,
     };
 
 const _$PlanTypeEnumMap = {

@@ -32,6 +32,8 @@ class AuthenticationGoToChooseLang extends AuthenticationState {}
 
 class AuthenticationChooseLang extends AuthenticationState {}
 class AuthenticationChooseCountry extends AuthenticationState {}
+class AuthenticationOnBoardingTwo extends AuthenticationState {}
+
 class AuthenticationPersonalInfo extends AuthenticationState {}
 
 class AuthenticationRegister extends AuthenticationState {

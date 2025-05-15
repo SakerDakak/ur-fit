@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/final_step_section_one.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/final_step_section_two.dart';
@@ -41,18 +43,18 @@ class SetupInfoFinalStep extends StatelessWidget {
             final isSectionOneSelected = state.userInfo.selectedGaols.any(
                     (e) => e.sectionOneType != null);
             return CustomElevatedButton(
-              text: isSectionTwoSelected ? 'استمر' : "انشاء خطتي الخاصه",
+              text: isSectionTwoSelected ? LocaleKeys.continuee.tr() : LocaleKeys.createMyPlan.tr(),
               padding: EdgeInsets.zero,
               onPressed: () {
                 if(isSectionOneSelected){
                   if(state.userInfo.targetWeight == null){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("يجب تحديد الوزن الذي تريد الوصول الية")));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LocaleKeys.weightSelectionIsRequired.tr())));
                     return;
                   }
                 }
                 if (isSectionTwoSelected) {
                   if(state.userInfo.diet_id == null){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("يجب تحديد نوع الحمية")));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LocaleKeys.dietTypeSelectionIsRequired.tr())));
                     return;
                   }else{
                     cubit.goToNextPage();

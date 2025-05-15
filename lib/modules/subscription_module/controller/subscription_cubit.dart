@@ -8,6 +8,7 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/loading_helper.dart';
 import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
+import 'package:urfit/modules/subscription_module/data/models/discount_value_model.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
@@ -42,8 +43,11 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
     });
   }
 
-  updateSelectedPackage(int index) {
+  updateSelectedPackage(int index) async {
     emit(state.copyWith(selectedPackage: index));
+    if(state.coupon != null) {
+     await checkCouponCode(coupon: state.coupon!);
+    }
   }
 
   paymentResponse(String url) async {
@@ -109,22 +113,67 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
 
   getPaymentUrl() async {
     emit(state.copyWith(getPaymentUrlState: RequestState.loading));
+      print("coupon code : ${state.coupon}");
+      if(state.discountValue  != null && state.discountValue?.final_price == 0 || state.discountValue?.final_price == 0.0) {
+        final package = state.packages.firstWhere((package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
+        switch(package.type){
 
-    final result =
-        await _subscriptionRepo.getPaymentUrl(packageId: state.selectedPackage ?? state.packages.first.id);
-    result.fold(
-      (failure) => emit(state.copyWith(
-        getPaymentUrlState: RequestState.failure,
-        errMessage: failure.message,
-      )),
-      (successData) {
-        print("successData : $successData");
-        emit(state.copyWith(
-          getPaymentUrlState: RequestState.success,
-          paymentUrl: successData,
-          // packages: successData,
-        ));
-      },
-    );
+          case PlanType.exercise:
+            await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
+            break;
+          case PlanType.diet:
+            await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
+            sl<AuthenticationBloc>().add(GetUserDataFromServer());
+
+            break;
+          case PlanType.both:
+            await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
+            await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
+            sl<AuthenticationBloc>().add(GetUserDataFromServer());
+            break;
+        }
+        LoadingHelper.stopLoading();
+      }else {
+        final result =
+        await _subscriptionRepo.getPaymentUrl(
+            packageId: state.selectedPackage ?? state.packages.first.id,
+            couponeCode: state.coupon);
+        result.fold(
+              (failure) =>
+              emit(state.copyWith(
+                getPaymentUrlState: RequestState.failure,
+                errMessage: failure.message,
+              )),
+              (successData) {
+            print("successData : $successData");
+            emit(state.copyWith(
+              getPaymentUrlState: RequestState.success,
+              paymentUrl: successData,
+              // packages: successData,
+            ));
+          },
+        );
+      }
+  }
+
+  checkCouponCode({ required String coupon}) async {
+    final price = state.packages.firstWhere((package) => package.id == state.selectedPackage ).price;
+    emit(state.copyWith(couponState: RequestState.loading,coupon:coupon));
+    final result  = await _subscriptionRepo.getDiscountValue(price: num.parse(price), coupon: coupon);
+
+    result.fold((l){
+      print("error : ${l.message}");
+
+      emit(state.copyWith(
+        couponState: RequestState.failure,
+        errMessage: "هذا الكوبون غير صالح ",
+      ));
+    }, (r){
+      emit(state.copyWith(
+        couponState: RequestState.success,
+        discountValue: r,
+      ));
+    });
+
   }
 }

@@ -48,6 +48,7 @@ class AuthenticationBloc
     on<UpdateSubscriptionEvent>(_updateSubscription);
     on<GetUserDataFromServer>(_getUserDataFromServer);
     on<GetSliderImageEvent>(_getSliderImage);
+    on<GoToOnBoardingTwo>(_goToOnBoardingTwo);
     // on<NavigateToRequestPrice>(_navigateToRequestPrice);
   }
 
@@ -156,7 +157,6 @@ class AuthenticationBloc
     await result.fold((l) {
       LoadingHelper.stopLoading();
     }, (r) async {
-      print("user Data : ${r?.toUserModel().toJson()}");
       await sl<DioServices>().init();
 
       currentUser = r?.toUserModel();
@@ -244,5 +244,10 @@ class AuthenticationBloc
     }, (r) {
       emit(AuthenticationOnBoarding(sliderImages: r));
     });
+  }
+
+  FutureOr<void> _goToOnBoardingTwo(GoToOnBoardingTwo event, Emitter<AuthenticationState> emit) {
+    emit(AuthenticationOnBoardingTwo());
+
   }
 }

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/setup_info_final_step.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/setup_info_step_two.dart';
@@ -44,7 +46,7 @@ class SetupPersonalInfo extends StatelessWidget {
                   // page title
                   Expanded(
                     child: Text(
-                      'معلومات شخصية',
+                      LocaleKeys.personalInfo.tr(),
                       textAlign: TextAlign.center,
                       style: CustomTextStyle.bold_16,
                     ),
@@ -68,22 +70,23 @@ class SetupPersonalInfo extends StatelessWidget {
                   ),
 
                   // skip button
-                  TextButton(
-                    onPressed: () {
-                      if (state.currentInfoStep == _personalInfoPages.length) {
-                        cubit.goToNextPage();
-                      } else {
-                        cubit.goToNextInfoStep();
-                      }
-                    },
-                    style: const ButtonStyle(
-                      visualDensity: VisualDensity.comfortable,
-                    ),
-                    child: Text(
-                      'تخطى',
-                      style: CustomTextStyle.regular_14,
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     if (state.currentInfoStep == _personalInfoPages.length) {
+                  //       cubit.goToNextPage();
+                  //     } else {
+                  //       cubit.goToNextInfoStep();
+                  //     }
+                  //   },
+                  //   style: const ButtonStyle(
+                  //     visualDensity: VisualDensity.comfortable,
+                  //   ),
+                  //   child: Text(
+                  //     'تخطى',
+                  //     style: CustomTextStyle.regular_14,
+                  //   ),
+                  // ),
+                  SizedBox(height: 30,)
                 ],
               ),
 
@@ -121,11 +124,11 @@ class SetupPersonalInfo extends StatelessWidget {
   String _getCurrentStepTxt(int step) {
     switch (step) {
       case 1:
-        return 'الخطوة الاولى';
+        return LocaleKeys.firstStep.tr();
       case 2:
-        return 'الخطوة الثانية';
+        return LocaleKeys.secondStep.tr();
       case 3:
-        return 'الخطوة  الاخيرة';
+        return LocaleKeys.thirdStep.tr();
 
       default:
         return '';

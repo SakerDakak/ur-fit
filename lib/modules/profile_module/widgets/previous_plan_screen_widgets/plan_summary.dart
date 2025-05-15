@@ -105,8 +105,8 @@ class _DetailsItem extends StatelessWidget {
           svgIconPath,
           height: 16,
           width: 16,
-          colorFilter: const ColorFilter.mode(
-            AppColors.primaryColor,
+          colorFilter:  ColorFilter.mode(
+            Theme.of(context).colorScheme.primary,
             BlendMode.srcIn,
           ),
         ),
@@ -135,7 +135,7 @@ class _DetailsItem extends StatelessWidget {
                 Text(
                   valueType,
                   style: CustomTextStyle.regular_14.copyWith(
-                    color: AppColors.primaryColor,
+                    color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

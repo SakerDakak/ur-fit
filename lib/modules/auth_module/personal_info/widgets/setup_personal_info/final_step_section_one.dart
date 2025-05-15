@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/shared/widgets/range_bar.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/enums.dart';
+import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/animated_value_container.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/values_gridview.dart';
@@ -39,7 +41,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
       children: [
         // title
         Text(
-          'القسم الاول',
+          LocaleKeys.sectionOne.tr(),
           style: CustomTextStyle.bold_16.copyWith(
             color: Theme.of(context).colorScheme.primary,
           ),
@@ -57,16 +59,16 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
           children: [
             Expanded(
               child: Text(
-                'الوجبات التى تفضلها؟',
+                LocaleKeys.mealsYouLike.tr(),
                 style: CustomTextStyle.bold_14,
               ),
             ),
-            Text(
-              'عرض الكل',
-              style: CustomTextStyle.bold_14.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
+            // Text(
+            //   LocaleKeys.More.tr(),
+            //   style: CustomTextStyle.bold_14.copyWith(
+            //     color: Theme.of(context).colorScheme.primary,
+            //   ),
+            // ),
           ],
         ),
 
@@ -81,16 +83,16 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
           children: [
             Expanded(
               child: Text(
-                'الوجبات التى  لا تفضلها؟',
+                LocaleKeys.mealsNotLiked.tr(),
                 style: CustomTextStyle.bold_14,
               ),
             ),
-            Text(
-              'عرض الكل',
-              style: CustomTextStyle.bold_14.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
+            // Text(
+            //   'عرض الكل',
+            //   style: CustomTextStyle.bold_14.copyWith(
+            //     color: Theme.of(context).colorScheme.primary,
+            //   ),
+            // ),
           ],
         ),
 
@@ -102,7 +104,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
 
         // daily meals number
         Text(
-          'عدد الوجبات اليومية؟',
+          LocaleKeys.numberOfMealsPerDay.tr(),
           style: CustomTextStyle.bold_14,
         ),
 
@@ -114,7 +116,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
 
         // daily meals number
         Text(
-          'نوع الحميه الغذائية',
+          LocaleKeys.dietType.tr(),
           style: CustomTextStyle.bold_14,
         ),
 
@@ -125,7 +127,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
         const SizedBox(height: 20),
         // meals variety level
         Text(
-          'مستوى التنوع فى الوجبة؟',
+          LocaleKeys.mealsVerity.tr(),
           style: CustomTextStyle.bold_14,
         ),
 
@@ -234,7 +236,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
             child: Row(
               children: [
                 Text(
-                  'ماالوزن الذى تريد الوصول اليه؟ ',
+                  LocaleKeys.weightYouWantToTarget.tr(),
                   style: CustomTextStyle.bold_14,
                 ),
                 const SizedBox(width: 20),
@@ -243,7 +245,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
                 ),
                 const SizedBox(width: 20),
                 Text(
-                  'كجم',
+                  LocaleKeys.kg.tr(),
                   style: CustomTextStyle.bold_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -265,7 +267,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
             },
             isSingle: false,
             alwaysShowTooltip: false,
-            title: 'كجم',
+            title: LocaleKeys.kg.tr(),
           ),
         ],
       ),

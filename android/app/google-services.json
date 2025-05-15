@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459205756320",
+    "project_id": "ur-fit-fe5fd",
+    "storage_bucket": "ur-fit-fe5fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459205756320:android:c4d5bae93f48a68c0c90c5",
+        "android_client_info": {
+          "package_name": "com.rmz.urfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459205756320-0atmh9roj5jo7oeg3jupacgelcum706c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_a9eGvYIODsw7bPGdVEg3T-72d4RHhJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459205756320-0atmh9roj5jo7oeg3jupacgelcum706c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

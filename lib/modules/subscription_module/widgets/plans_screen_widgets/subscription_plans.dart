@@ -1,12 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/const.dart';
-import 'package:urfit/core/routes/routes.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
+
+import '../../../../generated/locale_keys.g.dart';
 
 class SubscriptionPlans extends StatefulWidget {
   final List<PackageModel> packages;
@@ -83,7 +84,7 @@ class PlanCard extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kBorderRadius),
-          color: isSelected ? AppColors.primaryColor : AppColors.cardColor,
+          color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.cardColor,
           border: isSelected ? null : Border.all(color: AppColors.strockColor),
         ),
         child: FittedBox(
@@ -117,16 +118,18 @@ class PlanCard extends StatelessWidget {
               ),
 
               const SizedBox(height: 8),
-
-              Text(
-                '\$${package?.price}',
-                style: CustomTextStyle.regular_14.copyWith(
-                  decoration: TextDecoration.lineThrough,
-                  color: isSelected ? AppColors.selectedFont : null,
-                  decorationColor:
-                      isSelected ? AppColors.selectedFont : AppColors.fontColor,
-                ),
-              ),
+              // if(package?.discount_code != null)
+              // Text(
+              //   '\$${package?.price}',
+              //   style: CustomTextStyle.regular_14.copyWith(
+              //     decoration: TextDecoration.lineThrough,
+              //     color: isSelected ? AppColors.selectedFont : null,
+              //     decorationColor:
+              //         isSelected ? AppColors.selectedFont : AppColors.fontColor,
+              //   ),
+              // ),
+              // if(package?.discount_code == null)
+              //   const SizedBox(height: 18),
 
               const SizedBox(height: 10),
 
@@ -135,7 +138,7 @@ class PlanCard extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '\$${package == null ? "59.99" :(num.parse(package!.price) / package!.duration).toStringAsFixed(2)}',
+                      text: '${LocaleKeys.sar.tr()}${package == null ? "59.99" :(num.parse(package!.price.toString())).toStringAsFixed(2)}',
                       style: CustomTextStyle.bold_16.copyWith(
                         color: isSelected ? AppColors.selectedFont : null,
                       ),
@@ -147,7 +150,7 @@ class PlanCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: 'شهر',
+                      text: LocaleKeys.month.tr(),
                       style: CustomTextStyle.regular_14.copyWith(
                         color: isSelected ? AppColors.selectedFont : null,
                       ),
@@ -160,7 +163,7 @@ class PlanCard extends StatelessWidget {
 
               // price per weak
               Text(
-                '\$${package == null ? "4.99" :(num.parse(package!.price) / (package!.duration * 4)).toStringAsFixed(2)}/الاسبوع',
+                '${LocaleKeys.sar.tr()}${package == null ? "4.99" :(num.parse(package!.price.toString()) / (package!.duration * 4)).toStringAsFixed(2)}/${LocaleKeys.week.tr()}',
                 style: CustomTextStyle.regular_14.copyWith(
                   color: isSelected ? AppColors.selectedFont : null,
                 ),
@@ -169,12 +172,13 @@ class PlanCard extends StatelessWidget {
               const SizedBox(height: 10),
 
               // discount percent
-              Text(
-                '+خصم 10%',
-                style: CustomTextStyle.regular_14.copyWith(
-                  color: isSelected ? AppColors.selectedFont : null,
-                ),
-              ),
+              // if(package?.discount_code != null)
+              //   Text(
+              //   '+خصم ${package?.discount_value}%',
+              //   style: CustomTextStyle.regular_14.copyWith(
+              //     color: isSelected ? AppColors.selectedFont : null,
+              //   ),
+              // ),
             ],
           ),
         ),

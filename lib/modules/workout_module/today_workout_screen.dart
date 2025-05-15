@@ -165,7 +165,7 @@ class TrainingDescription extends StatelessWidget {
         Text(
           'ارشادات',
           style: CustomTextStyle.bold_16.copyWith(
-              fontWeight: FontWeight.w800, color: AppColors.primaryColor),
+              fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         ...description.map(
           (des) => Padding(
@@ -181,7 +181,7 @@ class TrainingDescription extends StatelessWidget {
         Text(
           'وصف التمرين ',
           style: CustomTextStyle.bold_16.copyWith(
-              fontWeight: FontWeight.w800, color: AppColors.primaryColor),
+              fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         SizedBox(
           height: 16.px,
@@ -271,7 +271,7 @@ class WorkOutProgressHeader extends StatelessWidget {
                 SvgPicture.asset(
                   AssetsManager.workout,
                   colorFilter:
-                      ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                      ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
                   width: 16.px,
                   height: 10.px,
                 ),
@@ -288,7 +288,7 @@ class WorkOutProgressHeader extends StatelessWidget {
                     maxLines: 3,
                     style: CustomTextStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: state.progressValue >= 1 ? AppColors.primaryColor : AppColors.whiteColor,
+                      color: state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
                     ),
                   ),
                 )
@@ -308,7 +308,7 @@ class WorkOutProgressHeader extends StatelessWidget {
                     workout,
                     style: CustomTextStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: state.progressValue >= index ? AppColors.primaryColor : AppColors.whiteColor,
+                      color: state.progressValue >= index ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
                     ),
                   ),
             );
@@ -328,7 +328,7 @@ class WorkOutProgressHeader extends StatelessWidget {
               '${workoutList[progressValue - 1]}',
               style: CustomTextStyle.bold_14.copyWith(
                 fontWeight: FontWeight.w800,
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             TextButton(
