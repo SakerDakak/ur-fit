@@ -22,6 +22,7 @@ NoOfDailyMealsModel _$NoOfDailyMealsModelFromJson(Map<String, dynamic> json) {
 mixin _$NoOfDailyMealsModel {
   String get value => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
   /// Serializes this NoOfDailyMealsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ abstract class $NoOfDailyMealsModelCopyWith<$Res> {
           NoOfDailyMealsModel value, $Res Function(NoOfDailyMealsModel) then) =
       _$NoOfDailyMealsModelCopyWithImpl<$Res, NoOfDailyMealsModel>;
   @useResult
-  $Res call({String value, String label});
+  $Res call({String value, String label, String? image});
 }
 
 /// @nodoc
@@ -59,6 +60,7 @@ class _$NoOfDailyMealsModelCopyWithImpl<$Res, $Val extends NoOfDailyMealsModel>
   $Res call({
     Object? value = null,
     Object? label = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       value: null == value
@@ -69,6 +71,10 @@ class _$NoOfDailyMealsModelCopyWithImpl<$Res, $Val extends NoOfDailyMealsModel>
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$NoOfDailyMealsModelImplCopyWith<$Res>
       __$$NoOfDailyMealsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String label});
+  $Res call({String value, String label, String? image});
 }
 
 /// @nodoc
@@ -99,6 +105,7 @@ class __$$NoOfDailyMealsModelImplCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
     Object? label = null,
+    Object? image = freezed,
   }) {
     return _then(_$NoOfDailyMealsModelImpl(
       value: null == value
@@ -109,6 +116,10 @@ class __$$NoOfDailyMealsModelImplCopyWithImpl<$Res>
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -116,7 +127,8 @@ class __$$NoOfDailyMealsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NoOfDailyMealsModelImpl implements _NoOfDailyMealsModel {
-  const _$NoOfDailyMealsModelImpl({required this.value, required this.label});
+  const _$NoOfDailyMealsModelImpl(
+      {required this.value, required this.label, this.image});
 
   factory _$NoOfDailyMealsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoOfDailyMealsModelImplFromJson(json);
@@ -125,10 +137,12 @@ class _$NoOfDailyMealsModelImpl implements _NoOfDailyMealsModel {
   final String value;
   @override
   final String label;
+  @override
+  final String? image;
 
   @override
   String toString() {
-    return 'NoOfDailyMealsModel(value: $value, label: $label)';
+    return 'NoOfDailyMealsModel(value: $value, label: $label, image: $image)';
   }
 
   @override
@@ -137,12 +151,13 @@ class _$NoOfDailyMealsModelImpl implements _NoOfDailyMealsModel {
         (other.runtimeType == runtimeType &&
             other is _$NoOfDailyMealsModelImpl &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.label, label) || other.label == label));
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, value, label);
+  int get hashCode => Object.hash(runtimeType, value, label, image);
 
   /// Create a copy of NoOfDailyMealsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -164,7 +179,8 @@ class _$NoOfDailyMealsModelImpl implements _NoOfDailyMealsModel {
 abstract class _NoOfDailyMealsModel implements NoOfDailyMealsModel {
   const factory _NoOfDailyMealsModel(
       {required final String value,
-      required final String label}) = _$NoOfDailyMealsModelImpl;
+      required final String label,
+      final String? image}) = _$NoOfDailyMealsModelImpl;
 
   factory _NoOfDailyMealsModel.fromJson(Map<String, dynamic> json) =
       _$NoOfDailyMealsModelImpl.fromJson;
@@ -173,6 +189,8 @@ abstract class _NoOfDailyMealsModel implements NoOfDailyMealsModel {
   String get value;
   @override
   String get label;
+  @override
+  String? get image;
 
   /// Create a copy of NoOfDailyMealsModel
   /// with the given fields replaced by the non-null parameter values.

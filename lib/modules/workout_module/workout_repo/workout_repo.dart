@@ -5,7 +5,7 @@ import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import '../data/workout_remote_datasource.dart';
 
 abstract class BaseWorkoutRepo {
-  Future<Either<Failure ,WorkoutPlan>> generateWorkOutPlan({required String endDate});
+  Future<Either<Failure ,String>> generateWorkOutPlan({required String endDate});
 
   Future<Either<Failure ,List<WorkoutPlan>>> getWorkoutPlan();
   Future<Either<Failure ,void>> calculateExercise({required int exercisePlanId,required num calories , required num times , required num sets});
@@ -27,7 +27,7 @@ class WorkoutRepo extends BaseWorkoutRepo{
   }
 
   @override
-  Future<Either<Failure, WorkoutPlan>> generateWorkOutPlan({required String endDate}) async {
+  Future<Either<Failure, String>> generateWorkOutPlan({required String endDate}) async {
     try {
       final result = await workoutRemoteDataSource.generateWorkoutPlan(
           endDate: endDate);

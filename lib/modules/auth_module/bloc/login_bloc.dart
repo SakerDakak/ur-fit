@@ -595,9 +595,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       final cred = await  FirebaseAuth.instance.signInWithCredential(credential);
 
+
+      final registerModel = RegisterModel(
+        name: state.firstName,
+        email: state.email,
+        password: state.newPassword,
+        password_confirmation: state.confirmPassword,
+        country_id: state.countryId,
+        city_id: state.cityId,
+        
+      );
+
       print("user name : ${cred.user?.displayName.toString()}");
       if(cred.credential?.accessToken != null) {
-       final result = await  authenticationRepo.loginWithGoogle(cred.credential!.accessToken!);
+       final result = await  authenticationRepo.loginWithGoogle(
+         accessToken: cred.credential!.accessToken!,
+         registerModel: registerModel
+       );
 
        result.fold((l) async {
          print("l.message : ${l.message}");

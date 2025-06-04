@@ -17,8 +17,8 @@ class UserModel with _$UserModel {
     required String name,
     required String email,
     required bool? hasValidSubscription,
-    required Country? country,
-    @JsonKey(name: 'city_id') required City? city,
+    @CountryConverter() required Country? country,
+    @CityConverter() @JsonKey(name: 'city_id') required City? city,
     @GenderEnumConverter() GenderEnum? gender,
     @JsonKey(name: 'package_id') required int? packageId,
     required int? age,
@@ -86,6 +86,7 @@ class BodyShapeConverter implements JsonConverter<BodyShape?, dynamic> {
     }
   }
 
+
   @override
   toJson(BodyShape? object) {
     return {
@@ -94,6 +95,54 @@ class BodyShapeConverter implements JsonConverter<BodyShape?, dynamic> {
     };
   }
 }
+
+class CountryConverter implements JsonConverter<Country?, dynamic> {
+  const CountryConverter();
+
+  @override
+  Country? fromJson(dynamic json) {
+    if(json is List){
+      return null;
+    }else if(json is Map){
+      return Country.fromJson(json as Map<String,dynamic>);
+    }else{
+      return null;
+    }
+  }
+
+
+  @override
+  toJson(Country? object) {
+    return {
+      'id': object?.id,
+      'name': object?.name,
+    };
+  }
+}
+class CityConverter implements JsonConverter<City?, dynamic> {
+  const CityConverter();
+
+  @override
+  City? fromJson(dynamic json) {
+    if(json is List){
+      return null;
+    }else if(json is Map){
+      return City.fromJson(json as Map<String,dynamic>);
+    }else{
+      return null;
+    }
+  }
+
+
+  @override
+  toJson(City? object) {
+    return {
+      'id': object?.id,
+      'name': object?.name,
+    };
+  }
+}
+
 class DietConverter implements JsonConverter<Diet?, dynamic> {
   const DietConverter();
 

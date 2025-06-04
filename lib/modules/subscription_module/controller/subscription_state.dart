@@ -5,7 +5,7 @@ class SubscriptionState with _$SubscriptionState {
   const factory SubscriptionState({
     @Default([]) List<PackageModel> packages,
     @Default(null) int? selectedPackage,
-    @Default('') String paymentUrl,
+    @Default(null) String? paymentUrl,
     @Default(null) DiscountValueModel? discountValue,
     @Default(null) String? coupon,
     @Default(RequestState.initial) RequestState getPackagesState,

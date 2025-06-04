@@ -9,8 +9,8 @@ import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_i
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/final_step_section_two.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 
-import '../../../../../core/routes/routes.dart';
-import '../../../../subscription_module/data/models/package_model.dart';
+import '../../../../../../core/routes/routes.dart';
+import '../../../../../subscription_module/data/models/package_model.dart';
 
 class SetupInfoFinalStep extends StatelessWidget {
   const SetupInfoFinalStep({super.key});

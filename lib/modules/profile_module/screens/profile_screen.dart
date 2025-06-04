@@ -155,206 +155,206 @@ class ProfileScreen extends StatelessWidget {
                 leadingIconSvgPath: AppAssets.iconsSupport,
               ),
 
-              const Divider(
-                color: AppColors.strockColor,
-              ),
+              // const Divider(
+              //   color: AppColors.strockColor,
+              // ),
 
               // medical department tile
-              DefaultListTile(
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (_) => new AlertDialog(
-                            backgroundColor: Colors.blue,
-                            insetPadding: EdgeInsets.zero,
-                            contentPadding: EdgeInsets.zero,
-                            titlePadding: EdgeInsets.zero,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(16.0))),
-                            content: Builder(
-                              builder: (context) {
-                                // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                                var height = MediaQuery.of(context).size.height;
-                                var width = MediaQuery.of(context).size.width;
-
-                                return Container(
-                                  // color: Colors.red,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(16.0)),
-                                    image: DecorationImage(
-                                      image: AssetImage(AssetsManager.medical),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  height: 473,
-                                  width: 343,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        left: 0,
-                                        top: -100,
-                                        child: Container(
-                                          child: Stack(
-                                            alignment: Alignment.center,
-                                            clipBehavior: Clip.none,
-                                            fit: StackFit.loose,
-                                            children: [
-                                              CircleAvatar(
-                                                radius: 220,
-                                                backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
-                                              ),
-                                              CircleAvatar(
-                                                radius: 150,
-                                                backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-
-                                      Positioned(
-                                          top: 20,
-                                          left: 20,
-                                          child: Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 10,
-                                                vertical: 4,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.yellow,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              16.0))),
-                                              child: Text(
-                                                LocaleKeys.soon.tr(),
-                                                style: CustomTextStyle
-                                                    .semiBold_16
-                                                    .copyWith(
-                                                        color: AppColors
-                                                            .blackColor),
-                                              ))),
-                                      Align(
-                                          alignment: Alignment.center,
-                                          child: Container(
-                                              child: Column(mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              Center(
-                                                child: Text(
-                                                  LocaleKeys.becauseWeKeenToProvideAnIntegratedService.tr(),
-                                                  textAlign: TextAlign.center,
-                                                  style: CustomTextStyle.bold_20
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .whiteColor),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: "${LocaleKeys.waitFor.tr()} " ,
-                                                      style: CustomTextStyle
-                                                          .bold_20
-                                                          .copyWith(
-                                                              color: AppColors
-                                                                  .primaryColor),
-                                                      children: [
-                                                        TextSpan(
-                                                          text: LocaleKeys.launching.tr(),
-                                                          style: CustomTextStyle
-                                                              .bold_20
-                                                              .copyWith(
-                                                                  color: AppColors
-                                                                      .whiteColor),
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              Text(
-                                                LocaleKeys.ourMedicalServicesSoon.tr(),
-                                                style: CustomTextStyle.bold_20
-                                                    .copyWith(
-                                                        color: AppColors
-                                                            .whiteColor),
-                                              ),
-                                            ],
-                                          ))),
-                                      const Align(
-                                        alignment: Alignment.topRight,
-                                        child: CloseButton(),
-                                      )
-
-                                      ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ));
-                  // showDialog(
-                  //   context: context, builder: (BuildContext context) {
-                  //   return AlertDialog(
-                  //
-                  //
-                  //     child: Container(
-                  //       color: Colors.red,
-                  //       height: 343,
-                  //       width: 473,
-                  //       // decoration: BoxDecoration(
-                  //       //   image:  DecorationImage(
-                  //       //     image: AssetImage(AssetsManager.medical),
-                  //       //     fit: BoxFit.cover,
-                  //       //   ),
-                  //       // ),
-                  //       padding: const EdgeInsets.all(20),
-                  //
-                  //       child: Column(
-                  //         mainAxisSize: MainAxisSize.min,
-                  //         children: [
-                  //           Align(
-                  //             alignment: Alignment.topLeft,
-                  //               child: Text(LocaleKeys.soon.tr(),style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.primaryColor),)),
-                  //           const SizedBox(height: 10,),
-                  //           // Text(LocaleKeys.comingSoon.tr(),style: CustomTextStyle.medium_14.copyWith(color: AppColors.primaryColor),),
-                  //         ],
-                  //       ),
-                  //                     ),
-                  //   );
-                  // },);
-                },
-                title: LocaleKeys.medicalSection.tr(),
-                leadingIconSvgPath: AppAssets.iconsMedical,
-                trailing: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.yellow,
-                    borderRadius: BorderRadius.circular(kBorderRadius),
-                  ),
-                  child: Text(
-                    LocaleKeys.soon.tr(),
-                    style: CustomTextStyle.semiBold_10.copyWith(
-                      color: AppColors.selectedFont,
-                    ),
-                  ),
-                ),
-              ),
+              // DefaultListTile(
+              //   onTap: () {
+              //     showDialog(
+              //         context: context,
+              //         builder: (_) => new AlertDialog(
+              //               backgroundColor: Colors.blue,
+              //               insetPadding: EdgeInsets.zero,
+              //               contentPadding: EdgeInsets.zero,
+              //               titlePadding: EdgeInsets.zero,
+              //               shape: RoundedRectangleBorder(
+              //                   borderRadius:
+              //                       BorderRadius.all(Radius.circular(16.0))),
+              //               content: Builder(
+              //                 builder: (context) {
+              //                   // Get available height and width of the build area of this widget. Make a choice depending on the size.
+              //                   var height = MediaQuery.of(context).size.height;
+              //                   var width = MediaQuery.of(context).size.width;
+              //
+              //                   return Container(
+              //                     // color: Colors.red,
+              //                     decoration: BoxDecoration(
+              //                       borderRadius:
+              //                           BorderRadius.all(Radius.circular(16.0)),
+              //                       image: DecorationImage(
+              //                         image: AssetImage(AssetsManager.medical),
+              //                         fit: BoxFit.cover,
+              //                       ),
+              //                     ),
+              //                     height: 473,
+              //                     width: 343,
+              //                     child: Stack(
+              //                       children: [
+              //                         Positioned(
+              //                           left: 0,
+              //                           top: -100,
+              //                           child: Container(
+              //                             child: Stack(
+              //                               alignment: Alignment.center,
+              //                               clipBehavior: Clip.none,
+              //                               fit: StackFit.loose,
+              //                               children: [
+              //                                 CircleAvatar(
+              //                                   radius: 220,
+              //                                   backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+              //                                 ),
+              //                                 CircleAvatar(
+              //                                   radius: 150,
+              //                                   backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+              //                                 ),
+              //                               ],
+              //                             ),
+              //                           ),
+              //                         ),
+              //
+              //                         Positioned(
+              //                             top: 20,
+              //                             left: 20,
+              //                             child: Container(
+              //                                 padding:
+              //                                     const EdgeInsets.symmetric(
+              //                                   horizontal: 10,
+              //                                   vertical: 4,
+              //                                 ),
+              //                                 decoration: BoxDecoration(
+              //                                     color: AppColors.yellow,
+              //                                     borderRadius:
+              //                                         BorderRadius.all(
+              //                                             Radius.circular(
+              //                                                 16.0))),
+              //                                 child: Text(
+              //                                   LocaleKeys.soon.tr(),
+              //                                   style: CustomTextStyle
+              //                                       .semiBold_16
+              //                                       .copyWith(
+              //                                           color: AppColors
+              //                                               .blackColor),
+              //                                 ))),
+              //                         Align(
+              //                             alignment: Alignment.center,
+              //                             child: Container(
+              //                                 child: Column(mainAxisSize: MainAxisSize.min,
+              //                               children: [
+              //                                 const SizedBox(
+              //                                   height: 20,
+              //                                 ),
+              //                                 Center(
+              //                                   child: Text(
+              //                                     LocaleKeys.becauseWeKeenToProvideAnIntegratedService.tr(),
+              //                                     textAlign: TextAlign.center,
+              //                                     style: CustomTextStyle.bold_20
+              //                                         .copyWith(
+              //                                             color: AppColors
+              //                                                 .whiteColor),
+              //                                   ),
+              //                                 ),
+              //                                 const SizedBox(
+              //                                   height: 20,
+              //                                 ),
+              //                                 RichText(
+              //                                   text: TextSpan(
+              //                                     children: [
+              //                                       TextSpan(
+              //                                         text: "${LocaleKeys.waitFor.tr()} " ,
+              //                                         style: CustomTextStyle
+              //                                             .bold_20
+              //                                             .copyWith(
+              //                                                 color: AppColors
+              //                                                     .primaryColor),
+              //                                         children: [
+              //                                           TextSpan(
+              //                                             text: LocaleKeys.launching.tr(),
+              //                                             style: CustomTextStyle
+              //                                                 .bold_20
+              //                                                 .copyWith(
+              //                                                     color: AppColors
+              //                                                         .whiteColor),
+              //                                           ),
+              //                                         ]
+              //                                       ),
+              //                                     ],
+              //                                   ),
+              //                                 ),
+              //                                 const SizedBox(
+              //                                   height: 20,
+              //                                 ),
+              //                                 Text(
+              //                                   LocaleKeys.ourMedicalServicesSoon.tr(),
+              //                                   style: CustomTextStyle.bold_20
+              //                                       .copyWith(
+              //                                           color: AppColors
+              //                                               .whiteColor),
+              //                                 ),
+              //                               ],
+              //                             ))),
+              //                         const Align(
+              //                           alignment: Alignment.topRight,
+              //                           child: CloseButton(),
+              //                         )
+              //
+              //                         ],
+              //                     ),
+              //                   );
+              //                 },
+              //               ),
+              //             ));
+              //     // showDialog(
+              //     //   context: context, builder: (BuildContext context) {
+              //     //   return AlertDialog(
+              //     //
+              //     //
+              //     //     child: Container(
+              //     //       color: Colors.red,
+              //     //       height: 343,
+              //     //       width: 473,
+              //     //       // decoration: BoxDecoration(
+              //     //       //   image:  DecorationImage(
+              //     //       //     image: AssetImage(AssetsManager.medical),
+              //     //       //     fit: BoxFit.cover,
+              //     //       //   ),
+              //     //       // ),
+              //     //       padding: const EdgeInsets.all(20),
+              //     //
+              //     //       child: Column(
+              //     //         mainAxisSize: MainAxisSize.min,
+              //     //         children: [
+              //     //           Align(
+              //     //             alignment: Alignment.topLeft,
+              //     //               child: Text(LocaleKeys.soon.tr(),style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.primaryColor),)),
+              //     //           const SizedBox(height: 10,),
+              //     //           // Text(LocaleKeys.comingSoon.tr(),style: CustomTextStyle.medium_14.copyWith(color: AppColors.primaryColor),),
+              //     //         ],
+              //     //       ),
+              //     //                     ),
+              //     //   );
+              //     // },);
+              //   },
+              //   title: LocaleKeys.medicalSection.tr(),
+              //   leadingIconSvgPath: AppAssets.iconsMedical,
+              //   trailing: Container(
+              //     padding: const EdgeInsets.symmetric(
+              //       horizontal: 10,
+              //       vertical: 4,
+              //     ),
+              //     decoration: BoxDecoration(
+              //       color: AppColors.yellow,
+              //       borderRadius: BorderRadius.circular(kBorderRadius),
+              //     ),
+              //     child: Text(
+              //       LocaleKeys.soon.tr(),
+              //       style: CustomTextStyle.semiBold_10.copyWith(
+              //         color: AppColors.selectedFont,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         );

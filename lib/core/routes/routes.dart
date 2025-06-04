@@ -479,8 +479,9 @@ class Routes {
     //
     // redirect: (BuildContext context, GoRouterState state){
     //   if(context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated ){
-    //     print("state path : ${stat}");
     //     return authenticationScreen;
+    //   }else{
+    //     return
     //   }
     //   // print(context.read<AppCubit>().));
     //

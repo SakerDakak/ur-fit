@@ -20,7 +20,9 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   WorkoutCubit(this._repo) : super(const WorkoutState());
 
-  generateWorkOutPlan({bool? inWorkOutPage}) async {
+  generateWorkOutPlan() async {
+    emit(state.copyWith(getWorkOutPlanState: RequestState.loading));
+
     final endDate =
         DateFormat('yyyy-MM-dd').format(DateTime.now().add(Duration(days: 8)));
     print("endDate $endDate");
@@ -43,9 +45,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
         ));
         // sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
         sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
-        if(inWorkOutPage == true) {
-          getWorkOutPlan();
-        }
+
         // sl<AuthenticationBloc>().currentUser = ;
       },
     );

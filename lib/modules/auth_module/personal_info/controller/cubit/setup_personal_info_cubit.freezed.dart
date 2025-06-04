@@ -21,6 +21,9 @@ mixin _$SetupPersonalInfoState {
   String get newPassword => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
   int get currentInfoStep => throw _privateConstructorUsedError;
+  int get currentStepOneIndex => throw _privateConstructorUsedError;
+  int get currentStepTwoIndex => throw _privateConstructorUsedError;
+  int get currentStepThreeIndex => throw _privateConstructorUsedError;
   int get currentPageIndex => throw _privateConstructorUsedError;
   List<UserGoalsModel> get goals => throw _privateConstructorUsedError;
   List<SelectionItemModel> get mealsNotLiked =>
@@ -68,6 +71,9 @@ abstract class $SetupPersonalInfoStateCopyWith<$Res> {
       String newPassword,
       String confirmPassword,
       int currentInfoStep,
+      int currentStepOneIndex,
+      int currentStepTwoIndex,
+      int currentStepThreeIndex,
       int currentPageIndex,
       List<UserGoalsModel> goals,
       List<SelectionItemModel> mealsNotLiked,
@@ -115,6 +121,9 @@ class _$SetupPersonalInfoStateCopyWithImpl<$Res,
     Object? newPassword = null,
     Object? confirmPassword = null,
     Object? currentInfoStep = null,
+    Object? currentStepOneIndex = null,
+    Object? currentStepTwoIndex = null,
+    Object? currentStepThreeIndex = null,
     Object? currentPageIndex = null,
     Object? goals = null,
     Object? mealsNotLiked = null,
@@ -158,6 +167,18 @@ class _$SetupPersonalInfoStateCopyWithImpl<$Res,
       currentInfoStep: null == currentInfoStep
           ? _value.currentInfoStep
           : currentInfoStep // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepOneIndex: null == currentStepOneIndex
+          ? _value.currentStepOneIndex
+          : currentStepOneIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepTwoIndex: null == currentStepTwoIndex
+          ? _value.currentStepTwoIndex
+          : currentStepTwoIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepThreeIndex: null == currentStepThreeIndex
+          ? _value.currentStepThreeIndex
+          : currentStepThreeIndex // ignore: cast_nullable_to_non_nullable
               as int,
       currentPageIndex: null == currentPageIndex
           ? _value.currentPageIndex
@@ -276,6 +297,9 @@ abstract class _$$SetupPersonalInfoStateImplCopyWith<$Res>
       String newPassword,
       String confirmPassword,
       int currentInfoStep,
+      int currentStepOneIndex,
+      int currentStepTwoIndex,
+      int currentStepThreeIndex,
       int currentPageIndex,
       List<UserGoalsModel> goals,
       List<SelectionItemModel> mealsNotLiked,
@@ -323,6 +347,9 @@ class __$$SetupPersonalInfoStateImplCopyWithImpl<$Res>
     Object? newPassword = null,
     Object? confirmPassword = null,
     Object? currentInfoStep = null,
+    Object? currentStepOneIndex = null,
+    Object? currentStepTwoIndex = null,
+    Object? currentStepThreeIndex = null,
     Object? currentPageIndex = null,
     Object? goals = null,
     Object? mealsNotLiked = null,
@@ -366,6 +393,18 @@ class __$$SetupPersonalInfoStateImplCopyWithImpl<$Res>
       currentInfoStep: null == currentInfoStep
           ? _value.currentInfoStep
           : currentInfoStep // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepOneIndex: null == currentStepOneIndex
+          ? _value.currentStepOneIndex
+          : currentStepOneIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepTwoIndex: null == currentStepTwoIndex
+          ? _value.currentStepTwoIndex
+          : currentStepTwoIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepThreeIndex: null == currentStepThreeIndex
+          ? _value.currentStepThreeIndex
+          : currentStepThreeIndex // ignore: cast_nullable_to_non_nullable
               as int,
       currentPageIndex: null == currentPageIndex
           ? _value.currentPageIndex
@@ -468,6 +507,9 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
       this.newPassword = "",
       this.confirmPassword = "",
       this.currentInfoStep = 1,
+      this.currentStepOneIndex = 1,
+      this.currentStepTwoIndex = 1,
+      this.currentStepThreeIndex = 1,
       this.currentPageIndex = 0,
       final List<UserGoalsModel> goals = const [],
       final List<SelectionItemModel> mealsNotLiked = const [],
@@ -514,6 +556,15 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
   @override
   @JsonKey()
   final int currentInfoStep;
+  @override
+  @JsonKey()
+  final int currentStepOneIndex;
+  @override
+  @JsonKey()
+  final int currentStepTwoIndex;
+  @override
+  @JsonKey()
+  final int currentStepThreeIndex;
   @override
   @JsonKey()
   final int currentPageIndex;
@@ -637,7 +688,7 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
 
   @override
   String toString() {
-    return 'SetupPersonalInfoState(userInfo: $userInfo, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, currentInfoStep: $currentInfoStep, currentPageIndex: $currentPageIndex, goals: $goals, mealsNotLiked: $mealsNotLiked, mealsLiked: $mealsLiked, diet: $diet, mealVariants: $mealVariants, noOfDailyMeals: $noOfDailyMeals, muscleFocusData: $muscleFocusData, workoutTypes: $workoutTypes, equipments: $equipments, errMessage: $errMessage, getGoalsState: $getGoalsState, changePasswordState: $changePasswordState, getNotLikedMealsState: $getNotLikedMealsState, getLikedMealsState: $getLikedMealsState, getDietOptionsState: $getDietOptionsState, getMealVariantsState: $getMealVariantsState, getNoOfDailyMealsState: $getNoOfDailyMealsState, getMuscleFocusState: $getMuscleFocusState, getWorkoutTypesState: $getWorkoutTypesState, getEquipmentsState: $getEquipmentsState, updatePersonalInfo: $updatePersonalInfo)';
+    return 'SetupPersonalInfoState(userInfo: $userInfo, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, currentInfoStep: $currentInfoStep, currentStepOneIndex: $currentStepOneIndex, currentStepTwoIndex: $currentStepTwoIndex, currentStepThreeIndex: $currentStepThreeIndex, currentPageIndex: $currentPageIndex, goals: $goals, mealsNotLiked: $mealsNotLiked, mealsLiked: $mealsLiked, diet: $diet, mealVariants: $mealVariants, noOfDailyMeals: $noOfDailyMeals, muscleFocusData: $muscleFocusData, workoutTypes: $workoutTypes, equipments: $equipments, errMessage: $errMessage, getGoalsState: $getGoalsState, changePasswordState: $changePasswordState, getNotLikedMealsState: $getNotLikedMealsState, getLikedMealsState: $getLikedMealsState, getDietOptionsState: $getDietOptionsState, getMealVariantsState: $getMealVariantsState, getNoOfDailyMealsState: $getNoOfDailyMealsState, getMuscleFocusState: $getMuscleFocusState, getWorkoutTypesState: $getWorkoutTypesState, getEquipmentsState: $getEquipmentsState, updatePersonalInfo: $updatePersonalInfo)';
   }
 
   @override
@@ -655,6 +706,12 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
                 other.confirmPassword == confirmPassword) &&
             (identical(other.currentInfoStep, currentInfoStep) ||
                 other.currentInfoStep == currentInfoStep) &&
+            (identical(other.currentStepOneIndex, currentStepOneIndex) ||
+                other.currentStepOneIndex == currentStepOneIndex) &&
+            (identical(other.currentStepTwoIndex, currentStepTwoIndex) ||
+                other.currentStepTwoIndex == currentStepTwoIndex) &&
+            (identical(other.currentStepThreeIndex, currentStepThreeIndex) ||
+                other.currentStepThreeIndex == currentStepThreeIndex) &&
             (identical(other.currentPageIndex, currentPageIndex) ||
                 other.currentPageIndex == currentPageIndex) &&
             const DeepCollectionEquality().equals(other._goals, _goals) &&
@@ -707,6 +764,9 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
         newPassword,
         confirmPassword,
         currentInfoStep,
+        currentStepOneIndex,
+        currentStepTwoIndex,
+        currentStepThreeIndex,
         currentPageIndex,
         const DeepCollectionEquality().hash(_goals),
         const DeepCollectionEquality().hash(_mealsNotLiked),
@@ -748,6 +808,9 @@ abstract class _SetupPersonalInfoState implements SetupPersonalInfoState {
       final String newPassword,
       final String confirmPassword,
       final int currentInfoStep,
+      final int currentStepOneIndex,
+      final int currentStepTwoIndex,
+      final int currentStepThreeIndex,
       final int currentPageIndex,
       final List<UserGoalsModel> goals,
       final List<SelectionItemModel> mealsNotLiked,
@@ -781,6 +844,12 @@ abstract class _SetupPersonalInfoState implements SetupPersonalInfoState {
   String get confirmPassword;
   @override
   int get currentInfoStep;
+  @override
+  int get currentStepOneIndex;
+  @override
+  int get currentStepTwoIndex;
+  @override
+  int get currentStepThreeIndex;
   @override
   int get currentPageIndex;
   @override

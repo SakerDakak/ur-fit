@@ -13,6 +13,7 @@ import 'package:urfit/modules/subscription_module/data/models/package_model.dart
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
+import '../../../core/routes/routes.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/service_locator.dart';
 
@@ -25,7 +26,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
 
   SubscriptionCubit(this._subscriptionRepo) : super(const SubscriptionState());
 
-  getPackages({required PlanType planType}) {
+  getPackages({ PlanType? planType}) {
     emit(state.copyWith(getPackagesState: RequestState.loading));
 
     _subscriptionRepo.getPackages(planType: planType).then((result) {
@@ -74,23 +75,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
       },
       (successData) async {
 
-        final package = state.packages.firstWhere((package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
-       switch(package.type){
 
-         case PlanType.exercise:
-           await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
-           break;
-         case PlanType.diet:
-           await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
-           sl<AuthenticationBloc>().add(GetUserDataFromServer());
-
-            break;
-         case PlanType.both:
-           await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
-           await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
-           sl<AuthenticationBloc>().add(GetUserDataFromServer());
-            break;
-       }
         LoadingHelper.stopLoading();
         showDialog(context: navigatorKey.currentContext!, builder: (BuildContext context) {
           return AlertDialog(
@@ -98,6 +83,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
             content: Text(successData.toString(),style: CustomTextStyle.bold_24.copyWith(color: Colors.black),),
             actions: [
               TextButton(onPressed: () {
+                context.read<AuthenticationBloc>().add(GetUserDataFromServer());
                 context.pop();
               }, child: Text("Ok"))
             ],
@@ -114,26 +100,26 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   getPaymentUrl() async {
     emit(state.copyWith(getPaymentUrlState: RequestState.loading));
       print("coupon code : ${state.coupon}");
-      if(state.discountValue  != null && state.discountValue?.final_price == 0 || state.discountValue?.final_price == 0.0) {
-        final package = state.packages.firstWhere((package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
-        switch(package.type){
-
-          case PlanType.exercise:
-            await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
-            break;
-          case PlanType.diet:
-            await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
-            sl<AuthenticationBloc>().add(GetUserDataFromServer());
-
-            break;
-          case PlanType.both:
-            await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
-            await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
-            sl<AuthenticationBloc>().add(GetUserDataFromServer());
-            break;
-        }
-        LoadingHelper.stopLoading();
-      }else {
+      // if(state.discountValue  != null && state.discountValue?.final_price == 0 || state.discountValue?.final_price == 0.0) {
+      //   final package = state.packages.firstWhere((package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
+      //   switch(package.type){
+      //
+      //     case PlanType.exercise:
+      //       await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
+      //       break;
+      //     case PlanType.diet:
+      //       await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
+      //       sl<AuthenticationBloc>().add(GetUserDataFromServer());
+      //
+      //       break;
+      //     case PlanType.both:
+      //       await rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
+      //       await rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
+      //       sl<AuthenticationBloc>().add(GetUserDataFromServer());
+      //       break;
+      //   }
+      //   LoadingHelper.stopLoading();
+      // }else {
         final result =
         await _subscriptionRepo.getPaymentUrl(
             packageId: state.selectedPackage ?? state.packages.first.id,
@@ -145,6 +131,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
                 errMessage: failure.message,
               )),
               (successData) {
+
             print("successData : $successData");
             emit(state.copyWith(
               getPaymentUrlState: RequestState.success,
@@ -153,7 +140,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
             ));
           },
         );
-      }
+      // }
   }
 
   checkCouponCode({ required String coupon}) async {

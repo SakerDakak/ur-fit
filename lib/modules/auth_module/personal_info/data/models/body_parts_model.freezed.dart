@@ -22,6 +22,7 @@ BodyPartsModel _$BodyPartsModelFromJson(Map<String, dynamic> json) {
 mixin _$BodyPartsModel {
   String get key => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
   /// Serializes this BodyPartsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ abstract class $BodyPartsModelCopyWith<$Res> {
           BodyPartsModel value, $Res Function(BodyPartsModel) then) =
       _$BodyPartsModelCopyWithImpl<$Res, BodyPartsModel>;
   @useResult
-  $Res call({String key, String value});
+  $Res call({String key, String value, String? image});
 }
 
 /// @nodoc
@@ -59,6 +60,7 @@ class _$BodyPartsModelCopyWithImpl<$Res, $Val extends BodyPartsModel>
   $Res call({
     Object? key = null,
     Object? value = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       key: null == key
@@ -69,6 +71,10 @@ class _$BodyPartsModelCopyWithImpl<$Res, $Val extends BodyPartsModel>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$BodyPartsModelImplCopyWith<$Res>
       __$$BodyPartsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String key, String value});
+  $Res call({String key, String value, String? image});
 }
 
 /// @nodoc
@@ -99,6 +105,7 @@ class __$$BodyPartsModelImplCopyWithImpl<$Res>
   $Res call({
     Object? key = null,
     Object? value = null,
+    Object? image = freezed,
   }) {
     return _then(_$BodyPartsModelImpl(
       key: null == key
@@ -109,6 +116,10 @@ class __$$BodyPartsModelImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -116,7 +127,8 @@ class __$$BodyPartsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BodyPartsModelImpl implements _BodyPartsModel {
-  const _$BodyPartsModelImpl({required this.key, required this.value});
+  const _$BodyPartsModelImpl(
+      {required this.key, required this.value, this.image});
 
   factory _$BodyPartsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BodyPartsModelImplFromJson(json);
@@ -125,10 +137,12 @@ class _$BodyPartsModelImpl implements _BodyPartsModel {
   final String key;
   @override
   final String value;
+  @override
+  final String? image;
 
   @override
   String toString() {
-    return 'BodyPartsModel(key: $key, value: $value)';
+    return 'BodyPartsModel(key: $key, value: $value, image: $image)';
   }
 
   @override
@@ -137,12 +151,13 @@ class _$BodyPartsModelImpl implements _BodyPartsModel {
         (other.runtimeType == runtimeType &&
             other is _$BodyPartsModelImpl &&
             (identical(other.key, key) || other.key == key) &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, key, value);
+  int get hashCode => Object.hash(runtimeType, key, value, image);
 
   /// Create a copy of BodyPartsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -164,7 +179,8 @@ class _$BodyPartsModelImpl implements _BodyPartsModel {
 abstract class _BodyPartsModel implements BodyPartsModel {
   const factory _BodyPartsModel(
       {required final String key,
-      required final String value}) = _$BodyPartsModelImpl;
+      required final String value,
+      final String? image}) = _$BodyPartsModelImpl;
 
   factory _BodyPartsModel.fromJson(Map<String, dynamic> json) =
       _$BodyPartsModelImpl.fromJson;
@@ -173,6 +189,8 @@ abstract class _BodyPartsModel implements BodyPartsModel {
   String get key;
   @override
   String get value;
+  @override
+  String? get image;
 
   /// Create a copy of BodyPartsModel
   /// with the given fields replaced by the non-null parameter values.

@@ -10,6 +10,7 @@ import 'package:urfit/generated/locale_keys.g.dart';
 import '../../../core/assets_manager.dart';
 import '../../../core/style/colors.dart';
 import '../../../core/style/fonts.dart';
+import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/service_locator.dart';
 import '../../auth_module/bloc/authentication_bloc.dart';
 import '../../meals_module/screens/meals_screen.dart';
@@ -49,6 +50,7 @@ class _MainPageState extends State<MainPage> {
       ),
       const WorkoutScreen(),
       const MealsScreen(),
+      SizedBox(),
       ProfileScreen(
         isGuest: widget.isGuest,
       ),
@@ -59,6 +61,7 @@ class _MainPageState extends State<MainPage> {
     LocaleKeys.home.tr(),
     LocaleKeys.exercises.tr(),
     LocaleKeys.nutritions.tr(),
+    "",
     LocaleKeys.profile.tr()
   ];
   int _selectedIndex = 0;
@@ -67,12 +70,17 @@ class _MainPageState extends State<MainPage> {
 
   void _onItemTapped(int index) {
     final user = context.read<AuthenticationBloc>().currentUser;
+    if(index == 3) {
+
+      return;
+    }
+    // print("continue");
     if (user?.hasValidSubscription ?? false) {
       setState(() {
         _selectedIndex = index;
       });
     } else {
-      if (index != 0 || index != 3) {
+      if (index != 0 || index != 4) {
         setState(() {
           _selectedIndex = index;
         });
@@ -126,6 +134,163 @@ class _MainPageState extends State<MainPage> {
           iconPath: AssetsManager.meals,
           title: LocaleKeys.nutritions.tr(),
           isActive: _selectedIndex == 2,
+          activeColor: Theme.of(context).colorScheme.primary,
+          inactiveColor: const Color(0xff6B7280),
+        ),
+        activeColorPrimary: Theme.of(context).colorScheme.primary,
+        inactiveColorPrimary: const Color(0xff6B7280),
+      ),
+      PersistentBottomNavBarItem(
+        onPressed: (_) {
+          showDialog(
+              context: context,
+              builder: (_) => new AlertDialog(
+                backgroundColor: Colors.blue,
+                insetPadding: EdgeInsets.zero,
+                contentPadding: EdgeInsets.zero,
+                titlePadding: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.all(Radius.circular(16.0))),
+                content: Builder(
+                  builder: (context) {
+                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                    var height = MediaQuery.of(context).size.height;
+                    var width = MediaQuery.of(context).size.width;
+
+                    return Container(
+                      // color: Colors.red,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                        BorderRadius.all(Radius.circular(16.0)),
+                        image: DecorationImage(
+                          image: AssetImage(AssetsManager.medical),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      height: 473,
+                      width: 343,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: 0,
+                            top: -100,
+                            child: Container(
+                              child: Stack(
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.none,
+                                fit: StackFit.loose,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 220,
+                                    backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+                                  ),
+                                  CircleAvatar(
+                                    radius: 150,
+                                    backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          Positioned(
+                              top: 20,
+                              left: 20,
+                              child: Container(
+                                  padding:
+                                  const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.yellow,
+                                      borderRadius:
+                                      BorderRadius.all(
+                                          Radius.circular(
+                                              16.0))),
+                                  child: Text(
+                                    LocaleKeys.soon.tr(),
+                                    style: CustomTextStyle
+                                        .semiBold_16
+                                        .copyWith(
+                                        color: AppColors
+                                            .blackColor),
+                                  ))),
+                          Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                  child: Column(mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          LocaleKeys.becauseWeKeenToProvideAnIntegratedService.tr(),
+                                          textAlign: TextAlign.center,
+                                          style: CustomTextStyle.bold_20
+                                              .copyWith(
+                                              color: AppColors
+                                                  .whiteColor),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                                text: "${LocaleKeys.waitFor.tr()} " ,
+                                                style: CustomTextStyle
+                                                    .bold_20
+                                                    .copyWith(
+                                                    color: AppColors
+                                                        .primaryColor),
+                                                children: [
+                                                  TextSpan(
+                                                    text: LocaleKeys.launching.tr(),
+                                                    style: CustomTextStyle
+                                                        .bold_20
+                                                        .copyWith(
+                                                        color: AppColors
+                                                            .whiteColor),
+                                                  ),
+                                                ]
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        LocaleKeys.ourMedicalServicesSoon.tr(),
+                                        style: CustomTextStyle.bold_20
+                                            .copyWith(
+                                            color: AppColors
+                                                .whiteColor),
+                                      ),
+                                    ],
+                                  ))),
+                          const Align(
+                            alignment: Alignment.topRight,
+                            child: CloseButton(),
+                          )
+
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ));
+          // _showBottomSheet();
+        },
+        icon: CustomNavBarItem(
+          iconPath: AppAssets.iconsMedical,
+          title: LocaleKeys.medicalSection.tr(),
+          isActive: false,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
         ),
@@ -213,6 +378,7 @@ class _MainPageState extends State<MainPage> {
           resizeToAvoidBottomInset: true,
           // Prevent page compression
           selectedTabScreenContext: (context) {
+            print("selected index $_selectedIndex");
             return Scaffold(
               body: _widgetOptions[_selectedIndex],
             );
@@ -220,11 +386,11 @@ class _MainPageState extends State<MainPage> {
           // navBarHeight: 60,
           onItemSelected: (index) {
             print("index :$index");
-            final user = context.read<AuthenticationBloc>().currentUser;
-            setState(() {
+            // final user = context.read<AuthenticationBloc>().currentUser;
+            // setState(() {
               print("tapped");
               _onItemTapped(index);
-            });
+            // });
           },
           decoration: const NavBarDecoration(
             boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 1.0)],

@@ -12,8 +12,9 @@ class EquipmentItem extends StatelessWidget {
     required this.onTap,
     required this.title,
     required this.imageUrl,
+    this.shortMode = false,
   });
-
+  final bool shortMode;
   final String title;
   final String imageUrl;
   final bool isSelected;
@@ -42,6 +43,7 @@ class EquipmentItem extends StatelessWidget {
         child: Stack(
           children: [
             // workout image
+            if(!shortMode)
             PositionedDirectional(
               top: -10,
               start: -5,
@@ -57,7 +59,7 @@ class EquipmentItem extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const SizedBox(width: 88),
+                   SizedBox(width:shortMode ? 0: 88),
 
                   // meal name
                   Expanded(

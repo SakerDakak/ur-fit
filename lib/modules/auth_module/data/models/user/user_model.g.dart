@@ -11,12 +11,8 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       name: json['name'] as String,
       email: json['email'] as String,
       hasValidSubscription: json['hasValidSubscription'] as bool?,
-      country: json['country'] == null
-          ? null
-          : Country.fromJson(json['country'] as Map<String, dynamic>),
-      city: json['city_id'] == null
-          ? null
-          : City.fromJson(json['city_id'] as Map<String, dynamic>),
+      country: const CountryConverter().fromJson(json['country']),
+      city: const CityConverter().fromJson(json['city_id']),
       gender: const GenderEnumConverter()
           .fromJson((json['gender'] as num?)?.toInt()),
       packageId: (json['package_id'] as num?)?.toInt(),
@@ -64,8 +60,8 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'name': instance.name,
       'email': instance.email,
       'hasValidSubscription': instance.hasValidSubscription,
-      'country': instance.country,
-      'city_id': instance.city,
+      'country': const CountryConverter().toJson(instance.country),
+      'city_id': const CityConverter().toJson(instance.city),
       'gender': const GenderEnumConverter().toJson(instance.gender),
       'package_id': instance.packageId,
       'age': instance.age,

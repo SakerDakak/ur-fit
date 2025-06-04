@@ -8,6 +8,7 @@ class BodyPartsModel with _$BodyPartsModel {
   const factory BodyPartsModel({
     required String key,
     required String value,
+    String? image,
 
   }) = _BodyPartsModel;
 

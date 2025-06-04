@@ -17,78 +17,106 @@ import '../../../generated/locale_keys.g.dart';
 import '../widgets/shimmer/meals_list_shimmer.dart';
 import '../widgets/shimmer/what_ur_body_needs_shimmer.dart';
 
-class MealsScreen extends StatelessWidget {
+class MealsScreen extends StatefulWidget {
   const MealsScreen({super.key});
 
+  @override
+  State<MealsScreen> createState() => _MealsScreenState();
+}
+
+
+
+class _MealsScreenState extends State<MealsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final user = sl<AuthenticationBloc>().currentUser;
+
+    final cubit = context.read<MealsCubit>();
+
+    if (user?.haveMealPlan == true) {
+      cubit.getMealPlans().then((value) {
+        // setState(() {});
+      });
+    } else if (user?.haveMealPlan == false &&
+        (user?.packageId == 3 || user?.packageId == 6 || user?.packageId == 9 ||
+            user?.packageId == 1 || user?.packageId == 4 ||
+            user?.packageId == 7 || user?.packageId == 10)) {
+      cubit.generateMealPlan().then((value) {
+        Future.delayed(Duration(milliseconds: 500), () {
+          cubit.getMealPlans();
+          // setState(() {});
+        });
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final user = sl<AuthenticationBloc>().currentUser;
     final cubit = context.read<MealsCubit>();
 
-    if (user?.haveMealPlan == true  ) {
-      cubit.getMealPlans();
-    }else if(user?.haveMealPlan == false && (user?.packageId == 3 || user?.packageId == 6 || user?.packageId == 9  || user?.packageId == 1 || user?.packageId == 4 || user?.packageId == 7 || user?.packageId == 10 )){
-      cubit.generateMealPlan();
+    return BlocBuilder<MealsCubit, MealsState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: user?.haveMealPlan == true || state.getMealPlansState == RequestState.loading || state.allPlans.isNotEmpty? ListView(
+            padding: const EdgeInsets.only(
+              bottom: kBottomPadding,
+              left: kHorizontalPadding,
+              right: kHorizontalPadding,
+            ),
+            children: [
+              // plan remaining time
+              PackageProgressMeals(),
 
-    }
-    return Scaffold(
-      body: user?.haveMealPlan == true ? ListView(
-        padding: const EdgeInsets.only(
-          bottom: kBottomPadding,
-          left: kHorizontalPadding,
-          right: kHorizontalPadding,
-        ),
-        children: [
-          // plan remaining time
-          PackageProgressMeals(),
+              const SizedBox(height: 16),
 
-          const SizedBox(height: 16),
+              // dates
+              const WeakDaysDate(),
 
-          // dates
-          const WeakDaysDate(),
+              const SizedBox(height: 16),
 
-          const SizedBox(height: 16),
+              // what ur body needs today card
+              BlocBuilder<MealsCubit, MealsState>(
+                buildWhen: (p, c) =>
+                p.allPlans != c.allPlans ||
+                    p.getMealPlansState != c.getMealPlansState,
+                builder: (context, state) {
+                  if (state.getMealPlansState == RequestState.loading ||
+                      state.getMealPlansState == RequestState.failure) {
+                    return const WhatUrBodyNeedsShimmer();
+                  } else {
+                    final day = cubit.getPlanForToday();
 
-          // what ur body needs today card
-          BlocBuilder<MealsCubit, MealsState>(
-            buildWhen: (p, c) =>
-            p.allPlans != c.allPlans ||
-                p.getMealPlansState != c.getMealPlansState,
-            builder: (context, state) {
-              if (state.getMealPlansState == RequestState.loading ||
-                  state.getMealPlansState == RequestState.failure) {
-                return const WhatUrBodyNeedsShimmer();
-              } else {
-                final day = cubit.getPlanForToday();
+                    return WhatUrBodyNeedSection();
+                  }
+                },
+              ),
 
-                return WhatUrBodyNeedSection();
-              }
-            },
-          ),
+              const SizedBox(height: 16),
 
-          const SizedBox(height: 16),
-
-          // meals list
-          BlocBuilder<MealsCubit, MealsState>(
-            buildWhen: (p, c) =>
-            p.allPlans != c.allPlans ||
-                p.getMealPlansState != c.getMealPlansState,
-            builder: (context, state) {
-              if (state.getMealPlansState == RequestState.loading ||
-                  state.getMealPlansState == RequestState.failure) {
-                return MealsListShimmer();
-              } else {
-                return BlocBuilder<AppCubit, AppState>(
-                  builder: (context, state) {
-                    return MealsListview();
-                  },
-                );
-              }
-            },
-          ),
-        ],
-      ) :  Center(
-          child: Text(LocaleKeys.noSubscription.tr())),
+              // meals list
+              BlocBuilder<MealsCubit, MealsState>(
+                buildWhen: (p, c) =>
+                p.allPlans != c.allPlans ||
+                    p.getMealPlansState != c.getMealPlansState,
+                builder: (context, state) {
+                  if (state.getMealPlansState == RequestState.loading ||
+                      state.getMealPlansState == RequestState.failure) {
+                    return MealsListShimmer();
+                  } else {
+                    return BlocBuilder<AppCubit, AppState>(
+                      builder: (context, state) {
+                        return MealsListview();
+                      },
+                    );
+                  }
+                },
+              ),
+            ],
+          ) : Center(
+              child: Text(LocaleKeys.noSubscription.tr())),
+        );
+      },
     );
   }
 }

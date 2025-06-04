@@ -11,7 +11,8 @@ import '../../../../generated/locale_keys.g.dart';
 
 class SubscriptionPlans extends StatefulWidget {
   final List<PackageModel> packages;
-  const SubscriptionPlans({super.key, required this.packages});
+  final PlanType planType;
+  const SubscriptionPlans({super.key, required this.packages , required this.planType});
 
   @override
   State<SubscriptionPlans> createState() => _SubscriptionPlansState();
@@ -19,18 +20,27 @@ class SubscriptionPlans extends StatefulWidget {
 
 class _SubscriptionPlansState extends State<SubscriptionPlans> {
   int selectedIndex = 0;
+  List<PackageModel> packages =  [];
 
+  bool seeAll = false;
   @override
   void initState() {
     super.initState();
-    if(widget.packages.isNotEmpty) {
-      selectedIndex = widget.packages.first.id;
+    packages =  [...widget.packages];
+    packages.sort((a, b) {
+      if (a.type == widget.planType && b.type != widget.planType) return -1;
+      if (a.type != widget.planType && b.type == widget.planType) return 1;
+      return 0;
+    });
+    if(packages.isNotEmpty) {
+      selectedIndex = packages.first.id;
     }
   }
 
 
   @override
   Widget build(BuildContext context) {
+    print("packages ${seeAll}");
     final cubit =context.read<SubscriptionCubit>();
     if(cubit.state.selectedPackage == null){
     cubit.updateSelectedPackage(selectedIndex);
@@ -43,21 +53,59 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         children: List.generate(
-          widget.packages.length,
-          (i) => Padding(
-            // add padding if index is less than the items (length -1)
-            padding: EdgeInsetsDirectional.only(end: 8),
-            child: PlanCard(
-              package: widget.packages[i],
-              isSelected: selectedIndex == widget.packages[i].id,
-              onTap: () {
-                context.read<SubscriptionCubit>().updateSelectedPackage(widget.packages[i].id);
-                setState(() {
-                  selectedIndex = widget.packages[i].id;
-                });
-              },
-            ),
-          ),
+          seeAll ?  packages.length:packages.where((package) => package.type == widget.planType).length + 1,
+          (i) {
+
+            if(i < (seeAll ? packages.length :packages.where((package) => package.type == widget.planType).length)) {
+              return Padding(
+                // add padding if index is less than the items (length -1)
+                padding: EdgeInsetsDirectional.only(end: 8),
+                child: PlanCard(
+                  package: packages[i],
+                  isSelected: selectedIndex == packages[i].id,
+                  onTap: () {
+                    context.read<SubscriptionCubit>().updateSelectedPackage(
+                        packages[i].id);
+                    setState(() {
+                      selectedIndex = packages[i].id;
+                    });
+                  },
+                ),
+              );
+            }else{
+              return Padding(
+                // add padding if index is equal to the items (length -1)
+                padding: EdgeInsetsDirectional.only(end: 8),
+                child: GestureDetector(
+                  onTap: () {
+                    print("see all");
+                    setState(() {
+                      seeAll = true;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: 120,
+                    height: 220,
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 20,bottom: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      color: AppColors.cardColor,
+                      border:  Border.all(color: AppColors.strockColor),
+                    ),
+                    child: Center(
+                      child: Text(
+                        LocaleKeys.seeMore.tr(),
+                        style: CustomTextStyle.bold_16.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }
+          },
         ),
       ),
     );

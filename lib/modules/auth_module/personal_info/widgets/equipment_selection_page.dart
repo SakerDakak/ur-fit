@@ -66,7 +66,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
           const SizedBox(height: 20),
 
           Text(
-            LocaleKeys.preferredEquipment.tr(),
+            LocaleKeys.chooseEquipments.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,

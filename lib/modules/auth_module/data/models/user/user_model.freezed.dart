@@ -24,7 +24,9 @@ mixin _$UserModel {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool? get hasValidSubscription => throw _privateConstructorUsedError;
+  @CountryConverter()
   Country? get country => throw _privateConstructorUsedError;
+  @CityConverter()
   @JsonKey(name: 'city_id')
   City? get city => throw _privateConstructorUsedError;
   @GenderEnumConverter()
@@ -95,8 +97,8 @@ abstract class $UserModelCopyWith<$Res> {
       String name,
       String email,
       bool? hasValidSubscription,
-      Country? country,
-      @JsonKey(name: 'city_id') City? city,
+      @CountryConverter() Country? country,
+      @CityConverter() @JsonKey(name: 'city_id') City? city,
       @GenderEnumConverter() GenderEnum? gender,
       @JsonKey(name: 'package_id') int? packageId,
       int? age,
@@ -384,8 +386,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String name,
       String email,
       bool? hasValidSubscription,
-      Country? country,
-      @JsonKey(name: 'city_id') City? city,
+      @CountryConverter() Country? country,
+      @CityConverter() @JsonKey(name: 'city_id') City? city,
       @GenderEnumConverter() GenderEnum? gender,
       @JsonKey(name: 'package_id') int? packageId,
       int? age,
@@ -601,8 +603,8 @@ class _$UserImpl implements _User {
       required this.name,
       required this.email,
       required this.hasValidSubscription,
-      required this.country,
-      @JsonKey(name: 'city_id') required this.city,
+      @CountryConverter() required this.country,
+      @CityConverter() @JsonKey(name: 'city_id') required this.city,
       @GenderEnumConverter() this.gender,
       @JsonKey(name: 'package_id') required this.packageId,
       required this.age,
@@ -654,8 +656,10 @@ class _$UserImpl implements _User {
   @override
   final bool? hasValidSubscription;
   @override
+  @CountryConverter()
   final Country? country;
   @override
+  @CityConverter()
   @JsonKey(name: 'city_id')
   final City? city;
   @override
@@ -907,8 +911,8 @@ abstract class _User implements UserModel {
       required final String name,
       required final String email,
       required final bool? hasValidSubscription,
-      required final Country? country,
-      @JsonKey(name: 'city_id') required final City? city,
+      @CountryConverter() required final Country? country,
+      @CityConverter() @JsonKey(name: 'city_id') required final City? city,
       @GenderEnumConverter() final GenderEnum? gender,
       @JsonKey(name: 'package_id') required final int? packageId,
       required final int? age,
@@ -954,8 +958,10 @@ abstract class _User implements UserModel {
   @override
   bool? get hasValidSubscription;
   @override
+  @CountryConverter()
   Country? get country;
   @override
+  @CityConverter()
   @JsonKey(name: 'city_id')
   City? get city;
   @override

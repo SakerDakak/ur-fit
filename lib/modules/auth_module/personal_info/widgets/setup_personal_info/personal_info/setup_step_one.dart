@@ -14,7 +14,7 @@ import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
-import '../../../../../core/utils/service_locator.dart';
+import '../../../../../../core/utils/service_locator.dart';
 
 class SetupInfoStepOne extends StatelessWidget {
   const SetupInfoStepOne({super.key});

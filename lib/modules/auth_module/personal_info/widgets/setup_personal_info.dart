@@ -7,9 +7,11 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/setup_info_final_step.dart';
-import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/setup_info_step_two.dart';
-import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/setup_step_one.dart';
+import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/personal_info/final_step/final_step_flow.dart';
+import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/personal_info/setup_info_final_step.dart';
+import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/personal_info/setup_info_step_two.dart';
+import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/personal_info/setup_step_one.dart';
+import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/personal_info/step_one/step_one_flow.dart';
 
 class SetupPersonalInfo extends StatelessWidget {
   const SetupPersonalInfo({super.key});
@@ -137,9 +139,9 @@ class SetupPersonalInfo extends StatelessWidget {
 
   List<Widget> get _personalInfoPages {
     return const [
-      SetupInfoStepOne(),
+      StepOneFlow(),
       SetupInfoStepTwo(),
-      SetupInfoFinalStep(),
+      FinalStepFlow(),
     ];
   }
 }

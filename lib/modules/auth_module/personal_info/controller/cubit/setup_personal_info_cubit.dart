@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -34,7 +36,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   init() {
     final user = sl<AuthenticationBloc>().currentUser;
 
-    print(user?.goals);
+    log("init user: ${user?.toJson()}");
     final userInfoModel = UserPersonalInfoModel(
       selectedGaols: user!.goals?.map((goal) => UserGoalsModel(id: goal.id, name: goal.name, imageUrl: "",sectionOneType: goal.id == 1 || goal.id == 2 ? GoalsSectionOneEnum.nutrition:null,sectionTwoType:goal.id == 3 || goal.id == 4 ? GoalsSectionTwoEnum.buildMuscles:null )).toList() ?? [],
       gender: user.gender,
@@ -60,6 +62,8 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
   PageController pageController = PageController();
   PageController personalInfoController = PageController();
+  PageController stepOneController = PageController();
+  PageController finalStepController = PageController();
 
   onChangeCurrentPassword(String value) {
     emit(state.copyWith(oldPassword: value));
@@ -97,7 +101,58 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       ),
     );
   }
+  Future<void> goToNextIndexStepOne() async {
+    await stepOneController.nextPage(
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.ease,
+    );
 
+    emit(
+      state.copyWith(
+        // currentInfoStep: personalInfoController.page!.toInt() + 1,
+          currentStepOneIndex : stepOneController.page!.toInt() + 1
+
+      ),
+    );
+  }
+
+  Future<void> goToPreviousIndexStepOne() async {
+    await stepOneController.previousPage(
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.ease,
+    );
+    emit(
+      state.copyWith(
+        currentStepOneIndex: stepOneController.page!.toInt() - 1,
+      ),
+    );
+  }
+  Future<void> goToNextIndexFinalStep() async {
+    await finalStepController.nextPage(
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.ease,
+    );
+
+    emit(
+      state.copyWith(
+        // currentInfoStep: personalInfoController.page!.toInt() + 1,
+          currentStepThreeIndex : finalStepController.page!.toInt() + 1
+
+      ),
+    );
+  }
+
+  Future<void> goToPreviousIndexFinalStep() async {
+    await finalStepController.previousPage(
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.ease,
+    );
+    emit(
+      state.copyWith(
+        currentStepThreeIndex: finalStepController.page!.toInt() - 1,
+      ),
+    );
+  }
   void goToNextPage() {
     pageController.nextPage(
       duration: const Duration(milliseconds: 350),

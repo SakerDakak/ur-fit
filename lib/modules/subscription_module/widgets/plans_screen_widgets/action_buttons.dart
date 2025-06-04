@@ -8,9 +8,14 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 
+import '../../../../core/const.dart';
 import '../../../../core/routes/routes.dart';
+import '../../../../core/utils/loading_helper.dart';
 import '../../../../core/utils/service_locator.dart';
 import '../../../auth_module/bloc/authentication_bloc.dart';
+import '../../../meals_module/controller/meals_cubit.dart';
+import '../../../workout_module/controller/workout_cubit.dart';
+import '../../data/models/package_model.dart';
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons({super.key});
@@ -32,7 +37,15 @@ class ActionButtons extends StatelessWidget {
            sl<AuthenticationBloc>().add(GetUserDataFromServer());
 
            final url = context.read<SubscriptionCubit>().state.paymentUrl;
-            context.pushNamed(Routes.paymentWebView,queryParameters: {"url" :url });
+           if(url == null){
+             final package = state.packages.firstWhere((package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
+             sl<AuthenticationBloc>().add(GetUserDataFromServer());
+
+             LoadingHelper.stopLoading();
+           }else {
+             context.pushNamed(
+                 Routes.paymentWebView, queryParameters: {"url": url});
+           }
 
           } : null,
           padding: EdgeInsets.zero,

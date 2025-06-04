@@ -102,7 +102,19 @@ class _OnBoarding2State extends State<OnBoarding2> {
             // TODO: Handle this case.
             int() => throw UnimplementedError(),
           },
-
+          switch(currentIndex){
+            0 => Align(
+                alignment: Alignment.bottomCenter,
+                child: Image.asset(AssetsManager.onboarding2_1,width:433 ,height: 410,fit: BoxFit.cover,)),
+            1 => Align(
+                alignment: Alignment.bottomLeft,
+                child: Transform.flip(
+                    flipX: true,child: Image.asset(AssetsManager.onboarding2_2,width:266 ,height: 403,fit: BoxFit.cover,alignment: Alignment.centerRight,))),
+            2 => Align(
+                alignment: Alignment.bottomCenter,
+                child: Image.asset(AssetsManager.onboarding2_3,width:433 ,height: 410,fit: BoxFit.cover,)),
+            int() => throw UnimplementedError(),
+          },
           Align(
             alignment: Alignment.topCenter,
             child: PageView(
@@ -285,19 +297,7 @@ class _OnBoarding2State extends State<OnBoarding2> {
             ),
           ),
 
-          switch(currentIndex){
-            0 => Align(
-                alignment: Alignment.bottomCenter,
-                child: Image.asset(AssetsManager.onboarding2_1,width:433 ,height: 410,fit: BoxFit.cover,)),
-            1 => Align(
-                alignment: Alignment.bottomLeft,
-                child: Transform.flip(
-                    flipX: true,child: Image.asset(AssetsManager.onboarding2_2,width:266 ,height: 403,fit: BoxFit.cover,alignment: Alignment.centerRight,))),
-            2 => Align(
-                alignment: Alignment.bottomCenter,
-                child: Image.asset(AssetsManager.onboarding2_3,width:433 ,height: 410,fit: BoxFit.cover,)),
-            int() => throw UnimplementedError(),
-          },
+
           Align(alignment: Alignment.bottomRight,
           child: SafeArea(
             child: Padding(

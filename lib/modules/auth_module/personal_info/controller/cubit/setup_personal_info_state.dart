@@ -8,6 +8,10 @@ class SetupPersonalInfoState with _$SetupPersonalInfoState {
     @Default("") String newPassword,
     @Default("") String confirmPassword,
     @Default(1) int currentInfoStep,
+    @Default(1) int currentStepOneIndex,
+    @Default(1) int currentStepTwoIndex,
+    @Default(1) int currentStepThreeIndex,
+
     @Default(0) int currentPageIndex,
     @Default([]) List<UserGoalsModel> goals,
     @Default([]) List<SelectionItemModel> mealsNotLiked,

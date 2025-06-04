@@ -96,6 +96,7 @@ class MealsCubit extends Cubit<MealsState> {
   }
 
   generateMealPlan() async {
+    emit(state.copyWith(getMealPlansState: RequestState.loading));
     final user = sl<AuthenticationBloc>().currentUser;
     double targetCalories = calculateTargetCalories(
       currentWeight: user!.currentWeight!.toDouble(),

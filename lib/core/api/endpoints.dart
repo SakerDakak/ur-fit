@@ -32,7 +32,7 @@ class EndPoints {
   static const muscleFocus = "/api/bodyParts";
   static const workoutTypes = "/api/workoutTypes";
   static const equipments = "/api/equipments";
-  static packages(PlanType planType) => "/api/getPackages?type=${planType.name}";
+  static packages(PlanType? planType) => planType != null ?"/api/getPackages?type=${planType.name}" : "/api/getPackages";
   static const updateProfile = '/api/updateProfile';
   static const searchRecipe = '/api/recipes/search';
   static  getRecipeDetails(int id) => '/api/recipes/$id?includeNutrition=true';

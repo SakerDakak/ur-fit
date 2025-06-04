@@ -236,7 +236,7 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
       EndPoints.updateProfile,data: FormData.fromMap(body),
     );
     print("result : ${res.data}");
-    return UserModel.fromJson(res.data['data']['user']);
+    return UserModel.fromJson(res.data['data']);
   }
 
 

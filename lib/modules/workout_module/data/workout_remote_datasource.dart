@@ -4,7 +4,7 @@ import '../../../core/api/api_client.dart';
 import '../../../core/api/endpoints.dart';
 
 abstract class BaseWorkoutRemoteDataSource {
-  Future<WorkoutPlan> generateWorkoutPlan({required String endDate,});
+  Future<String> generateWorkoutPlan({required String endDate,});
   Future<List<WorkoutPlan>> getWorkoutPlan();
   Future<void> calculateExercise({required int exercisePlanId,required num calories , required num times , required num sets});
 
@@ -16,7 +16,7 @@ class WorkoutRemoteDataSource extends BaseWorkoutRemoteDataSource {
 
 
   @override
-  Future<WorkoutPlan> generateWorkoutPlan({required String endDate}) async {
+  Future<String> generateWorkoutPlan({required String endDate}) async {
     Map<String,dynamic> data = {
       "end_date": endDate,
     };
@@ -24,7 +24,7 @@ class WorkoutRemoteDataSource extends BaseWorkoutRemoteDataSource {
     print("generateWorkout :${data}");
     final response = await dioServices.post(EndPoints.getWorkoutPlan,data:data );
 
-    return WorkoutPlan.fromJson((response.data['data'] as List).first);
+    return response.data['data'] as String;
   }
 
   @override

@@ -37,7 +37,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<SubscriptionCubit>().getPackages(planType: widget.planType);
+    context.read<SubscriptionCubit>().getPackages();
   }
 
   @override
@@ -91,6 +91,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                             state.getPackagesState == RequestState.failure
                         ? const PlansShimmer()
                         : SubscriptionPlans(
+                      planType: widget.planType,
                             packages: state.packages,
                           );
                   },

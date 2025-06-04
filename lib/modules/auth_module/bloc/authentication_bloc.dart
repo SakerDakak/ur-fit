@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/modules/auth_module/data/models/slider_image_model.dart';
 import 'package:urfit/modules/auth_module/data/models/user/cached_user.dart';
@@ -155,23 +157,31 @@ class AuthenticationBloc
       GetUserData event, Emitter<AuthenticationState> emit) async {
     final result = await authenticationRepo.getUserData();
     await result.fold((l) {
+      // currentUser = UserModel(
+      //   id: 1,
+      //   email:"",
+      //   name: "", hasValidSubscription: false,
+      //   age: 25, country: Country(id: 1, name: ""), city: City(id: 1, name: "nme"), packageId: null, currentWeight: null, height: null, otpCode: null, goals: [], targetWeight: null, bodyShape: null, bodyParts: [], exerciseDays: [], workoutTypes: [], equipments: [], diet: null, recipeTypes: [], foodsNotLiked: [], mealVariety: null, isChecked: '', isCompleted: '', isActive: '', countryKey: '', haveExercisePlan: null, haveMealPlan: null,
+      // );
       LoadingHelper.stopLoading();
     }, (r) async {
       await sl<DioServices>().init();
 
       currentUser = r?.toUserModel();
-
+      log("currentUser: ${currentUser?.toJson()}");
+      // print("currentUser: ${currentUser?.isChecked == '1' && currentUser?.age != null && currentUser?.targetWeight == null && currentUser?.hasValidSubscription == true}");
       if(currentUser?.isChecked == null || currentUser?.isChecked != '1'){
         rootScaffoldKey.currentContext?.read<LoginBloc>().add(CodeSentEvent(
             phone: currentUser!.email.toString(), verificationId: "success"));
         emit(AuthenticationForgetPassword());
       }else if(currentUser?.isChecked == '1' && currentUser?.hasValidSubscription == false){
         emit(AuthenticationPersonalInfo());
-      }else if (currentUser?.isChecked == '1' && currentUser?.age != null && currentUser?.targetWeight == null && currentUser?.hasValidSubscription == false){
+      }else if (currentUser?.isChecked == '1' && currentUser?.age != null && currentUser?.targetWeight != null && currentUser?.hasValidSubscription == true){
+        navigatorKey.currentContext?.pushReplacementNamed(Routes.authenticationScreen);
         emit( const AuthenticationAuthenticated());
       }else{
         navigatorKey.currentContext?.pushReplacementNamed(Routes.authenticationScreen);
-        emit(const AuthenticationAuthenticated());
+        emit( const AuthenticationAuthenticated());
 
       }
 
@@ -211,7 +221,7 @@ class AuthenticationBloc
   FutureOr<void> _updateSubscription(UpdateSubscriptionEvent event, Emitter<AuthenticationState> emit) {
     // final user = currentUser?.copyWith(hasValidSubscription: true);
     // authenticationRepo.saveUser(CacheUser.fromUserModel(user!));
-    add(GetUserData());
+    add(GetUserDataFromServer());
   }
 
   @override

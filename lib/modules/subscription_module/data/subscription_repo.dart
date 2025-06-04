@@ -7,8 +7,8 @@ import 'models/discount_value_model.dart';
 import 'models/package_model.dart';
 
 abstract class BaseSubscriptionRepo {
-  Future<Either<Failure, List<PackageModel>>> getPackages({required PlanType planType});
-  Future<Either<Failure,String>> getPaymentUrl({required int packageId , String? couponeCode});
+  Future<Either<Failure, List<PackageModel>>> getPackages({ PlanType? planType});
+  Future<Either<Failure,String?>> getPaymentUrl({required int packageId , String? couponeCode});
   Future<Either<Failure,String?>> paymentResponse({required String url});
   Future<Either<Failure,DiscountValueModel?>> getDiscountValue({required num price,required String coupon});
 
@@ -21,7 +21,7 @@ class SubscriptionRepo extends BaseSubscriptionRepo {
 
 
   @override
-  Future<Either<Failure, List<PackageModel>>> getPackages({required PlanType planType}) async {
+  Future<Either<Failure, List<PackageModel>>> getPackages({ PlanType? planType}) async {
     try {
       var result = await dataSource.getPackages(planType: planType);
 
@@ -33,7 +33,7 @@ class SubscriptionRepo extends BaseSubscriptionRepo {
   }
 
   @override
-  Future<Either<Failure, String>> getPaymentUrl({required int packageId , String? couponeCode}) async {
+  Future<Either<Failure, String?>> getPaymentUrl({required int packageId , String? couponeCode}) async {
     try {
       var result = await dataSource.getPaymentUrl(packageId: packageId,couponeCode: couponeCode);
 

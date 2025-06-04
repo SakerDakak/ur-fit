@@ -10,6 +10,7 @@ _$BodyPartsModelImpl _$$BodyPartsModelImplFromJson(Map<String, dynamic> json) =>
     _$BodyPartsModelImpl(
       key: json['key'] as String,
       value: json['value'] as String,
+      image: json['image'] as String?,
     );
 
 Map<String, dynamic> _$$BodyPartsModelImplToJson(
@@ -17,4 +18,5 @@ Map<String, dynamic> _$$BodyPartsModelImplToJson(
     <String, dynamic>{
       'key': instance.key,
       'value': instance.value,
+      'image': instance.image,
     };

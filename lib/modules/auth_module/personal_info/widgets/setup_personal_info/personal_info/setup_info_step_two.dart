@@ -12,7 +12,7 @@ import 'package:urfit/modules/auth_module/personal_info/data/models/user_goals_m
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/goals_item.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/shimmer_widgets/goals_shimmer.dart';
 
-import '../../../../../generated/locale_keys.g.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 
 class SetupInfoStepTwo extends StatefulWidget {
   const SetupInfoStepTwo({super.key});

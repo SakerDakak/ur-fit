@@ -40,6 +40,12 @@ class AssetsManager {
   static String onboarding2_2 = 'assets/image/onboarding2_2.png';
   static String onboarding2_3 = 'assets/image/onboarding2_3.png';
   static String medical = 'assets/image/medical.jpg';
+  static String maleGender = 'assets/image/male_gender.png';
+  static String femaleGender = 'assets/image/female_gender.png';
+  static String noOfDailyMeals = 'assets/image/number_of_daily_meals.png';
+  static String bodyParts = 'assets/image/body_part.png';
+  static String foodVarient = "assets/image/food_variant.png";
+
 // static String aiIcon = 'assets/icons/ai.svg';
   // static String editIcon = 'assets/icons/edit.svg';
   // static String bookIcon = 'assets/icons/book.svg';

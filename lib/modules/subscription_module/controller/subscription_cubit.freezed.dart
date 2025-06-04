@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SubscriptionState {
   List<PackageModel> get packages => throw _privateConstructorUsedError;
   int? get selectedPackage => throw _privateConstructorUsedError;
-  String get paymentUrl => throw _privateConstructorUsedError;
+  String? get paymentUrl => throw _privateConstructorUsedError;
   DiscountValueModel? get discountValue => throw _privateConstructorUsedError;
   String? get coupon => throw _privateConstructorUsedError;
   RequestState get getPackagesState => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $SubscriptionStateCopyWith<$Res> {
   $Res call(
       {List<PackageModel> packages,
       int? selectedPackage,
-      String paymentUrl,
+      String? paymentUrl,
       DiscountValueModel? discountValue,
       String? coupon,
       RequestState getPackagesState,
@@ -72,7 +72,7 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
   $Res call({
     Object? packages = null,
     Object? selectedPackage = freezed,
-    Object? paymentUrl = null,
+    Object? paymentUrl = freezed,
     Object? discountValue = freezed,
     Object? coupon = freezed,
     Object? getPackagesState = null,
@@ -90,10 +90,10 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
           ? _value.selectedPackage
           : selectedPackage // ignore: cast_nullable_to_non_nullable
               as int?,
-      paymentUrl: null == paymentUrl
+      paymentUrl: freezed == paymentUrl
           ? _value.paymentUrl
           : paymentUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       discountValue: freezed == discountValue
           ? _value.discountValue
           : discountValue // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ abstract class _$$SubscriptionStateImplCopyWith<$Res>
   $Res call(
       {List<PackageModel> packages,
       int? selectedPackage,
-      String paymentUrl,
+      String? paymentUrl,
       DiscountValueModel? discountValue,
       String? coupon,
       RequestState getPackagesState,
@@ -179,7 +179,7 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
   $Res call({
     Object? packages = null,
     Object? selectedPackage = freezed,
-    Object? paymentUrl = null,
+    Object? paymentUrl = freezed,
     Object? discountValue = freezed,
     Object? coupon = freezed,
     Object? getPackagesState = null,
@@ -197,10 +197,10 @@ class __$$SubscriptionStateImplCopyWithImpl<$Res>
           ? _value.selectedPackage
           : selectedPackage // ignore: cast_nullable_to_non_nullable
               as int?,
-      paymentUrl: null == paymentUrl
+      paymentUrl: freezed == paymentUrl
           ? _value.paymentUrl
           : paymentUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       discountValue: freezed == discountValue
           ? _value.discountValue
           : discountValue // ignore: cast_nullable_to_non_nullable
@@ -239,7 +239,7 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
   const _$SubscriptionStateImpl(
       {final List<PackageModel> packages = const [],
       this.selectedPackage = null,
-      this.paymentUrl = '',
+      this.paymentUrl = null,
       this.discountValue = null,
       this.coupon = null,
       this.getPackagesState = RequestState.initial,
@@ -263,7 +263,7 @@ class _$SubscriptionStateImpl implements _SubscriptionState {
   final int? selectedPackage;
   @override
   @JsonKey()
-  final String paymentUrl;
+  final String? paymentUrl;
   @override
   @JsonKey()
   final DiscountValueModel? discountValue;
@@ -344,7 +344,7 @@ abstract class _SubscriptionState implements SubscriptionState {
   const factory _SubscriptionState(
       {final List<PackageModel> packages,
       final int? selectedPackage,
-      final String paymentUrl,
+      final String? paymentUrl,
       final DiscountValueModel? discountValue,
       final String? coupon,
       final RequestState getPackagesState,
@@ -358,7 +358,7 @@ abstract class _SubscriptionState implements SubscriptionState {
   @override
   int? get selectedPackage;
   @override
-  String get paymentUrl;
+  String? get paymentUrl;
   @override
   DiscountValueModel? get discountValue;
   @override

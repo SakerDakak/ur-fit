@@ -8,6 +8,7 @@ class NoOfDailyMealsModel with _$NoOfDailyMealsModel {
   const factory NoOfDailyMealsModel({
     required String value,
     required String label,
+    String? image,
 
   }) = _NoOfDailyMealsModel;
 

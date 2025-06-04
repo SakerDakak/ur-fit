@@ -7,8 +7,8 @@ import '../../../core/api/endpoints.dart';
 import 'models/discount_value_model.dart';
 
 abstract class BaseSubscriptionRemoteDataSource {
-  Future<List<PackageModel>> getPackages({required PlanType planType});
-  Future<String> getPaymentUrl({required int packageId , String? couponeCode});
+  Future<List<PackageModel>> getPackages({ PlanType? planType});
+  Future<String?> getPaymentUrl({required int packageId , String? couponeCode});
   Future<String?> paymentResponse({required String url});
   Future<DiscountValueModel?> getDiscountValue({required num price,required String coupon});
 }
@@ -21,7 +21,7 @@ class SubscriptionRemoteDataSource extends BaseSubscriptionRemoteDataSource {
 
 
   @override
-  Future<List<PackageModel>> getPackages({required PlanType planType}) async {
+  Future<List<PackageModel>> getPackages({ PlanType? planType}) async {
     final res = await dioServices.get(
       EndPoints.packages(planType),
     );
@@ -32,13 +32,17 @@ class SubscriptionRemoteDataSource extends BaseSubscriptionRemoteDataSource {
   }
 
   @override
-  Future<String> getPaymentUrl({required int packageId , String? couponeCode}) async {
+  Future<String?> getPaymentUrl({required int packageId , String? couponeCode}) async {
     final res = await dioServices.get(
       EndPoints.executePayment,
       parameter: {'package_id' : packageId ,  'coupon_code' : couponeCode},
     );
     print("payment url ${res.data}");
-    return res.data['url'];
+    if((res.data as Map<String,dynamic>).containsKey("url")) {
+      return res.data['url'];
+    }else{
+      return null;
+    }
   }
 
   @override

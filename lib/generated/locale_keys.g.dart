@@ -178,5 +178,13 @@ abstract class  LocaleKeys {
   static const planUpdate = 'planUpdate';
   static const planUpdatePhrase1 = 'planUpdatePhrase1';
   static const planUpdatePhrase2 = 'planUpdatePhrase2';
+  static const whatsYourAge = 'whatsYourAge';
+  static const whatsYourHeight = 'whatsYourHeight';
+  static const whatsYourWeight = 'whatsYourWeight';
+  static const year = 'year';
+  static const enterAge = 'enterAge';
+  static const enterHeight = 'enterHeight';
+  static const enterWeight = 'enterWeight';
+  static const trainingTimes = 'trainingTimes';
 
 }
