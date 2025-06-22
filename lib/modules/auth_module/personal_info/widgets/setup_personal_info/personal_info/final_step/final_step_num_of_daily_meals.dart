@@ -32,77 +32,79 @@ class FinalStepNumOfDailyMeals extends StatelessWidget {
         //
         // }
 
-        return Column(
-          children: [
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                LocaleKeys.dietType.tr(),
-                style: CustomTextStyle.semiBold_16,
-                textAlign: TextAlign.start,
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  LocaleKeys.dietType.tr(),
+                  style: CustomTextStyle.semiBold_16,
+                  textAlign: TextAlign.start,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                 CircleAvatar(
-                  radius: 140,
-                  backgroundColor: Color(0xff484848,).withValues(alpha: 0.7),
-                ),
-                CircleAvatar(
-                  radius: 110,
-                  backgroundColor: const Color(0xff575757),
-                ),
-                CircleAvatar(
-                  radius: 90,
-                  backgroundColor: const Color(0xff575757),
-                  backgroundImage: AssetImage(AssetsManager.noOfDailyMeals),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-              buildWhen: (p, c) =>
-                  p.userInfo.diet_id != c.userInfo.diet_id ||
-                  p.getDietOptionsState != c.getDietOptionsState,
-              builder: (context, state) {
-                if (state.getDietOptionsState == RequestState.loading ||
-                    state.getDietOptionsState == RequestState.failure) {
-                  return const ValuesGridviewShimmer();
-                } else {
-                  return ValuesGridView(
-                    itemCount: state.diet.length,
-                    itemBuilder: (_, index) => ValueContainer(
-                      value: state.diet[index].name,
-                      onTap: () => cubit.updateDietId(
-                          state.diet[index].id),
-                      isSelected: state.userInfo.diet_id ==
-                          state.diet[index].id,
-                    ),
-                  );
-                }
-              },
-            ),
-            SizedBox(
-              height: 32,
-            ),
-
-            // continue button
-            CustomElevatedButton(
-              text: LocaleKeys.continuee.tr(),
-              padding: EdgeInsets.zero,
-              onPressed: canProssed
-                  ? () {
-                      cubit.goToNextIndexFinalStep();
-                    }
-                  : null,
-            ),
-          ],
+              SizedBox(
+                height: 16,
+              ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                   CircleAvatar(
+                    radius: 140,
+                    backgroundColor: Color(0xff484848,).withValues(alpha: 0.7),
+                  ),
+                  CircleAvatar(
+                    radius: 110,
+                    backgroundColor: const Color(0xff575757),
+                  ),
+                  CircleAvatar(
+                    radius: 90,
+                    backgroundColor: const Color(0xff575757),
+                    backgroundImage: AssetImage(AssetsManager.noOfDailyMeals),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+                buildWhen: (p, c) =>
+                    p.userInfo.diet_id != c.userInfo.diet_id ||
+                    p.getDietOptionsState != c.getDietOptionsState,
+                builder: (context, state) {
+                  if (state.getDietOptionsState == RequestState.loading ||
+                      state.getDietOptionsState == RequestState.failure) {
+                    return const ValuesGridviewShimmer();
+                  } else {
+                    return ValuesGridView(
+                      itemCount: state.diet.length,
+                      itemBuilder: (_, index) => ValueContainer(
+                        value: state.diet[index].name,
+                        onTap: () => cubit.updateDietId(
+                            state.diet[index].id),
+                        isSelected: state.userInfo.diet_id ==
+                            state.diet[index].id,
+                      ),
+                    );
+                  }
+                },
+              ),
+              SizedBox(
+                height: 32,
+              ),
+          
+              // continue button
+              CustomElevatedButton(
+                text: LocaleKeys.continuee.tr(),
+                padding: EdgeInsets.zero,
+                onPressed: canProssed
+                    ? () {
+                        cubit.goToNextIndexFinalStep();
+                      }
+                    : null,
+              ),
+            ],
+          ),
         );
       },
     );

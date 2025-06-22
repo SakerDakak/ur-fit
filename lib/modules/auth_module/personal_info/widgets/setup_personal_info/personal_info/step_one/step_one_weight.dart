@@ -19,68 +19,73 @@ class StepOneWeight extends StatelessWidget {
       builder: (context, state) {
         bool canProssed = state.userInfo.current_weight != null ;
         print("canProssed: ${state.userInfo.current_weight}");
-        return Column(children: [
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: Text(
-              LocaleKeys.whatsYourWeight.tr(),
-              style: CustomTextStyle.semiBold_16,
-              textAlign: TextAlign.start,
-            ),
-          ),
-
-
-          const SizedBox(height: 100),
-          SizedBox(
-            width: 130,
-            child: TextFormField(
-              initialValue: state.userInfo.current_weight?.toString(),
-
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              style: CustomTextStyle.semiBold_16.copyWith(
-                color: Colors.white,
+        return SingleChildScrollView(
+          child: Column(children: [
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                LocaleKeys.whatsYourWeight.tr(),
+                style: CustomTextStyle.semiBold_16,
+                textAlign: TextAlign.start,
               ),
-              decoration: InputDecoration(
-                hintText: LocaleKeys.enterWeight.tr(),
-                hintStyle: CustomTextStyle.semiBold_16.copyWith(
-                  color: Colors.white.withOpacity(0.6),
+            ),
+          
+          
+            const SizedBox(height: 100),
+            SizedBox(
+              width: 130,
+              child: TextFormField(
+                onTapOutside: (PointerDownEvent event) {
+                  FocusScope.of(context).unfocus();
+                },
+                initialValue: state.userInfo.current_weight?.toString(),
+          
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                style: CustomTextStyle.semiBold_16.copyWith(
+                  color: Colors.white,
                 ),
-                filled: true,
-                fillColor: const Color(0xFF2D2D2D),
-                contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+                decoration: InputDecoration(
+                  hintText: LocaleKeys.enterWeight.tr(),
+                  hintStyle: CustomTextStyle.semiBold_16.copyWith(
+                    color: Colors.white.withOpacity(0.6),
+                  ),
+                  filled: true,
+                  fillColor: const Color(0xFF2D2D2D),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                onChanged: (value) {
+                  final weight = double.tryParse(value);
+                  if(weight != null) {
+                    cubit.updateUserWeight(weight);
+                  }
+                },
               ),
-              onChanged: (value) {
-                final weight = double.tryParse(value);
-                if(weight != null) {
-                  cubit.updateUserWeight(weight);
-                }
-              },
             ),
-          ),
-          SizedBox(height: 16,),
-          Text(
-            LocaleKeys.kg.tr(),
-            style: CustomTextStyle.semiBold_14.copyWith(
-              color: Colors.cyanAccent,
+            SizedBox(height: 16,),
+            Text(
+              LocaleKeys.kg.tr(),
+              style: CustomTextStyle.semiBold_14.copyWith(
+                color: Colors.cyanAccent,
+              ),
             ),
-          ),
-          const SizedBox(height: 100),
-          // continue button
-          CustomElevatedButton(
-            text: LocaleKeys.continuee.tr(),
-            padding: EdgeInsets.zero,
-            onPressed: canProssed
-                ? () {
-              cubit.goToNextInfoStep();
-            }
-                : null,
-          ),
-        ],);
+            const SizedBox(height: 100),
+            // continue button
+            CustomElevatedButton(
+              text: LocaleKeys.continuee.tr(),
+              padding: EdgeInsets.zero,
+              onPressed: canProssed
+                  ? () {
+                cubit.goToNextInfoStep();
+              }
+                  : null,
+            ),
+          ],),
+        );
       },
     );
 

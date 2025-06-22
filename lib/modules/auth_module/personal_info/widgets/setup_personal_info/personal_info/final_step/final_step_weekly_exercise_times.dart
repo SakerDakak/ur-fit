@@ -19,69 +19,74 @@ class FinalStepWeeklyExerciseTimes extends StatelessWidget {
       builder: (context, state) {
         bool canProssed = state.userInfo.weaklyTrainingCount != null && state.userInfo.weaklyTrainingCount! > 0;
         print("canProssed: ${state.userInfo.weaklyTrainingCount}");
-        return Column(mainAxisSize: MainAxisSize.min,
-          children: [
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: Text(
-              LocaleKeys.trainingTimesPerWeek.tr(),
-              style: CustomTextStyle.semiBold_16,
-              textAlign: TextAlign.start,
-            ),
-          ),
-
-
-          const SizedBox(height: 100),
-          SizedBox(
-            width: 130,
-            child: TextFormField(
-              initialValue: state.userInfo.weaklyTrainingCount?.toString(),
-
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              style: CustomTextStyle.semiBold_16.copyWith(
-                color: Colors.white,
+        return SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min,
+            children: [
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                LocaleKeys.trainingTimesPerWeek.tr(),
+                style: CustomTextStyle.semiBold_16,
+                textAlign: TextAlign.start,
               ),
-              decoration: InputDecoration(
-                hintText: LocaleKeys.trainingTimes.tr(),
-                hintStyle: CustomTextStyle.semiBold_16.copyWith(
-                  color: Colors.white.withOpacity(0.6),
+            ),
+          
+          
+            const SizedBox(height: 100),
+            SizedBox(
+              width: 130,
+              child: TextFormField(
+                onTapOutside: (PointerDownEvent event) {
+                  FocusScope.of(context).unfocus();
+                },
+                initialValue: state.userInfo.weaklyTrainingCount?.toString(),
+          
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                style: CustomTextStyle.semiBold_16.copyWith(
+                  color: Colors.white,
                 ),
-                filled: true,
-                fillColor: const Color(0xFF2D2D2D),
-                contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+                decoration: InputDecoration(
+                  hintText: LocaleKeys.trainingTimes.tr(),
+                  hintStyle: CustomTextStyle.semiBold_16.copyWith(
+                    color: Colors.white.withOpacity(0.6),
+                  ),
+                  filled: true,
+                  fillColor: const Color(0xFF2D2D2D),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
+                onChanged: (value) {
+                  final times = int.tryParse(value);
+                  if(times != null) {
+                    cubit.updateUserWeaklyTrainingCount(times);
+                  }
+                },
               ),
-              onChanged: (value) {
-                final times = int.tryParse(value);
-                if(times != null) {
-                  cubit.updateUserWeaklyTrainingCount(times);
-                }
-              },
             ),
-          ),
-          SizedBox(height: 16,),
-          Text(
-            LocaleKeys.exercise.tr(),
-            style: CustomTextStyle.semiBold_14.copyWith(
-              color: Colors.cyanAccent,
+            SizedBox(height: 16,),
+            Text(
+              LocaleKeys.exercise.tr(),
+              style: CustomTextStyle.semiBold_14.copyWith(
+                color: Colors.cyanAccent,
+              ),
             ),
-          ),
-          const SizedBox(height: 100),
-          // continue button
-          CustomElevatedButton(
-            text: LocaleKeys.continuee.tr(),
-            padding: EdgeInsets.zero,
-            onPressed: canProssed
-                ? () {
-              cubit.goToNextIndexFinalStep();
-            }
-                : null,
-          ),
-        ],);
+            const SizedBox(height: 100),
+            // continue button
+            CustomElevatedButton(
+              text: LocaleKeys.continuee.tr(),
+              padding: EdgeInsets.zero,
+              onPressed: canProssed
+                  ? () {
+                cubit.goToNextIndexFinalStep();
+              }
+                  : null,
+            ),
+          ],),
+        );
       },
     );
   }

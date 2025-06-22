@@ -26,77 +26,79 @@ class FinalStepMealsVariety extends StatelessWidget {
         bool canProssed = state.userInfo.mealsVariantsId != null &&
             state.userInfo.mealsVariantsId! > 0;
         print("canProssed: ${state.userInfo.targetWeight}");
-        return Column(
-          children: [
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                LocaleKeys.mealsVerity.tr(),
-                style: CustomTextStyle.semiBold_16,
-                textAlign: TextAlign.start,
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  LocaleKeys.mealsVerity.tr(),
+                  style: CustomTextStyle.semiBold_16,
+                  textAlign: TextAlign.start,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 140,
-                  backgroundColor: Color(0xff484848,).withValues(alpha: 0.7),
-                ),
-                CircleAvatar(
-                  radius: 110,
-                  backgroundColor: const Color(0xff575757),
-                ),
-                CircleAvatar(
-                  radius: 90,
-                  backgroundColor: const Color(0xff575757),
-                  backgroundImage: AssetImage(AssetsManager.foodVarient),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-              buildWhen: (p, c) =>
-              p.userInfo.mealsVariantsId != c.userInfo.mealsVariantsId ||
-                  p.getMealVariantsState != c.getMealVariantsState,
-              builder: (context, state) {
-                if (state.getMealVariantsState == RequestState.loading ||
-                    state.getMealVariantsState == RequestState.failure) {
-                  return const ValuesGridviewShimmer();
-                } else {
-                  return ValuesGridView(
-                    itemCount: state.mealVariants.length,
-                    itemBuilder: (_, index) => ValueContainer(
-                      value: state.mealVariants[index].name,
-                      onTap: () => cubit.updateSelectedMealsVariants(
-                          state.mealVariants[index].id),
-                      isSelected: state.userInfo.mealsVariantsId ==
-                          state.mealVariants[index].id,
-                    ),
-                  );
+              SizedBox(
+                height: 16,
+              ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 140,
+                    backgroundColor: Color(0xff484848,).withValues(alpha: 0.7),
+                  ),
+                  CircleAvatar(
+                    radius: 110,
+                    backgroundColor: const Color(0xff575757),
+                  ),
+                  CircleAvatar(
+                    radius: 90,
+                    backgroundColor: const Color(0xff575757),
+                    backgroundImage: AssetImage(AssetsManager.foodVarient),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+                buildWhen: (p, c) =>
+                p.userInfo.mealsVariantsId != c.userInfo.mealsVariantsId ||
+                    p.getMealVariantsState != c.getMealVariantsState,
+                builder: (context, state) {
+                  if (state.getMealVariantsState == RequestState.loading ||
+                      state.getMealVariantsState == RequestState.failure) {
+                    return const ValuesGridviewShimmer();
+                  } else {
+                    return ValuesGridView(
+                      itemCount: state.mealVariants.length,
+                      itemBuilder: (_, index) => ValueContainer(
+                        value: state.mealVariants[index].name,
+                        onTap: () => cubit.updateSelectedMealsVariants(
+                            state.mealVariants[index].id),
+                        isSelected: state.userInfo.mealsVariantsId ==
+                            state.mealVariants[index].id,
+                      ),
+                    );
+                  }
+                },
+              ),
+              SizedBox(
+                height: 32,
+              ),
+          
+              // continue button
+              CustomElevatedButton(
+                text: LocaleKeys.continuee.tr(),
+                padding: EdgeInsets.zero,
+                onPressed: canProssed
+                    ? () {
+                  cubit.goToNextIndexFinalStep();
                 }
-              },
-            ),
-            SizedBox(
-              height: 32,
-            ),
-
-            // continue button
-            CustomElevatedButton(
-              text: LocaleKeys.continuee.tr(),
-              padding: EdgeInsets.zero,
-              onPressed: canProssed
-                  ? () {
-                cubit.goToNextIndexFinalStep();
-              }
-                  : null,
-            ),
-          ],
+                    : null,
+              ),
+            ],
+          ),
         );
       },
     );
