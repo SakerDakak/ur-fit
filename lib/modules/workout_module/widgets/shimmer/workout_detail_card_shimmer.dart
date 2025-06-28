@@ -22,7 +22,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
           // title
           Row(
             children: [
-              SvgPicture.asset(AppAssets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
+              SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
               const SizedBox(width: 8),
               Text(
                 'تفاصيل تمارين اليوم',
@@ -61,7 +61,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                     // current weight
                     DetailsItem(
                       'وزنك الحالى',
-                      AppAssets.iconsWeightIcon,
+                      Assets.iconsWeightIcon,
                        "0",
                       'كجم',
                     ),
@@ -76,7 +76,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                     // target weight
                     DetailsItem(
                       'الهدف',
-                      AppAssets.iconsFlag,
+                      Assets.iconsFlag,
                        "0",
                       'كجم',
                     ),
@@ -91,7 +91,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                     // workout duration
                     DetailsItem(
                       'مدة التمارين ',
-                      AppAssets.iconsDumbbell,
+                      Assets.iconsDumbbell,
                       "20",
                       'دقيقة',
                     ),

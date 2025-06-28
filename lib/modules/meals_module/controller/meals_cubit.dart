@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
 import 'package:urfit/modules/meals_module/data/models/cached_nutrition.dart';
 import 'package:urfit/modules/meals_module/data/models/search_recipe_model.dart';
@@ -12,9 +11,8 @@ import '../data/models/meal_details_model.dart';
 import '../data/models/meal_model.dart';
 import '../repo/meals_repo.dart';
 
-part 'meals_state.dart';
-
 part 'meals_cubit.freezed.dart';
+part 'meals_state.dart';
 
 class MealsCubit extends Cubit<MealsState> {
   final BaseMealsRepo _repo;

@@ -32,7 +32,7 @@ class SleepTrackingCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SvgPicture.asset(
-                  AppAssets.iconsBed,
+                  Assets.iconsBed,
                   width: 16,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.primary,

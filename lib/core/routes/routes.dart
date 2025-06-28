@@ -19,18 +19,16 @@ import 'package:urfit/modules/profile_module/screens/otp_screen.dart';
 import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/privacy_policy_screen.dart';
 import 'package:urfit/modules/profile_module/screens/settings_screen.dart';
-import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/subscription_module/screens/payment_webview.dart';
 import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 
-import '../../modules/auth_module/bloc/authentication_bloc.dart';
+import '../../modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../modules/auth_module/bloc/bloc_listenable.dart';
 import '../../modules/auth_module/bloc/login_bloc.dart';
 import '../../modules/auth_module/onboarding/choose_country.dart';
-import '../../modules/auth_module/onboarding/onboardingScreen.dart';
 import '../../modules/auth_module/persentation/email_login_screen.dart';
 import '../../modules/auth_module/persentation/forget_password_flow.dart';
 import '../../modules/auth_module/persentation/phone_auth_flow/login_screen.dart';
@@ -44,48 +42,16 @@ import '../const.dart';
 import '../utils/service_locator.dart';
 
 class Routes {
-  static const splashScreen = "splash";
   static const authenticationScreen = "/";
-  static const onBoarding = "onBoarding";
-  static const onBoarding2 = "onBoarding2";
+  // static const onBoarding = "onBoarding";
 
-  static const emailLogin = "emailLogin";
-  static const registerFlow = "registerFlow";
-  static const phoneLoginFlow = "phoneLoginFlow";
-  static const phoneLoginScreen = "phoneLogin";
-  static const otpScreen = "otpScreen";
-  static const chooseLang = "chooseLang";
+  // static const registerFlow = "registerFlow";
 
-  static const chooseCountry = "chooseCountry";
-  static const chooseCity = "chooseCity";
+  // static const searchPage = "/searchPage";
 
-  static const setupPersonalInfo = '/setupPersonalInfo';
-
-  static const mainPage = "/mainPage";
-  static const forgetPasswordFlow = "forgetPasswordFlow";
-  static const updatePassword = "updatePassword";
-  static const searchPage = "/searchPage";
-
-  static const focusScreen = "/focusScreen";
-  static const newsPage = "/newsPage";
-  static const homeBottomSheet = "/homeBottomSheet";
-  static const mealsGridViewScreen = '/mealsGridViewScreen';
-  static const mealsDetailsScreen = '/mealsDetailsScreen';
-  static const filterScreen = '/filterScreen';
-  static const subscriptionPlansScreen = '/subscriptionPlansScreen';
-  static const myPlanScreen = '/myPlanScreen';
-  static const myPreviousPlanScreen = '/myPreviousPlanScreen';
-  static const loadingPlanScreen = '/loadingPlanScreen';
-  static const privacyPolicyScreen = '/privacyPolicyScreen';
-  static const contactUsScreen = '/contactUsScreen';
-  static const settingsScreen = '/settingsScreen';
-  static const myTasksScreen = '/myTasksScreen';
-  static const todayWorkOutScreen = '/todayWorkOutScreen';
-  static const playTrainingScreen = '/playTrainingScreen';
-  static const changeEmailScreen = '/changeEmailScreen';
-  static const changePasswordScreen = '/changePasswordScreen';
-  static const otpScreenNew = '/otpScreenNew';
-  static const paymentWebView = '/paymentWebView';
+  // static const focusScreen = "/focusScreen";
+  // static const newsPage = "/newsPage";
+  // static const homeBottomSheet = "/homeBottomSheet";
 
   static GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
@@ -97,63 +63,56 @@ class Routes {
           // builder: (context, state) => const SplashScreen(),
           routes: [
             GoRoute(
-              path: updatePassword,
-              name: updatePassword,
+              path: UpdatePasswordScreen.route,
+              name: UpdatePasswordScreen.route,
               builder: (context, state) => const UpdatePasswordScreen(),
             ),
             GoRoute(
-              path: splashScreen,
-              name: splashScreen,
+              path: SplashScreen.route,
+              name: SplashScreen.route,
               builder: (context, state) => const SplashScreen(),
             ),
+            // GoRoute(
+            //   path: onBoarding,
+            //   name: onBoarding,
+            //   builder: (context, state) => const OnboardingScreen(),
+            // ),
             GoRoute(
-              path: onBoarding,
-              name: onBoarding,
-              builder: (context, state) => const OnboardingScreen(),
+              path: OnBoardingSecScreen.route,
+              name: OnBoardingSecScreen.route,
+              builder: (context, state) => const OnBoardingSecScreen(),
             ),
             GoRoute(
-              path: onBoarding2,
-              name: onBoarding2,
-              builder: (context, state) => const OnBoarding2(),
-            ),
-            GoRoute(
-              path: chooseLang,
-              name: chooseLang,
+              path: ChooseLanguage.route,
+              name: ChooseLanguage.route,
               pageBuilder: (context, state) => CustomTransitionPage<void>(
                 key: state.pageKey,
-                child:  ChooseLanguage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(opacity: animation, child: child),
+                child: const ChooseLanguage(),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+                    FadeTransition(opacity: animation, child: child),
               ),
-              builder: (context, state) => const ChooseLanguage(),
+              // builder: (context, state) => const ChooseLanguage(),
             ),
             GoRoute(
-              path: chooseCountry,
-              name: chooseCountry,
+              path: ChooseCountry.route,
+              name: ChooseCountry.route,
               builder: (context, state) => const ChooseCountry(),
             ),
             GoRoute(
-              path: chooseCity,
-              name: chooseCity,
+              path: ChooseCity.route,
+              name: ChooseCity.route,
               builder: (context, state) => const ChooseCity(),
             ),
             GoRoute(
-              path: emailLogin,
-              name: emailLogin,
+              path: EmailLoginScreen.route,
+              name: EmailLoginScreen.route,
               onExit: (context, GoRouterState state) {
-                return context.read<AuthenticationBloc>().state.runtimeType ==
-                        AuthenticationAuthenticated ||
-                    context.read<AuthenticationBloc>().state.runtimeType ==
-                        AuthenticationLoginFlow ||
-                    context.read<AuthenticationBloc>().state.runtimeType ==
-                        AuthenticationForgetPassword ||
-                    context.read<AuthenticationBloc>().state.runtimeType ==
-                        AuthenticationRegister ||
-                    context.read<AuthenticationBloc>().state.runtimeType ==
-                        AuthenticationPersonalInfo ||
-                    context.read<AuthenticationBloc>().state.runtimeType !=
-                        AuthenticationAsGuest;
+                return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationAuthenticated ||
+                    context.read<AuthenticationBloc>().state.runtimeType == AuthenticationLoginFlow ||
+                    context.read<AuthenticationBloc>().state.runtimeType == AuthenticationForgetPassword ||
+                    context.read<AuthenticationBloc>().state.runtimeType == AuthenticationRegister ||
+                    context.read<AuthenticationBloc>().state.runtimeType == AuthenticationPersonalInfo ||
+                    context.read<AuthenticationBloc>().state.runtimeType != AuthenticationAsGuest;
               },
               builder: (context, state) => const EmailLoginScreen(),
             ),
@@ -180,57 +139,42 @@ class Routes {
             //       return true;
             //     }),
             GoRoute(
-              path: forgetPasswordFlow,
-              name: forgetPasswordFlow,
+              path: ForgetPasswordFlow.route,
+              name: ForgetPasswordFlow.route,
               builder: (context, state) => const ForgetPasswordFlow(),
             ),
             GoRoute(
-                path: phoneLoginFlow,
-                name: phoneLoginFlow,
+                path: PhoneAuthFlowPages.route,
+                name: PhoneAuthFlowPages.route,
                 onExit: (context, state) {
-                  if (rootScaffoldKey.currentContext
-                              ?.read<AuthenticationBloc>()
-                              .state
-                              .runtimeType !=
+                  if (rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
                           AuthenticationAuthenticated &&
-                      rootScaffoldKey.currentContext
-                              ?.read<AuthenticationBloc>()
-                              .state
-                              .runtimeType !=
+                      rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
                           AuthenticationAsGuest &&
-                      rootScaffoldKey.currentContext
-                              ?.read<AuthenticationBloc>()
-                              .state
-                              .runtimeType !=
+                      rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
                           AuthenticationPersonalInfo) {
-                    rootScaffoldKey.currentContext
-                        ?.read<AuthenticationBloc>()
-                        .add(GoBack());
+                    rootScaffoldKey.currentContext?.read<AuthenticationBloc>().add(GoBack());
                   }
                   return true;
                 },
                 builder: (context, state) => const PhoneAuthFlowPages(),
                 routes: [
                   GoRoute(
-                    path: phoneLoginScreen,
-                    name: phoneLoginScreen,
+                    path: LoginScreen.route,
+                    name: LoginScreen.route,
                     builder: (context, state) => const LoginScreen(),
                   ),
                   GoRoute(
-                    path: otpScreen,
-                    name: otpScreen,
+                    path: OTPScreen.route,
+                    name: OTPScreen.route,
                     builder: (context, state) => const OTPScreen(),
                   ),
                 ],
                 redirect: (BuildContext context, GoRouterState state) {
-                  if (!context
-                      .read<LoginBloc>()
-                      .state
-                      .verificationId
-                      .isNotEmpty) {
-                    return "$phoneLoginFlow/$phoneLoginScreen";
+                  if (!context.read<LoginBloc>().state.verificationId.isNotEmpty) {
+                    return "${PhoneAuthFlowPages.route}/${LoginScreen.route}";
                   } else {
-                    return "$phoneLoginFlow/$otpScreen";
+                    return "${PhoneAuthFlowPages.route}/${OTPScreen.route}";
                   }
                 }),
           ],
@@ -240,50 +184,50 @@ class Routes {
 
             switch (context.read<AuthenticationBloc>().state.runtimeType) {
               case AuthenticationUninitialized:
-                return "/$splashScreen";
-              case AuthenticationOnBoarding:
-                return "/$onBoarding";
+                return "/${SplashScreen.route}";
+              // case AuthenticationOnBoarding:
+              //   return "/$onBoarding";
 
               case AuthenticationAuthenticated:
-                return "$mainPage?guest=false";
+                return "${MainPage.route}?guest=false";
 
               case AuthenticationUnauthenticated:
-                return "/$emailLogin";
+                return "/${EmailLoginScreen.route}";
 
-              case AuthenticationRegister:
-                return "/$registerFlow";
+              // case AuthenticationRegister:
+              //   return "/$registerFlow";
 
               case AuthenticationForgetPassword:
-                return "/$forgetPasswordFlow";
+                return "/${ForgetPasswordFlow.route}";
 
               case AuthenticationAsGuest:
-                return "$mainPage?guest=true";
+                return "${MainPage.route}?guest=true";
 
               case AuthenticationLoginFlow:
-                return "/$phoneLoginFlow";
+                return "/${PhoneAuthFlowPages.route}";
 
               case AuthenticatedWithoutSubscription:
-                return "$mainPage?guest=true";
+                return "${MainPage.route}?guest=true";
 
               case AuthenticationUpdatePassword:
-                return "/$updatePassword";
+                return "/${UpdatePasswordScreen.route}";
 
               case AuthenticationGoToChooseLang:
-                return "/$chooseLang";
+                return "/${ChooseLanguage.route}";
               case AuthenticationChooseCountry:
-                return "/$chooseCity";
+                return "/${ChooseCity.route}";
               case AuthenticationChooseLang:
-                return "/$chooseCountry";
+                return "/${ChooseCountry.route}";
               case AuthenticationPersonalInfo:
-                return "$setupPersonalInfo";
+                return "${SetupPersonalInfoScreen.route}";
               case AuthenticationOnBoardingTwo:
-                return "/$onBoarding2";
+                return "/${OnBoardingSecScreen.route}";
             }
             return null;
           }),
       GoRoute(
-          path: mainPage,
-          name: mainPage,
+          path: MainPage.route,
+          name: MainPage.route,
           builder: (context, state) {
             dynamic guest = state.uri.queryParameters["guest"] as String;
             guest = guest == "true" ? true : false;
@@ -292,27 +236,25 @@ class Routes {
             );
           },
           onExit: (context, state) {
-            return context.read<AuthenticationBloc>().state.runtimeType ==
-                AuthenticationUnauthenticated;
+            return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated;
           },
           redirect: (BuildContext context, GoRouterState state) {
             // print("mainpagge redirect $state");
-            if (context.read<AuthenticationBloc>().state.runtimeType ==
-                AuthenticationUnauthenticated) {
+            if (context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated) {
               return authenticationScreen;
             }
             return null;
           }),
       GoRoute(
-        path: mealsGridViewScreen,
-        name: mealsGridViewScreen,
+        path: MealsPickerScreen.route,
+        name: MealsPickerScreen.route,
         builder: (context, state) {
           return const MealsPickerScreen();
         },
       ),
       GoRoute(
-          path: mealsDetailsScreen + '/:id',
-          name: mealsDetailsScreen,
+          path: '${MealDetailsScreen.routeWzId}/:id',
+          name: MealDetailsScreen.routeWzId,
           builder: (context, state) {
             final id = state.pathParameters['id'] as String;
 
@@ -321,26 +263,28 @@ class Routes {
             );
           }),
       GoRoute(
-          path: filterScreen,
-          name: filterScreen,
+          path: FilterScreen.route,
+          name: FilterScreen.route,
           builder: (context, state) {
             return const FilterScreen();
           }),
 
       /// subscription plans route
       GoRoute(
-        path: subscriptionPlansScreen,
-        name: subscriptionPlansScreen,
+        path: SubscriptionPlansScreen.routeWzExtra,
+        name: SubscriptionPlansScreen.routeWzExtra,
         builder: (context, state) {
-          final planType =state.extra as PlanType? ?? PlanType.both;
-          return SubscriptionPlansScreen(planType: planType,);
+          final planType = state.extra as PlanType? ?? PlanType.both;
+          return SubscriptionPlansScreen(
+            planType: planType,
+          );
         },
       ),
 
       /// payment webview route
       GoRoute(
-        path: paymentWebView,
-        name: paymentWebView,
+        path: PaymentWebView.route,
+        name: PaymentWebView.route,
         builder: (context, state) {
           final url = state.uri.queryParameters['url'] as String;
           print("Params : ${state.uri.queryParameters}");
@@ -350,8 +294,8 @@ class Routes {
 
       /// setup personal info route
       GoRoute(
-        path: setupPersonalInfo,
-        name: setupPersonalInfo,
+        path: SetupPersonalInfoScreen.route,
+        name: SetupPersonalInfoScreen.route,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => sl<SetupPersonalInfoCubit>(),
@@ -362,26 +306,26 @@ class Routes {
 
       /// my plan route
       GoRoute(
-        path: loadingPlanScreen,
-        name: loadingPlanScreen,
+        path: LoadingPlanScreen.route,
+        name: LoadingPlanScreen.route,
         builder: (context, state) {
-          return  BlocProvider(
-  create: (context) => sl<SetupPersonalInfoCubit>(),
-  child: const LoadingPlanScreen(),
-);
+          return BlocProvider(
+            create: (context) => sl<SetupPersonalInfoCubit>(),
+            child: const LoadingPlanScreen(),
+          );
         },
       ),
       GoRoute(
-        path: todayWorkOutScreen,
-        name: todayWorkOutScreen,
+        path: TodayWorkoutScreen.routeWzExtra,
+        name: TodayWorkoutScreen.routeWzExtra,
         builder: (context, state) {
           final List<Exercise> exercises = state.extra as List<Exercise>;
-          return  TodayWorkoutScreen(exercises: exercises,);
+          return TodayWorkoutScreen(exercises: exercises);
         },
       ),
       GoRoute(
-        path: playTrainingScreen + '/:title',
-        name: playTrainingScreen,
+        path: '${PlayWorkoutScreen.routeWzTitleAnExtra}/:title',
+        name: PlayWorkoutScreen.routeWzTitleAnExtra,
         builder: (context, state) {
           final title = state.pathParameters['title'] as String;
           final exercise = state.extra as Exercise;
@@ -391,8 +335,8 @@ class Routes {
 
       /// my previous plan route
       GoRoute(
-        path: myPreviousPlanScreen,
-        name: myPreviousPlanScreen,
+        path: PreviousPlanScreen.route,
+        name: PreviousPlanScreen.route,
         builder: (context, state) {
           return const PreviousPlanScreen();
         },
@@ -400,8 +344,8 @@ class Routes {
 
       /// loading plan route
       GoRoute(
-        path: myPlanScreen,
-        name: myPlanScreen,
+        path: MyPlanScreen.route,
+        name: MyPlanScreen.route,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => sl<SetupPersonalInfoCubit>(),
@@ -412,18 +356,18 @@ class Routes {
 
       /// privacy policy route
       GoRoute(
-        path: privacyPolicyScreen + '/:key',
-        name: privacyPolicyScreen,
+        path: '${PrivacyPolicyScreen.routeWzKey}/:key',
+        name: PrivacyPolicyScreen.routeWzKey,
         builder: (context, state) {
           final key = state.pathParameters['key'] as String;
-          return  PrivacyPolicyScreen(pageKey: key,);
+          return PrivacyPolicyScreen(pageKey: key);
         },
       ),
 
       /// contact us route
       GoRoute(
-        path: contactUsScreen,
-        name: contactUsScreen,
+        path: ContactUsScreen.route,
+        name: ContactUsScreen.route,
         builder: (context, state) {
           return const ContactUsScreen();
         },
@@ -431,8 +375,8 @@ class Routes {
 
       /// settings screen route
       GoRoute(
-        path: settingsScreen,
-        name: settingsScreen,
+        path: SettingsScreen.route,
+        name: SettingsScreen.route,
         builder: (context, state) {
           return const SettingsScreen();
         },
@@ -440,8 +384,8 @@ class Routes {
 
       /// settings screen route
       GoRoute(
-        path: myTasksScreen,
-        name: myTasksScreen,
+        path: MyTasksScreen.route,
+        name: MyTasksScreen.route,
         builder: (context, state) {
           return const MyTasksScreen();
         },
@@ -449,8 +393,8 @@ class Routes {
 
       /// change email screen route
       GoRoute(
-        path: changeEmailScreen,
-        name: changeEmailScreen,
+        path: ChangeEmailScreen.route,
+        name: ChangeEmailScreen.route,
         builder: (context, state) {
           return const ChangeEmailScreen();
         },
@@ -458,8 +402,8 @@ class Routes {
 
       /// change password screen route
       GoRoute(
-        path: changePasswordScreen,
-        name: changePasswordScreen,
+        path: ChangePasswordScreen.route,
+        name: ChangePasswordScreen.route,
         builder: (context, state) {
           return const ChangePasswordScreen();
         },
@@ -467,8 +411,8 @@ class Routes {
 
       /// otp screen new route
       GoRoute(
-        path: otpScreenNew,
-        name: otpScreenNew,
+        path: OtpScreen.route,
+        name: OtpScreen.route,
         builder: (context, state) {
           return const OtpScreen();
         },
@@ -487,6 +431,7 @@ class Routes {
     //
     // }
   );
+
   ///Navigate back to specific route
   // static void popUntilPath(BuildContext context, String routePath) {
   //   while (

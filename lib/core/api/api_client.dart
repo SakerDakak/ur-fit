@@ -1,19 +1,19 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:urfit/core/utils/pref_utils.dart';
+
 // import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../generated/locale_keys.g.dart';
 import '../../modules/auth_module/data/authentication/authentication_local_datasource.dart';
 import '../const.dart';
+import '../error/exceptions.dart';
 import '../utils/service_locator.dart';
 import 'endpoints.dart';
 import 'status_code.dart';
-import '../error/exceptions.dart';
 
 class DioServices {
   late Dio dio;
@@ -35,34 +35,18 @@ class DioServices {
         baseUrl: EndPoints.baseUrl,
         headers: {
           'Accept': 'application/json',
-          'Content-Type' : 'application/json',
+          'Content-Type': 'application/json',
           'Accept-Language': local,
           'Authorization': "Bearer $token",
         },
       ),
-    )..interceptors
-        .add(PrettyDioLogger(requestBody: true, requestHeader: true));
+    );
+    if (kDebugMode) {
+      dio.interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true));
+    }
   }
-  // Future<String> getDeviceInfo() async {
-  //   String deviceDetails = '';
-  //
-  //   try {
-  //     if (Platform.isAndroid) {
-  //       final androidInfo = await deviceInfo.androidInfo;
-  //       deviceDetails = 'CFNetwork/${androidInfo.version.release} Darwin/${androidInfo.version.sdkInt} (Android/${androidInfo.models} ${androidInfo.version.release})';
-  //     } else if (Platform.isIOS) {
-  //       final iosInfo = await deviceInfo.iosInfo;
-  //       deviceDetails = 'CFNetwork/${iosInfo.systemVersion} Darwin/${iosInfo.systemVersion} (iPhone/${iosInfo.models} iOS/${iosInfo.systemVersion})';
-  //     }
-  //   } catch (e) {
-  //     deviceDetails = 'Error retrieving device info: $e';
-  //   }
-  //
-  //   return deviceDetails;
-  // }
 
-  Future<Response<T>> get<T>(String url,
-      {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> get<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
     try {
       return await dio.get(
         url,
@@ -78,12 +62,11 @@ class DioServices {
       // }
     } catch (e) {
       print("Error: $e");
-      throw e;
+      rethrow;
     }
   }
 
-  Future<Response<T>> update<T>(String url,
-      {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> update<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
     try {
       return await dio.patch(url, data: data, queryParameters: parameter);
     } on DioException catch (e) {
@@ -94,8 +77,7 @@ class DioServices {
     }
   }
 
-  Future<Response<T>> post<T>(String url,
-      {dynamic data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> post<T>(String url, {dynamic data, Map<String, dynamic>? parameter}) async {
     try {
       return await dio.post(url, data: data, queryParameters: parameter);
     } on DioException catch (e) {
@@ -106,8 +88,7 @@ class DioServices {
     }
   }
 
-  Future<Response<T>> delete<T>(String url,
-      {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> delete<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
     try {
       return await dio.delete(url, data: data, queryParameters: parameter);
     } on DioException catch (e) {
@@ -149,7 +130,7 @@ class DioServices {
     );
   }
 
-  dynamic _handleDioError(DioException error) {
+  ServerException _handleDioError(DioException error) {
     print('object : ${error.type}');
 
     switch (error.type) {
@@ -160,9 +141,10 @@ class DioServices {
         return NoInternetConnectionException();
       case DioExceptionType.unknown:
         // Handle network errors
-        return _showNetworkErrorBottomSheet(
+        _showNetworkErrorBottomSheet(
           rootScaffoldKey.currentContext!,
         );
+        return NoInternetConnectionException();
 
       case DioExceptionType.cancel:
         // Handle request cancellation
@@ -179,19 +161,18 @@ class DioServices {
             Map<String, dynamic>? errors = responseData;
 
             List<String> emailErrors = errors?['email']?.cast<String>() ?? [];
-            List<String> passwordErrors =
-                errors?['password']?.cast<String>() ?? [];
+            List<String> passwordErrors = errors?['password']?.cast<String>() ?? [];
 
             if (emailErrors.isNotEmpty) {
-              if(emailErrors[0] == "validation.email") {
+              if (emailErrors[0] == "validation.email") {
                 return BadRequestException(LocaleKeys.emailMustBeValid.tr());
-              }else {
+              } else {
                 return BadRequestException(emailErrors[0]);
               }
             } else if (passwordErrors.isNotEmpty) {
-              if(passwordErrors[0] == "validation.min.string") {
+              if (passwordErrors[0] == "validation.min.string") {
                 return BadRequestException(LocaleKeys.passwordMustBeAtLeast6Characters.tr());
-              }else {
+              } else {
                 return BadRequestException(passwordErrors[0]);
               }
             } else {
@@ -205,8 +186,7 @@ class DioServices {
             return UnauthorizedException(message);
 
           case StatusCode.forbidden:
-            return ForbiddenException(
-                error.response?.data['isSubscribe'].toString());
+            return ForbiddenException(error.response?.data['isSubscribe'].toString());
           case StatusCode.notFound:
             return NotFoundException(error.response?.data['error']);
 
@@ -219,7 +199,6 @@ class DioServices {
 
       case DioExceptionType.badCertificate:
         return ServerException("Bad Certificate");
-
     }
   }
 }

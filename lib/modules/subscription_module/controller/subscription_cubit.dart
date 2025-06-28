@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:urfit/core/const.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/loading_helper.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/subscription_module/data/models/discount_value_model.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';

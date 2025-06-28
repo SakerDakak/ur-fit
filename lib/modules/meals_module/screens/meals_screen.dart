@@ -2,13 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/shared/appCubit/app_cubit.dart';
+import 'package:urfit/core/shared/widgets/weak_days_date.dart';
 import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/widgets/meals_listview.dart';
 import 'package:urfit/modules/meals_module/widgets/what_ur_body_need_section.dart';
-import 'package:urfit/core/shared/widgets/package_progress_exercise.dart';
-import 'package:urfit/core/shared/widgets/weak_days_date.dart';
 
 import '../../../core/shared/widgets/package_progress_meals.dart';
 import '../../../core/utils/enums.dart';

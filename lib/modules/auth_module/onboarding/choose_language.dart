@@ -2,21 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/core/assets_manager.dart';
-import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/shared/widgets/title_with_icon.dart';
+import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../../../core/shared/appCubit/app_cubit.dart';
-import '../../../core/style/colors.dart';
 import '../../../core/shared/widgets/choose_local_widget.dart';
 import '../../../core/shared/widgets/slider_dots.dart';
-import 'onboardingScreen.dart';
+import '../../../core/style/colors.dart';
 
 class ChooseLanguage extends StatelessWidget {
   const ChooseLanguage({super.key});
+  static const route = "chooseLang";
 
   @override
   Widget build(BuildContext context) {

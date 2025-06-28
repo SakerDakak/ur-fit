@@ -6,16 +6,17 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 
 import '../../../core/shared/widgets/title_with_icon.dart';
-import '../bloc/authentication_bloc.dart';
+import '../bloc/authentication_bloc/authentication_bloc.dart';
 
-class OnBoarding2 extends StatefulWidget {
-  const OnBoarding2({super.key});
+class OnBoardingSecScreen extends StatefulWidget {
+  const OnBoardingSecScreen({super.key});
+  static const route = "onBoarding2";
 
   @override
-  State<OnBoarding2> createState() => _OnBoarding2State();
+  State<OnBoardingSecScreen> createState() => _OnBoardingSecScreenState();
 }
 
-class _OnBoarding2State extends State<OnBoarding2> {
+class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
 
   int currentIndex = 0;
   PageController pageController =PageController(initialPage: 0);

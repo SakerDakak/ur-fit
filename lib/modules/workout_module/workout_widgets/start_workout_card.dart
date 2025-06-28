@@ -38,7 +38,7 @@ class StartWorkoutCard extends StatelessWidget {
         // title
         Row(
           children: [
-            SvgPicture.asset(AppAssets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
+            SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
             const SizedBox(width: 8),
             Text(
               LocaleKeys.exerciseTodayWillFocusOn.tr(),

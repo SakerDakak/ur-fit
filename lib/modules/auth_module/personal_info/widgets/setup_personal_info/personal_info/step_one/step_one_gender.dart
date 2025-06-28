@@ -13,7 +13,7 @@ import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/core/utils/enums.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
 import '../../../../../../../core/shared/widgets/custom_image_view.dart';

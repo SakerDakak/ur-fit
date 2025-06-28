@@ -1,25 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/persentation/widget/login_form.dart';
 import 'package:urfit/modules/auth_module/persentation/widget/register_form.dart';
 
 import '../../../../core/style/colors.dart';
-import '../../../core/assets_manager.dart';
-import '../../../core/style/fonts.dart';
-import '../../../core/shared/widgets/choose_local_widget.dart';
-import '../../../core/shared/widgets/compact_form_field.dart';
-import '../../../core/shared/widgets/custom_buttons.dart';
-import '../../../core/shared/widgets/slider_dots.dart';
 import '../../../core/shared/widgets/title_with_icon.dart';
-import '../bloc/authentication_bloc.dart';
-import '../bloc/login_bloc.dart';
+import '../../../core/style/fonts.dart';
 
 class EmailLoginScreen extends StatelessWidget {
   const EmailLoginScreen({super.key});
+  static const route = "emailLogin";
 
   @override
   Widget build(BuildContext context) {

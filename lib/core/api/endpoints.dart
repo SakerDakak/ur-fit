@@ -1,5 +1,3 @@
-import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
-
 import '../../modules/subscription_module/data/models/package_model.dart';
 
 class EndPoints {

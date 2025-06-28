@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/shared/widgets/default_animated_switcher.dart';
-import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
@@ -15,6 +14,7 @@ import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/your
 
 class MyPlanScreen extends StatelessWidget {
   const MyPlanScreen({super.key});
+  static const route = '/myPlanScreen';
 
   @override
   Widget build(BuildContext context) {

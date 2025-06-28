@@ -9,7 +9,7 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
@@ -50,7 +50,7 @@ class LogoutDialog extends StatelessWidget {
 
           // title icon
           SvgPicture.asset(
-            AppAssets.iconsLogout,
+            Assets.iconsLogout,
             height: 20,
             colorFilter:  ColorFilter.mode(
               Theme.of(context).colorScheme.primary,

@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
-import 'package:chewie/chewie.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/const.dart';
 import 'package:urfit/core/shared/widgets/custom_appbar.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/widgets/play_button.dart';
-import 'package:video_player/video_player.dart';
 
-import '../../core/routes/routes.dart';
 import '../../core/style/colors.dart';
 import '../profile_module/widgets/previous_plan_screen_widgets/calories_and_steps.dart';
 import 'controller/workout_cubit.dart';
@@ -21,6 +18,7 @@ import 'controller/workout_cubit.dart';
 class PlayWorkoutScreen extends StatefulWidget {
   final String title;
   final Exercise exercise;
+  static const routeWzTitleAnExtra = '/playTrainingScreen';
 
   const PlayWorkoutScreen(
       {super.key, required this.title, required this.exercise});

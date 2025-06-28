@@ -58,7 +58,7 @@ class EditWeightBottomSheet extends StatelessWidget {
 
           // title icon
           SvgPicture.asset(
-            AppAssets.iconsWeightIcon,
+            Assets.iconsWeightIcon,
             height: 24,
           ),
 
@@ -123,8 +123,8 @@ class EditWeightBottomSheet extends StatelessWidget {
           CustomCurveSlider(
             minValue: 30,
             maxValue: 150,
-            minIconSvgPath: AppAssets.iconsSkinnyBody,
-            maxIconSvgPath: AppAssets.iconsFatBody,
+            minIconSvgPath: Assets.iconsSkinnyBody,
+            maxIconSvgPath: Assets.iconsFatBody,
             onValueChanged: (value) {},
           ),
 

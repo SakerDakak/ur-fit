@@ -8,23 +8,20 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/core/utils/debouncer.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/action_buttons.dart';
-import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/plan_description.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_plans.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_screen_appbar.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plan_description_shimmer.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plans_shimmer.dart';
 
 import '../../../core/utils/enums.dart';
-import '../../../core/utils/service_locator.dart';
 import '../../../generated/locale_keys.g.dart';
-import '../../auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import '../data/models/package_model.dart';
 
 class SubscriptionPlansScreen extends StatefulWidget {
   final PlanType planType;
+  static const routeWzExtra = '/subscriptionPlansScreen';
 
   const SubscriptionPlansScreen({super.key, required this.planType});
 
@@ -48,7 +45,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
         children: [
           // background image
           Image.asset(
-            AppAssets.imageManPullUp,
+            Assets.imageManPullUp,
             fit: BoxFit.cover,
             height: MediaQuery.sizeOf(context).height * 0.8,
           ),

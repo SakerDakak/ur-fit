@@ -13,7 +13,7 @@ import 'package:urfit/modules/auth_module/personal_info/widgets/shimmer_widgets/
 
 import '../../../../../core/shared/widgets/weak_days_date.dart';
 import '../../../../../core/utils/constants.dart';
-import '../../../bloc/authentication_bloc.dart';
+import '../../../bloc/authentication_bloc/authentication_bloc.dart';
 
 class FinalStepSectionTwo extends StatefulWidget {
   const FinalStepSectionTwo({super.key});

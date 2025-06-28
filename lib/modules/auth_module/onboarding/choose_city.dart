@@ -6,27 +6,26 @@ import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/onboarding/controller/onboarding_cubit.dart';
 import 'package:urfit/modules/auth_module/onboarding/model/country/country_model.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
 import '../../../core/shared/widgets/choose_local_widget.dart';
 import '../../../core/shared/widgets/custom_buttons.dart';
 import '../../../core/shared/widgets/slider_dots.dart';
 import '../../../core/shared/widgets/title_with_icon.dart';
-import '../bloc/authentication_bloc.dart';
+import '../../../core/style/colors.dart';
+import '../../../core/style/fonts.dart';
+import '../bloc/authentication_bloc/authentication_bloc.dart';
 import '../bloc/login_bloc.dart';
 
 class ChooseCity extends StatelessWidget {
-  const ChooseCity({
-    super.key,
-  });
+  const ChooseCity({super.key});
+  static const route = "chooseCity";
+
 
   @override
   Widget build(BuildContext context) {
     int _initialPage = 2;
     final onBoardingCubit = context.read<OnboardingCubit>();
     onBoardingCubit.getCities();
-    CountryModel? selectedCity ;
+    CountryModel? selectedCity;
 
     return Scaffold(
       backgroundColor: AppColors.backGround,
@@ -66,9 +65,7 @@ class ChooseCity extends StatelessWidget {
                   onPressed: () {
                     selectedCity = selectedCity ?? context.read<OnboardingCubit>().state.cities.first;
                     context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
-                    context
-                        .read<AuthenticationBloc>()
-                        .add(DoneOnBoardingEvent(selectedCity!));
+                    context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
                   }),
               SizedBox(
                 height: 36.px,

@@ -39,7 +39,7 @@ class PackageProgressExercise extends StatelessWidget {
             Row(
               children: [
                 SvgPicture.asset(
-                  AppAssets.iconsCalender,
+                  Assets.iconsCalender,
                   height: 16,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.primary,

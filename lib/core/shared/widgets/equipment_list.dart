@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../../../modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import '../../../modules/auth_module/personal_info/widgets/equipment_item.dart';

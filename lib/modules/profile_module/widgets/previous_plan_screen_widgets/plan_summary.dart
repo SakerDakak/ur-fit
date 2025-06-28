@@ -8,7 +8,7 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 
@@ -43,7 +43,7 @@ class PlanSummary extends StatelessWidget {
               // current weight
               _DetailsItem(
                 LocaleKeys.weight.tr(),
-                AppAssets.iconsWeightIcon,
+                Assets.iconsWeightIcon,
                 state.planHistoryModel!.user_target_weight.toString(),
                 LocaleKeys.kg.tr(),
               ),
@@ -58,7 +58,7 @@ class PlanSummary extends StatelessWidget {
               // target weight
               _DetailsItem(
                 LocaleKeys.calories.tr(),
-                AppAssets.iconsMeals,
+                Assets.iconsMeals,
                 state.planHistoryModel!.expectedResultOfMealPlans!.calories.toStringAsFixed(1),
                 LocaleKeys.calorie.tr(),
               ),
@@ -73,7 +73,7 @@ class PlanSummary extends StatelessWidget {
               // workout duration
               _DetailsItem(
                 LocaleKeys.time.tr(),
-                AppAssets.iconsDumbbell,
+                Assets.iconsDumbbell,
                 context.read<SettingCubit>().formattedTime(seconds: state.planHistoryModel!.expectedResultOfExercisePlans!.times.toInt()),
                 LocaleKeys.min.tr(),
               ),

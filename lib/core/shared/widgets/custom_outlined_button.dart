@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../style/colors.dart';
-
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton(
       {super.key, required this.text, required this.onPressed});

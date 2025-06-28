@@ -5,27 +5,26 @@ import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/assets_manager.dart';
-import 'package:urfit/core/error/exceptions.dart';
 import 'package:urfit/core/shared/widgets/custom_appbar.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
+import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 
-import '../../core/routes/routes.dart';
 import '../../core/style/colors.dart';
 import '../meals_module/widgets/filter_title_widget.dart';
 
 class TodayWorkoutScreen extends StatelessWidget {
   final List<Exercise> exercises;
+  static const routeWzExtra = '/todayWorkOutScreen';
 
   const TodayWorkoutScreen({super.key, required this.exercises});
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
-    final List<String> workoutList =
-        exercises.map((e) => stringFromInt(e.id)).toList();
+    final List<String> workoutList = exercises.map((e) => stringFromInt(e.id)).toList();
     // final List<String> numericalList = ['اولا', 'ثانيا', 'ثالثا'];
     return Scaffold(
         appBar: CustomAppBar(
@@ -58,35 +57,20 @@ class TodayWorkoutScreen extends StatelessWidget {
                         SizedBox(
                           height: 300.px,
                           child: GridTile(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.px),
-                                child: Gif(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      "${exercises[state.progressValue - 1].gifUrl}"),
-                                  autostart: Autostart.no,
-                                  placeholder: (context) =>
-                                      Center(child: const Text('Loading...')),
-                                ),
-                              ),
                               footer: GridTileBar(
-                                backgroundColor:
-                                    AppColors.backGround.withOpacity(0.7),
+                                backgroundColor: AppColors.backGround.withOpacity(0.7),
                                 title: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       exercises[state.progressValue - 1].name,
-                                      style:
-                                          CustomTextStyle.regular_14.copyWith(
+                                      style: CustomTextStyle.regular_14.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
                                       '${context.read<WorkoutCubit>().getPlanForToday()!.caloriesBurned} سعر حرارى',
-                                      style:
-                                          CustomTextStyle.regular_14.copyWith(
+                                      style: CustomTextStyle.regular_14.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -98,28 +82,34 @@ class TodayWorkoutScreen extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(
                                         AssetsManager.time,
-                                        colorFilter: ColorFilter.mode(
-                                            Colors.white, BlendMode.srcIn),
+                                        colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                                       ),
                                       SizedBox(
                                         width: 4.px,
                                       ),
                                       Text(
                                         '${cubit.formattedTime(seconds: cubit.getPlanForToday()!.timePerExercise * cubit.getPlanForToday()!.sets)} دقيقة',
-                                        style:
-                                            CustomTextStyle.regular_14.copyWith(
+                                        style: CustomTextStyle.regular_14.copyWith(
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.px),
+                                child: Gif(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage("${exercises[state.progressValue - 1].gifUrl}"),
+                                  autostart: Autostart.no,
+                                  placeholder: (context) => const Center(child: Text('Loading...')),
+                                ),
                               )),
                         ),
                         SizedBox(height: 16.px),
                         TrainingDescription(
-                          description:
-                              exercises[state.progressValue - 1].instructions,
+                          description: exercises[state.progressValue - 1].instructions,
                         ),
                       ],
                     ),
@@ -129,10 +119,8 @@ class TodayWorkoutScreen extends StatelessWidget {
                     CustomElevatedButton(
                         text: 'ابدأ',
                         onPressed: () {
-                          context.pushNamed(Routes.playTrainingScreen,
-                              pathParameters: {
-                                'title': exercises[state.progressValue - 1].name
-                              },
+                          context.pushNamed(PlayWorkoutScreen.routeWzTitleAnExtra,
+                              pathParameters: {'title': exercises[state.progressValue - 1].name},
                               extra: exercises[state.progressValue - 1]);
                         }),
                     SizedBox(
@@ -164,8 +152,8 @@ class TrainingDescription extends StatelessWidget {
       children: [
         Text(
           'ارشادات',
-          style: CustomTextStyle.bold_16.copyWith(
-              fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
+          style: CustomTextStyle.bold_16
+              .copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         ...description.map(
           (des) => Padding(
@@ -180,8 +168,8 @@ class TrainingDescription extends StatelessWidget {
         ),
         Text(
           'وصف التمرين ',
-          style: CustomTextStyle.bold_16.copyWith(
-              fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
+          style: CustomTextStyle.bold_16
+              .copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         SizedBox(
           height: 16.px,
@@ -260,104 +248,101 @@ class WorkOutProgressHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
     return BlocBuilder<WorkoutCubit, WorkoutState>(
-  builder: (context, state) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      builder: (context, state) {
+        return Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SvgPicture.asset(
-                  AssetsManager.workout,
-                  colorFilter:
-                      ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
-                  width: 16.px,
-                  height: 10.px,
-                ),
-                SizedBox(
-                  width: 5.px,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    cubit.updateProgress(1);
-                  },
-                  child: Text(
-                    workoutList.first,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                    style: CustomTextStyle.regular_14.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      AssetsManager.workout,
+                      colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+                      width: 16.px,
+                      height: 10.px,
                     ),
-                  ),
-                )
+                    SizedBox(
+                      width: 5.px,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        cubit.updateProgress(1);
+                      },
+                      child: Text(
+                        workoutList.first,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: CustomTextStyle.regular_14.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color:
+                              state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                ...workoutList.skip(1).map((workout) {
+                  final index = workoutList.indexOf(workout) + 1;
+
+                  return GestureDetector(
+                    onTap: () {
+                      cubit.updateProgress(index);
+                    },
+                    child: Text(
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      workout,
+                      style: CustomTextStyle.regular_14.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color:
+                            state.progressValue >= index ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
+                      ),
+                    ),
+                  );
+                }),
               ],
             ),
-            ...workoutList.skip(1).map((workout) {
-              final index = workoutList.indexOf(workout) + 1;
-
-              return GestureDetector(
-              onTap: () {
-                cubit.updateProgress(index);
-              },
-
-              child: Text(
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    workout,
+            SizedBox(
+              height: 8.px,
+            ),
+            LinearProgressIndicator(
+              value: progressValue / workoutList.length,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${workoutList[progressValue - 1]}',
+                  style: CustomTextStyle.bold_14.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                TextButton(
+                  onPressed: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
+                      ? () {
+                          final value = context.read<WorkoutCubit>().state.progressValue;
+                          cubit.updateProgress(value + 1);
+                          context.pop();
+                        }
+                      : null,
+                  child: Text(
+                    'تخطى',
                     style: CustomTextStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: state.progressValue >= index ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
+                      color: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
+                          ? AppColors.whiteColor
+                          : AppColors.greyColor,
                     ),
                   ),
-            );
-            }),
-          ],
-        ),
-        SizedBox(
-          height: 8.px,
-        ),
-        LinearProgressIndicator(
-          value: progressValue / workoutList.length,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '${workoutList[progressValue - 1]}',
-              style: CustomTextStyle.bold_14.copyWith(
-                fontWeight: FontWeight.w800,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-            TextButton(
-              onPressed: cubit.state.progressValue !=
-                    cubit.getPlanForToday()!.exercises.length
-                    ? () {
-                  final value = context
-                      .read<WorkoutCubit>()
-                      .state
-                      .progressValue;
-                  cubit.updateProgress(value + 1);
-                  context.pop();
-                }
-                    : null,
-              child: Text(
-                'تخطى',
-                style: CustomTextStyle.regular_14.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: cubit.state.progressValue !=
-                      cubit.getPlanForToday()!.exercises.length ? AppColors.whiteColor : AppColors.greyColor,
                 ),
-              ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
-  },
-);
   }
 }
 

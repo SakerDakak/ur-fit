@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/style/colors.dart';
 import '../../../../core/shared/widgets/custom_outlined_button.dart';
-import '../../bloc/authentication_bloc.dart';
+import '../../bloc/authentication_bloc/authentication_bloc.dart';
 import '../../bloc/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+  static const route = "phoneLogin";
 
   @override
   Widget build(BuildContext context) {

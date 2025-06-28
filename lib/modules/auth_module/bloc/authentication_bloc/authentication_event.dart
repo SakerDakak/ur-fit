@@ -1,6 +1,5 @@
 part of 'authentication_bloc.dart';
 
-
 abstract class AuthenticationEvent extends Equatable {
   const AuthenticationEvent([List props = const []]) : super();
 
@@ -13,8 +12,6 @@ class AppStarted extends AuthenticationEvent {
   String toString() => 'AppStarted';
 }
 
-
-
 class LoggedOut extends AuthenticationEvent {
   @override
   String toString() => 'LoggedOut';
@@ -24,13 +21,13 @@ class LoginFlow extends AuthenticationEvent {
   @override
   String toString() => 'loginFlow';
 }
+
 class ForgetPasswordFlowEvent extends AuthenticationEvent {
   @override
   String toString() => 'ForgetPasswordFlow';
 }
 
 class GetUserData extends AuthenticationEvent {
-
   // final UserModel userModel;
 
   GetUserData() : super([]);
@@ -38,6 +35,7 @@ class GetUserData extends AuthenticationEvent {
   @override
   String toString() => 'GetUserData }';
 }
+
 // class ConfirmEmail extends AuthenticationEvent {
 //   @override
 //   String toString() => 'confirm';
@@ -47,10 +45,12 @@ class GoBack extends AuthenticationEvent {
   @override
   String toString() => 'goBack';
 }
+
 class RegisterEvent extends AuthenticationEvent {
   @override
   String toString() => 'RegisterEvent';
 }
+
 class LoggedIn extends AuthenticationEvent {
   final String token;
   // final UserModel userModel;
@@ -73,12 +73,13 @@ class DoneOnBoardingEvent extends AuthenticationEvent {
   @override
   String toString() => 'onboarding';
 }
-class GoToOnBoardingTwo extends AuthenticationEvent {
 
+class GoToOnBoardingTwo extends AuthenticationEvent {
   GoToOnBoardingTwo();
   @override
   String toString() => 'GoToOnBoardingTwo';
 }
+
 class GoToChooseCity extends AuthenticationEvent {
   final CountryModel country;
 
@@ -86,10 +87,12 @@ class GoToChooseCity extends AuthenticationEvent {
   @override
   String toString() => 'GoToChooseLanguage';
 }
+
 class GoToChooseLanguage extends AuthenticationEvent {
   @override
   String toString() => 'GoToChooseLanguage';
 }
+
 class DoneChooseLanguageEvent extends AuthenticationEvent {
   final dynamic language;
 
@@ -99,39 +102,31 @@ class DoneChooseLanguageEvent extends AuthenticationEvent {
 }
 
 class GuestLogin extends AuthenticationEvent {
-
   @override
   String toString() => 'Guest';
 }
 
 class GetUserDataFromServer extends AuthenticationEvent {
-
   @override
   String toString() => 'GetUserDataFromServer';
 }
+
 class GetSliderImageEvent extends AuthenticationEvent {
-
   @override
   String toString() => 'GetUserDataFromServer';
 }
-class UpdatePasswordEvent extends AuthenticationEvent {
 
+class UpdatePasswordEvent extends AuthenticationEvent {
   @override
   String toString() => 'UpdatePasswordEvent';
 }
 
 class UpdateSubscriptionEvent extends AuthenticationEvent {
-
   @override
   String toString() => 'UpdateSubscriptionEvent';
 }
 
-
 class NavigateToRequestPrice extends AuthenticationEvent {
-
   @override
   String toString() => 'Request Price';
 }
-
-
-

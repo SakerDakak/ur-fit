@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/assets_manager.dart';
+import 'package:urfit/core/shared/widgets/custom_appbar.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/widgets/meal_component_widget.dart';
 import 'package:urfit/modules/meals_module/widgets/meal_description.dart';
 import 'package:urfit/modules/meals_module/widgets/meal_properties.dart';
-import 'package:urfit/core/shared/widgets/custom_appbar.dart';
 
 import '../../../core/utils/enums.dart';
 import '../../auth_module/personal_info/widgets/shimmer_widgets/values_gridview_shimmer.dart';
-import '../data/models/meal_details_model.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   final int id;
+  static const routeWzId = '/mealsDetailsScreen';
 
   const MealDetailsScreen({super.key, required this.id});
 

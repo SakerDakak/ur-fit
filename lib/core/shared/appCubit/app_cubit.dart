@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:urfit/core/api/api_client.dart';
 import 'package:urfit/core/const.dart';
-import 'package:urfit/core/style/app_theme.dart';
 import 'package:urfit/core/utils/pref_utils.dart';
 
 import '../../utils/service_locator.dart';

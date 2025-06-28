@@ -15,7 +15,7 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
         // current weight
         _DetailsItem(
           'تمارين',
-          AppAssets.iconsDumbbell,
+          Assets.iconsDumbbell,
           '30',
           'دقيقة',
         ),
@@ -30,7 +30,7 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
         // target weight
         _DetailsItem(
           'مياه',
-          AppAssets.iconsWater,
+          Assets.iconsWater,
           '6',
           'لتر',
         ),
@@ -45,7 +45,7 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
         // workout duration
         _DetailsItem(
           'نوم',
-          AppAssets.iconsBed,
+          Assets.iconsBed,
           '8',
           'ساعات',
         ),

@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sizer/sizer.dart';
 
-import '../../modules/auth_module/bloc/authentication_bloc.dart';
+import '../../modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../modules/auth_module/data/authentication/authentication_local_datasource.dart';
 import '../const.dart';
 import '../style/colors.dart';

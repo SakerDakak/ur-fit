@@ -47,7 +47,7 @@ class DeleteAccountDialog extends StatelessWidget {
 
           // title icon
           SvgPicture.asset(
-            AppAssets.iconsDelete,
+            Assets.iconsDelete,
             height: 20,
             colorFilter:  ColorFilter.mode(
               Theme.of(context).colorScheme.primary,

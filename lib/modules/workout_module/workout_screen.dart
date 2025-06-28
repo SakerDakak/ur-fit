@@ -1,19 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/shared/widgets/weak_days_date.dart';
 import 'package:urfit/core/shared/widgets/package_progress_exercise.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/core/shared/widgets/weak_days_date.dart';
+import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
-import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/start_workout_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/workout_detail_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/workout_widgets/start_workout_card.dart';
 import 'package:urfit/modules/workout_module/workout_widgets/today_workout_details_card.dart';
-import 'package:urfit/modules/workout_module/workout_widgets/weight_progress_card.dart';
 
-import '../../core/const.dart';
 import '../../core/utils/enums.dart';
 import '../../generated/locale_keys.g.dart';
 

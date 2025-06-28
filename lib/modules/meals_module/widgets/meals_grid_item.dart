@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/assets_manager.dart';
 import 'package:urfit/core/style/colors.dart';
+import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
 
-import '../../../core/routes/routes.dart';
 import '../data/models/meal_model.dart';
 
 class MealsGridItem extends StatelessWidget {
@@ -15,7 +14,7 @@ class MealsGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Routes.mealsDetailsScreen,pathParameters: {'id':meal.id.toString()});
+        context.pushNamed(MealDetailsScreen.routeWzId,pathParameters: {'id':meal.id.toString()});
       },
       child: GridTile(
         footer: Container(

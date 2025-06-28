@@ -32,7 +32,7 @@ class TrainingDurationCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SvgPicture.asset(
-                  AppAssets.iconsDumbbell,
+                  Assets.iconsDumbbell,
                   width: 16,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.primary,

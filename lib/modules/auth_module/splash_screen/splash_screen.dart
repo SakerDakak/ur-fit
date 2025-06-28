@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:urfit/modules/auth_module/splash_screen/presentation/manager/check_version_cubit.dart';
 
 import '../../../core/assets_manager.dart';
 import '../../../core/style/colors.dart';
 import '../../../core/style/fonts.dart';
 import '../../../core/utils/service_locator.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/authentication_bloc.dart';
+import '../bloc/authentication_bloc/authentication_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+  static const route = "splash";
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -124,9 +121,7 @@ class _SplashScreenState extends State<SplashScreen>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF0F95E8),
                 ),
-                child: Text('حدث الآن',
-                    style: CustomTextStyle.regular_14
-                        .copyWith(color: Colors.white)),
+                child: Text('حدث الآن', style: CustomTextStyle.regular_14.copyWith(color: Colors.white)),
               ),
             ),
           ],
@@ -188,9 +183,7 @@ class _SplashScreenState extends State<SplashScreen>
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF0F95E8),
                     ),
-                    child: Text('حدث الآن',
-                        style: CustomTextStyle.regular_14
-                            .copyWith(color: Colors.white)),
+                    child: Text('حدث الآن', style: CustomTextStyle.regular_14.copyWith(color: Colors.white)),
                   ),
                 ),
                 const SizedBox(width: 16),

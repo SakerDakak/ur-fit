@@ -67,7 +67,7 @@ class StackedCircularProgressBar extends StatelessWidget {
             child: Column(
               children: [
                 SvgPicture.asset(
-                  AppAssets.iconsThunder,
+                  Assets.iconsThunder,
                   height: 14,
                   colorFilter:  ColorFilter.mode(
                     Theme.of(context).colorScheme.primary,

@@ -12,7 +12,7 @@ import '../../../../../../../core/utils/constants.dart';
 import '../../../../../../../core/utils/enums.dart';
 import '../../../../../../../core/utils/service_locator.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
-import '../../../../../bloc/authentication_bloc.dart';
+import '../../../../../bloc/authentication_bloc/authentication_bloc.dart';
 
 class GenderSelector extends StatefulWidget {
   final void Function(GenderEnum gender) onChanged;

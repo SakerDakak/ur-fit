@@ -8,7 +8,7 @@ import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
 
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/service_locator.dart';
-import '../../auth_module/bloc/authentication_bloc.dart';
+import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../home_module/data/models/meal_plan_model.dart';
 
 part 'workout_state.dart';

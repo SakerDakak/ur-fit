@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:urfit/core/shared/appCubit/app_cubit.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 
 import '../../../core/assets_manager.dart';
@@ -12,7 +11,7 @@ import '../../../core/style/colors.dart';
 import '../../../core/style/fonts.dart';
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/service_locator.dart';
-import '../../auth_module/bloc/authentication_bloc.dart';
+import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../meals_module/screens/meals_screen.dart';
 import '../../profile_module/screens/profile_screen.dart';
 import '../../workout_module/workout_screen.dart';
@@ -20,6 +19,7 @@ import 'home_screen.dart';
 
 class MainPage extends StatefulWidget {
   final bool isGuest;
+  static const route = "/mainPage";
 
   const MainPage({super.key, required this.isGuest});
 
@@ -288,7 +288,7 @@ class _MainPageState extends State<MainPage> {
           // _showBottomSheet();
         },
         icon: CustomNavBarItem(
-          iconPath: AppAssets.iconsMedical,
+          iconPath: Assets.iconsMedical,
           title: LocaleKeys.medicalSection.tr(),
           isActive: false,
           activeColor: Theme.of(context).colorScheme.primary,

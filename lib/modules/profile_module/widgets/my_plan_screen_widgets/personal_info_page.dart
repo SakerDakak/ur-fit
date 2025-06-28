@@ -11,7 +11,7 @@ import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/core/utils/enums.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
 class PersonalInfoPage extends StatelessWidget {
@@ -48,8 +48,8 @@ class PersonalInfoPage extends StatelessWidget {
           minValue: 10,
           maxValue: 80,
           initialValue: user?.age?.toDouble() ?? 75, // this value will come from the server
-          minIconSvgPath: AppAssets.iconsSkinnyBody,
-          maxIconSvgPath: AppAssets.iconsOldMan,
+          minIconSvgPath: Assets.iconsSkinnyBody,
+          maxIconSvgPath: Assets.iconsOldMan,
           roundValueToInt: true,
           onDragEnd: (v) => cubit.updateUserAge(v),
         ),
@@ -67,8 +67,8 @@ class PersonalInfoPage extends StatelessWidget {
           minValue: 100,
           maxValue: 250,
           initialValue: user?.height?.toDouble() ?? 175, // this value will come from the server
-          minIconSvgPath: AppAssets.iconsSkinnyBody,
-          maxIconSvgPath: AppAssets.iconsSkinnyBody,
+          minIconSvgPath: Assets.iconsSkinnyBody,
+          maxIconSvgPath: Assets.iconsSkinnyBody,
           maxIconSize: const Size(24, 28),
           minIconSize: const Size(18, 18),
           onDragEnd: (v) => cubit.updateUserHeight(v),
@@ -87,8 +87,8 @@ class PersonalInfoPage extends StatelessWidget {
           minValue: 30,
           maxValue: 200,
           initialValue: user?.currentWeight?.toDouble() ?? 66, // this value will come from the server
-          minIconSvgPath: AppAssets.iconsSkinnyBody,
-          maxIconSvgPath: AppAssets.iconsFatBody,
+          minIconSvgPath: Assets.iconsSkinnyBody,
+          maxIconSvgPath: Assets.iconsFatBody,
           onDragEnd: (v) => cubit.updateUserWeight(v),
         ),
 
@@ -215,8 +215,8 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                   children: [
                     SvgPicture.asset(
                       GenderEnum.values[i] == GenderEnum.male
-                          ? AppAssets.iconsSkinnyBody
-                          : AppAssets.iconsFemale,
+                          ? Assets.iconsSkinnyBody
+                          : Assets.iconsFemale,
                       height: 24,
                       colorFilter: const ColorFilter.mode(
                         AppColors.whiteColor,

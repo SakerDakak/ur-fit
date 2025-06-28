@@ -10,7 +10,7 @@ import 'package:urfit/core/style/fonts.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/shared/widgets/compact_form_field.dart';
 import '../../../../core/shared/widgets/custom_buttons.dart';
-import '../../bloc/authentication_bloc.dart';
+import '../../bloc/authentication_bloc/authentication_bloc.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

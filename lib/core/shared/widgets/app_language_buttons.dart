@@ -5,8 +5,6 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
 
-import '../../utils/service_locator.dart';
-
 class AppLanguageButtons extends StatelessWidget {
   const AppLanguageButtons({super.key});
 

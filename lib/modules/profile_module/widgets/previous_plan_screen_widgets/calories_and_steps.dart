@@ -17,7 +17,7 @@ class CaloriesAndSteps extends StatelessWidget {
         // calories
          Expanded(
           child: _InfoCard(
-            iconPath: AppAssets.iconsFlam,
+            iconPath: Assets.iconsFlam,
             contentColor: AppColors.selectedFont,
             cardColor: Theme.of(context).colorScheme.primary,
             value: calories.round(),
@@ -30,7 +30,7 @@ class CaloriesAndSteps extends StatelessWidget {
         // steps
         Expanded(
           child: _InfoCard(
-            iconPath: AppAssets.iconsStep,
+            iconPath: Assets.iconsStep,
             contentColor: AppColors.whiteColor,
             cardColor: AppColors.cardColor,
             backgroundCirclesColor: AppColors.strockColor.withOpacity(0.4),

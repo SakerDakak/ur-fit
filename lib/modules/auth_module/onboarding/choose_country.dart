@@ -7,26 +7,25 @@ import 'package:urfit/modules/auth_module/bloc/login_bloc.dart';
 import 'package:urfit/modules/auth_module/onboarding/controller/onboarding_cubit.dart';
 import 'package:urfit/modules/auth_module/onboarding/model/country/country_model.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
 import '../../../core/shared/widgets/choose_local_widget.dart';
 import '../../../core/shared/widgets/custom_buttons.dart';
 import '../../../core/shared/widgets/slider_dots.dart';
 import '../../../core/shared/widgets/title_with_icon.dart';
-import '../bloc/authentication_bloc.dart';
+import '../../../core/style/colors.dart';
+import '../../../core/style/fonts.dart';
+import '../bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChooseCountry extends StatelessWidget {
-  const ChooseCountry({
-    super.key,
-  });
+  const ChooseCountry({super.key});
+  static const route = "chooseCountry";
+
 
   @override
   Widget build(BuildContext context) {
     int _initialPage = 1;
     final onBoardingCubit = context.read<OnboardingCubit>();
     onBoardingCubit.getCountries();
-     CountryModel? selectedCountry ;
+    CountryModel? selectedCountry;
 
     return Scaffold(
       backgroundColor: AppColors.backGround,
@@ -50,7 +49,6 @@ class ChooseCountry extends StatelessWidget {
               ),
               BlocBuilder<OnboardingCubit, OnboardingState>(
                 builder: (context, state) {
-
                   return ChooseLocalWidget(
                     items: state.countries,
                     onChanged: (dynamic value) {
@@ -68,9 +66,7 @@ class ChooseCountry extends StatelessWidget {
                     selectedCountry = selectedCountry ?? context.read<OnboardingCubit>().state.countries.first;
                     context.read<OnboardingCubit>().setCountries(selectedCountry!);
                     context.read<LoginBloc>().add(SetCountryEvent(selectedCountry!.id));
-                    context
-                        .read<AuthenticationBloc>()
-                        .add(GoToChooseCity(selectedCountry!));
+                    context.read<AuthenticationBloc>().add(GoToChooseCity(selectedCountry!));
                   }),
               SizedBox(
                 height: 36.px,

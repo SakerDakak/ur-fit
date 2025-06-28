@@ -2,23 +2,20 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/modules/auth_module/data/models/slider_image_model.dart';
-import 'package:urfit/modules/auth_module/data/models/user/cached_user.dart';
+import 'package:go_router/go_router.dart';
 import 'package:urfit/modules/auth_module/onboarding/model/country/country_model.dart';
 
-import '../../../../core/utils/loading_helper.dart';
-import '../../../../core/utils/pref_utils.dart';
-import '../../../../core/utils/service_locator.dart';
-import '../../../core/api/api_client.dart';
-import '../../../core/const.dart';
-import '../../../core/routes/routes.dart';
-import '../data/models/user/user_model.dart';
-import '../onboarding/controller/onboarding_cubit.dart';
-import '../repo/authentication_repo.dart';
-import 'login_bloc.dart';
-import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/loading_helper.dart';
+import '../../../../../core/utils/pref_utils.dart';
+import '../../../../../core/utils/service_locator.dart';
+import '../../../../core/api/api_client.dart';
+import '../../../../core/const.dart';
+import '../../../../core/routes/routes.dart';
+import '../../data/models/user/user_model.dart';
+import '../../repo/authentication_repo.dart';
+import '../login_bloc.dart';
+
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
@@ -252,7 +249,8 @@ class AuthenticationBloc
     result.fold((l) {
       // rootScaffoldKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
     }, (r) {
-      emit(AuthenticationOnBoarding(sliderImages: r));
+      // emit(AuthenticationOnBoarding(sliderImages: r));
+      emit(AuthenticationOnBoardingTwo());
     });
   }
 

@@ -1,27 +1,22 @@
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sizer/sizer.dart';
-
 import 'package:otp_autofill/otp_autofill.dart';
+import 'package:sizer/sizer.dart';
 import 'package:urfit/core/assets_manager.dart';
 import 'package:urfit/core/shared/appCubit/app_cubit.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 
 import '../../../../../core/style/colors.dart';
 import '../../../../../core/style/fonts.dart';
-import '../../../../../core/utils/service_locator.dart';
-
-import '../../../../core/const.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../../bloc/authentication_bloc.dart';
 import '../../bloc/login_bloc.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
+  static const route = "otpScreen";
 
   @override
   State<OTPScreen> createState() => _OTPScreenState();

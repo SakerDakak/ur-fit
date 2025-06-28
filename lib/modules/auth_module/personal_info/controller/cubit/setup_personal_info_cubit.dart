@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/core/const.dart';
 import 'package:urfit/core/utils/enums.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth_module/personal_info/data/models/body_parts_model.dart';
 import 'package:urfit/modules/auth_module/personal_info/data/models/selection_item_model.dart';
 import 'package:urfit/modules/auth_module/personal_info/data/models/user_goals_model.dart';

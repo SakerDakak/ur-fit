@@ -18,7 +18,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
-              AppAssets.iconsSpoonFork,
+              Assets.iconsSpoonFork,
               height: 18,
               colorFilter:  ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,
@@ -62,7 +62,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
-              AppAssets.iconsFlam,
+              Assets.iconsFlam,
               height: 18,
               colorFilter:  ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,

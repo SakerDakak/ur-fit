@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/routes/routes.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../../subscription_module/data/models/package_model.dart';
 
@@ -45,7 +45,7 @@ class DiscountSection extends StatelessWidget {
         /// discount card
         GestureDetector(
           onTap: () => GoRouter.of(context).push(
-            Routes.subscriptionPlansScreen,
+            SubscriptionPlansScreen.routeWzExtra,
             extra: PlanType.both,
           ),
           child: Stack(
@@ -86,7 +86,7 @@ class DiscountSection extends StatelessWidget {
                 start: 18,
                 textDirection: Directionality.of(context),
                 child: Image.asset(
-                  AppAssets.imageMan,
+                  Assets.imageMan,
                   height: 117,
                 ),
               ),

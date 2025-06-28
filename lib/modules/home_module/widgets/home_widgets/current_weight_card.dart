@@ -5,7 +5,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/edit_weight_bottom_sheet.dart';
 
 import '../../../../core/utils/service_locator.dart';
@@ -36,7 +36,7 @@ class CurrentWeightCard extends StatelessWidget {
               children: [
                 WeightInfoItem(
                   title: LocaleKeys.currentWeight.tr(),
-                  svgIconPath: AppAssets.iconsWeightIcon,
+                  svgIconPath: Assets.iconsWeightIcon,
                   weight: user?.currentWeight?.toDouble() ?? 0,
                 ),
                 SizedBox(
@@ -48,7 +48,7 @@ class CurrentWeightCard extends StatelessWidget {
                 ),
                 WeightInfoItem(
                   title: LocaleKeys.goal.tr(),
-                  svgIconPath: AppAssets.iconsFlag,
+                  svgIconPath: Assets.iconsFlag,
                   weight: user?.targetWeight?.toDouble() ?? 0,
                 ),
               ],

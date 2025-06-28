@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/shared/widgets/package_progress_exercise.dart';
 import 'package:urfit/core/shared/widgets/weak_days_date.dart';
-import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
@@ -11,6 +10,7 @@ import 'package:urfit/modules/home_module/widgets/my_tasks_widgets/tody_statisti
 
 class MyTasksScreen extends StatelessWidget {
   const MyTasksScreen({super.key});
+  static const route = '/myTasksScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class MyTasksScreen extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(
-                AppAssets.iconsArrowProgress,
+                Assets.iconsArrowProgress,
                 height: 20,
               ),
               const SizedBox(width: 8),

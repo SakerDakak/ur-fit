@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/style/fonts.dart';
 
-import '../../style/colors.dart';
-
 class CustomElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;

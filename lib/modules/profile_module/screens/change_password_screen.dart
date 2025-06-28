@@ -11,6 +11,7 @@ import 'package:urfit/generated/locale_keys.g.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
+  static const route = '/changePasswordScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ChangePasswordScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           SvgPicture.asset(
-            AppAssets.imageLogo,
+            Assets.imageLogo,
             width: 150,
           ),
           const SizedBox(height: 16),

@@ -1,36 +1,34 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:lottie/lottie.dart';
-import 'package:urfit/core/style/app_theme.dart';
-import 'package:urfit/core/shared/appCubit/app_cubit.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/shared/appCubit/app_cubit.dart';
+import 'package:urfit/core/style/app_theme.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/utils/bloc_observer.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
-import 'package:urfit/modules/profile_module/repo/setting_repo.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
-import 'modules/auth_module/bloc/authentication_bloc.dart';
-import 'modules/auth_module/bloc/login_bloc.dart';
-import 'modules/auth_module/onboarding/controller/onboarding_cubit.dart';
-import 'modules/auth_module/splash_screen/presentation/manager/check_version_cubit.dart';
 import 'core/api/api_client.dart';
 import 'core/const.dart';
 import 'core/routes/routes.dart';
 import 'core/utils/hive_services.dart';
 import 'core/utils/pref_utils.dart';
 import 'core/utils/service_locator.dart';
-import 'generated/codegen_loader.g.dart';
-import 'modules/home_module/controller/cubit/health_cubit.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'generated/codegen_loader.g.dart';
+import 'modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'modules/auth_module/bloc/login_bloc.dart';
+import 'modules/auth_module/onboarding/controller/onboarding_cubit.dart';
+import 'modules/auth_module/splash_screen/presentation/manager/check_version_cubit.dart';
+import 'modules/home_module/controller/cubit/health_cubit.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

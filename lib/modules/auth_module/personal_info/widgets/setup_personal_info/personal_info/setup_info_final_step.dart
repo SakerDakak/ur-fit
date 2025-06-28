@@ -7,9 +7,8 @@ import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/final_step_section_one.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/final_step_section_two.dart';
-import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
+import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
-import '../../../../../../core/routes/routes.dart';
 import '../../../../../subscription_module/data/models/package_model.dart';
 
 class SetupInfoFinalStep extends StatelessWidget {
@@ -62,7 +61,7 @@ class SetupInfoFinalStep extends StatelessWidget {
                 } else {
                   context.read<SetupPersonalInfoCubit>().updatePersonalData();
                   context.push(
-                    Routes.subscriptionPlansScreen,
+                    SubscriptionPlansScreen.routeWzExtra,
                     extra: PlanType.diet,
                   );
                 }

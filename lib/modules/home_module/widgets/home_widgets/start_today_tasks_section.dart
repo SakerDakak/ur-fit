@@ -2,12 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:health/health.dart';
-import 'package:urfit/core/routes/routes.dart';
+import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
+import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 
@@ -85,7 +84,7 @@ class StartTodyTasksSection extends StatelessWidget {
           children: [
             // icon
             SvgPicture.asset(
-              AppAssets.iconsArrowProgress,
+              Assets.iconsArrowProgress,
               height: 20,
             ),
 
@@ -115,7 +114,7 @@ class StartTodyTasksSection extends StatelessWidget {
         // start button
         CustomElevatedButton(
           text: LocaleKeys.startYourExercise.tr(),
-          onPressed: () => GoRouter.of(context).push(Routes.myTasksScreen),
+          onPressed: () => GoRouter.of(context).push(MyTasksScreen.route),
           padding: EdgeInsets.zero,
         )
       ],

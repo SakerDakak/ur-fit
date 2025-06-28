@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/style/fonts.dart';
-import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/style/colors.dart';
-import '../../bloc/authentication_bloc.dart';
 import '../../bloc/login_bloc.dart';
 import 'login_screen.dart';
 import 'otp_screen.dart';
 
 class PhoneAuthFlowPages extends StatelessWidget {
   const PhoneAuthFlowPages({super.key});
+  static const route = "phoneLoginFlow";
 
   @override
   Widget build(BuildContext context) {

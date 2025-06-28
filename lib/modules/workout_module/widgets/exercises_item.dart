@@ -1,16 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/assets_manager.dart';
+import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 
-import '../../../core/routes/routes.dart';
 import '../../../core/shared/widgets/custom_image_view.dart';
 import '../../../core/style/colors.dart';
 import '../../../core/style/fonts.dart';
 import '../../../core/utils/constants.dart';
-import '../controller/workout_cubit.dart';
 import '../data/model/workout_model.dart';
 
 class ExercisesItem extends StatelessWidget {
@@ -74,7 +71,7 @@ class ExercisesItem extends StatelessWidget {
                 // start button
                 GestureDetector(
                   onTap: (){
-                    context.pushNamed(Routes.todayWorkOutScreen,extra: exercises);
+                    context.pushNamed(TodayWorkoutScreen.routeWzExtra,extra: exercises);
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(

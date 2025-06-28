@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/shared/widgets/compact_form_field.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
@@ -12,6 +11,7 @@ import '../../../generated/locale_keys.g.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
+  static const route = '/contactUsScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ContactUsScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
         children: [
           SvgPicture.asset(
-            AppAssets.imageLogo,
+            Assets.imageLogo,
             width: 150,
           ),
           const SizedBox(height: 16),

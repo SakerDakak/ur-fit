@@ -3,19 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
+import 'package:urfit/modules/subscription_module/screens/payment_webview.dart';
 
-import '../../../../core/const.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/utils/loading_helper.dart';
 import '../../../../core/utils/service_locator.dart';
-import '../../../auth_module/bloc/authentication_bloc.dart';
-import '../../../meals_module/controller/meals_cubit.dart';
-import '../../../workout_module/controller/workout_cubit.dart';
-import '../../data/models/package_model.dart';
+import '../../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons({super.key});
@@ -44,7 +40,7 @@ class ActionButtons extends StatelessWidget {
              LoadingHelper.stopLoading();
            }else {
              context.pushNamed(
-                 Routes.paymentWebView, queryParameters: {"url": url});
+                 PaymentWebView.route, queryParameters: {"url": url});
            }
 
           } : null,

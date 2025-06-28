@@ -2,17 +2,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/assets_manager.dart';
-import 'package:urfit/core/routes/routes.dart';
 import 'package:urfit/core/shared/appCubit/app_cubit.dart';
+import 'package:urfit/core/shared/widgets/app_language_buttons.dart';
+import 'package:urfit/core/shared/widgets/default_list_tile.dart';
 import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
+import 'package:urfit/modules/profile_module/screens/my_plan.dart';
+import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
+import 'package:urfit/modules/profile_module/screens/privacy_policy_screen.dart';
+import 'package:urfit/modules/profile_module/screens/settings_screen.dart';
 import 'package:urfit/modules/profile_module/widgets/account_info_sectiond.dart';
-import 'package:urfit/core/shared/widgets/app_language_buttons.dart';
-import 'package:urfit/core/shared/widgets/default_list_tile.dart';
+import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../subscription_module/data/models/package_model.dart';
 
@@ -51,9 +54,9 @@ class ProfileScreen extends StatelessWidget {
 
               // my plan tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(Routes.myPlanScreen),
+                onTap: () => GoRouter.of(context).push(MyPlanScreen.route),
                 title: LocaleKeys.myPlan.tr(),
-                leadingIconSvgPath: AppAssets.iconsPaper,
+                leadingIconSvgPath: Assets.iconsPaper,
               ),
 
               const Divider(
@@ -63,9 +66,9 @@ class ProfileScreen extends StatelessWidget {
               // previous plan tile
               DefaultListTile(
                 onTap: () =>
-                    GoRouter.of(context).push(Routes.myPreviousPlanScreen),
+                    GoRouter.of(context).push(PreviousPlanScreen.route),
                 title: LocaleKeys.previousPlan.tr(),
-                leadingIconSvgPath: AppAssets.iconsPaper2,
+                leadingIconSvgPath: Assets.iconsPaper2,
               ),
 
               const Divider(
@@ -75,9 +78,9 @@ class ProfileScreen extends StatelessWidget {
               // subscription tile
               DefaultListTile(
                 onTap: () => GoRouter.of(context)
-                    .push(Routes.subscriptionPlansScreen, extra: PlanType.both),
+                    .push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both),
                 title: LocaleKeys.subscribe.tr(),
-                leadingIconSvgPath: AppAssets.iconsCopy,
+                leadingIconSvgPath: Assets.iconsCopy,
               ),
 
               const Divider(
@@ -86,9 +89,9 @@ class ProfileScreen extends StatelessWidget {
 
               // settings tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(Routes.settingsScreen),
+                onTap: () => GoRouter.of(context).push(SettingsScreen.route),
                 title: LocaleKeys.settings.tr(),
-                leadingIconSvgPath: AppAssets.iconsSettings,
+                leadingIconSvgPath: Assets.iconsSettings,
               ),
 
               const Divider(
@@ -97,10 +100,10 @@ class ProfileScreen extends StatelessWidget {
 
               // privacy policy tile
               DefaultListTile(
-                onTap: () => context.pushNamed(Routes.privacyPolicyScreen,
+                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
                     pathParameters: {"key": "privacy_policy"}),
                 title: LocaleKeys.privacyPolicy.tr(),
-                leadingIconSvgPath: AppAssets.iconsShieldCheck,
+                leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
 
               const Divider(
@@ -108,10 +111,10 @@ class ProfileScreen extends StatelessWidget {
               ),
               // terms_and_conditions tile
               DefaultListTile(
-                onTap: () => context.pushNamed(Routes.privacyPolicyScreen,
+                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
                     pathParameters: {"key": "terms_and_conditions"}),
                 title: LocaleKeys.termsAndConditions.tr(),
-                leadingIconSvgPath: AppAssets.iconsShieldCheck,
+                leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
 
               const Divider(
@@ -119,10 +122,10 @@ class ProfileScreen extends StatelessWidget {
               ),
               // about_us
               DefaultListTile(
-                onTap: () => context.pushNamed(Routes.privacyPolicyScreen,
+                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
                     pathParameters: {"key": "about_us"}),
                 title: LocaleKeys.aboutUs.tr(),
-                leadingIconSvgPath: AppAssets.iconsShieldCheck,
+                leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
 
               const Divider(
@@ -132,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
               DefaultListTile(
                 onTap: () {},
                 title: LocaleKeys.notification.tr(),
-                leadingIconSvgPath: AppAssets.iconsNotifications,
+                leadingIconSvgPath: Assets.iconsNotifications,
                 trailing: SizedBox(
                   height: 35,
                   child: FittedBox(
@@ -150,9 +153,9 @@ class ProfileScreen extends StatelessWidget {
 
               // support tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(Routes.contactUsScreen),
+                onTap: () => GoRouter.of(context).push(ContactUsScreen.route),
                 title: LocaleKeys.contactUs.tr(),
-                leadingIconSvgPath: AppAssets.iconsSupport,
+                leadingIconSvgPath: Assets.iconsSupport,
               ),
 
               // const Divider(

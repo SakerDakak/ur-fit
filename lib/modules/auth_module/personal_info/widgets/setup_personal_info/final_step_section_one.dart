@@ -11,7 +11,7 @@ import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_i
 import 'package:urfit/modules/auth_module/personal_info/widgets/setup_personal_info/values_gridview.dart';
 import 'package:urfit/modules/auth_module/personal_info/widgets/shimmer_widgets/values_gridview_shimmer.dart';
 
-import '../../../bloc/authentication_bloc.dart';
+import '../../../bloc/authentication_bloc/authentication_bloc.dart';
 
 class FinalStepSectionOne extends StatefulWidget {
   const FinalStepSectionOne({super.key});

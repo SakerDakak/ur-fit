@@ -22,7 +22,7 @@ class PlanDuration extends StatelessWidget {
           children: [
             // calender icon
             SvgPicture.asset(
-              AppAssets.iconsCalender,
+              Assets.iconsCalender,
               width: 22,
               colorFilter:  ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,

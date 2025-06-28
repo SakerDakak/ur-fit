@@ -11,10 +11,10 @@ abstract class AuthenticationState extends Equatable {
 class AuthenticationUninitialized extends AuthenticationState {}
 
 // on boarding
-class AuthenticationOnBoarding extends AuthenticationState {
-  final List<SliderImageModel>  sliderImages;
-  const AuthenticationOnBoarding({required this.sliderImages});
-}
+// class AuthenticationOnBoarding extends AuthenticationState {
+//   final List<SliderImageModel>  sliderImages;
+//   const AuthenticationOnBoarding({required this.sliderImages});
+// }
 
 // authenticated => home
 class AuthenticationAuthenticated extends AuthenticationState {

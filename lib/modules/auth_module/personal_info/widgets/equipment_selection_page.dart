@@ -1,19 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/routes/routes.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/utils/enums.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/auth_module/personal_info/widgets/equipment_item.dart';
-import 'package:urfit/modules/auth_module/personal_info/widgets/shimmer_widgets/equipment_shimmer.dart';
-import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
+import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../../../core/shared/widgets/equipment_list.dart';
 import '../../../subscription_module/data/models/package_model.dart';
@@ -93,12 +87,12 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
               context.read<SetupPersonalInfoCubit>().updatePersonalData();
               if(isSectionTwoSelected) {
                GoRouter.of(context).push(
-                 Routes.subscriptionPlansScreen,
+                 SubscriptionPlansScreen.routeWzExtra,
                  extra: PlanType.both
                );
              }else{
                 GoRouter.of(context).push(
-                  Routes.subscriptionPlansScreen,
+                  SubscriptionPlansScreen.routeWzExtra,
                   extra: PlanType.exercise,
                 );
              }

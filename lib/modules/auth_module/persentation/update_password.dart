@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
 
 import '../../../../core/style/fonts.dart';
-import '../../../core/shared/widgets/custom_appbar.dart';
 import '../../../core/shared/widgets/compact_form_field.dart';
 import '../../../core/shared/widgets/custom_buttons.dart';
 import '../../../core/style/colors.dart';
@@ -15,6 +13,7 @@ import '../bloc/login_bloc.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   const UpdatePasswordScreen({super.key});
+  static const route = "updatePassword";
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class UpdatePasswordScreen extends StatelessWidget {
 
              SizedBox(height: 150.px),
             SvgPicture.asset(
-              AppAssets.imageLogo,
+              Assets.imageLogo,
               width: 150,
             ),
             const SizedBox(height: 16),

@@ -11,7 +11,7 @@ import '../../../../../../../core/shared/widgets/custom_buttons.dart';
 import '../../../../../../../core/style/fonts.dart';
 import '../../../../../../../core/utils/enums.dart';
 import '../../../../../../../generated/locale_keys.g.dart';
-import '../../../../../bloc/authentication_bloc.dart';
+import '../../../../../bloc/authentication_bloc/authentication_bloc.dart';
 import '../../../../controller/cubit/setup_personal_info_cubit.dart';
 import '../../../equipment_item.dart';
 import '../../../shimmer_widgets/equipment_shimmer.dart';
@@ -95,7 +95,7 @@ class FinalStepPreferredMeals extends StatelessWidget {
                                       ),
                                     ),
                                     Center(
-                                      child: SvgPicture.asset(AppAssets.iconsMeals,colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),height: 32,),
+                                      child: SvgPicture.asset(Assets.iconsMeals,colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),height: 32,),
                                     ),
                                     SizedBox(height: 12,),
                                     Text(

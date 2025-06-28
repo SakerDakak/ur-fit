@@ -19,13 +19,13 @@ import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/data/workout_remote_datasource.dart';
 import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
 
-import '../../modules/auth_module/bloc/authentication_bloc.dart';
+import '../../modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../modules/auth_module/bloc/login_bloc.dart';
 import '../../modules/auth_module/data/authentication/authentication_local_datasource.dart';
 import '../../modules/auth_module/data/authentication/authentication_remote_datasource.dart';
 import '../../modules/home_module/controller/cubit/health_cubit.dart';
-import '../shared/appCubit/app_cubit.dart';
 import '../api/api_client.dart';
+import '../shared/appCubit/app_cubit.dart';
 
 final sl = GetIt.instance;
 

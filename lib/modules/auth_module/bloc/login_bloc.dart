@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -18,16 +15,14 @@ import '../../../../core/const.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/style/fonts.dart';
 import '../../../../core/utils/pref_utils.dart';
-import '../../../../core/utils/service_locator.dart';
 import '../../../core/utils/loading_helper.dart';
 import '../data/models/register_model.dart';
 import '../data/models/user/cached_user.dart';
 import '../data/models/user/user_model.dart';
 import '../repo/authentication_repo.dart';
-import 'authentication_bloc.dart';
+import 'authentication_bloc/authentication_bloc.dart';
 
 part 'login_event.dart';
-
 part 'login_state.dart';
 
 /// A bloc that manages the state of a Login according to the event that is dispatched to it.

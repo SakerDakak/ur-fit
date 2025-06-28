@@ -19,6 +19,7 @@ import '../../../core/utils/enums.dart';
 
 class PreviousPlanScreen extends StatelessWidget {
   const PreviousPlanScreen({super.key});
+  static const route = '/myPreviousPlanScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        AppAssets.iconsArrowProgress,
+                        Assets.iconsArrowProgress,
                         width: 12,
                         colorFilter:  ColorFilter.mode(
                           Theme.of(context).colorScheme.primary,

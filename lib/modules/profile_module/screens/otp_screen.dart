@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/shared/widgets/otp_form_fields.dart';
-import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
+  static const route = '/otpScreenNew';
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class OtpScreen extends StatelessWidget {
             children: [
               // icon
               SvgPicture.asset(
-                AppAssets.iconsShieldCheck,
+                Assets.iconsShieldCheck,
                 height: 45,
               ),
 
@@ -58,7 +58,7 @@ class OtpScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    AppAssets.iconsMessage,
+                    Assets.iconsMessage,
                     height: 18,
                   ),
                   const SizedBox(width: 8),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/routes/routes.dart';
 import 'package:urfit/core/shared/widgets/compact_form_field.dart';
 import 'package:urfit/core/shared/widgets/custom_buttons.dart';
 import 'package:urfit/core/style/colors.dart';
@@ -11,11 +10,13 @@ import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/modules/profile_module/screens/otp_screen.dart';
 
-import '../../auth_module/bloc/authentication_bloc.dart';
+import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChangeEmailScreen extends StatelessWidget {
   const ChangeEmailScreen({super.key});
+  static const route = '/changeEmailScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class ChangeEmailScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           SvgPicture.asset(
-            AppAssets.imageLogo,
+            Assets.imageLogo,
             width: 150,
           ),
           const SizedBox(height: 16),
@@ -53,7 +54,7 @@ class ChangeEmailScreen extends StatelessWidget {
           const SizedBox(height: 32),
           CustomElevatedButton(
             text: LocaleKeys.confirm.tr(),
-            onPressed: () => GoRouter.of(context).push(Routes.otpScreenNew),
+            onPressed: () => GoRouter.of(context).push(OtpScreen.route),
             padding: EdgeInsets.zero,
           ),
           const SizedBox(height: 16),

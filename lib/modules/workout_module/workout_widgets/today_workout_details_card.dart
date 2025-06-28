@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:urfit/core/shared/widgets/calories_indicator.dart';
 import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/shared/widgets/calories_indicator.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../controller/workout_cubit.dart';
 import '../data/model/workout_model.dart';
@@ -29,7 +29,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
         // title
         Row(
           children: [
-            SvgPicture.asset(AppAssets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
+            SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
             const SizedBox(width: 8),
             Text(
               LocaleKeys.todayExerciseDetails.tr(),
@@ -68,7 +68,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                   // current weight
                   DetailsItem(
                     LocaleKeys.currentWeight.tr(),
-                    AppAssets.iconsWeightIcon,
+                    Assets.iconsWeightIcon,
                     user?.currentWeight.toString() ?? "0",
                     LocaleKeys.kg.tr(),
                   ),
@@ -83,7 +83,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                   // target weight
                   DetailsItem(
                     LocaleKeys.goal.tr(),
-                    AppAssets.iconsFlag,
+                    Assets.iconsFlag,
                     user?.targetWeight.toString() ?? "0",
                     LocaleKeys.kg.tr(),
                   ),
@@ -98,7 +98,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                   // workout duration
                   DetailsItem(
                     LocaleKeys.time.tr(),
-                    AppAssets.iconsDumbbell,
+                    Assets.iconsDumbbell,
                     (day.timePerExercise * day.exercises.length).toStringAsFixed(0),
                     LocaleKeys.min.tr(),
                   ),

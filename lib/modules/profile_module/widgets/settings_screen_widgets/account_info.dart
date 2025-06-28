@@ -6,7 +6,7 @@ import 'package:urfit/core/style/colors.dart';
 import 'package:urfit/core/style/fonts.dart';
 
 import '../../../../core/shared/widgets/custom_image_view.dart';
-import '../../../auth_module/bloc/authentication_bloc.dart';
+import '../../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 class AccountInfo extends StatelessWidget {
   const AccountInfo({super.key});

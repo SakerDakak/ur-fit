@@ -10,7 +10,7 @@ import 'package:urfit/core/utils/app_assets.dart';
 import 'package:urfit/core/utils/constants.dart';
 import 'package:urfit/generated/locale_keys.g.dart';
 
-import '../../../auth_module/bloc/authentication_bloc.dart';
+import '../../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChangeNameSheet extends StatelessWidget {
   const ChangeNameSheet({super.key});
@@ -63,7 +63,7 @@ class ChangeNameSheet extends StatelessWidget {
 
             // title icon
             SvgPicture.asset(
-              AppAssets.iconsProfile,
+              Assets.iconsProfile,
               height: 24,
               colorFilter:  ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,
