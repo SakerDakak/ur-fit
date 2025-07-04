@@ -1,16 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health/health.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/shared/widgets/charts/custom_line_chart.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/charts/custom_line_chart.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
 
-import '../../../../../generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+
 
 class StepsTrackingCard extends StatelessWidget {
   const StepsTrackingCard({super.key});
@@ -34,7 +34,7 @@ class StepsTrackingCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                LocaleKeys.steps.tr(),
+                L10n.tr().steps,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: CustomTextStyle.regular_14.copyWith(
@@ -87,7 +87,7 @@ class StepsTrackingCard extends StatelessWidget {
               selector: (state) => state.totalSteps,
               builder: (context, steps) {
                 return Text(
-                  '${steps} ${LocaleKeys.step.tr()}',
+                  '${steps} ${L10n.tr().step}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: CustomTextStyle.regular_14.copyWith(
@@ -106,7 +106,7 @@ class StepsTrackingCard extends StatelessWidget {
               selector: (state) => state.distanceInMeters,
               builder: (context, distance) {
                 return Text(
-                  '${(distance / 1000).toStringAsFixed(1)} ${LocaleKeys.km.tr()}',
+                  '${(distance / 1000).toStringAsFixed(1)} ${L10n.tr().km}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: CustomTextStyle.regular_14.copyWith(

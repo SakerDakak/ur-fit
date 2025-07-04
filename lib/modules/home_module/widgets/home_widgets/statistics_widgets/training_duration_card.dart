@@ -1,15 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
 
-import '../../../../../generated/locale_keys.g.dart';
 
 class TrainingDurationCard extends StatelessWidget {
   const TrainingDurationCard({super.key});
@@ -41,7 +40,7 @@ class TrainingDurationCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  LocaleKeys.exercises.tr(),
+                  L10n.tr().exercises,
                   style: CustomTextStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.fontColor,
@@ -54,7 +53,7 @@ class TrainingDurationCard extends StatelessWidget {
               selector: (state) => state.exerciseTime,
               builder: (context, exerciseTime) {
                 return Text(
-                  '${exerciseTime} ${LocaleKeys.min.tr()}',
+                  '${exerciseTime} ${L10n.tr().min}',
                   textAlign: TextAlign.center,
                   style: CustomTextStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,

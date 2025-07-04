@@ -1,13 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:urfit/core/shared/widgets/compact_form_field.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/utils/debouncer.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/utils/debouncer.dart';
+import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/action_buttons.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_plans.dart';
@@ -15,8 +16,7 @@ import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/s
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plan_description_shimmer.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plans_shimmer.dart';
 
-import '../../../core/utils/enums.dart';
-import '../../../generated/locale_keys.g.dart';
+import '../../../core/presentation/utils/enums.dart';
 import '../data/models/package_model.dart';
 
 class SubscriptionPlansScreen extends StatefulWidget {
@@ -110,7 +110,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                 const SizedBox(height: 30),
 
                 CompactTextFormField(
-                  hintText: LocaleKeys.couponCode.tr(),
+                  hintText: L10n.tr().couponCode,
                   onChanged: (String? value) {
                     if (value != null && value.isNotEmpty)
                       Debouncer(milliseconds: 500).run(() {
@@ -136,14 +136,14 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                             Row(
                               children: [
                                 Text(
-                                  LocaleKeys.priceAfterDiscount.tr(),
+                                  L10n.tr().priceAfterDiscount,
                                   style: CustomTextStyle.semiBold_16,
                                 ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
-                                  "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${LocaleKeys.sar.tr()}",
+                                  "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
                                   style: CustomTextStyle.bold_16.copyWith(color: AppColors.primaryColor),
                                 ),
                               ],
@@ -152,14 +152,14 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                             Row(
                               children: [
                                 Text(
-                                    LocaleKeys.priceBeforeDiscount.tr(),
+                                    L10n.tr().priceBeforeDiscount,
                                     style: CustomTextStyle.semiBold_16,
                                   ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
-                                  "${LocaleKeys.sar.tr()}${state.discountValue?.final_price.toStringAsFixed(2) ?? state.packages.firstWhere((package) => package.id == state.selectedPackage).price}",
+                                  "${L10n.tr().sar}${state.discountValue?.final_price.toStringAsFixed(2) ?? state.packages.firstWhere((package) => package.id == state.selectedPackage).price}",
                                   style: CustomTextStyle.bold_16.copyWith(color: AppColors.primaryColor),
                                 ),
                               ],

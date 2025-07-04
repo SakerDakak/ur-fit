@@ -1,14 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 
-import '../../../../../generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+
 import '../../../controller/cubit/health_cubit.dart';
 
 class SleepTrackingCard extends StatelessWidget {
@@ -41,7 +41,7 @@ class SleepTrackingCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  LocaleKeys.sleep.tr(),
+                  L10n.tr().sleep,
                   style: CustomTextStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.fontColor,
@@ -54,7 +54,7 @@ class SleepTrackingCard extends StatelessWidget {
               selector: (state) => state.totalSleep,
               builder: (context, sleep) {
                 return Text(
-                  '${sleep}\n${LocaleKeys.hours.tr()}',
+                  '${sleep}\n${L10n.tr().hours}',
                   textAlign: TextAlign.center,
                   style: CustomTextStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,

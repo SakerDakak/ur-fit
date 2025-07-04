@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/style/colors.dart';
 
-import '../../../core/style/fonts.dart';
+import '../../../core/presentation/style/fonts.dart';
 
 class FilterTitleWidget extends StatelessWidget {
   final String icon;

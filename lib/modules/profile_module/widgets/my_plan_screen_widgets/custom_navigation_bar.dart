@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({

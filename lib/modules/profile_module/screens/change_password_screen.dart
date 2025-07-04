@@ -1,13 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/shared/widgets/compact_form_field.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+
 
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
@@ -17,7 +18,7 @@ class ChangePasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LocaleKeys.resetPassword.tr()),
+        title:  Text(L10n.tr().resetPassword),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -29,7 +30,7 @@ class ChangePasswordScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            LocaleKeys.resetPasswordPhrase.tr(),
+            L10n.tr().resetPasswordPhrase,
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -39,7 +40,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // old password field
           CompactPasswordTextFormField(
-            title: LocaleKeys.currentPassword.tr(),
+            title: L10n.tr().currentPassword,
             hintText: '12345678',
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -50,7 +51,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // new password field
           CompactPasswordTextFormField(
-            title: LocaleKeys.newPassword.tr(),
+            title: L10n.tr().newPassword,
             hintText: '12345678',
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -61,7 +62,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // confirm new password field
           CompactPasswordTextFormField(
-            title: LocaleKeys.confirmPassword.tr(),
+            title: L10n.tr().confirmPassword,
             hintText: '12345678',
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -72,7 +73,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
           // change button
           CustomElevatedButton(
-            text:LocaleKeys.confirm.tr(),
+            text:L10n.tr().confirm,
             onPressed: () {
 
             },

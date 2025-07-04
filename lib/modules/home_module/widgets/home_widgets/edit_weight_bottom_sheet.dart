@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/shared/widgets/custom_curve_slider.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_curve_slider.dart';
 
 class EditWeightBottomSheet extends StatelessWidget {
   const EditWeightBottomSheet({

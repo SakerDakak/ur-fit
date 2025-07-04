@@ -1,15 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/shared/widgets/calories_indicator.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
-import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/calories_indicator.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 
 class PlanSummary extends StatelessWidget {
@@ -31,7 +30,7 @@ class PlanSummary extends StatelessWidget {
           // calories
           CaloriesIndicator(
             calories: state.planHistoryModel!.mealPlans.calories.toDouble(),
-            title: LocaleKeys.calories.tr(),
+            title: L10n.tr().calories,
           ),
 
           SizedBox(height: 20),
@@ -42,10 +41,10 @@ class PlanSummary extends StatelessWidget {
             children: [
               // current weight
               _DetailsItem(
-                LocaleKeys.weight.tr(),
+                L10n.tr().weight,
                 Assets.iconsWeightIcon,
                 state.planHistoryModel!.user_target_weight.toString(),
-                LocaleKeys.kg.tr(),
+                L10n.tr().kg,
               ),
 
               SizedBox(
@@ -57,10 +56,10 @@ class PlanSummary extends StatelessWidget {
 
               // target weight
               _DetailsItem(
-                LocaleKeys.calories.tr(),
+                L10n.tr().calories,
                 Assets.iconsMeals,
                 state.planHistoryModel!.expectedResultOfMealPlans!.calories.toStringAsFixed(1),
-                LocaleKeys.calorie.tr(),
+                L10n.tr().calorie,
               ),
 
               SizedBox(
@@ -72,10 +71,10 @@ class PlanSummary extends StatelessWidget {
 
               // workout duration
               _DetailsItem(
-                LocaleKeys.time.tr(),
+                L10n.tr().time,
                 Assets.iconsDumbbell,
                 context.read<SettingCubit>().formattedTime(seconds: state.planHistoryModel!.expectedResultOfExercisePlans!.times.toInt()),
-                LocaleKeys.min.tr(),
+                L10n.tr().min,
               ),
             ],
           ),

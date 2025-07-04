@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
+import '../../../core/presentation/style/fonts.dart';
 import '../data/models/meal_details_model.dart';
 
 class ComponentItem extends StatelessWidget {

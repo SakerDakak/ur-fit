@@ -1,14 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/shared/appCubit/app_cubit.dart';
-import 'package:urfit/core/shared/widgets/app_language_buttons.dart';
-import 'package:urfit/core/shared/widgets/default_list_tile.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/app_language_buttons.dart';
+import 'package:urfit/core/presentation/views/widgets/default_list_tile.dart';
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
 import 'package:urfit/modules/profile_module/screens/my_plan.dart';
 import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
               // my plan tile
               DefaultListTile(
                 onTap: () => GoRouter.of(context).push(MyPlanScreen.route),
-                title: LocaleKeys.myPlan.tr(),
+                title: L10n.tr().myPlan,
                 leadingIconSvgPath: Assets.iconsPaper,
               ),
 
@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
               DefaultListTile(
                 onTap: () =>
                     GoRouter.of(context).push(PreviousPlanScreen.route),
-                title: LocaleKeys.previousPlan.tr(),
+                title: L10n.tr().previousPlan,
                 leadingIconSvgPath: Assets.iconsPaper2,
               ),
 
@@ -79,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
               DefaultListTile(
                 onTap: () => GoRouter.of(context)
                     .push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both),
-                title: LocaleKeys.subscribe.tr(),
+                title: L10n.tr().subscribe,
                 leadingIconSvgPath: Assets.iconsCopy,
               ),
 
@@ -90,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
               // settings tile
               DefaultListTile(
                 onTap: () => GoRouter.of(context).push(SettingsScreen.route),
-                title: LocaleKeys.settings.tr(),
+                title: L10n.tr().settings,
                 leadingIconSvgPath: Assets.iconsSettings,
               ),
 
@@ -102,7 +102,7 @@ class ProfileScreen extends StatelessWidget {
               DefaultListTile(
                 onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
                     pathParameters: {"key": "privacy_policy"}),
-                title: LocaleKeys.privacyPolicy.tr(),
+                title: L10n.tr().privacyPolicy,
                 leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
 
@@ -113,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
               DefaultListTile(
                 onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
                     pathParameters: {"key": "terms_and_conditions"}),
-                title: LocaleKeys.termsAndConditions.tr(),
+                title: L10n.tr().termsAndConditions,
                 leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
 
@@ -124,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
               DefaultListTile(
                 onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
                     pathParameters: {"key": "about_us"}),
-                title: LocaleKeys.aboutUs.tr(),
+                title: L10n.tr().aboutUs,
                 leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
 
@@ -134,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
               // notifications tile
               DefaultListTile(
                 onTap: () {},
-                title: LocaleKeys.notification.tr(),
+                title: L10n.tr().notification,
                 leadingIconSvgPath: Assets.iconsNotifications,
                 trailing: SizedBox(
                   height: 35,
@@ -154,7 +154,7 @@ class ProfileScreen extends StatelessWidget {
               // support tile
               DefaultListTile(
                 onTap: () => GoRouter.of(context).push(ContactUsScreen.route),
-                title: LocaleKeys.contactUs.tr(),
+                title: L10n.tr().contactUs,
                 leadingIconSvgPath: Assets.iconsSupport,
               ),
 
@@ -233,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
               //                                             Radius.circular(
               //                                                 16.0))),
               //                                 child: Text(
-              //                                   LocaleKeys.soon.tr(),
+              //                                   L10n.tr().soon,
               //                                   style: CustomTextStyle
               //                                       .semiBold_16
               //                                       .copyWith(
@@ -250,7 +250,7 @@ class ProfileScreen extends StatelessWidget {
               //                                 ),
               //                                 Center(
               //                                   child: Text(
-              //                                     LocaleKeys.becauseWeKeenToProvideAnIntegratedService.tr(),
+              //                                     L10n.tr().becauseWeKeenToProvideAnIntegratedService,
               //                                     textAlign: TextAlign.center,
               //                                     style: CustomTextStyle.bold_20
               //                                         .copyWith(
@@ -265,7 +265,7 @@ class ProfileScreen extends StatelessWidget {
               //                                   text: TextSpan(
               //                                     children: [
               //                                       TextSpan(
-              //                                         text: "${LocaleKeys.waitFor.tr()} " ,
+              //                                         text: "${L10n.tr().waitFo} " ,
               //                                         style: CustomTextStyle
               //                                             .bold_20
               //                                             .copyWith(
@@ -273,7 +273,7 @@ class ProfileScreen extends StatelessWidget {
               //                                                     .primaryColor),
               //                                         children: [
               //                                           TextSpan(
-              //                                             text: LocaleKeys.launching.tr(),
+              //                                             text: L10n.tr().launching,
               //                                             style: CustomTextStyle
               //                                                 .bold_20
               //                                                 .copyWith(
@@ -289,7 +289,7 @@ class ProfileScreen extends StatelessWidget {
               //                                   height: 20,
               //                                 ),
               //                                 Text(
-              //                                   LocaleKeys.ourMedicalServicesSoon.tr(),
+              //                                   L10n.tr().ourMedicalServicesSoon,
               //                                   style: CustomTextStyle.bold_20
               //                                       .copyWith(
               //                                           color: AppColors
@@ -330,16 +330,16 @@ class ProfileScreen extends StatelessWidget {
               //     //         children: [
               //     //           Align(
               //     //             alignment: Alignment.topLeft,
-              //     //               child: Text(LocaleKeys.soon.tr(),style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.primaryColor),)),
+              //     //               child: Text(L10n.tr().soon,style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.primaryColor),)),
               //     //           const SizedBox(height: 10,),
-              //     //           // Text(LocaleKeys.comingSoon.tr(),style: CustomTextStyle.medium_14.copyWith(color: AppColors.primaryColor),),
+              //     //           // Text(L10n.tr().comingSoon,style: CustomTextStyle.medium_14.copyWith(color: AppColors.primaryColor),),
               //     //         ],
               //     //       ),
               //     //                     ),
               //     //   );
               //     // },);
               //   },
-              //   title: LocaleKeys.medicalSection.tr(),
+              //   title: L10n.tr().medicalSection,
               //   leadingIconSvgPath: AppAssets.iconsMedical,
               //   trailing: Container(
               //     padding: const EdgeInsets.symmetric(
@@ -351,7 +351,7 @@ class ProfileScreen extends StatelessWidget {
               //       borderRadius: BorderRadius.circular(kBorderRadius),
               //     ),
               //     child: Text(
-              //       LocaleKeys.soon.tr(),
+              //       L10n.tr().soon,
               //       style: CustomTextStyle.semiBold_10.copyWith(
               //         color: AppColors.selectedFont,
               //       ),

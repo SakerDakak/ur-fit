@@ -1,18 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/shared/widgets/package_progress_exercise.dart';
-import 'package:urfit/core/shared/widgets/weak_days_date.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/package_progress_exercise.dart';
+import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/start_workout_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/workout_detail_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/workout_widgets/start_workout_card.dart';
 import 'package:urfit/modules/workout_module/workout_widgets/today_workout_details_card.dart';
 
-import '../../core/utils/enums.dart';
-import '../../generated/locale_keys.g.dart';
+import '../../core/presentation/utils/enums.dart';
+
 
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
@@ -123,7 +124,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
             ],
           ) : Center(
-              child: Text(LocaleKeys.noSubscription.tr())),
+              child: Text(L10n.tr().noSubscription)),
         );
       },
     );

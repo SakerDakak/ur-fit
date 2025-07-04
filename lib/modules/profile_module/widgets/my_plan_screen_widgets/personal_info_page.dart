@@ -1,18 +1,17 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/shared/widgets/custom_curve_slider.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/utils/enums.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
-import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/utils/enums.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_curve_slider.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
 class PersonalInfoPage extends StatelessWidget {
   const PersonalInfoPage({super.key});
@@ -27,7 +26,7 @@ class PersonalInfoPage extends StatelessWidget {
       children: [
         // gender
         Text(
-          LocaleKeys.areYou.tr(),
+          L10n.tr().areYou,
           style: CustomTextStyle.semiBold_16,
         ),
         const SizedBox(height: 16),
@@ -38,8 +37,8 @@ class PersonalInfoPage extends StatelessWidget {
         const SizedBox(height: 20),
 
         // age
-         _SliderTitle(
-          title: LocaleKeys.age.tr(),
+        _SliderTitle(
+          title: L10n.tr().age,
           value: user?.age, // this value will come from the server
           valueFractionDigits: 0,
         ),
@@ -58,9 +57,9 @@ class PersonalInfoPage extends StatelessWidget {
 
         // height
         _SliderTitle(
-          title: LocaleKeys.height.tr(),
+          title: L10n.tr().height,
           value: user?.height, // this value will come from the server
-          suffix: Text(LocaleKeys.cm.tr(), style: CustomTextStyle.semiBold_16),
+          suffix: Text(L10n.tr().cm, style: CustomTextStyle.semiBold_16),
         ),
         const SizedBox(height: 12),
         CustomCurveSlider(
@@ -78,9 +77,9 @@ class PersonalInfoPage extends StatelessWidget {
 
         // weight
         _SliderTitle(
-          title:LocaleKeys.currentWeight.tr(),
+          title: L10n.tr().currentWeight,
           value: user?.currentWeight, // this value will come from the server
-          suffix: Text(LocaleKeys.kg.tr(), style: CustomTextStyle.semiBold_16),
+          suffix: Text(L10n.tr().kg, style: CustomTextStyle.semiBold_16),
         ),
         const SizedBox(height: 12),
         CustomCurveSlider(
@@ -96,7 +95,7 @@ class PersonalInfoPage extends StatelessWidget {
 
         // continue button
         CustomElevatedButton(
-          text: LocaleKeys.continuee.tr(),
+          text: L10n.tr().continuee,
           padding: EdgeInsets.zero,
           onPressed: () => cubit.goToNextPage(),
         ),
@@ -182,6 +181,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
     super.initState();
     _selectedIndex = user?.gender?.index;
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -203,9 +203,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
               padding: const EdgeInsets.all(12),
               margin: EdgeInsetsDirectional.only(end: i == 0 ? 16 : 0),
               decoration: BoxDecoration(
-                color: i == _selectedIndex
-                    ? Theme.of(context).colorScheme.primary
-                    : AppColors.cardColor,
+                color: i == _selectedIndex ? Theme.of(context).colorScheme.primary : AppColors.cardColor,
                 borderRadius: BorderRadius.circular(kBorderRadius),
               ),
               child: FittedBox(
@@ -214,9 +212,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset(
-                      GenderEnum.values[i] == GenderEnum.male
-                          ? Assets.iconsSkinnyBody
-                          : Assets.iconsFemale,
+                      GenderEnum.values[i] == GenderEnum.male ? Assets.iconsSkinnyBody : Assets.iconsFemale,
                       height: 24,
                       colorFilter: const ColorFilter.mode(
                         AppColors.whiteColor,
@@ -225,7 +221,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      GenderEnum.values[i] == GenderEnum.male ? LocaleKeys.Male.tr() : LocaleKeys.Female.tr(),
+                      GenderEnum.values[i] == GenderEnum.male ? L10n.tr().male : L10n.tr().female,
                       style: CustomTextStyle.bold_16,
                     ),
                   ],

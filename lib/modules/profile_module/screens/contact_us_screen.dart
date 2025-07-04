@@ -1,13 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:urfit/core/shared/widgets/compact_form_field.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
-import '../../../generated/locale_keys.g.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
@@ -22,7 +22,7 @@ class ContactUsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LocaleKeys.contactUs.tr()),
+        title:  Text(L10n.tr().contactUs),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -33,7 +33,7 @@ class ContactUsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            LocaleKeys.weAreHappyToGetYourFeedback.tr(),
+            L10n.tr().weAreHappyToGetYourFeedback,
             textAlign: TextAlign.center,
             style: CustomTextStyle.semiBold_14.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -49,8 +49,8 @@ class ContactUsScreen extends StatelessWidget {
                children: [
                  CompactTextFormField(
 
-                  title: LocaleKeys.fullName.tr(),
-                  hintText: LocaleKeys.enterFullName.tr(),
+                  title: L10n.tr().fullName,
+                  hintText: L10n.tr().enterFullName,
                   padding: EdgeInsets.zero,
                   controller: _nameController,
                            ),
@@ -59,8 +59,8 @@ class ContactUsScreen extends StatelessWidget {
 
                            // email
                  CompactTextFormField(
-                  title: LocaleKeys.email.tr(),
-                  hintText: LocaleKeys.enterEmail.tr(),
+                  title: L10n.tr().email,
+                  hintText: L10n.tr().enterEmail,
                   padding: EdgeInsets.zero,
                   controller: _emailController,
                            ),
@@ -78,8 +78,8 @@ class ContactUsScreen extends StatelessWidget {
 
                            // message
                  CompactTextFormField(
-                  title: LocaleKeys.message.tr(),
-                  hintText: LocaleKeys.pleaseEnterYourMessage.tr(),
+                  title: L10n.tr().message,
+                  hintText: L10n.tr().pleaseEnterYourMessage,
                   padding: EdgeInsets.zero,
                   controller: _messageController,
                   contentPadding: EdgeInsets.symmetric(
@@ -96,7 +96,7 @@ class ContactUsScreen extends StatelessWidget {
 
           // send button
           CustomElevatedButton(
-            text: LocaleKeys.send.tr(),
+            text: L10n.tr().send,
             onPressed: () {
 
             },

@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/assets_manager.dart';
-import 'package:urfit/core/shared/widgets/custom_appbar.dart';
+import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/screens/filter_screen.dart';
 import 'package:urfit/modules/meals_module/widgets/meals_gridview.dart';
 import 'package:urfit/modules/meals_module/widgets/meals_toggle_buttons.dart';
 
-import '../../../core/style/colors.dart';
+import '../../../core/presentation/style/colors.dart';
 
 class MealsPickerScreen extends StatelessWidget {
   const MealsPickerScreen({super.key});

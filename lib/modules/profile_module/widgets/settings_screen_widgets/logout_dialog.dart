@@ -1,15 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/routes/routes.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
@@ -66,7 +65,7 @@ class LogoutDialog extends StatelessWidget {
               horizontal: kHorizontalPadding * 2,
             ),
             child: Text(
-              LocaleKeys.areYouSureYouWantToLogout.tr(),
+              L10n.tr().areYouSureYouWantToLogout,
               textAlign: TextAlign.center,
               style: CustomTextStyle.bold_14.copyWith(
                 color: AppColors.selectedFont,
@@ -84,7 +83,7 @@ class LogoutDialog extends StatelessWidget {
                 // cancel
                 Expanded(
                   child: CustomElevatedButton(
-                    text: LocaleKeys.no.tr(),
+                    text: L10n.tr().no,
                     onPressed: () => Navigator.pop(context),
                     padding: EdgeInsets.zero,
                     backgroundColor: AppColors.notActive,
@@ -96,7 +95,7 @@ class LogoutDialog extends StatelessWidget {
                 // confirm
                 Expanded(
                   child: CustomElevatedButton(
-                    text: LocaleKeys.yes.tr(),
+                    text: L10n.tr().yes,
                     onPressed: () {
                       context.read<AuthenticationBloc>().add(LoggedOut());
                     },

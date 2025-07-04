@@ -1,28 +1,22 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/const.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/loading_helper.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
-import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
+import 'package:urfit/core/presentation/assets/const.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/loading_helper.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/subscription_module/data/models/discount_value_model.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
-import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
-import '../../../core/routes/routes.dart';
-import '../../../core/utils/enums.dart';
-import '../../../core/utils/service_locator.dart';
-
-part 'subscription_state.dart';
+import '../../../core/presentation/utils/enums.dart';
 
 part 'subscription_cubit.freezed.dart';
+part 'subscription_state.dart';
 // enum PlanType {exercise ,diet ,both}
 class SubscriptionCubit extends Cubit<SubscriptionState> {
-  final BaseSubscriptionRepo _subscriptionRepo;
+  final SubscriptionRepo _subscriptionRepo;
 
   SubscriptionCubit(this._subscriptionRepo) : super(const SubscriptionState());
 

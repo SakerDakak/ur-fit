@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../core/routes/routes.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
-import '../../../core/utils/constants.dart';
+import '../../../core/presentation/style/colors.dart';
+import '../../../core/presentation/style/fonts.dart';
+import '../../../core/presentation/utils/constants.dart';
 
 class DailyMealsListItem extends StatelessWidget {
   final String title;

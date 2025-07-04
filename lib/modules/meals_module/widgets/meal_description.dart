@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
+import 'package:readmore/readmore.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
+import '../../../core/presentation/assets/assets_manager.dart';
+import '../../../core/presentation/style/fonts.dart';
 import 'filter_title_widget.dart';
-import 'package:readmore/readmore.dart';
-import 'package:html/parser.dart';
 
 class MealDescription extends StatelessWidget {
   final String description;

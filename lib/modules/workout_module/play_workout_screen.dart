@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/const.dart';
-import 'package:urfit/core/shared/widgets/custom_appbar.dart';
-import 'package:urfit/core/style/fonts.dart';
+import 'package:urfit/core/presentation/assets/const.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/widgets/play_button.dart';
 
-import '../../core/style/colors.dart';
+import '../../core/presentation/style/colors.dart';
 import '../profile_module/widgets/previous_plan_screen_widgets/calories_and_steps.dart';
 import 'controller/workout_cubit.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
+import '../../../core/presentation/style/colors.dart';
+import '../../../core/presentation/style/fonts.dart';
 
 class MealsToggleButtons extends StatefulWidget {
   final List<String> items;

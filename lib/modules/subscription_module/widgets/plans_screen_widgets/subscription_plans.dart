@@ -1,18 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
-
-import '../../../../generated/locale_keys.g.dart';
 
 class SubscriptionPlans extends StatefulWidget {
   final List<PackageModel> packages;
   final PlanType planType;
-  const SubscriptionPlans({super.key, required this.packages , required this.planType});
+  const SubscriptionPlans({super.key, required this.packages, required this.planType});
 
   @override
   State<SubscriptionPlans> createState() => _SubscriptionPlansState();
@@ -20,30 +18,29 @@ class SubscriptionPlans extends StatefulWidget {
 
 class _SubscriptionPlansState extends State<SubscriptionPlans> {
   int selectedIndex = 0;
-  List<PackageModel> packages =  [];
+  List<PackageModel> packages = [];
 
   bool seeAll = false;
   @override
   void initState() {
     super.initState();
-    packages =  [...widget.packages];
+    packages = [...widget.packages];
     packages.sort((a, b) {
       if (a.type == widget.planType && b.type != widget.planType) return -1;
       if (a.type != widget.planType && b.type == widget.planType) return 1;
       return 0;
     });
-    if(packages.isNotEmpty) {
+    if (packages.isNotEmpty) {
       selectedIndex = packages.first.id;
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     print("packages ${seeAll}");
-    final cubit =context.read<SubscriptionCubit>();
-    if(cubit.state.selectedPackage == null){
-    cubit.updateSelectedPackage(selectedIndex);
+    final cubit = context.read<SubscriptionCubit>();
+    if (cubit.state.selectedPackage == null) {
+      cubit.updateSelectedPackage(selectedIndex);
     }
 
     return SizedBox(
@@ -53,10 +50,9 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         children: List.generate(
-          seeAll ?  packages.length:packages.where((package) => package.type == widget.planType).length + 1,
+          seeAll ? packages.length : packages.where((package) => package.type == widget.planType).length + 1,
           (i) {
-
-            if(i < (seeAll ? packages.length :packages.where((package) => package.type == widget.planType).length)) {
+            if (i < (seeAll ? packages.length : packages.where((package) => package.type == widget.planType).length)) {
               return Padding(
                 // add padding if index is less than the items (length -1)
                 padding: EdgeInsetsDirectional.only(end: 8),
@@ -64,15 +60,14 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
                   package: packages[i],
                   isSelected: selectedIndex == packages[i].id,
                   onTap: () {
-                    context.read<SubscriptionCubit>().updateSelectedPackage(
-                        packages[i].id);
+                    context.read<SubscriptionCubit>().updateSelectedPackage(packages[i].id);
                     setState(() {
                       selectedIndex = packages[i].id;
                     });
                   },
                 ),
               );
-            }else{
+            } else {
               return Padding(
                 // add padding if index is equal to the items (length -1)
                 padding: EdgeInsetsDirectional.only(end: 8),
@@ -87,15 +82,15 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
                     duration: const Duration(milliseconds: 300),
                     width: 120,
                     height: 220,
-                    padding: const EdgeInsets.only(left: 10, right: 10, top: 20,bottom: 20),
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(kBorderRadius),
                       color: AppColors.cardColor,
-                      border:  Border.all(color: AppColors.strockColor),
+                      border: Border.all(color: AppColors.strockColor),
                     ),
                     child: Center(
                       child: Text(
-                        LocaleKeys.seeMore.tr(),
+                        L10n.tr().seeMore,
                         style: CustomTextStyle.bold_16.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
@@ -115,7 +110,8 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
 class PlanCard extends StatelessWidget {
   const PlanCard({
     required this.isSelected,
-    required this.onTap, required this.package,
+    required this.onTap,
+    required this.package,
   });
   final PackageModel? package;
   final bool isSelected;
@@ -186,7 +182,8 @@ class PlanCard extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '${LocaleKeys.sar.tr()}${package == null ? "59.99" :(num.parse(package!.price.toString())).toStringAsFixed(2)}',
+                      text:
+                          '${L10n.tr().sar}${package == null ? "59.99" : (num.parse(package!.price.toString())).toStringAsFixed(2)}',
                       style: CustomTextStyle.bold_16.copyWith(
                         color: isSelected ? AppColors.selectedFont : null,
                       ),
@@ -198,7 +195,7 @@ class PlanCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: LocaleKeys.month.tr(),
+                      text: L10n.tr().month,
                       style: CustomTextStyle.regular_14.copyWith(
                         color: isSelected ? AppColors.selectedFont : null,
                       ),
@@ -211,7 +208,7 @@ class PlanCard extends StatelessWidget {
 
               // price per weak
               Text(
-                '${LocaleKeys.sar.tr()}${package == null ? "4.99" :(num.parse(package!.price.toString()) / (package!.duration * 4)).toStringAsFixed(2)}/${LocaleKeys.week.tr()}',
+                '${L10n.tr().sar}${package == null ? "4.99" : (num.parse(package!.price.toString()) / (package!.duration * 4)).toStringAsFixed(2)}/${L10n.tr().week}',
                 style: CustomTextStyle.regular_14.copyWith(
                   color: isSelected ? AppColors.selectedFont : null,
                 ),

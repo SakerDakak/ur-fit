@@ -1,17 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/profile_module/screens/loading_plan_screen.dart';
 
-import '../../../../core/shared/widgets/equipment_list.dart';
-import '../../../auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import '../../../../core/presentation/views/widgets/equipment_list.dart';
+import '../../../auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
 class EquipmentsPage extends StatelessWidget {
   const EquipmentsPage({super.key});
@@ -27,7 +26,7 @@ class EquipmentsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.preferredEquipment.tr(),
+            L10n.tr().preferredEquipment,
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -43,7 +42,7 @@ class EquipmentsPage extends StatelessWidget {
 
           // continue button
           CustomElevatedButton(
-            text: LocaleKeys.confirm.tr(),
+            text: L10n.tr().confirm,
             padding: EdgeInsets.zero,
             onPressed: () => GoRouter.of(context).pushReplacement(
               LoadingPlanScreen.route,

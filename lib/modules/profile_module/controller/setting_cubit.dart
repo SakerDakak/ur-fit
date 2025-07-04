@@ -1,23 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:urfit/core/const.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
-import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/profile_module/data/model/static_page_model.dart';
-import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
-import '../../../core/utils/enums.dart';
+import '../../../core/presentation/utils/enums.dart';
 import '../../workout_module/data/model/exercise_history_data.dart';
 import '../data/model/plan_history_model.dart';
 import '../repo/setting_repo.dart';
 
+part 'setting_cubit.freezed.dart';
 part 'setting_state.dart';
 
-part 'setting_cubit.freezed.dart';
-
 class SettingCubit extends Cubit<SettingState> {
-  final BaseSettingRepo settingRepo;
+  final SettingRepo settingRepo;
 
   SettingCubit(this.settingRepo) : super(const SettingState());
 

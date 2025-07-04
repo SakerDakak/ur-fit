@@ -1,14 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:urfit/core/shared/widgets/calories_indicator.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/calories_indicator.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../controller/workout_cubit.dart';
 import '../data/model/workout_model.dart';
@@ -18,7 +17,6 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final cubit = context.read<WorkoutCubit>();
     final WorkoutDay? day = cubit.getPlanForToday();
     final user = context.read<AuthenticationBloc>().currentUser;
@@ -29,10 +27,14 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
         // title
         Row(
           children: [
-            SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
+            SvgPicture.asset(
+              Assets.iconsDumbbell,
+              width: 16,
+              colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+            ),
             const SizedBox(width: 8),
             Text(
-              LocaleKeys.todayExerciseDetails.tr(),
+              L10n.tr().todayExerciseDetails,
               style: CustomTextStyle.regular_14.copyWith(
                 fontWeight: FontWeight.w700,
                 color: AppColors.fontColor,
@@ -51,12 +53,12 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(kBorderRadius),
             border: Border.all(color: AppColors.strockColor),
           ),
-          child:  Column(
+          child: Column(
             children: [
               // calories
               CaloriesIndicator(
                 calories: day!.caloriesBurned.toDouble() * day.exercises.length,
-                title: LocaleKeys.calories.tr(),
+                title: L10n.tr().calories,
               ),
 
               SizedBox(height: 16),
@@ -67,10 +69,10 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                 children: [
                   // current weight
                   DetailsItem(
-                    LocaleKeys.currentWeight.tr(),
+                    L10n.tr().currentWeight,
                     Assets.iconsWeightIcon,
                     user?.currentWeight.toString() ?? "0",
-                    LocaleKeys.kg.tr(),
+                    L10n.tr().kg,
                   ),
 
                   SizedBox(
@@ -82,10 +84,10 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
 
                   // target weight
                   DetailsItem(
-                    LocaleKeys.goal.tr(),
+                    L10n.tr().goal,
                     Assets.iconsFlag,
                     user?.targetWeight.toString() ?? "0",
-                    LocaleKeys.kg.tr(),
+                    L10n.tr().kg,
                   ),
 
                   SizedBox(
@@ -97,10 +99,10 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
 
                   // workout duration
                   DetailsItem(
-                    LocaleKeys.time.tr(),
+                    L10n.tr().time,
                     Assets.iconsDumbbell,
                     (day.timePerExercise * day.exercises.length).toStringAsFixed(0),
-                    LocaleKeys.min.tr(),
+                    L10n.tr().min,
                   ),
                 ],
               ),
@@ -134,7 +136,7 @@ class DetailsItem extends StatelessWidget {
           svgIconPath,
           height: 16,
           width: 16,
-          colorFilter:  ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
             Theme.of(context).colorScheme.primary,
             BlendMode.srcIn,
           ),

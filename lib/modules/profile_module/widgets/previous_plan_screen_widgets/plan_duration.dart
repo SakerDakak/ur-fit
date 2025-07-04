@@ -1,12 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/modules/profile_module/data/model/plan_history_model.dart';
 
-import '../../../../generated/locale_keys.g.dart';
 
 class PlanDuration extends StatelessWidget {
   final PlanHistoryModel planHistoryModel;
@@ -42,11 +41,11 @@ class PlanDuration extends StatelessWidget {
 
             // price
             Text(
-              "${num.parse(planHistoryModel.package!.price) / planHistoryModel.package!.duration} ${LocaleKeys.sar.tr()}",
+              "${num.parse(planHistoryModel.package!.price) / planHistoryModel.package!.duration} ${L10n.tr().sar}",
               style: CustomTextStyle.bold_16,
             ),
             Text(
-              '/${LocaleKeys.month.tr()}',
+              '/${L10n.tr().month}',
               style: CustomTextStyle.light_16,
             ),
           ],
@@ -63,7 +62,7 @@ class PlanDuration extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  '${LocaleKeys.startedAt.tr()} ${planHistoryModel.subscription_data!.start_date}',
+                  '${L10n.tr().startedAt} ${planHistoryModel.subscription_data!.start_date}',
                   style: CustomTextStyle.semiBold_14,
                 ),
               ),
@@ -78,7 +77,7 @@ class PlanDuration extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  '${LocaleKeys.endedAt.tr()} ${planHistoryModel.subscription_data!.end_date}',
+                  '${L10n.tr().endedAt} ${planHistoryModel.subscription_data!.end_date}',
                   style: CustomTextStyle.semiBold_14,
                 ),
               ),

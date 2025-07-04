@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/style/colors.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
 
 import '../data/models/meal_model.dart';

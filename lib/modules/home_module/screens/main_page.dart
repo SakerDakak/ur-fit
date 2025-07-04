@@ -1,17 +1,17 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/style/fonts.dart';
-import '../../../core/utils/app_assets.dart';
-import '../../../core/utils/service_locator.dart';
-import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+
+import '../../../core/presentation/assets/app_assets.dart';
+import '../../../core/presentation/assets/assets_manager.dart';
+import '../../../core/presentation/style/colors.dart';
+import '../../../core/presentation/style/fonts.dart';
+import '../../../service_locator.dart';
+import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../meals_module/screens/meals_screen.dart';
 import '../../profile_module/screens/profile_screen.dart';
 import '../../workout_module/workout_screen.dart';
@@ -19,7 +19,7 @@ import 'home_screen.dart';
 
 class MainPage extends StatefulWidget {
   final bool isGuest;
-  static const route = "/mainPage";
+  static String routeWithBool(bool? isGuest) => "/mainPage${isGuest != null ? "?guest=$isGuest" : ""}";
 
   const MainPage({super.key, required this.isGuest});
 
@@ -57,21 +57,14 @@ class _MainPageState extends State<MainPage> {
     ];
   }
 
-  final List<String> titles = [
-    LocaleKeys.home.tr(),
-    LocaleKeys.exercises.tr(),
-    LocaleKeys.nutritions.tr(),
-    "",
-    LocaleKeys.profile.tr()
-  ];
+  final List<String> titles = [L10n.tr().home, L10n.tr().exercises, L10n.tr().nutritions, "", L10n.tr().profile];
   int _selectedIndex = 0;
 
   // late bool
 
   void _onItemTapped(int index) {
     final user = context.read<AuthenticationBloc>().currentUser;
-    if(index == 3) {
-
+    if (index == 3) {
       return;
     }
     // print("continue");
@@ -102,15 +95,14 @@ class _MainPageState extends State<MainPage> {
   //   });
   // }
 
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
   List<PersistentBottomNavBarItem> get _navBarsItems {
     return [
       PersistentBottomNavBarItem(
         icon: CustomNavBarItem(
           iconPath: AssetsManager.home,
-          title: LocaleKeys.home.tr(),
+          title: L10n.tr().home,
           isActive: _selectedIndex == 0,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
@@ -121,7 +113,7 @@ class _MainPageState extends State<MainPage> {
       PersistentBottomNavBarItem(
         icon: CustomNavBarItem(
           iconPath: AssetsManager.workout,
-          title: LocaleKeys.exercises.tr(),
+          title: L10n.tr().exercises,
           isActive: _selectedIndex == 1,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
@@ -132,7 +124,7 @@ class _MainPageState extends State<MainPage> {
       PersistentBottomNavBarItem(
         icon: CustomNavBarItem(
           iconPath: AssetsManager.meals,
-          title: LocaleKeys.nutritions.tr(),
+          title: L10n.tr().nutritions,
           isActive: _selectedIndex == 2,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
@@ -145,94 +137,80 @@ class _MainPageState extends State<MainPage> {
           showDialog(
               context: context,
               builder: (_) => new AlertDialog(
-                backgroundColor: Colors.blue,
-                insetPadding: EdgeInsets.zero,
-                contentPadding: EdgeInsets.zero,
-                titlePadding: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(16.0))),
-                content: Builder(
-                  builder: (context) {
-                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                    var height = MediaQuery.of(context).size.height;
-                    var width = MediaQuery.of(context).size.width;
+                    backgroundColor: Colors.blue,
+                    insetPadding: EdgeInsets.zero,
+                    contentPadding: EdgeInsets.zero,
+                    titlePadding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                    content: Builder(
+                      builder: (context) {
+                        // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                        var height = MediaQuery.of(context).size.height;
+                        var width = MediaQuery.of(context).size.width;
 
-                    return Container(
-                      // color: Colors.red,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(16.0)),
-                        image: DecorationImage(
-                          image: AssetImage(AssetsManager.medical),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      height: 473,
-                      width: 343,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            left: 0,
-                            top: -100,
-                            child: Container(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                clipBehavior: Clip.none,
-                                fit: StackFit.loose,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 220,
-                                    backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
-                                  ),
-                                  CircleAvatar(
-                                    radius: 150,
-                                    backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
-                                  ),
-                                ],
-                              ),
+                        return Container(
+                          // color: Colors.red,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                            image: DecorationImage(
+                              image: AssetImage(AssetsManager.medical),
+                              fit: BoxFit.cover,
                             ),
                           ),
-
-                          Positioned(
-                              top: 20,
-                              left: 20,
-                              child: Container(
-                                  padding:
-                                  const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 4,
+                          height: 473,
+                          width: 343,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 0,
+                                top: -100,
+                                child: Container(
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    clipBehavior: Clip.none,
+                                    fit: StackFit.loose,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 220,
+                                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+                                      ),
+                                      CircleAvatar(
+                                        radius: 150,
+                                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+                                      ),
+                                    ],
                                   ),
-                                  decoration: BoxDecoration(
-                                      color: AppColors.yellow,
-                                      borderRadius:
-                                      BorderRadius.all(
-                                          Radius.circular(
-                                              16.0))),
-                                  child: Text(
-                                    LocaleKeys.soon.tr(),
-                                    style: CustomTextStyle
-                                        .semiBold_16
-                                        .copyWith(
-                                        color: AppColors
-                                            .blackColor),
-                                  ))),
-                          Align(
-                              alignment: Alignment.center,
-                              child: Container(
-                                  child: Column(mainAxisSize: MainAxisSize.min,
+                                ),
+                              ),
+                              Positioned(
+                                  top: 20,
+                                  left: 20,
+                                  child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: AppColors.yellow,
+                                          borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                                      child: Text(
+                                        L10n.tr().soon,
+                                        style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.blackColor),
+                                      ))),
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                      child: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       const SizedBox(
                                         height: 20,
                                       ),
                                       Center(
                                         child: Text(
-                                          LocaleKeys.becauseWeKeenToProvideAnIntegratedService.tr(),
+                                          L10n.tr().becauseWeKeenToProvideAnIntegratedService,
                                           textAlign: TextAlign.center,
-                                          style: CustomTextStyle.bold_20
-                                              .copyWith(
-                                              color: AppColors
-                                                  .whiteColor),
+                                          style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor),
                                         ),
                                       ),
                                       const SizedBox(
@@ -242,23 +220,15 @@ class _MainPageState extends State<MainPage> {
                                         text: TextSpan(
                                           children: [
                                             TextSpan(
-                                                text: "${LocaleKeys.waitFor.tr()} " ,
-                                                style: CustomTextStyle
-                                                    .bold_20
-                                                    .copyWith(
-                                                    color: AppColors
-                                                        .primaryColor),
+                                                text: "${L10n.tr().waitFor} ",
+                                                style: CustomTextStyle.bold_20.copyWith(color: AppColors.primaryColor),
                                                 children: [
                                                   TextSpan(
-                                                    text: LocaleKeys.launching.tr(),
-                                                    style: CustomTextStyle
-                                                        .bold_20
-                                                        .copyWith(
-                                                        color: AppColors
-                                                            .whiteColor),
+                                                    text: L10n.tr().launching,
+                                                    style:
+                                                        CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor),
                                                   ),
-                                                ]
-                                            ),
+                                                ]),
                                           ],
                                         ),
                                       ),
@@ -266,30 +236,26 @@ class _MainPageState extends State<MainPage> {
                                         height: 20,
                                       ),
                                       Text(
-                                        LocaleKeys.ourMedicalServicesSoon.tr(),
-                                        style: CustomTextStyle.bold_20
-                                            .copyWith(
-                                            color: AppColors
-                                                .whiteColor),
+                                        L10n.tr().ourMedicalServicesSoon,
+                                        style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor),
                                       ),
                                     ],
                                   ))),
-                          const Align(
-                            alignment: Alignment.topRight,
-                            child: CloseButton(),
-                          )
-
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ));
+                              const Align(
+                                alignment: Alignment.topRight,
+                                child: CloseButton(),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ));
           // _showBottomSheet();
         },
         icon: CustomNavBarItem(
           iconPath: Assets.iconsMedical,
-          title: LocaleKeys.medicalSection.tr(),
+          title: L10n.tr().medicalSection,
           isActive: false,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
@@ -300,7 +266,7 @@ class _MainPageState extends State<MainPage> {
       PersistentBottomNavBarItem(
         icon: CustomNavBarItem(
           iconPath: AssetsManager.profile,
-          title: LocaleKeys.profile.tr(),
+          title: L10n.tr().profile,
           isActive: _selectedIndex == 3,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
@@ -351,8 +317,7 @@ class _MainPageState extends State<MainPage> {
                 centerTitle: true,
                 title: Text(
                   titles[_selectedIndex],
-                  style:
-                      CustomTextStyle.semiBold_14.copyWith(color: Colors.white),
+                  style: CustomTextStyle.semiBold_14.copyWith(color: Colors.white),
                 ),
               ),
         body: PersistentTabView(
@@ -370,8 +335,7 @@ class _MainPageState extends State<MainPage> {
           stateManagement: false,
           screens: _widgetOptions,
           items: _navBarsItems,
-          bottomScreenMargin:
-              _selectedIndex == 0 ? 0 : MediaQuery.of(context).padding.top,
+          bottomScreenMargin: _selectedIndex == 0 ? 0 : MediaQuery.of(context).padding.top,
 
           backgroundColor: AppColors.backGround,
           handleAndroidBackButtonPress: false,
@@ -388,8 +352,8 @@ class _MainPageState extends State<MainPage> {
             print("index :$index");
             // final user = context.read<AuthenticationBloc>().currentUser;
             // setState(() {
-              print("tapped");
-              _onItemTapped(index);
+            print("tapped");
+            _onItemTapped(index);
             // });
           },
           decoration: const NavBarDecoration(
@@ -434,8 +398,7 @@ class CustomNavBarItem extends StatelessWidget {
           iconPath,
           color: isActive ? activeColor : inactiveColor,
         ),
-        const SizedBox(
-            height: 4), // Adjust this value for spacing between icon and text
+        const SizedBox(height: 4), // Adjust this value for spacing between icon and text
         Text(
           title,
           style: TextStyle(

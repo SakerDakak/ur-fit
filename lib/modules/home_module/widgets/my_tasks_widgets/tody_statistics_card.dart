@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/home_module/widgets/my_tasks_widgets/nutrition_and_calories.dart';
 import 'package:urfit/modules/home_module/widgets/my_tasks_widgets/sleep_water_training_statistics.dart';
 import 'package:urfit/modules/home_module/widgets/my_tasks_widgets/stacked_circular_progress_bar.dart';

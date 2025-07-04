@@ -1,15 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/edit_weight_bottom_sheet.dart';
 
-import '../../../../core/utils/service_locator.dart';
-import '../../../../generated/locale_keys.g.dart';
+import '../../../../service_locator.dart';
 
 class CurrentWeightCard extends StatelessWidget {
   const CurrentWeightCard({super.key});
@@ -35,7 +35,7 @@ class CurrentWeightCard extends StatelessWidget {
             child: Row(
               children: [
                 WeightInfoItem(
-                  title: LocaleKeys.currentWeight.tr(),
+                  title: L10n.tr().currentWeight,
                   svgIconPath: Assets.iconsWeightIcon,
                   weight: user?.currentWeight?.toDouble() ?? 0,
                 ),
@@ -47,7 +47,7 @@ class CurrentWeightCard extends StatelessWidget {
                   ),
                 ),
                 WeightInfoItem(
-                  title: LocaleKeys.goal.tr(),
+                  title: L10n.tr().goal,
                   svgIconPath: Assets.iconsFlag,
                   weight: user?.targetWeight?.toDouble() ?? 0,
                 ),
@@ -61,7 +61,7 @@ class CurrentWeightCard extends StatelessWidget {
             child: TextButton(
               onPressed: () => _editWeight(context),
               child: Text(
-                LocaleKeys.updateWeight.tr(),
+                L10n.tr().updateWeight,
                 style: CustomTextStyle.regular_14.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.w700,
@@ -136,7 +136,7 @@ class WeightInfoItem extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  LocaleKeys.kg.tr(),
+                  L10n.tr().kg,
                   style: CustomTextStyle.regular_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w600,

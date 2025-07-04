@@ -1,11 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/account_info.dart';
@@ -14,7 +14,7 @@ import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/del
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/logout_dialog.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/settings_tile.dart';
 
-import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
     final user = context.read<AuthenticationBloc>().currentUser;
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LocaleKeys.settings.tr()),
+        title:  Text(L10n.tr().settings),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
           // change password
           SettingsTile(
             onTap: () => GoRouter.of(context).push(ChangePasswordScreen.route),
-            title: LocaleKeys.resetPassword.tr(),
+            title: L10n.tr().resetPassword,
             svgIconPath: Assets.iconsPassword,
           ),
 
@@ -67,7 +67,7 @@ class SettingsScreen extends StatelessWidget {
           // logout
           SettingsTile(
             onTap: () => _logout(context),
-            title: LocaleKeys.logout.tr(),
+            title: L10n.tr().logout,
             svgIconPath: Assets.iconsLogout,
           ),
 
@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
           // delete account
           SettingsTile(
             onTap: () => _deleteAccount(context),
-            title: LocaleKeys.deleteAccount.tr(),
+            title: L10n.tr().deleteAccount,
             svgIconPath: Assets.iconsDelete,
           ),
           const SizedBox(height: 16),

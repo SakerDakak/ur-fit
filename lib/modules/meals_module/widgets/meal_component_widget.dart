@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/assets_manager.dart';
+import '../../../core/presentation/assets/assets_manager.dart';
 import '../data/models/meal_details_model.dart';
 import 'filter_title_widget.dart';
 import 'meal_component_item.dart';

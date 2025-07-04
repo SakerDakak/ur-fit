@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/style/fonts.dart';
+import '../../../core/presentation/assets/assets_manager.dart';
+import '../../../core/presentation/style/fonts.dart';
 
 class MealProperties extends StatelessWidget {
   final int readyInMinutes ;

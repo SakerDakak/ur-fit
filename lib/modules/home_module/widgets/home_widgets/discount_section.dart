@@ -1,11 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../../subscription_module/data/models/package_model.dart';
@@ -23,14 +23,14 @@ class DiscountSection extends StatelessWidget {
           TextSpan(
             children: [
               TextSpan(
-                text: LocaleKeys.youCanGet.tr(),
+                text: L10n.tr().youCanGet,
                 style: CustomTextStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
                   color: AppColors.fontColor,
                 ),
               ),
               TextSpan(
-                text: LocaleKeys.yourPerfectBody.tr(),
+                text: L10n.tr().yourPerfectBody,
                 style: CustomTextStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
                   color: Theme.of(context).colorScheme.primary,
@@ -124,7 +124,7 @@ class DiscountSection extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: '${LocaleKeys.discountOnYourFirstPlan.tr()}\n',
+                              text: '${L10n.tr().discountOnYourFirstPlan}\n',
                               style: CustomTextStyle.semiBold_16.copyWith(
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.fontColor,
@@ -139,7 +139,7 @@ class DiscountSection extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: LocaleKeys.customizedForYou.tr(),
+                              text: L10n.tr().customizedForYou,
                               style: CustomTextStyle.semiBold_16.copyWith(
                                 fontWeight: FontWeight.w700,
                                 color: Theme.of(context).colorScheme.primary,
@@ -164,7 +164,7 @@ class DiscountSection extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: LocaleKeys.dontBeLate.tr(),
+                              text: L10n.tr().dontBeLate,
                               style: CustomTextStyle.regular_14.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.fontColor,
@@ -179,7 +179,7 @@ class DiscountSection extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: LocaleKeys.subscribeNow.tr(),
+                              text: L10n.tr().subscribeNow,
                               style: CustomTextStyle.semiBold_14.copyWith(
                                 decoration: TextDecoration.underline,
                                 shadows: [

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../core/shared/widgets/calories_indicator.dart';
-import '../../../../core/style/colors.dart';
-import '../../../../core/style/fonts.dart';
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/constants.dart';
+import '../../../../core/presentation/assets/app_assets.dart';
+import '../../../../core/presentation/style/colors.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/utils/constants.dart';
+import '../../../../core/presentation/views/widgets/calories_indicator.dart';
 import '../what_ur_body_need_section.dart';
 
 class WhatUrBodyNeedsShimmer extends StatelessWidget {

@@ -1,18 +1,18 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/shared/widgets/compact_form_field.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/profile_module/screens/otp_screen.dart';
 
-import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChangeEmailScreen extends StatelessWidget {
   const ChangeEmailScreen({super.key});
@@ -24,7 +24,7 @@ class ChangeEmailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LocaleKeys.changeEmail.tr()),
+        title:  Text(L10n.tr().changeEmail),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -36,7 +36,7 @@ class ChangeEmailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            LocaleKeys.changeEmailPhrase.tr(),
+            L10n.tr().changeEmailPhrase,
             textAlign: TextAlign.center,
             style: CustomTextStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
@@ -44,8 +44,8 @@ class ChangeEmailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           CompactTextFormField(
-            title: LocaleKeys.email.tr(),
-            hintText: LocaleKeys.email.tr(),
+            title: L10n.tr().email,
+            hintText: L10n.tr().email,
             initialValue: user?.email.toString(),
             padding: EdgeInsets.zero,
             borderColor: AppColors.strockColor,
@@ -53,7 +53,7 @@ class ChangeEmailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           CustomElevatedButton(
-            text: LocaleKeys.confirm.tr(),
+            text: L10n.tr().confirm,
             onPressed: () => GoRouter.of(context).push(OtpScreen.route),
             padding: EdgeInsets.zero,
           ),

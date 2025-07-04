@@ -1,12 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health/health.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/shared/widgets/charts/custom_bar_chart.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/charts/custom_bar_chart.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
 
 class WaterTracking extends StatelessWidget {
@@ -26,7 +26,7 @@ class WaterTracking extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            LocaleKeys.water.tr(),
+            L10n.tr().water,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: CustomTextStyle.regular_14.copyWith(
@@ -77,7 +77,7 @@ class WaterTracking extends StatelessWidget {
             selector: (state) => state.totalLitreOfWater,
             builder: (context, water) {
               return Text(
-                '${water} ${LocaleKeys.litre.tr()}',
+                '${water} ${L10n.tr().litre}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: CustomTextStyle.regular_14.copyWith(

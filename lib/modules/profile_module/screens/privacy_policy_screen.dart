@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/constants.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 
-import '../../../core/utils/enums.dart';
+import '../../../core/presentation/utils/enums.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key, required this.pageKey});

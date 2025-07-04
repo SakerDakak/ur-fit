@@ -1,13 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 import 'package:urfit/modules/profile_module/widgets/previous_plan_screen_widgets/avaerage_amount_eaten_percentage.dart';
 import 'package:urfit/modules/profile_module/widgets/previous_plan_screen_widgets/calories_and_steps.dart';
@@ -15,7 +15,7 @@ import 'package:urfit/modules/profile_module/widgets/previous_plan_screen_widget
 import 'package:urfit/modules/profile_module/widgets/previous_plan_screen_widgets/plan_summary.dart';
 import 'package:urfit/modules/profile_module/widgets/previous_plan_screen_widgets/targeted_muscles.dart';
 
-import '../../../core/utils/enums.dart';
+import '../../../core/presentation/utils/enums.dart';
 
 class PreviousPlanScreen extends StatelessWidget {
   const PreviousPlanScreen({super.key});
@@ -26,7 +26,7 @@ class PreviousPlanScreen extends StatelessWidget {
     context.read<SettingCubit>().getPlanHistory();
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LocaleKeys.previousPlan.tr()),
+        title:  Text(L10n.tr().previousPlan),
       ),
       body: BlocBuilder<SettingCubit, SettingState>(
         buildWhen: (p, c) => p.getPlanHistoryState != c.getPlanHistoryState || p.planHistoryModel != c.planHistoryModel,
@@ -67,7 +67,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   Text(
-                    LocaleKeys.congratulationsYouHaveDoneAGreatWork.tr(),
+                    L10n.tr().congratulationsYouHaveDoneAGreatWork,
                     style: CustomTextStyle.bold_14.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -87,7 +87,7 @@ class PreviousPlanScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        LocaleKeys.summeryOfYourPreviousPlan.tr(),
+                        L10n.tr().summeryOfYourPreviousPlan,
                         style: CustomTextStyle.regular_14,
                       )
                     ],
@@ -102,7 +102,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   // Average amount eaten at meals
                   Text(
-                    LocaleKeys.averageNutritionGained.tr(),
+                    L10n.tr().averageNutritionGained,
                     style: CustomTextStyle.bold_14,
                   ),
 
@@ -117,7 +117,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   // The rate of what was done in the exercises
                   Text(
-                    LocaleKeys.TotalExerciseBurned.tr(),
+                    L10n.tr().totalExerciseBurned,
                     style: CustomTextStyle.bold_14,
                   ),
 
@@ -134,7 +134,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   // The rate of what was done in the exercises
                   Text(
-                    LocaleKeys.averageAchievedInExercise.tr(),
+                    L10n.tr().averageAchievedInExercise,
                     style: CustomTextStyle.bold_14,
                   ),
 
@@ -146,7 +146,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   // action buttons
                   CustomElevatedButton(
-                    text: LocaleKeys.renewSubscription.tr(),
+                    text: L10n.tr().renewSubscription,
                     padding: EdgeInsets.zero,
                     onPressed: () {},
                   ),

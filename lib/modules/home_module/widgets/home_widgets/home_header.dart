@@ -1,13 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/shared/widgets/custom_image_view.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_image_view.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
-import '../../../../core/assets_manager.dart';
-import '../../../../core/style/fonts.dart';
+import '../../../../core/presentation/assets/assets_manager.dart';
+import '../../../../core/presentation/style/fonts.dart';
 
 class HomeHeader extends StatelessWidget {
   final bool isGuest;
@@ -30,7 +30,7 @@ class HomeHeader extends StatelessWidget {
               //   alignment: Alignment.topCenter,
               // ),
               Spacer(),
-              Text('${LocaleKeys.homeWelcome.tr()}${isGuest ? LocaleKeys.guest.tr() : user?.name}',
+              Text('${L10n.tr().homeWelcome}${isGuest ? L10n.tr().guest : user?.name}',
                   style: CustomTextStyle.semiBold_14
                       .copyWith(color: Colors.white)),
               SizedBox(width: 8.px),

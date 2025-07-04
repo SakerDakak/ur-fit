@@ -1,12 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/assets_manager.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
+import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
 
-import '../../../../core/shared/widgets/custom_image_view.dart';
-import '../../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import '../../../../core/presentation/views/widgets/custom_image_view.dart';
+import '../../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class AccountInfo extends StatelessWidget {
   const AccountInfo({super.key});

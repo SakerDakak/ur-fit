@@ -1,60 +1,46 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/shared/appCubit/app_cubit.dart';
-import 'package:urfit/core/style/app_theme.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/utils/bloc_observer.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/app_theme.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/utils/bloc_observer.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
-import 'core/api/api_client.dart';
-import 'core/const.dart';
-import 'core/routes/routes.dart';
-import 'core/utils/hive_services.dart';
-import 'core/utils/pref_utils.dart';
-import 'core/utils/service_locator.dart';
+import 'core/presentation/assets/const.dart';
+import 'core/presentation/routes/routes.dart';
+import 'core/presentation/utils/hive_services.dart';
+import 'core/presentation/utils/pref_utils.dart';
 import 'firebase_options.dart';
-import 'generated/codegen_loader.g.dart';
-import 'modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
-import 'modules/auth_module/bloc/login_bloc.dart';
-import 'modules/auth_module/onboarding/controller/onboarding_cubit.dart';
-import 'modules/auth_module/splash_screen/presentation/manager/check_version_cubit.dart';
+import 'modules/auth/onboarding/controller/onboarding_cubit.dart';
+import 'modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
+import 'modules/auth/persentation/bloc/login_bloc.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
+import 'service_locator.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  ServiceLocator().init();
-  await PrefUtils().init();
-  await EasyLocalization.ensureInitialized();
+  await init();
   await HiveServices().init();
   await HiveServices().register();
   await HiveServices().openBoxes();
-  await sl<DioServices>().init();
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
     DevicePreview(
-      enabled: false, // Disable in release mode
-      builder: (context) => EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('ar')],
-        path: 'resources/langs',
-        fallbackLocale: const Locale('ar'),
-        startLocale: const Locale('ar'),
-        assetLoader: const CodegenLoader(),
-        child: const MyApp(),
-      ),
-    ),
+        enabled: false, // Disable in release mode
+        builder: (context) => const MyApp()),
   );
 }
 
@@ -76,23 +62,16 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => sl<LoginBloc>(),
         ),
         BlocProvider(
-          create: (BuildContext context) =>
-              CheckVersionCubit(sl<DioServices>()),
-        ),
-        BlocProvider(
           create: (BuildContext context) => sl<HealthCubit>(),
         ),
         BlocProvider(create: (BuildContext context) => sl<OnboardingCubit>()),
         BlocProvider(create: (BuildContext context) => sl<MealsCubit>()),
         BlocProvider(create: (BuildContext context) => sl<WorkoutCubit>()),
         BlocProvider(create: (BuildContext context) => sl<SettingCubit>()),
-
         BlocProvider(create: (BuildContext context) => sl<SubscriptionCubit>()),
-
       ],
       child: Sizer(
-        builder: (BuildContext context, Orientation orientation,
-            ScreenType screenType) {
+        builder: (BuildContext context, Orientation orientation, ScreenType screenType) {
           return GlobalLoaderOverlay(
             overlayColor: Colors.transparent,
             useDefaultLoading: true,
@@ -114,8 +93,7 @@ class MyApp extends StatelessWidget {
 
             //cdcd
             child: MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: TextScaler.linear(1.0)),
+              data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
               child: BlocBuilder<AppCubit, AppState>(
                 // buildWhen: (previous, current) {
                 //   return previous != current;
@@ -124,18 +102,16 @@ class MyApp extends StatelessWidget {
                   // PrefUtils().setLang("ar");
                   final String? lang = PrefUtils().getLang();
                   print('lang: $lang');
-                  EasyLocalization.of(context)
-                      ?.setLocale(Locale(lang ?? state.currentLocal));
                   return MaterialApp.router(
                     // navigatorKey: navigatorKey,
                     // routeInformationParser: MyRouteInformationParser(),
                     // routerDelegate: MyRouterDelegate(),
-                    routerConfig: Routes.router,
-                    localizationsDelegates: context.localizationDelegates,
-                    supportedLocales: context.supportedLocales,
-                    locale: context.locale,
+                    routerConfig: AppRouter.appRouter,
+                    localizationsDelegates: L10n.localizationDelegates,
+                    supportedLocales: L10n.supportedLocales,
+                    locale: Locale(lang ?? 'ar'),
                     scaffoldMessengerKey: rootScaffoldKey,
-                    title: LocaleKeys.app_name.tr(),
+                    title: "URFIT",
                     debugShowCheckedModeBanner: false,
                     themeMode: ThemeMode.dark,
                     theme: AppTheme.darkTheme(state.isFemale),

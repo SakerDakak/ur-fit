@@ -1,30 +1,27 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gif/gif.dart';
+import 'package:intl/intl.dart';
 import 'package:urfit/modules/workout_module/data/model/exercise_history_data.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
 
-import '../../../core/utils/enums.dart';
-import '../../../core/utils/service_locator.dart';
-import '../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
-import '../../home_module/data/models/meal_plan_model.dart';
-
-part 'workout_state.dart';
+import '../../../core/presentation/utils/enums.dart';
+import '../../../service_locator.dart';
+import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 part 'workout_cubit.freezed.dart';
+part 'workout_state.dart';
 
 class WorkoutCubit extends Cubit<WorkoutState> {
-  final BaseWorkoutRepo _repo;
+  final WorkoutRepo _repo;
 
   WorkoutCubit(this._repo) : super(const WorkoutState());
 
   generateWorkOutPlan() async {
     emit(state.copyWith(getWorkOutPlanState: RequestState.loading));
 
-    final endDate =
-        DateFormat('yyyy-MM-dd').format(DateTime.now().add(Duration(days: 8)));
+    final endDate = DateFormat('yyyy-MM-dd').format(DateTime.now().add(Duration(days: 8)));
     print("endDate $endDate");
     var result = await _repo.generateWorkOutPlan(endDate: endDate);
 
@@ -52,21 +49,22 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   }
 
   getWorkOutPlanByDate(String date) async {
-   await getWorkOutPlan();
+    await getWorkOutPlan();
     final plan = state.allPlans.firstWhere((element) => element.startDate == date);
 
-   num totalCaloriesForAllWeek = 0;
-   num totalTimeForAllWeek = 0;
-   num totalSetsForAllWeek = 0;
+    num totalCaloriesForAllWeek = 0;
+    num totalTimeForAllWeek = 0;
+    num totalSetsForAllWeek = 0;
     for (var day in plan.planDays) {
       totalCaloriesForAllWeek += day.caloriesBurned * day.exercises.length;
       totalTimeForAllWeek += day.timePerExercise * day.exercises.length;
       totalSetsForAllWeek += day.sets * day.exercises.length;
     }
 
-   return ExerciseHistoryData(calories: totalCaloriesForAllWeek, times: totalTimeForAllWeek, sets: totalSetsForAllWeek);
-
+    return ExerciseHistoryData(
+        calories: totalCaloriesForAllWeek, times: totalTimeForAllWeek, sets: totalSetsForAllWeek);
   }
+
   getWorkOutPlan() async {
     emit(state.copyWith(getWorkOutPlanState: RequestState.loading));
 
@@ -106,74 +104,75 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   selectDay(int day) {
     emit(state.copyWith(selectedDay: day));
   }
+
   WorkoutDay? getPlanForToday() {
     final plan = getCurrentWorkOutPlan();
-     int day = DateTime.now().weekday;
-     print("plan selectedDay : ${state.selectedDay}");
-    if(state.selectedDay != 0) {
+    int day = DateTime.now().weekday;
+    print("plan selectedDay : ${state.selectedDay}");
+    if (state.selectedDay != 0) {
       day = state.selectedDay;
     }
     print("day : $day");
-    if(plan == null) {
+    if (plan == null) {
       return null;
     }
     switch (day) {
       case 1:
-        if (plan!.planDays.where((element) =>
-                element.day == "Monday" || element.day == "الإثنين").toList().isNotEmpty) {
-          return plan?.planDays.firstWhere(
-              (element) => element.day == "Monday" || element.day == "الإثنين");
+        if (plan!.planDays
+            .where((element) => element.day == "Monday" || element.day == "الإثنين")
+            .toList()
+            .isNotEmpty) {
+          return plan?.planDays.firstWhere((element) => element.day == "Monday" || element.day == "الإثنين");
         } else {
           return plan.planDays.first;
         }
       case 2:
-        if (plan!.planDays.where((element) =>
-                element.day == "Tuesday" || element.day == "الثلاثاء").toList().isNotEmpty) {
-          return plan.planDays.firstWhere((element) =>
-              element.day == "Tuesday" || element.day == "الثلاثاء");
+        if (plan!.planDays
+            .where((element) => element.day == "Tuesday" || element.day == "الثلاثاء")
+            .toList()
+            .isNotEmpty) {
+          return plan.planDays.firstWhere((element) => element.day == "Tuesday" || element.day == "الثلاثاء");
         } else {
           return plan.planDays.first;
         }
       case 3:
-        if (plan!.planDays.where((element) =>
-                element.day == "Wednesday" || element.day == "الأربعاء").toList().isNotEmpty) {
-          return plan?.planDays.firstWhere((element) =>
-              element.day == "Wednesday" || element.day == "الأربعاء");
+        if (plan!.planDays
+            .where((element) => element.day == "Wednesday" || element.day == "الأربعاء")
+            .toList()
+            .isNotEmpty) {
+          return plan?.planDays.firstWhere((element) => element.day == "Wednesday" || element.day == "الأربعاء");
         } else {
           return plan.planDays.first;
         }
       case 4:
-        if (plan!.planDays.where((element) =>
-                element.day == "Thursday" || element.day == "الخميس").toList().isNotEmpty) {
-          return plan?.planDays.firstWhere(
-              (element) => element.day == "Thursday" || element.day == "الخميس");
+        if (plan!.planDays
+            .where((element) => element.day == "Thursday" || element.day == "الخميس")
+            .toList()
+            .isNotEmpty) {
+          return plan?.planDays.firstWhere((element) => element.day == "Thursday" || element.day == "الخميس");
         } else {
           return plan.planDays.first;
         }
       case 5:
-        if (plan!.planDays.where((element) =>
-                element.day == "Friday" || element.day == "الجمعة").toList().isNotEmpty) {
-          return plan?.planDays.firstWhere(
-              (element) => element.day == "Friday" || element.day == "الجمعة");
+        if (plan!.planDays.where((element) => element.day == "Friday" || element.day == "الجمعة").toList().isNotEmpty) {
+          return plan?.planDays.firstWhere((element) => element.day == "Friday" || element.day == "الجمعة");
         } else {
           return plan.planDays.first;
         }
       case 6:
-        if (plan!.planDays.where((element) =>
-                element.day == "Saturday" || element.day == "السبت").toList().isNotEmpty) {
-          return plan.planDays.firstWhere(
-              (element) => element.day == "Saturday" || element.day == "السبت");
+        if (plan!.planDays
+            .where((element) => element.day == "Saturday" || element.day == "السبت")
+            .toList()
+            .isNotEmpty) {
+          return plan.planDays.firstWhere((element) => element.day == "Saturday" || element.day == "السبت");
         } else {
           return plan.planDays.first;
         }
       case 7:
-        print("Sunday : ${plan?.planDays.where((element) =>
-        element.day == "Sunday" || element.day == "الأحد").toList().
-            isNotEmpty}");
-        if (plan!.planDays.where((element) =>
-                element.day == "Sunday" || element.day == "الأحد").toList().isNotEmpty) {
-          return plan.planDays.firstWhere(
-              (element) => element.day == "Sunday" || element.day == "الأحد");
+        print(
+            "Sunday : ${plan?.planDays.where((element) => element.day == "Sunday" || element.day == "الأحد").toList().isNotEmpty}");
+        if (plan!.planDays.where((element) => element.day == "Sunday" || element.day == "الأحد").toList().isNotEmpty) {
+          return plan.planDays.firstWhere((element) => element.day == "Sunday" || element.day == "الأحد");
         } else {
           return plan.planDays.first;
         }
@@ -190,7 +189,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   playTraining(GifController controller) {
     emit(state.copyWith(isPlaying: true));
     controller.forward().then((value) {
-      if(state.isPlaying != false) {
+      if (state.isPlaying != false) {
         print("isPlaying 1 : ${state.isPlaying}");
 
         return controller.repeat();
@@ -198,30 +197,33 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     });
     print("isPlaying cubit : ${state.isPlaying}");
   }
+
   stopTraining(GifController controller) {
     emit(state.copyWith(isPlaying: false));
     print("stopTimer Cubit : ${state.isPlaying}");
     controller.stop();
-
   }
 
   updateProgress(int value) {
     emit(state.copyWith(progressValue: value));
   }
+
   initSets() {
-    Map<int,int> sets = {};
+    Map<int, int> sets = {};
     getPlanForToday()?.exercises.forEach((e) {
-      return sets.addAll({e.id : getPlanForToday()!.sets});
+      return sets.addAll({e.id: getPlanForToday()!.sets});
     });
     emit(state.copyWith(remainingSets: sets));
   }
-  updateRemainingSets(int excerciseId ) async {
+
+  updateRemainingSets(int excerciseId) async {
     await calculateExeceise(exercisePlanId: excerciseId);
     final sets = {...state.remainingSets};
     sets[excerciseId] = sets[excerciseId]! - 1;
     emit(state.copyWith(remainingSets: sets));
   }
-  doneTraining(int excerciseId ) {
+
+  doneTraining(int excerciseId) {
     final remainingSets = getPlanForToday()?.sets;
     final sets = {...state.remainingSets};
     sets[excerciseId] = remainingSets!;
@@ -232,10 +234,9 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     final sets = 1;
     final calories = getPlanForToday()!.caloriesBurned * sets;
     final times = getPlanForToday()!.timePerExercise * sets;
-    final response = await _repo.calculateExercise(exercisePlanId: exercisePlanId, calories: calories, times: times, sets: sets);
+    final response =
+        await _repo.calculateExercise(exercisePlanId: exercisePlanId, calories: calories, times: times, sets: sets);
 
-    response.fold((l) {} , (r) {
-
-    });
+    response.fold((l) {}, (r) {});
   }
 }

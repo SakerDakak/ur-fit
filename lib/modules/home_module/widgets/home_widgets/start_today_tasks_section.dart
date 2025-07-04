@@ -1,14 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
 
-import '../../../../generated/locale_keys.g.dart';
 
 class StartTodyTasksSection extends StatelessWidget {
   const StartTodyTasksSection({super.key});
@@ -92,7 +92,7 @@ class StartTodyTasksSection extends StatelessWidget {
 
             //
             Text(
-              LocaleKeys.today.tr(),
+              L10n.tr().today,
               style: CustomTextStyle.semiBold_16.copyWith(
                 fontWeight: FontWeight.w700,
                 color: AppColors.fontColor,
@@ -105,7 +105,7 @@ class StartTodyTasksSection extends StatelessWidget {
 
         // desc
         Text(
-          LocaleKeys.startDailyPlanCustomizedForYou.tr(),
+          L10n.tr().startDailyPlanCustomizedForYou,
           style: CustomTextStyle.semiBold_14,
         ),
 
@@ -113,7 +113,7 @@ class StartTodyTasksSection extends StatelessWidget {
 
         // start button
         CustomElevatedButton(
-          text: LocaleKeys.startYourExercise.tr(),
+          text: L10n.tr().startYourExercise,
           onPressed: () => GoRouter.of(context).push(MyTasksScreen.route),
           padding: EdgeInsets.zero,
         )

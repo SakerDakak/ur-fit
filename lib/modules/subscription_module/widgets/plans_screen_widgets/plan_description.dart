@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
 
 import '../../data/models/package_model.dart';
 

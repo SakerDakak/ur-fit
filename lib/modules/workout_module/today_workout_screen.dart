@@ -4,15 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/assets_manager.dart';
-import 'package:urfit/core/shared/widgets/custom_appbar.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/fonts.dart';
+import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 
-import '../../core/style/colors.dart';
+import '../../core/presentation/style/colors.dart';
 import '../meals_module/widgets/filter_title_widget.dart';
 
 class TodayWorkoutScreen extends StatelessWidget {

@@ -1,16 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/shared/widgets/compact_form_field.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
-import '../../../auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import '../../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChangeNameSheet extends StatelessWidget {
   const ChangeNameSheet({super.key});
@@ -75,7 +75,7 @@ class ChangeNameSheet extends StatelessWidget {
 
             // title
             Text(
-              LocaleKeys.changeName.tr(),
+              L10n.tr().changeName,
               style: CustomTextStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -86,7 +86,7 @@ class ChangeNameSheet extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
-                LocaleKeys.fullName.tr(),
+                L10n.tr().fullName,
                 style: CustomTextStyle.regular_14.copyWith(
                   color: AppColors.selectedFont,
                 ),
@@ -97,7 +97,7 @@ class ChangeNameSheet extends StatelessWidget {
 
             // name text field
             CompactTextFormField(
-              hintText: LocaleKeys.fullName.tr(),
+              hintText: L10n.tr().fullName,
               initialValue: user?.name.toString(),
               padding: EdgeInsets.zero,
               borderColor: AppColors.strockColor,
@@ -110,7 +110,7 @@ class ChangeNameSheet extends StatelessWidget {
 
             // confirm button
             CustomElevatedButton(
-              text: LocaleKeys.confirm.tr(),
+              text: L10n.tr().confirm,
               onPressed: () {},
               padding: EdgeInsets.zero,
             ),

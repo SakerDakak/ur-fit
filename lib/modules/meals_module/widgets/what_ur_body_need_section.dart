@@ -1,15 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/shared/appCubit/app_cubit.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/app_assets.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/core/shared/widgets/calories_indicator.dart';
-import 'package:urfit/core/shared/widgets/custom_circular_percent_indicator.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
+import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/calories_indicator.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_circular_percent_indicator.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 
 class WhatUrBodyNeedSection extends StatelessWidget {
@@ -33,7 +33,7 @@ class WhatUrBodyNeedSection extends StatelessWidget {
             SvgPicture.asset(Assets.iconsSpoonFork, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
             const SizedBox(width: 8),
             Text(
-              LocaleKeys.whatYourBodyNeeds.tr(),
+              L10n.tr().whatYourBodyNeeds,
               style: CustomTextStyle.regular_14.copyWith(
                 fontWeight: FontWeight.w700,
                 color: AppColors.fontColor,
@@ -57,7 +57,7 @@ class WhatUrBodyNeedSection extends StatelessWidget {
               // calories
               CaloriesIndicator(
                 calories: day!.nutrients.calories,
-                title: LocaleKeys.calories.tr(),
+                title: L10n.tr().calories,
               ),
 
               SizedBox(height: 16),
@@ -71,15 +71,15 @@ class WhatUrBodyNeedSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ProgressItem(
-                        title: LocaleKeys.calories.tr(),
+                        title: L10n.tr().calories,
                         percent: (state.gainedCalories / day.nutrients.calories),
                       ),
                       ProgressItem(
-                        title: LocaleKeys.proteins.tr(),
+                        title: L10n.tr().proteins,
                         percent: (state.gainedProtein / day.nutrients.protein),
                       ),
                       ProgressItem(
-                        title: LocaleKeys.carbs.tr(),
+                        title: L10n.tr().carbs,
                         percent: (state.gainedCarb / day.nutrients.carbohydrates),
                       ),
                     ],
@@ -125,7 +125,7 @@ class ProgressItem extends StatelessWidget {
 
           //
           Text(
-            LocaleKeys.unit.tr(),
+            L10n.tr().unit,
             style: CustomTextStyle.semiBold_14,
           ),
         ],

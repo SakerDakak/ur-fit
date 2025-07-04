@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:urfit/core/assets_manager.dart';
+import 'package:urfit/core/presentation/assets/assets_manager.dart';
 
-import '../../../../core/style/colors.dart';
-import '../../../../core/style/fonts.dart';
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/constants.dart';
+import '../../../../core/presentation/assets/app_assets.dart';
+import '../../../../core/presentation/style/colors.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/utils/constants.dart';
 import '../exercises_item.dart';
 
 class StartWorkoutCardShimmer extends StatelessWidget {

@@ -1,0 +1,50 @@
+import 'package:urfit/core/presentation/assets/app_assets.dart';
+
+class AssetsManager {
+  static String logo = Assets.iconsLogoLarg;
+  static String lonoMini = Assets.iconsLogo;
+  static String onboarding1 = Assets.imageOnboarding1;
+  static String onboarding2 = Assets.imageOnboarding2;
+  static String onboarding3 = Assets.imageOnboarding3;
+  static String onboarding4 = Assets.imageOnboarding4;
+  static String onboarding5 = Assets.imageOnboarding5;
+  static String onboarding6 = Assets.imageOnboarding6;
+
+  static String saudiFlag = Assets.iconsSaudiFlag;
+  static String americaFlag = Assets.iconsAmericaFlag;
+  static String yaminFlag = Assets.iconsYaminFlag;
+  static String home = Assets.iconsHome;
+  static String workout = Assets.iconsWorkout;
+  static String meals = Assets.iconsMeals;
+  static String profile = Assets.iconsProfile;
+  static String profileImage = Assets.imageProfileImage;
+  static String notification = Assets.iconsNotifications;
+  static String apple = Assets.iconsApple;
+  static String facebook = Assets.iconsFacebook;
+  static String google = Assets.iconsGoogle;
+  static String mealCategory = Assets.iconsMealCategory;
+  static String filter = Assets.iconsFilter;
+  static String mealDummy = Assets.imageMealDummy;
+  static String time = Assets.iconsTime;
+  static String calories = Assets.iconsCalories;
+  static String cooking = Assets.iconsCooking;
+  static String tomatoDummy = Assets.imageTomatoDummy;
+  static String trainingDummy = Assets.imageTraining;
+  static String steps = Assets.iconsSteps;
+  static String goalsNutrition = Assets.imageGoalsNutrition;
+  static String goalsGoodLook = Assets.imageGoalsGoodlook;
+  static String goalsBuildMuscles = Assets.imageGoalsBuildmuscles;
+  static String goalsFitness = Assets.imageGoalsFitness;
+  static String verifyOtp = Assets.iconsVerifyOtp;
+  static String msg = Assets.iconsMsg;
+  static String emailLarge = Assets.iconsEmailLarge;
+  static String onboarding2_1 = Assets.imageOnboarding21;
+  static String onboarding2_2 = Assets.imageOnboarding22;
+  static String onboarding2_3 = Assets.imageOnboarding23;
+  static String medical = Assets.imageMedical;
+  static String maleGender = Assets.imageMaleGender;
+  static String femaleGender = Assets.imageFemaleGender;
+  static String noOfDailyMeals = Assets.imageNumberOfDailyMeals;
+  static String bodyParts = Assets.imageBodyPart;
+  static String foodVarient = Assets.imageFoodVariant;
+}

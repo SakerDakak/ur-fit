@@ -1,17 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/shared/widgets/custom_buttons.dart';
-import 'package:urfit/core/style/colors.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/core/utils/constants.dart';
-import 'package:urfit/generated/locale_keys.g.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
-import 'package:urfit/modules/auth_module/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/auth_module/personal_info/data/models/user_goals_model.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/auth/personal_info/data/models/user_goals_model.dart';
 
-import '../../../../core/shared/widgets/goal_section.dart';
+import '../../../../core/presentation/views/widgets/goal_section.dart';
 
 class GoalsPage extends StatelessWidget {
   const GoalsPage({super.key});
@@ -31,7 +29,7 @@ class GoalsPage extends StatelessWidget {
           children: [
             // title
             Text(
-              LocaleKeys.whatIsyourGoals.tr(),
+              L10n.tr().whatIsyourGoals,
               style: CustomTextStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -41,7 +39,7 @@ class GoalsPage extends StatelessWidget {
 
             // goals section one
             Text(
-              LocaleKeys.sectionOne.tr(),
+              L10n.tr().sectionOne,
               style: CustomTextStyle.semiBold_14,
             ),
             const SizedBox(height: 16),
@@ -56,7 +54,7 @@ class GoalsPage extends StatelessWidget {
 
             // goals section two
             Text(
-              LocaleKeys.sectionTwo.tr(),
+              L10n.tr().sectionTwo,
               style: CustomTextStyle.semiBold_16,
             ),
 
@@ -69,7 +67,7 @@ class GoalsPage extends StatelessWidget {
 
             // continue button
             CustomElevatedButton(
-              text: LocaleKeys.continuee.tr(),
+              text: L10n.tr().continuee,
               padding: EdgeInsets.zero,
               onPressed: () => cubit.goToNextPage(),
             ),

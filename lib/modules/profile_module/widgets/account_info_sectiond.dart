@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/style/fonts.dart';
-import 'package:urfit/modules/auth_module/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
-import '../../../core/assets_manager.dart';
-import '../../../core/shared/widgets/custom_image_view.dart';
+import '../../../core/presentation/assets/assets_manager.dart';
+import '../../../core/presentation/views/widgets/custom_image_view.dart';
 
 class AccountInfo extends StatelessWidget {
   const AccountInfo({super.key});
