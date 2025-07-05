@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/modules/auth/persentation/views/forget_password_flow.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/social_media_widget.dart';
 import 'package:urfit/service_locator.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
 import '../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../bloc/authentication_bloc/authentication_bloc.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -27,16 +29,15 @@ class _LoginFormState extends State<LoginForm> {
   final email = TextEditingController();
   final password = TextEditingController();
   _login() async {
-    // LoadingHelper.startLoading();
+    LoadingHelper.startLoading();
     AppConst.latestFunctionCalled = _login;
-
     final user = await sl<AuthenticationRepo>()
         .login(email: email.text, password: password.text, remember: shouldRemember.value);
     user.fold((l) async {
       print("l.message : ${l.message}");
-      // LoadingHelper.stopLoading();
+      LoadingHelper.stopLoading();
     }, (u) async {
-      // authenticationBloc.add(GetUserData());
+      Session().getUser();
     });
   }
 
@@ -133,7 +134,7 @@ class _LoginFormState extends State<LoginForm> {
                     Spacer(),
                     TextButton(
                         onPressed: () {
-                          context.read<AuthenticationBloc>().forgetPasswordFlow();
+                          context.push(ForgetPasswordFlow.route);
                         },
                         child: Text(
                           L10n.tr().forgetPassword,
@@ -151,9 +152,6 @@ class _LoginFormState extends State<LoginForm> {
                     if (_formKey.currentState?.validate() != true) return;
                     TextInput.finishAutofillContext(shouldSave: shouldRemember.value);
                     _login();
-                    // context
-                    //     .read<AuthenticationBloc>()
-                    //     .add(LoggedIn(token: 'token'));
                   }),
               SizedBox(
                 height: 24.px,
@@ -162,27 +160,6 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: 24.px,
               ),
-              // RichText(
-              //   text: TextSpan(
-              //       text: 'يمكنك الدخول  ',
-              //       children: [
-              //         WidgetSpan(
-              //
-              //             child: InkWell(
-              //               onTap: (){
-              //                 context.read<LoginBloc>().add(GuestLoginEvent());
-              //
-              //               },
-              //               child: Text(
-              //                 'كزائر',
-              //                 style: CustomTextStyle.semiBold_16
-              //                     .copyWith(color: Theme.of(context).colorScheme.primary),
-              //               ),
-              //             ),
-              //             alignment: PlaceholderAlignment.middle)
-              //       ],
-              //       style: CustomTextStyle.regular_16),
-              // )
             ],
           ),
         ),

@@ -25,7 +25,7 @@ class AuthenticatedWithoutSubscription extends AuthenticationState {
   const AuthenticatedWithoutSubscription();
 }
 
-class AuthenticationForgetPassword extends AuthenticationState {}
+// class AuthenticationForgetPassword extends AuthenticationState {}
 
 //Unauthenticated => search brand
 class AuthenticationUnauthenticated extends AuthenticationState {}

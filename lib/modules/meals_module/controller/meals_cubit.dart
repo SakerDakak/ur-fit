@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
 import 'package:urfit/modules/meals_module/data/models/cached_nutrition.dart';
@@ -116,7 +117,7 @@ class MealsCubit extends Cubit<MealsState> {
           getMealPlansState: RequestState.success,
           // allMeals: successData,
         ));
-        sl<AuthenticationBloc>().updateSubscription();
+        Session().getUserDataFromServer();
         // sl<AuthenticationBloc>().currentUser = ;
       },
     );

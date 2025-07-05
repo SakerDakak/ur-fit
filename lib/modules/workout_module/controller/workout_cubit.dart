@@ -2,13 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gif/gif.dart';
 import 'package:intl/intl.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/modules/workout_module/data/model/exercise_history_data.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
 
 import '../../../core/presentation/utils/enums.dart';
-import '../../../service_locator.dart';
-import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 part 'workout_cubit.freezed.dart';
 part 'workout_state.dart';
@@ -41,7 +40,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
           // allMeals: successData,
         ));
         // sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
-        sl<AuthenticationBloc>().updateSubscription();
+        Session().getUserDataFromServer();
 
         // sl<AuthenticationBloc>().currentUser = ;
       },

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 
 import '../../../../core/presentation/style/colors.dart';
@@ -44,7 +45,7 @@ class LoginBloc extends Cubit<LoginState> {
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
       LoadingHelper.stopLoading();
     }, (u) async {
-      authenticationBloc.getUserData();
+      Session().getUser();
     });
   }
 
@@ -67,11 +68,12 @@ class LoginBloc extends Cubit<LoginState> {
         errMessage: '',
       ));
 
-      if (authenticationBloc.state is AuthenticationForgetPassword) {
-        authenticationBloc.updatePasswordEvent();
-      } else {
-        authenticationBloc.getUserData();
-      }
+      /// TODO:
+      // if (authenticationBloc.state is AuthenticationForgetPassword) {
+      //   authenticationBloc.updatePasswordEvent();
+      // } else {
+      //   Session().getUser();
+      // }
     });
   }
 
@@ -326,7 +328,7 @@ class LoginBloc extends Cubit<LoginState> {
           emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
           LoadingHelper.stopLoading();
         }, (u) async {
-          authenticationBloc.getUserData();
+          await Session().getUser();
         });
       }
     } catch (error) {
@@ -352,7 +354,7 @@ void showCustomSuccessDialog(
 
           LoadingHelper.startLoading();
 
-          authenticationBloc.getUserData();
+          Session().getUser();
         },
         builder: (BuildContext context) {
           return PopScope(
@@ -361,7 +363,7 @@ void showCustomSuccessDialog(
 
               LoadingHelper.startLoading();
 
-              authenticationBloc.getUserData();
+              Session().getUser();
             },
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -396,7 +398,7 @@ void showCustomSuccessDialog(
 
                           LoadingHelper.startLoading();
 
-                          authenticationBloc.getUserData();
+                          Session().getUser();
                         },
                         style:
                             ElevatedButton.styleFrom(backgroundColor: Colors.blue, padding: const EdgeInsets.all(15)),

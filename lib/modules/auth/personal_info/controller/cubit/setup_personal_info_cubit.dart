@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
@@ -524,7 +525,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
         emit(state.copyWith(
           updatePersonalInfo: RequestState.success,
         ));
-        sl<AuthenticationBloc>().getUserData();
+        Session().getUser();
         // sl<AuthenticationBloc>().currentUser = ;
       },
     );

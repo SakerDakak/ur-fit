@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
@@ -30,13 +31,13 @@ class ActionButtons extends StatelessWidget {
                       sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage
                   ? () async {
                       await context.read<SubscriptionCubit>().getPaymentUrl();
-                      sl<AuthenticationBloc>().getUserDataFromServer();
+                      Session().getUserDataFromServer();
 
                       final url = context.read<SubscriptionCubit>().state.paymentUrl;
                       if (url == null) {
                         final package = state.packages.firstWhere(
                             (package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
-                        sl<AuthenticationBloc>().getUserDataFromServer();
+                        Session().getUserDataFromServer();
 
                         LoadingHelper.stopLoading();
                       } else {

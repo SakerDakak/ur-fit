@@ -104,7 +104,7 @@ class AppRouter {
         onExit: (context, GoRouterState state) {
           return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationAuthenticated ||
               context.read<AuthenticationBloc>().state.runtimeType == AuthenticationLoginFlow ||
-              context.read<AuthenticationBloc>().state.runtimeType == AuthenticationForgetPassword ||
+              // context.read<AuthenticationBloc>().state.runtimeType == AuthenticationForgetPassword ||
               context.read<AuthenticationBloc>().state.runtimeType == AuthenticationRegister ||
               context.read<AuthenticationBloc>().state.runtimeType == AuthenticationPersonalInfo ||
               context.read<AuthenticationBloc>().state.runtimeType != AuthenticationAsGuest;

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/subscription_module/data/models/discount_value_model.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
@@ -93,7 +93,8 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        context.read<AuthenticationBloc>().getUserDataFromServer();
+                        Session().getUserDataFromServer();
+
                         context.pop();
                       },
                       child: Text("Ok"))
