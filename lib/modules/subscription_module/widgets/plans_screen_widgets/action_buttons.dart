@@ -55,7 +55,7 @@ class ActionButtons extends StatelessWidget {
           },
           child: Text(
             L10n.tr().later,
-            style: CustomTextStyle.bold_16.copyWith(
+            style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),

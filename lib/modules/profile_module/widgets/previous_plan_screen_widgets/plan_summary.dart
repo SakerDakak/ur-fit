@@ -21,9 +21,9 @@ class PlanSummary extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: Column(
         children: [
@@ -50,7 +50,7 @@ class PlanSummary extends StatelessWidget {
               SizedBox(
                 height: 40,
                 child: VerticalDivider(
-                  color: AppColors.strockColor,
+                  color: Co.strockColor,
                 ),
               ),
 
@@ -65,7 +65,7 @@ class PlanSummary extends StatelessWidget {
               SizedBox(
                 height: 40,
                 child: VerticalDivider(
-                  color: AppColors.strockColor,
+                  color: Co.strockColor,
                 ),
               ),
 
@@ -115,8 +115,8 @@ class _DetailsItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: CustomTextStyle.regular_14.copyWith(
-                color: AppColors.fontColor,
+              style: TStyle.regular_14.copyWith(
+                color: Co.fontColor,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -125,15 +125,15 @@ class _DetailsItem extends StatelessWidget {
               children: [
                 Text(
                   value,
-                  style: CustomTextStyle.regular_14.copyWith(
-                    color: AppColors.fontColor,
+                  style: TStyle.regular_14.copyWith(
+                    color: Co.fontColor,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   valueType,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w600,
                   ),

@@ -85,13 +85,13 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
                     padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                      color: AppColors.cardColor,
-                      border: Border.all(color: AppColors.strockColor),
+                      color: Co.cardColor,
+                      border: Border.all(color: Co.strockColor),
                     ),
                     child: Center(
                       child: Text(
                         L10n.tr().seeMore,
-                        style: CustomTextStyle.bold_16.copyWith(
+                        style: TStyle.bold_16.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
                       ),
@@ -128,8 +128,8 @@ class PlanCard extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-          color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.cardColor,
-          border: isSelected ? null : Border.all(color: AppColors.strockColor),
+          color: isSelected ? Theme.of(context).colorScheme.primary : Co.cardColor,
+          border: isSelected ? null : Border.all(color: Co.strockColor),
         ),
         child: FittedBox(
           fit: BoxFit.scaleDown,
@@ -139,8 +139,8 @@ class PlanCard extends StatelessWidget {
               // subscription period
               Text(
                 package?.name ?? 'month',
-                style: CustomTextStyle.bold_16.copyWith(
-                  color: isSelected ? AppColors.selectedFont : null,
+                style: TStyle.bold_16.copyWith(
+                  color: isSelected ? Co.selectedFont : null,
                 ),
               ),
 
@@ -151,12 +151,12 @@ class PlanCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                  color: AppColors.yellow,
+                  color: Co.yellow,
                 ),
                 child: Text(
                   'افضل العروض',
-                  style: CustomTextStyle.medium_12.copyWith(
-                    color: AppColors.selectedFont,
+                  style: TStyle.medium_12.copyWith(
+                    color: Co.selectedFont,
                   ),
                 ),
               ),
@@ -184,20 +184,20 @@ class PlanCard extends StatelessWidget {
                     TextSpan(
                       text:
                           '${L10n.tr().sar}${package == null ? "59.99" : (num.parse(package!.price.toString())).toStringAsFixed(2)}',
-                      style: CustomTextStyle.bold_16.copyWith(
-                        color: isSelected ? AppColors.selectedFont : null,
+                      style: TStyle.bold_16.copyWith(
+                        color: isSelected ? Co.selectedFont : null,
                       ),
                     ),
                     TextSpan(
                       text: '/',
-                      style: CustomTextStyle.semiBold_16.copyWith(
-                        color: isSelected ? AppColors.selectedFont : null,
+                      style: TStyle.semiBold_16.copyWith(
+                        color: isSelected ? Co.selectedFont : null,
                       ),
                     ),
                     TextSpan(
                       text: L10n.tr().month,
-                      style: CustomTextStyle.regular_14.copyWith(
-                        color: isSelected ? AppColors.selectedFont : null,
+                      style: TStyle.regular_14.copyWith(
+                        color: isSelected ? Co.selectedFont : null,
                       ),
                     ),
                   ],
@@ -209,8 +209,8 @@ class PlanCard extends StatelessWidget {
               // price per weak
               Text(
                 '${L10n.tr().sar}${package == null ? "4.99" : (num.parse(package!.price.toString()) / (package!.duration * 4)).toStringAsFixed(2)}/${L10n.tr().week}',
-                style: CustomTextStyle.regular_14.copyWith(
-                  color: isSelected ? AppColors.selectedFont : null,
+                style: TStyle.regular_14.copyWith(
+                  color: isSelected ? Co.selectedFont : null,
                 ),
               ),
 

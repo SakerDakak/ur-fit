@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 28),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
 
               const SizedBox(height: 12),
@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
 
               // previous plan tile
@@ -72,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
 
               // subscription tile
@@ -84,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
 
               // settings tile
@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
 
               // privacy policy tile
@@ -107,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
               // terms_and_conditions tile
               DefaultListTile(
@@ -118,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
               // about_us
               DefaultListTile(
@@ -129,7 +129,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
               // notifications tile
               DefaultListTile(
@@ -148,7 +148,7 @@ class ProfileScreen extends StatelessWidget {
               ),
 
               const Divider(
-                color: AppColors.strockColor,
+                color: Co.strockColor,
               ),
 
               // support tile

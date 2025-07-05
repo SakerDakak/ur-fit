@@ -32,7 +32,7 @@ class ChangeNameSheet extends StatelessWidget {
               width: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                color: AppColors.cardInputStrock,
+                color: Co.cardInputStrock,
               ),
             ),
 
@@ -49,11 +49,11 @@ class ChangeNameSheet extends StatelessWidget {
                     visualDensity: VisualDensity.comfortable,
                     elevation: 4,
                     shadowColor: Colors.black,
-                    backgroundColor: AppColors.whiteColor,
+                    backgroundColor: Co.whiteColor,
                   ),
                   icon: const Icon(
                     Icons.close,
-                    color: AppColors.backGround,
+                    color: Co.backGround,
                     size: 20,
                   ),
                 ),
@@ -75,7 +75,7 @@ class ChangeNameSheet extends StatelessWidget {
             // title
             Text(
               L10n.tr().changeName,
-              style: CustomTextStyle.bold_16.copyWith(
+              style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -86,8 +86,8 @@ class ChangeNameSheet extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 L10n.tr().fullName,
-                style: CustomTextStyle.regular_14.copyWith(
-                  color: AppColors.selectedFont,
+                style: TStyle.regular_14.copyWith(
+                  color: Co.selectedFont,
                 ),
               ),
             ),
@@ -99,9 +99,9 @@ class ChangeNameSheet extends StatelessWidget {
               hintText: L10n.tr().fullName,
               initialValue: user?.name.toString(),
               padding: EdgeInsets.zero,
-              borderColor: AppColors.strockColor,
-              style: CustomTextStyle.regular_14.copyWith(
-                color: AppColors.selectedFont,
+              borderColor: Co.strockColor,
+              style: TStyle.regular_14.copyWith(
+                color: Co.selectedFont,
               ),
             ),
 

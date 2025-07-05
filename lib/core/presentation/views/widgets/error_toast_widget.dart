@@ -12,7 +12,7 @@ class ToastHelper {
       inheritThemeColors: true,
       description: Text(
         message,
-        style: CustomTextStyle.regular_12, // Your custom text style
+        style: TStyle.regular_12, // Your custom text style
       ),
       displayCloseButton: false,
       iconWidget: SvgPicture.asset(""),

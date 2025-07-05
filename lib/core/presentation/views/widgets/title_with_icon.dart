@@ -19,7 +19,7 @@ class IconWithTitle extends StatelessWidget {
             child: Text(
               'URFIT',
               textAlign: TextAlign.center,
-              style: CustomTextStyle.semiBold_40,
+              style: TStyle.semiBold_40,
               // const TextStyle(
               //   fontWeight: FontWeight.bold,
               //   fontSize: 20,

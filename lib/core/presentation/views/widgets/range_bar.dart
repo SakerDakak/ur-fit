@@ -85,7 +85,7 @@ class _RangeBarState extends State<RangeBar> {
               ),
             ),
             tooltip: FlutterSliderTooltip(
-              textStyle: CustomTextStyle.semiBold_10,
+              textStyle: TStyle.semiBold_10,
               positionOffset: FlutterSliderTooltipPositionOffset(top: -10),
               alwaysShowTooltip: widget.alwaysShowTooltip,
               custom: (value) {
@@ -98,7 +98,7 @@ class _RangeBarState extends State<RangeBar> {
                         EdgeInsets.symmetric(horizontal: 8.px, vertical: 4.px),
                     child: Text(
                       "${widget.title} ${(value as double).toStringAsFixed(0)}",
-                      style: CustomTextStyle.semiBold_14
+                      style: TStyle.semiBold_14
                           .copyWith(color: Colors.black),
                     ),
                   ),
@@ -132,7 +132,7 @@ class _RangeBarState extends State<RangeBar> {
                       EdgeInsets.symmetric(vertical: 6.px, horizontal: 6.px),
                   child: Text(
                     "${widget.minRange} ${widget.title}",
-                    style: CustomTextStyle.semiBold_14,
+                    style: TStyle.semiBold_14,
                   ),
                 ),
               ),
@@ -146,7 +146,7 @@ class _RangeBarState extends State<RangeBar> {
                       EdgeInsets.symmetric(vertical: 6.px, horizontal: 6.px),
                   child: Text(
                     "${widget.maxRange} ${widget.title}",
-                    style: CustomTextStyle.semiBold_14,
+                    style: TStyle.semiBold_14,
                   ),
                 ),
               ),

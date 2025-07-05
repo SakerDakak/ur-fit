@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 "الرجاء إدخال رقم الهاتف الخاص بك",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors.blackColor,
+                  color: Co.blackColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),

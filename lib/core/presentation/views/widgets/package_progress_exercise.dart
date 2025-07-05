@@ -50,9 +50,9 @@ class PackageProgressExercise extends StatelessWidget {
                     weekText(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: CustomTextStyle.regular_14.copyWith(
+                    style: TStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppColors.whiteColor,
+                      color: Co.whiteColor,
                     ),
                   ),
                 ),
@@ -62,9 +62,9 @@ class PackageProgressExercise extends StatelessWidget {
                     textAlign: TextAlign.end,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: CustomTextStyle.regular_14.copyWith(
+                    style: TStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: AppColors.whiteColor,
+                      color: Co.whiteColor,
                     ),
                   ),
                 ),
@@ -78,7 +78,7 @@ class PackageProgressExercise extends StatelessWidget {
               percent: weekNum / 4,
               padding: EdgeInsets.zero,
               progressColor: Theme.of(context).colorScheme.primary,
-              backgroundColor: AppColors.whiteColor,
+              backgroundColor: Co.whiteColor,
               barRadius: const Radius.circular(10),
               isRTL: L10n.isAr(context),
               animation: true,

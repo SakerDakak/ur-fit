@@ -18,9 +18,9 @@ class CurrentWeightCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: Column(
         children: [
@@ -39,7 +39,7 @@ class CurrentWeightCard extends StatelessWidget {
                 SizedBox(
                   height: 45,
                   child: VerticalDivider(
-                    color: AppColors.strockColor,
+                    color: Co.strockColor,
                     width: 40,
                   ),
                 ),
@@ -59,7 +59,7 @@ class CurrentWeightCard extends StatelessWidget {
               onPressed: () => _editWeight(context),
               child: Text(
                 L10n.tr().updateWeight,
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.w700,
                 ),
@@ -73,7 +73,7 @@ class CurrentWeightCard extends StatelessWidget {
 
   void _editWeight(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: Co.whiteColor,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -118,7 +118,7 @@ class WeightInfoItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: CustomTextStyle.regular_14.copyWith(
+              style: TStyle.regular_14.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -127,14 +127,14 @@ class WeightInfoItem extends StatelessWidget {
               children: [
                 Text(
                   weight.toStringAsFixed(0),
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   L10n.tr().kg,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w600,
                   ),

@@ -28,7 +28,7 @@ class EquipmentsPage extends StatelessWidget {
           Text(
             L10n.tr().preferredEquipment,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.bold_16.copyWith(
+            style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
@@ -77,9 +77,9 @@ class _EquipmentItem extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: AppColors.cardColor,
+          color: Co.cardColor,
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-          border: Border.all(color: AppColors.strockColor),
+          border: Border.all(color: Co.strockColor),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
@@ -115,7 +115,7 @@ class _EquipmentItem extends StatelessWidget {
                       title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.bold_16.copyWith(shadows: [
+                      style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
                           offset: const Offset(0, 4),

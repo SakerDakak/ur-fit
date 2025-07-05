@@ -53,7 +53,7 @@ class MyPlanScreen extends StatelessWidget {
                       child: Text(
                         L10n.tr().myPlan,
                         textAlign: TextAlign.center,
-                        style: CustomTextStyle.bold_16,
+                        style: TStyle.bold_16,
                       ),
                     ),
                   ],
@@ -112,7 +112,7 @@ class MyPlanScreen extends StatelessWidget {
           child: Text(
             L10n.tr().myPlanPhrase,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.semiBold_12.copyWith(
+            style: TStyle.semiBold_12.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
@@ -124,9 +124,9 @@ class MyPlanScreen extends StatelessWidget {
         CustomNavigationBar(
           onTap: (index) => cubit.goToPage(index),
           tabs: [
-            Text(L10n.tr().personalInfo, style: CustomTextStyle.semiBold_14),
-            Text(L10n.tr().goal, style: CustomTextStyle.semiBold_14),
-            Text(L10n.tr().yourChoices, style: CustomTextStyle.semiBold_14),
+            Text(L10n.tr().personalInfo, style: TStyle.semiBold_14),
+            Text(L10n.tr().goal, style: TStyle.semiBold_14),
+            Text(L10n.tr().yourChoices, style: TStyle.semiBold_14),
           ],
         ),
 
@@ -143,7 +143,7 @@ class MyPlanScreen extends StatelessWidget {
               onPressed: () => cubit.goToNextPage(),
               child: Text(
                 L10n.tr().skip,
-                style: CustomTextStyle.semiBold_14.copyWith(
+                style: TStyle.semiBold_14.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),

@@ -32,7 +32,7 @@ class ChangePasswordScreen extends StatelessWidget {
           Text(
             L10n.tr().resetPasswordPhrase,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.bold_16.copyWith(
+            style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
@@ -43,8 +43,8 @@ class ChangePasswordScreen extends StatelessWidget {
             title: L10n.tr().currentPassword,
             hintText: '12345678',
             padding: EdgeInsets.zero,
-            borderColor: AppColors.strockColor,
-            titleStyle: CustomTextStyle.regular_14,
+            borderColor: Co.strockColor,
+            titleStyle: TStyle.regular_14,
           ),
 
           const SizedBox(height: 16),
@@ -54,8 +54,8 @@ class ChangePasswordScreen extends StatelessWidget {
             title: L10n.tr().newPassword,
             hintText: '12345678',
             padding: EdgeInsets.zero,
-            borderColor: AppColors.strockColor,
-            titleStyle: CustomTextStyle.regular_14,
+            borderColor: Co.strockColor,
+            titleStyle: TStyle.regular_14,
           ),
 
           const SizedBox(height: 16),
@@ -65,8 +65,8 @@ class ChangePasswordScreen extends StatelessWidget {
             title: L10n.tr().confirmPassword,
             hintText: '12345678',
             padding: EdgeInsets.zero,
-            borderColor: AppColors.strockColor,
-            titleStyle: CustomTextStyle.regular_14,
+            borderColor: Co.strockColor,
+            titleStyle: TStyle.regular_14,
           ),
 
           const SizedBox(height: 32),

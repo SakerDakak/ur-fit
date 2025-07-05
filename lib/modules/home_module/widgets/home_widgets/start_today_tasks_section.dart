@@ -93,9 +93,9 @@ class StartTodyTasksSection extends StatelessWidget {
             //
             Text(
               L10n.tr().today,
-              style: CustomTextStyle.semiBold_16.copyWith(
+              style: TStyle.semiBold_16.copyWith(
                 fontWeight: FontWeight.w700,
-                color: AppColors.fontColor,
+                color: Co.fontColor,
               ),
             ),
           ],
@@ -106,7 +106,7 @@ class StartTodyTasksSection extends StatelessWidget {
         // desc
         Text(
           L10n.tr().startDailyPlanCustomizedForYou,
-          style: CustomTextStyle.semiBold_14,
+          style: TStyle.semiBold_14,
         ),
 
         const SizedBox(height: 16),

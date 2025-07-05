@@ -26,7 +26,7 @@ class FinalStepWeeklyExerciseTimes extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 L10n.tr().trainingTimesPerWeek,
-                style: CustomTextStyle.semiBold_16,
+                style: TStyle.semiBold_16,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -43,12 +43,12 @@ class FinalStepWeeklyExerciseTimes extends StatelessWidget {
           
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
-                style: CustomTextStyle.semiBold_16.copyWith(
+                style: TStyle.semiBold_16.copyWith(
                   color: Colors.white,
                 ),
                 decoration: InputDecoration(
                   hintText: L10n.tr().trainingTimes,
-                  hintStyle: CustomTextStyle.semiBold_16.copyWith(
+                  hintStyle: TStyle.semiBold_16.copyWith(
                     color: Colors.white.withOpacity(0.6),
                   ),
                   filled: true,
@@ -70,7 +70,7 @@ class FinalStepWeeklyExerciseTimes extends StatelessWidget {
             SizedBox(height: 16,),
             Text(
               L10n.tr().exercise,
-              style: CustomTextStyle.semiBold_14.copyWith(
+              style: TStyle.semiBold_14.copyWith(
                 color: Colors.cyanAccent,
               ),
             ),

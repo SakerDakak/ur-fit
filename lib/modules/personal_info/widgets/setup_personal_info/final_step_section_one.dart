@@ -41,7 +41,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
         // title
         Text(
           L10n.tr().sectionOne,
-          style: CustomTextStyle.bold_16.copyWith(
+          style: TStyle.bold_16.copyWith(
             color: Theme.of(context).colorScheme.primary,
           ),
         ),
@@ -59,7 +59,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
             Expanded(
               child: Text(
                 L10n.tr().mealsYouLike,
-                style: CustomTextStyle.bold_14,
+                style: TStyle.bold_14,
               ),
             ),
             // Text(
@@ -83,7 +83,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
             Expanded(
               child: Text(
                 L10n.tr().mealsNotLiked,
-                style: CustomTextStyle.bold_14,
+                style: TStyle.bold_14,
               ),
             ),
             // Text(
@@ -104,7 +104,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
         // daily meals number
         Text(
           L10n.tr().numberOfMealsPerDay,
-          style: CustomTextStyle.bold_14,
+          style: TStyle.bold_14,
         ),
 
         const SizedBox(height: 16),
@@ -116,7 +116,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
         // daily meals number
         Text(
           L10n.tr().dietType,
-          style: CustomTextStyle.bold_14,
+          style: TStyle.bold_14,
         ),
 
         const SizedBox(height: 16),
@@ -127,7 +127,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
         // meals variety level
         Text(
           L10n.tr().mealsVerity,
-          style: CustomTextStyle.bold_14,
+          style: TStyle.bold_14,
         ),
 
         const SizedBox(height: 16),
@@ -236,7 +236,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
               children: [
                 Text(
                   L10n.tr().weightYouWantToTarget,
-                  style: CustomTextStyle.bold_14,
+                  style: TStyle.bold_14,
                 ),
                 const SizedBox(width: 20),
                 ValueContainer(
@@ -245,7 +245,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
                 const SizedBox(width: 20),
                 Text(
                   L10n.tr().kg,
-                  style: CustomTextStyle.bold_14.copyWith(
+                  style: TStyle.bold_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),

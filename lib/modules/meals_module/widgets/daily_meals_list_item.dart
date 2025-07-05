@@ -18,7 +18,7 @@ class DailyMealsListItem extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: AppColors.cardColor,
+          color: Co.cardColor,
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           boxShadow: [
             BoxShadow(
@@ -55,7 +55,7 @@ class DailyMealsListItem extends StatelessWidget {
                       title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.bold_16.copyWith(shadows: [
+                      style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
                           offset: const Offset(0, 4),
@@ -72,7 +72,7 @@ class DailyMealsListItem extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios_new,
                       size: 20,
-                      color: AppColors.whiteColor.withOpacity(0.8),
+                      color: Co.whiteColor.withOpacity(0.8),
                     ),
                   ),
                 ],

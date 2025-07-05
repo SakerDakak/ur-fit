@@ -27,7 +27,7 @@ class ComponentItem extends StatelessWidget {
                 )),
             title: Center(child: Text(ingredient.name)),
             trailing: Text('${ingredient.amount} ${ingredient.unit}',
-                style: CustomTextStyle.regular_16
+                style: TStyle.regular_16
                     .copyWith(color: Theme.of(context).colorScheme.primary)),
           ),
         ),

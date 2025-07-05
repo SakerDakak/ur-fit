@@ -17,9 +17,9 @@ class CaloriesTrackingCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: Column(
         children: [
@@ -27,9 +27,9 @@ class CaloriesTrackingCard extends StatelessWidget {
             L10n.tr().calories,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: CustomTextStyle.regular_14.copyWith(
+            style: TStyle.regular_14.copyWith(
               fontWeight: FontWeight.w700,
-              color: AppColors.whiteColor,
+              color: Co.whiteColor,
             ),
           ),
           const SizedBox(height: 8),
@@ -55,9 +55,9 @@ class CaloriesTrackingCard extends StatelessWidget {
                 '${calories.toStringAsFixed(0)} ${L10n.tr().calorie} ',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: AppColors.fontColor,
+                  color: Co.fontColor,
                 ),
               );
             },

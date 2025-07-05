@@ -31,10 +31,10 @@ class MealDescription extends StatelessWidget {
             trimLines: 2,
             colorClickableText: Theme.of(context).colorScheme.primary,
             trimMode: TrimMode.Line,
-            style: CustomTextStyle.regular_16,
+            style: TStyle.regular_16,
             trimCollapsedText: '\nعرض المزيد',
             trimExpandedText: '\nعرض اقل',
-            moreStyle: CustomTextStyle.regular_16
+            moreStyle: TStyle.regular_16
                 .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         ),

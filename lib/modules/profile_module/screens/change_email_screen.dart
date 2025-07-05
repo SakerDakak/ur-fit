@@ -36,7 +36,7 @@ class ChangeEmailScreen extends StatelessWidget {
           Text(
             L10n.tr().changeEmailPhrase,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.bold_16.copyWith(
+            style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
@@ -46,8 +46,8 @@ class ChangeEmailScreen extends StatelessWidget {
             hintText: L10n.tr().email,
             initialValue: user?.email.toString(),
             padding: EdgeInsets.zero,
-            borderColor: AppColors.strockColor,
-            titleStyle: CustomTextStyle.regular_14,
+            borderColor: Co.strockColor,
+            titleStyle: TStyle.regular_14,
           ),
           const SizedBox(height: 32),
           CustomElevatedButton(

@@ -10,27 +10,11 @@ import '../../../../core/presentation/assets/assets_manager.dart';
 import '../models/no_of_daily_meals.dart';
 import '../models/user_personal_info_model.dart';
 
-abstract class PersonalInfoDataSource {
-  Future<List<UserGoalsModel>> getGoals();
-  Future<List<SelectionItemModel>> getNotLikedMealsOptions();
-  Future<List<SelectionItemModel>> getLikedMealsOptions();
-  Future<List<SelectionItemModel>> getDietOptions();
-  Future<List<NoOfDailyMealsModel>> getNoOfDailyMealsOptions();
-
-  Future<List<SelectionItemModel>> getMealsVariantsOptions();
-  Future<List<BodyPartsModel>> getMuscleFocus();
-  Future<List<SelectionItemModel>> getWorkoutTypes();
-  Future<List<SelectionItemModel>> getEquipments();
-  Future<UserModel> updatePersonalInfo({required UserPersonalInfoModel personalInfoModel});
-  Future<void> changePassword({required String oldPassword, required String newPassword , required String confirmPassword});
-}
-
-class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
+class PersonalInfoDataSourceImpl {
   final ApiClient dioServices;
 
   const PersonalInfoDataSourceImpl(this.dioServices);
 
-  @override
   Future<List<SelectionItemModel>> getDietOptions() async {
     final res = await dioServices.get(
       EndPoints.diets,
@@ -45,7 +29,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<List<SelectionItemModel>> getLikedMealsOptions() async {
     final res = await dioServices.get(
       EndPoints.recipeTypes,
@@ -60,7 +43,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<List<SelectionItemModel>> getMealsVariantsOptions() async {
     final res = await dioServices.get(
       EndPoints.mealsVariants,
@@ -75,7 +57,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<List<SelectionItemModel>> getNotLikedMealsOptions() async {
     final res = await dioServices.get(
       EndPoints.foodsNotLiked,
@@ -90,7 +71,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<List<UserGoalsModel>> getGoals() async {
     List<String> defaultImages = [
       AssetsManager.goalsNutrition,
@@ -117,7 +97,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     }).toList();
   }
 
-  @override
   Future<List<BodyPartsModel>> getMuscleFocus() async {
     final res = await dioServices.get(
       EndPoints.muscleFocus,
@@ -132,7 +111,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<List<SelectionItemModel>> getWorkoutTypes() async {
     final res = await dioServices.get(
       EndPoints.workoutTypes,
@@ -147,7 +125,6 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<List<SelectionItemModel>> getEquipments() async {
     final res = await dioServices.get(
       EndPoints.equipments,
@@ -162,54 +139,51 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     return data;
   }
 
-  @override
   Future<UserModel> updatePersonalInfo({required UserPersonalInfoModel personalInfoModel}) async {
-
-
     print("gender : ${personalInfoModel.gender?.index}");
-    Map<String,dynamic> body = {
-      "gender" : personalInfoModel.gender?.name,
-      "age" : personalInfoModel.age,
-      "height" : personalInfoModel.height,
-      "current_weight" : personalInfoModel.current_weight,
-      "target_weight" : personalInfoModel.targetWeight,
-      "training_days_per_week" : personalInfoModel.weaklyTrainingCount,
-      "diet_id" : personalInfoModel.diet_id,
-      "meal_variety_id" : personalInfoModel.mealsVariantsId
+    Map<String, dynamic> body = {
+      "gender": personalInfoModel.gender?.name,
+      "age": personalInfoModel.age,
+      "height": personalInfoModel.height,
+      "current_weight": personalInfoModel.current_weight,
+      "target_weight": personalInfoModel.targetWeight,
+      "training_days_per_week": personalInfoModel.weaklyTrainingCount,
+      "diet_id": personalInfoModel.diet_id,
+      "meal_variety_id": personalInfoModel.mealsVariantsId
     };
     personalInfoModel.selectedGaols.forEach((goal) {
-     final index = personalInfoModel.selectedGaols.indexOf(goal);
-      body.addAll({"goal_id[$index]" : goal.id});
+      final index = personalInfoModel.selectedGaols.indexOf(goal);
+      body.addAll({"goal_id[$index]": goal.id});
     });
     personalInfoModel.likedMealsIds.forEach((id) {
       final index = personalInfoModel.likedMealsIds.indexOf(id);
 
-      body.addAll({"recipe_types[$index]" : id});
+      body.addAll({"recipe_types[$index]": id});
     });
     personalInfoModel.notLikedMealsIds.forEach((id) {
       final index = personalInfoModel.notLikedMealsIds.indexOf(id);
 
-      body.addAll({"foods_not_liked[$index]" : id});
+      body.addAll({"foods_not_liked[$index]": id});
     });
     personalInfoModel.workoutTypesIds.forEach((id) {
       final index = personalInfoModel.workoutTypesIds.indexOf(id);
 
-      body.addAll({"workout_type_id[$index]" : id});
+      body.addAll({"workout_type_id[$index]": id});
     });
     personalInfoModel.muscleFocusIds.forEach((id) {
       final index = personalInfoModel.muscleFocusIds.indexOf(id);
 
-      body.addAll({"body_parts[$index]" : id});
+      body.addAll({"body_parts[$index]": id});
     });
     personalInfoModel.exciseDays.forEach((id) {
       final index = personalInfoModel.exciseDays.indexOf(id);
 
-      body.addAll({"exercise_days[$index]" : id});
+      body.addAll({"exercise_days[$index]": id});
     });
     personalInfoModel.equipmentsIds.forEach((id) {
       final index = personalInfoModel.equipmentsIds.indexOf(id);
 
-      body.addAll({"equipments[$index]" : id});
+      body.addAll({"equipments[$index]": id});
     });
     // print("body : $body");
     // final body = {
@@ -232,32 +206,27 @@ class PersonalInfoDataSourceImpl implements PersonalInfoDataSource {
     //   "equipments": [1, 2]
     // };
     final res = await dioServices.post(
-      EndPoints.updateProfile,data: FormData.fromMap(body),
+      EndPoints.updateProfile,
+      data: FormData.fromMap(body),
     );
     print("result : ${res.data}");
     return UserModel.fromJson(res.data['data']);
   }
 
-
-  @override
   Future<List<NoOfDailyMealsModel>> getNoOfDailyMealsOptions() async {
     final res = await dioServices.get(
       EndPoints.noOfDailyMeals,
     );
 
-
-
-
     return (res.data['data'] as List).map((e) => NoOfDailyMealsModel.fromJson(e)).toList();
   }
 
-  @override
-  Future<void> changePassword({required String oldPassword, required String newPassword, required String confirmPassword}) async {
-    final res = await dioServices.post(
-      EndPoints.changePassword,
-      data: {"old_password : $oldPassword","new_password : $newPassword","new_password_confirmation : $confirmPassword"}
-    );
+  Future<void> changePassword(
+      {required String oldPassword, required String newPassword, required String confirmPassword}) async {
+    final res = await dioServices.post(EndPoints.changePassword, data: {
+      "old_password : $oldPassword",
+      "new_password : $newPassword",
+      "new_password_confirmation : $confirmPassword"
+    });
   }
-
-
 }

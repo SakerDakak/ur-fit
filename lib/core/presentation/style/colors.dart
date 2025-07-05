@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class AppColors {
+abstract class Co {
   static Color notActive = const Color(0xffAAAAAA).withOpacity(0.66);
   static const Color cardInputStrock = Color(0xffAAAAAA);
   static const Color yellow = Color(0xffFFCC00);

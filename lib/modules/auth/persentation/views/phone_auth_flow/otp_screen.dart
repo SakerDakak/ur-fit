@@ -70,7 +70,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 Center(
                   child: Text(
                     L10n.tr().enterOtpCode,
-                    style: CustomTextStyle.bold_24,
+                    style: TStyle.bold_24,
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -80,7 +80,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 Center(
                   child: Text(
                     L10n.tr().otpInfoText,
-                    style: CustomTextStyle.bold_16,
+                    style: TStyle.bold_16,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -97,13 +97,13 @@ class _OTPScreenState extends State<OTPScreen> {
                       contentPadding: EdgeInsets.zero,
                       showCursor: false,
                       decoration: const InputDecoration(
-                          border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.greenColor, width: 3))),
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Co.greenColor, width: 3))),
                       numberOfFields: 4,
 
-                      borderColor: AppColors.blackColor,
+                      borderColor: Co.blackColor,
                       fieldWidth: 50,
                       fieldHeight: 50,
-                      enabledBorderColor: AppColors.greyColor,
+                      enabledBorderColor: Co.greyColor,
                       textStyle: const TextStyle(locale: Locale("en")),
 
                       // mainAxisAlignment: ,
@@ -142,7 +142,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       width: 8.px,
                     ),
                     RichText(
-                        text: TextSpan(text: L10n.tr().didntGetOtp, style: CustomTextStyle.regular_16, children: [
+                        text: TextSpan(text: L10n.tr().didntGetOtp, style: TStyle.regular_16, children: [
                       WidgetSpan(
                           child: InkWell(
                         onTap: () {
@@ -151,7 +151,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         },
                         child: Text(
                           L10n.tr().pressToResendOtp,
-                          style: CustomTextStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                          style: TStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
                         ),
                       ))
                     ])),

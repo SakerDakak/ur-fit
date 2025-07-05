@@ -26,9 +26,9 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 'تفاصيل تمارين اليوم',
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.fontColor,
+                  color: Co.fontColor,
                 ),
               ),
             ],
@@ -40,9 +40,9 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppColors.cardColor,
+              color: Co.cardColor,
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-              border: Border.all(color: AppColors.strockColor),
+              border: Border.all(color: Co.strockColor),
             ),
             child:  Column(
               children: [
@@ -69,7 +69,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: VerticalDivider(
-                        color: AppColors.strockColor,
+                        color: Co.strockColor,
                       ),
                     ),
       
@@ -84,7 +84,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: VerticalDivider(
-                        color: AppColors.strockColor,
+                        color: Co.strockColor,
                       ),
                     ),
       

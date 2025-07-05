@@ -1,4 +1,20 @@
 {
+  "pressDoubleBackToExit": "Press double back to exit",
+  "thisFieldIsRequired": "This field is required.",
+  "passwordLengthError": "Password must be at least 6 characters long.",
+  "invalidEmail": "Please enter a valid email address.",
+  "valueMustBeNum": "{val} must be equal to {num} characters",
+  "@valueMustBeNum": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      },
+      "val": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidPhoneNumber": "Please enter a valid phone number.",
   "app_name": "URFIT",
   "onBording1Title": "plan customized for you to reach your goal",
   "onBording1Body": "Exciting and easy",
@@ -185,6 +201,5 @@
   "enterAge": "Enter age",
   "enterHeight": "Enter height",
   "enterWeight": "Enter weight",
-  "trainingTimes" : "Exercise times"
-
+  "trainingTimes": "Exercise times"
 }

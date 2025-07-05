@@ -26,15 +26,15 @@ class ValuesGridviewShimmer extends StatelessWidget {
           height: 36,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: AppColors.cardColor,
+            color: Co.cardColor,
             borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           ),
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
               'value',
-              style: CustomTextStyle.semiBold_16.copyWith(
-                color: AppColors.fontColor,
+              style: TStyle.semiBold_16.copyWith(
+                color: Co.fontColor,
               ),
             ),
           ),

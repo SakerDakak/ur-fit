@@ -53,9 +53,9 @@ class _GenderSelectorState extends State<GenderSelector> {
               clipBehavior: Clip.antiAlias,
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: AppColors.cardColor,
+                color: Co.cardColor,
                 borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                border: Border.all(color: AppColors.strockColor),
+                border: Border.all(color: Co.strockColor),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -105,7 +105,7 @@ class _GenderSelectorState extends State<GenderSelector> {
                               GenderEnum.values[i] == GenderEnum.male ? L10n.tr().male : L10n.tr().female,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: CustomTextStyle.bold_16.copyWith(shadows: [
+                              style: TStyle.bold_16.copyWith(shadows: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.2),
                                   offset: const Offset(0, 4),

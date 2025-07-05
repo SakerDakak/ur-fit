@@ -9,6 +9,26 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get pressDoubleBackToExit => 'اضغط مرتين للخروج';
+
+  @override
+  String get thisFieldIsRequired => 'This field is required.';
+
+  @override
+  String get passwordLengthError => 'يجب أن تكون كلمة المرور 6 أحرف على الأقل.';
+
+  @override
+  String get invalidEmail => 'يرجى إدخال عنوان بريد إلكتروني صالح.';
+
+  @override
+  String valueMustBeNum(int num, String val) {
+    return 'قيمة $val يجب أن تكون  $num ارقام';
+  }
+
+  @override
+  String get invalidPhoneNumber => 'يرجى إدخال رقم هاتف صالح.';
+
+  @override
   String get app_name => 'يورفيت';
 
   @override

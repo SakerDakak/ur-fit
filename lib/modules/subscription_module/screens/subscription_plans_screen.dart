@@ -128,7 +128,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                       return const Center(child: CircularProgressIndicator());
                     }
                     if (state.couponState == RequestState.failure) {
-                      return  Center(child: Text(state.errMessage,style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.redColor),));
+                      return  Center(child: Text(state.errMessage,style: TStyle.semiBold_16.copyWith(color: Co.redColor),));
                     }
                     return state.couponState == RequestState.success
                         ? Column(
@@ -137,14 +137,14 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                               children: [
                                 Text(
                                   L10n.tr().priceAfterDiscount,
-                                  style: CustomTextStyle.semiBold_16,
+                                  style: TStyle.semiBold_16,
                                 ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
                                   "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
-                                  style: CustomTextStyle.bold_16.copyWith(color: AppColors.primaryColor),
+                                  style: TStyle.bold_16.copyWith(color: Co.primaryColor),
                                 ),
                               ],
                             ),
@@ -153,14 +153,14 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                               children: [
                                 Text(
                                     L10n.tr().priceBeforeDiscount,
-                                    style: CustomTextStyle.semiBold_16,
+                                    style: TStyle.semiBold_16,
                                   ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
                                   "${L10n.tr().sar}${state.discountValue?.final_price.toStringAsFixed(2) ?? state.packages.firstWhere((package) => package.id == state.selectedPackage).price}",
-                                  style: CustomTextStyle.bold_16.copyWith(color: AppColors.primaryColor),
+                                  style: TStyle.bold_16.copyWith(color: Co.primaryColor),
                                 ),
                               ],
                             ),

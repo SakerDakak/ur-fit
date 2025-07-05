@@ -21,7 +21,7 @@ class ExercisesItem extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         boxShadow: [
           BoxShadow(
@@ -57,7 +57,7 @@ class ExercisesItem extends StatelessWidget {
                     exercises.first.bodyPart,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: CustomTextStyle.bold_16.copyWith(shadows: [
+                    style: TStyle.bold_16.copyWith(shadows: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.2),
                         offset: const Offset(0, 4),
@@ -84,7 +84,7 @@ class ExercisesItem extends StatelessWidget {
                     ),
                     child: Text(
                       'ابدا',
-                      style: CustomTextStyle.bold_14,
+                      style: TStyle.bold_14,
                     ),
                   ),
                 )

@@ -29,7 +29,7 @@ class OtpScreen extends StatelessWidget {
               // title
               Text(
                 'ادخل رمز التحقق',
-                style: CustomTextStyle.bold_20,
+                style: TStyle.bold_20,
               ),
 
               const SizedBox(height: 24),
@@ -38,7 +38,7 @@ class OtpScreen extends StatelessWidget {
               Text(
                 'رجاء ادخال رمز التحقق الذى تم ارساله على البريد الالكترونى',
                 textAlign: TextAlign.center,
-                style: CustomTextStyle.regular_14,
+                style: TStyle.regular_14,
               ),
 
               const SizedBox(height: 24),
@@ -64,13 +64,13 @@ class OtpScreen extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     'لم يصلك رمز التحقق؟',
-                    style: CustomTextStyle.regular_14,
+                    style: TStyle.regular_14,
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       'اضغط هنا لاعادة الارسال',
-                      style: CustomTextStyle.regular_14.copyWith(
+                      style: TStyle.regular_14.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),

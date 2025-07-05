@@ -25,8 +25,8 @@ class WeightProgressCard extends StatelessWidget {
                   '80 كجم',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: CustomTextStyle.semiBold_14.copyWith(
-                    color: AppColors.selectedFont,
+                  style: TStyle.semiBold_14.copyWith(
+                    color: Co.selectedFont,
                   ),
                 ),
               ),
@@ -36,8 +36,8 @@ class WeightProgressCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.end,
-                  style: CustomTextStyle.semiBold_14.copyWith(
-                    color: AppColors.selectedFont,
+                  style: TStyle.semiBold_14.copyWith(
+                    color: Co.selectedFont,
                   ),
                 ),
               ),
@@ -77,8 +77,8 @@ class _CustomProgressBar extends StatelessWidget {
             // progress bar
             LinearPercentIndicator(
               percent: percent.clamp(0, 1),
-              backgroundColor: AppColors.selectedFont,
-              progressColor: AppColors.yellow,
+              backgroundColor: Co.selectedFont,
+              progressColor: Co.yellow,
               padding: EdgeInsets.zero,
               barRadius: const Radius.circular(8),
               animation: true,
@@ -101,15 +101,15 @@ class _CustomProgressBar extends StatelessWidget {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.yellow,
+                  color: Co.yellow,
                   borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                 ),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
                     progressHeaderText,
-                    style: CustomTextStyle.semiBold_10.copyWith(
-                      color: AppColors.selectedFont,
+                    style: TStyle.semiBold_10.copyWith(
+                      color: Co.selectedFont,
                     ),
                   ),
                 ),

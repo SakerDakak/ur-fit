@@ -22,14 +22,14 @@ class SubscriptionScreenAppBar extends StatelessWidget {
           visualDensity: VisualDensity.compact,
           icon: const Icon(
             Icons.arrow_back,
-            color: AppColors.whiteColor,
+            color: Co.whiteColor,
           ),
         ),
         Expanded(
           child: Text(
             L10n.tr().subscribeNow,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.bold_16,
+            style: TStyle.bold_16,
           ),
         )
       ],

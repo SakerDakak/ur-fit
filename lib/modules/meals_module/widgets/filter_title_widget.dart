@@ -28,7 +28,7 @@ class FilterTitleWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: CustomTextStyle.bold_14,
+            style: TStyle.bold_14,
           ),
         ],
       ),

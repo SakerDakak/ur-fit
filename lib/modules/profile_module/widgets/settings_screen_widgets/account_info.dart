@@ -30,7 +30,7 @@ class AccountInfo extends StatelessWidget {
                 user!.name.toString(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.bold_16,
+                style: TStyle.bold_16,
               ),
 
               const SizedBox(height: 6),
@@ -40,7 +40,7 @@ class AccountInfo extends StatelessWidget {
                 user.email.toString(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.regular_16.copyWith(
+                style: TStyle.regular_16.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),

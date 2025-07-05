@@ -70,13 +70,13 @@ class _MealsToggleButtonsState extends State<MealsToggleButtons> {
                         ? Theme.of(context).colorScheme.primary
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(8.px),
-                    border: Border.all(color: AppColors.strockColor)),
+                    border: Border.all(color: Co.strockColor)),
                 child: Center(
                     child: Text(
                   e,
-                  style: CustomTextStyle.bold_16.copyWith(
+                  style: TStyle.bold_16.copyWith(
                       color: isSelected[index]
-                          ? AppColors.blackColor
+                          ? Co.blackColor
                           : Colors.white),
                 )),
               ),
@@ -142,13 +142,13 @@ class _MealComponentsGridState extends State<MealComponentsGrid> {
                       ? Theme.of(context).colorScheme.primary
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(8.px),
-                  border: Border.all(color: AppColors.strockColor)),
+                  border: Border.all(color: Co.strockColor)),
               child: Center(
                   child: Text(
                 widget.items[index],
-                style: CustomTextStyle.bold_16.copyWith(
+                style: TStyle.bold_16.copyWith(
                     color: selected.contains(widget.items[index])
-                        ? AppColors.blackColor
+                        ? Co.blackColor
                         : Colors.white),
               )),
             ),

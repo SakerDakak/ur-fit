@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/pref_utils.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/title_with_icon.dart';
 import 'package:urfit/modules/onboarding/views/choose_country.dart';
@@ -37,7 +36,7 @@ class ChooseLanguage extends StatelessWidget {
     Map<String, dynamic> selectedLang = L10n.isAr(context) ? items.first : items.last;
 
     return Scaffold(
-      backgroundColor: AppColors.backGround,
+      backgroundColor: Co.backGround,
       appBar: AppBar(),
       body: SafeArea(
         child: Column(
@@ -50,7 +49,7 @@ class ChooseLanguage extends StatelessWidget {
               builder: (context, state) {
                 return Text(
                   L10n.tr().chooseLang,
-                  style: CustomTextStyle.semiBold_16,
+                  style: TStyle.semiBold_16,
                 );
               },
             ),
@@ -77,7 +76,6 @@ class ChooseLanguage extends StatelessWidget {
                 return CustomElevatedButton(
                     text: L10n.tr().continuee,
                     onPressed: () async {
-                      await PrefUtils().setLang(selectedLang['value']);
                       if (context.mounted) context.push(ChooseCountry.route);
                     });
               },

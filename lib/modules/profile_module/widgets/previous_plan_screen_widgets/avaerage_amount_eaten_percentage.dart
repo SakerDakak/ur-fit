@@ -54,7 +54,7 @@ class _ProgressItem extends StatelessWidget {
           // title
           Text(
             title,
-            style: CustomTextStyle.bold_12,
+            style: TStyle.bold_12,
           ),
 
           const SizedBox(height: 8),
@@ -69,7 +69,7 @@ class _ProgressItem extends StatelessWidget {
           //
           Text(
             bottomTxt,
-            style: CustomTextStyle.semiBold_14,
+            style: TStyle.semiBold_14,
           ),
         ],
       ),

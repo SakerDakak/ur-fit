@@ -30,9 +30,9 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 'ما يحتاجه جسمك لليوم',
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.fontColor,
+                  color: Co.fontColor,
                 ),
               ),
             ],
@@ -44,8 +44,8 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppColors.cardColor,
-              border: Border.all(color: AppColors.strockColor),
+              color: Co.cardColor,
+              border: Border.all(color: Co.strockColor),
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
             ),
             child: Column(

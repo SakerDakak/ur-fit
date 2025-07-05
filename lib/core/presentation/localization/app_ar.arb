@@ -1,4 +1,19 @@
 {
+  "pressDoubleBackToExit" : "اضغط مرتين للخروج",
+  "passwordLengthError": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
+  "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صالح.",
+  "valueMustBeNum": "قيمة {val} يجب أن تكون  {num} ارقام",
+  "@valueMustBeNum": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      },
+      "val": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidPhoneNumber": "يرجى إدخال رقم هاتف صالح.",
   "app_name": "يورفيت",
   "onBording1Title": "خطة مخصصة لك للوصول لهدفك",
   "onBording1Body": "بكل متعة وسهولة",
@@ -178,12 +193,12 @@
   "planUpdate": "تحديث الخطة",
   "planUpdatePhrase1": "رجاء الانتظار لاتمام تحديث خطتك الخاصة",
   "planUpdatePhrase2": "نقوم بتحديث خطتك الغذائية والرياضية بناءا على المعلومات التى قمت بتعديلها سابقا .",
-  "whatsYourAge" : "ما هو سنك؟",
-  "whatsYourHeight" : "ما هو طولك؟",
-  "whatsYourWeight" : "ما هو وزنك؟",
-  "year" : "سنة",
+  "whatsYourAge": "ما هو سنك؟",
+  "whatsYourHeight": "ما هو طولك؟",
+  "whatsYourWeight": "ما هو وزنك؟",
+  "year": "سنة",
   "enterAge": "ادخل السن",
   "enterHeight": "ادخل الطول",
   "enterWeight": "ادخل الوزن",
-  "trainingTimes" : "عدد التمارين"
+  "trainingTimes": "عدد التمارين"
 }

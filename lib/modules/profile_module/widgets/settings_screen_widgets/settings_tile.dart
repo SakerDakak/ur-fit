@@ -49,17 +49,17 @@ class SettingsTile extends StatelessWidget {
                     title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: CustomTextStyle.regular_14,
+                    style: TStyle.regular_14,
                   ),
                 ),
                 const Icon(
                   Icons.expand_more,
-                  color: AppColors.whiteColor,
+                  color: Co.whiteColor,
                 ),
               ],
             ),
             const Divider(
-              color: AppColors.strockColor,
+              color: Co.strockColor,
             )
           ],
         ),

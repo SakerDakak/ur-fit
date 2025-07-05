@@ -38,7 +38,7 @@ Future<void> init() async {
   ]);
 
   // register the personal info repo
-  sl.registerLazySingleton<PersonalInfoRepo>(
+  sl.registerLazySingleton<PersonalInfoRepoImpl>(
     () => PersonalInfoRepoImpl(PersonalInfoDataSourceImpl(sl<ApiClient>())),
   );
 

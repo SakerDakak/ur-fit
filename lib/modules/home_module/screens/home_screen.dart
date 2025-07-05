@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(height: 16),
 
                     // horizontal divider
-                    Divider(color: AppColors.strockColor),
+                    Divider(color: Co.strockColor),
 
                     SizedBox(height: 16),
 

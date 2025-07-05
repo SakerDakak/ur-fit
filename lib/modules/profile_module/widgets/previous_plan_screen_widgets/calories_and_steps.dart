@@ -18,7 +18,7 @@ class CaloriesAndSteps extends StatelessWidget {
          Expanded(
           child: _InfoCard(
             iconPath: Assets.iconsFlam,
-            contentColor: AppColors.selectedFont,
+            contentColor: Co.selectedFont,
             cardColor: Theme.of(context).colorScheme.primary,
             value: calories.round(),
             unit: 'سعرحرارى',
@@ -31,9 +31,9 @@ class CaloriesAndSteps extends StatelessWidget {
         Expanded(
           child: _InfoCard(
             iconPath: Assets.iconsStep,
-            contentColor: AppColors.whiteColor,
-            cardColor: AppColors.cardColor,
-            backgroundCirclesColor: AppColors.strockColor.withOpacity(0.4),
+            contentColor: Co.whiteColor,
+            cardColor: Co.cardColor,
+            backgroundCirclesColor: Co.strockColor.withOpacity(0.4),
             value: sets.toInt(),
             unit: 'مجموعة',
           ),
@@ -71,7 +71,7 @@ class _InfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -107,7 +107,7 @@ class _InfoCard extends StatelessWidget {
                   iconPath,
                   height: 16,
                   colorFilter: const ColorFilter.mode(
-                    AppColors.whiteColor,
+                    Co.whiteColor,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -120,7 +120,7 @@ class _InfoCard extends StatelessWidget {
                 alignment: AlignmentDirectional.bottomEnd,
                 child: Text(
                   value.toString(),
-                  style: CustomTextStyle.bold_16.copyWith(
+                  style: TStyle.bold_16.copyWith(
                     color: contentColor,
                   ),
                 ),
@@ -131,7 +131,7 @@ class _InfoCard extends StatelessWidget {
                 alignment: AlignmentDirectional.bottomEnd,
                 child: Text(
                   unit,
-                  style: CustomTextStyle.semiBold_14.copyWith(
+                  style: TStyle.semiBold_14.copyWith(
                     color: contentColor,
                   ),
                 ),

@@ -40,7 +40,7 @@ class SliderDot extends StatelessWidget {
       height: 12.px,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isActive ? Colors.white : AppColors.greyColor,
+        color: isActive ? Colors.white : Co.greyColor,
         // borderRadius: const BorderRadius.all(Radius.circular(5),),
       ),
       duration: const Duration(

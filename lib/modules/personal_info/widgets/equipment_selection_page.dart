@@ -51,7 +51,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
                 child: Text(
                   L10n.tr().personalInfo,
                   textAlign: TextAlign.center,
-                  style: CustomTextStyle.bold_16,
+                  style: TStyle.bold_16,
                 ),
               ),
             ],
@@ -62,7 +62,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
           Text(
             L10n.tr().chooseEquipments,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.bold_16.copyWith(
+            style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),

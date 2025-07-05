@@ -59,11 +59,11 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
               return AlertDialog(
                 title: Text(
                   failure.message,
-                  style: CustomTextStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.black),
                 ),
                 content: Text(
                   failure.message,
-                  style: CustomTextStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.black),
                 ),
                 actions: [
                   TextButton(
@@ -84,11 +84,11 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
               return AlertDialog(
                 title: Text(
                   successData.toString(),
-                  style: CustomTextStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.black),
                 ),
                 content: Text(
                   successData.toString(),
-                  style: CustomTextStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.black),
                 ),
                 actions: [
                   TextButton(

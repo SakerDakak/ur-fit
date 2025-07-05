@@ -49,7 +49,7 @@ class TodayWorkoutScreen extends StatelessWidget {
                       children: [
                         Text(
                           exercises[state.progressValue - 1].name,
-                          style: CustomTextStyle.regular_14.copyWith(
+                          style: TStyle.regular_14.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -58,19 +58,19 @@ class TodayWorkoutScreen extends StatelessWidget {
                           height: 300.px,
                           child: GridTile(
                               footer: GridTileBar(
-                                backgroundColor: AppColors.backGround.withOpacity(0.7),
+                                backgroundColor: Co.backGround.withOpacity(0.7),
                                 title: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       exercises[state.progressValue - 1].name,
-                                      style: CustomTextStyle.regular_14.copyWith(
+                                      style: TStyle.regular_14.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
                                       '${context.read<WorkoutCubit>().getPlanForToday()!.caloriesBurned} سعر حرارى',
-                                      style: CustomTextStyle.regular_14.copyWith(
+                                      style: TStyle.regular_14.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -89,7 +89,7 @@ class TodayWorkoutScreen extends StatelessWidget {
                                       ),
                                       Text(
                                         '${cubit.formattedTime(seconds: cubit.getPlanForToday()!.timePerExercise * cubit.getPlanForToday()!.sets)} دقيقة',
-                                        style: CustomTextStyle.regular_14.copyWith(
+                                        style: TStyle.regular_14.copyWith(
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -152,7 +152,7 @@ class TrainingDescription extends StatelessWidget {
       children: [
         Text(
           'ارشادات',
-          style: CustomTextStyle.bold_16
+          style: TStyle.bold_16
               .copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         ...description.map(
@@ -160,7 +160,7 @@ class TrainingDescription extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
             child: Text(
               des,
-              style: CustomTextStyle.regular_14.copyWith(
+              style: TStyle.regular_14.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -168,7 +168,7 @@ class TrainingDescription extends StatelessWidget {
         ),
         Text(
           'وصف التمرين ',
-          style: CustomTextStyle.bold_16
+          style: TStyle.bold_16
               .copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         SizedBox(
@@ -224,7 +224,7 @@ class TrainingDescriptionItem extends StatelessWidget {
         ),
         Text(
           value,
-          style: CustomTextStyle.bold_14,
+          style: TStyle.bold_14,
         )
       ],
     );
@@ -273,10 +273,10 @@ class WorkOutProgressHeader extends StatelessWidget {
                         workoutList.first,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
-                        style: CustomTextStyle.regular_14.copyWith(
+                        style: TStyle.regular_14.copyWith(
                           fontWeight: FontWeight.w600,
                           color:
-                              state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
+                              state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : Co.whiteColor,
                         ),
                       ),
                     )
@@ -293,10 +293,10 @@ class WorkOutProgressHeader extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       workout,
-                      style: CustomTextStyle.regular_14.copyWith(
+                      style: TStyle.regular_14.copyWith(
                         fontWeight: FontWeight.w600,
                         color:
-                            state.progressValue >= index ? Theme.of(context).colorScheme.primary : AppColors.whiteColor,
+                            state.progressValue >= index ? Theme.of(context).colorScheme.primary : Co.whiteColor,
                       ),
                     ),
                   );
@@ -314,7 +314,7 @@ class WorkOutProgressHeader extends StatelessWidget {
               children: [
                 Text(
                   '${workoutList[progressValue - 1]}',
-                  style: CustomTextStyle.bold_14.copyWith(
+                  style: TStyle.bold_14.copyWith(
                     fontWeight: FontWeight.w800,
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -329,11 +329,11 @@ class WorkOutProgressHeader extends StatelessWidget {
                       : null,
                   child: Text(
                     'تخطى',
-                    style: CustomTextStyle.regular_14.copyWith(
+                    style: TStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
                       color: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
-                          ? AppColors.whiteColor
-                          : AppColors.greyColor,
+                          ? Co.whiteColor
+                          : Co.greyColor,
                     ),
                   ),
                 ),

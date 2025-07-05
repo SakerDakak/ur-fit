@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/pref_utils.dart';
-import 'package:urfit/modules/auth/persentation/views/email_login_screen.dart';
+import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 import 'package:urfit/modules/onboarding/controller/onboarding_cubit.dart';
 import 'package:urfit/modules/onboarding/model/country/country_model.dart';
 
@@ -38,7 +38,7 @@ class _ChooseCityState extends State<ChooseCity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGround,
+      backgroundColor: Co.backGround,
       appBar: AppBar(),
       body: SafeArea(
         child: Column(
@@ -49,7 +49,7 @@ class _ChooseCityState extends State<ChooseCity> {
             ),
             Text(
               L10n.tr().chooseCity,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
             SizedBox(
               height: 32.px,
@@ -79,11 +79,14 @@ class _ChooseCityState extends State<ChooseCity> {
             CustomElevatedButton(
                 text: L10n.tr().continuee,
                 onPressed: () {
+                  if (selectedCity == null) return;
+
                   // selectedCity = selectedCity ?? context.read<OnboardingCubit>().state.cities.first;
                   // context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
                   // context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
                   PrefUtils().setFirstVisit();
-                  context.push(AuthScreen.route);
+                  context.push(AuthScreen.routeWzExtra,
+                      extra: (context.read<OnboardingCubit>().selectedCountryId!, selectedCity!.id));
                 }),
             SizedBox(
               height: 36.px,

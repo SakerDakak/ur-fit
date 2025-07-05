@@ -18,7 +18,7 @@ class CustomCircularPercentIndicator extends StatelessWidget {
         CircularPercentIndicator(
           percent: ((0.9 - percent)).clamp(0.1, 1),
           startAngle: 368,
-          progressColor: AppColors.whiteColor,
+          progressColor: Co.whiteColor,
           backgroundColor: Colors.transparent,
           radius: 32,
           circularStrokeCap: CircularStrokeCap.round,
@@ -43,9 +43,9 @@ class CustomCircularPercentIndicator extends StatelessWidget {
               '${(percent * 100).toStringAsFixed(0)}%',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: CustomTextStyle.regular_14.copyWith(
+              style: TStyle.regular_14.copyWith(
                 fontWeight: FontWeight.w700,
-                color: AppColors.whiteColor,
+                color: Co.whiteColor,
               ),
             ),
           ),

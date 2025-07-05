@@ -30,9 +30,9 @@ class CustomLineChart extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  AppColors.whiteColor.withOpacity(0.8),
-                  AppColors.whiteColor.withOpacity(0.5),
-                  AppColors.whiteColor.withOpacity(0),
+                  Co.whiteColor.withOpacity(0.8),
+                  Co.whiteColor.withOpacity(0.5),
+                  Co.whiteColor.withOpacity(0),
                 ],
               ),
             ),

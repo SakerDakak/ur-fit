@@ -34,11 +34,11 @@ class DeleteAccountDialog extends StatelessWidget {
                     visualDensity: VisualDensity.comfortable,
                     elevation: 4,
                     shadowColor: Colors.black,
-                    backgroundColor: AppColors.whiteColor,
+                    backgroundColor: Co.whiteColor,
                   ),
                   icon: const Icon(
                     Icons.close,
-                    color: AppColors.backGround,
+                    color: Co.backGround,
                     size: 20,
                   ),
                 ),
@@ -66,8 +66,8 @@ class DeleteAccountDialog extends StatelessWidget {
             child: Text(
               L10n.tr().areYouSureYouWantToDeleteAccount,
               textAlign: TextAlign.center,
-              style: CustomTextStyle.bold_14.copyWith(
-                color: AppColors.selectedFont,
+              style: TStyle.bold_14.copyWith(
+                color: Co.selectedFont,
               ),
             ),
           ),
@@ -85,7 +85,7 @@ class DeleteAccountDialog extends StatelessWidget {
                     text: L10n.tr().no,
                     onPressed: () => Navigator.pop(context),
                     padding: EdgeInsets.zero,
-                    backgroundColor: AppColors.notActive,
+                    backgroundColor: Co.notActive,
                   ),
                 ),
 

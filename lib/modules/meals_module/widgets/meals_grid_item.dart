@@ -20,7 +20,7 @@ class MealsGridItem extends StatelessWidget {
         footer: Container(
           height: 66.px,
           decoration: BoxDecoration(
-              color: AppColors.cardColor,
+              color: Co.cardColor,
               borderRadius:
                   BorderRadius.vertical(bottom: Radius.circular(8.px))),
           child: Padding(

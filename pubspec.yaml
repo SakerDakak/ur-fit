@@ -75,6 +75,9 @@ dependencies:
   webview_flutter: ^4.10.0
   package_info_plus: ^8.3.0
 
+  # new  packages
+  fluttertoast: ^8.2.12
+
 dependency_overrides:
   device_info_plus: ^11.3.3
 

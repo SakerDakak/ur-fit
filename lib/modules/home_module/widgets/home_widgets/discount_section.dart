@@ -24,14 +24,14 @@ class DiscountSection extends StatelessWidget {
             children: [
               TextSpan(
                 text: L10n.tr().youCanGet,
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.fontColor,
+                  color: Co.fontColor,
                 ),
               ),
               TextSpan(
                 text: L10n.tr().yourPerfectBody,
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -56,7 +56,7 @@ class DiscountSection extends StatelessWidget {
                 child: Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                    color: AppColors.cardColor,
+                    color: Co.cardColor,
                     borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                     boxShadow: [
                       BoxShadow(
@@ -110,7 +110,7 @@ class DiscountSection extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: '%50 ',
-                              style: CustomTextStyle.semiBold_16.copyWith(
+                              style: TStyle.semiBold_16.copyWith(
                                 fontWeight: FontWeight.w700,
                                 color: Theme.of(context).colorScheme.primary,
                                 shadows: [
@@ -125,9 +125,9 @@ class DiscountSection extends StatelessWidget {
                             ),
                             TextSpan(
                               text: '${L10n.tr().discountOnYourFirstPlan}\n',
-                              style: CustomTextStyle.semiBold_16.copyWith(
+                              style: TStyle.semiBold_16.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.fontColor,
+                                color: Co.fontColor,
                                 shadows: [
                                   BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
@@ -140,7 +140,7 @@ class DiscountSection extends StatelessWidget {
                             ),
                             TextSpan(
                               text: L10n.tr().customizedForYou,
-                              style: CustomTextStyle.semiBold_16.copyWith(
+                              style: TStyle.semiBold_16.copyWith(
                                 fontWeight: FontWeight.w700,
                                 color: Theme.of(context).colorScheme.primary,
                                 shadows: [
@@ -165,9 +165,9 @@ class DiscountSection extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: L10n.tr().dontBeLate,
-                              style: CustomTextStyle.regular_14.copyWith(
+                              style: TStyle.regular_14.copyWith(
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.fontColor,
+                                color: Co.fontColor,
                                 shadows: [
                                   BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
@@ -180,7 +180,7 @@ class DiscountSection extends StatelessWidget {
                             ),
                             TextSpan(
                               text: L10n.tr().subscribeNow,
-                              style: CustomTextStyle.semiBold_14.copyWith(
+                              style: TStyle.semiBold_14.copyWith(
                                 decoration: TextDecoration.underline,
                                 shadows: [
                                   BoxShadow(

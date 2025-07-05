@@ -25,7 +25,7 @@ class FinalStepTargetWeight extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 L10n.tr().weightYouWantToTarget,
-                style: CustomTextStyle.semiBold_16,
+                style: TStyle.semiBold_16,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -42,12 +42,12 @@ class FinalStepTargetWeight extends StatelessWidget {
           
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
-                style: CustomTextStyle.semiBold_16.copyWith(
+                style: TStyle.semiBold_16.copyWith(
                   color: Colors.white,
                 ),
                 decoration: InputDecoration(
                   hintText: L10n.tr().enterWeight,
-                  hintStyle: CustomTextStyle.semiBold_16.copyWith(
+                  hintStyle: TStyle.semiBold_16.copyWith(
                     color: Colors.white.withOpacity(0.6),
                   ),
                   filled: true,
@@ -69,7 +69,7 @@ class FinalStepTargetWeight extends StatelessWidget {
             SizedBox(height: 16,),
             Text(
               L10n.tr().kg,
-              style: CustomTextStyle.semiBold_14.copyWith(
+              style: TStyle.semiBold_14.copyWith(
                 color: Colors.cyanAccent,
               ),
             ),

@@ -86,7 +86,7 @@ class SettingsScreen extends StatelessWidget {
 
   void _editName(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: Co.whiteColor,
       useSafeArea: true,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(

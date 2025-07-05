@@ -41,7 +41,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
         // title
         Text(
           L10n.tr().sectionTwo,
-          style: CustomTextStyle.bold_16.copyWith(
+          style: TStyle.bold_16.copyWith(
             color: Theme.of(context).colorScheme.primary,
           ),
         ),
@@ -56,7 +56,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
         // focus part
         Text(
           L10n.tr().focusedBodyPart,
-          style: CustomTextStyle.bold_14,
+          style: TStyle.bold_14,
         ),
 
         const SizedBox(height: 16),
@@ -87,7 +87,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
         // preferred training
         Text(
           L10n.tr().preferredEquipment,
-          style: CustomTextStyle.bold_14,
+          style: TStyle.bold_14,
         ),
 
         const SizedBox(height: 16),
@@ -170,7 +170,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
               children: [
                 Text(
                   'عدد مرات التدريب الاسبوعى؟',
-                  style: CustomTextStyle.bold_14,
+                  style: TStyle.bold_14,
                 ),
                 const SizedBox(width: 20),
                 ValueContainer(
@@ -179,7 +179,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
                 const SizedBox(width: 20),
                 Text(
                   'تمرين',
-                  style: CustomTextStyle.bold_14.copyWith(
+                  style: TStyle.bold_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -236,20 +236,20 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
                     decoration: BoxDecoration(
                       color:isSelected
                           ? Theme.of(context).colorScheme.primary
-                          : AppColors.cardColor,
+                          : Co.cardColor,
                       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                      border: Border.all(color: AppColors.strockColor),
+                      border: Border.all(color: Co.strockColor),
                     ),
                     child: Column(
                       children: [
 
                         Text(
                           DateFormat.E().format(WeakDaysDate.getCurrentWeekDays()[i]),
-                          style: CustomTextStyle.regular_14.copyWith(
+                          style: TStyle.regular_14.copyWith(
                             fontWeight:isSelected ? FontWeight.w700 : null,
                             color: isSelected
-                                ? AppColors.selectedFont
-                                : AppColors.fontColor,
+                                ? Co.selectedFont
+                                : Co.fontColor,
                           ),
                         ),
                       ],

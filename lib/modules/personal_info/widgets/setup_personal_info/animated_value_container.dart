@@ -26,7 +26,7 @@ class ValueContainer extends StatelessWidget {
         height: 36,
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: isSelected ? Theme.of(context).primaryColor : AppColors.cardColor,
+          color: isSelected ? Theme.of(context).primaryColor : Co.cardColor,
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         ),
         child: FittedBox(
@@ -34,18 +34,18 @@ class ValueContainer extends StatelessWidget {
           child: value is num
               ? AnimatedFlipCounter(
                   value: value,
-                  textStyle: CustomTextStyle.semiBold_16.copyWith(
+                  textStyle: TStyle.semiBold_16.copyWith(
                     color: isSelected
-                        ? AppColors.selectedFont
-                        : AppColors.fontColor,
+                        ? Co.selectedFont
+                        : Co.fontColor,
                   ),
                 )
               : Text(
                   value,
-                  style: CustomTextStyle.semiBold_16.copyWith(
+                  style: TStyle.semiBold_16.copyWith(
                     color: isSelected
-                        ? AppColors.selectedFont
-                        : AppColors.fontColor,
+                        ? Co.selectedFont
+                        : Co.fontColor,
                   ),
                 ),
         ),

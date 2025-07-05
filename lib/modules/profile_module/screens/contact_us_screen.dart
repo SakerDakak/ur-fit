@@ -35,7 +35,7 @@ class ContactUsScreen extends StatelessWidget {
           Text(
             L10n.tr().weAreHappyToGetYourFeedback,
             textAlign: TextAlign.center,
-            style: CustomTextStyle.semiBold_14.copyWith(
+            style: TStyle.semiBold_14.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),

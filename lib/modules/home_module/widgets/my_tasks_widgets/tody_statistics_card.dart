@@ -13,9 +13,9 @@ class TodyStatisticsCard extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),

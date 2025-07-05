@@ -27,7 +27,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               'التغذية',
-              style: CustomTextStyle.bold_14,
+              style: TStyle.bold_14,
             )
           ],
         ),
@@ -40,14 +40,14 @@ class NutritionAndBurnedCalories extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   '100',
-                  style: CustomTextStyle.bold_14,
+                  style: TStyle.bold_14,
                 ),
               ),
             ),
             const SizedBox(width: 4),
             Text(
               'سعر حرارى',
-              style: CustomTextStyle.bold_14.copyWith(
+              style: TStyle.bold_14.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -71,7 +71,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               'الحرق',
-              style: CustomTextStyle.bold_14,
+              style: TStyle.bold_14,
             )
           ],
         ),
@@ -84,14 +84,14 @@ class NutritionAndBurnedCalories extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   '300',
-                  style: CustomTextStyle.bold_14,
+                  style: TStyle.bold_14,
                 ),
               ),
             ),
             const SizedBox(width: 4),
             Text(
               'سعر حرارى',
-              style: CustomTextStyle.bold_14.copyWith(
+              style: TStyle.bold_14.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),

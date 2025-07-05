@@ -169,11 +169,11 @@ class _MainPageState extends State<MainPage> {
                                     children: [
                                       CircleAvatar(
                                         radius: 220,
-                                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+                                        backgroundColor: Co.strockColor.withValues(alpha: 0.2),
                                       ),
                                       CircleAvatar(
                                         radius: 150,
-                                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+                                        backgroundColor: Co.strockColor.withValues(alpha: 0.4),
                                       ),
                                     ],
                                   ),
@@ -188,11 +188,11 @@ class _MainPageState extends State<MainPage> {
                                         vertical: 4,
                                       ),
                                       decoration: BoxDecoration(
-                                          color: AppColors.yellow,
+                                          color: Co.yellow,
                                           borderRadius: BorderRadius.all(Radius.circular(16.0))),
                                       child: Text(
                                         L10n.tr().soon,
-                                        style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.blackColor),
+                                        style: TStyle.semiBold_16.copyWith(color: Co.blackColor),
                                       ))),
                               Align(
                                   alignment: Alignment.center,
@@ -207,7 +207,7 @@ class _MainPageState extends State<MainPage> {
                                         child: Text(
                                           L10n.tr().becauseWeKeenToProvideAnIntegratedService,
                                           textAlign: TextAlign.center,
-                                          style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor),
+                                          style: TStyle.bold_20.copyWith(color: Co.whiteColor),
                                         ),
                                       ),
                                       const SizedBox(
@@ -218,12 +218,12 @@ class _MainPageState extends State<MainPage> {
                                           children: [
                                             TextSpan(
                                                 text: "${L10n.tr().waitFor} ",
-                                                style: CustomTextStyle.bold_20.copyWith(color: AppColors.primaryColor),
+                                                style: TStyle.bold_20.copyWith(color: Co.primaryColor),
                                                 children: [
                                                   TextSpan(
                                                     text: L10n.tr().launching,
                                                     style:
-                                                        CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor),
+                                                        TStyle.bold_20.copyWith(color: Co.whiteColor),
                                                   ),
                                                 ]),
                                           ],
@@ -234,7 +234,7 @@ class _MainPageState extends State<MainPage> {
                                       ),
                                       Text(
                                         L10n.tr().ourMedicalServicesSoon,
-                                        style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor),
+                                        style: TStyle.bold_20.copyWith(color: Co.whiteColor),
                                       ),
                                     ],
                                   ))),
@@ -278,7 +278,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         // key: ,
-        backgroundColor: AppColors.backGround,
+        backgroundColor: Co.backGround,
         extendBodyBehindAppBar: _selectedIndex == 0,
         extendBody: true,
         appBar: _selectedIndex == 0
@@ -310,11 +310,11 @@ class _MainPageState extends State<MainPage> {
                 automaticallyImplyLeading: false,
                 shadowColor: Colors.transparent,
                 elevation: 0,
-                backgroundColor: AppColors.backGround,
+                backgroundColor: Co.backGround,
                 centerTitle: true,
                 title: Text(
                   titles[_selectedIndex],
-                  style: CustomTextStyle.semiBold_14.copyWith(color: Colors.white),
+                  style: TStyle.semiBold_14.copyWith(color: Colors.white),
                 ),
               ),
         body: PersistentTabView(
@@ -334,7 +334,7 @@ class _MainPageState extends State<MainPage> {
           items: _navBarsItems,
           bottomScreenMargin: _selectedIndex == 0 ? 0 : MediaQuery.of(context).padding.top,
 
-          backgroundColor: AppColors.backGround,
+          backgroundColor: Co.backGround,
           handleAndroidBackButtonPress: false,
           resizeToAvoidBottomInset: true,
           // Prevent page compression

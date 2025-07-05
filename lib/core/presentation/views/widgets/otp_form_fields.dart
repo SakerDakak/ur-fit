@@ -118,7 +118,7 @@ class _OtpFormFieldsState extends State<OtpFormFields> {
     return widget.borderType == BorderTypeEnum.outLineBorder
         ? OutlineInputBorder(
             borderSide: const BorderSide(
-              color: AppColors.strockColor,
+              color: Co.strockColor,
             ),
             borderRadius: BorderRadius.circular(
               widget.outlineBorderRadius,

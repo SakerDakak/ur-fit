@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/service_locator.dart';
 
 class StorageKeys {
-  static String locale = "locale";
   // static String lightTheme = "lightTheme";
   static String token = "token";
   // static String user = "user";
@@ -13,6 +12,9 @@ class StorageKeys {
   static String favoriteIDs = "readNotifications";
   static String cart = "cart";
   // static String branchId = "branchId";
+  static const String themeData = 'themeData';
+  static const String firstVisit = 'firstVisit';
+  static const String lang = 'lang';
 }
 
 class TokenService {

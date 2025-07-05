@@ -35,7 +35,7 @@ class SetupPersonalInfoOnboarding extends StatelessWidget {
               // user name
               Text(
                 '${L10n.tr().welcome}  ${user!.name}',
-                style: CustomTextStyle.bold_24.copyWith(
+                style: TStyle.bold_24.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
@@ -45,7 +45,7 @@ class SetupPersonalInfoOnboarding extends StatelessWidget {
               // welcome message
               Text(
                 L10n.tr().welcomingPhrase1,
-                style: CustomTextStyle.bold_24,
+                style: TStyle.bold_24,
               ),
 
               const SizedBox(height: 16),
@@ -53,7 +53,7 @@ class SetupPersonalInfoOnboarding extends StatelessWidget {
               // setup instructions
               Text(
                 L10n.tr().welcomingPhrase2,
-                style: CustomTextStyle.medium_16,
+                style: TStyle.medium_16,
                 textAlign: TextAlign.center,
               ),
 

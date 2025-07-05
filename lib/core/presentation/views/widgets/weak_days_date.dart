@@ -34,27 +34,27 @@ class WeakDaysDate extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isToday(i) || state.selectedDay == i + 1
                         ? Theme.of(context).colorScheme.primary
-                        : AppColors.cardColor,
+                        : Co.cardColor,
                     borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                    border: Border.all(color: AppColors.strockColor),
+                    border: Border.all(color: Co.strockColor),
                   ),
                   child: Column(
                     children: [
                       Text(
                         DateFormat.Md().format(getCurrentWeekDays()[i]),
-                        style: CustomTextStyle.regular_14.copyWith(
+                        style: TStyle.regular_14.copyWith(
                           fontWeight: isToday(i) || state.selectedDay == i + 1 ? FontWeight.w700 : null,
                           color:
-                              isToday(i) || state.selectedDay == i + 1 ? AppColors.selectedFont : AppColors.fontColor,
+                              isToday(i) || state.selectedDay == i + 1 ? Co.selectedFont : Co.fontColor,
                         ),
                       ),
                       const SizedBox(height: 12),
                       Text(
                         DateFormat.E().format(getCurrentWeekDays()[i]),
-                        style: CustomTextStyle.regular_14.copyWith(
+                        style: TStyle.regular_14.copyWith(
                           fontWeight: isToday(i) || state.selectedDay == i + 1 ? FontWeight.w700 : null,
                           color:
-                              isToday(i) || state.selectedDay == i + 1 ? AppColors.selectedFont : AppColors.fontColor,
+                              isToday(i) || state.selectedDay == i + 1 ? Co.selectedFont : Co.fontColor,
                         ),
                       ),
                     ],

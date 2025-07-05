@@ -44,7 +44,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                     children: [
                       Text(
                         L10n.tr().mealsNotLiked,
-                        style: CustomTextStyle.semiBold_16,
+                        style: TStyle.semiBold_16,
                         textAlign: TextAlign.start,
                       ),
                       Spacer(),
@@ -76,7 +76,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                                                 width: 62,
                                                 height: 4,
                                                 decoration: BoxDecoration(
-                                                  color: AppColors.backGround,
+                                                  color: Co.backGround,
                                                   borderRadius: BorderRadius.circular(16),
                                                 ),
                                               )
@@ -88,7 +88,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                                               child: Container(
                                                 height: 30,
                                                 width: 30,
-                                                decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: AppColors.greyColor)),
+                                                decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: Co.greyColor)),
                                                   child: FittedBox(child: CloseButton(color: Colors.black,)))),
           
                                         ],
@@ -100,7 +100,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                                     SizedBox(height: 12,),
                                     Text(
                                       L10n.tr().mealsNotLiked,
-                                      style: CustomTextStyle.semiBold_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                                      style: TStyle.semiBold_16.copyWith(color: Theme.of(context).colorScheme.primary),
                                       textAlign: TextAlign.center,
                                     ),
                                     SizedBox(height: 16,),
@@ -153,7 +153,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                         },
                         child: Text(
                           L10n.tr().seeMore,
-                          style: CustomTextStyle.semiBold_16.copyWith(
+                          style: TStyle.semiBold_16.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                           ),
                         ),

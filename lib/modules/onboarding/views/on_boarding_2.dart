@@ -47,7 +47,7 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: currentIndex != 1 ? Theme.of(context).colorScheme.primary : AppColors.backGround,
+      backgroundColor: currentIndex != 1 ? Theme.of(context).colorScheme.primary : Co.backGround,
       body: Stack(
         children: [
           switch (currentIndex) {
@@ -62,11 +62,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                     children: [
                       CircleAvatar(
                         radius: 220,
-                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+                        backgroundColor: Co.strockColor.withValues(alpha: 0.2),
                       ),
                       CircleAvatar(
                         radius: 150,
-                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+                        backgroundColor: Co.strockColor.withValues(alpha: 0.4),
                       ),
                       Align(
                           alignment: Alignment.bottomCenter,
@@ -94,11 +94,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                     children: [
                       CircleAvatar(
                         radius: 220,
-                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+                        backgroundColor: Co.strockColor.withValues(alpha: 0.2),
                       ),
                       CircleAvatar(
                         radius: 150,
-                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+                        backgroundColor: Co.strockColor.withValues(alpha: 0.4),
                       ),
                       Align(
                           alignment: Alignment.bottomLeft,
@@ -128,11 +128,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                     children: [
                       CircleAvatar(
                         radius: 220,
-                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.2),
+                        backgroundColor: Co.strockColor.withValues(alpha: 0.2),
                       ),
                       CircleAvatar(
                         radius: 150,
-                        backgroundColor: AppColors.strockColor.withValues(alpha: 0.4),
+                        backgroundColor: Co.strockColor.withValues(alpha: 0.4),
                       ),
                       Align(
                           alignment: Alignment.bottomCenter,
@@ -172,11 +172,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       RichText(
                         text: TextSpan(
                           text: 'صحتك ',
-                          style: CustomTextStyle.bold_40.copyWith(color: AppColors.secondaryColor, fontSize: 34),
+                          style: TStyle.bold_40.copyWith(color: Co.secondaryColor, fontSize: 34),
                           children: [
                             TextSpan(
                               text: 'اهم من كل شئ',
-                              style: CustomTextStyle.bold_40.copyWith(color: AppColors.whiteColor, fontSize: 34),
+                              style: TStyle.bold_40.copyWith(color: Co.whiteColor, fontSize: 34),
                             ),
                           ],
                         ),
@@ -185,11 +185,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       RichText(
                         text: TextSpan(
                           text: 'مرحبا بك فى رفيقك اليومى لحياة صحية',
-                          style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor, fontSize: 24),
+                          style: TStyle.bold_20.copyWith(color: Co.whiteColor, fontSize: 24),
                           children: [
                             TextSpan(
                               text: '!',
-                              style: CustomTextStyle.bold_20.copyWith(color: AppColors.secondaryColor, fontSize: 24),
+                              style: TStyle.bold_20.copyWith(color: Co.secondaryColor, fontSize: 24),
                             ),
                           ],
                         ),
@@ -198,7 +198,7 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       const SizedBox(height: 20),
                       Text(
                         'هل تعلم ان خطوات صغيرة كل يوم تصنع فرقا نحن هنا نساعدك تتابع صحتك ,تنام افضل ,وتعيش بطاقة اعلى !',
-                        style: CustomTextStyle.bold_14.copyWith(color: AppColors.whiteColor, fontSize: 14),
+                        style: TStyle.bold_14.copyWith(color: Co.whiteColor, fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
@@ -206,13 +206,13 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         height: 50.px,
                         width: 249.px,
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryColor,
+                          color: Co.secondaryColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Center(
                           child: Text(
                             'ابدا رحلتك الصحية اليوم!',
-                            style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.whiteColor, fontSize: 16),
+                            style: TStyle.semiBold_16.copyWith(color: Co.whiteColor, fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -233,11 +233,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       RichText(
                           text: TextSpan(
                         text: 'حرك ',
-                        style: CustomTextStyle.bold_40.copyWith(color: AppColors.primaryColor, fontSize: 34),
+                        style: TStyle.bold_40.copyWith(color: Co.primaryColor, fontSize: 34),
                         children: [
                           TextSpan(
                             text: 'جسمك حرر طاقتك !',
-                            style: CustomTextStyle.bold_40.copyWith(color: AppColors.whiteColor, fontSize: 34),
+                            style: TStyle.bold_40.copyWith(color: Co.whiteColor, fontSize: 34),
                           ),
                         ],
                       )),
@@ -245,18 +245,18 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       RichText(
                           text: TextSpan(
                         text: 'مايحتاج نادى .. تحتاج تبدأ',
-                        style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor, fontSize: 24),
+                        style: TStyle.bold_20.copyWith(color: Co.whiteColor, fontSize: 24),
                         children: [
                           TextSpan(
                             text: '',
-                            style: CustomTextStyle.bold_20.copyWith(color: AppColors.secondaryColor, fontSize: 24),
+                            style: TStyle.bold_20.copyWith(color: Co.secondaryColor, fontSize: 24),
                           ),
                         ],
                       )),
                       const SizedBox(height: 20),
                       Text(
                         'معانا تقدر تحرك فى بيتك,فى وقتك المناسب, تمارين يومية ,تذكيرات ذكية وتحديات  ممتعة بانتظارك !',
-                        style: CustomTextStyle.bold_14.copyWith(color: AppColors.whiteColor, fontSize: 14),
+                        style: TStyle.bold_14.copyWith(color: Co.whiteColor, fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
@@ -264,13 +264,13 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         height: 50.px,
                         width: 249.px,
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryColor,
+                          color: Co.secondaryColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Center(
                           child: Text(
                             'كل حركة تقربك لهدفك',
-                            style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.whiteColor, fontSize: 16),
+                            style: TStyle.semiBold_16.copyWith(color: Co.whiteColor, fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -291,11 +291,11 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       RichText(
                           text: TextSpan(
                         text: 'كل ',
-                        style: CustomTextStyle.bold_40.copyWith(color: AppColors.secondaryColor, fontSize: 34),
+                        style: TStyle.bold_40.copyWith(color: Co.secondaryColor, fontSize: 34),
                         children: [
                           TextSpan(
                             text: 'صح تعيش صح',
-                            style: CustomTextStyle.bold_40.copyWith(color: AppColors.whiteColor, fontSize: 34),
+                            style: TStyle.bold_40.copyWith(color: Co.whiteColor, fontSize: 34),
                           ),
                         ],
                       )),
@@ -304,18 +304,18 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                           textAlign: TextAlign.center,
                           text: TextSpan(
                             text: 'ودع الحيرة ,واستقبل وصفات صحية و لذيذة',
-                            style: CustomTextStyle.bold_20.copyWith(color: AppColors.whiteColor, fontSize: 24),
+                            style: TStyle.bold_20.copyWith(color: Co.whiteColor, fontSize: 24),
                             children: [
                               TextSpan(
                                 text: '!',
-                                style: CustomTextStyle.bold_20.copyWith(color: AppColors.secondaryColor, fontSize: 24),
+                                style: TStyle.bold_20.copyWith(color: Co.secondaryColor, fontSize: 24),
                               ),
                             ],
                           )),
                       const SizedBox(height: 20),
                       Text(
                         'وخطط وجباتك ,احسب سعراتك و اكتشف البدائل الذكية ,لان الاكل الصحى مايعنى الحرمان,بل توازن وذكاء .',
-                        style: CustomTextStyle.bold_14.copyWith(color: AppColors.whiteColor, fontSize: 14),
+                        style: TStyle.bold_14.copyWith(color: Co.whiteColor, fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
@@ -323,13 +323,13 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         height: 50.px,
                         width: 249.px,
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryColor,
+                          color: Co.secondaryColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Center(
                           child: Text(
                             'ابدا رحلتك الصحية اليوم!',
-                            style: CustomTextStyle.semiBold_16.copyWith(color: AppColors.whiteColor, fontSize: 16),
+                            style: TStyle.semiBold_16.copyWith(color: Co.whiteColor, fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                         ),

@@ -26,9 +26,9 @@ class StartWorkoutCardShimmer extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 'تمرين اليوم سوف يركز على',
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.fontColor,
+                  color: Co.fontColor,
                 ),
               ),
             ],
@@ -40,7 +40,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
            Container(
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
-              color: AppColors.cardColor,
+              color: Co.cardColor,
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               boxShadow: [
                 BoxShadow(
@@ -76,7 +76,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           "",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: CustomTextStyle.bold_16.copyWith(shadows: [
+                          style: TStyle.bold_16.copyWith(shadows: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.2),
                               offset: const Offset(0, 4),
@@ -101,7 +101,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           ),
                           child: Text(
                             'ابدا',
-                            style: CustomTextStyle.bold_14,
+                            style: TStyle.bold_14,
                           ),
                         ),
                       )
@@ -116,7 +116,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
           Container(
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
-              color: AppColors.cardColor,
+              color: Co.cardColor,
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               boxShadow: [
                 BoxShadow(
@@ -152,7 +152,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           "",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: CustomTextStyle.bold_16.copyWith(shadows: [
+                          style: TStyle.bold_16.copyWith(shadows: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.2),
                               offset: const Offset(0, 4),
@@ -177,7 +177,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           ),
                           child: Text(
                             'ابدا',
-                            style: CustomTextStyle.bold_14,
+                            style: TStyle.bold_14,
                           ),
                         ),
                       )

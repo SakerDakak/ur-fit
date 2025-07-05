@@ -26,7 +26,7 @@ class MealsPickerScreen extends StatelessWidget {
           onBack: () {
             context.pop();
           }),
-      backgroundColor: AppColors.backGround,
+      backgroundColor: Co.backGround,
       body: Column(
         children: [
           SizedBox(

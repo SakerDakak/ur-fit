@@ -50,7 +50,7 @@ class CompactTextFormField extends StatelessWidget {
           if (title != null)
             Text(
               title!,
-              style: titleStyle ?? CustomTextStyle.regular_16,
+              style: titleStyle ?? TStyle.regular_16,
             ),
           if (title != null)
             SizedBox(
@@ -70,8 +70,8 @@ class CompactTextFormField extends StatelessWidget {
               filled: true,
               prefixIcon: prefixIcon,
               hintText: hintText,
-              hintStyle: CustomTextStyle.regular_14.copyWith(
-                color: AppColors.greyColor,
+              hintStyle: TStyle.regular_14.copyWith(
+                color: Co.greyColor,
               ),
               contentPadding: contentPadding ??
                   EdgeInsets.symmetric(
@@ -157,7 +157,7 @@ class _CompactPasswordTextFormFieldState
           if (widget.title != null)
             Text(
               widget.title!,
-              style: widget.titleStyle ?? CustomTextStyle.regular_16,
+              style: widget.titleStyle ?? TStyle.regular_16,
             ),
           if (widget.title != null)
             SizedBox(
@@ -176,8 +176,8 @@ class _CompactPasswordTextFormFieldState
               filled: true,
               prefixIcon: widget.prefixIcon,
               hintText: widget.hintText,
-              hintStyle: CustomTextStyle.regular_14.copyWith(
-                color: AppColors.greyColor,
+              hintStyle: TStyle.regular_14.copyWith(
+                color: Co.greyColor,
               ),
               contentPadding: EdgeInsets.symmetric(
                 vertical: 1.5.px,

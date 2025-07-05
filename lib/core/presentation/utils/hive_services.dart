@@ -1,6 +1,5 @@
 import 'package:hive_flutter/adapters.dart';
 
-import '../../../modules/auth/data/models/user/cached_user.dart';
 import '../../../modules/meals_module/data/models/cached_nutrition.dart';
 
 class HiveServices {
@@ -33,26 +32,26 @@ class HiveServices {
     //
   }
 
-  register() {
-    Hive.registerAdapter(CacheUserAdapter());
-    Hive.registerAdapter(CountryCachedAdapter());
-    Hive.registerAdapter(CityCachedAdapter());
-    Hive.registerAdapter(GoalCachedAdapter());
-    Hive.registerAdapter(BodyShapeCachedAdapter());
-    Hive.registerAdapter(MuscleFocusCachedAdapter());
-    Hive.registerAdapter(WorkoutTypeCachedAdapter());
-    Hive.registerAdapter(EquipmentCachedAdapter());
-    Hive.registerAdapter(DietCachedAdapter());
-    Hive.registerAdapter(RecipeTypeCachedAdapter());
-    Hive.registerAdapter(FoodNotLikedCachedAdapter());
-    Hive.registerAdapter(MealVarietyCachedAdapter());
-    Hive.registerAdapter(NutritionDataAdapter());
+  // register() {
+  //   Hive.registerAdapter(CacheUserAdapter());
+  //   Hive.registerAdapter(CountryCachedAdapter());
+  //   Hive.registerAdapter(CityCachedAdapter());
+  //   Hive.registerAdapter(GoalCachedAdapter());
+  //   Hive.registerAdapter(BodyShapeCachedAdapter());
+  //   Hive.registerAdapter(MuscleFocusCachedAdapter());
+  //   Hive.registerAdapter(WorkoutTypeCachedAdapter());
+  //   Hive.registerAdapter(EquipmentCachedAdapter());
+  //   Hive.registerAdapter(DietCachedAdapter());
+  //   Hive.registerAdapter(RecipeTypeCachedAdapter());
+  //   Hive.registerAdapter(FoodNotLikedCachedAdapter());
+  //   Hive.registerAdapter(MealVarietyCachedAdapter());
+  //   Hive.registerAdapter(NutritionDataAdapter());
 
-    // Hive.registerAdapter(CachedFavoriteAdapter());
-    // Hive.registerAdapter(DurationAdapter());
-    // Hive.registerAdapter(CachedVideoAdapter());
-    // Hive.registerAdapter(CachedCategoryAdapter());
-  }
+  //   // Hive.registerAdapter(CachedFavoriteAdapter());
+  //   // Hive.registerAdapter(DurationAdapter());
+  //   // Hive.registerAdapter(CachedVideoAdapter());
+  //   // Hive.registerAdapter(CachedCategoryAdapter());
+  // }
 
   openBoxes() async {
     await Hive.openBox<NutritionData>('nutritionDataBox');

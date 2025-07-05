@@ -35,18 +35,18 @@ class PlanDuration extends StatelessWidget {
             Expanded(
               child: Text(
                 planHistoryModel.package?.name ?? "",
-                style: CustomTextStyle.bold_16,
+                style: TStyle.bold_16,
               ),
             ),
 
             // price
             Text(
               "${num.parse(planHistoryModel.package!.price) / planHistoryModel.package!.duration} ${L10n.tr().sar}",
-              style: CustomTextStyle.bold_16,
+              style: TStyle.bold_16,
             ),
             Text(
               '/${L10n.tr().month}',
-              style: CustomTextStyle.light_16,
+              style: TStyle.light_16,
             ),
           ],
         ),
@@ -63,7 +63,7 @@ class PlanDuration extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   '${L10n.tr().startedAt} ${planHistoryModel.subscription_data!.start_date}',
-                  style: CustomTextStyle.semiBold_14,
+                  style: TStyle.semiBold_14,
                 ),
               ),
             ),
@@ -78,7 +78,7 @@ class PlanDuration extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   '${L10n.tr().endedAt} ${planHistoryModel.subscription_data!.end_date}',
-                  style: CustomTextStyle.semiBold_14,
+                  style: TStyle.semiBold_14,
                 ),
               ),
             )

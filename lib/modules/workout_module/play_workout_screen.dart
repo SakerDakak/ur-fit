@@ -121,7 +121,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen> with TickerProvid
               SizedBox(
                 height: 16.px,
               ),
-              Text(_start.toString(), style: CustomTextStyle.semiBold_24.copyWith(fontSize: 18)),
+              Text(_start.toString(), style: TStyle.semiBold_24.copyWith(fontSize: 18)),
               SizedBox(
                 height: 16.px,
               ),
@@ -139,10 +139,10 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen> with TickerProvid
                             : null,
                         child: Text(
                           'الانتقال للتمرين التالي',
-                          style: CustomTextStyle.semiBold_24.copyWith(
+                          style: TStyle.semiBold_24.copyWith(
                               color: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
                                   ? Theme.of(context).colorScheme.primary
-                                  : AppColors.greyColor,
+                                  : Co.greyColor,
                               fontSize: 18),
                         )),
                     PlayButton(
@@ -159,11 +159,11 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen> with TickerProvid
                             : null,
                         child: Text(
                           'انهاء التمرين',
-                          style: CustomTextStyle.semiBold_24.copyWith(
+                          style: TStyle.semiBold_24.copyWith(
                               fontSize: 18,
                               color: cubit.state.progressValue == cubit.getPlanForToday()!.exercises.length
                                   ? Theme.of(context).colorScheme.primary
-                                  : AppColors.greyColor),
+                                  : Co.greyColor),
                         )),
                   ],
                 ),

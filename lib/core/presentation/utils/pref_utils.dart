@@ -2,12 +2,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-
-class StorageKeys {
-  static const String themeData = 'themeData';
-  static const String firstVisit = 'firstVisit';
-  static const String lang = 'lang';
-}
+import 'package:urfit/core/data/services/storage_keys.dart';
 
 class PrefUtils {
   static SharedPreferences? _sharedPreferences;
@@ -27,18 +22,6 @@ class PrefUtils {
       return _sharedPreferences?.getBool(StorageKeys.firstVisit) ?? true;
     } catch (e) {
       return true;
-    }
-  }
-
-  Future<void> setLang(String value) {
-    return _sharedPreferences!.setString(StorageKeys.lang, value);
-  }
-
-  String? getLang() {
-    try {
-      return _sharedPreferences!.getString(StorageKeys.lang);
-    } catch (e) {
-      return null;
     }
   }
 }

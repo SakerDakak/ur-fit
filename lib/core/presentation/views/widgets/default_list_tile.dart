@@ -37,7 +37,7 @@ class DefaultListTile extends StatelessWidget {
       trailing: trailing,
       title: Text(
         title,
-        style: CustomTextStyle.regular_14,
+        style: TStyle.regular_14,
       ),
     );
   }

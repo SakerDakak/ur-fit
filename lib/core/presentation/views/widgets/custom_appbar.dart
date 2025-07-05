@@ -27,13 +27,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.light, // For iO
-        systemNavigationBarColor: AppColors.backGround,
+        systemNavigationBarColor: Co.backGround,
       ),
       toolbarHeight: AppBar().preferredSize.height + 20,
       centerTitle: true,
       title: Text(
         title,
-        style: CustomTextStyle.regular_14,
+        style: TStyle.regular_14,
         textAlign: TextAlign.center,
         maxLines: 3,
       ),

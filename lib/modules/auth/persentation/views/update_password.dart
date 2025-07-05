@@ -30,7 +30,7 @@ class UpdatePasswordScreen extends StatelessWidget {
             Text(
               'اعادة تعين كلمة المرور الخاصة بك.',
               textAlign: TextAlign.center,
-              style: CustomTextStyle.bold_16.copyWith(
+              style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -41,8 +41,8 @@ class UpdatePasswordScreen extends StatelessWidget {
               title: 'كلمة المرور  الجديدة',
               hintText: '12345678',
               padding: EdgeInsets.zero,
-              borderColor: AppColors.strockColor,
-              titleStyle: CustomTextStyle.regular_14,
+              borderColor: Co.strockColor,
+              titleStyle: TStyle.regular_14,
               onChanged: (String? value) {
                 /// TODO : Implement new password logic
                 // bloc.onChangePassword(value!);
@@ -56,8 +56,8 @@ class UpdatePasswordScreen extends StatelessWidget {
               title: 'تاكيد كلمة المرور  الجديدة',
               hintText: '12345678',
               padding: EdgeInsets.zero,
-              borderColor: AppColors.strockColor,
-              titleStyle: CustomTextStyle.regular_14,
+              borderColor: Co.strockColor,
+              titleStyle: TStyle.regular_14,
               onChanged: (String? value) {
                 /// TODO : Implement confirm password logic
                 // bloc.onChangeNewPasswordConfirm(value!);

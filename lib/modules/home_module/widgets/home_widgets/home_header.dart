@@ -30,7 +30,7 @@ class HomeHeader extends StatelessWidget {
               // ),
               Spacer(),
               Text('${L10n.tr().homeWelcome}${isGuest ? L10n.tr().guest : user?.name}',
-                  style: CustomTextStyle.semiBold_14.copyWith(color: Colors.white)),
+                  style: TStyle.semiBold_14.copyWith(color: Colors.white)),
               SizedBox(width: 8.px),
               CircleAvatar(
                 radius: 20,

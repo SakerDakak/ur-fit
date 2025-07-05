@@ -22,13 +22,13 @@ class PlanDescription extends StatelessWidget {
             Container(
               width: 4,
               height: 4,
-              color: AppColors.fontColor,
+              color: Co.fontColor,
             ),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
                 'برامج ${package[index].type.name} متكاملة مخصصة لاحتياجات جسمك.',
-                style: CustomTextStyle.bold_16,
+                style: TStyle.bold_16,
               ),
             )
           ],

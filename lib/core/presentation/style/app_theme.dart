@@ -6,40 +6,40 @@ import 'colors.dart';
 
 abstract class AppTheme {
   static ThemeData darkTheme(bool isFemale) => ThemeData(
-        primaryColorLight: isFemale ? AppColors.primaryColorFemale : AppColors.primaryColor,
+        primaryColorLight: isFemale ? Co.primaryColorFemale : Co.primaryColor,
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
-          seedColor:isFemale ? AppColors.primaryColorFemale : AppColors.primaryColor, // This sets the primary color
+          seedColor:isFemale ? Co.primaryColorFemale : Co.primaryColor, // This sets the primary color
           primary:
-          isFemale ? AppColors.primaryColorFemale : AppColors.primaryColor, // Explicitly setting the primary color
+          isFemale ? Co.primaryColorFemale : Co.primaryColor, // Explicitly setting the primary color
           onPrimary: Colors.white, // Color for text and icons on primary color
           secondary: Colors.blueAccent, // Secondary color
           onSecondary:
               Colors.white, // Color for text and icons on secondary color
         ),
-        primaryColor: isFemale ? AppColors.primaryColorFemale : AppColors.primaryColor,
+        primaryColor: isFemale ? Co.primaryColorFemale : Co.primaryColor,
         canvasColor: Colors.white,
         indicatorColor: Colors.white,
         textSelectionTheme: TextSelectionThemeData(
-          cursorColor: isFemale ? AppColors.primaryColorFemale : AppColors.primaryColor,
-          selectionColor: isFemale ? AppColors.primaryColorFemale.withOpacity(0.4) : AppColors.primaryColor.withOpacity(0.4),
-          selectionHandleColor: isFemale ? AppColors.primaryColorFemale : AppColors.primaryColor,
+          cursorColor: isFemale ? Co.primaryColorFemale : Co.primaryColor,
+          selectionColor: isFemale ? Co.primaryColorFemale.withOpacity(0.4) : Co.primaryColor.withOpacity(0.4),
+          selectionHandleColor: isFemale ? Co.primaryColorFemale : Co.primaryColor,
         ),
-        scaffoldBackgroundColor: AppColors.backGround,
+        scaffoldBackgroundColor: Co.backGround,
         bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: AppColors.cardColor,
+          backgroundColor: Co.cardColor,
         ),
 
         // text theme
         textTheme: GoogleFonts.cairoTextTheme().apply(
-          decorationColor: AppColors.whiteColor,
-          displayColor: AppColors.fontColor,
-          bodyColor: AppColors.fontColor,
+          decorationColor: Co.whiteColor,
+          displayColor: Co.fontColor,
+          bodyColor: Co.fontColor,
         ),
 
         // dialog theme
         dialogTheme: DialogThemeData(
-          backgroundColor: AppColors.whiteColor,
+          backgroundColor: Co.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           ),
@@ -52,7 +52,7 @@ abstract class AppTheme {
             fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
-          backgroundColor: AppColors.backGround,
+          backgroundColor: Co.backGround,
           elevation: 0,
           scrolledUnderElevation: 0,
         ),

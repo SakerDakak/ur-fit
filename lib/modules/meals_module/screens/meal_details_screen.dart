@@ -64,7 +64,7 @@ class MealDetailsScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16.px),
                     child: Text(
                       meal.title.toString(),
-                      style: CustomTextStyle.semiBold_16,
+                      style: TStyle.semiBold_16,
                     ),
                   ),
                   SizedBox(

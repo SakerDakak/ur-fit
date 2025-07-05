@@ -68,7 +68,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   Text(
                     L10n.tr().congratulationsYouHaveDoneAGreatWork,
-                    style: CustomTextStyle.bold_14.copyWith(
+                    style: TStyle.bold_14.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
@@ -88,7 +88,7 @@ class PreviousPlanScreen extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         L10n.tr().summeryOfYourPreviousPlan,
-                        style: CustomTextStyle.regular_14,
+                        style: TStyle.regular_14,
                       )
                     ],
                   ),
@@ -103,14 +103,14 @@ class PreviousPlanScreen extends StatelessWidget {
                   // Average amount eaten at meals
                   Text(
                     L10n.tr().averageNutritionGained,
-                    style: CustomTextStyle.bold_14,
+                    style: TStyle.bold_14,
                   ),
 
                   const SizedBox(height: 16),
 
                    AverageAmountEatenPercentage( planHistoryModel: state.planHistoryModel!,),
                   const Divider(
-                    color: AppColors.strockColor,
+                    color: Co.strockColor,
                   ),
 
                   const SizedBox(height: 16),
@@ -118,7 +118,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   // The rate of what was done in the exercises
                   Text(
                     L10n.tr().totalExerciseBurned,
-                    style: CustomTextStyle.bold_14,
+                    style: TStyle.bold_14,
                   ),
 
                   const SizedBox(height: 16),
@@ -126,7 +126,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   CaloriesAndSteps(calories: state.planHistoryModel!.expectedResultOfExercisePlans!.calories, sets: state.planHistoryModel!.expectedResultOfExercisePlans!.sets,),
 
                   const Divider(
-                    color: AppColors.strockColor,
+                    color: Co.strockColor,
                     thickness: 1.5,
                   ),
 
@@ -135,7 +135,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   // The rate of what was done in the exercises
                   Text(
                     L10n.tr().averageAchievedInExercise,
-                    style: CustomTextStyle.bold_14,
+                    style: TStyle.bold_14,
                   ),
 
                   const SizedBox(height: 16),

@@ -28,7 +28,7 @@ class EditWeightBottomSheet extends StatelessWidget {
             width: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-              color: AppColors.cardInputStrock,
+              color: Co.cardInputStrock,
             ),
           ),
 
@@ -45,11 +45,11 @@ class EditWeightBottomSheet extends StatelessWidget {
                   visualDensity: VisualDensity.comfortable,
                   elevation: 4,
                   shadowColor: Colors.black,
-                  backgroundColor: AppColors.whiteColor,
+                  backgroundColor: Co.whiteColor,
                 ),
                 icon: const Icon(
                   Icons.close,
-                  color: AppColors.backGround,
+                  color: Co.backGround,
                   size: 20,
                 ),
               ),
@@ -67,7 +67,7 @@ class EditWeightBottomSheet extends StatelessWidget {
           // title
           Text(
             'تحديث الوزن',
-            style: CustomTextStyle.bold_16.copyWith(
+            style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
@@ -84,8 +84,8 @@ class EditWeightBottomSheet extends StatelessWidget {
                 children: [
                   Text(
                     'الوزن الحالى',
-                    style: CustomTextStyle.semiBold_16.copyWith(
-                      color: AppColors.selectedFont,
+                    style: TStyle.semiBold_16.copyWith(
+                      color: Co.selectedFont,
                     ),
                   ),
                   const SizedBox(width: 4),
@@ -96,20 +96,20 @@ class EditWeightBottomSheet extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                      border: Border.all(color: AppColors.strockColor),
+                      border: Border.all(color: Co.strockColor),
                     ),
                     child: Text(
                       '75',
-                      style: CustomTextStyle.semiBold_16.copyWith(
-                        color: AppColors.selectedFont,
+                      style: TStyle.semiBold_16.copyWith(
+                        color: Co.selectedFont,
                       ),
                     ),
                   ),
                   const SizedBox(width: 4),
                   Text(
                     'كجم',
-                    style: CustomTextStyle.semiBold_16.copyWith(
-                      color: AppColors.selectedFont,
+                    style: TStyle.semiBold_16.copyWith(
+                      color: Co.selectedFont,
                     ),
                   ),
                 ],

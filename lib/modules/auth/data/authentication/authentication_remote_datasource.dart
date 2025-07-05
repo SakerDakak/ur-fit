@@ -8,9 +8,7 @@ import '../models/register_model.dart';
 class AuthenticationRemoteDataSource {
   final ApiClient dioServices;
   // final FirebaseAuth auth;
-  AuthenticationRemoteDataSource(
-    this.dioServices,
-  );
+  AuthenticationRemoteDataSource(this.dioServices);
 
   Future<void> signOut() async {
     await dioServices.post(EndPoints.logout);

@@ -37,7 +37,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
             // title
             Text(
               L10n.tr().whatIsyourGoals,
-              style: CustomTextStyle.bold_16.copyWith(
+              style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -47,7 +47,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
             // goals section one
             Text(
              L10n.tr().sectionOne,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
             const SizedBox(height: 16),
 
@@ -59,7 +59,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
             // goals section two
             Text(
               L10n.tr().sectionTwo,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
 
             const SizedBox(height: 16),

@@ -66,7 +66,7 @@ class Countdown extends AnimatedWidget {
           children: [
             Text(
               timerText != "0:00" ? 'تنتهي صلاحية الرمز خلال' : 'إعادة ارسال رقم التحقق عن طريق',
-              style: CustomTextStyle.regular_14.copyWith(color: AppColors.greyColor),
+              style: TStyle.regular_14.copyWith(color: Co.greyColor),
             ),
             SizedBox(
               width: 6,
@@ -74,7 +74,7 @@ class Countdown extends AnimatedWidget {
             if (timerText != "0:00")
               Text(
                 timerText,
-                style: CustomTextStyle.regular_14.copyWith(color: AppColors.greyColor),
+                style: TStyle.regular_14.copyWith(color: Co.greyColor),
               ),
           ],
         ),
@@ -94,7 +94,7 @@ class Countdown extends AnimatedWidget {
                     },
                     label: Text(
                       'رسالة النصية',
-                      style: CustomTextStyle.regular_14.copyWith(color: Theme.of(context).colorScheme.primary),
+                      style: TStyle.regular_14.copyWith(color: Theme.of(context).colorScheme.primary),
                     ),
                     icon: SvgPicture.asset(
                       '',
@@ -112,7 +112,7 @@ class Countdown extends AnimatedWidget {
                     },
                     label: Text(
                       'واتساب',
-                      style: CustomTextStyle.regular_14.copyWith(color: Theme.of(context).colorScheme.primary),
+                      style: TStyle.regular_14.copyWith(color: Theme.of(context).colorScheme.primary),
                     ),
                     icon: SvgPicture.asset(
                       '',

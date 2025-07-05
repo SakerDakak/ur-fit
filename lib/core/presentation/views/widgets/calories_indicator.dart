@@ -22,7 +22,7 @@ class CaloriesIndicator extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           SvgPicture.asset(
-            Theme.of(context).colorScheme.primary == AppColors.primaryColor ?  Assets.imageCaloriesIndicator : Assets.imageCaloriesIndicatorFemale,
+            Theme.of(context).colorScheme.primary == Co.primaryColor ?  Assets.imageCaloriesIndicator : Assets.imageCaloriesIndicatorFemale,
             width: 185,
           ),
           SizedBox(
@@ -46,8 +46,8 @@ class CaloriesIndicator extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         calories.toStringAsFixed(0),
-                        style: CustomTextStyle.regular_14.copyWith(
-                          color: AppColors.fontColor,
+                        style: TStyle.regular_14.copyWith(
+                          color: Co.fontColor,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -58,8 +58,8 @@ class CaloriesIndicator extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: Text(
                     title,
-                    style: CustomTextStyle.regular_14.copyWith(
-                      color: AppColors.fontColor,
+                    style: TStyle.regular_14.copyWith(
+                      color: Co.fontColor,
                       fontWeight: FontWeight.w700,
                     ),
                   ),

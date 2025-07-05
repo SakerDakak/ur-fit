@@ -40,9 +40,9 @@ class StartWorkoutCard extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               L10n.tr().exerciseTodayWillFocusOn,
-              style: CustomTextStyle.regular_14.copyWith(
+              style: TStyle.regular_14.copyWith(
                 fontWeight: FontWeight.w700,
-                color: AppColors.fontColor,
+                color: Co.fontColor,
               ),
             ),
           ],

@@ -19,9 +19,9 @@ class WaterTracking extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: Column(
         children: [
@@ -29,9 +29,9 @@ class WaterTracking extends StatelessWidget {
             L10n.tr().water,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: CustomTextStyle.regular_14.copyWith(
+            style: TStyle.regular_14.copyWith(
               fontWeight: FontWeight.w700,
-              color: AppColors.whiteColor,
+              color: Co.whiteColor,
             ),
           ),
           const SizedBox(height: 8),
@@ -80,9 +80,9 @@ class WaterTracking extends StatelessWidget {
                 '${water} ${L10n.tr().litre}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: AppColors.fontColor,
+                  color: Co.fontColor,
                 ),
               );
             },

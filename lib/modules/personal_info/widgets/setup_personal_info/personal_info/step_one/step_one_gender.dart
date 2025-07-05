@@ -24,7 +24,7 @@ class StepOneGender extends StatelessWidget {
             // title
             Text(
               L10n.tr().letUsKnowYouWell,
-              style: CustomTextStyle.bold_16.copyWith(
+              style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -34,7 +34,7 @@ class StepOneGender extends StatelessWidget {
             // gender
             Text(
               L10n.tr().areYou,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
             const SizedBox(height: 16),
             // _GenderToggleButtons(

@@ -32,7 +32,7 @@ class SetupInfoStepOne extends StatelessWidget {
             // title
             Text(
               L10n.tr().letUsKnowYouWell,
-              style: CustomTextStyle.bold_16.copyWith(
+              style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -42,7 +42,7 @@ class SetupInfoStepOne extends StatelessWidget {
             // gender
             Text(
               L10n.tr().areYou,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
             const SizedBox(height: 16),
             _GenderToggleButtons(
@@ -74,7 +74,7 @@ class SetupInfoStepOne extends StatelessWidget {
             _SliderTitle(
               title: L10n.tr().height,
               value: state.userInfo.height,
-              suffix: Text(L10n.tr().cm, style: CustomTextStyle.semiBold_16),
+              suffix: Text(L10n.tr().cm, style: TStyle.semiBold_16),
             ),
             const SizedBox(height: 12),
             CustomCurveSlider(
@@ -94,7 +94,7 @@ class SetupInfoStepOne extends StatelessWidget {
             _SliderTitle(
               title: L10n.tr().weight,
               value: state.userInfo.current_weight,
-              suffix: Text(L10n.tr().kg, style: CustomTextStyle.semiBold_16),
+              suffix: Text(L10n.tr().kg, style: TStyle.semiBold_16),
             ),
             const SizedBox(height: 12),
             CustomCurveSlider(
@@ -147,7 +147,7 @@ class _SliderTitle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: CustomTextStyle.semiBold_16,
+            style: TStyle.semiBold_16,
           ),
           const SizedBox(width: 4),
           Container(
@@ -156,7 +156,7 @@ class _SliderTitle extends StatelessWidget {
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-              color: AppColors.cardColor,
+              color: Co.cardColor,
             ),
             child: FittedBox(
               fit: BoxFit.scaleDown,
@@ -165,11 +165,11 @@ class _SliderTitle extends StatelessWidget {
                       duration: const Duration(milliseconds: 500),
                       value: value!,
                       fractionDigits: valueFractionDigits,
-                      textStyle: CustomTextStyle.semiBold_16,
+                      textStyle: TStyle.semiBold_16,
                     )
                   : Text(
                       "-",
-                      style: CustomTextStyle.semiBold_16,
+                      style: TStyle.semiBold_16,
                     ),
             ),
           ),
@@ -221,7 +221,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
               padding: const EdgeInsets.all(12),
               margin: EdgeInsetsDirectional.only(end: i == 0 ? 16 : 0),
               decoration: BoxDecoration(
-                color: i + 1 == _selectedIndex ? Theme.of(context).colorScheme.primary : AppColors.cardColor,
+                color: i + 1 == _selectedIndex ? Theme.of(context).colorScheme.primary : Co.cardColor,
                 borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               ),
               child: FittedBox(
@@ -233,14 +233,14 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                       GenderEnum.values[i] == GenderEnum.male ? Assets.iconsSkinnyBody : Assets.iconsFemale,
                       height: 24,
                       colorFilter: const ColorFilter.mode(
-                        AppColors.whiteColor,
+                        Co.whiteColor,
                         BlendMode.srcIn,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       GenderEnum.values[i] == GenderEnum.male ? L10n.tr().male : L10n.tr().female,
-                      style: CustomTextStyle.bold_16,
+                      style: TStyle.bold_16,
                     ),
                   ],
                 ),

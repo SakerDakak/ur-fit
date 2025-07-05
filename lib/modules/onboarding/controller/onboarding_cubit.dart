@@ -9,6 +9,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   OnboardingCubit(this.authenticationRepo) : super(OnboardingInitial());
 
   CountryModel? _selectedCountry;
+  int? get selectedCountryId => _selectedCountry?.id;
   getCountries() async {
     emit(OnboardingLoadingCountries());
     final result = await authenticationRepo.getCountries();

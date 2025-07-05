@@ -25,9 +25,9 @@ class CustomCurveSlider extends StatefulWidget {
     required this.maxIconSvgPath,
     this.onValueChanged,
     this.displayedValueFractionDigits = 1,
-    this.minIconColor = AppColors.whiteColor,
+    this.minIconColor = Co.whiteColor,
     this.minIconSize = const Size(22, 22),
-    this.maxIconColor = AppColors.whiteColor,
+    this.maxIconColor = Co.whiteColor,
     this.maxIconSize = const Size(22, 22),
     required this.minValue,
     required this.maxValue,
@@ -173,7 +173,7 @@ class CurveSliderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint sliderPaint = Paint()
-      ..color = AppColors.strockColor
+      ..color = Co.strockColor
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 3;
@@ -185,7 +185,7 @@ class CurveSliderPainter extends CustomPainter {
             : roundValueToInt
                 ? displayedValue!.round().toString()
                 : displayedValue!.toStringAsFixed(displayedValueFractionDigits),
-        style: CustomTextStyle.bold_16,
+        style: TStyle.bold_16,
       ),
       textDirection: TextDirection.ltr,
     );
@@ -225,7 +225,7 @@ class CurveSliderPainter extends CustomPainter {
     );
 
     // selected value container
-    final valueContainerPaint = Paint()..color = AppColors.strockColor;
+    final valueContainerPaint = Paint()..color = Co.strockColor;
     Rect rect = Rect.fromLTWH(
       ((curveWidth) / 2) - (valueContainerWidth / 2) + curvePosition,
       0,

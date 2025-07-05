@@ -16,7 +16,7 @@ class SocialMediaWidget extends StatelessWidget {
       children: [
         Text(
           L10n.tr().or,
-          style: CustomTextStyle.regular_16,
+          style: TStyle.regular_16,
         ),
         SizedBox(
           height: 24.px,

@@ -38,7 +38,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGround,
+      backgroundColor: Co.backGround,
       appBar: AppBar(),
       body: SafeArea(
         child: Column(
@@ -49,7 +49,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
             ),
             Text(
               L10n.tr().chooseCountry,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
             SizedBox(
               height: 32.px,
@@ -86,6 +86,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
             CustomElevatedButton(
                 text: L10n.tr().continuee,
                 onPressed: () {
+                  if (selectedCountry == null) return;
                   // selectedCountry = selectedCountry ?? context.read<OnboardingCubit>().state.countries.first;
                   context.read<OnboardingCubit>().setCountries(selectedCountry!);
                   // context.read<LoginBloc>().add(SetCountryEvent(selectedCountry!.id));

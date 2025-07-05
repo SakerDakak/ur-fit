@@ -38,9 +38,9 @@ class _SectionCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: AppColors.cardColor,
+          color: Co.cardColor,
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-          border: Border.all(color: AppColors.strockColor),
+          border: Border.all(color: Co.strockColor),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
@@ -75,7 +75,7 @@ class _SectionCard extends StatelessWidget {
                       title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.bold_16.copyWith(shadows: [
+                      style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
                           offset: const Offset(0, 4),
@@ -98,7 +98,7 @@ class _SectionCard extends StatelessWidget {
                     ),
                     child: Text(
                       'ابدا',
-                      style: CustomTextStyle.bold_14,
+                      style: TStyle.bold_14,
                     ),
                   )
                 ],

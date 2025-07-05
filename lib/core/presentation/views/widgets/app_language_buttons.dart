@@ -87,15 +87,15 @@ class _LanguageButton extends StatelessWidget {
           children: [
             Text(
               langName,
-              style: CustomTextStyle.bold_12.copyWith(
-                color: isSelected ? AppColors.selectedFont : AppColors.fontColor,
+              style: TStyle.bold_12.copyWith(
+                color: isSelected ? Co.selectedFont : Co.fontColor,
               ),
             ),
             if (isSelected) const SizedBox(width: 16),
             if (isSelected)
               const Icon(
                 Icons.check,
-                color: AppColors.selectedFont,
+                color: Co.selectedFont,
                 size: 12,
               ),
           ],

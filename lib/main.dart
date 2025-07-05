@@ -18,7 +18,6 @@ import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
 import 'core/presentation/routes/routes.dart';
 import 'core/presentation/utils/hive_services.dart';
-import 'core/presentation/utils/pref_utils.dart';
 import 'firebase_options.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
 import 'modules/onboarding/controller/onboarding_cubit.dart';
@@ -29,8 +28,8 @@ Future<void> main() async {
 
   await init();
   await HiveServices().init();
-  await HiveServices().register();
-  await HiveServices().openBoxes();
+  // await HiveServices().register();
+  // await HiveServices().openBoxes();
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -74,7 +73,7 @@ class MyApp extends StatelessWidget {
                   builder: (context, state) {
                     return SpinKitWaveSpinner(
                       size: 100,
-                      color: AppColors.secondaryColor,
+                      color: Co.secondaryColor,
                       waveColor: Theme.of(context).colorScheme.primary,
                       trackColor: Theme.of(context).colorScheme.primary,
                     );
@@ -92,8 +91,6 @@ class MyApp extends StatelessWidget {
                 // },
                 builder: (context, state) {
                   // PrefUtils().setLang("ar");
-                  final String? lang = PrefUtils().getLang();
-                  print('lang: $lang');
                   return MaterialApp.router(
                     // AppConst.navigatorKey: AppConst.navigatorKey,
                     // routeInformationParser: MyRouteInformationParser(),
@@ -101,7 +98,7 @@ class MyApp extends StatelessWidget {
                     routerConfig: AppRouter.appRouter,
                     localizationsDelegates: L10n.localizationDelegates,
                     supportedLocales: L10n.supportedLocales,
-                    locale: Locale(lang ?? 'ar'),
+                    locale: Locale(state.currentLocal),
                     scaffoldMessengerKey: AppConst.rootScaffoldKey,
                     title: "URFIT",
                     debugShowCheckedModeBanner: false,

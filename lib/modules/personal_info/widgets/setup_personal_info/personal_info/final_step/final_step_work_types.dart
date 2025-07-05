@@ -43,7 +43,7 @@ class FinalStepWorkTypes extends StatelessWidget {
                     children: [
                       Text(
                         L10n.tr().preferredEquipment,
-                        style: CustomTextStyle.semiBold_16,
+                        style: TStyle.semiBold_16,
                         textAlign: TextAlign.start,
                       ),
                       Spacer(),
@@ -76,7 +76,7 @@ class FinalStepWorkTypes extends StatelessWidget {
                                               width: 62,
                                               height: 4,
                                               decoration: BoxDecoration(
-                                                color: AppColors.backGround,
+                                                color: Co.backGround,
                                                 borderRadius: BorderRadius.circular(16),
                                               ),
                                             )),
@@ -88,7 +88,7 @@ class FinalStepWorkTypes extends StatelessWidget {
                                                   width: 30,
                                                   decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
-                                                      border: Border.all(color: AppColors.greyColor)),
+                                                      border: Border.all(color: Co.greyColor)),
                                                   child: FittedBox(
                                                       child: CloseButton(
                                                     color: Colors.black,
@@ -108,7 +108,7 @@ class FinalStepWorkTypes extends StatelessWidget {
                                     ),
                                     Text(
                                       L10n.tr().preferredEquipment,
-                                      style: CustomTextStyle.semiBold_16
+                                      style: TStyle.semiBold_16
                                           .copyWith(color: Theme.of(context).colorScheme.primary),
                                       textAlign: TextAlign.center,
                                     ),
@@ -163,7 +163,7 @@ class FinalStepWorkTypes extends StatelessWidget {
                         },
                         child: Text(
                           L10n.tr().seeMore,
-                          style: CustomTextStyle.semiBold_16.copyWith(
+                          style: TStyle.semiBold_16.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                           ),
                         ),

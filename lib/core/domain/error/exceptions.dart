@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -63,13 +64,13 @@ class ServerException extends Equatable implements Exception {
                       // Success message text
                       Text(
                         'تم انتهاء فترة التجربة',
-                        style: CustomTextStyle.regular_14,
+                        style: TStyle.regular_14,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8.0),
                       Text(
                         'سيتم إرسال طريقة الاشتراك في البريد الإلكتروني',
-                        style: CustomTextStyle.regular_14.copyWith(color: AppColors.greyColor),
+                        style: TStyle.regular_14.copyWith(color: Co.greyColor),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16.0),
@@ -86,7 +87,7 @@ class ServerException extends Equatable implements Exception {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue, padding: const EdgeInsets.all(15)),
                             child:
-                                Text('تسجيل الخروج', style: CustomTextStyle.semiBold_14.copyWith(color: Colors.white)),
+                                Text('تسجيل الخروج', style: TStyle.semiBold_14.copyWith(color: Colors.white)),
                           ),
                         ),
                       ),
@@ -137,7 +138,7 @@ class ServerException extends Equatable implements Exception {
                         'لقد فقدت الاتصال بالإنترنت',
                         // style: Theme.of(context).textTheme.headline6,
                         textAlign: TextAlign.center,
-                        style: CustomTextStyle.semiBold_16,
+                        style: TStyle.semiBold_16,
                       ),
                       SizedBox(
                         height: 14,
@@ -145,7 +146,7 @@ class ServerException extends Equatable implements Exception {
                       Text(
                         'لا يوجد اتصال بالإنترنت. تحقق من اتصال بالإنترنت.',
                         textAlign: TextAlign.center,
-                        style: CustomTextStyle.regular_16,
+                        style: TStyle.regular_16,
                       ),
                       const SizedBox(height: 45),
                       SizedBox(
@@ -164,7 +165,7 @@ class ServerException extends Equatable implements Exception {
                           },
                           child: Text(
                             'جرب مرة اخرى',
-                            style: CustomTextStyle.semiBold_14.copyWith(color: Colors.white),
+                            style: TStyle.semiBold_14.copyWith(color: Colors.white),
                           ),
                         ),
                       ),
@@ -254,3 +255,13 @@ class NoInternetConnectionException extends ServerException {
 }
 
 class CacheException implements Exception {}
+
+class MessageHandeler {
+  static String handleErrorMessage(DioException e) {
+    final data = e.response?.data;
+    if (data is! Map<String, dynamic>) return " ** UnHandled Error **";
+    if (data.containsKey('error')) return data['error'].toString();
+    if (data.containsKey('data')) return data['data'].toString();
+    return data.values.join(', ');
+  }
+}

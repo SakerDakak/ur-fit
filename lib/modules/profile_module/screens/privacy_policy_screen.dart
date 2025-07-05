@@ -36,7 +36,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
             // ),
             // const SizedBox(height: 16),
             Text(state.staticPageModel!.content,
-              style: CustomTextStyle.regular_14,
+              style: TStyle.regular_14,
             ),
 
             const SizedBox(height: 16),

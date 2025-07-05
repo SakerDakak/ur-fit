@@ -98,6 +98,42 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @pressDoubleBackToExit.
+  ///
+  /// In en, this message translates to:
+  /// **'Press double back to exit'**
+  String get pressDoubleBackToExit;
+
+  /// No description provided for @thisFieldIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required.'**
+  String get thisFieldIsRequired;
+
+  /// No description provided for @passwordLengthError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters long.'**
+  String get passwordLengthError;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get invalidEmail;
+
+  /// No description provided for @valueMustBeNum.
+  ///
+  /// In en, this message translates to:
+  /// **'{val} must be equal to {num} characters'**
+  String valueMustBeNum(int num, String val);
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number.'**
+  String get invalidPhoneNumber;
+
   /// No description provided for @app_name.
   ///
   /// In en, this message translates to:

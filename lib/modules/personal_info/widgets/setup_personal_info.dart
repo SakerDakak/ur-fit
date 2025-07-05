@@ -47,7 +47,7 @@ class SetupPersonalInfo extends StatelessWidget {
                     child: Text(
                       L10n.tr().personalInfo,
                       textAlign: TextAlign.center,
-                      style: CustomTextStyle.bold_16,
+                      style: TStyle.bold_16,
                     ),
                   ),
                 ],
@@ -64,7 +64,7 @@ class SetupPersonalInfo extends StatelessWidget {
                       _getCurrentStepTxt(state.currentInfoStep),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.semiBold_14,
+                      style: TStyle.semiBold_14,
                     ),
                   ),
 
@@ -95,7 +95,7 @@ class SetupPersonalInfo extends StatelessWidget {
                 isRTL: Directionality.of(context) == TextDirection.rtl,
                 barRadius: const Radius.circular(8),
                 lineHeight: 2,
-                backgroundColor: AppColors.whiteColor,
+                backgroundColor: Co.whiteColor,
                 progressColor: Theme.of(context).colorScheme.primary,
                 padding: EdgeInsets.zero,
                 animation: true,

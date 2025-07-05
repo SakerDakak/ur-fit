@@ -9,6 +9,27 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get pressDoubleBackToExit => 'Press double back to exit';
+
+  @override
+  String get thisFieldIsRequired => 'This field is required.';
+
+  @override
+  String get passwordLengthError =>
+      'Password must be at least 6 characters long.';
+
+  @override
+  String get invalidEmail => 'Please enter a valid email address.';
+
+  @override
+  String valueMustBeNum(int num, String val) {
+    return '$val must be equal to $num characters';
+  }
+
+  @override
+  String get invalidPhoneNumber => 'Please enter a valid phone number.';
+
+  @override
   String get app_name => 'URFIT';
 
   @override

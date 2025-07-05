@@ -59,13 +59,13 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
                 const SizedBox(height: 28),
                 Text(
                   L10n.tr().planUpdate,
-                  style: CustomTextStyle.bold_16,
+                  style: TStyle.bold_16,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   L10n.tr().planUpdatePhrase1,
                   textAlign: TextAlign.center,
-                  style: CustomTextStyle.semiBold_16.copyWith(
+                  style: TStyle.semiBold_16.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -84,7 +84,7 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
                       center: AnimatedFlipCounter(
                         value: (_progress * 100).clamp(0, 100),
                         suffix: '%',
-                        textStyle: CustomTextStyle.bold_40,
+                        textStyle: TStyle.bold_40,
                         duration: const Duration(milliseconds: 500),
                       ),
                       animateFromLastPercent: true,
@@ -97,7 +97,7 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
                 Text(
                   L10n.tr().planUpdatePhrase2,
                   textAlign: TextAlign.center,
-                  style: CustomTextStyle.semiBold_16,
+                  style: TStyle.semiBold_16,
                 ),
                 const Spacer(flex: 4),
               ],

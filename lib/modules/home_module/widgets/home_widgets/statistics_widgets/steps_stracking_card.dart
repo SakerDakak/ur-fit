@@ -21,9 +21,9 @@ class StepsTrackingCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +37,9 @@ class StepsTrackingCard extends StatelessWidget {
                 L10n.tr().steps,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.regular_14.copyWith(
+                style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.whiteColor,
+                  color: Co.whiteColor,
                 ),
               ),
             ),
@@ -90,9 +90,9 @@ class StepsTrackingCard extends StatelessWidget {
                   '${steps} ${L10n.tr().step}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppColors.fontColor,
+                    color: Co.fontColor,
                   ),
                 );
               },
@@ -109,7 +109,7 @@ class StepsTrackingCard extends StatelessWidget {
                   '${(distance / 1000).toStringAsFixed(1)} ${L10n.tr().km}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).colorScheme.primary,
                   ),

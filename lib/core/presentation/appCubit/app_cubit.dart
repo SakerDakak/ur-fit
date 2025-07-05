@@ -2,47 +2,26 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:urfit/core/presentation/utils/pref_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/service_locator.dart';
 
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   // final EasyLocalization localization ;
-  AppCubit() : super(const AppState());
+  AppCubit() : super(AppState(currentLocal: sl<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
   late Box themeBox;
-
+  late String lang;
   bool? notificationEnabled;
 
   init() async {
-    // if(await Permission.notification.isGranted){
-    //   notificationEnabled = true;
-    // }else{
-    //   notificationEnabled = false;
-    // }
-    // if(notificationEnabled == null) {
-    //   final result = await Permission.notification.request();
-    //
-    //   switch (result) {
-    //     case PermissionStatus.provisional:
-    //     case PermissionStatus.granted:
-    //     case PermissionStatus.limited:
-    //       notificationEnabled = true;
-    //     case PermissionStatus.restricted:
-    //     case PermissionStatus.permanentlyDenied:
-    //     case PermissionStatus.denied:
-    //       notificationEnabled = false;
-    //   }
-    // }
-    // themeBox = await Hive.openBox("ThemeMode");
-    await getLocal();
+    getLocal();
     await getThemeFromHive();
-    // emit(state.copyWith(currentLocal: localization.currentLocale?.languageCode)) ;
-// emit(state.copyWith(isDark: isDark));
   }
 
-  getLocal() {
-    final lang = PrefUtils().getLang();
-    emit(state.copyWith(currentLocal: lang));
+  void getLocal() {
+    lang = sl<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar';
   }
 
   ThemeMode get currentTheme => state.isDark == null
@@ -63,7 +42,8 @@ class AppCubit extends Cubit<AppState> {
   changeLang(String lang) async {
     print("change Lang $lang");
     // await EasyLocalization.of(AppConst.rootScaffoldKey.currentContext!)?.setLocale(Locale(lang));
-    await PrefUtils().setLang(lang);
+    await sl<SharedPreferences>().setString(StorageKeys.lang, lang);
+    this.lang = lang;
     emit(state.copyWith(currentLocal: lang));
   }
 

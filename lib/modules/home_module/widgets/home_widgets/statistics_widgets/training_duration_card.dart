@@ -19,9 +19,9 @@ class TrainingDurationCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: FittedBox(
         fit: BoxFit.scaleDown,
@@ -41,9 +41,9 @@ class TrainingDurationCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   L10n.tr().exercises,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.fontColor,
+                    color: Co.fontColor,
                   ),
                 ),
               ],
@@ -55,9 +55,9 @@ class TrainingDurationCard extends StatelessWidget {
                 return Text(
                   '${exerciseTime} ${L10n.tr().min}',
                   textAlign: TextAlign.center,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppColors.fontColor,
+                    color: Co.fontColor,
                   ),
                 );
               },

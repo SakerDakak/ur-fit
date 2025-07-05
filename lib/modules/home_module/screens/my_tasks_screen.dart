@@ -37,11 +37,11 @@ class MyTasksScreen extends StatelessWidget {
               children: [
                 TextSpan(
                   text: 'اتباع المهام اليومية تزيد فرص الوصل ',
-                  style: CustomTextStyle.bold_14,
+                  style: TStyle.bold_14,
                 ),
                 TextSpan(
                   text: 'لجسمك المثالى!',
-                  style: CustomTextStyle.bold_14.copyWith(
+                  style: TStyle.bold_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -61,7 +61,7 @@ class MyTasksScreen extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 'اليوم',
-                style: CustomTextStyle.bold_16,
+                style: TStyle.bold_16,
               ),
             ],
           ),
@@ -74,7 +74,7 @@ class MyTasksScreen extends StatelessWidget {
           // sections
           Text(
             'الاقسام',
-            style: CustomTextStyle.bold_16,
+            style: TStyle.bold_16,
           ),
           const SizedBox(height: 16),
           const Sections(),

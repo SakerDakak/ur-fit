@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
-import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
+import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_flow.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/social_media_widget.dart';
-import 'package:urfit/service_locator.dart';
+import 'package:urfit/modules/home_module/screens/main_page.dart';
+import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
@@ -28,22 +29,12 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
-  _login() async {
-    LoadingHelper.startLoading();
-    AppConst.latestFunctionCalled = _login;
-    final user = await sl<AuthenticationRepo>()
-        .login(email: email.text, password: password.text, remember: shouldRemember.value);
-    user.fold((l) async {
-      print("l.message : ${l.message}");
-      LoadingHelper.stopLoading();
-    }, (u) async {
-      Session().getUser();
-    });
-  }
 
   @override
   void dispose() {
     shouldRemember.dispose();
+    email.dispose();
+    password.dispose();
     super.dispose();
   }
 
@@ -117,7 +108,7 @@ class _LoginFormState extends State<LoginForm> {
                               child: Checkbox(
                                 value: value,
                                 onChanged: (val) {},
-                                checkColor: AppColors.whiteColor,
+                                checkColor: Co.whiteColor,
                                 focusColor: Theme.of(context).colorScheme.primary,
                                 activeColor: Theme.of(context).colorScheme.primary,
                                 side: BorderSide(color: Theme.of(context).colorScheme.primary),
@@ -125,20 +116,20 @@ class _LoginFormState extends State<LoginForm> {
                             ),
                             Text(
                               L10n.tr().rememberMe,
-                              style: CustomTextStyle.regular_16,
+                              style: TStyle.regular_16,
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     TextButton(
                         onPressed: () {
                           context.push(ForgetPasswordFlow.route);
                         },
                         child: Text(
                           L10n.tr().forgetPassword,
-                          style: CustomTextStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                          style: TStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
                         )),
                   ],
                 ),
@@ -146,13 +137,36 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: 24.px,
               ),
-              CustomElevatedButton(
-                  text: L10n.tr().signIn,
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() != true) return;
-                    TextInput.finishAutofillContext(shouldSave: shouldRemember.value);
-                    _login();
-                  }),
+              BlocConsumer<AuthCubit, AuthStates>(
+                listenWhen: (previous, current) => current is LoginStates,
+                listener: (context, state) {
+                  if (state is LoginLoadingState) {
+                    LoadingHelper.startLoading();
+                  } else {
+                    LoadingHelper.stopLoading();
+                  }
+                  if (state is UnCheckedUser) {
+                    // navigate to forget password screen
+                    //  context?.read<LoginBloc>().sendCode(user.email.toString(), "success");
+                    context.pushReplacement(ForgetPasswordFlow.route);
+                  } else if (state is CheckedUncompletedInfoUser) {
+                    /// case 2: user verified but has no valid subscription
+                    context.pushReplacement(SetupPersonalInfoScreen.route);
+                  } else if (state is CheckedWithInfoUser) {
+                    /// case 3: user verified, has valid subscription, and has personal info
+                    // context.pushReplacementNamed(AppRouter.authenticationScreen);
+                    context.push(MainPage.routeWithBool(false));
+                  }
+                },
+                builder: (context, state) => CustomElevatedButton(
+                    text: L10n.tr().signIn,
+                    isLoading: state is LoginLoadingState,
+                    onPressed: () {
+                      if (_formKey.currentState?.validate() != true) return;
+                      TextInput.finishAutofillContext(shouldSave: shouldRemember.value);
+                      context.read<AuthCubit>().login(email.text.trim(), password.text.trim(), shouldRemember.value);
+                    }),
+              ),
               SizedBox(
                 height: 24.px,
               ),

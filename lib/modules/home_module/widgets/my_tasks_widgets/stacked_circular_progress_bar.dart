@@ -18,13 +18,13 @@ class StackedCircularProgressBar extends StatelessWidget {
         // background circle 1
         CircleAvatar(
           radius: 75,
-          backgroundColor: AppColors.whiteColor.withOpacity(0.05),
+          backgroundColor: Co.whiteColor.withOpacity(0.05),
         ),
 
         // background circle 2
         CircleAvatar(
           radius: 60,
-          backgroundColor: AppColors.whiteColor.withOpacity(0.05),
+          backgroundColor: Co.whiteColor.withOpacity(0.05),
         ),
 
         // background circle 3 with radial gradient
@@ -75,8 +75,8 @@ class StackedCircularProgressBar extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text('300', style: CustomTextStyle.bold_14),
-                Text('وحدة', style: CustomTextStyle.semiBold_14),
+                Text('300', style: TStyle.bold_14),
+                Text('وحدة', style: TStyle.semiBold_14),
               ],
             ),
           ),

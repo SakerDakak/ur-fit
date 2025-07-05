@@ -19,7 +19,7 @@ part 'setup_personal_info_cubit.freezed.dart';
 part 'setup_personal_info_state.dart';
 
 class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
-  final PersonalInfoRepo _repo;
+  final PersonalInfoRepoImpl _repo;
 
   SetupPersonalInfoCubit(this._repo)
       : super(

@@ -30,7 +30,7 @@ class GoalsPage extends StatelessWidget {
             // title
             Text(
               L10n.tr().whatIsyourGoals,
-              style: CustomTextStyle.bold_16.copyWith(
+              style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -40,7 +40,7 @@ class GoalsPage extends StatelessWidget {
             // goals section one
             Text(
               L10n.tr().sectionOne,
-              style: CustomTextStyle.semiBold_14,
+              style: TStyle.semiBold_14,
             ),
             const SizedBox(height: 16),
 
@@ -55,7 +55,7 @@ class GoalsPage extends StatelessWidget {
             // goals section two
             Text(
               L10n.tr().sectionTwo,
-              style: CustomTextStyle.semiBold_16,
+              style: TStyle.semiBold_16,
             ),
 
             const SizedBox(height: 20),
@@ -99,9 +99,9 @@ class _GoalItem extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: AppColors.cardColor,
+          color: Co.cardColor,
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-          border: Border.all(color: AppColors.strockColor),
+          border: Border.all(color: Co.strockColor),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
@@ -137,7 +137,7 @@ class _GoalItem extends StatelessWidget {
                       goal.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.bold_16.copyWith(shadows: [
+                      style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
                           offset: const Offset(0, 4),

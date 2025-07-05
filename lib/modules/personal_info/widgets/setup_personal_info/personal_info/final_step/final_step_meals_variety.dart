@@ -33,7 +33,7 @@ class FinalStepMealsVariety extends StatelessWidget {
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   L10n.tr().mealsVerity,
-                  style: CustomTextStyle.semiBold_16,
+                  style: TStyle.semiBold_16,
                   textAlign: TextAlign.start,
                 ),
               ),

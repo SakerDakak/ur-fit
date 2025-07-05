@@ -20,9 +20,9 @@ class SleepTrackingCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: AppColors.cardColor,
+        color: Co.cardColor,
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: AppColors.strockColor),
+        border: Border.all(color: Co.strockColor),
       ),
       child: FittedBox(
         fit: BoxFit.scaleDown,
@@ -42,9 +42,9 @@ class SleepTrackingCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   L10n.tr().sleep,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.fontColor,
+                    color: Co.fontColor,
                   ),
                 ),
               ],
@@ -56,9 +56,9 @@ class SleepTrackingCard extends StatelessWidget {
                 return Text(
                   '${sleep}\n${L10n.tr().hours}',
                   textAlign: TextAlign.center,
-                  style: CustomTextStyle.regular_14.copyWith(
+                  style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppColors.fontColor,
+                    color: Co.fontColor,
                   ),
                 );
               },

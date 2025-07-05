@@ -37,7 +37,7 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
             Center(
               child: Text(
                 "اعادة تعين كلمة المرور",
-                style: CustomTextStyle.bold_24,
+                style: TStyle.bold_24,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -47,7 +47,7 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
             Center(
               child: Text(
                 "رجاء ادخال بريدك الالكترونى لارسال رمز التحقق",
-                style: CustomTextStyle.bold_16,
+                style: TStyle.bold_16,
                 textAlign: TextAlign.center,
               ),
             ),

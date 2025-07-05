@@ -28,7 +28,7 @@ class MealProperties extends StatelessWidget {
               ),
               Text(
                 '${readyInMinutes} دقيقة',
-                style: CustomTextStyle.regular_16,
+                style: TStyle.regular_16,
               ),
             ],
           ),
@@ -41,7 +41,7 @@ class MealProperties extends StatelessWidget {
               ),
               Text(
                 '${kcal} سعر حرارى',
-                style: CustomTextStyle.regular_16,
+                style: TStyle.regular_16,
               ),
             ],
           ),
@@ -54,7 +54,7 @@ class MealProperties extends StatelessWidget {
               ),
               Text(
                 'سهل التحضير',
-                style: CustomTextStyle.regular_16,
+                style: TStyle.regular_16,
               ),
             ],
           ),
