@@ -6,8 +6,8 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/otp_form_fields.dart';
 
-class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+class OtpScreenNew extends StatelessWidget {
+  const OtpScreenNew({super.key});
   static const route = '/otpScreenNew';
 
   @override

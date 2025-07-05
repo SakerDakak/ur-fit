@@ -28,8 +28,8 @@ class Validators {
     return null;
   }
 
-  static String? valueMustBeNum(String? value, int num, String name) {
-    if (value == null || value.trim().length != num) {
+  static String? valueIsNumAtLeast(String? value, int num, String name) {
+    if (value == null || value.trim().length < num) {
       return L10n.tr().valueMustBeNum(num, name);
     }
     return null;

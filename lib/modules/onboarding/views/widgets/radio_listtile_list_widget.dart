@@ -33,6 +33,7 @@ class _RadioListtileListWidgetState<T> extends State<RadioListtileListWidget<T>>
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      physics: const ClampingScrollPhysics(),
       itemCount: widget.items.length,
       padding: AppConst.defaultHpadding,
       separatorBuilder: (BuildContext context, int index) => Divider(

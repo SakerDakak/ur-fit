@@ -9,7 +9,7 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/profile_module/screens/otp_screen.dart';
+import 'package:urfit/modules/profile_module/screens/otp_screen_new.dart';
 
 
 class ChangeEmailScreen extends StatelessWidget {
@@ -52,7 +52,7 @@ class ChangeEmailScreen extends StatelessWidget {
           const SizedBox(height: 32),
           CustomElevatedButton(
             text: L10n.tr().confirm,
-            onPressed: () => GoRouter.of(context).push(OtpScreen.route),
+            onPressed: () => GoRouter.of(context).push(OtpScreenNew.route),
             padding: EdgeInsets.zero,
           ),
           const SizedBox(height: 16),

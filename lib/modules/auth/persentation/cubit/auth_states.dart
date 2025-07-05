@@ -19,3 +19,15 @@ class UnCheckedUser extends LoginSuccessState {}
 class CheckedUncompletedInfoUser extends LoginSuccessState {}
 
 class CheckedWithInfoUser extends LoginSuccessState {}
+
+abstract class RegisterStates extends AuthStates {}
+
+class RegisterLoadingState extends RegisterStates {}
+
+class RegisterErrorState extends RegisterStates {
+  final String? error;
+
+  RegisterErrorState({this.error});
+}
+
+class RegisterSuccessState extends RegisterStates {}

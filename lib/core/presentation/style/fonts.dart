@@ -126,4 +126,98 @@ class TStyle {
         fontWeight: bolder,
         color: Co.fontColor,
       );
+
+  static TextStyle primaryRegular(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: regular,
+        color: Co.fontColor,
+      );
+  static TextStyle primarySemi(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: med,
+        color: Co.fontColor,
+      );
+  static TextStyle primaryBold(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: bold,
+        color: Co.fontColor,
+      );
+
+  static TextStyle darkRegular(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: regular,
+        color: Co.blackColor,
+      );
+  static TextStyle darkSemi(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: med,
+        color: Co.blackColor,
+      );
+  static TextStyle darkBold(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: bold,
+        color: Co.blackColor,
+      );
+  static TextStyle greyRegular(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: regular,
+        color: Co.darkGrey,
+      );
+  static TextStyle greySemi(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: med,
+        color: Co.darkGrey,
+      );
+  static TextStyle greyBold(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: bold,
+        color: Co.darkGrey,
+      );
+
+  static TextStyle errorRegular(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: regular,
+        color: Co.redColor,
+      );
+  static TextStyle errorSemi(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: med,
+        color: Co.redColor,
+      );
+  static TextStyle errorBold(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: bold,
+        color: Co.redColor,
+      );
+
+  static TextStyle whiteRegular(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: regular,
+        color: Co.whiteColor,
+      );
+  static TextStyle whiteSemi(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: med,
+        color: Co.whiteColor,
+      );
+  static TextStyle whiteBold(double fontSize, {bool isTitle = false}) => TextStyle(
+        // fontFamily: isTitle ? 'Lemon' : null,
+        fontSize: fontSize,
+        fontWeight: bold,
+        color: Co.whiteColor,
+      );
 }

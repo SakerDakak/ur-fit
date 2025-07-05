@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
-import 'package:urfit/modules/auth/data/models/register_model.dart';
+import 'package:urfit/core/presentation/utils/loading_helper.dart';
+import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
+import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
+import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
@@ -20,19 +24,17 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
-  final name = TextEditingController();
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final confirmPassword = TextEditingController();
-
   final agreeToTerms = ValueNotifier<bool>(false);
+
+  late final AuthCubit authCubit;
+  @override
+  void initState() {
+    authCubit = context.read<AuthCubit>();
+    super.initState();
+  }
 
   @override
   void dispose() {
-    name.dispose();
-    email.dispose();
-    password.dispose();
-    confirmPassword.dispose();
     agreeToTerms.dispose();
     super.dispose();
   }
@@ -51,57 +53,31 @@ class _RegisterFormState extends State<RegisterForm> {
                 hintText: L10n.tr().enterFullName,
                 title: L10n.tr().fullName,
                 autoFillHints: [AutofillHints.name],
-                controller: name,
-                validator: (String? value) {
-                  // print("validation : ${value}");
-                  if (value!.isEmpty) {
-                    return L10n.tr().fullNameIsRequired;
-                  } else if (value.length < 3) {
-                    return L10n.tr().fullNameMustBeAtLeast3Characters;
-                  } else {
-                    return null;
-                  }
-                },
+                controller: authCubit.nameController,
+                validator: (v) => Validators.valueIsNumAtLeast(v, 3, L10n.tr().fullName),
               ),
               SizedBox(height: 24.px),
               CompactTextFormField(
-                hintText: L10n.tr().enterEmail,
-                title: L10n.tr().email,
-                controller: email,
-                autoFillHints: [AutofillHints.email],
-                validator: (String? value) {
-                  // print("validation : ${value}");
-                  if (value!.isEmpty) {
-                    return L10n.tr().emailIsRequired;
-                  } else if (!value.contains('@') && !value.contains('.')) {
-                    return L10n.tr().emailMustBeValid;
-                  } else {
-                    return null;
-                  }
-                },
-              ),
+                  hintText: L10n.tr().enterEmail,
+                  title: L10n.tr().email,
+                  controller: authCubit.emailController,
+                  autoFillHints: [AutofillHints.email],
+                  validator: Validators.emailValidator),
               SizedBox(height: 24.px),
               CompactPasswordTextFormField(
                 hintText: L10n.tr().enterPassword,
                 title: L10n.tr().password,
-                controller: password,
+                controller: authCubit.passwordController,
                 autoFillHints: [AutofillHints.newPassword],
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return L10n.tr().passwordIsRequired;
-                  } else if (value.length < 6) {
-                    return L10n.tr().passwordMustBeAtLeast6Characters;
-                  }
-                  return null;
-                },
+                validator: Validators.moreThanSix,
               ),
               SizedBox(height: 16.px),
               CompactPasswordTextFormField(
                 hintText: L10n.tr().enterPassword,
                 title: L10n.tr().confirmPassword,
-                controller: confirmPassword,
+                controller: authCubit.confirmPasswordController,
                 validator: (String? value) {
-                  if (value != password.text) return L10n.tr().passwordsDoNotMatch;
+                  if (value != authCubit.passwordController.text) return L10n.tr().passwordsDoNotMatch;
                   return null;
                 },
               ),
@@ -109,30 +85,34 @@ class _RegisterFormState extends State<RegisterForm> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.px),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    FittedBox(
-                      child: TextButton(
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                        child: Text(
-                          L10n.tr().agreeTerms,
-                          style: TStyle.bold_14,
+                    ValueListenableBuilder(
+                      valueListenable: agreeToTerms,
+                      builder: (context, value, child) => TextButton(
+                        onPressed: () => agreeToTerms.value = !value,
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
                         ),
-                        onPressed: () {
-                          /// TODO : Implement terms and conditions logic
-                          // context.read<LoginBloc>().toggleTerms(!context.read<LoginBloc>().state.acceptTerms);
-                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              L10n.tr().agreeTerms,
+                              style: TStyle.bold_14,
+                            ),
+                            IgnorePointer(
+                              child: Checkbox(
+                                value: value, // acceptTerms,
+                                onChanged: (val) => agreeToTerms.value = !value,
+                                checkColor: Co.whiteColor,
+                                focusColor: Theme.of(context).colorScheme.primary,
+                                activeColor: Theme.of(context).colorScheme.primary,
+                                side: BorderSide(color: Theme.of(context).colorScheme.primary),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Checkbox(
-                      value: true, // acceptTerms,
-                      onChanged: (val) {
-                        // context.read<LoginBloc>().toggleTerms(val!);
-                      },
-                      checkColor: Co.whiteColor,
-                      focusColor: Theme.of(context).colorScheme.primary,
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      side: BorderSide(color: Theme.of(context).colorScheme.primary),
                     ),
                     const Spacer(),
                     FittedBox(
@@ -149,23 +129,31 @@ class _RegisterFormState extends State<RegisterForm> {
               SizedBox(
                 height: 24.px,
               ),
-              CustomElevatedButton(
-                text: L10n.tr().registerNewAccount,
-                onPressed: () {
-                  if (_formKey.currentState?.validate() != true) return;
-                  if (!agreeToTerms.value) {
-                    return Alerts.showToast(L10n.tr().agreeTerms);
+              BlocConsumer<AuthCubit, AuthStates>(
+                listenWhen: (previous, current) => current is RegisterStates,
+                listener: (context, state) {
+                  if (state is RegisterLoadingState) {
+                    LoadingHelper.startLoading();
+                  } else {
+                    LoadingHelper.stopLoading();
                   }
-                  final req = RegisterModel(
-                    name: name.text.trim(),
-                    email: email.text,
-                    password: password.text,
-                    password_confirmation: confirmPassword.text,
-                    city_id: 0,
-                    country_id: 0,
-                  );
-                  context.read<AuthCubit>().register(req);
+                  if (state is RegisterSuccessState) {
+                    Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail, error: false);
+                    context.push(RegisterOTPScreen.routeWzExtra, extra: authCubit);
+                  }
                 },
+                buildWhen: (previous, current) => current is! RegisterStates,
+                builder: (context, state) => CustomElevatedButton(
+                  text: L10n.tr().registerNewAccount,
+                  isLoading: state is RegisterLoadingState,
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() != true) return;
+                    if (!agreeToTerms.value) {
+                      return Alerts.showToast(L10n.tr().agreeTerms);
+                    }
+                    context.read<AuthCubit>().register();
+                  },
+                ),
               )
             ],
           ),

@@ -7,7 +7,7 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
-import 'package:urfit/modules/auth/persentation/views/forget_password_flow.dart';
+import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
 import 'package:urfit/modules/home_module/screens/main_page.dart';
 import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
 import 'package:urfit/service_locator.dart';
@@ -17,6 +17,8 @@ class Session {
   Session._();
   factory Session() => _inst;
   UserModel? currentUser;
+
+  String? tempToken;
 
   Future getUser() async {
     final result = await sl<AuthenticationRepo>().getUserDataFromServer();
@@ -32,7 +34,7 @@ class Session {
       if (currentUser?.isChecked == null || currentUser?.isChecked != '1') {
         // AppConst.rootScaffoldKey.currentContext?.read<LoginBloc>().sendCode(currentUser!.email.toString(), "success");
         // navigate to forget password screen
-        AppConst.rootScaffoldKey.currentContext?.pushReplacement(ForgetPasswordFlow.route);
+        AppConst.rootScaffoldKey.currentContext?.pushReplacement(ForgetPasswordScreen.route);
       } else if (currentUser?.isChecked == '1' && currentUser?.hasValidSubscription == false) {
         /// case 2: user verified but has no valid subscription
         AppConst.rootScaffoldKey.currentContext?.pushReplacement(SetupPersonalInfoScreen.route);

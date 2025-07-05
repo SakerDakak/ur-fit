@@ -9,18 +9,21 @@ class EndPoints {
   static const logout = '/api/logout';
   static const login = '/api/login';
   static const forgetPassword = '/api/forgetPassword';
-  static const verifyOtpCode = '/api/checkCode';
+  static const otpCheckCode = '/api/checkCode';
   static const setNewPassword = '/api/setNewPassword';
   static const sendEmailActivationCode = '/api/sendEmailActivationCode';
-  static const resetPassword = "/password/reset/send";
+  static const updatePassword = "/password/reset/send";
   static const verifyEmailCode = "/password/reset/verify";
   static const forgetResetPassword = "/password/reset";
   static const checkVersion = "/version";
+  
   static const getUserTypes = "/register/user-types";
   static const register = "/api/register";
   static const registerUpdatePhone = "/register/update-phone";
   static const registerVerifyPhone = "/register/verify-sms";
-  static const registerResendOtp = "/api/resendCode";
+  static const resendOTP = "/api/resendCode";
+
+  ///
   static const goals = '/api/goals';
   static const diets = "/api/diets";
   static const noOfDailyMeals = "/api/number-of-daily-meals";

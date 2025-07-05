@@ -10,11 +10,25 @@ import '../../../../core/presentation/style/colors.dart';
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/title_with_icon.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key, required this.cityId, required this.countryId});
   static const routeWzExtra = "/emailLogin";
   final int cityId;
   final int countryId;
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateMixin {
+  late final TabController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TabController(length: 2, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -26,7 +40,7 @@ class AuthScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              IconWithTitle(),
+              const IconWithTitle(),
               SizedBox(height: 32.px),
               // Text("اختر دولتك",style: CustomTextStyle.cairoSemiBold16,),
               Center(
@@ -35,6 +49,7 @@ class AuthScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.px)),
                     child: TabBar(
+                      controller: controller,
                       indicatorPadding: EdgeInsets.symmetric(horizontal: 5.px, vertical: 3.px),
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorWeight: 0,
@@ -47,10 +62,10 @@ class AuthScreen extends StatelessWidget {
                       indicatorColor: Colors.transparent,
                       tabs: [
                         Tab(
-                          text: L10n.tr().signUp,
+                          text: L10n.tr().signIn,
                         ),
                         Tab(
-                          text: L10n.tr().signIn,
+                          text: L10n.tr().signUp,
                         ),
                       ],
                     ),
@@ -58,12 +73,13 @@ class AuthScreen extends StatelessWidget {
                 ),
               ),
               BlocProvider(
-                create: (context) => AuthCubit(countryId, cityId),
-                child: const Expanded(
+                create: (context) => AuthCubit(widget.countryId, widget.cityId),
+                child: Expanded(
                   child: TabBarView(
-                    children: [
-                      RegisterForm(),
+                    controller: controller,
+                    children: const [
                       LoginForm(),
+                      RegisterForm(),
                     ],
                   ),
                 ),

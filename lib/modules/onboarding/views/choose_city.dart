@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
-import 'package:urfit/core/presentation/utils/pref_utils.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 import 'package:urfit/modules/onboarding/controller/onboarding_cubit.dart';
 import 'package:urfit/modules/onboarding/model/country/country_model.dart';
@@ -57,17 +56,25 @@ class _ChooseCityState extends State<ChooseCity> {
             BlocBuilder<OnboardingCubit, OnboardingState>(
               buildWhen: (previous, current) => current is CitiesStates,
               builder: (context, state) {
+                if (state is OnboardingCitiesLoaded) selectedCity = state.cities.firstOrNull;
+
                 return Expanded(
                   child: Skeletonizer(
                     enabled: state is OnboardingLoadingCities,
-                    child: RadioListtileListWidget(
-                      getName: (value) => value.name,
-                      items: state is OnboardingCitiesLoaded
-                          ? state.cities
-                          : List.filled(5, CountryModel(id: 0, name: 'Fake City', is_active: 1, created_at: '')),
-                      onSelect: (dynamic value) {
-                        selectedCity = value as CountryModel;
-                      },
+                    child: IgnorePointer(
+                      ignoring: state is OnboardingLoadingCities,
+                      child: RadioListtileListWidget(
+                        getName: (value) => value.name,
+                        items: state is OnboardingCitiesLoaded
+                            ? state.cities
+                            : List.generate(
+                                5,
+                                (index) =>
+                                    CountryModel(id: index, name: 'Fake City $index', is_active: 1, created_at: '')),
+                        onSelect: (dynamic value) {
+                          selectedCity = value as CountryModel;
+                        },
+                      ),
                     ),
                   ),
                 );
@@ -84,7 +91,6 @@ class _ChooseCityState extends State<ChooseCity> {
                   // selectedCity = selectedCity ?? context.read<OnboardingCubit>().state.cities.first;
                   // context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
                   // context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
-                  PrefUtils().setFirstVisit();
                   context.push(AuthScreen.routeWzExtra,
                       extra: (context.read<OnboardingCubit>().selectedCountryId!, selectedCity!.id));
                 }),

@@ -15,28 +15,27 @@ class AuthenticationRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> login({required String email, required String password}) async {
-    final response = await dioServices.post(
-      EndPoints.login,
-      data: {
-        'email': email,
-        'password': password,
-      },
-    );
+    final response = await dioServices.post(EndPoints.login, data: {'email': email, 'password': password});
     print(response.data);
     return response.data['data'];
   }
 
   Future<void> sendCode({required String email}) async {
-    final response = await dioServices.post(EndPoints.sendEmailActivationCode, data: {
-      'email': email,
-    });
+    final response = await dioServices.post(EndPoints.sendEmailActivationCode, data: {'email': email});
   }
 
-  Future<Map<String, dynamic>> verifyOtpCode({required String email, required String code}) async {
-    final response = await dioServices.post(EndPoints.verifyOtpCode, data: {
+  Future<Map<String, dynamic>> otpCheckCode({required String email, required String code}) async {
+    final response = await dioServices.post(EndPoints.otpCheckCode, data: {
       'email': email,
       'otpCode': code,
     });
+
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> updatePassword({required String password, required String email}) async {
+    final response = await dioServices.post(EndPoints.updatePassword,
+        data: {'email': email, 'password': password, 'password_confirmation': password});
 
     return response.data;
   }
@@ -86,8 +85,8 @@ class AuthenticationRemoteDataSource {
     return response.data['data'];
   }
 
-  Future<String> registerResendOtp({required String email}) async {
-    final response = await dioServices.post(EndPoints.registerResendOtp, data: {'email': email});
+  Future<String> resendOtp({required String email}) async {
+    final response = await dioServices.post(EndPoints.resendOTP, data: {'email': email});
     print("registerResendOtp response : ${response.data}");
 
     return response.data['status'];

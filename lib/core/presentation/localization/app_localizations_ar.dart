@@ -9,10 +9,20 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get resendAfter => 'اعادة الارسال بعد';
+
+  @override
+  String get seconds => 'ثواني';
+
+  @override
+  String get otpHasBeenSentToYourEmail =>
+      'تم ارسال رمز التحقق الي بريدك الالكترونى';
+
+  @override
   String get pressDoubleBackToExit => 'اضغط مرتين للخروج';
 
   @override
-  String get thisFieldIsRequired => 'This field is required.';
+  String get thisFieldIsRequired => 'هذا الحقل مطلوب.';
 
   @override
   String get passwordLengthError => 'يجب أن تكون كلمة المرور 6 أحرف على الأقل.';
@@ -22,7 +32,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String valueMustBeNum(int num, String val) {
-    return 'قيمة $val يجب أن تكون  $num ارقام';
+    return 'قيمة $val يجب أن تكون  $num أو أكثر.';
   }
 
   @override

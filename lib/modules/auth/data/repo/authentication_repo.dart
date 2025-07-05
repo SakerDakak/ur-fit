@@ -55,9 +55,9 @@ class AuthenticationRepo {
     }
   }
 
-  Future<Either<Failure, UserModel>> verifyOtp({required String email, required String code}) async {
+  Future<Either<Failure, UserModel>> otpCheckCode({required String email, required String code}) async {
     try {
-      final result = await authenticationRemoteDataSource.verifyOtpCode(code: code, email: email);
+      final result = await authenticationRemoteDataSource.otpCheckCode(code: code, email: email);
       if (result['status'] == "unverified code") {
         throw BadRequestException(L10n.tr().unverifiedCode);
       } else {
@@ -70,17 +70,15 @@ class AuthenticationRepo {
     }
   }
 
-  Future<Either<Failure, UserModel?>> changePassword({required String password}) async {
-    //   try {
-    //   // final result = await authenticationRemoteDataSource.verifyOtpCode(code: password);
-    //   // await TokenService.setToken(result["token"]);
-    //   // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
-    //   // final user = CacheUser.fromUserModel(UserModel.fromJson(result['user']));
-    //   return Right(user);
-    // } on Exception catch (e) {
-    //   return left(ServerFailure(e.toString()));
-    // }
-    throw Exception();
+  Future<Either<Failure, String?>> updatePassword({required String password, required String email}) async {
+    try {
+      final result = await authenticationRemoteDataSource.updatePassword(password: password, email: email);
+      // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['data'])));
+      final user = UserModel.fromJson(result['data']);
+      return Right("user");
+    } on Exception catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
   }
 
   Future<Either<Failure, void>> sendSubscriptionInfo({required String token}) {
@@ -134,25 +132,23 @@ class AuthenticationRepo {
     }
   }
 
-  Future<Either<Failure, UserModel?>> register(RegisterModel registerModel) async {
+  Future<Either<Failure, ({UserModel user, String token})>> register(RegisterModel registerModel) async {
     try {
       final result = await authenticationRemoteDataSource.register(registerModel);
 
-      await TokenService.setToken(result["token"]);
       // print(await sl<BaseUserLocalDataSource>().getUserToken());
       // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
+      final token = result["token"];
       final user = UserModel.fromJson(result['user']);
-      return Right(user);
+      return Right((user: user, token: token));
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
   }
 
-  Future<Either<Failure, String>> registerResendOtp({required String email}) async {
+  Future<Either<Failure, String>> resendOtp({required String email}) async {
     try {
-      final result = await authenticationRemoteDataSource.registerResendOtp(
-        email: email,
-      );
+      final result = await authenticationRemoteDataSource.resendOtp(email: email);
 
       return Right(result);
     } on Exception catch (e) {

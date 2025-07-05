@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sizer/sizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/utils/validators.dart';
+import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/service_locator.dart';
 
 import '../../../../core/presentation/assets/app_assets.dart';
 import '../../../../core/presentation/style/colors.dart';
@@ -9,69 +12,89 @@ import '../../../../core/presentation/utils/constants.dart';
 import '../../../../core/presentation/views/widgets/compact_form_field.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 
-class UpdatePasswordScreen extends StatelessWidget {
-  const UpdatePasswordScreen({super.key});
-  static const route = "/updatePassword";
+class UpdatePasswordScreen extends StatefulWidget {
+  const UpdatePasswordScreen({super.key, required this.email});
+  static const route = "/updatePassword/:email";
+  static String routeWzEmail(String email) => "/updatePassword/$email";
+  final String email;
+  @override
+  State<UpdatePasswordScreen> createState() => _UpdatePasswordScreenState();
+}
+
+class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(),
+      body: Form(
+        key: _formKey,
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
           children: [
-            SizedBox(height: 150.px),
             SvgPicture.asset(
               Assets.imageLogo,
               width: 150,
             ),
             const SizedBox(height: 16),
             Text(
-              'اعادة تعين كلمة المرور الخاصة بك.',
+              L10n.tr().resetPassord,
               textAlign: TextAlign.center,
               style: TStyle.bold_16.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
             const SizedBox(height: 32),
-
+        
             // new password field
             CompactPasswordTextFormField(
-              title: 'كلمة المرور  الجديدة',
+              title: L10n.tr().newPassword,
               hintText: '12345678',
               padding: EdgeInsets.zero,
               borderColor: Co.strockColor,
               titleStyle: TStyle.regular_14,
-              onChanged: (String? value) {
-                /// TODO : Implement new password logic
-                // bloc.onChangePassword(value!);
-              },
+              validator: Validators.moreThanSix,
+              controller: passwordController,
             ),
-
+        
             const SizedBox(height: 16),
-
+        
             // confirm new password field
             CompactPasswordTextFormField(
-              title: 'تاكيد كلمة المرور  الجديدة',
+              title: L10n.tr().confirmPassword,
               hintText: '12345678',
               padding: EdgeInsets.zero,
               borderColor: Co.strockColor,
               titleStyle: TStyle.regular_14,
-              onChanged: (String? value) {
-                /// TODO : Implement confirm password logic
-                // bloc.onChangeNewPasswordConfirm(value!);
+              controller: confirmPasswordController,
+              validator: (value) {
+                if (value != passwordController.text) {
+                  return L10n.tr().passwordsDoNotMatch;
+                }
+                return null;
               },
             ),
-
+        
             const SizedBox(height: 32),
-
+        
             // change button
             CustomElevatedButton(
-              text: 'تغير',
-              onPressed: () {
-                /// TODO : Implement reset password logic
-                // bloc.resetPassword();
+              text: L10n.tr().send,
+              onPressed: () async {
+                if (_formKey.currentState?.validate() != true) return;
+        
+                final respo =
+                    await sl<AuthenticationRepo>().updatePassword(password: passwordController.text, email: widget.email);
               },
               padding: EdgeInsets.zero,
             ),

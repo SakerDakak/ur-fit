@@ -1,9 +1,12 @@
 {
+  "resendAfter": "Resend after",
+  "seconds": "Seconds",
+  "otpHasBeenSentToYourEmail": "An OTP has been sent to your email",
   "pressDoubleBackToExit": "Press double back to exit",
   "thisFieldIsRequired": "This field is required.",
   "passwordLengthError": "Password must be at least 6 characters long.",
   "invalidEmail": "Please enter a valid email address.",
-  "valueMustBeNum": "{val} must be equal to {num} characters",
+  "valueMustBeNum": "{val} must be at least {num} characters",
   "@valueMustBeNum": {
     "placeholders": {
       "num": {

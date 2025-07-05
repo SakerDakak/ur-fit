@@ -9,6 +9,15 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get resendAfter => 'Resend after';
+
+  @override
+  String get seconds => 'Seconds';
+
+  @override
+  String get otpHasBeenSentToYourEmail => 'An OTP has been sent to your email';
+
+  @override
   String get pressDoubleBackToExit => 'Press double back to exit';
 
   @override
@@ -23,7 +32,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String valueMustBeNum(int num, String val) {
-    return '$val must be equal to $num characters';
+    return '$val must be at least $num characters';
   }
 
   @override

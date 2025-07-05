@@ -98,6 +98,24 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @resendAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend after'**
+  String get resendAfter;
+
+  /// No description provided for @seconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds'**
+  String get seconds;
+
+  /// No description provided for @otpHasBeenSentToYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'An OTP has been sent to your email'**
+  String get otpHasBeenSentToYourEmail;
+
   /// No description provided for @pressDoubleBackToExit.
   ///
   /// In en, this message translates to:
@@ -125,7 +143,7 @@ abstract class AppLocalizations {
   /// No description provided for @valueMustBeNum.
   ///
   /// In en, this message translates to:
-  /// **'{val} must be equal to {num} characters'**
+  /// **'{val} must be at least {num} characters'**
   String valueMustBeNum(int num, String val);
 
   /// No description provided for @invalidPhoneNumber.

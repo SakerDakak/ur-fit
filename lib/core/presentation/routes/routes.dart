@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
+import 'package:urfit/modules/auth/persentation/views/forget_password_otp_screen.dart';
+import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
+import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
 import 'package:urfit/modules/meals_module/screens/filter_screen.dart';
 import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
@@ -16,7 +20,7 @@ import 'package:urfit/modules/profile_module/screens/change_password_screen.dart
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
 import 'package:urfit/modules/profile_module/screens/loading_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/my_plan.dart';
-import 'package:urfit/modules/profile_module/screens/otp_screen.dart';
+import 'package:urfit/modules/profile_module/screens/otp_screen_new.dart';
 import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/privacy_policy_screen.dart';
 import 'package:urfit/modules/profile_module/screens/settings_screen.dart';
@@ -29,10 +33,6 @@ import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 // import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 // import '../../../modules/auth/persentation/bloc/login_bloc.dart';
 import '../../../modules/auth/persentation/views/auth_screen.dart';
-import '../../../modules/auth/persentation/views/forget_password_flow.dart';
-import '../../../modules/auth/persentation/views/phone_auth_flow/login_screen.dart';
-import '../../../modules/auth/persentation/views/phone_auth_flow/otp_screen.dart';
-import '../../../modules/auth/persentation/views/phone_auth_flow/phone_auth_flow.dart';
 import '../../../modules/auth/persentation/views/update_password.dart';
 import '../../../modules/home_module/screens/main_page.dart';
 import '../../../modules/onboarding/views/choose_country.dart';
@@ -57,20 +57,12 @@ class AppRouter {
     initialLocation: SplashScreen.route,
     routes: [
       GoRoute(
-        path: UpdatePasswordScreen.route,
-        name: UpdatePasswordScreen.route,
-        builder: (context, state) => const UpdatePasswordScreen(),
-      ),
-      GoRoute(
         path: SplashScreen.route,
         name: SplashScreen.route,
         builder: (context, state) => const SplashScreen(),
       ),
-      // GoRoute(
-      //   path: onBoarding,
-      //   name: onBoarding,
-      //   builder: (context, state) => const OnboardingScreen(),
-      // ),
+
+      /// onboarding routes
       GoRoute(
         path: OnBoardingSecScreen.route,
         name: OnBoardingSecScreen.route,
@@ -97,138 +89,42 @@ class AppRouter {
         name: ChooseCity.route,
         builder: (context, state) => const ChooseCity(),
       ),
+
+      /// auth routes
       GoRoute(
         path: AuthScreen.routeWzExtra,
         name: AuthScreen.routeWzExtra,
-        // onExit: (context, GoRouterState state) {
-        //   return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationAuthenticated ||
-        //       context.read<AuthenticationBloc>().state.runtimeType == AuthenticationLoginFlow ||
-        //       // context.read<AuthenticationBloc>().state.runtimeType == AuthenticationForgetPassword ||
-        //       context.read<AuthenticationBloc>().state.runtimeType == AuthenticationRegister ||
-        //       context.read<AuthenticationBloc>().state.runtimeType == AuthenticationPersonalInfo ||
-        //       context.read<AuthenticationBloc>().state.runtimeType != AuthenticationAsGuest;
-        // },
         builder: (context, state) {
           final ids = state.extra as (int, int);
           return AuthScreen(cityId: ids.$2, countryId: ids.$1);
         },
       ),
-      // GoRoute(
-      //     path: registerFlow,
-      //     name: registerFlow,
-      //     builder: (context, state) => const RegisterFlowPages(),
-      //     onExit: (context, state) {
-      //       print(
-      //           "on exit :  ${context.read<AuthenticationBloc>().state.runtimeType}");
-      //       if (context.read<AuthenticationBloc>().state.runtimeType ==
-      //               AuthenticationAuthenticated ||
-      //           context.read<AuthenticationBloc>().state.runtimeType ==
-      //               AuthenticatedWithoutSubscription) {
-      //         return true;
-      //       } else {
-      //         AppConst.rootScaffoldKey.currentContext
-      //             ?.read<LoginBloc>()
-      //             .add(ResetBlocEvent());
-      //         AppConst.rootScaffoldKey.currentContext
-      //             ?.read<AuthenticationBloc>()
-      //             .add(GoBack());
-      //       }
-      //       return true;
-      //     }),
       GoRoute(
-        path: ForgetPasswordFlow.route,
-        name: ForgetPasswordFlow.route,
-        builder: (context, state) => const ForgetPasswordFlow(),
-      ),
-      GoRoute(
-        path: PhoneAuthFlowPages.route,
-        name: PhoneAuthFlowPages.route,
-        // onExit: (context, state) {
-        //   if (AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
-        //           AuthenticationAuthenticated &&
-        //       AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
-        //           AuthenticationAsGuest &&
-        //       AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
-        //           AuthenticationPersonalInfo) {
-        //     AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().goBack();
-        //   }
-        //   return true;
-        // },
-        builder: (context, state) => const PhoneAuthFlowPages(),
-        routes: [
-          GoRoute(
-            path: LoginScreen.route,
-            name: LoginScreen.route,
-            builder: (context, state) => const LoginScreen(),
-          ),
-          GoRoute(
-            path: OTPScreen.route,
-            name: OTPScreen.route,
-            builder: (context, state) => const OTPScreen(),
-          ),
-        ],
-        // redirect: (BuildContext context, GoRouterState state) {
-        //   if (!context.read<LoginBloc>().state.verificationId.isNotEmpty) {
-        //     return "${PhoneAuthFlowPages.route}/${LoginScreen.route}";
-        //   } else {
-        //     return "${PhoneAuthFlowPages.route}/${OTPScreen.route}";
-        //   }
-        // }
+        path: RegisterOTPScreen.routeWzExtra,
+        name: RegisterOTPScreen.routeWzExtra,
+        builder: (context, state) {
+          return BlocProvider.value(value: state.extra as AuthCubit, child: const RegisterOTPScreen());
+        },
       ),
 
-      // builder: (context, state) => const AuthenticationScreen(),
-      // GoRoute(
-      //     path: authenticationScreen,
-      //     name: authenticationScreen,
-      //     // builder: (context, state) => const SplashScreen(),
-      //     routes: [
-
-      //     redirect: (BuildContext context, GoRouterState state) {
-      //       // print(context.read<AuthenticationBloc>().state.runtimeType);
-
-      //       switch (context.read<AuthenticationBloc>().state.runtimeType) {
-      //         case AuthenticationUninitialized:
-      //           return "/${SplashScreen.route}";
-      //         // case AuthenticationOnBoarding:
-      //         //   return "/$onBoarding";
-
-      //         case AuthenticationAuthenticated:
-      //           return MainPage.routeWithBool(false);
-
-      //         case AuthenticationUnauthenticated:
-      //           return "/${EmailLoginScreen.route}";
-
-      //         // case AuthenticationRegister:
-      //         //   return "/$registerFlow";
-
-      //         case AuthenticationForgetPassword:
-      //           return "/${ForgetPasswordFlow.route}";
-
-      //         case AuthenticationAsGuest:
-      //           return MainPage.routeWithBool(true);
-
-      //         case AuthenticationLoginFlow:
-      //           return "/${PhoneAuthFlowPages.route}";
-
-      //         case AuthenticatedWithoutSubscription:
-      //           return MainPage.routeWithBool(true);
-
-      //         case AuthenticationUpdatePassword:
-      //           return "/${UpdatePasswordScreen.route}";
-
-      //         case AuthenticationGoToChooseLang:
-      //           return "/${ChooseLanguage.route}";
-      //         case AuthenticationChooseCountry:
-      //           return "/${ChooseCity.route}";
-      //         case AuthenticationChooseLang:
-      //           return "/${ChooseCountry.route}";
-      //         case AuthenticationPersonalInfo:
-      //           return "${SetupPersonalInfoScreen.route}";
-      //         case AuthenticationOnBoardingTwo:
-      //           return "/${OnBoardingSecScreen.route}";
-      //       }
-      //       return null;
-      //     }),
+      /// forget password routes
+      GoRoute(
+        path: ForgetPasswordScreen.route,
+        name: ForgetPasswordScreen.route,
+        builder: (context, state) => const ForgetPasswordScreen(),
+      ),
+      GoRoute(
+        path: ForgetPasswordOtpScreen.route,
+        name: ForgetPasswordOtpScreen.route,
+        builder: (context, state) {
+          return ForgetPasswordOtpScreen(email: state.pathParameters['email']!);
+        },
+      ),
+      GoRoute(
+        path: UpdatePasswordScreen.route,
+        name: UpdatePasswordScreen.route,
+        builder: (context, state) => UpdatePasswordScreen(email: state.pathParameters['email']!),
+      ),
 
       ///
       ///
@@ -428,10 +324,10 @@ class AppRouter {
 
       /// otp screen new route
       GoRoute(
-        path: OtpScreen.route,
-        name: OtpScreen.route,
+        path: OtpScreenNew.route,
+        name: OtpScreenNew.route,
         builder: (context, state) {
-          return const OtpScreen();
+          return const OtpScreenNew();
         },
       ),
     ],

@@ -1,8 +1,12 @@
 {
-  "pressDoubleBackToExit" : "اضغط مرتين للخروج",
+  "resendAfter": "اعادة الارسال بعد",
+  "seconds": "ثواني",
+  "otpHasBeenSentToYourEmail": "تم ارسال رمز التحقق الي بريدك الالكترونى",
+  "pressDoubleBackToExit": "اضغط مرتين للخروج",
+  "thisFieldIsRequired": "هذا الحقل مطلوب.",
   "passwordLengthError": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
   "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صالح.",
-  "valueMustBeNum": "قيمة {val} يجب أن تكون  {num} ارقام",
+  "valueMustBeNum": "قيمة {val} يجب أن تكون  {num} أو أكثر.",
   "@valueMustBeNum": {
     "placeholders": {
       "num": {

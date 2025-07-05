@@ -8,7 +8,8 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
-import 'package:urfit/modules/auth/persentation/views/forget_password_flow.dart';
+import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
+import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/social_media_widget.dart';
 import 'package:urfit/modules/home_module/screens/main_page.dart';
 import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
@@ -27,14 +28,17 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final shouldRemember = ValueNotifier<bool>(false);
   final _formKey = GlobalKey<FormState>();
-  final email = TextEditingController();
-  final password = TextEditingController();
+
+  late final AuthCubit authCubit;
+  @override
+  void initState() {
+    authCubit = context.read<AuthCubit>();
+    super.initState();
+  }
 
   @override
   void dispose() {
     shouldRemember.dispose();
-    email.dispose();
-    password.dispose();
     super.dispose();
   }
 
@@ -51,7 +55,7 @@ class _LoginFormState extends State<LoginForm> {
                 height: 32.px,
               ),
               CompactTextFormField(
-                controller: email,
+                controller: authCubit.emailController,
                 hintText: L10n.tr().enterEmail,
                 autoFillHints: [AutofillHints.email],
                 title: L10n.tr().email,
@@ -70,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
                 height: 24.px,
               ),
               CompactPasswordTextFormField(
-                controller: password,
+                controller: authCubit.loginPasswordController,
                 validator: (String? value) {
                   if (value!.isEmpty) {
                     return L10n.tr().passwordIsRequired;
@@ -125,7 +129,7 @@ class _LoginFormState extends State<LoginForm> {
                     const Spacer(),
                     TextButton(
                         onPressed: () {
-                          context.push(ForgetPasswordFlow.route);
+                          context.push(ForgetPasswordScreen.route);
                         },
                         child: Text(
                           L10n.tr().forgetPassword,
@@ -147,8 +151,8 @@ class _LoginFormState extends State<LoginForm> {
                   }
                   if (state is UnCheckedUser) {
                     // navigate to forget password screen
-                    //  context?.read<LoginBloc>().sendCode(user.email.toString(), "success");
-                    context.pushReplacement(ForgetPasswordFlow.route);
+                    authCubit.sendOTP();
+                    context.push(RegisterOTPScreen.routeWzExtra, extra: authCubit);
                   } else if (state is CheckedUncompletedInfoUser) {
                     /// case 2: user verified but has no valid subscription
                     context.pushReplacement(SetupPersonalInfoScreen.route);
@@ -164,7 +168,7 @@ class _LoginFormState extends State<LoginForm> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() != true) return;
                       TextInput.finishAutofillContext(shouldSave: shouldRemember.value);
-                      context.read<AuthCubit>().login(email.text.trim(), password.text.trim(), shouldRemember.value);
+                      context.read<AuthCubit>().login(shouldRemember.value);
                     }),
               ),
               SizedBox(

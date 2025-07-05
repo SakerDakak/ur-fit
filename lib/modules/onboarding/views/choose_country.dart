@@ -63,18 +63,21 @@ class _ChooseCountryState extends State<ChooseCountry> {
                 return Expanded(
                   child: Skeletonizer(
                     enabled: state is OnboardingLoadingCountries,
-                    child: RadioListtileListWidget(
-                      getName: (value) => value.name,
-                      initialValue: selectedCountry,
-                      items: state is OnboardingCountriesLoaded
-                          ? state.countries
-                          : List.generate(
-                              3,
-                              (index) =>
-                                  CountryModel(id: index, name: 'Fake Country $index', is_active: 1, created_at: '')),
-                      onSelect: (value) {
-                        selectedCountry = value;
-                      },
+                    child: IgnorePointer(
+                      ignoring: state is OnboardingLoadingCountries,
+                      child: RadioListtileListWidget(
+                        getName: (value) => value.name,
+                        initialValue: selectedCountry,
+                        items: state is OnboardingCountriesLoaded
+                            ? state.countries
+                            : List.generate(
+                                3,
+                                (index) =>
+                                    CountryModel(id: index, name: 'Fake Country $index', is_active: 1, created_at: '')),
+                        onSelect: (value) {
+                          selectedCountry = value;
+                        },
+                      ),
                     ),
                   ),
                 );
