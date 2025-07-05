@@ -6,8 +6,8 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/auth/personal_info/data/models/user_goals_model.dart';
+import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/personal_info/data/models/user_goals_model.dart';
 
 import '../../../../core/presentation/views/widgets/goal_section.dart';
 

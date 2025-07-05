@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/widgets/meals_listview.dart';
 import 'package:urfit/modules/meals_module/widgets/what_ur_body_need_section.dart';
 
 import '../../../core/presentation/utils/enums.dart';
 import '../../../core/presentation/views/widgets/package_progress_meals.dart';
-import '../../../service_locator.dart';
 import '../widgets/shimmer/meals_list_shimmer.dart';
 import '../widgets/shimmer/what_ur_body_needs_shimmer.dart';
 
@@ -26,7 +25,7 @@ class _MealsScreenState extends State<MealsScreen> {
   @override
   void initState() {
     super.initState();
-    final user = sl<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
 
     final cubit = context.read<MealsCubit>();
 
@@ -53,7 +52,7 @@ class _MealsScreenState extends State<MealsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = sl<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     final cubit = context.read<MealsCubit>();
 
     return BlocBuilder<MealsCubit, MealsState>(

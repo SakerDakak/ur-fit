@@ -1,22 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/edit_weight_bottom_sheet.dart';
-
-import '../../../../service_locator.dart';
 
 class CurrentWeightCard extends StatelessWidget {
   const CurrentWeightCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-   final user = sl<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -30,7 +27,7 @@ class CurrentWeightCard extends StatelessWidget {
           const SizedBox(height: 24),
 
           // current and target weight
-           FittedBox(
+          FittedBox(
             fit: BoxFit.scaleDown,
             child: Row(
               children: [

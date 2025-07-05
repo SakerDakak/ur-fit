@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -10,14 +10,13 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
-import '../../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChangeNameSheet extends StatelessWidget {
   const ChangeNameSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConst.kHorizontalPadding,

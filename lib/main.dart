@@ -20,8 +20,6 @@ import 'core/presentation/routes/routes.dart';
 import 'core/presentation/utils/hive_services.dart';
 import 'core/presentation/utils/pref_utils.dart';
 import 'firebase_options.dart';
-import 'modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
-import 'modules/auth/persentation/bloc/login_bloc.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
 import 'modules/onboarding/controller/onboarding_cubit.dart';
 import 'service_locator.dart';
@@ -54,12 +52,6 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (BuildContext context) => sl<AppCubit>()..init(),
-        ),
-        BlocProvider(
-          create: (BuildContext context) => sl<AuthenticationBloc>(),
-        ),
-        BlocProvider(
-          create: (BuildContext context) => sl<LoginBloc>(),
         ),
         BlocProvider(
           create: (BuildContext context) => sl<HealthCubit>(),

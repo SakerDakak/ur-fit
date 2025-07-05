@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/views/widgets/custom_outlined_button.dart';
-import '../../bloc/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    final bloc = context.read<LoginBloc>();
+    // final bloc = context.read<LoginBloc>();
     return PopScope(
       canPop: false,
       onPopInvoked: (bool pop) {
@@ -126,7 +124,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.phone,
                         textAlign: TextAlign.end,
                         onChanged: (val) {
-                          bloc.onChangePhone(val);
+                          /// TODO : Implement phone number logic
+                          // bloc.onChangePhone(val);
                         },
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -153,13 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: CustomOutlinedButton(
                   onPressed: () {
-                    bloc.sendCode(phone.text, bloc.state.verificationId);
-
-                    // Navigator.of(context).pushReplacement(
-                    //   MaterialPageRoute(
-                    //     builder: (ctx) => const OTPScreen(),
-                    //   ),
-                    // );
+                    /// TODO : Implement send code logic
+                    // bloc.sendCode(phone.text, bloc.state.verificationId);
                   },
                   text: "إرسال الكود",
                 ),
@@ -217,7 +211,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextButton(
                   onPressed: () {
-                    bloc.guestLogin();
+                    /// TODO : Implement guest login logic
+                    // bloc.guestLogin();
                   },
                   child: Text(
                     "الدخول كزائر",

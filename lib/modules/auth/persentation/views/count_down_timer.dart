@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/presentation/style/colors.dart';
 import '../../../../core/presentation/style/fonts.dart';
-import '../bloc/login_bloc.dart';
+// import '../bloc/login_bloc.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key, required this.otpTimer});
@@ -91,7 +90,7 @@ class Countdown extends AnimatedWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      context.read<LoginBloc>().registerResendCode('sms');
+                      // context.read<LoginBloc>().registerResendCode('sms');
                     },
                     label: Text(
                       'رسالة النصية',
@@ -109,7 +108,7 @@ class Countdown extends AnimatedWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      context.read<LoginBloc>().registerResendCode('whatsapp');
+                      // context.read<LoginBloc>().registerResendCode('whatsapp');
                     },
                     label: Text(
                       'واتساب',

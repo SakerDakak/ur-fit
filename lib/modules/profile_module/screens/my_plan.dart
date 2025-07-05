@@ -5,7 +5,7 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/default_animated_switcher.dart';
-import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/custom_navigation_bar.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/equipments_page.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/goals_page.dart';

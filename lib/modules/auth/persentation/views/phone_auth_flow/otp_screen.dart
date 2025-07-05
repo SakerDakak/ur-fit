@@ -11,7 +11,6 @@ import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/style/fonts.dart';
-import '../../bloc/login_bloc.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
@@ -46,7 +45,6 @@ class _OTPScreenState extends State<OTPScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<LoginBloc>();
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -116,13 +114,15 @@ class _OTPScreenState extends State<OTPScreen> {
                       showFieldAsBox: true,
                       //runs when a code is typed in
                       onCodeChanged: (String code) {
-                        bloc.onChangeOtp(code);
+                        /// TODO : Implement OTP code change logic
+                        // bloc.onChangeOtp(code);
                         //handle validation or checks here
                       },
 
                       //runs when every textfield is filled
                       onSubmit: (String verificationCode) {
-                        bloc.onChangeOtp(verificationCode);
+                        /// TODO : Implement OTP code submission logic
+                        // bloc.onChangeOtp(verificationCode);
                       }, // end onSubmit
                     ),
                   ),
@@ -146,7 +146,8 @@ class _OTPScreenState extends State<OTPScreen> {
                       WidgetSpan(
                           child: InkWell(
                         onTap: () {
-                          bloc.registerResendCode("email");
+                          /// TODO : Implement resend OTP logic
+                          // bloc.registerResendCode("email");
                         },
                         child: Text(
                           L10n.tr().pressToResendOtp,
@@ -162,7 +163,8 @@ class _OTPScreenState extends State<OTPScreen> {
                 CustomElevatedButton(
                     text: L10n.tr().confirm,
                     onPressed: () {
-                      bloc.verifyOtpCode(controller.text);
+                      /// TODO : Implement OTP code verification logic
+                      // bloc.verifyOtpCode(controller.text);
                     })
               ],
             );

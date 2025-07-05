@@ -16,7 +16,7 @@ class CaloriesIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final user = context.read<AuthenticationBloc>().currentUser;
+    // final user = Session().currentUser;
     return FittedBox(
       child: Stack(
         alignment: Alignment.bottomCenter,

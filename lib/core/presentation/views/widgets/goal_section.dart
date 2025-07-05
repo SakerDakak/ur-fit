@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/domain/error/session.dart';
 
-import '../../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
-import '../../../../modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import '../../../../modules/auth/personal_info/data/models/user_goals_model.dart';
-import '../../../../modules/auth/personal_info/widgets/setup_personal_info/goals_item.dart';
-import '../../../../modules/auth/personal_info/widgets/shimmer_widgets/goals_shimmer.dart';
+// import '../../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
+import '../../../../modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import '../../../../modules/personal_info/data/models/user_goals_model.dart';
+import '../../../../modules/personal_info/widgets/setup_personal_info/goals_item.dart';
+import '../../../../modules/personal_info/widgets/shimmer_widgets/goals_shimmer.dart';
 import '../../utils/enums.dart';
 
 class GoalSection extends StatelessWidget {
@@ -17,8 +17,8 @@ class GoalSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationBloc>().currentUser;
-    print("user goals : ${user?.goals}");
+    final user = Session().currentUser;
+    // print("user goals : ${user?.goals}");
 
     return state.getGoalsState == RequestState.loading ||
         state.getGoalsState == RequestState.failure

@@ -42,7 +42,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
         // sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
         Session().getUserDataFromServer();
 
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }
@@ -84,7 +84,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
           getWorkOutPlanState: RequestState.success,
           allPlans: successData,
         ));
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }

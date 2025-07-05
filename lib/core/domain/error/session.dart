@@ -1,16 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/presentation/routes/routes.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
-import 'package:urfit/modules/auth/persentation/bloc/login_bloc.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_flow.dart';
-import 'package:urfit/modules/auth/personal_info/screens/setup_personal_info_screen.dart';
 import 'package:urfit/modules/home_module/screens/main_page.dart';
+import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
 import 'package:urfit/service_locator.dart';
 
 class Session {
@@ -31,7 +30,7 @@ class Session {
 
       /// case 1: user not verified
       if (currentUser?.isChecked == null || currentUser?.isChecked != '1') {
-        AppConst.rootScaffoldKey.currentContext?.read<LoginBloc>().sendCode(currentUser!.email.toString(), "success");
+        // AppConst.rootScaffoldKey.currentContext?.read<LoginBloc>().sendCode(currentUser!.email.toString(), "success");
         // navigate to forget password screen
         AppConst.rootScaffoldKey.currentContext?.pushReplacement(ForgetPasswordFlow.route);
       } else if (currentUser?.isChecked == '1' && currentUser?.hasValidSubscription == false) {
@@ -61,5 +60,14 @@ class Session {
       currentUser = loadedUser;
       LoadingHelper.stopLoading();
     });
+  }
+
+  Future logout() async {
+    LoadingHelper.startLoading();
+    await sl<AuthenticationRepo>().signOut();
+    currentUser = null;
+    TokenService.deleteToken();
+    LoadingHelper.stopLoading();
+    AppConst.navigatorKey.currentContext?.pushReplacementNamed(AppRouter.authenticationScreen);
   }
 }

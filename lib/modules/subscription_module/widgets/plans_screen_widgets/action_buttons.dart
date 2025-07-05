@@ -10,8 +10,6 @@ import 'package:urfit/modules/subscription_module/screens/payment_webview.dart';
 
 import '../../../../core/presentation/routes/routes.dart';
 import '../../../../core/presentation/utils/loading_helper.dart';
-import '../../../../service_locator.dart';
-import '../../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons({super.key});
@@ -23,12 +21,12 @@ class ActionButtons extends StatelessWidget {
         BlocBuilder<SubscriptionCubit, SubscriptionState>(
           builder: (context, state) {
             return CustomElevatedButton(
-              text: sl<AuthenticationBloc>().currentUser?.hasValidSubscription == false ||
-                      sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage
+              text: Session().currentUser?.hasValidSubscription == false ||
+                      Session().currentUser?.packageId != state.selectedPackage
                   ? L10n.tr().paymentGetWay
                   : L10n.tr().youAreAlreadySubscribedToThisPlan,
-              onPressed: sl<AuthenticationBloc>().currentUser?.hasValidSubscription == false ||
-                      sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage
+              onPressed: Session().currentUser?.hasValidSubscription == false ||
+                      Session().currentUser?.packageId != state.selectedPackage
                   ? () async {
                       await context.read<SubscriptionCubit>().getPaymentUrl();
                       Session().getUserDataFromServer();

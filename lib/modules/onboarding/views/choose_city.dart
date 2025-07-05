@@ -83,7 +83,7 @@ class _ChooseCityState extends State<ChooseCity> {
                   // context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
                   // context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
                   PrefUtils().setFirstVisit();
-                  context.push(EmailLoginScreen.route);
+                  context.push(AuthScreen.route);
                 }),
             SizedBox(
               height: 36.px,

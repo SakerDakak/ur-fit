@@ -11,7 +11,7 @@ import 'package:urfit/modules/meals_module/widgets/meal_description.dart';
 import 'package:urfit/modules/meals_module/widgets/meal_properties.dart';
 
 import '../../../core/presentation/utils/enums.dart';
-import '../../auth/personal_info/widgets/shimmer_widgets/values_gridview_shimmer.dart';
+import '../../personal_info/widgets/shimmer_widgets/values_gridview_shimmer.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   final int id;

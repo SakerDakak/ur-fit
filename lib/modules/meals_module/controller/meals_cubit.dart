@@ -1,13 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
 import 'package:urfit/modules/meals_module/data/models/cached_nutrition.dart';
 import 'package:urfit/modules/meals_module/data/models/search_recipe_model.dart';
 
 import '../../../core/presentation/utils/enums.dart';
-import '../../../service_locator.dart';
 import '../data/models/meal_details_model.dart';
 import '../data/models/meal_model.dart';
 import '../repo/meals_repo.dart';
@@ -84,14 +82,14 @@ class MealsCubit extends Cubit<MealsState> {
           getAllMealsState: RequestState.success,
           allMeals: successData,
         ));
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }
 
   generateMealPlan() async {
     emit(state.copyWith(getMealPlansState: RequestState.loading));
-    final user = sl<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     double targetCalories = calculateTargetCalories(
       currentWeight: user!.currentWeight!.toDouble(),
       targetWeight: user.targetWeight!.toDouble(),
@@ -118,7 +116,7 @@ class MealsCubit extends Cubit<MealsState> {
           // allMeals: successData,
         ));
         Session().getUserDataFromServer();
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }
@@ -198,7 +196,7 @@ class MealsCubit extends Cubit<MealsState> {
             getMealDetailsState: RequestState.success,
             mealDetails: successData,
           ));
-          // sl<AuthenticationBloc>().currentUser = ;
+          // Session().currentUser = ;
         },
       );
     });
@@ -257,7 +255,7 @@ class MealsCubit extends Cubit<MealsState> {
             allPlans: successData,
           ));
         }
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }
@@ -316,7 +314,7 @@ class MealsCubit extends Cubit<MealsState> {
           gainedProtein: getSumProteinStored(successData),
           gainedCalories: getSumCaloriesStored(successData),
         ));
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }
@@ -356,7 +354,7 @@ class MealsCubit extends Cubit<MealsState> {
             // gainedProtein: 0,
             // gainedCalories: 0,
             ));
-        // sl<AuthenticationBloc>().currentUser = ;
+        // Session().currentUser = ;
       },
     );
   }

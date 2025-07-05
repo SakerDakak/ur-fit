@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -11,7 +11,6 @@ import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/profile_module/screens/otp_screen.dart';
 
-import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ChangeEmailScreen extends StatelessWidget {
   const ChangeEmailScreen({super.key});
@@ -19,7 +18,7 @@ class ChangeEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
 
     return Scaffold(
       appBar: AppBar(

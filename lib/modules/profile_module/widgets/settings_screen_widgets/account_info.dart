@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 
 import '../../../../core/presentation/views/widgets/custom_image_view.dart';
-import '../../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class AccountInfo extends StatelessWidget {
   const AccountInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final user =context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 8),
 
         // user image
-         CircleAvatar(
-          radius: 26,
-          backgroundImage: customImageView(AssetsManager.profileImage)
-        ),
+        CircleAvatar(radius: 26, backgroundImage: customImageView(AssetsManager.profileImage)),
 
         const SizedBox(width: 8),
 

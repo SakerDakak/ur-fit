@@ -1,14 +1,12 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
@@ -51,7 +49,7 @@ class LogoutDialog extends StatelessWidget {
           SvgPicture.asset(
             Assets.iconsLogout,
             height: 20,
-            colorFilter:  ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
               Theme.of(context).colorScheme.primary,
               BlendMode.srcIn,
             ),
@@ -97,7 +95,7 @@ class LogoutDialog extends StatelessWidget {
                   child: CustomElevatedButton(
                     text: L10n.tr().yes,
                     onPressed: () {
-                      context.read<AuthenticationBloc>().loggedOut();
+                      Session().logout();
                     },
                     padding: EdgeInsets.zero,
                   ),

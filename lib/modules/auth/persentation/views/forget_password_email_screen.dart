@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
@@ -10,14 +9,12 @@ import '../../../../core/presentation/assets/assets_manager.dart';
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/compact_form_field.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../bloc/login_bloc.dart';
 
 class ForgetPasswordEmailScreen extends StatelessWidget {
   const ForgetPasswordEmailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<LoginBloc>();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -62,7 +59,7 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
               autoFillHints: [AutofillHints.email],
               title: 'البريد الالكترونى',
               onChanged: (String? value) {
-                context.read<LoginBloc>().onChangeEmail(value!);
+                // context.read<LoginBloc>().onChangeEmail(value!);
               },
             ),
             SizedBox(
@@ -71,7 +68,8 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
             CustomElevatedButton(
                 text: "ارسال",
                 onPressed: () {
-                  bloc.forgetPassword();
+                  /// TODO: implement forget password logic
+                  // bloc.forgetPassword();
                 })
           ],
         ),

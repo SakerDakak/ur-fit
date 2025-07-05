@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:urfit/core/domain/error/session.dart';
@@ -10,7 +9,6 @@ import '../../../core/presentation/assets/app_assets.dart';
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/colors.dart';
 import '../../../core/presentation/style/fonts.dart';
-import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../meals_module/screens/meals_screen.dart';
 import '../../profile_module/screens/profile_screen.dart';
 import '../../workout_module/workout_screen.dart';
@@ -62,7 +60,7 @@ class _MainPageState extends State<MainPage> {
   // late bool
 
   void _onItemTapped(int index) {
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     if (index == 3) {
       return;
     }
@@ -349,7 +347,7 @@ class _MainPageState extends State<MainPage> {
           // navBarHeight: 60,
           onItemSelected: (index) {
             print("index :$index");
-            // final user = context.read<AuthenticationBloc>().currentUser;
+            // final user = Session().currentUser;
             // setState(() {
             print("tapped");
             _onItemTapped(index);

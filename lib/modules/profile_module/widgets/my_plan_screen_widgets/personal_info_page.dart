@@ -2,6 +2,7 @@ import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -10,8 +11,7 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_curve_slider.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
-import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 
 class PersonalInfoPage extends StatelessWidget {
   const PersonalInfoPage({super.key});
@@ -19,7 +19,7 @@ class PersonalInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SetupPersonalInfoCubit>();
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
 
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
@@ -177,7 +177,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
   int? _selectedIndex;
   @override
   void initState() {
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     super.initState();
     _selectedIndex = user?.gender?.index;
   }

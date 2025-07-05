@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/views/widgets/custom_image_view.dart';
@@ -11,14 +10,14 @@ class AccountInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 8),
 
         // user image
-         CircleAvatar(
+        CircleAvatar(
           radius: 32,
           backgroundImage: customImageView(AssetsManager.profileImage),
         ),

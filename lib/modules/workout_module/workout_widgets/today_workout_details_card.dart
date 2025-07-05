@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/calories_indicator.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../controller/workout_cubit.dart';
 import '../data/model/workout_model.dart';
@@ -19,7 +19,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
     final WorkoutDay? day = cubit.getPlanForToday();
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,

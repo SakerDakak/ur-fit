@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/auth/personal_info/screens/setup_personal_info_screen.dart';
 import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
 import 'package:urfit/modules/meals_module/screens/filter_screen.dart';
 import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
@@ -11,6 +9,8 @@ import 'package:urfit/modules/meals_module/screens/meals_picker_screen.dart';
 import 'package:urfit/modules/onboarding/views/choose_city.dart';
 import 'package:urfit/modules/onboarding/views/choose_language.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
+import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
@@ -26,8 +26,8 @@ import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 
-import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
-import '../../../modules/auth/persentation/bloc/login_bloc.dart';
+// import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
+// import '../../../modules/auth/persentation/bloc/login_bloc.dart';
 import '../../../modules/auth/persentation/views/email_login_screen.dart';
 import '../../../modules/auth/persentation/views/forget_password_flow.dart';
 import '../../../modules/auth/persentation/views/phone_auth_flow/login_screen.dart';
@@ -39,7 +39,6 @@ import '../../../modules/onboarding/views/choose_country.dart';
 import '../../../modules/splash_screen/splash_screen.dart';
 import '../../../modules/subscription_module/data/models/package_model.dart';
 import '../../../service_locator.dart';
-import '../appCubit/bloc_listenable.dart';
 
 class AppRouter {
   static const authenticationScreen = "/";
@@ -99,17 +98,17 @@ class AppRouter {
         builder: (context, state) => const ChooseCity(),
       ),
       GoRoute(
-        path: EmailLoginScreen.route,
-        name: EmailLoginScreen.route,
-        onExit: (context, GoRouterState state) {
-          return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationAuthenticated ||
-              context.read<AuthenticationBloc>().state.runtimeType == AuthenticationLoginFlow ||
-              // context.read<AuthenticationBloc>().state.runtimeType == AuthenticationForgetPassword ||
-              context.read<AuthenticationBloc>().state.runtimeType == AuthenticationRegister ||
-              context.read<AuthenticationBloc>().state.runtimeType == AuthenticationPersonalInfo ||
-              context.read<AuthenticationBloc>().state.runtimeType != AuthenticationAsGuest;
-        },
-        builder: (context, state) => const EmailLoginScreen(),
+        path: AuthScreen.route,
+        name: AuthScreen.route,
+        // onExit: (context, GoRouterState state) {
+        //   return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationAuthenticated ||
+        //       context.read<AuthenticationBloc>().state.runtimeType == AuthenticationLoginFlow ||
+        //       // context.read<AuthenticationBloc>().state.runtimeType == AuthenticationForgetPassword ||
+        //       context.read<AuthenticationBloc>().state.runtimeType == AuthenticationRegister ||
+        //       context.read<AuthenticationBloc>().state.runtimeType == AuthenticationPersonalInfo ||
+        //       context.read<AuthenticationBloc>().state.runtimeType != AuthenticationAsGuest;
+        // },
+        builder: (context, state) => const AuthScreen(),
       ),
       // GoRoute(
       //     path: registerFlow,
@@ -141,17 +140,17 @@ class AppRouter {
       GoRoute(
           path: PhoneAuthFlowPages.route,
           name: PhoneAuthFlowPages.route,
-          onExit: (context, state) {
-            if (AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
-                    AuthenticationAuthenticated &&
-                AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
-                    AuthenticationAsGuest &&
-                AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
-                    AuthenticationPersonalInfo) {
-              AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().goBack();
-            }
-            return true;
-          },
+          // onExit: (context, state) {
+          //   if (AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
+          //           AuthenticationAuthenticated &&
+          //       AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
+          //           AuthenticationAsGuest &&
+          //       AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().state.runtimeType !=
+          //           AuthenticationPersonalInfo) {
+          //     AppConst.rootScaffoldKey.currentContext?.read<AuthenticationBloc>().goBack();
+          //   }
+          //   return true;
+          // },
           builder: (context, state) => const PhoneAuthFlowPages(),
           routes: [
             GoRoute(
@@ -165,13 +164,14 @@ class AppRouter {
               builder: (context, state) => const OTPScreen(),
             ),
           ],
-          redirect: (BuildContext context, GoRouterState state) {
-            if (!context.read<LoginBloc>().state.verificationId.isNotEmpty) {
-              return "${PhoneAuthFlowPages.route}/${LoginScreen.route}";
-            } else {
-              return "${PhoneAuthFlowPages.route}/${OTPScreen.route}";
-            }
-          }),
+          // redirect: (BuildContext context, GoRouterState state) {
+          //   if (!context.read<LoginBloc>().state.verificationId.isNotEmpty) {
+          //     return "${PhoneAuthFlowPages.route}/${LoginScreen.route}";
+          //   } else {
+          //     return "${PhoneAuthFlowPages.route}/${OTPScreen.route}";
+          //   }
+          // }
+          ),
 
       // builder: (context, state) => const AuthenticationScreen(),
       // GoRoute(
@@ -248,16 +248,17 @@ class AppRouter {
           builder: (context, state) {
             return MainPage(isGuest: state.uri.queryParameters["guest"] == "true");
           },
-          onExit: (context, state) {
-            return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated;
-          },
-          redirect: (BuildContext context, GoRouterState state) {
-            // print("mainpagge redirect $state");
-            if (context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated) {
-              return authenticationScreen;
-            }
-            return null;
-          }),
+          // onExit: (context, state) {
+          //   return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated;
+          // },
+          // redirect: (BuildContext context, GoRouterState state) {
+          //   // print("mainpagge redirect $state");
+          //   if (context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated) {
+          //     return authenticationScreen;
+          //   }
+          //   return null;
+          // }
+          ),
       GoRoute(
         path: MealsPickerScreen.route,
         name: MealsPickerScreen.route,
@@ -432,7 +433,7 @@ class AppRouter {
       ),
     ],
 
-    refreshListenable: BlocListenable(sl<AuthenticationBloc>()),
+    // refreshListenable: BlocListenable(sl<AuthenticationBloc>()),
     //
     // redirect: (BuildContext context, GoRouterState state){
     //   if(context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated ){

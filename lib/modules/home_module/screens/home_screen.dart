@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/current_weight_card.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/discount_section.dart';
@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<HealthCubit>().initializeHealth();
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     print("user: $user");
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {

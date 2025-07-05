@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,7 +8,6 @@ import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/utils/constants.dart';
 import '../../../../core/presentation/views/widgets/compact_form_field.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../bloc/login_bloc.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   const UpdatePasswordScreen({super.key});
@@ -17,7 +15,6 @@ class UpdatePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<LoginBloc>();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -47,7 +44,8 @@ class UpdatePasswordScreen extends StatelessWidget {
               borderColor: AppColors.strockColor,
               titleStyle: CustomTextStyle.regular_14,
               onChanged: (String? value) {
-                bloc.onChangePassword(value!);
+                /// TODO : Implement new password logic
+                // bloc.onChangePassword(value!);
               },
             ),
 
@@ -61,7 +59,8 @@ class UpdatePasswordScreen extends StatelessWidget {
               borderColor: AppColors.strockColor,
               titleStyle: CustomTextStyle.regular_14,
               onChanged: (String? value) {
-                bloc.onChangeNewPasswordConfirm(value!);
+                /// TODO : Implement confirm password logic
+                // bloc.onChangeNewPasswordConfirm(value!);
               },
             ),
 
@@ -71,7 +70,8 @@ class UpdatePasswordScreen extends StatelessWidget {
             CustomElevatedButton(
               text: 'تغير',
               onPressed: () {
-                bloc.resetPassword();
+                /// TODO : Implement reset password logic
+                // bloc.resetPassword();
               },
               padding: EdgeInsets.zero,
             ),

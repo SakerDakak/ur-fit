@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/package_progress_exercise.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
-import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/start_workout_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/workout_detail_card_shimmer.dart';
@@ -24,7 +24,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   void initState() {
     super.initState();
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     final cubit = context.read<WorkoutCubit>();
     if (user?.haveExercisePlan == true && user?.hasValidSubscription == true) {
       cubit.getWorkOutPlan().then((value) {
@@ -52,7 +52,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     final cubit = context.read<WorkoutCubit>();
 
     return BlocBuilder<WorkoutCubit, WorkoutState>(

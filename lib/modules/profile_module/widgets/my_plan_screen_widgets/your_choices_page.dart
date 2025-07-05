@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/auth/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/auth/personal_info/widgets/setup_personal_info/final_step_section_one.dart';
-import 'package:urfit/modules/auth/personal_info/widgets/setup_personal_info/final_step_section_two.dart';
+import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/personal_info/widgets/setup_personal_info/final_step_section_one.dart';
+import 'package:urfit/modules/personal_info/widgets/setup_personal_info/final_step_section_two.dart';
 
 class YourChoicesPage extends StatelessWidget {
   const YourChoicesPage({super.key});

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -14,7 +14,6 @@ import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/del
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/logout_dialog.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/settings_tile.dart';
 
-import '../../auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -22,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationBloc>().currentUser;
+    final user = Session().currentUser;
     return Scaffold(
       appBar: AppBar(
         title:  Text(L10n.tr().settings),

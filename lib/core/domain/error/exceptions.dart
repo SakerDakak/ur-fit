@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 
-import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
+// import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import '../../presentation/style/colors.dart';
 import '../../presentation/style/fonts.dart';
 
@@ -29,14 +29,15 @@ class ServerException extends Equatable implements Exception {
             onClosing: () {
               context.canPop() ? context.pop() : null;
               AppConst.isBottomSheetOpened = false;
-              context.read<AuthenticationBloc>().loggedOut();
+              Session().logout();
             },
             builder: (BuildContext context) {
               return PopScope(
                 onPopInvokedWithResult: (bool, dynamic) {
                   context.canPop() ? context.pop() : null;
                   AppConst.isBottomSheetOpened = false;
-                  context.read<AuthenticationBloc>().loggedOut();
+                  Session().logout();
+                  ;
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
