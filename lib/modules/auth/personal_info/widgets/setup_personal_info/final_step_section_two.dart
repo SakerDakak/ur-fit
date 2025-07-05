@@ -237,7 +237,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
                       color:isSelected
                           ? Theme.of(context).colorScheme.primary
                           : AppColors.cardColor,
-                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                       border: Border.all(color: AppColors.strockColor),
                     ),
                     child: Column(

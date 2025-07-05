@@ -19,9 +19,6 @@ class AssetsManager {
   static String profile = Assets.iconsProfile;
   static String profileImage = Assets.imageProfileImage;
   static String notification = Assets.iconsNotifications;
-  static String apple = Assets.iconsApple;
-  static String facebook = Assets.iconsFacebook;
-  static String google = Assets.iconsGoogle;
   static String mealCategory = Assets.iconsMealCategory;
   static String filter = Assets.iconsFilter;
   static String mealDummy = Assets.imageMealDummy;

@@ -1,13 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:urfit/core/domain/error/failures.dart';
 import 'package:urfit/modules/auth/data/models/user/cached_user.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
 import 'package:urfit/modules/auth/personal_info/data/data_source/personal_info_datasource.dart';
 import 'package:urfit/modules/auth/personal_info/data/models/body_parts_model.dart';
 import 'package:urfit/modules/auth/personal_info/data/models/selection_item_model.dart';
 import 'package:urfit/modules/auth/personal_info/data/models/user_goals_model.dart';
 
-import '../../../../../service_locator.dart';
 import '../models/no_of_daily_meals.dart';
 import '../models/user_personal_info_model.dart';
 
@@ -22,9 +20,9 @@ abstract class PersonalInfoRepo {
   Future<Either<Failure, List<BodyPartsModel>>> getMuscleFocus();
   Future<Either<Failure, List<SelectionItemModel>>> getWorkoutTypes();
   Future<Either<Failure, List<SelectionItemModel>>> getEquipments();
-  Future<Either<Failure,CacheUser>> updatePersonalInfo({required UserPersonalInfoModel personalInfoModel});
-  Future<Either<Failure,void>> changePassword({required String oldPassword, required String newPassword , required String confirmPassword});
-
+  Future<Either<Failure, CacheUser>> updatePersonalInfo({required UserPersonalInfoModel personalInfoModel});
+  Future<Either<Failure, void>> changePassword(
+      {required String oldPassword, required String newPassword, required String confirmPassword});
 }
 
 class PersonalInfoRepoImpl implements PersonalInfoRepo {
@@ -44,8 +42,7 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
   }
 
   @override
-  Future<Either<Failure, List<SelectionItemModel>>>
-      getLikedMealsOptions() async {
+  Future<Either<Failure, List<SelectionItemModel>>> getLikedMealsOptions() async {
     try {
       var result = await _dataSource.getLikedMealsOptions();
 
@@ -56,8 +53,7 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
   }
 
   @override
-  Future<Either<Failure, List<SelectionItemModel>>>
-      getMealsVariantsOptions() async {
+  Future<Either<Failure, List<SelectionItemModel>>> getMealsVariantsOptions() async {
     try {
       var result = await _dataSource.getMealsVariantsOptions();
 
@@ -68,8 +64,7 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
   }
 
   @override
-  Future<Either<Failure, List<SelectionItemModel>>>
-      getNotLikedMealsOptions() async {
+  Future<Either<Failure, List<SelectionItemModel>>> getNotLikedMealsOptions() async {
     try {
       var result = await _dataSource.getNotLikedMealsOptions();
 
@@ -138,10 +133,8 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
   Future<Either<Failure, CacheUser>> updatePersonalInfo({required personalInfoModel}) async {
     try {
       var result = await _dataSource.updatePersonalInfo(personalInfoModel: personalInfoModel);
-      await sl<AuthenticationRepo>().saveUser(
-          CacheUser.fromUserModel(result));
-      final user =
-      CacheUser.fromUserModel(result);
+      // await sl<AuthenticationRepo>().saveUser(CacheUser.fromUserModel(result));
+      final user = CacheUser.fromUserModel(result);
 
       return right(user);
     } catch (e) {
@@ -150,15 +143,15 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
   }
 
   @override
-  Future<Either<Failure, void>> changePassword({required String oldPassword, required String newPassword, required String confirmPassword}) async {
+  Future<Either<Failure, void>> changePassword(
+      {required String oldPassword, required String newPassword, required String confirmPassword}) async {
     try {
-      var result = await _dataSource.changePassword(oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword);
+      var result = await _dataSource.changePassword(
+          oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword);
 
       return right(result);
     } catch (e) {
       return left(ServerFailure(e.toString()));
     }
   }
-
-
 }

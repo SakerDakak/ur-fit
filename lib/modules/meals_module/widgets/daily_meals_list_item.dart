@@ -19,7 +19,7 @@ class DailyMealsListItem extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(kBorderRadius),
+          borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),

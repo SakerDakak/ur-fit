@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
-import 'package:urfit/modules/auth/onboarding/on_boarding_2.dart';
 import 'package:urfit/modules/auth/personal_info/screens/setup_personal_info_screen.dart';
+import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
 
-import '../../../core/presentation/assets/assets_manager.dart';
-import '../../../core/presentation/style/colors.dart';
+import '../../core/presentation/assets/assets_manager.dart';
+import '../../core/presentation/style/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

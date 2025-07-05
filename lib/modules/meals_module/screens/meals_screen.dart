@@ -63,9 +63,9 @@ class _MealsScreenState extends State<MealsScreen> {
               user?.haveMealPlan == true || state.getMealPlansState == RequestState.loading || state.allPlans.isNotEmpty
                   ? ListView(
                       padding: const EdgeInsets.only(
-                        bottom: kBottomPadding,
-                        left: kHorizontalPadding,
-                        right: kHorizontalPadding,
+                        bottom: AppConst.kBottomPadding,
+                        left: AppConst.kHorizontalPadding,
+                        right: AppConst.kHorizontalPadding,
                       ),
                       children: [
                         // plan remaining time

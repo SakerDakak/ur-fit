@@ -25,7 +25,7 @@ class ContactUsScreen extends StatelessWidget {
         title:  Text(L10n.tr().contactUs),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
         children: [
           SvgPicture.asset(
             Assets.imageLogo,

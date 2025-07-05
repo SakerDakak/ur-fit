@@ -57,7 +57,7 @@ class DiscountSection extends StatelessWidget {
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     color: AppColors.cardColor,
-                    borderRadius: BorderRadius.circular(kBorderRadius),
+                    borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.2),

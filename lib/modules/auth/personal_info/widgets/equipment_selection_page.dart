@@ -31,7 +31,7 @@ class _EquipmentSelectionPageState extends State<EquipmentSelectionPage> {
     final cubit = context.read<SetupPersonalInfoCubit>();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

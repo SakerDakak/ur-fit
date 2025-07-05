@@ -19,7 +19,7 @@ class MyTasksScreen extends StatelessWidget {
         title: const Text('مهامي'),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
         children: [
           // plan remaining time
           const PackageProgressExercise(),

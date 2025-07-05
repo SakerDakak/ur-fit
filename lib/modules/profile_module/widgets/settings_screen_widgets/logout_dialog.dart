@@ -62,7 +62,7 @@ class LogoutDialog extends StatelessWidget {
           // title
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: kHorizontalPadding * 2,
+              horizontal: AppConst.kHorizontalPadding * 2,
             ),
             child: Text(
               L10n.tr().areYouSureYouWantToLogout,
@@ -77,7 +77,7 @@ class LogoutDialog extends StatelessWidget {
 
           // action buttons
           Padding(
-            padding: const EdgeInsets.all(kHorizontalPadding),
+            padding: const EdgeInsets.all(AppConst.kHorizontalPadding),
             child: Row(
               children: [
                 // cancel
@@ -97,7 +97,7 @@ class LogoutDialog extends StatelessWidget {
                   child: CustomElevatedButton(
                     text: L10n.tr().yes,
                     onPressed: () {
-                      context.read<AuthenticationBloc>().add(LoggedOut());
+                      context.read<AuthenticationBloc>().loggedOut();
                     },
                     padding: EdgeInsets.zero,
                   ),

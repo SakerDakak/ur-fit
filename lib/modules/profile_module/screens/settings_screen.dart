@@ -28,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
         title:  Text(L10n.tr().settings),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
         children: [
           const SizedBox(height: 20),
 

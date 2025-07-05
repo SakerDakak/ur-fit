@@ -38,7 +38,7 @@ class MyPlanScreen extends StatelessWidget {
               // app bar
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: kHorizontalPadding,
+                  horizontal: AppConst.kHorizontalPadding,
                 ),
                 child: Row(
                   children: [
@@ -107,7 +107,7 @@ class MyPlanScreen extends StatelessWidget {
         // guide text
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: kHorizontalPadding,
+            horizontal: AppConst.kHorizontalPadding,
           ),
           child: Text(
             L10n.tr().myPlanPhrase,
@@ -135,7 +135,7 @@ class MyPlanScreen extends StatelessWidget {
         // skip button
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: kHorizontalPadding,
+            horizontal: AppConst.kHorizontalPadding,
           ),
           child: Align(
             alignment: AlignmentDirectional.centerEnd,

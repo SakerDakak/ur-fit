@@ -5,9 +5,9 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/login_form.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/register_form.dart';
 
-import '../../../../../core/presentation/style/colors.dart';
-import '../../../../../core/presentation/style/fonts.dart';
-import '../../../../../core/presentation/views/widgets/title_with_icon.dart';
+import '../../../../core/presentation/style/colors.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/title_with_icon.dart';
 
 class EmailLoginScreen extends StatelessWidget {
   const EmailLoginScreen({super.key});

@@ -10,20 +10,20 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/app_theme.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/utils/bloc_observer.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
-import 'core/presentation/assets/const.dart';
 import 'core/presentation/routes/routes.dart';
 import 'core/presentation/utils/hive_services.dart';
 import 'core/presentation/utils/pref_utils.dart';
 import 'firebase_options.dart';
-import 'modules/auth/onboarding/controller/onboarding_cubit.dart';
 import 'modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'modules/auth/persentation/bloc/login_bloc.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
+import 'modules/onboarding/controller/onboarding_cubit.dart';
 import 'service_locator.dart';
 
 Future<void> main() async {
@@ -103,14 +103,14 @@ class MyApp extends StatelessWidget {
                   final String? lang = PrefUtils().getLang();
                   print('lang: $lang');
                   return MaterialApp.router(
-                    // navigatorKey: navigatorKey,
+                    // AppConst.navigatorKey: AppConst.navigatorKey,
                     // routeInformationParser: MyRouteInformationParser(),
                     // routerDelegate: MyRouterDelegate(),
                     routerConfig: AppRouter.appRouter,
                     localizationsDelegates: L10n.localizationDelegates,
                     supportedLocales: L10n.supportedLocales,
                     locale: Locale(lang ?? 'ar'),
-                    scaffoldMessengerKey: rootScaffoldKey,
+                    scaffoldMessengerKey: AppConst.rootScaffoldKey,
                     title: "URFIT",
                     debugShowCheckedModeBanner: false,
                     themeMode: ThemeMode.dark,

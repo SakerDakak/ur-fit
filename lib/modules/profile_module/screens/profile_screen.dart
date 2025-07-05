@@ -32,8 +32,8 @@ class ProfileScreen extends StatelessWidget {
           body: ListView(
             padding: const EdgeInsets.only(
               bottom: 50,
-              left: kHorizontalPadding,
-              right: kHorizontalPadding,
+              left: AppConst.kHorizontalPadding,
+              right: AppConst.kHorizontalPadding,
             ),
             children: [
               // account info
@@ -348,7 +348,7 @@ class ProfileScreen extends StatelessWidget {
               //     ),
               //     decoration: BoxDecoration(
               //       color: AppColors.yellow,
-              //       borderRadius: BorderRadius.circular(kBorderRadius),
+              //       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               //     ),
               //     child: Text(
               //       L10n.tr().soon,

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:urfit/core/presentation/assets/const.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:urfit/modules/auth/personal_info/data/models/body_parts_model.dart';
@@ -36,7 +36,15 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     log("init user: ${user?.toJson()}");
     final userInfoModel = UserPersonalInfoModel(
-      selectedGaols: user!.goals?.map((goal) => UserGoalsModel(id: goal.id, name: goal.name, imageUrl: "",sectionOneType: goal.id == 1 || goal.id == 2 ? GoalsSectionOneEnum.nutrition:null,sectionTwoType:goal.id == 3 || goal.id == 4 ? GoalsSectionTwoEnum.buildMuscles:null )).toList() ?? [],
+      selectedGaols: user!.goals
+              ?.map((goal) => UserGoalsModel(
+                  id: goal.id,
+                  name: goal.name,
+                  imageUrl: "",
+                  sectionOneType: goal.id == 1 || goal.id == 2 ? GoalsSectionOneEnum.nutrition : null,
+                  sectionTwoType: goal.id == 3 || goal.id == 4 ? GoalsSectionTwoEnum.buildMuscles : null))
+              .toList() ??
+          [],
       gender: user.gender,
       height: user.height?.toDouble(),
       age: user.age,
@@ -50,9 +58,6 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       notLikedMealsIds: user.foodsNotLiked?.map((notLiked) => notLiked.id).toList() ?? [],
       muscleFocusIds: user.bodyParts ?? [],
       workoutTypesIds: user.workoutTypes?.map((workout) => workout.id).toList() ?? [],
-
-
-
     );
     emit(state.copyWith(userInfo: userInfoModel));
     // state.copyWith(userInfo: );
@@ -99,6 +104,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       ),
     );
   }
+
   Future<void> goToNextIndexStepOne() async {
     await stepOneController.nextPage(
       duration: const Duration(milliseconds: 350),
@@ -107,10 +113,8 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     emit(
       state.copyWith(
-        // currentInfoStep: personalInfoController.page!.toInt() + 1,
-          currentStepOneIndex : stepOneController.page!.toInt() + 1
-
-      ),
+          // currentInfoStep: personalInfoController.page!.toInt() + 1,
+          currentStepOneIndex: stepOneController.page!.toInt() + 1),
     );
   }
 
@@ -125,6 +129,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       ),
     );
   }
+
   Future<void> goToNextIndexFinalStep() async {
     await finalStepController.nextPage(
       duration: const Duration(milliseconds: 350),
@@ -133,10 +138,8 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     emit(
       state.copyWith(
-        // currentInfoStep: personalInfoController.page!.toInt() + 1,
-          currentStepThreeIndex : finalStepController.page!.toInt() + 1
-
-      ),
+          // currentInfoStep: personalInfoController.page!.toInt() + 1,
+          currentStepThreeIndex: finalStepController.page!.toInt() + 1),
     );
   }
 
@@ -151,6 +154,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       ),
     );
   }
+
   void goToNextPage() {
     pageController.nextPage(
       duration: const Duration(milliseconds: 350),
@@ -195,9 +199,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   void updateUserGender(GenderEnum gender) {
     switch (gender) {
       case GenderEnum.male:
-        rootScaffoldKey.currentContext?.read<AppCubit>().setMaleTheme();
+        AppConst.rootScaffoldKey.currentContext?.read<AppCubit>().setMaleTheme();
       case GenderEnum.female:
-        rootScaffoldKey.currentContext?.read<AppCubit>().setFemaleTheme();
+        AppConst.rootScaffoldKey.currentContext?.read<AppCubit>().setFemaleTheme();
     }
     emit(state.copyWith.userInfo(gender: gender));
   }
@@ -504,8 +508,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   updatePersonalData() async {
     emit(state.copyWith(updatePersonalInfo: RequestState.loading));
 
-    var result =
-        await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
+    var result = await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
 
     result.fold(
       (failure) {
@@ -521,7 +524,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
         emit(state.copyWith(
           updatePersonalInfo: RequestState.success,
         ));
-        sl<AuthenticationBloc>().add(GetUserData());
+        sl<AuthenticationBloc>().getUserData();
         // sl<AuthenticationBloc>().currentUser = ;
       },
     );

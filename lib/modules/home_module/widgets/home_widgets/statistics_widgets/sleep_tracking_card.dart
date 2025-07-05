@@ -21,7 +21,7 @@ class SleepTrackingCard extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         border: Border.all(color: AppColors.strockColor),
       ),
       child: FittedBox(

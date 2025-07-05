@@ -76,11 +76,9 @@ class _LanguageButton extends StatelessWidget {
         vertical: 2,
       ),
       decoration: BoxDecoration(
-        color: isSelected
-            ? Theme.of(context).colorScheme.primary
-            : Colors.transparent,
+        color: isSelected ? Theme.of(context).colorScheme.primary : Colors.transparent,
         border: Border.all(color: Theme.of(context).colorScheme.primary),
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
       ),
       child: FittedBox(
         fit: BoxFit.scaleDown,
@@ -90,8 +88,7 @@ class _LanguageButton extends StatelessWidget {
             Text(
               langName,
               style: CustomTextStyle.bold_12.copyWith(
-                color:
-                    isSelected ? AppColors.selectedFont : AppColors.fontColor,
+                color: isSelected ? AppColors.selectedFont : AppColors.fontColor,
               ),
             ),
             if (isSelected) const SizedBox(width: 16),

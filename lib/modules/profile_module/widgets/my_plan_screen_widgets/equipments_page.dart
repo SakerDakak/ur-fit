@@ -21,7 +21,7 @@ class EquipmentsPage extends StatelessWidget {
     cubit.getEquipments();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -78,7 +78,7 @@ class _EquipmentItem extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(kBorderRadius),
+          borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           border: Border.all(color: AppColors.strockColor),
           boxShadow: [
             BoxShadow(

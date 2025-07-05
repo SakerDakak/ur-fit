@@ -6,7 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/modules/auth/onboarding/choose_language.dart';
+import 'package:urfit/modules/onboarding/views/choose_language.dart';
 
 import '../../../core/presentation/views/widgets/title_with_icon.dart';
 

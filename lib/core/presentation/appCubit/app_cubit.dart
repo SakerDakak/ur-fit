@@ -62,7 +62,7 @@ class AppCubit extends Cubit<AppState> {
 
   changeLang(String lang) async {
     print("change Lang $lang");
-    // await EasyLocalization.of(rootScaffoldKey.currentContext!)?.setLocale(Locale(lang));
+    // await EasyLocalization.of(AppConst.rootScaffoldKey.currentContext!)?.setLocale(Locale(lang));
     await PrefUtils().setLang(lang);
     emit(state.copyWith(currentLocal: lang));
   }

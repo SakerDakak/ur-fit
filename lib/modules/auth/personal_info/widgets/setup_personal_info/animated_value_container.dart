@@ -27,7 +27,7 @@ class ValueContainer extends StatelessWidget {
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: isSelected ? Theme.of(context).primaryColor : AppColors.cardColor,
-          borderRadius: BorderRadius.circular(kBorderRadius),
+          borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         ),
         child: FittedBox(
           fit: BoxFit.scaleDown,

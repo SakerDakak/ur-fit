@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../core/presentation/style/colors.dart';
-import '../../../../../../core/presentation/views/widgets/custom_outlined_button.dart';
-import '../../../bloc/login_bloc.dart';
+import '../../../../../core/presentation/style/colors.dart';
+import '../../../../../core/presentation/views/widgets/custom_outlined_button.dart';
+import '../../bloc/login_bloc.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   static const route = "/phoneLogin";
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final phone = TextEditingController();
+
+  @override
+  void dispose() {
+    phone.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,10 +122,11 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextFormField(
+                        controller: phone,
                         keyboardType: TextInputType.phone,
                         textAlign: TextAlign.end,
                         onChanged: (val) {
-                          bloc.add(OnChangePhoneEvent(val));
+                          bloc.onChangePhone(val);
                         },
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -139,7 +153,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 child: CustomOutlinedButton(
                   onPressed: () {
-                    bloc.add(SendCodeEvent());
+                    bloc.sendCode(phone.text, bloc.state.verificationId);
 
                     // Navigator.of(context).pushReplacement(
                     //   MaterialPageRoute(
@@ -203,7 +217,7 @@ class LoginScreen extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {
-                    bloc.add(GuestLoginEvent());
+                    bloc.guestLogin();
                   },
                   child: Text(
                     "الدخول كزائر",

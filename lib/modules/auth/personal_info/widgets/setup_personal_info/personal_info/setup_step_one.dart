@@ -156,7 +156,7 @@ class _SliderTitle extends StatelessWidget {
             width: 100,
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(kBorderRadius),
+              borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               color: AppColors.cardColor,
             ),
             child: FittedBox(
@@ -225,7 +225,7 @@ class _GenderToggleButtonsState extends State<_GenderToggleButtons> {
                 color: i + 1 == _selectedIndex
                     ? Theme.of(context).colorScheme.primary
                     : AppColors.cardColor,
-                borderRadius: BorderRadius.circular(kBorderRadius),
+                borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               ),
               child: FittedBox(
                 fit: BoxFit.scaleDown,

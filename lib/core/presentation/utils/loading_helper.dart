@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 
-import '../assets/const.dart';
-
-      class LoadingHelper {
+class LoadingHelper {
   static bool? get visible {
-    BuildContext? context = rootScaffoldKey.currentContext;
+    final BuildContext? context = AppConst.rootScaffoldKey.currentContext;
     return context?.loaderOverlay.visible;
   }
 
   static startLoading() {
-    BuildContext? context = rootScaffoldKey.currentContext;
-    print("start loading $context" );
+    final BuildContext? context = AppConst.rootScaffoldKey.currentContext;
+    print("start loading $context");
 
     if (context != null && !context.loaderOverlay.visible) {
       context.loaderOverlay.show();
@@ -19,7 +18,7 @@ import '../assets/const.dart';
   }
 
   static stopLoading() {
-    BuildContext? context = rootScaffoldKey.currentContext;
+    final BuildContext? context = AppConst.rootScaffoldKey.currentContext;
     if (context != null && context.loaderOverlay.visible) {
       context.loaderOverlay.hide();
     }

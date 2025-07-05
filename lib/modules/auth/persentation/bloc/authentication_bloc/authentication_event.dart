@@ -1,132 +1,132 @@
-part of 'authentication_bloc.dart';
+// part of 'authentication_bloc.dart';
 
-abstract class AuthenticationEvent extends Equatable {
-  const AuthenticationEvent([List props = const []]) : super();
+// abstract class AuthenticationEvent extends Equatable {
+//   const AuthenticationEvent([List props = const []]) : super();
 
-  @override
-  List<Object> get props => [];
-}
-
-// class AppStarted extends AuthenticationEvent {
 //   @override
-//   String toString() => 'AppStarted';
+//   List<Object> get props => [];
 // }
 
-class LoggedOut extends AuthenticationEvent {
-  @override
-  String toString() => 'LoggedOut';
-}
+// // class AppStarted extends AuthenticationEvent {
+// //   @override
+// //   String toString() => 'AppStarted';
+// // }
 
-class LoginFlow extends AuthenticationEvent {
-  @override
-  String toString() => 'loginFlow';
-}
-
-class ForgetPasswordFlowEvent extends AuthenticationEvent {
-  @override
-  String toString() => 'ForgetPasswordFlow';
-}
-
-class GetUserData extends AuthenticationEvent {
-  // final UserModel userModel;
-
-  GetUserData() : super([]);
-
-  @override
-  String toString() => 'GetUserData }';
-}
-
-// class ConfirmEmail extends AuthenticationEvent {
+// class LoggedOut extends AuthenticationEvent {
 //   @override
-//   String toString() => 'confirm';
+//   String toString() => 'LoggedOut';
 // }
-//
-class GoBack extends AuthenticationEvent {
-  @override
-  String toString() => 'goBack';
-}
 
-class RegisterEvent extends AuthenticationEvent {
-  @override
-  String toString() => 'RegisterEvent';
-}
+// class LoginFlow extends AuthenticationEvent {
+//   @override
+//   String toString() => 'loginFlow';
+// }
 
-class LoggedIn extends AuthenticationEvent {
-  final String token;
-  // final UserModel userModel;
+// class ForgetPasswordFlowEvent extends AuthenticationEvent {
+//   @override
+//   String toString() => 'ForgetPasswordFlow';
+// }
 
-  LoggedIn({required this.token}) : super([token]);
+// class GetUserData extends AuthenticationEvent {
+//   // final UserModel userModel;
 
-  @override
-  String toString() => 'LoggedIn { token: $token ,}';
-}
+//   GetUserData() : super([]);
 
-class CheckOnBoardingEvent extends AuthenticationEvent {
-  @override
-  String toString() => 'onboarding';
-}
+//   @override
+//   String toString() => 'GetUserData }';
+// }
 
-// class DoneOnBoardingEvent extends AuthenticationEvent {
-//   final CountryModel city;
+// // class ConfirmEmail extends AuthenticationEvent {
+// //   @override
+// //   String toString() => 'confirm';
+// // }
+// //
+// class GoBack extends AuthenticationEvent {
+//   @override
+//   String toString() => 'goBack';
+// }
 
-//   DoneOnBoardingEvent(this.city);
+// class RegisterEvent extends AuthenticationEvent {
+//   @override
+//   String toString() => 'RegisterEvent';
+// }
+
+// class LoggedIn extends AuthenticationEvent {
+//   final String token;
+//   // final UserModel userModel;
+
+//   LoggedIn({required this.token}) : super([token]);
+
+//   @override
+//   String toString() => 'LoggedIn { token: $token ,}';
+// }
+
+// class CheckOnBoardingEvent extends AuthenticationEvent {
 //   @override
 //   String toString() => 'onboarding';
 // }
 
-class GoToOnBoardingTwo extends AuthenticationEvent {
-  GoToOnBoardingTwo();
-  @override
-  String toString() => 'GoToOnBoardingTwo';
-}
+// // class DoneOnBoardingEvent extends AuthenticationEvent {
+// //   final CountryModel city;
 
-// class GoToChooseCity extends AuthenticationEvent {
-//   final CountryModel country;
+// //   DoneOnBoardingEvent(this.city);
+// //   @override
+// //   String toString() => 'onboarding';
+// // }
 
-//   GoToChooseCity(this.country);
+// class GoToOnBoardingTwo extends AuthenticationEvent {
+//   GoToOnBoardingTwo();
 //   @override
-//   String toString() => 'GoToChooseLanguage';
+//   String toString() => 'GoToOnBoardingTwo';
 // }
 
-// class GoToChooseLanguage extends AuthenticationEvent {
+// // class GoToChooseCity extends AuthenticationEvent {
+// //   final CountryModel country;
+
+// //   GoToChooseCity(this.country);
+// //   @override
+// //   String toString() => 'GoToChooseLanguage';
+// // }
+
+// // class GoToChooseLanguage extends AuthenticationEvent {
+// //   @override
+// //   String toString() => 'GoToChooseLanguage';
+// // }
+
+// // class DoneChooseLanguageEvent extends AuthenticationEvent {
+// //   final dynamic language;
+
+// //   DoneChooseLanguageEvent(this.language);
+// //   @override
+// //   String toString() => 'doneChooseLanguage';
+// // }
+
+// class GuestLogin extends AuthenticationEvent {
 //   @override
-//   String toString() => 'GoToChooseLanguage';
+//   String toString() => 'Guest';
 // }
 
-// class DoneChooseLanguageEvent extends AuthenticationEvent {
-//   final dynamic language;
-
-//   DoneChooseLanguageEvent(this.language);
-//   @override
-//   String toString() => 'doneChooseLanguage';
-// }
-
-class GuestLogin extends AuthenticationEvent {
-  @override
-  String toString() => 'Guest';
-}
-
-class GetUserDataFromServer extends AuthenticationEvent {
-  @override
-  String toString() => 'GetUserDataFromServer';
-}
-
-// class GetSliderImageEvent extends AuthenticationEvent {
+// class GetUserDataFromServer extends AuthenticationEvent {
 //   @override
 //   String toString() => 'GetUserDataFromServer';
 // }
 
-class UpdatePasswordEvent extends AuthenticationEvent {
-  @override
-  String toString() => 'UpdatePasswordEvent';
-}
+// // class GetSliderImageEvent extends AuthenticationEvent {
+// //   @override
+// //   String toString() => 'GetUserDataFromServer';
+// // }
 
-class UpdateSubscriptionEvent extends AuthenticationEvent {
-  @override
-  String toString() => 'UpdateSubscriptionEvent';
-}
+// class UpdatePasswordEvent extends AuthenticationEvent {
+//   @override
+//   String toString() => 'UpdatePasswordEvent';
+// }
 
-class NavigateToRequestPrice extends AuthenticationEvent {
-  @override
-  String toString() => 'Request Price';
-}
+// class UpdateSubscriptionEvent extends AuthenticationEvent {
+//   @override
+//   String toString() => 'UpdateSubscriptionEvent';
+// }
+
+// class NavigateToRequestPrice extends AuthenticationEvent {
+//   @override
+//   String toString() => 'Request Price';
+// }

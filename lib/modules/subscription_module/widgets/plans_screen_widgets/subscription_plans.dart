@@ -84,7 +84,7 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
                     height: 220,
                     padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                       color: AppColors.cardColor,
                       border: Border.all(color: AppColors.strockColor),
                     ),
@@ -127,7 +127,7 @@ class PlanCard extends StatelessWidget {
         height: 220,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kBorderRadius),
+          borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           color: isSelected ? Theme.of(context).colorScheme.primary : AppColors.cardColor,
           border: isSelected ? null : Border.all(color: AppColors.strockColor),
         ),
@@ -150,7 +150,7 @@ class PlanCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                   color: AppColors.yellow,
                 ),
                 child: Text(

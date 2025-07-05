@@ -15,7 +15,7 @@ class OtpScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+          padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
           child: Column(
             children: [
               // icon

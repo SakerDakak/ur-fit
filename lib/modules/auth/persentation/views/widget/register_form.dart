@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -26,7 +25,7 @@ class RegisterForm extends StatelessWidget {
             hintText: L10n.tr().enterFullName,
             title: L10n.tr().fullName,
             onChanged: (String? value) {
-              context.read<LoginBloc>().add(OnChangeFirstNameEvent(value!));
+              context.read<LoginBloc>().onChangeFirstName(value!);
             },
             validator: (String? value) {
               // print("validation : ${value}");
@@ -46,7 +45,7 @@ class RegisterForm extends StatelessWidget {
             hintText: L10n.tr().enterEmail,
             title: L10n.tr().email,
             onChanged: (String? value) {
-              context.read<LoginBloc>().add(OnChangeEmailEvent(value!));
+              context.read<LoginBloc>().onChangeEmail(value!);
             },
             validator: (String? value) {
               // print("validation : ${value}");
@@ -66,7 +65,7 @@ class RegisterForm extends StatelessWidget {
             hintText: L10n.tr().enterPassword,
             title: L10n.tr().password,
             onChanged: (String? value) {
-              context.read<LoginBloc>().add(OnChangeNewPasswordEvent(value!));
+              context.read<LoginBloc>().onChangeNewPassword(value!);
             },
             validator: (String? value) {
               if (value!.isEmpty) {
@@ -84,9 +83,7 @@ class RegisterForm extends StatelessWidget {
             hintText: L10n.tr().enterPassword,
             title: L10n.tr().confirmPassword,
             onChanged: (String? value) {
-              context
-                  .read<LoginBloc>()
-                  .add(OnChangeNewPasswordConfirmEvent(value!));
+              context.read<LoginBloc>().onChangeNewPasswordConfirm(value!);
             },
             validator: (String? value) {
               if (value!.isEmpty) {
@@ -114,13 +111,12 @@ class RegisterForm extends StatelessWidget {
                     return Checkbox(
                       value: acceptTerms,
                       onChanged: (val) {
-                        context.read<LoginBloc>().add(ToggleTerms(val!));
+                        context.read<LoginBloc>().toggleTerms(val!);
                       },
                       checkColor: AppColors.whiteColor,
                       focusColor: Theme.of(context).colorScheme.primary,
                       activeColor: Theme.of(context).colorScheme.primary,
-                      side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary),
+                      side: BorderSide(color: Theme.of(context).colorScheme.primary),
                     );
                   },
                 ),
@@ -132,8 +128,7 @@ class RegisterForm extends StatelessWidget {
                       style: CustomTextStyle.bold_14,
                     ),
                     onPressed: () {
-                      context.read<LoginBloc>().add(ToggleTerms(
-                          !context.read<LoginBloc>().state.acceptTerms));
+                      context.read<LoginBloc>().toggleTerms(!context.read<LoginBloc>().state.acceptTerms);
                     },
                   ),
                 ),
@@ -143,8 +138,7 @@ class RegisterForm extends StatelessWidget {
                       onPressed: () {},
                       child: Text(
                         L10n.tr().forgetPassword,
-                        style: CustomTextStyle.bold_14.copyWith(
-                            color: Theme.of(context).colorScheme.primary),
+                        style: CustomTextStyle.bold_14.copyWith(color: Theme.of(context).colorScheme.primary),
                       )),
                 ),
               ],
@@ -164,9 +158,7 @@ class RegisterForm extends StatelessWidget {
             builder: (context, terms) {
               return CustomElevatedButton(
                 text: L10n.tr().registerNewAccount,
-                onPressed: terms
-                    ? () => context.read<LoginBloc>().add(RegisterNowEvent())
-                    : null,
+                onPressed: terms ? () => context.read<LoginBloc>().registerNow() : null,
               );
             },
           ),

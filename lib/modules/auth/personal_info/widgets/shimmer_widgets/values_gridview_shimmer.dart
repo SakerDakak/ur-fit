@@ -27,7 +27,7 @@ class ValuesGridviewShimmer extends StatelessWidget {
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             color: AppColors.cardColor,
-            borderRadius: BorderRadius.circular(kBorderRadius),
+            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           ),
           child: FittedBox(
             fit: BoxFit.scaleDown,

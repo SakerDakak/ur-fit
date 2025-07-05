@@ -50,12 +50,10 @@ class CacheUser extends HiveObject {
   BodyShapeCached? bodyShape;
 
   @HiveField(14)
-
   List<String>? bodyParts;
 
   @HiveField(15)
   List<String>? exerciseDays;
-
 
   @HiveField(16)
   List<WorkoutTypeCached>? workoutTypes;
@@ -99,122 +97,103 @@ class CacheUser extends HiveObject {
   @HiveField(29)
   int? packageId;
 
-  CacheUser({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.hasValidSubscription,
-    required this.country,
-    required this.city,
-    required this.gender,
-    required this.age,
-    required this.currentWeight,
-    required this.height,
-    required this.otpCode,
-    required this.goals,
-    required this.targetWeight,
-    required this.bodyShape,
-    required this.bodyParts,
-    required this.exerciseDays,
-    required this.workoutTypes,
-    required this.equipments,
-    required this.diet,
-    required this.recipeTypes,
-    required this.foodsNotLiked,
-    required this.mealVariety,
-    this.emailVerifiedAt,
-    required this.isChecked,
-    required this.isCompleted,
-    required this.isActive,
-    required this.countryKey,
-    required this.haveExercisePlan,
-    required this.haveMealPlan,
-    required this.packageId
-  });
+  CacheUser(
+      {required this.id,
+      required this.name,
+      required this.email,
+      required this.hasValidSubscription,
+      required this.country,
+      required this.city,
+      required this.gender,
+      required this.age,
+      required this.currentWeight,
+      required this.height,
+      required this.otpCode,
+      required this.goals,
+      required this.targetWeight,
+      required this.bodyShape,
+      required this.bodyParts,
+      required this.exerciseDays,
+      required this.workoutTypes,
+      required this.equipments,
+      required this.diet,
+      required this.recipeTypes,
+      required this.foodsNotLiked,
+      required this.mealVariety,
+      this.emailVerifiedAt,
+      required this.isChecked,
+      required this.isCompleted,
+      required this.isActive,
+      required this.countryKey,
+      required this.haveExercisePlan,
+      required this.haveMealPlan,
+      required this.packageId});
 
   factory CacheUser.fromUserModel(UserModel userModel) => CacheUser(
         id: userModel.id,
         name: userModel.name,
         email: userModel.email,
         hasValidSubscription: userModel.hasValidSubscription,
-        country:userModel.country == null ? null : CountryCached.fromCountryModel(userModel.country!),
-        city: userModel.city == null ? null :CityCached.fromCityModel(userModel.city!),
+        country: userModel.country == null ? null : CountryCached.fromCountryModel(userModel.country!),
+        city: userModel.city == null ? null : CityCached.fromCityModel(userModel.city!),
         gender: userModel.gender?.index,
         age: userModel.age,
         currentWeight: userModel.currentWeight,
         height: userModel.height,
         otpCode: userModel.otpCode,
-        goals: userModel.goals
-            ?.map((goal) => GoalCached.fromGoalModel(goal))
-            .toList(),
+        goals: userModel.goals?.map((goal) => GoalCached.fromGoalModel(goal)).toList(),
         targetWeight: userModel.targetWeight,
-        bodyShape:userModel.bodyShape == null ? null  : BodyShapeCached.fromBodyShapeModel(userModel.bodyShape!),
-        bodyParts: userModel.bodyParts
-            ?.map((muscle) => muscle)
-            .toList(),
-        exerciseDays: userModel.exerciseDays
-            ?.map((days) => days)
-            .toList(),
-        workoutTypes: userModel.workoutTypes
-            ?.map((workout) => WorkoutTypeCached.fromWorkoutTypeModel(workout))
-            .toList(),
-        equipments: userModel.equipments
-            ?.map((equipment) => EquipmentCached.fromEquipmentModel(equipment))
-            .toList(),
-        diet:userModel.diet == null ? null : DietCached.fromDietModel(userModel.diet!),
-        recipeTypes: userModel.recipeTypes
-            ?.map((recipe) => RecipeTypeCached.fromRecipeTypeModel(recipe))
-            .toList(),
-        foodsNotLiked: userModel.foodsNotLiked
-            ?.map((food) => FoodNotLikedCached.fromFoodNotLikedModel(food))
-            .toList(),
-        mealVariety: userModel.mealVariety == null ? null :
-            MealVarietyCached.fromMealVarietyModel(userModel.mealVariety!),
+        bodyShape: userModel.bodyShape == null ? null : BodyShapeCached.fromBodyShapeModel(userModel.bodyShape!),
+        bodyParts: userModel.bodyParts?.map((muscle) => muscle).toList(),
+        exerciseDays: userModel.exerciseDays?.map((days) => days).toList(),
+        workoutTypes:
+            userModel.workoutTypes?.map((workout) => WorkoutTypeCached.fromWorkoutTypeModel(workout)).toList(),
+        equipments: userModel.equipments?.map((equipment) => EquipmentCached.fromEquipmentModel(equipment)).toList(),
+        diet: userModel.diet == null ? null : DietCached.fromDietModel(userModel.diet!),
+        recipeTypes: userModel.recipeTypes?.map((recipe) => RecipeTypeCached.fromRecipeTypeModel(recipe)).toList(),
+        foodsNotLiked: userModel.foodsNotLiked?.map((food) => FoodNotLikedCached.fromFoodNotLikedModel(food)).toList(),
+        mealVariety:
+            userModel.mealVariety == null ? null : MealVarietyCached.fromMealVarietyModel(userModel.mealVariety!),
         isChecked: userModel.isChecked,
         isCompleted: userModel.isCompleted,
         isActive: userModel.isActive,
         countryKey: userModel.countryKey,
-    haveExercisePlan: userModel.haveExercisePlan,
-    haveMealPlan: userModel.haveMealPlan,
-    packageId: userModel.packageId,
+        haveExercisePlan: userModel.haveExercisePlan,
+        haveMealPlan: userModel.haveMealPlan,
+        packageId: userModel.packageId,
       );
 
   UserModel toUserModel() => UserModel(
-        id: id,
-        name: name,
-        email: email,
-        hasValidSubscription: hasValidSubscription,
-        country: country?.toCountryModel(),
-        city: city?.toCity(),
-        gender: gender == null ? null : GenderEnum.values[gender!],
-        age: age,
-        currentWeight: currentWeight,
-        height: height,
-        otpCode: otpCode,
-        goals: goals?.map((goal) => goal.toGoalModel()).toList(),
-        targetWeight: targetWeight,
-        bodyShape: bodyShape?.toBodyShapeModel(),
-        bodyParts:
-            bodyParts?.map((muscle) => muscle).toList(),
-        exerciseDays: exerciseDays?.map((days) => days).toList(),
-        workoutTypes:
-            workoutTypes?.map((workout) => workout.toWorkoutTypeModel()).toList(),
-        equipments:
-            equipments?.map((equipment) => equipment.toEquipmentModel()).toList(),
-        diet: diet?.toDietModel(),
-        recipeTypes: recipeTypes
-            ?.map((recipe) => recipe.toRecipeTypeModel())
-            .toList(),
-        foodsNotLiked:
-            foodsNotLiked?.map((food) => food.toFoodNotLikedModel()).toList(),
-        mealVariety: mealVariety?.toMealVarietyModel(),
-        emailVerifiedAt: emailVerifiedAt,
-        isChecked: isChecked,
-        isCompleted: isCompleted,
-        isActive: isActive,
-        countryKey: countryKey, haveExercisePlan: haveExercisePlan, haveMealPlan: haveMealPlan,
-    packageId: packageId
-      );
+      id: id,
+      name: name,
+      email: email,
+      hasValidSubscription: hasValidSubscription,
+      country: country?.toCountryModel(),
+      city: city?.toCity(),
+      gender: gender == null ? null : GenderEnum.values[gender!],
+      age: age,
+      currentWeight: currentWeight,
+      height: height,
+      otpCode: otpCode,
+      goals: goals?.map((goal) => goal.toGoalModel()).toList(),
+      targetWeight: targetWeight,
+      bodyShape: bodyShape?.toBodyShapeModel(),
+      bodyParts: bodyParts?.map((muscle) => muscle).toList(),
+      exerciseDays: exerciseDays?.map((days) => days).toList(),
+      workoutTypes: workoutTypes?.map((workout) => workout.toWorkoutTypeModel()).toList(),
+      equipments: equipments?.map((equipment) => equipment.toEquipmentModel()).toList(),
+      diet: diet?.toDietModel(),
+      recipeTypes: recipeTypes?.map((recipe) => recipe.toRecipeTypeModel()).toList(),
+      foodsNotLiked: foodsNotLiked?.map((food) => food.toFoodNotLikedModel()).toList(),
+      mealVariety: mealVariety?.toMealVarietyModel(),
+      emailVerifiedAt: emailVerifiedAt,
+      isChecked: isChecked,
+      isCompleted: isCompleted,
+      isActive: isActive,
+      countryKey: countryKey,
+      haveExercisePlan: haveExercisePlan,
+      haveMealPlan: haveMealPlan,
+      packageId: packageId);
 }
 
 @HiveType(typeId: 1)
@@ -454,8 +433,7 @@ class FoodNotLikedCached extends HiveObject {
   FoodNotLikedCached({required this.id, required this.name});
 
   // Convert from Freezed model to Hive model
-  factory FoodNotLikedCached.fromFoodNotLikedModel(
-      FoodNotLiked foodNotLikedModel) {
+  factory FoodNotLikedCached.fromFoodNotLikedModel(FoodNotLiked foodNotLikedModel) {
     return FoodNotLikedCached(
       id: foodNotLikedModel.id,
       name: foodNotLikedModel.name,

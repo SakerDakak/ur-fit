@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:urfit/core/presentation/assets/const.dart';
 import 'package:urfit/core/presentation/localization/app_localizations.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 
 class L10n {
   L10n._();
@@ -23,7 +23,8 @@ class L10n {
     return null;
   }
 
-  static AppLocalizations tr([BuildContext? ctx]) => AppLocalizations.of(ctx ?? navigatorKey.currentState!.context)!;
+  static AppLocalizations tr([BuildContext? ctx]) =>
+      AppLocalizations.of(ctx ?? AppConst.navigatorKey.currentState!.context)!;
 
   static bool isAr(BuildContext context) => Localizations.localeOf(context).languageCode == 'ar';
 }

@@ -41,7 +41,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               color: AppColors.cardColor,
-              borderRadius: BorderRadius.circular(kBorderRadius),
+              borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
@@ -97,7 +97,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                           ),
                           child: Text(
                             'ابدا',
@@ -117,7 +117,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               color: AppColors.cardColor,
-              borderRadius: BorderRadius.circular(kBorderRadius),
+              borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
@@ -173,7 +173,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                           ),
                           child: Text(
                             'ابدا',

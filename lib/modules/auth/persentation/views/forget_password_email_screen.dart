@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../core/presentation/assets/assets_manager.dart';
+import '../../../../core/presentation/assets/assets_manager.dart';
 // import 'package:recaptcha_enterprise_flutter/recaptcha_action.dart';
 // import 'package:recaptcha_enterprise_flutter/recaptcha_enterprise.dart';
 
-import '../../../../../core/presentation/style/fonts.dart';
-import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
-import '../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../bloc/login_bloc.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/compact_form_field.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../bloc/login_bloc.dart';
 
 class ForgetPasswordEmailScreen extends StatelessWidget {
   const ForgetPasswordEmailScreen({super.key});
@@ -27,7 +27,13 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
             SizedBox(
               height: 150.px,
             ),
-            Center(child: SvgPicture.asset(AssetsManager.emailLarge,height: 48.px,width: 48.px,fit: BoxFit.cover,)),
+            Center(
+                child: SvgPicture.asset(
+              AssetsManager.emailLarge,
+              height: 48.px,
+              width: 48.px,
+              fit: BoxFit.cover,
+            )),
             SizedBox(
               height: 24.px,
             ),
@@ -48,7 +54,6 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-
             SizedBox(
               height: 32.px,
             ),
@@ -57,16 +62,17 @@ class ForgetPasswordEmailScreen extends StatelessWidget {
               autoFillHints: [AutofillHints.email],
               title: 'البريد الالكترونى',
               onChanged: (String? value) {
-                context.read<LoginBloc>().add(OnChangeEmailEvent(value!));
+                context.read<LoginBloc>().onChangeEmail(value!);
               },
             ),
             SizedBox(
               height: 32.px,
             ),
-
-            CustomElevatedButton(text: "ارسال", onPressed: (){
-              bloc.add(ForgetPasswordEvent());
-            })
+            CustomElevatedButton(
+                text: "ارسال",
+                onPressed: () {
+                  bloc.forgetPassword();
+                })
           ],
         ),
       ),

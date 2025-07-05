@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 
-
 import '../../../core/presentation/assets/app_assets.dart';
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/colors.dart';
@@ -34,10 +33,10 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
-    sl<AuthenticationBloc>().add(GetUserDataFromServer());
+    sl<AuthenticationBloc>().getUserDataFromServer();
 
-    // rootScaffoldKey.currentContext?.read<SearchCubit>().search();
-    // rootScaffoldKey.currentContext?.read<SettingsCubit>().userChanged();
+    // AppConst.rootScaffoldKey.currentContext?.read<SearchCubit>().search();
+    // AppConst.rootScaffoldKey.currentContext?.read<SettingsCubit>().userChanged();
     super.initState();
     // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //   statusBarColor: Colors.transparent,

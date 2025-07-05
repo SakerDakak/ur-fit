@@ -19,7 +19,7 @@ class CustomNavigationBar extends StatelessWidget {
         buildWhen: (p, c) => p.currentPageIndex != c.currentPageIndex,
         builder: (context, state) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+            padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
             child: Column(
               children: [
                 LayoutBuilder(builder: (context, c) {
@@ -56,7 +56,7 @@ class CustomNavigationBar extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     borderRadius:
-                                        BorderRadius.circular(kBorderRadius),
+                                        BorderRadius.circular(AppConst.kBorderRadius),
                                     onTap: () {
                                       onTap(i);
                                     },
@@ -89,7 +89,7 @@ class CustomNavigationBar extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                                  BorderRadius.circular(kBorderRadius),
+                                  BorderRadius.circular(AppConst.kBorderRadius),
                             ),
                           ),
 
@@ -105,7 +105,7 @@ class CustomNavigationBar extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primary,
                                 borderRadius:
-                                    BorderRadius.circular(kBorderRadius),
+                                    BorderRadius.circular(AppConst.kBorderRadius),
                               ),
                             ),
                           ),

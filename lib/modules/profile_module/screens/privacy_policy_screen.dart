@@ -25,7 +25,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           title:  Text(state.staticPageModel!.title),
         ),
         body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+          padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
           children: [
             // privacy policy
             // Text(

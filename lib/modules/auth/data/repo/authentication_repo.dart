@@ -6,8 +6,7 @@ import 'package:urfit/core/domain/error/exceptions.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 
 import '../../../../core/domain/error/failures.dart';
-import '../../onboarding/model/country/country_model.dart';
-import '../authentication/authentication_local_datasource.dart';
+import '../../../onboarding/model/country/country_model.dart';
 import '../authentication/authentication_remote_datasource.dart';
 import '../models/register_model.dart';
 import '../models/user/cached_user.dart';
@@ -15,37 +14,11 @@ import '../models/user/user_model.dart';
 
 class AuthenticationRepo {
   final AuthenticationRemoteDataSource authenticationRemoteDataSource;
-  final UserLocalDataSource userLocalDataSource;
+  // final UserLocalDataSource userLocalDataSource;
 
-  AuthenticationRepo(this.authenticationRemoteDataSource, this.userLocalDataSource);
+  AuthenticationRepo(this.authenticationRemoteDataSource);
 
-  Future<Either<Failure, void>> deleteToken() async {
-    try {
-      final result = await TokenService.deleteToken();
-      await userLocalDataSource.deleteUser();
-
-      return Right(result);
-    } on Failure catch (e) {
-      return Left(e);
-    }
-  }
-
-  Future<Either<Failure, String?>> hasToken() async {
-    try {
-      final result = userLocalDataSource.getUserToken();
-
-      return Right(result);
-    } on Failure catch (e) {
-      return Left(e);
-    }
-  }
-
-  // Future<Either<Failure, void>> persistToken(String token) {
-  //   // TODO: implement persistToken
-  //   throw UnimplementedError();
-  // }
-
-  Future<Either<Failure, CacheUser?>> login(
+  Future<Either<Failure, UserModel>> login(
       {required String email, required String password, required bool remember}) async {
     try {
       final result = await authenticationRemoteDataSource.login(email: email, password: password);
@@ -54,9 +27,7 @@ class AuthenticationRepo {
         await FlutterKeychain.put(key: 'password', value: password);
       }
       await TokenService.setToken(result["token"]);
-      // print(await sl<BaseUserLocalDataSource>().getUserToken());
-      await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
-      final user = CacheUser.fromUserModel(UserModel.fromJson(result['user']));
+      final user = UserModel.fromJson(result['user']);
       return Right(user);
     } on Exception catch (e) {
       print("e $e");
@@ -67,33 +38,12 @@ class AuthenticationRepo {
     }
   }
 
-  Future<Either<Failure, void>> saveUser(CacheUser cacheUser) async {
-    try {
-      final result = await userLocalDataSource.saveUserToHive(cacheUser);
-
-      return Right(result);
-    } on Failure catch (e) {
-      return left(e);
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   Future<Either<Failure, void>> signOut() async {
     try {
       await authenticationRemoteDataSource.signOut();
-      final deleteReuslt = await userLocalDataSource.deleteUser();
-      return Right(deleteReuslt);
-    } on Exception catch (e) {
-      return left(ServerFailure(e.toString()));
-    }
-  }
-
-  Future<Either<Failure, CacheUser?>> getUserData() async {
-    try {
-      final result = await userLocalDataSource.getPersistedUser();
-
-      return Right(result);
+      // final deleteReuslt = await userLocalDataSource.deleteUser();
+      // final  result;
+      return const Right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -115,7 +65,7 @@ class AuthenticationRepo {
       if (result['status'] == "unverified code") {
         throw BadRequestException(L10n.tr().unverifiedCode);
       } else {
-        await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['data'])));
+        // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['data'])));
         final user = CacheUser.fromUserModel(UserModel.fromJson(result['data']));
         return Right(user);
       }
@@ -194,7 +144,7 @@ class AuthenticationRepo {
 
       await TokenService.setToken(result["token"]);
       // print(await sl<BaseUserLocalDataSource>().getUserToken());
-      await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
+      // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
       final user = CacheUser.fromUserModel(UserModel.fromJson(result['user']));
       return Right(user);
     } on Exception catch (e) {
@@ -234,7 +184,7 @@ class AuthenticationRepo {
       if (result['token'] != null) {
         await TokenService.setToken(result["token"]);
         // print(await sl<BaseUserLocalDataSource>().getUserToken());
-        await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
+        // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
         final user = CacheUser.fromUserModel(UserModel.fromJson(result['user']));
         return Right(Right(user));
       } else {
@@ -265,27 +215,18 @@ class AuthenticationRepo {
     }
   }
 
-  Future<Either<Failure, CacheUser>> getUserDataFromServer() async {
+  Future<Either<Failure, UserModel>> getUserDataFromServer() async {
     try {
       final result = await authenticationRemoteDataSource.getUserData();
 
       // print(await sl<BaseUserLocalDataSource>().getUserToken());
-      await saveUser(CacheUser.fromUserModel(result));
-      final user = CacheUser.fromUserModel(result);
-      return Right(user);
+      // await saveUser(CacheUser.fromUserModel(result));
+      // final user = CacheUser.fromUserModel(result);
+      return Right(result);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
   }
-
-  // Future<Either<Failure, List<SliderImageModel>>> getSliderImages() async {
-  //   try {
-  //     final result = await authenticationRemoteDataSource.getSliderImages();
-  //     return Right(result);
-  //   } on Exception catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
 
   Future<Either<Failure, CacheUser?>> loginWithGoogle(
       {required String accessToken, required RegisterModel registerModel}) async {
@@ -294,7 +235,7 @@ class AuthenticationRepo {
           await authenticationRemoteDataSource.loginWithGoogle(accessToken: accessToken, registerModel: registerModel);
       await TokenService.setToken(result["token"]);
       // print(await sl<BaseUserLocalDataSource>().getUserToken());
-      await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
+      // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
       final user = CacheUser.fromUserModel(UserModel.fromJson(result['user']));
       return Right(user);
     } on Exception catch (e) {

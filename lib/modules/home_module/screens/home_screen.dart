@@ -22,57 +22,59 @@ class HomeScreen extends StatelessWidget {
     final user = context.read<AuthenticationBloc>().currentUser;
     print("user: $user");
     return BlocBuilder<AppCubit, AppState>(
-  builder: (context, state) {
-    return Scaffold(
-      body: Column(
-        children: [
-          // app bar
-          HomeHeader(isGuest: isGuest,),
-
-          // body
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(
-                bottom: kBottomPadding,
-                left: kHorizontalPadding,
-                right: kHorizontalPadding,
+      builder: (context, state) {
+        return Scaffold(
+          body: Column(
+            children: [
+              // app bar
+              HomeHeader(
+                isGuest: isGuest,
               ),
-              children:  [
-                // discount card
-                DiscountSection(),
 
-                SizedBox(height: 16),
+              // body
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.only(
+                    bottom: AppConst.kBottomPadding,
+                    left: AppConst.kHorizontalPadding,
+                    right: AppConst.kHorizontalPadding,
+                  ),
+                  children: [
+                    // discount card
+                    DiscountSection(),
 
-                // days of current weak
-                WeakDaysDate(),
+                    SizedBox(height: 16),
 
-                SizedBox(height: 16),
+                    // days of current weak
+                    WeakDaysDate(),
 
-                // current and target weight card
-                if(!isGuest && user?.currentWeight != null && user?.targetWeight != null)
-                const CurrentWeightCard(),
+                    SizedBox(height: 16),
 
-                SizedBox(height: 16),
+                    // current and target weight card
+                    if (!isGuest && user?.currentWeight != null && user?.targetWeight != null)
+                      const CurrentWeightCard(),
 
-                // horizontal divider
-                Divider(color: AppColors.strockColor),
+                    SizedBox(height: 16),
 
-                SizedBox(height: 16),
+                    // horizontal divider
+                    Divider(color: AppColors.strockColor),
 
-                // today tasks
-                // StartTodyTasksSection(),
+                    SizedBox(height: 16),
 
-                SizedBox(height: 16),
+                    // today tasks
+                    // StartTodyTasksSection(),
 
-                // statistics section
-                StatisticsSection(),
-              ],
-            ),
+                    SizedBox(height: 16),
+
+                    // statistics section
+                    StatisticsSection(),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
-  },
-);
   }
 }

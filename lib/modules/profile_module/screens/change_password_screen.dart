@@ -21,7 +21,7 @@ class ChangePasswordScreen extends StatelessWidget {
         title:  Text(L10n.tr().resetPassword),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
         children: [
           const SizedBox(height: 20),
           SvgPicture.asset(

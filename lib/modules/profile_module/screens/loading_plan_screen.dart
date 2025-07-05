@@ -52,7 +52,7 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+          padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
           child: Center(
             child: Column(
               children: [

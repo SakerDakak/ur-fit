@@ -61,7 +61,7 @@ class DeleteAccountDialog extends StatelessWidget {
           // title
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: kHorizontalPadding * 2,
+              horizontal: AppConst.kHorizontalPadding * 2,
             ),
             child: Text(
               L10n.tr().areYouSureYouWantToDeleteAccount,
@@ -76,7 +76,7 @@ class DeleteAccountDialog extends StatelessWidget {
 
           // action buttons
           Padding(
-            padding: const EdgeInsets.all(kHorizontalPadding),
+            padding: const EdgeInsets.all(AppConst.kHorizontalPadding),
             child: Row(
               children: [
                 // cancel

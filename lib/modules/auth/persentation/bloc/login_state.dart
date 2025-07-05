@@ -22,8 +22,8 @@ class LoginState extends Equatable {
   final String newPassword;
   final String confirmPassword;
   final bool acceptTerms;
-  final Map<String, dynamic> userTypes ;
-  const LoginState( {
+  final Map<String, dynamic> userTypes;
+  const LoginState({
     this.pageState = PageState.initial,
     this.userTypes = const {},
     this.acceptTerms = false,
@@ -43,30 +43,29 @@ class LoginState extends Equatable {
     this.otpErrMessage = '',
     this.clientState = "NOT INITIALIZED",
     this.recaptcha_token = '',
-
   });
 
   @override
   List<Object?> get props => [
-    userTypes,
-    pageState,
-    countryId,
-    cityId,
-    verificationId,
-    phone,
-    otp,
-    remember,
-    email,
-    password,
-    newPassword,
-    confirmPassword,
-    errMessage,
-    otpErrMessage,
-    clientState,
-    recaptcha_token,
-    firstName,
-    acceptTerms,
-  ];
+        userTypes,
+        pageState,
+        countryId,
+        cityId,
+        verificationId,
+        phone,
+        otp,
+        remember,
+        email,
+        password,
+        newPassword,
+        confirmPassword,
+        errMessage,
+        otpErrMessage,
+        clientState,
+        recaptcha_token,
+        firstName,
+        acceptTerms,
+      ];
 
   LoginState copyWith({
     Map<String, dynamic>? userTypes,

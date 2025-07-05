@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,10 +23,10 @@ class ChangeEmailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text(L10n.tr().changeEmail),
+        title: Text(L10n.tr().changeEmail),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
         children: [
           const SizedBox(height: 20),
           SvgPicture.asset(

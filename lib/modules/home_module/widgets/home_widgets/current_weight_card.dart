@@ -22,7 +22,7 @@ class CurrentWeightCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         border: Border.all(color: AppColors.strockColor),
       ),
       child: Column(

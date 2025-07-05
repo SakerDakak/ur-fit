@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../core/presentation/assets/app_assets.dart';
-import '../../../../../core/presentation/style/colors.dart';
-import '../../../../../core/presentation/style/fonts.dart';
-import '../../../../../core/presentation/utils/constants.dart';
-import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
-import '../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../bloc/login_bloc.dart';
+import '../../../../core/presentation/assets/app_assets.dart';
+import '../../../../core/presentation/style/colors.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/utils/constants.dart';
+import '../../../../core/presentation/views/widgets/compact_form_field.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../bloc/login_bloc.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   const UpdatePasswordScreen({super.key});
@@ -21,11 +21,10 @@ class UpdatePasswordScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child:  ListView(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
           children: [
-
-             SizedBox(height: 150.px),
+            SizedBox(height: 150.px),
             SvgPicture.asset(
               Assets.imageLogo,
               width: 150,
@@ -48,7 +47,7 @@ class UpdatePasswordScreen extends StatelessWidget {
               borderColor: AppColors.strockColor,
               titleStyle: CustomTextStyle.regular_14,
               onChanged: (String? value) {
-                bloc.add(OnChangeNewPasswordEvent(value!));
+                bloc.onChangePassword(value!);
               },
             ),
 
@@ -62,7 +61,7 @@ class UpdatePasswordScreen extends StatelessWidget {
               borderColor: AppColors.strockColor,
               titleStyle: CustomTextStyle.regular_14,
               onChanged: (String? value) {
-                bloc.add(OnChangeNewPasswordConfirmEvent(value!));
+                bloc.onChangeNewPasswordConfirm(value!);
               },
             ),
 
@@ -72,7 +71,7 @@ class UpdatePasswordScreen extends StatelessWidget {
             CustomElevatedButton(
               text: 'تغير',
               onPressed: () {
-                bloc.add(ResetPasswordEvent());
+                bloc.resetPassword();
               },
               padding: EdgeInsets.zero,
             ),

@@ -24,7 +24,7 @@ class DefaultListTile extends StatelessWidget {
       dense: true,
       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
       ),
       leading: SvgPicture.asset(
         leadingIconSvgPath,

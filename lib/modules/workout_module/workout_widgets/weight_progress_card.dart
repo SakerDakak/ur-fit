@@ -13,7 +13,7 @@ class WeightProgressCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
       ),
       child: Column(
         children: [
@@ -102,7 +102,7 @@ class _CustomProgressBar extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: AppColors.yellow,
-                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                 ),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,

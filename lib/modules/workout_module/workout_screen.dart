@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -14,7 +13,6 @@ import 'package:urfit/modules/workout_module/workout_widgets/today_workout_detai
 
 import '../../core/presentation/utils/enums.dart';
 
-
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
 
@@ -26,20 +24,24 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   void initState() {
     super.initState();
-    final user = context
-        .read<AuthenticationBloc>()
-        .currentUser;
+    final user = context.read<AuthenticationBloc>().currentUser;
     final cubit = context.read<WorkoutCubit>();
     if (user?.haveExercisePlan == true && user?.hasValidSubscription == true) {
-      cubit.getWorkOutPlan().then((value) {;
+      cubit.getWorkOutPlan().then((value) {
+        ;
         setState(() {});
       });
-    } else
-    if (user?.haveExercisePlan == false && user?.hasValidSubscription == true &&
-        (user?.packageId == 3 || user?.packageId == 6 || user?.packageId == 9 ||
-            user?.packageId == 2 || user?.packageId == 3 ||
-            user?.packageId == 5 || user?.packageId == 8)) {
-      cubit.generateWorkOutPlan().then((value) {;
+    } else if (user?.haveExercisePlan == false &&
+        user?.hasValidSubscription == true &&
+        (user?.packageId == 3 ||
+            user?.packageId == 6 ||
+            user?.packageId == 9 ||
+            user?.packageId == 2 ||
+            user?.packageId == 3 ||
+            user?.packageId == 5 ||
+            user?.packageId == 8)) {
+      cubit.generateWorkOutPlan().then((value) {
+        ;
         Future.delayed(Duration(milliseconds: 500), () {
           cubit.getWorkOutPlan();
           setState(() {});
@@ -47,84 +49,81 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    final user = context
-        .read<AuthenticationBloc>()
-        .currentUser;
+    final user = context.read<AuthenticationBloc>().currentUser;
     final cubit = context.read<WorkoutCubit>();
-
 
     return BlocBuilder<WorkoutCubit, WorkoutState>(
       builder: (context, state) {
         return Scaffold(
-          body: user?.haveExercisePlan == true  || state.getWorkOutPlanState == RequestState.loading || state.allPlans.isNotEmpty ? ListView(
-            padding: const EdgeInsets.only(
-              bottom: kBottomPadding,
-              left: kHorizontalPadding,
-              right: kHorizontalPadding,
-            ),
-            children: [
-              // package progress and end date
-              PackageProgressExercise(),
+          body: user?.haveExercisePlan == true ||
+                  state.getWorkOutPlanState == RequestState.loading ||
+                  state.allPlans.isNotEmpty
+              ? ListView(
+                  padding: const EdgeInsets.only(
+                    bottom: AppConst.kBottomPadding,
+                    left: AppConst.kHorizontalPadding,
+                    right: AppConst.kHorizontalPadding,
+                  ),
+                  children: [
+                    // package progress and end date
+                    PackageProgressExercise(),
 
-              const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-              // todays date
-              const WeakDaysDate(),
+                    // todays date
+                    const WeakDaysDate(),
 
-              const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-              // workout details (calories, workout duration ...)
-              BlocBuilder<WorkoutCubit, WorkoutState>(
-                buildWhen: (p, c) =>
-                p.allPlans != c.allPlans ||
-                    p.getWorkOutPlanState != c.getWorkOutPlanState,
-                builder: (context, state) {
-                  if (state.getWorkOutPlanState == RequestState.loading ||
-                      state.getWorkOutPlanState == RequestState.failure) {
-                    return const WorkoutDetailCardShimmer();
-                  } else {
-                    if (cubit.getPlanForToday() != null) {
-                      return const TodayWorkoutDetailsCard();
-                    } else {
-                      return SizedBox();
-                    }
-                  }
-                },
-              ),
+                    // workout details (calories, workout duration ...)
+                    BlocBuilder<WorkoutCubit, WorkoutState>(
+                      buildWhen: (p, c) => p.allPlans != c.allPlans || p.getWorkOutPlanState != c.getWorkOutPlanState,
+                      builder: (context, state) {
+                        if (state.getWorkOutPlanState == RequestState.loading ||
+                            state.getWorkOutPlanState == RequestState.failure) {
+                          return const WorkoutDetailCardShimmer();
+                        } else {
+                          if (cubit.getPlanForToday() != null) {
+                            return const TodayWorkoutDetailsCard();
+                          } else {
+                            return SizedBox();
+                          }
+                        }
+                      },
+                    ),
 
-              const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-              // weight progress bar
-              // if(cubit.getPlanForToday() != null)
-              // const WeightProgressCard(),
-              // if(cubit.getPlanForToday() != null)
-              const SizedBox(height: 16),
-              // if(cubit.getPlanForToday() != null)
+                    // weight progress bar
+                    // if(cubit.getPlanForToday() != null)
+                    // const WeightProgressCard(),
+                    // if(cubit.getPlanForToday() != null)
+                    const SizedBox(height: 16),
+                    // if(cubit.getPlanForToday() != null)
 
-              // today's workout card
-              BlocBuilder<WorkoutCubit, WorkoutState>(
-                // buildWhen: (p, c) =>
-                //     p.allPlans != c.allPlans ||
-                //     p.getWorkOutPlanState != c.getWorkOutPlanState,
-                  builder: (context, state) {
-                    if (state.getWorkOutPlanState == RequestState.loading ||
-                        state.getWorkOutPlanState == RequestState.failure) {
-                      return StartWorkoutCardShimmer();
-                    } else {
-                      if (cubit.getPlanForToday() == null) {
-                        return const Center(
-                            child: Text('لا يوجد تمرين لهذا اليوم'));
+                    // today's workout card
+                    BlocBuilder<WorkoutCubit, WorkoutState>(
+                        // buildWhen: (p, c) =>
+                        //     p.allPlans != c.allPlans ||
+                        //     p.getWorkOutPlanState != c.getWorkOutPlanState,
+                        builder: (context, state) {
+                      if (state.getWorkOutPlanState == RequestState.loading ||
+                          state.getWorkOutPlanState == RequestState.failure) {
+                        return StartWorkoutCardShimmer();
                       } else {
-                        return StartWorkoutCard();
+                        if (cubit.getPlanForToday() == null) {
+                          return const Center(child: Text('لا يوجد تمرين لهذا اليوم'));
+                        } else {
+                          return StartWorkoutCard();
+                        }
                       }
-                    }
-                  }),
-
-            ],
-          ) : Center(
-              child: Text(L10n.tr().noSubscription)),
+                    }),
+                  ],
+                )
+              : Center(child: Text(L10n.tr().noSubscription)),
         );
       },
     );

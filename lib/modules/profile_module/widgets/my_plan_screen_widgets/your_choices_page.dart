@@ -16,7 +16,7 @@ class YourChoicesPage extends StatelessWidget {
     final cubit = context.read<SetupPersonalInfoCubit>();
 
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
       children: [
         // display only if the user selected any item from the section one or didn't select any item
         if (cubit.state.userInfo.selectedGaols.any(

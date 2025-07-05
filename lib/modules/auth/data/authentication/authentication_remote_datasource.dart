@@ -1,5 +1,5 @@
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
-import 'package:urfit/modules/auth/onboarding/model/country/country_model.dart';
+import 'package:urfit/modules/onboarding/model/country/country_model.dart';
 
 import '../../../../core/data/api/api_client.dart';
 import '../../../../core/data/api/endpoints.dart';
@@ -124,9 +124,7 @@ class AuthenticationRemoteDataSource {
   }
 
   Future<UserModel> getUserData() async {
-    final response = await dioServices.get(
-      EndPoints.getUserData,
-    );
+    final response = await dioServices.get(EndPoints.getUserData);
     print(response.data);
     return UserModel.fromJson(response.data['data']);
   }

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/pref_utils.dart';
 
 // import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../domain/error/exceptions.dart';
-import '../../presentation/assets/const.dart';
 import 'endpoints.dart';
 import 'status_code.dart';
 
@@ -66,7 +66,7 @@ class ApiClient {
       // _handleDioError(e);
       // if (exception is NoInternetConnectionException) {
       //
-      //   _showNetworkErrorBottomSheet(rootScaffoldKey.currentContext!);
+      //   _showNetworkErrorBottomSheet(AppConst.rootScaffoldKey.currentContext!);
       // }
     } catch (e) {
       print("Error: $e");
@@ -153,7 +153,7 @@ class ApiClient {
       case DioExceptionType.unknown:
         // Handle network errors
         _showNetworkErrorBottomSheet(
-          rootScaffoldKey.currentContext!,
+          AppConst.rootScaffoldKey.currentContext!,
         );
         return NoInternetConnectionException();
 

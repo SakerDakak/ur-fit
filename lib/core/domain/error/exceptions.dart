@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 
 import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
-import '../../../service_locator.dart';
-import '../../presentation/assets/const.dart';
 import '../../presentation/style/colors.dart';
 import '../../presentation/style/fonts.dart';
 
@@ -17,26 +17,26 @@ class ServerException extends Equatable implements Exception {
   // bool isBottomSheetOpened = false;
 
   _showSubscriptionEndBottomSheet() {
-    if (!isBottomSheetOpened) {
-      isBottomSheetOpened = true;
+    if (!AppConst.isBottomSheetOpened) {
+      AppConst.isBottomSheetOpened = true;
       showModalBottomSheet(
         isDismissible: false,
         useSafeArea: true,
         useRootNavigator: true,
-        context: navigatorKey.currentContext!,
+        context: AppConst.navigatorKey.currentContext!,
         builder: (context) {
           return BottomSheet(
             onClosing: () {
               context.canPop() ? context.pop() : null;
-              isBottomSheetOpened = false;
-              sl<AuthenticationBloc>().add(LoggedOut());
+              AppConst.isBottomSheetOpened = false;
+              context.read<AuthenticationBloc>().loggedOut();
             },
             builder: (BuildContext context) {
               return PopScope(
                 onPopInvokedWithResult: (bool, dynamic) {
                   context.canPop() ? context.pop() : null;
-                  isBottomSheetOpened = false;
-                  sl<AuthenticationBloc>().add(LoggedOut());
+                  AppConst.isBottomSheetOpened = false;
+                  context.read<AuthenticationBloc>().loggedOut();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -79,7 +79,7 @@ class ServerException extends Equatable implements Exception {
                           child: ElevatedButton(
                             onPressed: () {
                               context.canPop() ? context.pop() : null;
-                              isBottomSheetOpened = false;
+                              AppConst.isBottomSheetOpened = false;
                               // sl<AuthenticationBloc>().add(LoggedOut());
                             },
                             style: ElevatedButton.styleFrom(
@@ -105,23 +105,23 @@ class ServerException extends Equatable implements Exception {
 
   _showNetworkErrorBottomSheet() {
     print("building connection bottom sheet");
-    if (!isBottomSheetOpened) {
-      isBottomSheetOpened = true;
+    if (!AppConst.isBottomSheetOpened) {
+      AppConst.isBottomSheetOpened = true;
       showModalBottomSheet(
         isDismissible: false,
         useSafeArea: true,
         useRootNavigator: true,
-        context: navigatorKey.currentContext!,
+        context: AppConst.navigatorKey.currentContext!,
         builder: (context) {
           return BottomSheet(
             onClosing: () {
-              isBottomSheetOpened = false;
+              AppConst.isBottomSheetOpened = false;
             },
             builder: (BuildContext context) {
               return PopScope(
                 onPopInvokedWithResult: (bool, dynamic) {
                   print("closing");
-                  isBottomSheetOpened = false;
+                  AppConst.isBottomSheetOpened = false;
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -157,9 +157,9 @@ class ServerException extends Equatable implements Exception {
                           // onPressed: onRetry,
                           onPressed: () {
                             context.pop();
-                            isBottomSheetOpened = false;
+                            AppConst.isBottomSheetOpened = false;
 
-                            latestFunctionCalled?.call();
+                            AppConst.latestFunctionCalled?.call();
                           },
                           child: Text(
                             'جرب مرة اخرى',
@@ -179,8 +179,8 @@ class ServerException extends Equatable implements Exception {
   }
 
   ServerException([this.message, this.showSnackbar = true]) {
-    if (showSnackbar && rootScaffoldKey.currentState != null) {
-      // rootScaffoldKey.currentState!
+    if (showSnackbar && AppConst.rootScaffoldKey.currentState != null) {
+      // AppConst.rootScaffoldKey.currentState!
       //     .showSnackBar(SnackBar(content: Text(message!)));
     }
   }
@@ -200,8 +200,8 @@ class FetchDataException extends ServerException {
 
 class BadRequestException extends ServerException {
   BadRequestException([message]) : super(message ?? "Bad Request", false) {
-    if (rootScaffoldKey.currentState != null) {
-      rootScaffoldKey.currentState!.showSnackBar(SnackBar(content: Center(child: Text(message!))));
+    if (AppConst.rootScaffoldKey.currentState != null) {
+      AppConst.rootScaffoldKey.currentState!.showSnackBar(SnackBar(content: Center(child: Text(message!))));
     }
   }
 }
@@ -209,8 +209,8 @@ class BadRequestException extends ServerException {
 class UnauthorizedException extends ServerException {
   UnauthorizedException([message]) : super(message ?? "Unauthorized") {
     TokenService.deleteToken().then((value) {});
-    if (rootScaffoldKey.currentState != null) {
-      rootScaffoldKey.currentState!.showSnackBar(SnackBar(content: Center(child: Text(message!))));
+    if (AppConst.rootScaffoldKey.currentState != null) {
+      AppConst.rootScaffoldKey.currentState!.showSnackBar(SnackBar(content: Center(child: Text(message!))));
     }
   }
 }

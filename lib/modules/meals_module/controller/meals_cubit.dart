@@ -19,12 +19,8 @@ class MealsCubit extends Cubit<MealsState> {
 
   MealsCubit(this._repo)
       : super(const MealsState(
-            searchRecipeModel: SearchRecipeModel(
-                type: "breakfast",
-                minCalories: 50,
-                maxCalories: 200,
-                maxReadyTime: 20)));
-
+            searchRecipeModel:
+                SearchRecipeModel(type: "breakfast", minCalories: 50, maxCalories: 200, maxReadyTime: 20)));
 
   Future<Nutrients> getMealPlanByDate(String date) async {
     await getMealPlans();
@@ -61,17 +57,16 @@ class MealsCubit extends Cubit<MealsState> {
     Nutrients nutrients = Nutrients(
         calories: totalCaloriesForAllWeek.toDouble(),
         carbohydrates: totalCarbsForAllWeek.toDouble(),
-        protein: totalProteinForAllWeek.toDouble(), fat: 0);
-
+        protein: totalProteinForAllWeek.toDouble(),
+        fat: 0);
 
     return nutrients;
-
   }
+
   searchMeals() async {
     emit(state.copyWith(getAllMealsState: RequestState.loading));
 
-    var result =
-        await _repo.searchRecipes(searchRecipeModel: state.searchRecipeModel);
+    var result = await _repo.searchRecipes(searchRecipeModel: state.searchRecipeModel);
 
     result.fold(
       (failure) {
@@ -121,14 +116,11 @@ class MealsCubit extends Cubit<MealsState> {
           getMealPlansState: RequestState.success,
           // allMeals: successData,
         ));
-        // sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
-        sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
+        sl<AuthenticationBloc>().updateSubscription();
         // sl<AuthenticationBloc>().currentUser = ;
       },
     );
   }
-
-
 
   double calculateTargetCalories({
     required double currentWeight, // in kg
@@ -136,8 +128,7 @@ class MealsCubit extends Cubit<MealsState> {
     required double height, // in cm
     required int age, // in years
     required String gender, // "male" or "female"
-    required String
-        activityLevel, // "sedentary", "light", "moderate", "active", "very_active"
+    required String activityLevel, // "sedentary", "light", "moderate", "active", "very_active"
   }) {
     // Calculate BMR using Mifflin-St Jeor Equation
     double bmr;
@@ -215,36 +206,27 @@ class MealsCubit extends Cubit<MealsState> {
   updateSearchType(int type) {
     if (type == 0) {
       emit(state.copyWith(
-          searchRecipeModel:
-              state.searchRecipeModel.copyWith(type: "breakfast"),
-          currentTypeIndex: type));
+          searchRecipeModel: state.searchRecipeModel.copyWith(type: "breakfast"), currentTypeIndex: type));
     } else {
       emit(state.copyWith(
-          searchRecipeModel:
-              state.searchRecipeModel.copyWith(type: "main course"),
-          currentTypeIndex: type));
+          searchRecipeModel: state.searchRecipeModel.copyWith(type: "main course"), currentTypeIndex: type));
     }
     searchMeals();
   }
 
   updateMaxReadyTime(double min) {
-    emit(state.copyWith(
-        searchRecipeModel:
-            state.searchRecipeModel.copyWith(maxReadyTime: min.toInt())));
+    emit(state.copyWith(searchRecipeModel: state.searchRecipeModel.copyWith(maxReadyTime: min.toInt())));
     searchMeals();
   }
 
   updateMinMaxCalories(double min, double max) {
     emit(state.copyWith(
-        searchRecipeModel: state.searchRecipeModel
-            .copyWith(minCalories: min.toInt(), maxCalories: max.toInt())));
+        searchRecipeModel: state.searchRecipeModel.copyWith(minCalories: min.toInt(), maxCalories: max.toInt())));
     searchMeals();
   }
 
   updateIncludedIngredients(List<String>? ingredients) {
-    emit(state.copyWith(
-        searchRecipeModel:
-            state.searchRecipeModel.copyWith(includeIngredients: ingredients)));
+    emit(state.copyWith(searchRecipeModel: state.searchRecipeModel.copyWith(includeIngredients: ingredients)));
     searchMeals();
   }
 
@@ -265,10 +247,10 @@ class MealsCubit extends Cubit<MealsState> {
       (successData) async {
         print("success $successData");
 
-        if(DateTime.parse(successData.first.endDate).isBefore(DateTime.now()) && !fromHistory ){
+        if (DateTime.parse(successData.first.endDate).isBefore(DateTime.now()) && !fromHistory) {
           await generateMealPlan();
           await getMealPlans();
-        }else {
+        } else {
           emit(state.copyWith(
             getMealPlansState: RequestState.success,
             allPlans: successData,
@@ -290,11 +272,11 @@ class MealsCubit extends Cubit<MealsState> {
     }
   }
 
- Day? getPlanForToday() {
+  Day? getPlanForToday() {
     final plan = getCurrentMealPlan();
     final int day = DateTime.now().weekday;
 
-     switch (day) {
+    switch (day) {
       case 1:
         return plan?.week.Monday;
       case 2:
@@ -310,50 +292,13 @@ class MealsCubit extends Cubit<MealsState> {
       case 7:
         return plan?.week.Sunday;
     }
-     return null;
+    return null;
   }
 
-
-getNutrientsData(){
-   final result =   _repo.getLocalNutritionData();
-   result.fold(
-         (failure) {
-       print("failure $failure");
-
-       emit(state.copyWith(
-         // getMealPlansState: RequestState.failure,
-         errMessage: failure.message,
-       ));
-     },
-         (successData) {
-       print("success $successData");
-       emit(state.copyWith(
-         // getMealPlansState: RequestState.success,
-         nutritionData: successData,
-         gainedCarb: getSumCarbStored(successData),
-         gainedProtein: getSumProteinStored(successData),
-         gainedCalories: getSumCaloriesStored(successData),
-       ));
-       // sl<AuthenticationBloc>().currentUser = ;
-     },
-   );
-}
-addMealNutrients({required String mealId,required num calories ,required num  carb ,required num  protein}) async {
-
-final nutritionData = NutritionData() ..id = mealId
-  ..calories = calories.toDouble()
-  ..carbs = carb.toDouble()
-  ..protein = protein.toDouble();
-   await _repo.addLocalNutritionData(nutritionData);
-   getNutrientsData();
-   await calculateNutritionData(calories: calories, carb: carb, protein: protein);
-}
-
-calculateNutritionData({required num calories ,required num  carb ,required num  protein}) async {
-    state.allPlans.first.id;
-    final result =await  _repo.calculateNutrients(mealPlanId : state.allPlans.first.id,calories: state.gainedCalories, protein: state.gainedProtein, carbs: state.gainedCarb);
+  getNutrientsData() {
+    final result = _repo.getLocalNutritionData();
     result.fold(
-          (failure) {
+      (failure) {
         print("failure $failure");
 
         emit(state.copyWith(
@@ -361,34 +306,77 @@ calculateNutritionData({required num calories ,required num  carb ,required num 
           errMessage: failure.message,
         ));
       },
-          (successData) {
+      (successData) {
+        print("success $successData");
         emit(state.copyWith(
           // getMealPlansState: RequestState.success,
-          // nutritionData: [],
-          // gainedCarb: 0,
-          // gainedProtein: 0,
-          // gainedCalories: 0,
+          nutritionData: successData,
+          gainedCarb: getSumCarbStored(successData),
+          gainedProtein: getSumProteinStored(successData),
+          gainedCalories: getSumCaloriesStored(successData),
         ));
         // sl<AuthenticationBloc>().currentUser = ;
       },
     );
-}
+  }
 
-getSumCaloriesStored(nutritionData){
-     num calories = 0;
+  addMealNutrients({required String mealId, required num calories, required num carb, required num protein}) async {
+    final nutritionData = NutritionData()
+      ..id = mealId
+      ..calories = calories.toDouble()
+      ..carbs = carb.toDouble()
+      ..protein = protein.toDouble();
+    await _repo.addLocalNutritionData(nutritionData);
+    getNutrientsData();
+    await calculateNutritionData(calories: calories, carb: carb, protein: protein);
+  }
+
+  calculateNutritionData({required num calories, required num carb, required num protein}) async {
+    state.allPlans.first.id;
+    final result = await _repo.calculateNutrients(
+        mealPlanId: state.allPlans.first.id,
+        calories: state.gainedCalories,
+        protein: state.gainedProtein,
+        carbs: state.gainedCarb);
+    result.fold(
+      (failure) {
+        print("failure $failure");
+
+        emit(state.copyWith(
+          // getMealPlansState: RequestState.failure,
+          errMessage: failure.message,
+        ));
+      },
+      (successData) {
+        emit(state.copyWith(
+            // getMealPlansState: RequestState.success,
+            // nutritionData: [],
+            // gainedCarb: 0,
+            // gainedProtein: 0,
+            // gainedCalories: 0,
+            ));
+        // sl<AuthenticationBloc>().currentUser = ;
+      },
+    );
+  }
+
+  getSumCaloriesStored(nutritionData) {
+    num calories = 0;
     nutritionData.forEach((data) {
-     calories += data.calories;
+      calories += data.calories;
     });
     return calories;
-}
-  getSumProteinStored(nutritionData){
+  }
+
+  getSumProteinStored(nutritionData) {
     num protein = 0;
     nutritionData.forEach((data) {
       protein += data.protein;
     });
     return protein;
   }
-  getSumCarbStored(nutritionData){
+
+  getSumCarbStored(nutritionData) {
     num carbs = 0;
     nutritionData.forEach((data) {
       carbs += data.carbs;

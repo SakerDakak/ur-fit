@@ -25,7 +25,7 @@ class GoalsPage extends StatelessWidget {
           (p.getGoalsState != c.getGoalsState),
       builder: (context, state) {
         return ListView(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+          padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
           children: [
             // title
             Text(
@@ -100,7 +100,7 @@ class _GoalItem extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(kBorderRadius),
+          borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           border: Border.all(color: AppColors.strockColor),
           boxShadow: [
             BoxShadow(

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../core/presentation/style/colors.dart';
-import '../../../../../core/presentation/style/fonts.dart';
-import '../../bloc/login_bloc.dart';
+import '../../../../core/presentation/style/colors.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../bloc/login_bloc.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key, required this.otpTimer});
@@ -26,8 +26,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _controller = AnimationController(
-        vsync: this, duration: Duration(seconds: widget.otpTimer));
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: widget.otpTimer));
 
     _controller!.forward();
 
@@ -67,11 +66,8 @@ class Countdown extends AnimatedWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              timerText != "0:00"
-                  ? 'تنتهي صلاحية الرمز خلال'
-                  : 'إعادة ارسال رقم التحقق عن طريق',
-              style: CustomTextStyle.regular_14
-                  .copyWith(color: AppColors.greyColor),
+              timerText != "0:00" ? 'تنتهي صلاحية الرمز خلال' : 'إعادة ارسال رقم التحقق عن طريق',
+              style: CustomTextStyle.regular_14.copyWith(color: AppColors.greyColor),
             ),
             SizedBox(
               width: 6,
@@ -79,8 +75,7 @@ class Countdown extends AnimatedWidget {
             if (timerText != "0:00")
               Text(
                 timerText,
-                style: CustomTextStyle.regular_14
-                    .copyWith(color: AppColors.greyColor),
+                style: CustomTextStyle.regular_14.copyWith(color: AppColors.greyColor),
               ),
           ],
         ),
@@ -96,12 +91,11 @@ class Countdown extends AnimatedWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      context.read<LoginBloc>().add(RegisterResendCode('sms'));
+                      context.read<LoginBloc>().registerResendCode('sms');
                     },
                     label: Text(
                       'رسالة النصية',
-                      style: CustomTextStyle.regular_14
-                          .copyWith(color: Theme.of(context).colorScheme.primary),
+                      style: CustomTextStyle.regular_14.copyWith(color: Theme.of(context).colorScheme.primary),
                     ),
                     icon: SvgPicture.asset(
                       '',
@@ -115,14 +109,11 @@ class Countdown extends AnimatedWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      context
-                          .read<LoginBloc>()
-                          .add(RegisterResendCode('whatsapp'));
+                      context.read<LoginBloc>().registerResendCode('whatsapp');
                     },
                     label: Text(
                       'واتساب',
-                      style: CustomTextStyle.regular_14
-                          .copyWith(color: Theme.of(context).colorScheme.primary),
+                      style: CustomTextStyle.regular_14.copyWith(color: Theme.of(context).colorScheme.primary),
                     ),
                     icon: SvgPicture.asset(
                       '',

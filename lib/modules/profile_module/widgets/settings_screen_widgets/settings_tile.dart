@@ -20,7 +20,7 @@ class SettingsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(kBorderRadius),
+      borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
       child: Padding(
         padding: const EdgeInsets.only(
           top: 4,

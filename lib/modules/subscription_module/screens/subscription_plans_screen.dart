@@ -72,7 +72,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
           SafeArea(
             child: ListView(
               padding: const EdgeInsets.symmetric(
-                horizontal: kHorizontalPadding,
+                horizontal: AppConst.kHorizontalPadding,
               ),
               children: [
                 const SizedBox(height: 20),

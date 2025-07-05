@@ -20,7 +20,7 @@ class ChangeNameSheet extends StatelessWidget {
     final user = context.read<AuthenticationBloc>().currentUser;
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: kHorizontalPadding,
+        horizontal: AppConst.kHorizontalPadding,
         vertical: 15,
       ),
       child: SingleChildScrollView(
@@ -32,7 +32,7 @@ class ChangeNameSheet extends StatelessWidget {
               height: 4,
               width: 60,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kBorderRadius),
+                borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                 color: AppColors.cardInputStrock,
               ),
             ),

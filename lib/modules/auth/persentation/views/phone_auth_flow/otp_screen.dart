@@ -9,9 +9,9 @@ import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
-import '../../../../../../core/presentation/style/colors.dart';
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../bloc/login_bloc.dart';
+import '../../../../../core/presentation/style/colors.dart';
+import '../../../../../core/presentation/style/fonts.dart';
+import '../../bloc/login_bloc.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
@@ -116,13 +116,13 @@ class _OTPScreenState extends State<OTPScreen> {
                       showFieldAsBox: true,
                       //runs when a code is typed in
                       onCodeChanged: (String code) {
-                        bloc.add(OnChangeOtpEvent(code));
+                        bloc.onChangeOtp(code);
                         //handle validation or checks here
                       },
 
                       //runs when every textfield is filled
                       onSubmit: (String verificationCode) {
-                        bloc.add(OnChangeOtpEvent(verificationCode));
+                        bloc.onChangeOtp(verificationCode);
                       }, // end onSubmit
                     ),
                   ),
@@ -146,7 +146,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       WidgetSpan(
                           child: InkWell(
                         onTap: () {
-                          bloc.add(RegisterResendCode("email"));
+                          bloc.registerResendCode("email");
                         },
                         child: Text(
                           L10n.tr().pressToResendOtp,
@@ -162,7 +162,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 CustomElevatedButton(
                     text: L10n.tr().confirm,
                     onPressed: () {
-                      bloc.add(VerifyOtpCodeEvent(controller.text));
+                      bloc.verifyOtpCode(controller.text);
                     })
               ],
             );

@@ -7,157 +7,58 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 
-// import 'package:recaptcha_enterprise_flutter/recaptcha_action.dart';
-// import 'package:recaptcha_enterprise_flutter/recaptcha_enterprise.dart';
-
-import '../../../../core/presentation/assets/const.dart';
 import '../../../../core/presentation/style/colors.dart';
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/utils/loading_helper.dart';
 import '../../data/models/register_model.dart';
 import '../../data/models/user/cached_user.dart';
-import '../../data/models/user/user_model.dart';
 import '../../data/repo/authentication_repo.dart';
 import 'authentication_bloc/authentication_bloc.dart';
 
-part 'login_event.dart';
 part 'login_state.dart';
 
-/// A bloc that manages the state of a Login according to the event that is dispatched to it.
-
-// enum Provider {Google,FaceBook,Apple}
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
+class LoginBloc extends Cubit<LoginState> {
   final AuthenticationBloc authenticationBloc;
 
   final AuthenticationRepo authenticationRepo;
 
-  LoginBloc(this.authenticationRepo, this.authenticationBloc) : super(const LoginState()) {
-    // on<LoginInitialEvent>(_onInitialize);
-    on<OnChangePhoneEvent>(_onChangePhone);
-    on<OnChangeFirstNameEvent>(_onChangeFirstName);
-    on<OnChangeAccountTypeEvent>(_onChangeAccountType);
+  LoginBloc(this.authenticationRepo, this.authenticationBloc) : super(const LoginState());
 
-    on<OnChangeOtpEvent>(_onChangeOtp);
-    on<OnChangeEmailEvent>(_onChangeEmail);
-    on<OnChangePasswordEvent>(_onChangePassword);
-    on<OnChangeNewPasswordEvent>(_onChangeNewPassword);
-    on<OnChangeNewPasswordConfirmEvent>(_onChangeNewPasswordConfirm);
-    on<ResetPasswordEvent>(_resetPassword);
+  sendCode(String phone, String verificationId) async {
+    print('test send code');
 
-    on<Login>(_login);
-    // on<RecaptchaInit>(_recaptchaInit);
-    // on<GetRecaptchaToken>(_getRecaptchaToken);
-
-    // on<SendCodeEvent>();
-    on<CodeSentEvent>(_sendCode);
-    on<ForgetPasswordEvent>(_forgetPassword);
-
-    on<VerifyOtpCodeEvent>(_verifyOtpCode);
-    on<ResetBlocEvent>(_resetBloc);
-    on<ClearErrorEvent>(_clearError);
-    // on<SaveUserDataEvent>(_saveUser);
-    // on<GetTokenEvent>(_getToken);
-
-    on<GuestLoginEvent>(_guestLogin);
-    on<LoginErrorEvent>(_FireError);
-    on<ToggleRemember>(_toggleRemember);
-    on<ToggleTerms>(_toggleTerms);
-    on<ForgetPasswordGoBack>(_forgetPasswordGoBack);
-
-    on<RegisterGoBack>(_registerGoBack);
-    on<GetUserTypes>(_GetUserTypes);
-    on<RegisterNowEvent>(_registerNow);
-    on<RegisterResendCode>(_registerResendCode);
-    on<RegisterUpdatePhone>(_registerUpdatePhone);
-    on<RegisterVerifyCode>(_registerVerifyCode);
-    // on<SetCountryEvent>(_setCountry);
-    // on<SetCityEvent>(_setCity);
-    on<GoogleLoginEvent>(_googleLogin);
+    emit(state.copyWith(verificationId: verificationId, phone: phone, errMessage: ''));
   }
 
-  // _onInitialize(LoginInitialEvent event, Emitter<LoginState> emit) async {
-  //   emit(state.copyWith(verificationId: ""));
-  // }
-
-  Future<FutureOr<void>> _login(Login event, Emitter<LoginState> emit) async {
-    // emit(AuthenticationLoading());
-    // emit(LoginSuccess());
+  Future<FutureOr<void>> login(String email, String password, bool remember) async {
     LoadingHelper.startLoading();
-    latestFunctionCalled = (event, emit) {
-      _login(event, emit);
+    AppConst.latestFunctionCalled = (event, emit) {
+      login(email, password, remember);
     };
 
-    final user = await authenticationRepo.login(email: state.email, password: state.password, remember: state.remember);
+    final user = await authenticationRepo.login(email: email, password: password, remember: remember);
     user.fold((l) async {
       print("l.message : ${l.message}");
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-      // emit(LoginFailure(error: l.message));
-      // scaffoldMessengerKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-      // await authenticationRepo.deleteToken();
-      // add(AppStarted());
       LoadingHelper.stopLoading();
     }, (u) async {
-      authenticationBloc.add(GetUserData());
+      authenticationBloc.getUserData();
     });
   }
 
-  showSubscriptionDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('اشتراك غير مفعل'),
-          content: const Text('حسابك غير مشترك. يرجى الاشتراك لمتابعة استخدام التطبيق.'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('خروج'),
-              onPressed: () {
-                context.pop();
-                // authenticationBloc.add(LoggedOut());
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  _sendCode(CodeSentEvent event, Emitter<LoginState> emit) async {
-    // String email = state.email;
-    print('test send code');
-
-    // emit(state.copyWith(pageState: PageState.loading,,));
-    // final result = await authenticationRepo.sendCode(email: state.email);
-    // result.fold((l) {
-    //   // scaffoldMessengerKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-    //   print("Failureeeeee");
-    //   emit(state.copyWith(pageState: PageState.error));
-    // }, (r) {
-    //   // emit(state.copyWith(codeSent: true));
-    //   print("Succeeeeeessss");
-    //   // add(VerifyOtpCodeEvent(phone: , code: code))
-    //   // authenticationBloc.add(ConfirmEmail());
-    // });
-    emit(state.copyWith(verificationId: event.verificationId, phone: event.phone, errMessage: ''));
-  }
-
-  _verifyOtpCode(VerifyOtpCodeEvent event, Emitter<LoginState> emit) async {
+  verifyOtpCode(String otp) async {
     LoadingHelper.startLoading();
     emit(state.copyWith(pageState: PageState.loading));
 
     final result = await authenticationRepo.verifyOtp(
       email: state.email.isEmpty ? authenticationBloc.currentUser?.email ?? "" : state.email,
-      code: state.otp,
+      code: otp,
     );
     result.fold((l) {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-
-      // emit(LoginFailure(error: l.message));
-
-      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
     }, (r) async {
       print("login");
       LoadingHelper.stopLoading();
@@ -167,104 +68,55 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ));
 
       if (authenticationBloc.state is AuthenticationForgetPassword) {
-        authenticationBloc.add(UpdatePasswordEvent());
+        authenticationBloc.updatePasswordEvent();
       } else {
-        authenticationBloc.add(GetUserData());
+        authenticationBloc.getUserData();
       }
     });
-    // authenticationBloc.add(UpdatePasswordEvent());
   }
-
-// _changePassword(VerifyOtpCodeEvent event, Emitter<LoginState> emit) async {
-//     emit(state.copyWith(pageState: PageState.loading));
-//     // final String phone = "${state.countryCode}${state.phone}";
-//     final result = await authenticationRepo.verifyOtp(email: state.email, code: state.otp);
-//     result.fold((l) {
-//       emit(state.copyWith(pageState: PageState.error));
-
-//       // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
-//     }, (r) async {
-//       emit(state.copyWith(codeSent: false));
-//       final token = await authenticationRepo.hasToken();
-//       token.fold((l) {}, (r) async {
-//         if(r != null){
-//           await sl<DioServices>().init();
-//           authenticationBloc.add(UpdatePasswordEvent());
-//       }
-//       });
-
-//           // authenticationBloc.add(GetUserData());
-
-//     });
-//     authenticationBloc.add(UpdatePasswordEvent());
-
-//     emit(state.copyWith(codeSent: false));
-//   }
-
-  // Future<FutureOr<void>> _getToken(
-  //     GetTokenEvent event, Emitter<LoginState> emit) async {
-  //   final result = await authenticationRepo.phoneAuthWithApi(event.phone);
-  //   result.fold((l) {
-  //     // scaffoldMessengerKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-  //     emit(state.copyWith(pageState: PageState.error));
-  //   }, (r) {
-  //     emit(state.copyWith(pageState: PageState.loaded));
-  //
-  //     authenticationBloc.add(LoggedIn(
-  //       token: r,
-  //     ));
-  //     // add(A(userModel: event.userModel, token: r))  ;
-  //   });
-  // }
 
   //
 
-  FutureOr<void> _onChangePhone(OnChangePhoneEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(phone: event.phone));
-  }
-
-  FutureOr<void> _onChangeEmail(OnChangeEmailEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(email: event.email));
-  }
-
-  FutureOr<void> _onChangePassword(OnChangePasswordEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(password: event.password));
-  }
-
-  // FutureOr<void> _codeSent(CodeSentEvent event, Emitter<LoginState> emit) {
   //
-  //   emit(state.copyWith(
-  //       verificationId: event.verificationId, pageState: PageState.loaded));
-  // }
 
-  FutureOr<void> _onChangeOtp(OnChangeOtpEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(otp: event.otp));
+  FutureOr<void> onChangePhone(String? phone) {
+    emit(state.copyWith(phone: phone));
   }
 
-  Future<FutureOr<void>> _guestLogin(GuestLoginEvent event, Emitter<LoginState> emit) async {
-    authenticationBloc.add(GuestLogin());
+  FutureOr<void> onChangeEmail(String? email) {
+    emit(state.copyWith(email: email));
   }
 
-  FutureOr<void> _FireError(LoginErrorEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> onChangePassword(String? password) {
+    emit(state.copyWith(password: password));
+  }
+
+  //
+
+  FutureOr<void> onChangeOtp(String? otp) {
+    emit(state.copyWith(otp: otp));
+  }
+
+  Future<FutureOr<void>> guestLogin() async {
+    authenticationBloc.guestLogin();
+  }
+
+  FutureOr<void> fireError() {
     emit(state.copyWith(pageState: PageState.error));
   }
 
-  FutureOr<void> _toggleRemember(ToggleRemember event, Emitter<LoginState> emit) {
-    emit(state.copyWith(remember: event.remember));
-  }
-
-  FutureOr<void> _forgetPasswordGoBack(event, Emitter<LoginState> emit) {
+  FutureOr<void> forgetPasswordGoBack() {
     emit(state.copyWith(verificationId: ""));
   }
 
-  FutureOr<void> _resetBloc(ResetBlocEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> resetBloc() {
     emit(state.copyWith(errMessage: '', phone: "", email: "", password: "", otp: "", verificationId: ""));
   }
 
-  Future<void> _forgetPassword(ForgetPasswordEvent event, Emitter<LoginState> emit) async {
+  Future<void> forgetPassword() async {
     emit(state.copyWith(pageState: PageState.loading));
-    latestFunctionCalled = (event, emit) {
-      _forgetPassword(event, emit);
+    AppConst.latestFunctionCalled = (event, emit) {
+      forgetPassword();
     };
 
     final result = await authenticationRepo.forgetPassword(email: state.email);
@@ -286,18 +138,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     super.onError(error, stackTrace);
   }
 
-  FutureOr<void> _onChangeNewPassword(OnChangeNewPasswordEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(newPassword: event.password));
+  FutureOr<void> onChangeNewPassword(String? password) {
+    emit(state.copyWith(newPassword: password));
   }
 
-  FutureOr<void> _onChangeNewPasswordConfirm(OnChangeNewPasswordConfirmEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(confirmPassword: event.password));
+  FutureOr<void> onChangeNewPasswordConfirm(String? password) {
+    emit(state.copyWith(confirmPassword: password));
   }
 
-  Future<void> _resetPassword(ResetPasswordEvent event, Emitter<LoginState> emit) async {
+  Future<void> resetPassword() async {
     LoadingHelper.startLoading();
-    latestFunctionCalled = (event, emit) {
-      _resetPassword(event, emit);
+    AppConst.latestFunctionCalled = () {
+      resetPassword();
     };
 
     final result = await authenticationRepo.resetPassword(
@@ -308,10 +160,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     result.fold((l) {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-
-      // emit(LoginFailure(error: l.message));
-
-      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
     }, (r) async {
       LoadingHelper.stopLoading();
       emit(state.copyWith(
@@ -319,55 +167,43 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         errMessage: '',
       ));
 
-      authenticationBloc.add(GoBack());
+      authenticationBloc.goBack();
     });
   }
 
-  FutureOr<void> _onChangeFirstName(OnChangeFirstNameEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> onChangeFirstName(String? firstName) {
     emit(state.copyWith(pageState: PageState.loading));
-    print("event name : ${event.firstName}");
-    emit(state.copyWith(firstName: event.firstName, pageState: PageState.loaded));
+    print("event name : $firstName");
+    emit(state.copyWith(firstName: firstName, pageState: PageState.loaded));
   }
 
-  // FutureOr<void> _onChangeLastName(
-  //     OnChangeLastNameEvent event, Emitter<LoginState> emit) {
-  //   emit(state.copyWith(pageState: PageState.loading));
-  //   print("event name : ${event.lastName}");
-  //   emit(state.copyWith(lastName: event.lastName, pageState: PageState.loaded));
-  // }
-
-  FutureOr<void> _onChangeAccountType(OnChangeAccountTypeEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> onChangeAccountType(String? type) {
     emit(state.copyWith(pageState: PageState.loading));
-    emit(state.copyWith(accountType: event.type, pageState: PageState.loaded));
+    emit(state.copyWith(accountType: type, pageState: PageState.loaded));
   }
 
-  Future<void> _GetUserTypes(GetUserTypes event, Emitter<LoginState> emit) async {
+  Future<void> GetUserTypes() async {
     LoadingHelper.startLoading();
-    latestFunctionCalled = (event, emit) {
-      _GetUserTypes(event, emit);
+    AppConst.latestFunctionCalled = () {
+      GetUserTypes();
     };
 
     final result = await authenticationRepo.getUserTypes();
     result.fold((l) {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-
-      // emit(LoginFailure(error: l.message));
-
-      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
     }, (r) async {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.loaded, userTypes: r, errMessage: ""));
     });
   }
 
-  Future<void> _registerNow(RegisterNowEvent event, Emitter<LoginState> emit) async {
+  Future<void> registerNow() async {
     LoadingHelper.startLoading();
-    latestFunctionCalled = (event, emit) {
-      _registerNow(event, emit);
+    AppConst.latestFunctionCalled = () {
+      registerNow();
     };
 
-    // print("user name : ${state.userName}");
     final registerModel = RegisterModel(
       name: state.firstName,
       email: state.email,
@@ -380,61 +216,45 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     result.fold((l) {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-
-      // emit(LoginFailure(error: l.message));
-
-      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
     }, (r) async {
       LoadingHelper.stopLoading();
 
-      // authenticationBloc.add(GetUserData());
-      add(CodeSentEvent(phone: r!.email.toString(), verificationId: r.otpCode.toString()));
-      authenticationBloc.add(
-        LoginFlow(),
-      );
+      sendCode(r!.email.toString(), r.otpCode.toString());
+      authenticationBloc.logInFlow();
     });
   }
 
-  FutureOr<void> _registerGoBack(RegisterGoBack event, Emitter<LoginState> emit) {
+  FutureOr<void> registerGoBack() {
     emit(state.copyWith(verificationId: "", errMessage: ""));
   }
 
-  Future<void> _registerResendCode(RegisterResendCode event, Emitter<LoginState> emit) async {
+  Future<void> registerResendCode(String type) async {
     final result = await authenticationRepo.registerResendOtp(
         email: state.email.isEmpty ? authenticationBloc.currentUser?.email ?? "" : state.email);
     result.fold((l) {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-
-      // emit(LoginFailure(error: l.message));
-
-      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
     }, (r) async {
       print("r : $r");
       LoadingHelper.stopLoading();
-      // emit(state.copyWith(pageState: PageState.loaded,verificationId: r['2fa'],phone: r['to'],errMessage: ''));
-      // add(RegisterResendCode("sms"));
     });
   }
 
-  Future<void> _registerUpdatePhone(RegisterUpdatePhone event, Emitter<LoginState> emit) async {
+  Future<void> registerUpdatePhone() async {
     final result =
         await authenticationRepo.registerUpdatePhone(phone: state.phone, verificationId: state.verificationId);
     result.fold((l) {
       LoadingHelper.stopLoading();
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-
-      // emit(LoginFailure(error: l.message));
-
-      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(l.message)));
     }, (r) async {
       emit(state.copyWith(pageState: PageState.loaded, verificationId: r['2fa'], errMessage: ''));
-      rootScaffoldKey.currentContext!.pop();
-      add(RegisterResendCode('sms'));
+      AppConst.rootScaffoldKey.currentContext!.pop();
+
+      registerResendCode('sms');
     });
   }
 
-  Future<void> _registerVerifyCode(RegisterVerifyCode event, Emitter<LoginState> emit) async {
+  Future<void> registerVerifyCode() async {
     print("otp : ${state.otp}");
     print("verificationId : ${state.verificationId}");
     LoadingHelper.startLoading();
@@ -442,73 +262,48 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     result.fold((l) async {
       print(l.message);
       emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-      // emit(LoginFailure(error: l.message));
-      // scaffoldMessengerKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-      // await authenticationRepo.deleteToken();
-      // add(AppStarted());
       LoadingHelper.stopLoading();
     }, (u) async {
-      // emit(state.copyWith(errMessage: ''));
-
       await FlutterKeychain.put(key: 'email', value: state.email);
       await FlutterKeychain.put(key: 'password', value: state.password);
 
       u.fold(
         (l) {
           LoadingHelper.stopLoading();
-          add(CodeSentEvent(phone: l['phone'], verificationId: l['2fa'].toString()));
-          authenticationBloc.add(
-            LoginFlow(),
-          );
+          sendCode(l['phone'], l['2fa']);
+          authenticationBloc.logInFlow();
         },
         (r) {
           LoadingHelper.stopLoading();
-          showCustomSuccessDialog(navigatorKey.currentContext!, r, authenticationBloc);
+          showCustomSuccessDialog(AppConst.navigatorKey.currentContext!, r, authenticationBloc);
 
           print("login");
-
-          // else if(u.name == null) {
-          //   emit(AuthenticationUpdateUserData());
-          // }else{
-          //   emit(const AuthenticationAuthenticated());
-          // }
         },
       );
     });
   }
 
-  FutureOr<void> _clearError(ClearErrorEvent event, Emitter<LoginState> emit) {
+  FutureOr<void> clearError() {
     emit(state.copyWith(errMessage: ""));
   }
 
-  FutureOr<void> _toggleTerms(ToggleTerms event, Emitter<LoginState> emit) {
-    emit(state.copyWith(acceptTerms: event.accepted));
+  FutureOr<void> toggleTerms(bool accepted) {
+    emit(state.copyWith(acceptTerms: accepted));
   }
 
-  // FutureOr<void> _setCountry(SetCountryEvent event, Emitter<LoginState> emit) {
-  //   emit(state.copyWith(countryId: event.country));
-  // }
-
-  // FutureOr<void> _setCity(SetCityEvent event, Emitter<LoginState> emit) {
-  //   emit(state.copyWith(cityId: event.city));
-  // }
-
-  Future<void> _googleLogin(GoogleLoginEvent event, Emitter<LoginState> emit) async {
+  Future<void> googleLogin() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn(scopes: ["email", "profile"]).signIn();
 
     print("Google user name: ${googleUser?.displayName}");
     print("Google email: ${googleUser?.email}");
     print("Google photo url: ${googleUser?.photoUrl}");
-    // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
 
-    // Once signed in, return the UserCredential
     try {
       final cred = await FirebaseAuth.instance.signInWithCredential(credential);
 
@@ -529,17 +324,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         result.fold((l) async {
           print("l.message : ${l.message}");
           emit(state.copyWith(pageState: PageState.error, errMessage: l.message, otpErrMessage: ''));
-          // emit(LoginFailure(error: l.message));
-          // scaffoldMessengerKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-          // await authenticationRepo.deleteToken();
-          // add(AppStarted());
           LoadingHelper.stopLoading();
         }, (u) async {
-          authenticationBloc.add(GetUserData());
+          authenticationBloc.getUserData();
         });
       }
-
-      // In mobile, being authenticated means being authorized...// However, on web...
     } catch (error) {
       print(error);
     }
@@ -563,7 +352,7 @@ void showCustomSuccessDialog(
 
           LoadingHelper.startLoading();
 
-          authenticationBloc.add(GetUserData());
+          authenticationBloc.getUserData();
         },
         builder: (BuildContext context) {
           return PopScope(
@@ -572,21 +361,19 @@ void showCustomSuccessDialog(
 
               LoadingHelper.startLoading();
 
-              authenticationBloc.add(GetUserData());
+              authenticationBloc.getUserData();
             },
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // CustomBottomSheetHeader(),
                   Icon(
                     Icons.check_circle,
                     size: 70,
                     color: Colors.blue,
                   ),
                   const SizedBox(height: 16.0),
-                  // Success message text
                   Text(
                     'تم انشاء الحساب بنجاح.',
                     style: CustomTextStyle.regular_14,
@@ -609,7 +396,7 @@ void showCustomSuccessDialog(
 
                           LoadingHelper.startLoading();
 
-                          authenticationBloc.add(GetUserData());
+                          authenticationBloc.getUserData();
                         },
                         style:
                             ElevatedButton.styleFrom(backgroundColor: Colors.blue, padding: const EdgeInsets.all(15)),

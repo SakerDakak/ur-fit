@@ -48,7 +48,7 @@ class PreviousPlanScreen extends StatelessWidget {
             }else {
               return ListView(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: kHorizontalPadding),
+                    horizontal: AppConst.kHorizontalPadding),
                 children: [
                   // plan duration
                   if(state.planHistoryModel != null)
@@ -158,7 +158,7 @@ class PreviousPlanScreen extends StatelessWidget {
                   //   style: OutlinedButton.styleFrom(
                   //     side: const BorderSide(color: AppColors.primaryColor),
                   //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(kBorderRadius),
+                  //       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                   //     ),
                   //   ),
                   //   child: Text(

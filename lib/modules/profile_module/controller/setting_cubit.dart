@@ -39,10 +39,10 @@ class SettingCubit extends Cubit<SettingState> {
   //   emit(state.copyWith(getPlanDataState: RequestState.loading));
   //
   //   try {
-  //     final nutrient = await rootScaffoldKey.currentContext!
+  //     final nutrient = await AppConst.rootScaffoldKey.currentContext!
   //         .read<MealsCubit>()
   //         .getMealPlanByDate(date);
-  //     final workOutData = await rootScaffoldKey.currentContext!.read<
+  //     final workOutData = await AppConst.rootScaffoldKey.currentContext!.read<
   //         WorkoutCubit>().getWorkOutPlanByDate(date);
   //
   //     final totalCalories = nutrient.calories + workOutData.totalCalories;

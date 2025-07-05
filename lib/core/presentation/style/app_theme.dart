@@ -41,7 +41,7 @@ abstract class AppTheme {
         dialogTheme: DialogThemeData(
           backgroundColor: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius),
+            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           ),
         ),
 

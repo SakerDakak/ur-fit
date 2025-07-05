@@ -16,7 +16,7 @@ class EditWeightBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: kHorizontalPadding,
+        horizontal: AppConst.kHorizontalPadding,
         vertical: 15,
       ),
       child: Column(
@@ -27,7 +27,7 @@ class EditWeightBottomSheet extends StatelessWidget {
             height: 4,
             width: 60,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(kBorderRadius),
+              borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               color: AppColors.cardInputStrock,
             ),
           ),
@@ -95,7 +95,7 @@ class EditWeightBottomSheet extends StatelessWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                       border: Border.all(color: AppColors.strockColor),
                     ),
                     child: Text(

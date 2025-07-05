@@ -4,154 +4,49 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 
-import '../../../../../core/presentation/assets/const.dart';
 import '../../../../../core/presentation/routes/routes.dart';
 import '../../../../../core/presentation/utils/loading_helper.dart';
 import '../../../data/models/user/user_model.dart';
 import '../../../data/repo/authentication_repo.dart';
 import '../login_bloc.dart';
 
-part 'authentication_event.dart';
 part 'authentication_state.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc extends Cubit<AuthenticationState> {
   final AuthenticationRepo authenticationRepo;
   UserModel? currentUser;
 
-  AuthenticationBloc(this.authenticationRepo) : super(AuthenticationUninitialized()) {
-    //events
-    // on<AppStarted>(_appStarted); // to check if user exists
-    on<GetUserData>(_getUserData);
-    on<LoggedIn>(_loggedIn);
-    on<RegisterEvent>(_register);
-    // on<ConfirmEmail>(_confirmEmail);
-    on<LoggedOut>(_loggedOut);
-    on<LoginFlow>(_logInFlow);
-    on<ForgetPasswordFlowEvent>(_forgetPasswordFlow);
-    on<GoBack>(_goBack);
-    // on<CheckOnBoardingEvent>(_checkOnBoarding);
-    // on<DoneOnBoardingEvent>(_doneOnBoarding);
-    // on<GoToChooseCity>(_goToChooseCity);
+  AuthenticationBloc(this.authenticationRepo) : super(AuthenticationUninitialized());
 
-    on<GuestLogin>(_guestLogin);
-    // on<GoToChooseLanguage>(_goToChooseLanguage);
-    // on<DoneChooseLanguageEvent>(_doneChooseLanguageEvent);
-    on<UpdatePasswordEvent>(_updatePasswordEvent);
-    on<UpdateSubscriptionEvent>(_updateSubscription);
-    on<GetUserDataFromServer>(_getUserDataFromServer);
-    // on<GetSliderImageEvent>(_getSliderImage);
-    on<GoToOnBoardingTwo>(_goToOnBoardingTwo);
-    // on<NavigateToRequestPrice>(_navigateToRequestPrice);
-  }
-
-  // Future<FutureOr<void>> _appStarted(AppStarted event, Emitter<AuthenticationState> emit) async {
-  //   if (state.runtimeType == AuthenticationUnauthenticated) {
-  //     return null;
-  //   }
-  //   final result = await authenticationRepo.hasToken();
-  //   result.fold((l) {
-  //     // rootScaffoldKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-  //   }, (r) async {
-  //     if (r != null) {
-  //       await sl<ApiClient>().init();
-  //       add(GetUserData());
-  //     } else {
-  //       final result = PrefUtils().getGuestLogin();
-  //       if (result == true) {
-  //         add(GuestLogin());
-  //       } else {
-  //         add(CheckOnBoardingEvent());
-  //       }
-  //       emit(AuthenticationUnauthenticated());
-  //     }
-  //   });
-  // }
-
-  FutureOr<void> _loggedIn(LoggedIn event, Emitter<AuthenticationState> emit) async {
-    // add(GetUserData());
-    emit(AuthenticationAuthenticated());
-  }
-
-  // FutureOr<void> _loggedIn(LoggedIn event, Emitter<AuthenticationState> emit) async{
-  //   await sl<DioServices>().init();
-  //   add(GetUserData());
-  //   // emit(AuthenticationAuthenticated(token: event.token,));
-  // }
-
-  FutureOr<void> _loggedOut(LoggedOut event, Emitter<AuthenticationState> emit) async {
-    // emit(AuthenticationLoading());
-    final result = await authenticationRepo.deleteToken();
-    result.fold((l) {
-      // rootScaffoldKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-      //  emit(AuthenticationError(l.message));
-    }, (r) {
-      rootScaffoldKey.currentContext?.read<LoginBloc>().add(ResetBlocEvent());
-
-      emit(AuthenticationUnauthenticated());
-    });
-  }
-
-  // FutureOr<void> _confirmEmail(ConfirmEmail event, Emitter<AuthenticationState> emit) {
-  //   emit(AuthenticationAuthConfirmation());
-  // }
-
-  FutureOr<void> _goBack(GoBack event, Emitter<AuthenticationState> emit) {
-    rootScaffoldKey.currentContext?.read<LoginBloc>().add(ResetBlocEvent());
+  FutureOr<void> loggedOut() async {
+    await TokenService.deleteToken();
+    AppConst.rootScaffoldKey.currentContext?.read<LoginBloc>().resetBloc();
     emit(AuthenticationUnauthenticated());
   }
 
-//   Future<FutureOr<void>> _checkOnBoarding(CheckOnBoardingEvent event, Emitter<AuthenticationState> emit) async {
-// //check onboarding bool
-//     // final result = PrefUtils().getOnBoarding();
-//     print("On Boarding $result");
-//     if (result == true) {
-//       emit(AuthenticationUnauthenticated());
-//     } else {
-//       add(GetSliderImageEvent());
-//       // emit();
-//     }
-//   }
-
-  // Future<FutureOr<void>> _doneOnBoarding(DoneOnBoardingEvent event, Emitter<AuthenticationState> emit) async {
-  //   final result = await PrefUtils().setFirstVisit();
-
-  //   emit(AuthenticationUnauthenticated());
-  // }
-
-  FutureOr<void> _logInFlow(LoginFlow event, Emitter<AuthenticationState> emit) {
+  FutureOr<void> logInFlow() {
     LoadingHelper.stopLoading();
     emit(AuthenticationLoginFlow());
   }
 
-  FutureOr<void> _guestLogin(GuestLogin event, Emitter<AuthenticationState> emit) {
-    navigatorKey.currentContext?.pushNamed(AppRouter.authenticationScreen);
+  FutureOr<void> guestLogin() {
+    AppConst.navigatorKey.currentContext?.pushNamed(AppRouter.authenticationScreen);
 
     emit(AuthenticationAsGuest());
   }
 
-  // FutureOr<void> _navigateToRequestPrice(NavigateToRequestPrice event, Emitter<AuthenticationState> emit) {
-  //   emit(AuthenticationRequestPrice());
-  // }
-
-  Future<FutureOr<void>> _getUserData(GetUserData event, Emitter<AuthenticationState> emit) async {
-    final result = await authenticationRepo.getUserData();
+  Future<FutureOr<void>> getUserData() async {
+    final result = await authenticationRepo.getUserDataFromServer();
     await result.fold((l) {
-      // currentUser = UserModel(
-      //   id: 1,
-      //   email:"",
-      //   name: "", hasValidSubscription: false,
-      //   age: 25, country: Country(id: 1, name: ""), city: City(id: 1, name: "nme"), packageId: null, currentWeight: null, height: null, otpCode: null, goals: [], targetWeight: null, bodyShape: null, bodyParts: [], exerciseDays: [], workoutTypes: [], equipments: [], diet: null, recipeTypes: [], foodsNotLiked: [], mealVariety: null, isChecked: '', isCompleted: '', isActive: '', countryKey: '', haveExercisePlan: null, haveMealPlan: null,
-      // );
       LoadingHelper.stopLoading();
-    }, (r) async {
-      currentUser = r?.toUserModel();
+    }, (loadedUser) async {
+      currentUser = loadedUser;
       log("currentUser: ${currentUser?.toJson()}");
-      // print("currentUser: ${currentUser?.isChecked == '1' && currentUser?.age != null && currentUser?.targetWeight == null && currentUser?.hasValidSubscription == true}");
       if (currentUser?.isChecked == null || currentUser?.isChecked != '1') {
-        rootScaffoldKey.currentContext
-            ?.read<LoginBloc>()
-            .add(CodeSentEvent(phone: currentUser!.email.toString(), verificationId: "success"));
+        AppConst.rootScaffoldKey.currentContext?.read<LoginBloc>().sendCode(currentUser!.email.toString(), "success");
         emit(AuthenticationForgetPassword());
       } else if (currentUser?.isChecked == '1' && currentUser?.hasValidSubscription == false) {
         emit(AuthenticationPersonalInfo());
@@ -159,10 +54,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
           currentUser?.age != null &&
           currentUser?.targetWeight != null &&
           currentUser?.hasValidSubscription == true) {
-        navigatorKey.currentContext?.pushReplacementNamed(AppRouter.authenticationScreen);
+        AppConst.navigatorKey.currentContext?.pushReplacementNamed(AppRouter.authenticationScreen);
         emit(const AuthenticationAuthenticated());
       } else {
-        navigatorKey.currentContext?.pushReplacementNamed(AppRouter.authenticationScreen);
+        AppConst.navigatorKey.currentContext?.pushReplacementNamed(AppRouter.authenticationScreen);
         emit(const AuthenticationAuthenticated());
       }
 
@@ -170,67 +65,33 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     });
   }
 
-  Future<FutureOr<void>> _getUserDataFromServer(GetUserDataFromServer event, Emitter<AuthenticationState> emit) async {
+  FutureOr<void> updatePasswordEvent() {
+    emit(AuthenticationUpdatePassword());
+  }
+
+  FutureOr<void> goBack() {
+    AppConst.rootScaffoldKey.currentContext?.read<LoginBloc>().resetBloc();
+    emit(AuthenticationUnauthenticated());
+  }
+
+  Future<FutureOr<void>> getUserDataFromServer() async {
     final result = await authenticationRepo.getUserDataFromServer();
     await result.fold((l) {
       LoadingHelper.stopLoading();
     }, (r) async {
-      // await sl<DioServices>().init();
-
-      currentUser = r.toUserModel();
-      add(GetUserData());
-
+      currentUser = r;
       LoadingHelper.stopLoading();
     });
   }
 
-  FutureOr<void> _forgetPasswordFlow(ForgetPasswordFlowEvent event, Emitter<AuthenticationState> emit) {
+  FutureOr<void> forgetPasswordFlow() {
     emit(AuthenticationForgetPassword());
   }
 
-  FutureOr<void> _register(RegisterEvent event, Emitter<AuthenticationState> emit) {
-    emit(AuthenticationPersonalInfo());
-  }
-
-  FutureOr<void> _updatePasswordEvent(event, Emitter<AuthenticationState> emit) {
-    emit(AuthenticationUpdatePassword());
-  }
-
-  FutureOr<void> _updateSubscription(UpdateSubscriptionEvent event, Emitter<AuthenticationState> emit) {
-    // final user = currentUser?.copyWith(hasValidSubscription: true);
-    // authenticationRepo.saveUser(CacheUser.fromUserModel(user!));
-    add(GetUserDataFromServer());
+  FutureOr<void> updateSubscription() {
+    getUserDataFromServer();
   }
 
   @override
-  void onError(Object error, StackTrace stackTrace) {
-    // print(stackTrace);
-  }
-
-  // FutureOr<void> _goToChooseLanguage(GoToChooseLanguage event, Emitter<AuthenticationState> emit) {
-  //   emit(AuthenticationGoToChooseLang());
-  // }
-
-  // FutureOr<void> _doneChooseLanguageEvent(DoneChooseLanguageEvent event, Emitter<AuthenticationState> emit) {
-  //   PrefUtils().setLang(event.language);
-  //   emit(AuthenticationChooseLang());
-  // }
-
-  // Future<void> _goToChooseCity(GoToChooseCity event, Emitter<AuthenticationState> emit) async {
-  //   emit(AuthenticationChooseCountry());
-  // }
-
-  // Future<void> _getSliderImage(GetSliderImageEvent event, Emitter<AuthenticationState> emit) async {
-  //   final result = await authenticationRepo.getSliderImages();
-  //   result.fold((l) {
-  //     // rootScaffoldKey.currentState?.showSnackBar(buildSnackBar(l.toString(),));
-  //   }, (r) {
-  //     // emit(AuthenticationOnBoarding(sliderImages: r));
-  //     emit(AuthenticationOnBoardingTwo());
-  //   });
-  // }
-
-  FutureOr<void> _goToOnBoardingTwo(GoToOnBoardingTwo event, Emitter<AuthenticationState> emit) {
-    emit(AuthenticationOnBoardingTwo());
-  }
+  void onError(Object error, StackTrace stackTrace) {}
 }

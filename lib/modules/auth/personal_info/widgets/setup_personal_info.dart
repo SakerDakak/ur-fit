@@ -18,7 +18,7 @@ class SetupPersonalInfo extends StatelessWidget {
     final cubit = context.read<SetupPersonalInfoCubit>();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
       child: BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
         buildWhen: (p, c) => p.currentInfoStep != c.currentInfoStep,
         builder: (context, state) {

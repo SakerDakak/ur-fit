@@ -8,12 +8,12 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/pref_utils.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/title_with_icon.dart';
-import 'package:urfit/modules/auth/onboarding/choose_country.dart';
+import 'package:urfit/modules/onboarding/views/choose_country.dart';
 
 import '../../../core/presentation/appCubit/app_cubit.dart';
 import '../../../core/presentation/style/colors.dart';
-import '../../../core/presentation/views/widgets/choose_local_widget.dart';
 import '../../../core/presentation/views/widgets/slider_dots.dart';
+import 'widgets/radio_listtile_list_widget.dart';
 
 class ChooseLanguage extends StatelessWidget {
   const ChooseLanguage({super.key});
@@ -34,7 +34,7 @@ class ChooseLanguage extends StatelessWidget {
         'icon': AssetsManager.americaFlag,
       },
     ];
-    Map<String, dynamic> selectedLang = items.first;
+    Map<String, dynamic> selectedLang = L10n.isAr(context) ? items.first : items.last;
 
     return Scaffold(
       backgroundColor: AppColors.backGround,
@@ -58,9 +58,11 @@ class ChooseLanguage extends StatelessWidget {
               height: 32.px,
             ),
             Expanded(
-              child: ChooseLocalWidget(
+              child: RadioListtileListWidget(
                 items: items,
-                onChanged: (dynamic value) {
+                getName: (value) => value['name'],
+                initialValue: selectedLang,
+                onSelect: (dynamic value) {
                   print(value['value']);
                   selectedLang = value;
                   context.read<AppCubit>().changeLang(selectedLang['value']);

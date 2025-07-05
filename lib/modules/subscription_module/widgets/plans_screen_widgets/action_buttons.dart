@@ -30,13 +30,13 @@ class ActionButtons extends StatelessWidget {
                       sl<AuthenticationBloc>().currentUser?.packageId != state.selectedPackage
                   ? () async {
                       await context.read<SubscriptionCubit>().getPaymentUrl();
-                      sl<AuthenticationBloc>().add(GetUserDataFromServer());
+                      sl<AuthenticationBloc>().getUserDataFromServer();
 
                       final url = context.read<SubscriptionCubit>().state.paymentUrl;
                       if (url == null) {
                         final package = state.packages.firstWhere(
                             (package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
-                        sl<AuthenticationBloc>().add(GetUserDataFromServer());
+                        sl<AuthenticationBloc>().getUserDataFromServer();
 
                         LoadingHelper.stopLoading();
                       } else {
@@ -52,7 +52,7 @@ class ActionButtons extends StatelessWidget {
         TextButton(
           onPressed: () {
             context.pushNamed(AppRouter.authenticationScreen);
-            context.read<AuthenticationBloc>().add(LoggedIn(token: 'token'));
+            // context.read<AuthenticationBloc>().loggedIn(token: 'token');
           },
           child: Text(
             L10n.tr().later,

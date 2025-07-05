@@ -35,7 +35,7 @@ class WeakDaysDate extends StatelessWidget {
                     color: isToday(i) || state.selectedDay == i + 1
                         ? Theme.of(context).colorScheme.primary
                         : AppColors.cardColor,
-                    borderRadius: BorderRadius.circular(kBorderRadius),
+                    borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                     border: Border.all(color: AppColors.strockColor),
                   ),
                   child: Column(

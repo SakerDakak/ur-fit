@@ -70,7 +70,7 @@ class _InfoCard extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: cardColor,
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         border: Border.all(color: AppColors.strockColor),
       ),
       child: Stack(

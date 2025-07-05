@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
-import 'package:urfit/modules/auth/onboarding/model/country/country_model.dart';
+import 'package:urfit/modules/onboarding/model/country/country_model.dart';
 
 part 'onboarding_state.dart';
 
@@ -13,7 +13,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     emit(OnboardingLoadingCountries());
     final result = await authenticationRepo.getCountries();
     result.fold(
-      (l) => emit(OnboardingError(l.message)),
+      (l) => emit(OnboardingCountriesFailed(l.message)),
       (r) {
         _selectedCountry ??= r.first;
         emit(OnboardingCountriesLoaded(r));
@@ -25,7 +25,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     emit(OnboardingLoadingCities());
     final result = await authenticationRepo.getCities(countryId: _selectedCountry!.id);
     result.fold(
-      (l) => emit(OnboardingError(l.message)),
+      (l) => emit(OnboardingCitiesFailed(l.message)),
       (r) => emit(OnboardingCitiesLoaded(r)),
     );
   }

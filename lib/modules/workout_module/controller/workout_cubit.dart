@@ -41,7 +41,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
           // allMeals: successData,
         ));
         // sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
-        sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
+        sl<AuthenticationBloc>().updateSubscription();
 
         // sl<AuthenticationBloc>().currentUser = ;
       },

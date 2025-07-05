@@ -46,7 +46,7 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.cardColor,
               border: Border.all(color: AppColors.strockColor),
-              borderRadius: BorderRadius.circular(kBorderRadius),
+              borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
             ),
             child: Column(
               children: [

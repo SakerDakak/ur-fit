@@ -6,6 +6,7 @@ class BlocListenable<T> extends ChangeNotifier implements Listenable {
 
   BlocListenable(this.bloc) {
     bloc.stream.listen((state) {
+      // print("asjsajkfnkjasnf");
       notifyListeners();
     });
   }
