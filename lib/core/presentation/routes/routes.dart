@@ -92,11 +92,10 @@ class AppRouter {
 
       /// auth routes
       GoRoute(
-        path: AuthScreen.routeWzExtra,
-        name: AuthScreen.routeWzExtra,
+        path: AuthScreen.route,
+        name: AuthScreen.route,
         builder: (context, state) {
-          final ids = state.extra as (int, int);
-          return AuthScreen(cityId: ids.$2, countryId: ids.$1);
+          return const AuthScreen();
         },
       ),
       GoRoute(

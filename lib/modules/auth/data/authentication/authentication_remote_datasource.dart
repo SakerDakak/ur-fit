@@ -25,7 +25,13 @@ class AuthenticationRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> otpCheckCode({required String email, required String code}) async {
-    final response = await dioServices.post(EndPoints.otpCheckCode, data: {
+    final response = await dioServices.post(EndPoints.otpCheckCode, data: {'email': email, 'otpCode': code});
+
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> otpForgetPassword({required String email, required String code}) async {
+    final response = await dioServices.post(EndPoints.otpForgetPassword, data: {
       'email': email,
       'otpCode': code,
     });
@@ -34,7 +40,7 @@ class AuthenticationRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> updatePassword({required String password, required String email}) async {
-    final response = await dioServices.post(EndPoints.updatePassword,
+    final response = await dioServices.post(EndPoints.setNewPassword,
         data: {'email': email, 'password': password, 'password_confirmation': password});
 
     return response.data;

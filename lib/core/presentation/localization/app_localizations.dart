@@ -98,6 +98,96 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @yourHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Health'**
+  String get yourHealth;
+
+  /// No description provided for @isMoreImportantThanAnything.
+  ///
+  /// In en, this message translates to:
+  /// **'is more important than anything'**
+  String get isMoreImportantThanAnything;
+
+  /// No description provided for @welconeToMyDailyCompanionToAHealthyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to my daily companion to a healthy life'**
+  String get welconeToMyDailyCompanionToAHealthyLife;
+
+  /// No description provided for @onboardingParagraphOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you know that small steps every day make a difference? We are here to help you track your health, sleep better, and live with more energy!'**
+  String get onboardingParagraphOne;
+
+  /// No description provided for @startYourHealthJourneyToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your health journey today'**
+  String get startYourHealthJourneyToday;
+
+  /// No description provided for @move.
+  ///
+  /// In en, this message translates to:
+  /// **'Move'**
+  String get move;
+
+  /// No description provided for @yourBodyToFreeYourPower.
+  ///
+  /// In en, this message translates to:
+  /// **'Your body to free your power'**
+  String get yourBodyToFreeYourPower;
+
+  /// No description provided for @youDontNeedClub.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t need a club'**
+  String get youDontNeedClub;
+
+  /// No description provided for @youNeedToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to start'**
+  String get youNeedToStart;
+
+  /// No description provided for @onboardingParagraphTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'With us, you can exercise at home, at your own time, with daily workouts, smart reminders, and fun challenges waiting for you!'**
+  String get onboardingParagraphTwo;
+
+  /// No description provided for @everyMpementsGetYouCloserToYourGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Every movement gets you closer to your goal'**
+  String get everyMpementsGetYouCloserToYourGoal;
+
+  /// No description provided for @eat.
+  ///
+  /// In en, this message translates to:
+  /// **'Eat'**
+  String get eat;
+
+  /// No description provided for @rightLiveRight.
+  ///
+  /// In en, this message translates to:
+  /// **'right, live right'**
+  String get rightLiveRight;
+
+  /// No description provided for @sayGoodByeToConfusionAndreceiveHealthyDeliciousMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Say goodbye to confusion and receive healthy, delicious meals'**
+  String get sayGoodByeToConfusionAndreceiveHealthyDeliciousMeals;
+
+  /// No description provided for @onboardingParagraphThree.
+  ///
+  /// In en, this message translates to:
+  /// **'And plan your meals, track your calories, and discover smart alternatives, because healthy eating doesn\'t mean deprivation, but balance and intelligence.'**
+  String get onboardingParagraphThree;
+
   /// No description provided for @resendAfter.
   ///
   /// In en, this message translates to:

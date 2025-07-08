@@ -17,6 +17,8 @@ class Session {
   Session._();
   factory Session() => _inst;
   UserModel? currentUser;
+  int? countryId;
+  int? cityId;
 
   String? tempToken;
 

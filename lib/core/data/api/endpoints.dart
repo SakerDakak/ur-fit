@@ -10,13 +10,14 @@ class EndPoints {
   static const login = '/api/login';
   static const forgetPassword = '/api/forgetPassword';
   static const otpCheckCode = '/api/checkCode';
+  static const otpForgetPassword = '/api/checkCode';
   static const setNewPassword = '/api/setNewPassword';
   static const sendEmailActivationCode = '/api/sendEmailActivationCode';
   static const updatePassword = "/password/reset/send";
   static const verifyEmailCode = "/password/reset/verify";
   static const forgetResetPassword = "/password/reset";
   static const checkVersion = "/version";
-  
+
   static const getUserTypes = "/register/user-types";
   static const register = "/api/register";
   static const registerUpdatePhone = "/register/update-phone";
@@ -33,10 +34,11 @@ class EndPoints {
   static const muscleFocus = "/api/bodyParts";
   static const workoutTypes = "/api/workoutTypes";
   static const equipments = "/api/equipments";
-  static packages(PlanType? planType) => planType != null ?"/api/getPackages?type=${planType.name}" : "/api/getPackages";
+  static packages(PlanType? planType) =>
+      planType != null ? "/api/getPackages?type=${planType.name}" : "/api/getPackages";
   static const updateProfile = '/api/updateProfile';
   static const searchRecipe = '/api/recipes/search';
-  static  getRecipeDetails(int id) => '/api/recipes/$id?includeNutrition=true';
+  static getRecipeDetails(int id) => '/api/recipes/$id?includeNutrition=true';
   static const executePayment = '/api/execute-payment';
   static const getUserData = '/api/get-user-info';
   static const generateMealPlan = '/api/mealPlan';
@@ -46,7 +48,7 @@ class EndPoints {
   static const changePassword = '/api/changePassword';
   static const calculateNutrients = '/api/calculateNutrients';
   static const calculateExercise = '/api/calculate-calories-times-sets';
-  static const getPlanHistory ='/api/getHistoryMealsAndExercisesPlans';
+  static const getPlanHistory = '/api/getHistoryMealsAndExercisesPlans';
   static const staticPages = '/api/staticPages';
   static const getSliderImages = '/api/sliderImages';
   static const loginWithGoogle = '/api/auth/google';

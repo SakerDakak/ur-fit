@@ -65,11 +65,11 @@ mixin _$UserModel {
   @JsonKey(name: 'email_verified_at')
   String? get emailVerifiedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_checked')
-  String? get isChecked => throw _privateConstructorUsedError;
+  bool? get isChecked => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_completed')
-  String? get isCompleted => throw _privateConstructorUsedError;
+  bool? get isCompleted => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_active')
-  String? get isActive => throw _privateConstructorUsedError;
+  bool? get isActive => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_key')
   String? get countryKey => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_have_exercise_plan')
@@ -119,9 +119,9 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: 'meal_variety')
       MealVariety? mealVariety,
       @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
-      @JsonKey(name: 'is_checked') String? isChecked,
-      @JsonKey(name: 'is_completed') String? isCompleted,
-      @JsonKey(name: 'is_active') String? isActive,
+      @JsonKey(name: 'is_checked') bool? isChecked,
+      @JsonKey(name: 'is_completed') bool? isCompleted,
+      @JsonKey(name: 'is_active') bool? isActive,
       @JsonKey(name: 'country_key') String? countryKey,
       @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
       @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan});
@@ -279,15 +279,15 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       isChecked: freezed == isChecked
           ? _value.isChecked
           : isChecked // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isCompleted: freezed == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       countryKey: freezed == countryKey
           ? _value.countryKey
           : countryKey // ignore: cast_nullable_to_non_nullable
@@ -408,9 +408,9 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: 'meal_variety')
       MealVariety? mealVariety,
       @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
-      @JsonKey(name: 'is_checked') String? isChecked,
-      @JsonKey(name: 'is_completed') String? isCompleted,
-      @JsonKey(name: 'is_active') String? isActive,
+      @JsonKey(name: 'is_checked') bool? isChecked,
+      @JsonKey(name: 'is_completed') bool? isCompleted,
+      @JsonKey(name: 'is_active') bool? isActive,
       @JsonKey(name: 'country_key') String? countryKey,
       @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
       @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan});
@@ -570,15 +570,15 @@ class __$$UserImplCopyWithImpl<$Res>
       isChecked: freezed == isChecked
           ? _value.isChecked
           : isChecked // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isCompleted: freezed == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       countryKey: freezed == countryKey
           ? _value.countryKey
           : countryKey // ignore: cast_nullable_to_non_nullable
@@ -775,13 +775,13 @@ class _$UserImpl implements _User {
   final String? emailVerifiedAt;
   @override
   @JsonKey(name: 'is_checked')
-  final String? isChecked;
+  final bool? isChecked;
   @override
   @JsonKey(name: 'is_completed')
-  final String? isCompleted;
+  final bool? isCompleted;
   @override
   @JsonKey(name: 'is_active')
-  final String? isActive;
+  final bool? isActive;
   @override
   @JsonKey(name: 'country_key')
   final String? countryKey;
@@ -938,9 +938,9 @@ abstract class _User implements UserModel {
       @JsonKey(name: 'meal_variety')
       required final MealVariety? mealVariety,
       @JsonKey(name: 'email_verified_at') final String? emailVerifiedAt,
-      @JsonKey(name: 'is_checked') required final String? isChecked,
-      @JsonKey(name: 'is_completed') required final String? isCompleted,
-      @JsonKey(name: 'is_active') required final String? isActive,
+      @JsonKey(name: 'is_checked') required final bool? isChecked,
+      @JsonKey(name: 'is_completed') required final bool? isCompleted,
+      @JsonKey(name: 'is_active') required final bool? isActive,
       @JsonKey(name: 'country_key') required final String? countryKey,
       @JsonKey(name: 'is_have_exercise_plan')
       required final bool? haveExercisePlan,
@@ -1019,13 +1019,13 @@ abstract class _User implements UserModel {
   String? get emailVerifiedAt;
   @override
   @JsonKey(name: 'is_checked')
-  String? get isChecked;
+  bool? get isChecked;
   @override
   @JsonKey(name: 'is_completed')
-  String? get isCompleted;
+  bool? get isCompleted;
   @override
   @JsonKey(name: 'is_active')
-  String? get isActive;
+  bool? get isActive;
   @override
   @JsonKey(name: 'country_key')
   String? get countryKey;

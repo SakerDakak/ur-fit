@@ -14,10 +14,10 @@ class ForgetPasswordOtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final repo = sl<AuthenticationRepo>();
     submitOTp(String otp) async {
-      final resp = await repo.otpCheckCode(email: email, code: otp);
+      final resp = await repo.otpForgetPassword(email: email, code: otp);
       resp.fold(
         (error) {},
-        (success) => context.push(UpdatePasswordScreen.routeWzEmail(email)),
+        (user) => context.pushReplacement(UpdatePasswordScreen.routeWzEmail(email)),
       );
     }
 

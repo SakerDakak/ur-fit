@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -24,10 +23,6 @@ class UrFitApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SharedPreferences.getInstance().then((prefs) {
-      // Initialize the service locator with SharedPreferences
-      prefs.clear();
-    });
     return MultiBlocProvider(
       providers: [
         BlocProvider(

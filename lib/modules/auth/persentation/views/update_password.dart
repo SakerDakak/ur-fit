@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
+import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 import 'package:urfit/service_locator.dart';
 
 import '../../../../core/presentation/assets/app_assets.dart';
@@ -55,7 +59,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               ),
             ),
             const SizedBox(height: 32),
-        
+
             // new password field
             CompactPasswordTextFormField(
               title: L10n.tr().newPassword,
@@ -66,9 +70,9 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               validator: Validators.moreThanSix,
               controller: passwordController,
             ),
-        
+
             const SizedBox(height: 16),
-        
+
             // confirm new password field
             CompactPasswordTextFormField(
               title: L10n.tr().confirmPassword,
@@ -84,17 +88,27 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 return null;
               },
             ),
-        
+
             const SizedBox(height: 32),
-        
+
             // change button
             CustomElevatedButton(
               text: L10n.tr().send,
               onPressed: () async {
                 if (_formKey.currentState?.validate() != true) return;
-        
-                final respo =
-                    await sl<AuthenticationRepo>().updatePassword(password: passwordController.text, email: widget.email);
+                LoadingHelper.startLoading();
+                try {
+                  final respo = await sl<AuthenticationRepo>()
+                      .updatePassword(password: passwordController.text, email: widget.email);
+                  respo.fold((l) {}, (r) {
+                    Alerts.showToast(r ?? '', error: false);
+                    context.go(AuthScreen.route);
+                  });
+                } catch (e) {
+                  print("Error updating password: $e");
+                } finally {
+                  LoadingHelper.stopLoading();
+                }
               },
               padding: EdgeInsets.zero,
             ),

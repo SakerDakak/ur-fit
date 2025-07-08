@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/login_form.dart';
@@ -11,10 +12,8 @@ import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/title_with_icon.dart';
 
 class AuthScreen extends StatefulWidget {
-  const AuthScreen({super.key, required this.cityId, required this.countryId});
-  static const routeWzExtra = "/emailLogin";
-  final int cityId;
-  final int countryId;
+  const AuthScreen({super.key});
+  static const route = "/emailLogin";
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -73,7 +72,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                 ),
               ),
               BlocProvider(
-                create: (context) => AuthCubit(widget.countryId, widget.cityId),
+                create: (context) => AuthCubit(Session().countryId ?? 0, Session().cityId ?? 0),
                 child: Expanded(
                   child: TabBarView(
                     controller: controller,

@@ -70,12 +70,26 @@ class AuthenticationRepo {
     }
   }
 
+  Future<Either<Failure, UserModel>> otpForgetPassword({required String email, required String code}) async {
+    try {
+      final result = await authenticationRemoteDataSource.otpForgetPassword(code: code, email: email);
+      if (result['status'] == "unverified code") {
+        throw BadRequestException(L10n.tr().unverifiedCode);
+      } else {
+        // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['data'])));
+        final user = UserModel.fromJson(result['data']);
+        return Right(user);
+      }
+    } on Exception catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
   Future<Either<Failure, String?>> updatePassword({required String password, required String email}) async {
     try {
       final result = await authenticationRemoteDataSource.updatePassword(password: password, email: email);
       // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['data'])));
-      final user = UserModel.fromJson(result['data']);
-      return Right("user");
+      return Right(result['data'].toString());
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -93,8 +107,9 @@ class AuthenticationRepo {
       final result = await authenticationRemoteDataSource.forgetPassword(email: email);
 
       return Right(result);
-    } on Failure catch (e) {
-      return Left(e);
+    } catch (e) {
+      if (e is Failure) return Left(e);
+      return left(ServerFailure(e.toString()));
     }
   }
 

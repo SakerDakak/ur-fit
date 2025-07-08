@@ -9,6 +9,57 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get yourHealth => 'Your Health';
+
+  @override
+  String get isMoreImportantThanAnything => 'is more important than anything';
+
+  @override
+  String get welconeToMyDailyCompanionToAHealthyLife =>
+      'Welcome to my daily companion to a healthy life';
+
+  @override
+  String get onboardingParagraphOne =>
+      'Did you know that small steps every day make a difference? We are here to help you track your health, sleep better, and live with more energy!';
+
+  @override
+  String get startYourHealthJourneyToday => 'Start your health journey today';
+
+  @override
+  String get move => 'Move';
+
+  @override
+  String get yourBodyToFreeYourPower => 'Your body to free your power';
+
+  @override
+  String get youDontNeedClub => 'You don\'t need a club';
+
+  @override
+  String get youNeedToStart => 'You need to start';
+
+  @override
+  String get onboardingParagraphTwo =>
+      'With us, you can exercise at home, at your own time, with daily workouts, smart reminders, and fun challenges waiting for you!';
+
+  @override
+  String get everyMpementsGetYouCloserToYourGoal =>
+      'Every movement gets you closer to your goal';
+
+  @override
+  String get eat => 'Eat';
+
+  @override
+  String get rightLiveRight => 'right, live right';
+
+  @override
+  String get sayGoodByeToConfusionAndreceiveHealthyDeliciousMeals =>
+      'Say goodbye to confusion and receive healthy, delicious meals';
+
+  @override
+  String get onboardingParagraphThree =>
+      'And plan your meals, track your calories, and discover smart alternatives, because healthy eating doesn\'t mean deprivation, but balance and intelligence.';
+
+  @override
   String get resendAfter => 'Resend after';
 
   @override

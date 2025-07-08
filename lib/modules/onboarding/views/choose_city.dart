@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 import 'package:urfit/modules/onboarding/controller/onboarding_cubit.dart';
@@ -91,8 +92,9 @@ class _ChooseCityState extends State<ChooseCity> {
                   // selectedCity = selectedCity ?? context.read<OnboardingCubit>().state.cities.first;
                   // context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
                   // context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
-                  context.push(AuthScreen.routeWzExtra,
-                      extra: (context.read<OnboardingCubit>().selectedCountryId!, selectedCity!.id));
+                  Session().cityId = selectedCity!.id;
+                  Session().countryId = context.read<OnboardingCubit>().selectedCountryId;
+                  context.push(AuthScreen.route);
                 }),
             SizedBox(
               height: 36.px,

@@ -9,6 +9,56 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get yourHealth => 'صحتك';
+
+  @override
+  String get isMoreImportantThanAnything => 'اهم من كل شئ';
+
+  @override
+  String get welconeToMyDailyCompanionToAHealthyLife =>
+      'مرحبًا بك في رفيقي اليومي لحياة صحية';
+
+  @override
+  String get onboardingParagraphOne =>
+      'هل تعلم ان خطوات صغيرة كل يوم تصنع فرقا نحن هنا نساعدك تتابع صحتك ,تنام افضل ,وتعيش بطاقة اعلى !';
+
+  @override
+  String get startYourHealthJourneyToday => 'ابدأ رحلتك الصحية اليوم';
+
+  @override
+  String get move => 'حرك';
+
+  @override
+  String get yourBodyToFreeYourPower => 'جسمك حرر طاقتك';
+
+  @override
+  String get youDontNeedClub => 'ما تحتاج نادى';
+
+  @override
+  String get youNeedToStart => 'تحتاج تبدأ';
+
+  @override
+  String get onboardingParagraphTwo =>
+      'معانا تقدر تحرك فى بيتك,فى وقتك المناسب, تمارين يومية ,تذكيرات ذكية وتحديات  ممتعة بانتظارك !';
+
+  @override
+  String get everyMpementsGetYouCloserToYourGoal => 'كل حركة تقربك لهدفك';
+
+  @override
+  String get eat => 'كل';
+
+  @override
+  String get rightLiveRight => 'صح تعيش صح';
+
+  @override
+  String get sayGoodByeToConfusionAndreceiveHealthyDeliciousMeals =>
+      'ودعً الحيرة واستقبل وجبات صحية لذيذة';
+
+  @override
+  String get onboardingParagraphThree =>
+      'وخطط وجباتك ,احسب سعراتك و اكتشف البدائل الذكية ,لان الاكل الصحى مايعنى الحرمان,بل توازن وذكاء ';
+
+  @override
   String get resendAfter => 'اعادة الارسال بعد';
 
   @override

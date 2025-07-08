@@ -8,7 +8,7 @@ part of 'cached_nutrition.dart';
 
 class NutritionDataAdapter extends TypeAdapter<NutritionData> {
   @override
-  final int typeId = 13;
+  final int typeId = 3;
 
   @override
   NutritionData read(BinaryReader reader) {
