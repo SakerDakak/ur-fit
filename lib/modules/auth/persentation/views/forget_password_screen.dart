@@ -10,9 +10,9 @@ import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/di.dart';
+import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_otp_screen.dart';
-import 'package:urfit/service_locator.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -29,7 +29,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Future forgetPassword() async {
     LoadingHelper.startLoading();
     final email = emailController.text.trim();
-    final response = await sl<AuthenticationRepo>().forgetPassword(email: email);
+    final response = await di<AuthRepo>().forgetPassword(email: email);
     LoadingHelper.stopLoading();
     response.fold(
       (error) {

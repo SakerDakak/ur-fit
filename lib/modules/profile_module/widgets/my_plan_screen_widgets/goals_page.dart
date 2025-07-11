@@ -6,8 +6,9 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/personal_info/data/models/user_goals_model.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 
 import '../../../../core/presentation/views/widgets/goal_section.dart';
 
@@ -16,10 +17,10 @@ class GoalsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SetupPersonalInfoCubit>().getGoals();
+    context.read<UpdateUserInfoCubit>().getGoals();
 
-    final cubit = context.read<SetupPersonalInfoCubit>();
-    return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+    final cubit = context.read<UpdateUserInfoCubit>();
+    return BlocBuilder<UpdateUserInfoCubit, UpdateUserInfoState>(
       buildWhen: (p, c) =>
           (p.userInfo.selectedGaols != c.userInfo.selectedGaols) ||
           (p.getGoalsState != c.getGoalsState),
@@ -46,8 +47,10 @@ class GoalsPage extends StatelessWidget {
 
             // section one goals
             GoalSection(
-                state: state,
-                cubit: cubit,
+              selectedGoals: state.userInfo.selectedGaols,
+                onTap: (p0) => null, // cubit.selectGoal(p0),
+                showLoader:
+                    false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
                 goals: state.goals.take(2).toList()),
 
             const SizedBox(height: 16),
@@ -61,8 +64,10 @@ class GoalsPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             GoalSection(
-                state: state,
-                cubit: cubit,
+                 selectedGoals: state.userInfo.selectedGaols,
+                onTap: (p0) => null, // cubit.selectGoal(p0),
+                showLoader:
+                    false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
                 goals: state.goals.skip(2).toList()),
 
             // continue button

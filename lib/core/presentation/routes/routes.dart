@@ -13,8 +13,10 @@ import 'package:urfit/modules/meals_module/screens/meals_picker_screen.dart';
 import 'package:urfit/modules/onboarding/views/choose_city.dart';
 import 'package:urfit/modules/onboarding/views/choose_language.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
-import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
+import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/personal_info/screens/equipment_selection_screen.dart';
+import 'package:urfit/modules/personal_info/screens/presonal_info_steps/personal_info_steps_screen.dart';
+import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
@@ -30,6 +32,7 @@ import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 
+import '../../../di.dart';
 // import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
 // import '../../../modules/auth/persentation/bloc/login_bloc.dart';
 import '../../../modules/auth/persentation/views/auth_screen.dart';
@@ -38,7 +41,6 @@ import '../../../modules/home_module/screens/main_page.dart';
 import '../../../modules/onboarding/views/choose_country.dart';
 import '../../../modules/splash_screen/splash_screen.dart';
 import '../../../modules/subscription_module/data/models/package_model.dart';
-import '../../../service_locator.dart';
 
 class AppRouter {
   static const authenticationScreen = "/";
@@ -206,12 +208,27 @@ class AppRouter {
 
       /// setup personal info route
       GoRoute(
-        path: SetupPersonalInfoScreen.route,
-        name: SetupPersonalInfoScreen.route,
+        path: StartPersonalInfoScreen.route,
+        name: StartPersonalInfoScreen.route,
+        builder: (context, state) => const StartPersonalInfoScreen(),
+      ),
+      GoRoute(
+        path: PersonalInfoStepsScreen.route,
+        name: PersonalInfoStepsScreen.route,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => sl<SetupPersonalInfoCubit>(),
-            child: const SetupPersonalInfoScreen(),
+            create: (context) => di<SetupPersonalInfoCubit>(),
+            child: const PersonalInfoStepsScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: EquipmentSelectionScreen.route,
+        name: EquipmentSelectionScreen.route,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => di<SetupPersonalInfoCubit>(),
+            child: const EquipmentSelectionScreen(),
           );
         },
       ),
@@ -222,7 +239,7 @@ class AppRouter {
         name: LoadingPlanScreen.route,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => sl<SetupPersonalInfoCubit>(),
+            create: (context) => di<SetupPersonalInfoCubit>(),
             child: const LoadingPlanScreen(),
           );
         },
@@ -260,7 +277,7 @@ class AppRouter {
         name: MyPlanScreen.route,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => sl<SetupPersonalInfoCubit>(),
+            create: (context) => di<SetupPersonalInfoCubit>(),
             child: const MyPlanScreen(),
           );
         },

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/di.dart';
+import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/update_password.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/otp_widget.dart';
-import 'package:urfit/service_locator.dart';
 
 class ForgetPasswordOtpScreen extends StatelessWidget {
   const ForgetPasswordOtpScreen({super.key, required this.email});
@@ -12,7 +12,7 @@ class ForgetPasswordOtpScreen extends StatelessWidget {
   final String email;
   @override
   Widget build(BuildContext context) {
-    final repo = sl<AuthenticationRepo>();
+    final repo = di<AuthRepo>();
     submitOTp(String otp) async {
       final resp = await repo.otpForgetPassword(email: email, code: otp);
       resp.fold(

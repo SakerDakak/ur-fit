@@ -5,7 +5,8 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/default_animated_switcher.dart';
-import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/custom_navigation_bar.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/equipments_page.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/goals_page.dart';
@@ -18,7 +19,7 @@ class MyPlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SetupPersonalInfoCubit>();
+    final cubit = context.read<UpdateUserInfoCubit>();
 
     return PopScope(
       canPop: false,
@@ -63,7 +64,7 @@ class MyPlanScreen extends StatelessWidget {
               const SizedBox(height: 8),
 
               // current page indicator
-              BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+              BlocBuilder<UpdateUserInfoCubit, UpdateUserInfoState>(
                 buildWhen: (p, c) => p.currentPageIndex != c.currentPageIndex,
                 builder: (context, state) {
                   return DefaultAnimatedSwitcher(
@@ -100,7 +101,7 @@ class MyPlanScreen extends StatelessWidget {
     );
   }
 
-  Column _buildTheFirstThreePagesTabsIndicator(SetupPersonalInfoCubit cubit, BuildContext context) {
+  Column _buildTheFirstThreePagesTabsIndicator(UpdateUserInfoCubit cubit, BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -156,7 +157,7 @@ class MyPlanScreen extends StatelessWidget {
 
   void _handleBackNavigation(
     BuildContext context,
-    SetupPersonalInfoCubit cubit,
+    UpdateUserInfoCubit cubit,
   ) {
     if (cubit.state.currentPageIndex == 0) {
       Navigator.pop(context);

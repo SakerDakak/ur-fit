@@ -14,9 +14,9 @@ import 'package:urfit/modules/subscription_module/controller/subscription_cubit.
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
 import 'core/presentation/routes/routes.dart';
+import 'di.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
 import 'modules/onboarding/controller/onboarding_cubit.dart';
-import 'service_locator.dart';
 
 class UrFitApp extends StatelessWidget {
   const UrFitApp({super.key});
@@ -26,16 +26,16 @@ class UrFitApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => sl<AppCubit>()..init(),
+          create: (BuildContext context) => di<AppCubit>()..init(),
         ),
         BlocProvider(
-          create: (BuildContext context) => sl<HealthCubit>(),
+          create: (BuildContext context) => di<HealthCubit>(),
         ),
-        BlocProvider(create: (BuildContext context) => sl<OnboardingCubit>()),
-        BlocProvider(create: (BuildContext context) => sl<MealsCubit>()),
-        BlocProvider(create: (BuildContext context) => sl<WorkoutCubit>()),
-        BlocProvider(create: (BuildContext context) => sl<SettingCubit>()),
-        BlocProvider(create: (BuildContext context) => sl<SubscriptionCubit>()),
+        BlocProvider(create: (BuildContext context) => di<OnboardingCubit>()),
+        BlocProvider(create: (BuildContext context) => di<MealsCubit>()),
+        BlocProvider(create: (BuildContext context) => di<WorkoutCubit>()),
+        BlocProvider(create: (BuildContext context) => di<SettingCubit>()),
+        BlocProvider(create: (BuildContext context) => di<SubscriptionCubit>()),
       ],
       child: Sizer(
         builder: (BuildContext context, Orientation orientation, ScreenType screenType) {

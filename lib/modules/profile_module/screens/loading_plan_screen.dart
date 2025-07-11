@@ -9,7 +9,7 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 
-import '../../personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import '../../personal_info/cubit/setup_personal_info_cubit.dart';
 
 class LoadingPlanScreen extends StatefulWidget {
   const LoadingPlanScreen({super.key});

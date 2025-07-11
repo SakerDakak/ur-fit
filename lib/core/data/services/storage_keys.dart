@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:urfit/service_locator.dart';
+import 'package:urfit/di.dart';
 
 class StorageKeys {
   // static String lightTheme = "lightTheme";
@@ -20,17 +20,17 @@ class StorageKeys {
 class TokenService {
   TokenService._();
   static String? getToken() {
-    final tok = sl<SharedPreferences>().getString(StorageKeys.token);
+    final tok = di<SharedPreferences>().getString(StorageKeys.token);
     debugPrint("get Token $tok");
     return tok;
   }
 
   static Future<bool> setToken(String token) async {
     debugPrint("setToken $token");
-    return await sl<SharedPreferences>().setString(StorageKeys.token, token);
+    return await di<SharedPreferences>().setString(StorageKeys.token, token);
   }
 
   static Future<bool> deleteToken() async {
-    return await sl<SharedPreferences>().remove(StorageKeys.token);
+    return await di<SharedPreferences>().remove(StorageKeys.token);
   }
 }

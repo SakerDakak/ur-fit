@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({
@@ -15,7 +16,7 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+    return BlocBuilder<UpdateUserInfoCubit, UpdateUserInfoState>(
         buildWhen: (p, c) => p.currentPageIndex != c.currentPageIndex,
         builder: (context, state) {
           return Padding(

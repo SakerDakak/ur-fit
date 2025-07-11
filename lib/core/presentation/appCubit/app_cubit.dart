@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
-import 'package:urfit/service_locator.dart';
+import 'package:urfit/di.dart';
 
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   // final EasyLocalization localization ;
-  AppCubit() : super(AppState(currentLocal: sl<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
+  AppCubit() : super(AppState(currentLocal: di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
   late Box themeBox;
   late String lang;
   bool? notificationEnabled;
@@ -21,7 +21,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void getLocal() {
-    lang = sl<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar';
+    lang = di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar';
   }
 
   ThemeMode get currentTheme => state.isDark == null
@@ -42,7 +42,7 @@ class AppCubit extends Cubit<AppState> {
   changeLang(String lang) async {
     print("change Lang $lang");
     // await EasyLocalization.of(AppConst.rootScaffoldKey.currentContext!)?.setLocale(Locale(lang));
-    await sl<SharedPreferences>().setString(StorageKeys.lang, lang);
+    await di<SharedPreferences>().setString(StorageKeys.lang, lang);
     this.lang = lang;
     emit(state.copyWith(currentLocal: lang));
   }

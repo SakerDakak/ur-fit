@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/login_form.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/register_form.dart';
@@ -72,7 +73,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                 ),
               ),
               BlocProvider(
-                create: (context) => AuthCubit(Session().countryId ?? 0, Session().cityId ?? 0),
+                create: (context) => di<AuthCubit>(param1: Session().countryId ?? 0, param2: Session().cityId ?? 0),
                 child: Expanded(
                   child: TabBarView(
                     controller: controller,

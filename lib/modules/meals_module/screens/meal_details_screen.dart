@@ -11,7 +11,6 @@ import 'package:urfit/modules/meals_module/widgets/meal_description.dart';
 import 'package:urfit/modules/meals_module/widgets/meal_properties.dart';
 
 import '../../../core/presentation/utils/enums.dart';
-import '../../personal_info/widgets/shimmer_widgets/values_gridview_shimmer.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   final int id;
@@ -37,7 +36,8 @@ class MealDetailsScreen extends StatelessWidget {
           builder: (context, state) {
             if (state.getMealDetailsState == RequestState.loading ||
                 state.getMealDetailsState == RequestState.failure) {
-              return const ValuesGridviewShimmer();
+              // return const ValuesGridviewShimmer();
+              return const CircularProgressIndicator();
             } else {
               final meal = state.mealDetails!;
               final kcal = meal.nutrition.nutrients.first.amount;

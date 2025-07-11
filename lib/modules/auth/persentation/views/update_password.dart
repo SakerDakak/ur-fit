@@ -5,9 +5,9 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/di.dart';
+import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
-import 'package:urfit/service_locator.dart';
 
 import '../../../../core/presentation/assets/app_assets.dart';
 import '../../../../core/presentation/style/colors.dart';
@@ -98,7 +98,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 if (_formKey.currentState?.validate() != true) return;
                 LoadingHelper.startLoading();
                 try {
-                  final respo = await sl<AuthenticationRepo>()
+                  final respo = await di<AuthRepo>()
                       .updatePassword(password: passwordController.text, email: widget.email);
                   respo.fold((l) {}, (r) {
                     Alerts.showToast(r ?? '', error: false);

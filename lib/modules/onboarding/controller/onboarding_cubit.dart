@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
+import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/onboarding/model/country/country_model.dart';
 
 part 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
-  final AuthenticationRepo authenticationRepo;
+  final AuthRepo authenticationRepo;
   OnboardingCubit(this.authenticationRepo) : super(OnboardingInitial());
 
   CountryModel? _selectedCountry;

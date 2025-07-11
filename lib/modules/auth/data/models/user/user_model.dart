@@ -8,7 +8,6 @@ part 'user_model.freezed.dart';
 // But if Person was not serializable, we could skip it.
 part 'user_model.g.dart';
 
-
 @freezed
 class UserModel with _$UserModel {
   const factory UserModel({
@@ -31,7 +30,6 @@ class UserModel with _$UserModel {
     // @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
     @JsonKey(name: 'body_parts') required List<String>? bodyParts,
     @JsonKey(name: 'exercise_days') required List<String>? exerciseDays,
-
     @JsonKey(name: 'workoutTypes') required List<WorkoutType>? workoutTypes,
     required List<Equipment>? equipments,
     @DietConverter() required Diet? diet,
@@ -45,12 +43,11 @@ class UserModel with _$UserModel {
     @JsonKey(name: 'country_key') required String? countryKey,
     @JsonKey(name: 'is_have_exercise_plan') required bool? haveExercisePlan,
     @JsonKey(name: 'is_have_meal_plan') required bool? haveMealPlan,
-
   }) = _User;
 
-  factory UserModel.fromJson(Map<String, Object?> json) =>
-      _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, Object?> json) => _$UserModelFromJson(json);
 }
+
 // Custom converter for JSON
 class GenderEnumConverter implements JsonConverter<GenderEnum?, int?> {
   const GenderEnumConverter();
@@ -76,15 +73,14 @@ class BodyShapeConverter implements JsonConverter<BodyShape?, dynamic> {
 
   @override
   BodyShape? fromJson(dynamic json) {
-    if(json is List){
+    if (json is List) {
       return null;
-    }else if(json is Map){
-      return BodyShape.fromJson(json as Map<String,dynamic>);
-    }else{
+    } else if (json is Map) {
+      return BodyShape.fromJson(json as Map<String, dynamic>);
+    } else {
       return null;
     }
   }
-
 
   @override
   toJson(BodyShape? object) {
@@ -100,15 +96,14 @@ class CountryConverter implements JsonConverter<Country?, dynamic> {
 
   @override
   Country? fromJson(dynamic json) {
-    if(json is List){
+    if (json is List) {
       return null;
-    }else if(json is Map){
-      return Country.fromJson(json as Map<String,dynamic>);
-    }else{
+    } else if (json is Map) {
+      return Country.fromJson(json as Map<String, dynamic>);
+    } else {
       return null;
     }
   }
-
 
   @override
   toJson(Country? object) {
@@ -118,20 +113,20 @@ class CountryConverter implements JsonConverter<Country?, dynamic> {
     };
   }
 }
+
 class CityConverter implements JsonConverter<City?, dynamic> {
   const CityConverter();
 
   @override
   City? fromJson(dynamic json) {
-    if(json is List){
+    if (json is List) {
       return null;
-    }else if(json is Map){
-      return City.fromJson(json as Map<String,dynamic>);
-    }else{
+    } else if (json is Map) {
+      return City.fromJson(json as Map<String, dynamic>);
+    } else {
       return null;
     }
   }
-
 
   @override
   toJson(City? object) {
@@ -147,11 +142,11 @@ class DietConverter implements JsonConverter<Diet?, dynamic> {
 
   @override
   Diet? fromJson(dynamic json) {
-    if(json is List){
+    if (json is List) {
       return null;
-    }else if(json is Map){
-      return Diet.fromJson(json as Map<String,dynamic>);
-    }else{
+    } else if (json is Map) {
+      return Diet.fromJson(json as Map<String, dynamic>);
+    } else {
       return null;
     }
   }
@@ -165,16 +160,17 @@ class DietConverter implements JsonConverter<Diet?, dynamic> {
     };
   }
 }
+
 class MealVarietyConverter implements JsonConverter<MealVariety?, dynamic> {
   const MealVarietyConverter();
 
   @override
   MealVariety? fromJson(dynamic json) {
-    if(json is List){
+    if (json is List) {
       return null;
-    }else if(json is Map){
-      return MealVariety.fromJson(json as Map<String,dynamic>);
-    }else{
+    } else if (json is Map) {
+      return MealVariety.fromJson(json as Map<String, dynamic>);
+    } else {
       return null;
     }
   }
@@ -187,6 +183,7 @@ class MealVarietyConverter implements JsonConverter<MealVariety?, dynamic> {
     };
   }
 }
+
 @freezed
 class Country with _$Country {
   factory Country({
@@ -297,4 +294,9 @@ class MealVariety with _$MealVariety {
   }) = _MealVariety;
 
   factory MealVariety.fromJson(Map<String, dynamic> json) => _$MealVarietyFromJson(json);
+}
+
+extension UserModelExtension on UserModel {
+  bool get hasCompleteProfile =>
+      hasValidSubscription == true || (age != null && currentWeight != null && height != null);
 }

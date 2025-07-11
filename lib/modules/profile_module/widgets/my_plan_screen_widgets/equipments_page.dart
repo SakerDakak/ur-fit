@@ -10,7 +10,7 @@ import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/profile_module/screens/loading_plan_screen.dart';
 
 import '../../../../core/presentation/views/widgets/equipment_list.dart';
-import '../../../personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import '../../../personal_info/cubit/setup_personal_info_cubit.dart';
 
 class EquipmentsPage extends StatelessWidget {
   const EquipmentsPage({super.key});

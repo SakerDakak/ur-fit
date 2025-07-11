@@ -11,14 +11,14 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_curve_slider.dart';
-import 'package:urfit/modules/personal_info/controller/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
 
 class PersonalInfoPage extends StatelessWidget {
   const PersonalInfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SetupPersonalInfoCubit>();
+    final cubit = context.read<UpdateUserInfoCubit>();
     final user = Session().currentUser;
 
     return ListView(

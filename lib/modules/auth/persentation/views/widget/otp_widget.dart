@@ -11,8 +11,8 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/auth/data/repo/authentication_repo.dart';
-import 'package:urfit/service_locator.dart';
+import 'package:urfit/di.dart';
+import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/style/fonts.dart';
@@ -33,7 +33,7 @@ class OTPWidget extends StatefulWidget {
 
 class _OTPWidgetState extends State<OTPWidget> {
   StringBuffer otpCode = StringBuffer();
-  final authRepo = sl<AuthenticationRepo>();
+  final authRepo = di<AuthRepo>();
   late Timer _timer;
   final seconds = ValueNotifier<int>(30);
   final isResending = ValueNotifier<bool>(false);

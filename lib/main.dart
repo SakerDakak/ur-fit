@@ -6,8 +6,8 @@ import 'package:urfit/core/presentation/utils/bloc_observer.dart';
 import 'package:urfit/ur_fit_app.dart';
 
 import 'core/presentation/utils/hive_services.dart';
+import 'di.dart';
 import 'firebase_options.dart';
-import 'service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

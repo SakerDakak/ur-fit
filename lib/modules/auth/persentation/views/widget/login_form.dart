@@ -12,7 +12,7 @@ import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dar
 import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/social_media_widget.dart';
 import 'package:urfit/modules/home_module/screens/main_page.dart';
-import 'package:urfit/modules/personal_info/screens/setup_personal_info_screen.dart';
+import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
@@ -155,11 +155,11 @@ class _LoginFormState extends State<LoginForm> {
                     context.push(RegisterOTPScreen.routeWzExtra, extra: authCubit);
                   } else if (state is CheckedUncompletedInfoUser) {
                     /// case 2: user verified but has no valid subscription
-                    context.pushReplacement(SetupPersonalInfoScreen.route);
+                    context.go(StartPersonalInfoScreen.route);
                   } else if (state is CheckedWithInfoUser) {
                     /// case 3: user verified, has valid subscription, and has personal info
                     // context.pushReplacementNamed(AppRouter.authenticationScreen);
-                    context.push(MainPage.routeWithBool(false));
+                    context.go(MainPage.routeWithBool(false));
                   }
                 },
                 builder: (context, state) => CustomElevatedButton(
