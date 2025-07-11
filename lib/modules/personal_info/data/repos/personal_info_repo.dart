@@ -5,6 +5,7 @@ import 'package:urfit/modules/personal_info/data/data_source/personal_info_datas
 import 'package:urfit/modules/personal_info/data/models/body_parts_model.dart';
 import 'package:urfit/modules/personal_info/data/models/selection_item_model.dart';
 import 'package:urfit/modules/personal_info/data/models/user_goals_model.dart';
+import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
 
 import '../models/no_of_daily_meals.dart';
 
@@ -103,7 +104,7 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, UserModel>> updatePersonalInfo({required personalInfoModel}) async {
+  Future<Either<Failure, UserModel>> updatePersonalInfo({required UserInfoRequest personalInfoModel}) async {
     try {
       var result = await _dataSource.updatePersonalInfo(personalInfoModel: personalInfoModel);
       // await sl<AuthenticationRepo>().saveUser(CacheUser.fromUserModel(result));
@@ -114,15 +115,15 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, void>> changePassword(
-      {required String oldPassword, required String newPassword, required String confirmPassword}) async {
-    try {
-      var result = await _dataSource.changePassword(
-          oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword);
+  // Future<Either<Failure, void>> changePassword(
+  //     {required String oldPassword, required String newPassword, required String confirmPassword}) async {
+  //   try {
+  //     var result = await _dataSource.changePassword(
+  //         oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword);
 
-      return right(result);
-    } catch (e) {
-      return left(ServerFailure(e.toString()));
-    }
-  }
+  //     return right(result);
+  //   } catch (e) {
+  //     return left(ServerFailure(e.toString()));
+  //   }
+  // }
 }

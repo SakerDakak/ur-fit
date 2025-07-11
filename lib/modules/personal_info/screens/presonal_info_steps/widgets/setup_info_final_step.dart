@@ -50,7 +50,7 @@ class SetupInfoFinalStep extends StatelessWidget {
                   }
                 }
                 if (isSectionTwoSelected) {
-                  if (state.userInfo.diet_id == null) {
+                  if (state.userInfo.dietId == null) {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text(L10n.tr().dietTypeSelectionIsRequired)));
                     return;

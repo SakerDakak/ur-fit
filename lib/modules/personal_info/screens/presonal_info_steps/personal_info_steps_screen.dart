@@ -10,9 +10,9 @@ import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/
 import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/setup_info_step_two.dart';
 import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/step_one/step_one_flow.dart';
 
-class PersonalInfoStepsScreen extends StatelessWidget {
-  const PersonalInfoStepsScreen({super.key});
-  static const route = '/PersonalInfoStepsScreen';
+class PresonalInfoLayoutScreen extends StatelessWidget {
+  const PresonalInfoLayoutScreen({super.key});
+  static const route = '/PresonalInfoLayoutScreen';
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SetupPersonalInfoCubit>();

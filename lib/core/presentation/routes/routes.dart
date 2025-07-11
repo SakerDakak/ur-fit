@@ -213,12 +213,12 @@ class AppRouter {
         builder: (context, state) => const StartPersonalInfoScreen(),
       ),
       GoRoute(
-        path: PersonalInfoStepsScreen.route,
-        name: PersonalInfoStepsScreen.route,
+        path: PresonalInfoLayoutScreen.route,
+        name: PresonalInfoLayoutScreen.route,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => di<SetupPersonalInfoCubit>(),
-            child: const PersonalInfoStepsScreen(),
+            child: const PresonalInfoLayoutScreen(),
           );
         },
       ),

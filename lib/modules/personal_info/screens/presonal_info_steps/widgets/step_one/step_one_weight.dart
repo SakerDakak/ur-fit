@@ -17,8 +17,8 @@ class StepOneWeight extends StatelessWidget {
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (previous, current) => previous.userInfo != current.userInfo,
       builder: (context, state) {
-        bool canProssed = state.userInfo.current_weight != null ;
-        print("canProssed: ${state.userInfo.current_weight}");
+        bool canProssed = state.userInfo.currentWeight != null ;
+        print("canProssed: ${state.userInfo.currentWeight}");
         return SingleChildScrollView(
           child: Column(children: [
             Align(
@@ -38,7 +38,7 @@ class StepOneWeight extends StatelessWidget {
                 onTapOutside: (PointerDownEvent event) {
                   FocusScope.of(context).unfocus();
                 },
-                initialValue: state.userInfo.current_weight?.toString(),
+                initialValue: state.userInfo.currentWeight?.toString(),
           
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,

@@ -17,10 +17,10 @@ class FinalStepNumOfDailyMeals extends StatelessWidget {
     final cubit = context.read<SetupPersonalInfoCubit>();
     cubit.getDietOptions();
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-      buildWhen: (previous, current) => previous.userInfo.diet_id != current.userInfo.diet_id,
+      buildWhen: (previous, current) => previous.userInfo.dietId != current.userInfo.dietId,
       builder: (context, state) {
-        bool canProssed = state.userInfo.diet_id != null;
-        print("canProssed: ${state.userInfo.diet_id}");
+        bool canProssed = state.userInfo.dietId != null;
+        print("canProssed: ${state.userInfo.dietId}");
         // final image = state.diet.firstWhere((diet) => diet.id == state.userInfo.diet_id).image;
         // if (image != null) {
         //
@@ -78,7 +78,7 @@ class FinalStepNumOfDailyMeals extends StatelessWidget {
                       value: state.diet[index].name,
                       onTap: () => null, // cubit.updateDietId(
                       // state.diet[index].id),
-                      isSelected: state.userInfo.diet_id == state.diet[index].id,
+                      isSelected: state.userInfo.dietId == state.diet[index].id,
                     ),
                   );
                   // }

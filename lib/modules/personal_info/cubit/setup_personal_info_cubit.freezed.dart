@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SetupPersonalInfoState {
-  UserPersonalInfoModel get userInfo => throw _privateConstructorUsedError;
+  UserInfoRequest get userInfo => throw _privateConstructorUsedError;
 
   ///
   List<UserGoalsModel> get goals => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $SetupPersonalInfoStateCopyWith<$Res> {
       _$SetupPersonalInfoStateCopyWithImpl<$Res, SetupPersonalInfoState>;
   @useResult
   $Res call(
-      {UserPersonalInfoModel userInfo,
+      {UserInfoRequest userInfo,
       List<UserGoalsModel> goals,
       List<SelectionItemModel> mealsNotLiked,
       List<SelectionItemModel> mealsLiked,
@@ -58,8 +58,6 @@ abstract class $SetupPersonalInfoStateCopyWith<$Res> {
       List<BodyPartsModel> muscleFocusData,
       List<SelectionItemModel> workoutTypes,
       List<SelectionItemModel> equipments});
-
-  $UserPersonalInfoModelCopyWith<$Res> get userInfo;
 }
 
 /// @nodoc
@@ -93,7 +91,7 @@ class _$SetupPersonalInfoStateCopyWithImpl<$Res,
       userInfo: null == userInfo
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
-              as UserPersonalInfoModel,
+              as UserInfoRequest,
       goals: null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
@@ -132,16 +130,6 @@ class _$SetupPersonalInfoStateCopyWithImpl<$Res,
               as List<SelectionItemModel>,
     ) as $Val);
   }
-
-  /// Create a copy of SetupPersonalInfoState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserPersonalInfoModelCopyWith<$Res> get userInfo {
-    return $UserPersonalInfoModelCopyWith<$Res>(_value.userInfo, (value) {
-      return _then(_value.copyWith(userInfo: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -154,7 +142,7 @@ abstract class _$$SetupPersonalInfoStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserPersonalInfoModel userInfo,
+      {UserInfoRequest userInfo,
       List<UserGoalsModel> goals,
       List<SelectionItemModel> mealsNotLiked,
       List<SelectionItemModel> mealsLiked,
@@ -164,9 +152,6 @@ abstract class _$$SetupPersonalInfoStateImplCopyWith<$Res>
       List<BodyPartsModel> muscleFocusData,
       List<SelectionItemModel> workoutTypes,
       List<SelectionItemModel> equipments});
-
-  @override
-  $UserPersonalInfoModelCopyWith<$Res> get userInfo;
 }
 
 /// @nodoc
@@ -199,7 +184,7 @@ class __$$SetupPersonalInfoStateImplCopyWithImpl<$Res>
       userInfo: null == userInfo
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
-              as UserPersonalInfoModel,
+              as UserInfoRequest,
       goals: null == goals
           ? _value._goals
           : goals // ignore: cast_nullable_to_non_nullable
@@ -265,7 +250,7 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
         _equipments = equipments;
 
   @override
-  final UserPersonalInfoModel userInfo;
+  final UserInfoRequest userInfo;
 
   ///
   final List<UserGoalsModel> _goals;
@@ -407,7 +392,7 @@ class _$SetupPersonalInfoStateImpl implements _SetupPersonalInfoState {
 
 abstract class _SetupPersonalInfoState implements SetupPersonalInfoState {
   const factory _SetupPersonalInfoState(
-          {required final UserPersonalInfoModel userInfo,
+          {required final UserInfoRequest userInfo,
           final List<UserGoalsModel> goals,
           final List<SelectionItemModel> mealsNotLiked,
           final List<SelectionItemModel> mealsLiked,
@@ -420,7 +405,7 @@ abstract class _SetupPersonalInfoState implements SetupPersonalInfoState {
       _$SetupPersonalInfoStateImpl;
 
   @override
-  UserPersonalInfoModel get userInfo;
+  UserInfoRequest get userInfo;
 
   ///
   @override

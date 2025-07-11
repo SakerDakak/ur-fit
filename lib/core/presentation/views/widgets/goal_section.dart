@@ -8,8 +8,8 @@ import '../../../../modules/personal_info/screens/widgets/shimmer_widgets/goals_
 
 class GoalSection extends StatelessWidget {
   final bool showLoader;
-  final Function(UserGoalsModel) onTap;
-  final List<UserGoalsModel> selectedGoals;
+  final Function(int) onTap;
+  final Set<int> selectedGoals;
   final List<UserGoalsModel> goals;
   const GoalSection(
       {super.key, required this.goals, required this.showLoader, required this.onTap, required this.selectedGoals});
@@ -31,9 +31,9 @@ class GoalSection extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: goals.length,
               itemBuilder: (context, index) => GoalItem(
-                onTap: () => onTap(goals[index]),
+                onTap: () => onTap(goals[index].id),
                 goal: goals[index],
-                isSelected: selectedGoals.contains(goals[index]) ||
+                isSelected: selectedGoals.contains(goals[index].id) ||
                     (user != null && user.goals != null && user.goals!.any((goal) => goal.id == goals[index].id)),
               ),
             ),

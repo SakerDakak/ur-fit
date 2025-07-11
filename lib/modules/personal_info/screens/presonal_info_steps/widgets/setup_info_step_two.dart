@@ -49,7 +49,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
 
             // section one goals
             GoalSection(
-                selectedGoals: state.userInfo.selectedGaols,
+                selectedGoals: state.userInfo.selectedGaols.map((e) => e.id).toSet(),
                 onTap: (p0) => null, // cubit.selectGoal(p0),
                 showLoader:
                     false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
@@ -67,7 +67,7 @@ class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
 
             // section two goals
             GoalSection(
-              selectedGoals: state.userInfo.selectedGaols,
+              selectedGoals: state.userInfo.selectedGaols.map((e) => e.id).toSet(),
               onTap: (p0) => null, // cubit.selectGoal(p0),
               showLoader:
                   false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,

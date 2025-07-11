@@ -22,8 +22,7 @@ class GoalsPage extends StatelessWidget {
     final cubit = context.read<UpdateUserInfoCubit>();
     return BlocBuilder<UpdateUserInfoCubit, UpdateUserInfoState>(
       buildWhen: (p, c) =>
-          (p.userInfo.selectedGaols != c.userInfo.selectedGaols) ||
-          (p.getGoalsState != c.getGoalsState),
+          (p.userInfo.selectedGaols != c.userInfo.selectedGaols) || (p.getGoalsState != c.getGoalsState),
       builder: (context, state) {
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
@@ -47,7 +46,7 @@ class GoalsPage extends StatelessWidget {
 
             // section one goals
             GoalSection(
-              selectedGoals: state.userInfo.selectedGaols,
+                selectedGoals: state.userInfo.selectedGaols.map((e) => e.id).toSet(),
                 onTap: (p0) => null, // cubit.selectGoal(p0),
                 showLoader:
                     false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
@@ -64,7 +63,7 @@ class GoalsPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             GoalSection(
-                 selectedGoals: state.userInfo.selectedGaols,
+                selectedGoals: state.userInfo.selectedGaols.map((e) => e.id).toSet(),
                 onTap: (p0) => null, // cubit.selectGoal(p0),
                 showLoader:
                     false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,

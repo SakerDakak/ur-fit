@@ -76,7 +76,7 @@ class _EquipmentSelectionScreenState extends State<EquipmentSelectionScreen> {
           // continue button
           BlocSelector<SetupPersonalInfoCubit, SetupPersonalInfoState, bool>(
             selector: (state) => state.userInfo.selectedGaols.any(
-              (e) => e.sectionOneType != null,
+              (e) => true, // e.sectionOneType != null,
             ),
             builder: (context, isSectionTwoSelected) {
               return CustomElevatedButton(

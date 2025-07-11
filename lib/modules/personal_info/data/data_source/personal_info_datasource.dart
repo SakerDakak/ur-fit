@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:urfit/core/data/api/api_client.dart';
 import 'package:urfit/core/data/api/endpoints.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
@@ -139,75 +138,10 @@ class PersonalInfoDataSourceImpl {
     return data;
   }
 
-  Future<UserModel> updatePersonalInfo({required UserPersonalInfoModel personalInfoModel}) async {
-    print("gender : ${personalInfoModel.gender?.index}");
-    Map<String, dynamic> body = {
-      "gender": personalInfoModel.gender?.name,
-      "age": personalInfoModel.age,
-      "height": personalInfoModel.height,
-      "current_weight": personalInfoModel.current_weight,
-      "target_weight": personalInfoModel.targetWeight,
-      "training_days_per_week": personalInfoModel.weaklyTrainingCount,
-      "diet_id": personalInfoModel.diet_id,
-      "meal_variety_id": personalInfoModel.mealsVariantsId
-    };
-    personalInfoModel.selectedGaols.forEach((goal) {
-      final index = personalInfoModel.selectedGaols.indexOf(goal);
-      body.addAll({"goal_id[$index]": goal.id});
-    });
-    personalInfoModel.likedMealsIds.forEach((id) {
-      final index = personalInfoModel.likedMealsIds.indexOf(id);
-
-      body.addAll({"recipe_types[$index]": id});
-    });
-    personalInfoModel.notLikedMealsIds.forEach((id) {
-      final index = personalInfoModel.notLikedMealsIds.indexOf(id);
-
-      body.addAll({"foods_not_liked[$index]": id});
-    });
-    personalInfoModel.workoutTypesIds.forEach((id) {
-      final index = personalInfoModel.workoutTypesIds.indexOf(id);
-
-      body.addAll({"workout_type_id[$index]": id});
-    });
-    personalInfoModel.muscleFocusIds.forEach((id) {
-      final index = personalInfoModel.muscleFocusIds.indexOf(id);
-
-      body.addAll({"body_parts[$index]": id});
-    });
-    personalInfoModel.exciseDays.forEach((id) {
-      final index = personalInfoModel.exciseDays.indexOf(id);
-
-      body.addAll({"exercise_days[$index]": id});
-    });
-    personalInfoModel.equipmentsIds.forEach((id) {
-      final index = personalInfoModel.equipmentsIds.indexOf(id);
-
-      body.addAll({"equipments[$index]": id});
-    });
-    // print("body : $body");
-    // final body = {
-    //   "name": "osama habib",
-    //   "country_id": 1,
-    //   "city_id": 2,
-    //   "gender": "male",
-    //   "age": 29,
-    //   "height": 171.6,
-    //   "current_weight": 64.1,
-    //   "target_weight": 68.0,
-    //   "training_days_per_week": 4,
-    //   "diet_id": 6,
-    //   "meal_variety_id": 3,
-    //   "goal_id": [1, 2, 3, 4],
-    //   "recipe_types": [1, 2, 4, 3],
-    //   "foods_not_liked": [1, 2],
-    //   "workout_type_id": [1, 2],
-    //   "muscle_focus_id": [1, 2, 3, 4],
-    //   "equipments": [1, 2]
-    // };
+  Future<UserModel> updatePersonalInfo({required UserInfoRequest personalInfoModel}) async {
     final res = await dioServices.post(
       EndPoints.updateProfile,
-      data: FormData.fromMap(body),
+      data: personalInfoModel.toJson(),
     );
     print("result : ${res.data}");
     return UserModel.fromJson(res.data['data']);

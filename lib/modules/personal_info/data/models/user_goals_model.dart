@@ -14,6 +14,5 @@ class UserGoalsModel with _$UserGoalsModel {
     GoalsSectionOneEnum? sectionOneType,
   }) = _GoalsSectionOneModel;
 
-  factory UserGoalsModel.fromJson(Map<String, dynamic> json) =>
-      _$UserGoalsModelFromJson(json);
+  factory UserGoalsModel.fromJson(Map<String, dynamic> json) => _$UserGoalsModelFromJson(json);
 }

@@ -21,7 +21,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   SetupPersonalInfoCubit(this._repo)
       : super(
           SetupPersonalInfoState(
-            userInfo: UserPersonalInfoModel(selectedGaols: <UserGoalsModel>[]),
+            userInfo: UserInfoRequest(),
           ),
         ) {
     init();
@@ -31,7 +31,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
     final user = Session().currentUser;
 
     log("init user: ${user?.toJson()}");
-    final userInfoModel = UserPersonalInfoModel(
+    final userInfoModel = UserInfoRequest(
       selectedGaols: user!.goals
               ?.map((goal) => UserGoalsModel(
                   id: goal.id,
@@ -44,16 +44,16 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       gender: user.gender,
       height: user.height?.toDouble(),
       age: user.age,
-      current_weight: user.currentWeight?.toDouble(),
-      diet_id: user.diet?.id,
-      equipmentsIds: user.equipments?.map((equipment) => equipment.id).toList() ?? [],
+      currentWeight: user.currentWeight?.toDouble(),
+      dietId: user.diet?.id,
+      equipmentsIds: user.equipments?.map((equipment) => equipment.id).toSet() ?? {},
       targetWeight: user.targetWeight?.toDouble(),
-      likedMealsIds: user.recipeTypes?.map((recipe) => recipe.id).toList() ?? [],
-      exciseDays: user.exerciseDays ?? [],
+      likedMealsIds: user.recipeTypes?.map((recipe) => recipe.id).toSet() ?? {},
+      exciseDays: user.exerciseDays?.toSet() ?? {},
       mealsVariantsId: user.mealVariety?.id,
-      notLikedMealsIds: user.foodsNotLiked?.map((notLiked) => notLiked.id).toList() ?? [],
-      muscleFocusIds: user.bodyParts ?? [],
-      workoutTypesIds: user.workoutTypes?.map((workout) => workout.id).toList() ?? [],
+      notLikedMealsIds: user.foodsNotLiked?.map((notLiked) => notLiked.id).toSet() ?? {},
+      muscleFocusIds: user.bodyParts?.toSet() ?? {},
+      workoutTypesIds: user.workoutTypes?.map((workout) => workout.id).toSet() ?? {},
     );
     emit(state.copyWith(userInfo: userInfoModel));
     // state.copyWith(userInfo: );
@@ -87,9 +87,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getGoalsState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getGoalsState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getGoalsState: RequestState.success,
         goals: successData,
@@ -104,9 +104,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getNotLikedMealsState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getNotLikedMealsState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getNotLikedMealsState: RequestState.success,
         mealsNotLiked: successData,
@@ -121,9 +121,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getLikedMealsState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getLikedMealsState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getLikedMealsState: RequestState.success,
         mealsLiked: successData,
@@ -138,9 +138,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getDietOptionsState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getDietOptionsState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getDietOptionsState: RequestState.success,
         diet: successData,
@@ -155,9 +155,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getMealVariantsState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getMealVariantsState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getMealVariantsState: RequestState.success,
         mealVariants: successData,
@@ -172,9 +172,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getMuscleFocusState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getMuscleFocusState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getMuscleFocusState: RequestState.success,
         muscleFocusData: successData,
@@ -189,9 +189,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getWorkoutTypesState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getWorkoutTypesState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getWorkoutTypesState: RequestState.success,
         workoutTypes: successData,
@@ -206,9 +206,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
 
     result.fold(
       (failure) => emit(state.copyWith(
-        // getEquipmentsState: RequestState.failure,
-        // errMessage: failure.message,
-      )),
+          // getEquipmentsState: RequestState.failure,
+          // errMessage: failure.message,
+          )),
       (successData) => emit(state.copyWith(
         // getEquipmentsState: RequestState.success,
         equipments: successData,
@@ -226,9 +226,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
         print("failure $failure");
 
         emit(state.copyWith(
-          // getNoOfDailyMealsState: RequestState.failure,
-          // errMessage: failure.message,
-        ));
+            // getNoOfDailyMealsState: RequestState.failure,
+            // errMessage: failure.message,
+            ));
       },
       (successData) {
         print("success $successData");
@@ -250,15 +250,15 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
         print("failure $failure");
 
         emit(state.copyWith(
-          // updatePersonalInfo: RequestState.failure,
-          // errMessage: failure.message,
-        ));
+            // updatePersonalInfo: RequestState.failure,
+            // errMessage: failure.message,
+            ));
       },
       (successData) {
         print("success $successData");
         emit(state.copyWith(
-          // updatePersonalInfo: RequestState.success,
-        ));
+            // updatePersonalInfo: RequestState.success,
+            ));
         Session().getUser();
         // Session().currentUser = ;
       },

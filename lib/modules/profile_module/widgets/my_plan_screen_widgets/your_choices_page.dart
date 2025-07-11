@@ -20,14 +20,14 @@ class YourChoicesPage extends StatelessWidget {
       children: [
         // display only if the user selected any item from the section one or didn't select any item
         if (cubit.state.userInfo.selectedGaols.any(
-              (e) => e.sectionOneType != null,
+              (e) => true, // e.sectionOneType != null,
             ) ||
             cubit.state.userInfo.selectedGaols.isEmpty)
           const FinalStepSectionOne(),
 
         // display only if the user selected any item from the section two or didn't select any item
         if (cubit.state.userInfo.selectedGaols.any(
-              (e) => e.sectionTwoType != null,
+              (e) => true, // e.sectionTwoType != null,
             ) ||
             cubit.state.userInfo.selectedGaols.isEmpty)
           const FinalStepSectionTwo(),

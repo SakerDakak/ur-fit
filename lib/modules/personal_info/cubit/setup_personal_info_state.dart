@@ -3,7 +3,7 @@ part of 'setup_personal_info_cubit.dart';
 @freezed
 class SetupPersonalInfoState with _$SetupPersonalInfoState {
   const factory SetupPersonalInfoState({
-    required UserPersonalInfoModel userInfo,
+    required UserInfoRequest userInfo,
     ///
     @Default([]) List<UserGoalsModel> goals,
     @Default([]) List<SelectionItemModel> mealsNotLiked,

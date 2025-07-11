@@ -12,8 +12,6 @@ import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 
 import '../../../core/presentation/appCubit/app_cubit.dart';
 
-
-
 class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   final PersonalInfoRepoImpl _repo;
 
@@ -491,7 +489,8 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   updatePersonalData() async {
     emit(state.copyWith(updatePersonalInfo: RequestState.loading));
 
-    var result = await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
+    // var result = await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
+    var result = await _repo.updatePersonalInfo(personalInfoModel: UserInfoRequest());
 
     result.fold(
       (failure) {

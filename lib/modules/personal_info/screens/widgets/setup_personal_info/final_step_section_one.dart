@@ -302,7 +302,7 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
           itemBuilder: (_, index) => ValueContainer(
             value: state.diet[index].name,
             onTap: () => null, //cubit.updateDietId(state.diet[index].id),
-            isSelected: state.userInfo.diet_id == state.diet[index].id || user?.diet?.id == state.diet[index].id,
+            isSelected: state.userInfo.dietId == state.diet[index].id || user?.diet?.id == state.diet[index].id,
           ),
         );
       },

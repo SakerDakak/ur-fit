@@ -26,7 +26,7 @@ class SetupInfoStepOne extends StatelessWidget {
         bool canProssed = state.userInfo.gender != null &&
             state.userInfo.age != null &&
             state.userInfo.height != null &&
-            state.userInfo.current_weight != null;
+            state.userInfo.currentWeight != null;
         return ListView(
           children: [
             // title
@@ -93,14 +93,14 @@ class SetupInfoStepOne extends StatelessWidget {
             // weight
             _SliderTitle(
               title: L10n.tr().weight,
-              value: state.userInfo.current_weight,
+              value: state.userInfo.currentWeight,
               suffix: Text(L10n.tr().kg, style: TStyle.semiBold_16),
             ),
             const SizedBox(height: 12),
             CustomCurveSlider(
               minValue: 30,
               maxValue: 200,
-              initialValue: state.userInfo.current_weight,
+              initialValue: state.userInfo.currentWeight,
               minIconSvgPath: Assets.iconsSkinnyBody,
               maxIconSvgPath: Assets.iconsFatBody,
               onDragEnd: (v) => null, // cubit.updateUserWeight(v),
