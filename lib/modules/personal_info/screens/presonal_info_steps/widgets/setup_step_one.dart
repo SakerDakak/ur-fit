@@ -80,7 +80,7 @@ class SetupInfoStepOne extends StatelessWidget {
             CustomCurveSlider(
               minValue: 100,
               maxValue: 250,
-              initialValue: state.userInfo.height,
+              initialValue: state.userInfo.height?.toDouble(),
               minIconSvgPath: Assets.iconsSkinnyBody,
               maxIconSvgPath: Assets.iconsSkinnyBody,
               maxIconSize: const Size(24, 28),

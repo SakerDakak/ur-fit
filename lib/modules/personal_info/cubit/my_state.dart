@@ -32,25 +32,6 @@ class GoalsError extends GoalsStates {
   GoalsError(super.userInfo, this.error);
 }
 
-/// Muscle Focus States
-sealed class MuscleFocusStates extends SetupPersonalInfoState {
-  final List<BodyPartsModel> muscleFocusData;
-  MuscleFocusStates(super.userInfo, [this.muscleFocusData = const []]);
-}
-
-class MuscleFocusLoading extends MuscleFocusStates {
-  MuscleFocusLoading(super.userInfo);
-}
-
-class MuscleFocusLoaded extends MuscleFocusStates {
-  MuscleFocusLoaded(super.userInfo, super.muscleFocusData);
-}
-
-class MuscleFocusError extends MuscleFocusStates {
-  final String error;
-  MuscleFocusError(super.userInfo, this.error);
-}
-
 /// Meals not Liked States
 sealed class MealsNotLikedStates extends SetupPersonalInfoState {
   final List<SelectionItemModel> meals;
@@ -146,6 +127,25 @@ class NoOfDailyMealsError extends NoOfDailyMealsStates {
   NoOfDailyMealsError(super.userInfo, this.error);
 }
 
+/// Muscle Focus States
+sealed class MuscleFocusStates extends SetupPersonalInfoState {
+  final List<BodyPartsModel> muscleFocusData;
+  MuscleFocusStates(super.userInfo, [this.muscleFocusData = const []]);
+}
+
+class MuscleFocusLoading extends MuscleFocusStates {
+  MuscleFocusLoading(super.userInfo);
+}
+
+class MuscleFocusLoaded extends MuscleFocusStates {
+  MuscleFocusLoaded(super.userInfo, super.muscleFocusData);
+}
+
+class MuscleFocusError extends MuscleFocusStates {
+  final String error;
+  MuscleFocusError(super.userInfo, this.error);
+}
+
 /// Workout Types States
 sealed class WorkoutTypesStates extends SetupPersonalInfoState {
   final List<SelectionItemModel> workoutTypes;
@@ -182,22 +182,4 @@ class EquipmentsLoaded extends EquipmentsStates {
 class EquipmentsError extends EquipmentsStates {
   final String error;
   EquipmentsError(super.userInfo, this.error);
-}
-
-/// update user info states
-sealed class UpdateUserInfoStates extends SetupPersonalInfoState {
-  UpdateUserInfoStates(super.userInfo);
-}
-
-class UpdateInfoLoading extends UpdateUserInfoStates {
-  UpdateInfoLoading(super.userInfo);
-}
-
-class UpdateInfoLoaded extends UpdateUserInfoStates {
-  UpdateInfoLoaded(super.userInfo);
-}
-
-class UpdateInfoError extends UpdateUserInfoStates {
-  final String error;
-  UpdateInfoError(super.userInfo, this.error);
 }

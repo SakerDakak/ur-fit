@@ -1,0 +1,91 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/data/fakers.dart';
+import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
+
+import '../../../../../../core/presentation/style/fonts.dart';
+import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../../../cubit/setup_personal_info_cubit.dart';
+import '../../../widgets/setup_personal_info/animated_value_container.dart';
+import '../../../widgets/setup_personal_info/values_gridview.dart';
+
+class FinalStepDietType extends StatelessWidget {
+  const FinalStepDietType({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final cubit = context.read<SetupPersonalInfoCubit>();
+    cubit.getDietOptions();
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: Text(
+              L10n.tr().dietType,
+              style: TStyle.semiBold_16,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          const SizedBox(height: 16),
+          CircleAvatar(
+            radius: 140,
+            backgroundColor: const Color(0xff484848).withValues(alpha: 0.7),
+            child: CircleAvatar(
+              radius: 110,
+              backgroundColor: const Color(0xff575757),
+              child: CircleAvatar(
+                radius: 90,
+                backgroundColor: const Color(0xff575757),
+                backgroundImage: AssetImage(AssetsManager.noOfDailyMeals),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+            buildWhen: (previous, current) => current is DietStates,
+            builder: (context, state) {
+              if (state is! DietStates) return const SizedBox.shrink();
+              if (state is DietError) {
+                return FailureWidget(
+                  message: state.error,
+                  onRetry: () => cubit.getDietOptions(),
+                );
+              }
+              final diets = state is DietLoading ? Fakers().selectionModels : state.diet;
+              return Column(
+                children: [
+                  Skeletonizer(
+                    enabled: state is! DietLoaded,
+                    child: ValuesGridView(
+                      itemCount: diets.length,
+                      itemBuilder: (_, index) => ValueContainer(
+                        value: diets[index].name,
+                        onTap: () => cubit.updateDietType(diets[index].id),
+                        isSelected: state.userInfo.dietId == diets[index].id,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+
+                  // continue button
+                  CustomElevatedButton(
+                    text: L10n.tr().continuee,
+                    padding: EdgeInsets.zero,
+                    onPressed: state.userInfo.dietId != null ? () => cubit.nextPage() : null,
+                  ),
+                ],
+              );
+              // }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}

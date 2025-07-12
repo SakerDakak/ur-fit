@@ -1,6 +1,9 @@
 enum GenderEnum {
-  male,
-  female,
+  male(0),
+  female(1);
+
+  final int val;
+  const GenderEnum(this.val);
 }
 
 enum GoalsSectionOneEnum {

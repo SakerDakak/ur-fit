@@ -35,7 +35,13 @@ class EquipmentsPage extends StatelessWidget {
           const SizedBox(height: 20),
 
           Expanded(
-            child: EquipmentList(cubit: cubit,),
+            child: EquipmentList(
+              items: [],
+              selectedItems: cubit.state.userInfo.equipmentsIds,
+              onTap: (item) {
+                cubit.toggleEquipment(item.id);
+              },
+            ),
           ),
 
           const SizedBox(height: 20),

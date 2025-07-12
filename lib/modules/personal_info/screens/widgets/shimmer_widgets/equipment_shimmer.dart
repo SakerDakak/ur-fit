@@ -12,7 +12,7 @@ class EquipmentShimmer extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap:true,
         itemCount: 4,
-        itemBuilder: (_, __) => EquipmentItem(
+        itemBuilder: (_, __) => RadioBoxWithImage(
           shortMode:shortMode,
           imageUrl:
               "https://avatars.mds.yandex.net/i?id=314a10df53c7d3092d5ae36d85872ee92d6f465f-9181363-images-thumbs&n=13",

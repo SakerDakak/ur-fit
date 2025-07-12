@@ -9,6 +9,21 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get selectAll => 'Select All';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get pleaseEnterValidAge => 'Please enter a valid age';
+
+  @override
+  String get pleaseEnterValidHeight => 'Please enter a valid height';
+
+  @override
+  String get pleaseEnterValidWeight => 'Please enter a valid weight';
+
+  @override
   String get yourHealth => 'Your Health';
 
   @override

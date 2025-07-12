@@ -9,6 +9,21 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get selectAll => 'اختيار الكل';
+
+  @override
+  String get retry => 'اعادة المحاولة';
+
+  @override
+  String get pleaseEnterValidAge => 'رجاء ادخال سن صحيح';
+
+  @override
+  String get pleaseEnterValidHeight => 'رجاء ادخال طول صحيح';
+
+  @override
+  String get pleaseEnterValidWeight => 'رجاء ادخال وزن صحيح';
+
+  @override
   String get yourHealth => 'صحتك';
 
   @override

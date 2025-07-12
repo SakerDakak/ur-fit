@@ -1,4 +1,9 @@
 {
+  "selectAll": "Select All",
+  "retry": "Retry",
+  "pleaseEnterValidAge": "Please enter a valid age",
+  "pleaseEnterValidHeight": "Please enter a valid height",
+  "pleaseEnterValidWeight": "Please enter a valid weight",
   "yourHealth": "Your Health",
   "isMoreImportantThanAnything": "is more important than anything",
   "welconeToMyDailyCompanionToAHealthyLife": "Welcome to my daily companion to a healthy life",

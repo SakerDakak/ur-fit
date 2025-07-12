@@ -25,6 +25,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
           .toList(),
       targetWeight: (json['target_weight'] as num?)?.toInt(),
       bodyShape: const BodyShapeConverter().fromJson(json['body_shape']),
+      trainingDaysPerWeek: (json['training_days_per_week'] as num?)?.toInt(),
       bodyParts: (json['body_parts'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -71,6 +72,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'goals': instance.goals,
       'target_weight': instance.targetWeight,
       'body_shape': const BodyShapeConverter().toJson(instance.bodyShape),
+      'training_days_per_week': instance.trainingDaysPerWeek,
       'body_parts': instance.bodyParts,
       'exercise_days': instance.exerciseDays,
       'workoutTypes': instance.workoutTypes,

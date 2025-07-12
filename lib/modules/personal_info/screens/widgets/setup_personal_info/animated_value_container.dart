@@ -22,9 +22,7 @@ class ValueContainer extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        width: 60,
-        height: 36,
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
           color: isSelected ? Theme.of(context).primaryColor : Co.cardColor,
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),

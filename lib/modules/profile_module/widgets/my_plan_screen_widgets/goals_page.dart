@@ -48,8 +48,8 @@ class GoalsPage extends StatelessWidget {
             GoalSection(
                 selectedGoals: state.userInfo.selectedGaols.map((e) => e.id).toSet(),
                 onTap: (p0) => null, // cubit.selectGoal(p0),
-                showLoader:
-                    false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
+                // showLoader:
+                //     false,  state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
                 goals: state.goals.take(2).toList()),
 
             const SizedBox(height: 16),
@@ -65,8 +65,8 @@ class GoalsPage extends StatelessWidget {
             GoalSection(
                 selectedGoals: state.userInfo.selectedGaols.map((e) => e.id).toSet(),
                 onTap: (p0) => null, // cubit.selectGoal(p0),
-                showLoader:
-                    false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
+                // showLoader:
+                //     false, // state.getGoalsState == RequestState.loading || state.getGoalsState == RequestState.failure,
                 goals: state.goals.skip(2).toList()),
 
             // continue button

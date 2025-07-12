@@ -15,17 +15,13 @@ class ValuesGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Animate(
       effects: const [FadeEffect()],
-      child: GridView.builder(
-        shrinkWrap: true,
-        itemCount: itemCount,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          childAspectRatio: 2 / 0.9,
-          mainAxisSpacing: 12.0,
-          crossAxisSpacing: 8.0,
-        ),
-        itemBuilder: itemBuilder,
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        runAlignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 16,
+        runSpacing: 16,
+        children: List.generate(itemCount, (index) => itemBuilder(context, index) ?? const SizedBox.shrink()),
       ),
     );
   }

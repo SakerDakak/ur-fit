@@ -5,7 +5,7 @@ import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/personal_info_steps_screen.dart';
+import 'package:urfit/modules/personal_info/screens/personal_info_layout_screen.dart';
 
 class StartPersonalInfoScreen extends StatelessWidget {
   const StartPersonalInfoScreen({super.key});

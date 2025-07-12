@@ -114,6 +114,8 @@ class Assets {
 
   static const String imageDinner = "assets/image/dinner.png";
 
+  static const String imageFemaleFitness = "assets/image/female_fitness.png";
+
   static const String imageFemaleGender = "assets/image/female_gender.png";
 
   static const String imageFoodVariant = "assets/image/food_variant.png";

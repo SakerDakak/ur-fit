@@ -20,32 +20,40 @@ class GoalItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        margin: const EdgeInsets.only(bottom: 16),
-        decoration: BoxDecoration(
-          color: Co.cardColor,
-          borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-          border: Border.all(color: Co.strockColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              offset: const Offset(0, 4),
-              blurRadius: 4,
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Stack(
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: Co.cardColor,
+        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+        border: Border.all(color: Co.strockColor),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            offset: const Offset(0, 4),
+            blurRadius: 4,
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // workout image
-            PositionedDirectional(
-              top: -10,
-              start: -5,
-              bottom: -10,
-              child: _goalImage(context),
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Color(0xff484848),
+              child: CircleAvatar(
+                radius: 35,
+                backgroundColor: Color(0xff575757),
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  backgroundImage: customImageView(goal.imageUrl),
+                  onBackgroundImageError: (exception, stackTrace) {},
+                ),
+              ),
             ),
 
             // workout title and start button
@@ -55,26 +63,23 @@ class GoalItem extends StatelessWidget {
                 vertical: 20,
               ),
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(width: 88),
-
                   // meal name
-                  Expanded(
-                    child: Text(
-                      goal.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TStyle.bold_16.copyWith(shadows: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          offset: const Offset(0, 4),
-                          blurRadius: 4,
-                          spreadRadius: 0,
-                        ),
-                      ]),
-                    ),
+                  Text(
+                    goal.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TStyle.bold_16.copyWith(shadows: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        offset: const Offset(0, 4),
+                        blurRadius: 4,
+                        spreadRadius: 0,
+                      ),
+                    ]),
                   ),
-
+            
                   // radio button
                   Skeleton.shade(
                     child: Radio(
@@ -92,27 +97,6 @@ class GoalItem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Stack _goalImage(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        const CircleAvatar(
-          radius: 50,
-          backgroundColor: Color(0xff484848),
-        ),
-        const CircleAvatar(
-          radius: 35,
-          backgroundColor: Color(0xff575757),
-        ),
-        CircleAvatar(
-          radius: 25,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          backgroundImage: customImageView(goal.imageUrl),
-        ),
-      ],
     );
   }
 }

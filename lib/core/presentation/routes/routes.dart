@@ -15,7 +15,7 @@ import 'package:urfit/modules/onboarding/views/choose_language.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/personal_info/screens/equipment_selection_screen.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/personal_info_steps_screen.dart';
+import 'package:urfit/modules/personal_info/screens/personal_info_layout_screen.dart';
 import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';

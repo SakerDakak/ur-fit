@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -50,7 +49,7 @@ class ApiClient {
     headerPReparing();
 
     if (kDebugMode) {
-      dio.interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true));
+      // dio.interceptors.add(PrettyDioLogger(requestBody: true));
     }
   }
 

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
-import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
+import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
 import '../../../../../../core/presentation/style/fonts.dart';
 import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../../../cubit/setup_personal_info_cubit.dart';
 import '../../../widgets/equipment_item.dart';
-import '../../../widgets/setup_personal_info/animated_value_container.dart';
-import '../../../widgets/setup_personal_info/values_gridview.dart';
 
 class FinalStepPreferredMeals extends StatelessWidget {
   const FinalStepPreferredMeals({super.key});
@@ -25,182 +22,92 @@ class FinalStepPreferredMeals extends StatelessWidget {
     final user = Session().currentUser;
 
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-      buildWhen: (previous, current) => previous.userInfo.likedMealsIds != current.userInfo.likedMealsIds,
+      buildWhen: (previous, current) => current is MealsLikedStates,
       builder: (context, state) {
-        bool canProssed = state.userInfo.likedMealsIds.isNotEmpty;
-        print("canProssed: ${state.userInfo.likedMealsIds}");
+        if (state is! MealsLikedStates) return SizedBox.shrink();
+        if (state is MealsLikedError) {
+          return FailureWidget(
+            message: state.error,
+            onRetry: () => cubit.getLikedMealsOptions(),
+          );
+        }
+        final meals = state is MealsLikedLoading ? Fakers().selectionModels : state.meals;
         return SingleChildScrollView(
           child: Column(
             children: [
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width - 32,
-                  child: Row(
-                    children: [
-                      Text(
-                        L10n.tr().mealsYouLike,
-                        style: TStyle.semiBold_16,
-                        textAlign: TextAlign.start,
-                      ),
-                      Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          print("showBottomSheet ${state.mealsLiked}");
-
-                          showBottomSheet(
-                            backgroundColor: Colors.white,
-                            context: context,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                            ),
-                            builder: (ctx) {
-                              final user = Session().currentUser;
-
-                              return Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SizedBox(
-                                      height: 40,
-                                      child: Stack(
-                                        children: [
-                                          Align(
-                                            alignment: AlignmentDirectional.center,
-                                            child: Center(
-                                                child: Container(
-                                              width: 62,
-                                              height: 4,
-                                              decoration: BoxDecoration(
-                                                color: Co.backGround,
-                                                borderRadius: BorderRadius.circular(16),
-                                              ),
-                                            )),
-                                          ),
-                                          Align(
-                                              alignment: AlignmentDirectional.centerEnd,
-                                              child: Container(
-                                                  height: 30,
-                                                  width: 30,
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle, border: Border.all(color: Co.greyColor)),
-                                                  child: FittedBox(
-                                                      child: CloseButton(
-                                                    color: Colors.black,
-                                                  )))),
-                                        ],
-                                      ),
-                                    ),
-                                    Center(
-                                      child: SvgPicture.asset(
-                                        Assets.iconsMeals,
-                                        colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
-                                        height: 32,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 12,
-                                    ),
-                                    Text(
-                                      L10n.tr().mealsYouLike,
-                                      style: TStyle.semiBold_16.copyWith(color: Theme.of(context).colorScheme.primary),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                    BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-                                      // buildWhen: (p, c) =>
-                                      // p.userInfo.likedMealsIds != c.userInfo.likedMealsIds ||
-                                      //     p.getLikedMealsState != c.getLikedMealsState,
-                                      builder: (context, state) {
-                                        // print("state liked meals ${state.userInfo.likedMealsIds}");
-                                        // if (state.getLikedMealsState == RequestState.loading ||
-                                        //     state.getLikedMealsState == RequestState.failure) {
-                                        //   return const ValuesGridviewShimmer();
-                                        // } else {
-                                        return ValuesGridView(
-                                          itemCount: state.mealsLiked.length,
-                                          itemBuilder: (_, index) => ValueContainer(
-                                            value: state.mealsLiked[index].name,
-                                            onTap: () {
-                                              // cubit.updateSelectedLikedMeals(state.mealsLiked[index].id);
-                                            },
-                                            isSelected: state.userInfo.likedMealsIds.contains(
-                                              state.mealsLiked[index].id,
-                                            ),
-                                          ),
-                                        );
-                                        // }
-                                      },
-                                    ),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                    CustomElevatedButton(
-                                      text: L10n.tr().confirm,
-                                      padding: EdgeInsets.zero,
-                                      onPressed: canProssed
-                                          ? () {
-                                              context.pop();
-                                            }
-                                          : null,
-                                    ),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        child: Text(
-                          L10n.tr().seeMore,
-                          style: TStyle.semiBold_16.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 32,
+                child: Row(
+                  children: [
+                    Text(
+                      L10n.tr().mealsYouLike,
+                      style: TStyle.semiBold_16,
+                      textAlign: TextAlign.start,
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () async {
+                        final res = await showModalBottomSheet<Set<int>>(
+                          backgroundColor: Colors.white,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                           ),
+                          builder: (ctx) => SeeMoreSheet(
+                            items: meals.map((e) => (e.id, e.name)).toList(),
+                            selected: state.userInfo.likedMealsIds,
+                          ),
+                        );
+                        if (res != null) cubit.toggleLikedMeal(0, addSet: res);
+                      },
+                      child: Text(
+                        L10n.tr().seeMore,
+                        style: TStyle.semiBold_16.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TextButton(
+                      onPressed: () => cubit.toggleLikedMeal(0, addSet: state.meals.map((e) => e.id).toSet()),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        L10n.tr().selectAll,
+                        style: TStyle.bold_16.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ))
+                ],
+              ),
               const SizedBox(height: 16),
-              BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-                // buildWhen: (p, c) =>
-                //     (p.userInfo.likedMealsIds != c.userInfo.likedMealsIds) ||
-                //     (p.getLikedMealsState != c.getLikedMealsState),
-                builder: (context, state) {
-                  // if (state.getLikedMealsState == RequestState.loading ||
-                  //     state.getLikedMealsState == RequestState.failure) {
-                  //   return const EquipmentShimmer();
-                  // } else {
-                  return Animate(
-                    effects: const [FadeEffect()],
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.mealsLiked.length > 4 ? 4 : state.mealsLiked.length,
-                      itemBuilder: (context, index) => EquipmentItem(
-                          title: state.mealsLiked[index].name,
-                          imageUrl: state.mealsLiked[index].image ?? "",
-                          onTap: () => null, //cubit.updateSelectedLikedMeals(state.mealsLiked[index].id),
-                          isSelected: state.userInfo.likedMealsIds.contains(
-                            state.mealsLiked[index].id,
-                          )),
-                    ),
-                  );
-                },
+              Animate(
+                effects: const [FadeEffect()],
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.meals.length > 4 ? 4 : state.meals.length,
+                  itemBuilder: (context, index) => RadioBoxWithImage(
+                      title: state.meals[index].name,
+                      imageUrl: state.meals[index].image ?? "",
+                      onTap: () => cubit.toggleLikedMeal(state.meals[index].id),
+                      isSelected: state.userInfo.likedMealsIds.contains(state.meals[index].id)),
+                ),
               ),
               // continue button
               CustomElevatedButton(
                 text: L10n.tr().continuee,
                 padding: EdgeInsets.zero,
-                onPressed: canProssed
+                onPressed: state.userInfo.likedMealsIds.isNotEmpty
                     ? () {
-                        // cubit.goToNextIndexFinalStep();
+                        cubit.nextPage();
                       }
                     : null,
               ),

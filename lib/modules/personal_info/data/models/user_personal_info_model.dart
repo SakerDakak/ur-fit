@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
+import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/personal_info/data/models/user_goals_model.dart';
 
 part 'user_personal_info_model.freezed.dart';
@@ -33,17 +34,17 @@ class UserPersonalInfoModel with _$UserPersonalInfoModel {
 class UserInfoRequest {
   GenderEnum? gender;
   int? age;
-  double? height;
+  int? height;
   double? currentWeight;
-  List<UserGoalsModel> selectedGaols;
+  Set<int> selectedGaols;
   double? targetWeight;
   int? dietId;
   Set<int> likedMealsIds;
   Set<int> notLikedMealsIds;
   int? mealsVariantsId;
   Set<int> workoutTypesIds;
-  Set<String> muscleFocusIds;
-  Set<String> exciseDays;
+  Set<String> bodyPartsIds;
+  Set<String> exerciseDayes;
   Set<int> equipmentsIds;
   String? numOfDailyMeals;
   int? mealVarietyLevel;
@@ -54,55 +55,54 @@ class UserInfoRequest {
       this.age,
       this.height,
       this.currentWeight,
-      this.selectedGaols = const [],
+      this.selectedGaols = const {},
       this.targetWeight,
       this.dietId,
       this.likedMealsIds = const {},
       this.notLikedMealsIds = const {},
       this.mealsVariantsId,
       this.workoutTypesIds = const {},
-      this.muscleFocusIds = const {},
-      this.exciseDays = const {},
+      this.bodyPartsIds = const {},
+      this.exerciseDayes = const {},
       this.equipmentsIds = const {},
       this.numOfDailyMeals,
       this.mealVarietyLevel,
       this.weaklyTrainingCount});
 
   Map<String, dynamic> toJson() {
-    final body = <String, dynamic>{
+    return {
       "gender": gender?.name,
-      "age": age,
+      "age": age?.toDouble(),
       "height": height,
       "current_weight": currentWeight,
       "target_weight": targetWeight,
       "training_days_per_week": weaklyTrainingCount,
       "diet_id": dietId,
-      "meal_variety_id": mealsVariantsId
+      "meal_variety_id": mealsVariantsId,
+      "goal_id": selectedGaols.toList(),
+      "exercise_days": exerciseDayes.toList(),
+      "recipe_types": likedMealsIds.toList(),
+      "foods_not_liked": notLikedMealsIds.toList(),
+      "workout_type_id": workoutTypesIds.toList(),
+      "body_parts": bodyPartsIds.toList(),
+      "equipments": equipmentsIds.toList(),
     };
-    for (var i = 0; i < selectedGaols.length; i++) {
-      body.addAll({"goal_id[$i]": selectedGaols[i].id});
-    }
-
-    for (var i = 0; i < likedMealsIds.length; i++) {
-      body.addAll({"recipe_types[$i]": likedMealsIds.elementAt(i)});
-    }
-
-    for (var i = 0; i < notLikedMealsIds.length; i++) {
-      body.addAll({"foods_not_liked[$i]": notLikedMealsIds.elementAt(i)});
-    }
-    for (var i = 0; i < workoutTypesIds.length; i++) {
-      body.addAll({"workout_type_id[$i]": workoutTypesIds.elementAt(i)});
-    }
-    for (var i = 0; i < muscleFocusIds.length; i++) {
-      body.addAll({"body_parts[$i]": muscleFocusIds.elementAt(i)});
-    }
-    for (var i = 0; i < exciseDays.length; i++) {
-      body.addAll({"exercise_days[$i]": exciseDays.elementAt(i)});
-    }
-    for (var i = 0; i < equipmentsIds.length; i++) {
-      body.addAll({"equipments[$i]": equipmentsIds.elementAt(i)});
-    }
-
-    return body;
   }
+
+  UserInfoRequest.fromUserModel(UserModel user)
+      : selectedGaols = user.goals?.map((goal) => goal.id).toSet() ?? {},
+        gender = user.gender,
+        height = user.height,
+        age = user.age,
+        currentWeight = user.currentWeight?.toDouble(),
+        dietId = user.diet?.id,
+        equipmentsIds = user.equipments?.map((equipment) => equipment.id).toSet() ?? {},
+        targetWeight = user.targetWeight?.toDouble(),
+        likedMealsIds = user.recipeTypes?.map((recipe) => recipe.id).toSet() ?? {},
+        exerciseDayes = user.exerciseDays?.toSet() ?? {},
+        mealsVariantsId = user.mealVariety?.id,
+        weaklyTrainingCount = user.trainingDaysPerWeek,
+        notLikedMealsIds = user.foodsNotLiked?.map((notLiked) => notLiked.id).toSet() ?? {},
+        bodyPartsIds = user.bodyParts?.toSet() ?? {},
+        workoutTypesIds = user.workoutTypes?.map((workout) => workout.id).toSet() ?? {};
 }

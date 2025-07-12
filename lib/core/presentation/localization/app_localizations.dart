@@ -98,6 +98,36 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @selectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select All'**
+  String get selectAll;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @pleaseEnterValidAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid age'**
+  String get pleaseEnterValidAge;
+
+  /// No description provided for @pleaseEnterValidHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid height'**
+  String get pleaseEnterValidHeight;
+
+  /// No description provided for @pleaseEnterValidWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid weight'**
+  String get pleaseEnterValidWeight;
+
   /// No description provided for @yourHealth.
   ///
   /// In en, this message translates to:

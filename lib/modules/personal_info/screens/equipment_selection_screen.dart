@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
+import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../../core/presentation/views/widgets/equipment_list.dart';
-import '../../subscription_module/data/models/package_model.dart';
 
 class EquipmentSelectionScreen extends StatefulWidget {
   const EquipmentSelectionScreen({super.key});
@@ -19,91 +21,79 @@ class EquipmentSelectionScreen extends StatefulWidget {
 }
 
 class _EquipmentSelectionScreenState extends State<EquipmentSelectionScreen> {
+  late final SetupPersonalInfoCubit cubit;
+
   @override
   void initState() {
+    cubit = context.read<SetupPersonalInfoCubit>();
     context.read<SetupPersonalInfoCubit>().getEquipments();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SetupPersonalInfoCubit>();
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 28),
-
-          // header
-          Row(
-            children: [
-              // back button
-              IconButton(
-                onPressed: () => null, //cubit.goToPreviousPage(),
-                icon: const Icon(Icons.arrow_back),
-              ),
-
-              // page title
-              Expanded(
-                child: Text(
-                  L10n.tr().personalInfo,
+    return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+      buildWhen: (previous, current) => current is EquipmentsStates,
+      builder: (context, state) {
+        if (state is! EquipmentsStates) return const SizedBox.shrink();
+        if (state is EquipmentsError) {
+          return FailureWidget(
+            message: state.error,
+            onRetry: () => cubit.getEquipments(),
+          );
+        }
+        final equipments = state is EquipmentsLoading ? Fakers().selectionModels : state.equipments;
+        return Skeletonizer(
+            enabled: state is EquipmentsLoading,
+            child: Column(
+              spacing: 16,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  L10n.tr().chooseEquipments,
                   textAlign: TextAlign.center,
-                  style: TStyle.bold_16,
+                  style: TStyle.bold_16.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
-              ),
-            ],
-          ),
 
-          const SizedBox(height: 20),
-
-          Text(
-            L10n.tr().chooseEquipments,
-            textAlign: TextAlign.center,
-            style: TStyle.bold_16.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
-          const SizedBox(height: 20),
-
-          Expanded(
-            child: _buildEquipmentsList(cubit),
-          ),
-
-          const SizedBox(height: 20),
-
-          // continue button
-          BlocSelector<SetupPersonalInfoCubit, SetupPersonalInfoState, bool>(
-            selector: (state) => state.userInfo.selectedGaols.any(
-              (e) => true, // e.sectionOneType != null,
-            ),
-            builder: (context, isSectionTwoSelected) {
-              return CustomElevatedButton(
-                text: L10n.tr().createMyPlan,
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  context.read<SetupPersonalInfoCubit>().updatePersonalData();
-                  if (isSectionTwoSelected) {
-                    GoRouter.of(context).push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both);
-                  } else {
-                    GoRouter.of(context).push(
-                      SubscriptionPlansScreen.routeWzExtra,
-                      extra: PlanType.exercise,
+                // continue button
+                Expanded(
+                  child: EquipmentList(
+                    items: equipments,
+                    selectedItems: state.userInfo.equipmentsIds,
+                    onTap: (item) {
+                      cubit.toggleEquipment(item.id);
+                    },
+                  ),
+                ),
+                BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+                  buildWhen: (previous, current) => current is UpdateUserInfoStates,
+                  builder: (context, state) {
+                    if (state is UpdateInfoLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return CustomElevatedButton(
+                      text: L10n.tr().createMyPlan,
+                      padding: EdgeInsets.zero,
+                      onPressed: state.userInfo.equipmentsIds.isEmpty
+                          ? null
+                          : () async {
+                              await cubit.sendUpdateData();
+                              if (!context.mounted) return;
+                              if (state.userInfo.selectedGaols.any((e) => e == 1 || e == 2)) {
+                                context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both);
+                              } else {
+                                context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.exercise);
+                              }
+                            },
                     );
-                  }
-                },
-              );
-            },
-          ),
-
-          const SizedBox(height: 20),
-        ],
-      ),
+                  },
+                ),
+                const SizedBox(height: 12),
+              ],
+            ));
+      },
     );
-  }
-
-  Widget _buildEquipmentsList(SetupPersonalInfoCubit cubit) {
-    return EquipmentList(cubit: cubit);
   }
 }

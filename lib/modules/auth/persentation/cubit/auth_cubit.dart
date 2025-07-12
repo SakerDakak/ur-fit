@@ -33,7 +33,7 @@ class AuthCubit extends Cubit<AuthStates> {
       } else {
         TokenService.setToken(response.token);
         Session().currentUser = user;
-        if (user.hasCompleteProfile) {
+        if (user.hasCompleteStepOne) {
           emit(CheckedWithInfoUser());
         } else {
           emit(CheckedUncompletedInfoUser());

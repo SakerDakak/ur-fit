@@ -48,7 +48,7 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SetupPersonalInfoCubit>().updatePersonalData();
+    context.read<SetupPersonalInfoCubit>().sendUpdateData();
     return Scaffold(
       body: SafeArea(
         child: Padding(

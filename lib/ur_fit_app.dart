@@ -23,6 +23,9 @@ class UrFitApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // SharedPreferences.getInstance().then((prefs) {
+    //   prefs.clear(); // Clear shared preferences for testing purposes
+    // });
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -66,7 +69,6 @@ class UrFitApp extends StatelessWidget {
                 //   return previous != current;
                 // },
                 builder: (context, state) {
-                  // PrefUtils().setLang("ar");
                   return MaterialApp.router(
                     // AppConst.navigatorKey: AppConst.navigatorKey,
                     // routeInformationParser: MyRouteInformationParser(),

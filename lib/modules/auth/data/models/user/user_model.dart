@@ -27,7 +27,7 @@ class UserModel with _$UserModel {
     @JsonKey(name: 'target_weight') required int? targetWeight,
     @BodyShapeConverter() @JsonKey(name: 'body_shape') required BodyShape? bodyShape,
     // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-    // @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
+    @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
     @JsonKey(name: 'body_parts') required List<String>? bodyParts,
     @JsonKey(name: 'exercise_days') required List<String>? exerciseDays,
     @JsonKey(name: 'workoutTypes') required List<WorkoutType>? workoutTypes,
@@ -297,6 +297,18 @@ class MealVariety with _$MealVariety {
 }
 
 extension UserModelExtension on UserModel {
-  bool get hasCompleteProfile =>
+  bool get hasCompleteStepOne =>
       hasValidSubscription == true || (age != null && currentWeight != null && height != null);
+  bool get hasCompleteStepTwo => (goals?.isNotEmpty ?? false);
+  bool get hasCompleteStepThree =>
+      (bodyParts?.isNotEmpty ?? false) &&
+      (mealVariety != null) &&
+      (foodsNotLiked?.isNotEmpty ?? false) &&
+      (diet != null) &&
+      (targetWeight != null) &&
+      (trainingDaysPerWeek != null) &&
+      (workoutTypes?.isNotEmpty ?? false) &&
+      (equipments?.isNotEmpty ?? false);
+
+  bool get hasCompleteProfile => hasCompleteStepOne && hasCompleteStepTwo && hasCompleteStepThree;
 }

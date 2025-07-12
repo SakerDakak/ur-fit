@@ -19,7 +19,6 @@ extension ImageTypeExtension on String {
 }
 
 ImageProvider<Object> customImageView(String imagePath)   {
-  print("imagePath : $imagePath");
   switch (imagePath.imageType) {
     
     case ImageType.file:

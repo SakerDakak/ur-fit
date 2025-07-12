@@ -5,8 +5,8 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 
-class EquipmentItem extends StatelessWidget {
-  const EquipmentItem({
+class RadioBoxWithImage extends StatelessWidget {
+  const RadioBoxWithImage({
     super.key,
     required this.isSelected,
     required this.onTap,
@@ -16,7 +16,7 @@ class EquipmentItem extends StatelessWidget {
   });
   final bool shortMode;
   final String title;
-  final String imageUrl;
+  final String? imageUrl;
   final bool isSelected;
   final void Function() onTap;
 
@@ -43,13 +43,25 @@ class EquipmentItem extends StatelessWidget {
         child: Stack(
           children: [
             // workout image
-            if(!shortMode)
-            PositionedDirectional(
-              top: -10,
-              start: -5,
-              bottom: -10,
-              child: _equipmentImage(context),
-            ),
+            if (!shortMode && imageUrl != null)
+              PositionedDirectional(
+                  top: -10,
+                  start: -5,
+                  bottom: -10,
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Color(0xff484848),
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundColor: Color(0xff575757),
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundImage: CachedNetworkImageProvider(imageUrl!),
+                        onBackgroundImageError: (exception, stackTrace) {},
+                      ),
+                    ),
+                  )),
 
             // workout title and start button
             Padding(
@@ -59,7 +71,7 @@ class EquipmentItem extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                   SizedBox(width:shortMode ? 0: 88),
+                  SizedBox(width: shortMode ? 0 : 88),
 
                   // meal name
                   Expanded(
@@ -95,27 +107,6 @@ class EquipmentItem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Stack _equipmentImage(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        const CircleAvatar(
-          radius: 50,
-          backgroundColor: Color(0xff484848),
-        ),
-        const CircleAvatar(
-          radius: 35,
-          backgroundColor: Color(0xff575757),
-        ),
-        CircleAvatar(
-          radius: 25,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          backgroundImage: CachedNetworkImageProvider(imageUrl),
-        ),
-      ],
     );
   }
 }

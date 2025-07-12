@@ -45,7 +45,8 @@ mixin _$UserModel {
   @JsonKey(name: 'body_shape')
   BodyShape? get bodyShape =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-// @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
+  @JsonKey(name: 'training_days_per_week')
+  int? get trainingDaysPerWeek => throw _privateConstructorUsedError;
   @JsonKey(name: 'body_parts')
   List<String>? get bodyParts => throw _privateConstructorUsedError;
   @JsonKey(name: 'exercise_days')
@@ -108,6 +109,7 @@ abstract class $UserModelCopyWith<$Res> {
       List<Goal>? goals,
       @JsonKey(name: 'target_weight') int? targetWeight,
       @BodyShapeConverter() @JsonKey(name: 'body_shape') BodyShape? bodyShape,
+      @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
       @JsonKey(name: 'body_parts') List<String>? bodyParts,
       @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
       @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
@@ -163,6 +165,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? goals = freezed,
     Object? targetWeight = freezed,
     Object? bodyShape = freezed,
+    Object? trainingDaysPerWeek = freezed,
     Object? bodyParts = freezed,
     Object? exerciseDays = freezed,
     Object? workoutTypes = freezed,
@@ -240,6 +243,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.bodyShape
           : bodyShape // ignore: cast_nullable_to_non_nullable
               as BodyShape?,
+      trainingDaysPerWeek: freezed == trainingDaysPerWeek
+          ? _value.trainingDaysPerWeek
+          : trainingDaysPerWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
       bodyParts: freezed == bodyParts
           ? _value.bodyParts
           : bodyParts // ignore: cast_nullable_to_non_nullable
@@ -397,6 +404,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       List<Goal>? goals,
       @JsonKey(name: 'target_weight') int? targetWeight,
       @BodyShapeConverter() @JsonKey(name: 'body_shape') BodyShape? bodyShape,
+      @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
       @JsonKey(name: 'body_parts') List<String>? bodyParts,
       @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
       @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
@@ -454,6 +462,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? goals = freezed,
     Object? targetWeight = freezed,
     Object? bodyShape = freezed,
+    Object? trainingDaysPerWeek = freezed,
     Object? bodyParts = freezed,
     Object? exerciseDays = freezed,
     Object? workoutTypes = freezed,
@@ -531,6 +540,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.bodyShape
           : bodyShape // ignore: cast_nullable_to_non_nullable
               as BodyShape?,
+      trainingDaysPerWeek: freezed == trainingDaysPerWeek
+          ? _value.trainingDaysPerWeek
+          : trainingDaysPerWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
       bodyParts: freezed == bodyParts
           ? _value._bodyParts
           : bodyParts // ignore: cast_nullable_to_non_nullable
@@ -616,6 +629,8 @@ class _$UserImpl implements _User {
       @BodyShapeConverter()
       @JsonKey(name: 'body_shape')
       required this.bodyShape,
+      @JsonKey(name: 'training_days_per_week')
+      required this.trainingDaysPerWeek,
       @JsonKey(name: 'body_parts') required final List<String>? bodyParts,
       @JsonKey(name: 'exercise_days') required final List<String>? exerciseDays,
       @JsonKey(name: 'workoutTypes')
@@ -695,10 +710,10 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'body_shape')
   final BodyShape? bodyShape;
 // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-// @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
+  @override
+  @JsonKey(name: 'training_days_per_week')
+  final int? trainingDaysPerWeek;
   final List<String>? _bodyParts;
-// @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-// @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
   @override
   @JsonKey(name: 'body_parts')
   List<String>? get bodyParts {
@@ -794,7 +809,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, hasValidSubscription: $hasValidSubscription, country: $country, city: $city, gender: $gender, packageId: $packageId, age: $age, currentWeight: $currentWeight, height: $height, otpCode: $otpCode, goals: $goals, targetWeight: $targetWeight, bodyShape: $bodyShape, bodyParts: $bodyParts, exerciseDays: $exerciseDays, workoutTypes: $workoutTypes, equipments: $equipments, diet: $diet, recipeTypes: $recipeTypes, foodsNotLiked: $foodsNotLiked, mealVariety: $mealVariety, emailVerifiedAt: $emailVerifiedAt, isChecked: $isChecked, isCompleted: $isCompleted, isActive: $isActive, countryKey: $countryKey, haveExercisePlan: $haveExercisePlan, haveMealPlan: $haveMealPlan)';
+    return 'UserModel(id: $id, name: $name, email: $email, hasValidSubscription: $hasValidSubscription, country: $country, city: $city, gender: $gender, packageId: $packageId, age: $age, currentWeight: $currentWeight, height: $height, otpCode: $otpCode, goals: $goals, targetWeight: $targetWeight, bodyShape: $bodyShape, trainingDaysPerWeek: $trainingDaysPerWeek, bodyParts: $bodyParts, exerciseDays: $exerciseDays, workoutTypes: $workoutTypes, equipments: $equipments, diet: $diet, recipeTypes: $recipeTypes, foodsNotLiked: $foodsNotLiked, mealVariety: $mealVariety, emailVerifiedAt: $emailVerifiedAt, isChecked: $isChecked, isCompleted: $isCompleted, isActive: $isActive, countryKey: $countryKey, haveExercisePlan: $haveExercisePlan, haveMealPlan: $haveMealPlan)';
   }
 
   @override
@@ -822,6 +837,8 @@ class _$UserImpl implements _User {
                 other.targetWeight == targetWeight) &&
             (identical(other.bodyShape, bodyShape) ||
                 other.bodyShape == bodyShape) &&
+            (identical(other.trainingDaysPerWeek, trainingDaysPerWeek) ||
+                other.trainingDaysPerWeek == trainingDaysPerWeek) &&
             const DeepCollectionEquality()
                 .equals(other._bodyParts, _bodyParts) &&
             const DeepCollectionEquality()
@@ -872,6 +889,7 @@ class _$UserImpl implements _User {
         const DeepCollectionEquality().hash(_goals),
         targetWeight,
         bodyShape,
+        trainingDaysPerWeek,
         const DeepCollectionEquality().hash(_bodyParts),
         const DeepCollectionEquality().hash(_exerciseDays),
         const DeepCollectionEquality().hash(_workoutTypes),
@@ -924,6 +942,8 @@ abstract class _User implements UserModel {
       @BodyShapeConverter()
       @JsonKey(name: 'body_shape')
       required final BodyShape? bodyShape,
+      @JsonKey(name: 'training_days_per_week')
+      required final int? trainingDaysPerWeek,
       @JsonKey(name: 'body_parts') required final List<String>? bodyParts,
       @JsonKey(name: 'exercise_days') required final List<String>? exerciseDays,
       @JsonKey(name: 'workoutTypes')
@@ -989,7 +1009,9 @@ abstract class _User implements UserModel {
   @JsonKey(name: 'body_shape')
   BodyShape?
       get bodyShape; // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-// @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
+  @override
+  @JsonKey(name: 'training_days_per_week')
+  int? get trainingDaysPerWeek;
   @override
   @JsonKey(name: 'body_parts')
   List<String>? get bodyParts;
