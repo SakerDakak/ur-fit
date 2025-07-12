@@ -15,7 +15,7 @@ class RegisterOTPScreen extends StatelessWidget {
     Future<void> submitOtp(String otp) async {
       final result = await repo.otpCheckCode(code: otp, email: email);
       return result.fold((l) {}, (user) {
-        AuthHelper().setUserAndNavigate(context, user);
+        AuthHelper.setUserAndNavigate(context, user);
       });
     }
 

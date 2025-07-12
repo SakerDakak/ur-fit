@@ -92,8 +92,8 @@ class _ChooseCityState extends State<ChooseCity> {
                   // selectedCity = selectedCity ?? context.read<OnboardingCubit>().state.cities.first;
                   // context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
                   // context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
-                  Session().cityId = selectedCity!.id;
-                  Session().countryId = context.read<OnboardingCubit>().selectedCountryId;
+                  Session().setCityId = selectedCity!.id;
+                  Session().setCountryId = context.read<OnboardingCubit>().selectedCountryId!;
                   context.push(AuthScreen.route);
                 }),
             SizedBox(

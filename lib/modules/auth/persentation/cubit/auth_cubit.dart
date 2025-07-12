@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/models/register_model.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
@@ -9,9 +10,7 @@ import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   final _repo = di<AuthRepo>();
-  final int cityId;
-  final int countryId;
-  AuthCubit(this.countryId, this.cityId) : super(AuthInitialState());
+  AuthCubit() : super(AuthInitialState());
 
   Future<void> login(bool remember) async {
     emit(LoginLoadingState());
@@ -25,6 +24,7 @@ class AuthCubit extends Cubit<AuthStates> {
         if (remember) FlutterKeychain.put(key: 'password', value: loginPasswordController.text.trim()),
       ]);
       TokenService.setToken(response.token);
+      emit(LoginSuccessState(response.user));
     });
   }
 
@@ -40,8 +40,8 @@ class AuthCubit extends Cubit<AuthStates> {
       email: emailController.text,
       password: passwordController.text,
       passwordConfirmation: confirmPasswordController.text,
-      cityId: cityId,
-      countryId: countryId,
+      cityId: Session().cityId,
+      countryId: Session().countryId,
     );
     emit(RegisterLoadingState());
     // AppConst.latestFunctionCalled = register;
@@ -50,7 +50,6 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(RegisterErrorState(error: l.message));
     }, (response) async {
       TokenService.setToken(response.token);
-      // await TokenService.setToken(response.token);
       emit(RegisterSuccessState());
     });
   }

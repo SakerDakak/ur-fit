@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       TokenService.deleteToken();
       context.go(AuthScreen.route);
     }, (user) {
-      AuthHelper().setUserAndNavigate(context, user, true);
+      AuthHelper.setUserAndNavigate(context, user, true);
     });
   }
 

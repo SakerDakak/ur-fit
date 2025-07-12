@@ -63,7 +63,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
             // new password field
             CompactPasswordTextFormField(
               title: L10n.tr().newPassword,
-              hintText: '12345678',
+              hintText: 'xxxxxx',
               padding: EdgeInsets.zero,
               borderColor: Co.strockColor,
               titleStyle: TStyle.regular_14,
@@ -76,7 +76,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
             // confirm new password field
             CompactPasswordTextFormField(
               title: L10n.tr().confirmPassword,
-              hintText: '12345678',
+              hintText: 'xxxxxx',
               padding: EdgeInsets.zero,
               borderColor: Co.strockColor,
               titleStyle: TStyle.regular_14,

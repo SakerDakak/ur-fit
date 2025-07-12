@@ -3,18 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/di.dart';
 
 class StorageKeys {
-  // static String lightTheme = "lightTheme";
   static String token = "token";
-  // static String user = "user";
-  static String isRevist = "revist";
-  static String fcmTokenTime = "fcmTokenTime";
-  static String readNotifications = "readNotifications";
-  static String favoriteIDs = "readNotifications";
-  static String cart = "cart";
-  // static String branchId = "branchId";
   static const String isDarkTheme = 'isDarkTheme';
-  static const String firstVisit = 'firstVisit';
   static const String lang = 'lang';
+  static const String cityId = 'city_id';
+  static const String countryId = 'country_id';
+
 }
 
 class TokenService {

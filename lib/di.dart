@@ -77,7 +77,7 @@ Future<void> init() async {
   di.registerFactory(() => MealsCubit(di()));
   di.registerFactory(() => WorkoutCubit(di()));
   di.registerFactory(() => SettingCubit(di()));
-  di.registerFactoryParam<AuthCubit, int, int>((countryId, cityId) => AuthCubit(countryId, cityId));
+  di.registerFactory(() => AuthCubit());
 
   // sl.registerFactoryParam((int? param1, param2) => QuranCubit(quranRepository: sl(),initialIndex: param1),);
   // sl.registerFactory(() => LiveCubit(sl()));

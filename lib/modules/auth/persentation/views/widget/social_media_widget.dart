@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/data/comand.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -26,7 +27,8 @@ class _SocialMediaWidgetState extends State<SocialMediaWidget> {
     res.fold((error) {
       Alerts.showToast(error.message);
     }, (result) async {
-      AuthHelper().setUserAndNavigate(context, result.user);
+      TokenService.setToken(result.token);
+      AuthHelper.setUserAndNavigate(context, result.user);
     });
   }
 

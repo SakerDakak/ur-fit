@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
@@ -16,17 +17,14 @@ class Session {
   factory Session() => _inst;
   UserModel? _currentUser;
   UserModel? get currentUser => _currentUser;
-  int? countryId;
-  int? cityId;
 
-  set setCurrentUser(UserModel? user) {
-    _currentUser = user;
-  }
+  int? get countryId => di<SharedPreferences>().getInt(StorageKeys.countryId);
+  int? get cityId => di<SharedPreferences>().getInt(StorageKeys.cityId);
 
-  Future getUser() async {
-    final result = await di<AuthRepo>().getUserDataFromServer();
-    result.fold((l) => print("getUserDataFromServer error: $l"), (loadedUser) => setCurrentUser = loadedUser);
-  }
+  set setCountryId(int id) => di<SharedPreferences>().setInt(StorageKeys.countryId, id);
+  set setCityId(int id) => di<SharedPreferences>().setInt(StorageKeys.cityId, id);
+
+  set setCurrentUser(UserModel? user) => _currentUser = user;
 
   Future<FutureOr<void>> getUserDataFromServer() async {
     final result = await di<AuthRepo>().getUserDataFromServer();

@@ -1,4 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/onboarding/model/country/country_model.dart';
 
@@ -33,5 +36,6 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
   void setCountries(CountryModel selectedCountry) {
     _selectedCountry = selectedCountry;
+    di<SharedPreferences>().setInt(StorageKeys.countryId, selectedCountry.id);
   }
 }

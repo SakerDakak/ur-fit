@@ -18,7 +18,7 @@ class AuthHelper {
   /// 2)  set theme acc to gender
   /// 3) has subscription or complete profile => main page
   /// 4) else personal info screen
-  void setUserAndNavigate(BuildContext context, UserModel user, [bool isSplash = false]) {
+  static void setUserAndNavigate(BuildContext context, UserModel user, [bool isSplash = false]) {
     if (user.isChecked != true) {
       if (isSplash) {
         TokenService.deleteToken();

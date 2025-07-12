@@ -506,7 +506,6 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         emit(state.copyWith(
           updatePersonalInfo: RequestState.success,
         ));
-        Session().getUser();
         // Session().currentUser = ;
       },
     );

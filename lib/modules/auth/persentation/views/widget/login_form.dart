@@ -139,7 +139,7 @@ class _LoginFormState extends State<LoginForm> {
                     LoadingHelper.stopLoading();
                   }
                   if (state is LoginSuccessState) {
-                    AuthHelper().setUserAndNavigate(context, state.user);
+                    AuthHelper.setUserAndNavigate(context, state.user);
                   }
                 },
                 builder: (context, state) => CustomElevatedButton(
