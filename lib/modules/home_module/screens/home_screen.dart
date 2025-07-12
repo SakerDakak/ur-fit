@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';

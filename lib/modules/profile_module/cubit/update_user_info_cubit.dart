@@ -10,7 +10,7 @@ import 'package:urfit/modules/personal_info/data/models/user_personal_info_model
 import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
 import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 
-import '../../../core/presentation/appCubit/app_cubit.dart';
+import '../../../core/presentation/app_cubit/app_cubit.dart';
 
 class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   final PersonalInfoRepoImpl _repo;

@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/setup_personal_info/animated_value_container.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/setup_personal_info/values_gridview.dart';
+import 'package:urfit/modules/personal_info/screens/widgets/animated_value_container.dart';
+import 'package:urfit/modules/personal_info/screens/widgets/values_gridview.dart';
 
 import '../../../../../../core/presentation/style/fonts.dart';
 import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';

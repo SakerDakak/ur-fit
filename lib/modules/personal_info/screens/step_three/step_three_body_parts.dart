@@ -3,16 +3,16 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
-import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../../../cubit/setup_personal_info_cubit.dart';
-import '../../../widgets/equipment_item.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../cubit/setup_personal_info_cubit.dart';
+import '../widgets/radio_box_with_img.dart';
 
 class FinalStepBodyParts extends StatefulWidget {
   const FinalStepBodyParts({super.key});

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:urfit/core/domain/error/session.dart';
 
-import '../../../../modules/personal_info/data/models/user_goals_model.dart';
-import '../../../../modules/personal_info/screens/widgets/setup_personal_info/goals_item.dart';
+import '../../../personal_info/data/models/user_goals_model.dart';
+import '../../../personal_info/screens/widgets/goals_item.dart';
 
 class GoalSection extends StatelessWidget {
   final Function(int) onTap;

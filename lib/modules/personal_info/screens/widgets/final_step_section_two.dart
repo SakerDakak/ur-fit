@@ -7,11 +7,10 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/views/widgets/range_bar.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/personal_info/cubit/setup_personal_info_state.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/setup_personal_info/animated_value_container.dart';
+import 'package:urfit/modules/personal_info/screens/widgets/animated_value_container.dart';
 
-import '../../../../../core/presentation/utils/constants.dart';
-import '../../../../../core/presentation/views/widgets/weak_days_date.dart';
+import '../../../../core/presentation/utils/constants.dart';
+import '../../../../core/presentation/views/widgets/weak_days_date.dart';
 
 class FinalStepSectionTwo extends StatefulWidget {
   const FinalStepSectionTwo({super.key});

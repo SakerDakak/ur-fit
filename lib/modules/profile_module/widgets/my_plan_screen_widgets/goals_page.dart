@@ -10,7 +10,7 @@ import 'package:urfit/modules/personal_info/data/models/user_goals_model.dart';
 import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
 import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 
-import '../../../../core/presentation/views/widgets/goal_section.dart';
+import 'goal_section.dart';
 
 class GoalsPage extends StatelessWidget {
   const GoalsPage({super.key});

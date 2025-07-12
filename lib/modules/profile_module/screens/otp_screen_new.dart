@@ -4,7 +4,7 @@ import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-import 'package:urfit/core/presentation/views/widgets/otp_form_fields.dart';
+import 'package:urfit/modules/profile_module/screens/otp_form_fields.dart';
 
 class OtpScreenNew extends StatelessWidget {
   const OtpScreenNew({super.key});

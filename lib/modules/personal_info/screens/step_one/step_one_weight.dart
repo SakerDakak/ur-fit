@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../../../cubit/setup_personal_info_cubit.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../cubit/setup_personal_info_cubit.dart';
 
 class StepOneWeight extends StatefulWidget {
   const StepOneWeight({super.key});

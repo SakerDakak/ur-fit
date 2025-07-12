@@ -11,7 +11,7 @@ import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
-import '../../../core/presentation/views/widgets/equipment_list.dart';
+import '../../../core/presentation/views/widgets/selection_item_model_list.dart';
 
 class EquipmentSelectionScreen extends StatefulWidget {
   const EquipmentSelectionScreen({super.key});
@@ -59,7 +59,7 @@ class _EquipmentSelectionScreenState extends State<EquipmentSelectionScreen> {
 
                 // continue button
                 Expanded(
-                  child: EquipmentList(
+                  child: SelectionItemModelList(
                     items: equipments,
                     selectedItems: state.userInfo.equipmentsIds,
                     onTap: (item) {

@@ -6,11 +6,11 @@ import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../../../cubit/setup_personal_info_cubit.dart';
-import '../../../widgets/setup_personal_info/animated_value_container.dart';
-import '../../../widgets/setup_personal_info/values_gridview.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../cubit/setup_personal_info_cubit.dart';
+import '../widgets/animated_value_container.dart';
+import '../widgets/values_gridview.dart';
 
 class FinalStepDietType extends StatelessWidget {
   const FinalStepDietType({super.key});

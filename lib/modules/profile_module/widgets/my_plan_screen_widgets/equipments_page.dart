@@ -9,7 +9,7 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/profile_module/screens/loading_plan_screen.dart';
 
-import '../../../../core/presentation/views/widgets/equipment_list.dart';
+import '../../../../core/presentation/views/widgets/selection_item_model_list.dart';
 import '../../../personal_info/cubit/setup_personal_info_cubit.dart';
 
 class EquipmentsPage extends StatelessWidget {
@@ -35,7 +35,7 @@ class EquipmentsPage extends StatelessWidget {
           const SizedBox(height: 20),
 
           Expanded(
-            child: EquipmentList(
+            child: SelectionItemModelList(
               items: [],
               selectedItems: cubit.state.userInfo.equipmentsIds,
               onTap: (item) {

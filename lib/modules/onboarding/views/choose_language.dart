@@ -9,7 +9,7 @@ import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/title_with_icon.dart';
 import 'package:urfit/modules/onboarding/views/choose_country.dart';
 
-import '../../../core/presentation/appCubit/app_cubit.dart';
+import '../../../core/presentation/app_cubit/app_cubit.dart';
 import '../../../core/presentation/style/colors.dart';
 import '../../../core/presentation/views/widgets/slider_dots.dart';
 import 'widgets/radio_listtile_list_widget.dart';

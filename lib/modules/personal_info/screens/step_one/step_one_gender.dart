@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 
-import 'gender_selector.dart';
+import '../widgets/gender_selector_widget.dart';
 
 class StepOneGender extends StatefulWidget {
   const StepOneGender({super.key});
@@ -52,7 +52,7 @@ class _StepOneGenderState extends State<StepOneGender> {
         // _GenderToggleButtons(
         //   onChanged: (gender) => cubit.updateUserGender(gender),
         // ),
-        GenderSelector(
+        GenderSelectorWidget(
           initial: selected,
           onChanged: (gender) {
             setState(() {

@@ -7,19 +7,19 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/personal_info/screens/equipment_selection_screen.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_body_parts.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_diet_type.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_meals_variety.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_not_preferred_meals.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_preferred_meals.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_target_weight.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_weekly_exercise_times.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/final_step/final_step_work_types.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/setup_info_step_two.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/step_one/step_one_age.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/step_one/step_one_gender.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/step_one/step_one_height.dart';
-import 'package:urfit/modules/personal_info/screens/presonal_info_steps/widgets/step_one/step_one_weight.dart';
+import 'package:urfit/modules/personal_info/screens/step_one/step_one_age.dart';
+import 'package:urfit/modules/personal_info/screens/step_one/step_one_gender.dart';
+import 'package:urfit/modules/personal_info/screens/step_one/step_one_height.dart';
+import 'package:urfit/modules/personal_info/screens/step_one/step_one_weight.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_body_parts.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_diet_type.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_meals_variety.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_not_preferred_meals.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_preferred_meals.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_target_weight.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_weekly_exercise_times.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_work_types.dart';
+import 'package:urfit/modules/personal_info/screens/step_two/step_two_goals.dart';
 
 class PresonalInfoLayoutScreen extends StatefulWidget {
   const PresonalInfoLayoutScreen({super.key});
@@ -73,7 +73,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     const StepOneWeight(),
 
     ///
-    const SetupInfoStepTwo(),
+    const StepTwoGoals(),
 
     ///
     const FinalStepBodyParts(),

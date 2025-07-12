@@ -4,25 +4,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../../../cubit/setup_personal_info_cubit.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../cubit/setup_personal_info_cubit.dart';
 
-class FinalStepWeeklyExerciseTimes extends StatefulWidget {
-  const FinalStepWeeklyExerciseTimes({super.key});
+class FinalStepTargetWeight extends StatefulWidget {
+  const FinalStepTargetWeight({super.key});
 
   @override
-  State<FinalStepWeeklyExerciseTimes> createState() => _FinalStepWeeklyExerciseTimesState();
+  State<FinalStepTargetWeight> createState() => _FinalStepTargetWeightState();
 }
 
-class _FinalStepWeeklyExerciseTimesState extends State<FinalStepWeeklyExerciseTimes> {
+class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
-    controller.text = cubit.state.userInfo.weaklyTrainingCount?.toString() ?? '';
+    controller.text = cubit.state.userInfo.targetWeight?.toString() ?? '';
     super.initState();
   }
 
@@ -36,12 +36,11 @@ class _FinalStepWeeklyExerciseTimesState extends State<FinalStepWeeklyExerciseTi
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              L10n.tr().trainingTimesPerWeek,
+              L10n.tr().weightYouWantToTarget,
               style: TStyle.semiBold_16,
               textAlign: TextAlign.start,
             ),
@@ -62,7 +61,7 @@ class _FinalStepWeeklyExerciseTimesState extends State<FinalStepWeeklyExerciseTi
                 color: Colors.white,
               ),
               decoration: InputDecoration(
-                hintText: L10n.tr().trainingTimes,
+                hintText: L10n.tr().enterWeight,
                 hintStyle: TStyle.semiBold_16.copyWith(
                   color: Colors.white.withOpacity(0.6),
                 ),
@@ -82,12 +81,14 @@ class _FinalStepWeeklyExerciseTimesState extends State<FinalStepWeeklyExerciseTi
               },
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
-            L10n.tr().exercise,
-            style: TStyle.semiBold_14.copyWith(color: Theme.of(context).colorScheme.primary),
+            L10n.tr().kg,
+            style: TStyle.semiBold_14.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 80),
           // continue button
           ListenableBuilder(
             listenable: controller,
@@ -97,9 +98,9 @@ class _FinalStepWeeklyExerciseTimesState extends State<FinalStepWeeklyExerciseTi
               onPressed: controller.text.trim().isEmpty
                   ? null
                   : () {
-                      final times = int.tryParse(controller.text.trim()) ?? 0;
-                      if (times < 1 || times > 100) return Alerts.showToast(L10n.tr().pleaseEnterValidWeight);
-                      cubit.updateWeeklyTrainingCount(times);
+                      final weight = double.tryParse(controller.text.trim()) ?? 0;
+                      if (weight < 25 || weight > 300) return Alerts.showToast(L10n.tr().pleaseEnterValidWeight);
+                      cubit.updateTargetWeight(weight);
                       cubit.nextPage();
                     },
             ),

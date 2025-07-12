@@ -21,7 +21,7 @@ import 'package:urfit/modules/workout_module/data/workout_remote_datasource.dart
 import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
 
 import 'core/data/api/api_client.dart';
-import 'core/presentation/appCubit/app_cubit.dart';
+import 'core/presentation/app_cubit/app_cubit.dart';
 import 'modules/home_module/controller/cubit/health_cubit.dart';
 
 final di = GetIt.instance;

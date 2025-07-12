@@ -4,25 +4,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../../../cubit/setup_personal_info_cubit.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../cubit/setup_personal_info_cubit.dart';
 
-class FinalStepTargetWeight extends StatefulWidget {
-  const FinalStepTargetWeight({super.key});
+class StepOneHeight extends StatefulWidget {
+  const StepOneHeight({super.key});
 
   @override
-  State<FinalStepTargetWeight> createState() => _FinalStepTargetWeightState();
+  State<StepOneHeight> createState() => _StepOneHeightState();
 }
 
-class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
+class _StepOneHeightState extends State<StepOneHeight> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
-    controller.text = cubit.state.userInfo.targetWeight?.toString() ?? '';
+    controller.text = cubit.state.userInfo.height?.toString() ?? '';
     super.initState();
   }
 
@@ -40,7 +40,7 @@ class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              L10n.tr().weightYouWantToTarget,
+              L10n.tr().whatsYourHeight,
               style: TStyle.semiBold_16,
               textAlign: TextAlign.start,
             ),
@@ -61,7 +61,7 @@ class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
                 color: Colors.white,
               ),
               decoration: InputDecoration(
-                hintText: L10n.tr().enterWeight,
+                hintText: L10n.tr().enterHeight,
                 hintStyle: TStyle.semiBold_16.copyWith(
                   color: Colors.white.withOpacity(0.6),
                 ),
@@ -74,21 +74,21 @@ class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
                 ),
               ),
               onChanged: (value) {
-                final weight = double.tryParse(value);
-                if (weight != null) {
-                  // cubit.updateUserWeight(weight);
+                final height = double.tryParse(value);
+                if (height != null) {
+                  // cubit.updateUserHeight(height);
                 }
               },
             ),
           ),
           const SizedBox(height: 16),
           Text(
-            L10n.tr().kg,
+            L10n.tr().cm,
             style: TStyle.semiBold_14.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 100),
           // continue button
           ListenableBuilder(
             listenable: controller,
@@ -98,10 +98,10 @@ class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
               onPressed: controller.text.trim().isEmpty
                   ? null
                   : () {
-                      final weight = double.tryParse(controller.text.trim()) ?? 0;
-                      if (weight < 25 || weight > 300) return Alerts.showToast(L10n.tr().pleaseEnterValidWeight);
-                      cubit.updateTargetWeight(weight);
-                      cubit.nextPage();
+                      final height = int.tryParse(controller.text.trim()) ?? 0;
+                      if (height < 100 || height > 250) return Alerts.showToast(L10n.tr().pleaseEnterValidHeight);
+                      cubit.updateUserHeight(height);
+                      cubit.nextPage(false);
                     },
             ),
           ),

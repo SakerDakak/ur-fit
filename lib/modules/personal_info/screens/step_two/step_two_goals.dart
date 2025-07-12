@@ -7,16 +7,16 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/setup_personal_info/goals_item.dart';
+import 'package:urfit/modules/personal_info/screens/widgets/goals_item.dart';
 
-class SetupInfoStepTwo extends StatefulWidget {
-  const SetupInfoStepTwo({super.key});
+class StepTwoGoals extends StatefulWidget {
+  const StepTwoGoals({super.key});
 
   @override
-  State<SetupInfoStepTwo> createState() => _SetupInfoStepTwoState();
+  State<StepTwoGoals> createState() => _StepTwoGoalsState();
 }
 
-class _SetupInfoStepTwoState extends State<SetupInfoStepTwo> {
+class _StepTwoGoalsState extends State<StepTwoGoals> {
   @override
   void initState() {
     context.read<SetupPersonalInfoCubit>().getGoals();

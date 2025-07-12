@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:urfit/modules/personal_info/data/models/selection_item_model.dart';
 
-import '../../../../modules/personal_info/screens/widgets/equipment_item.dart';
+import '../../../../modules/personal_info/screens/widgets/radio_box_with_img.dart';
 
-class EquipmentList extends StatelessWidget {
+class SelectionItemModelList extends StatelessWidget {
   final List<SelectionItemModel> items;
   final Function(SelectionItemModel item) onTap;
   final Set<int> selectedItems;
-  const EquipmentList({super.key, required this.items, required this.onTap, required this.selectedItems});
+  const SelectionItemModelList({super.key, required this.items, required this.onTap, required this.selectedItems});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/appCubit/app_cubit.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';

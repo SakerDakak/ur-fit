@@ -47,15 +47,4 @@ class Alerts {
       textColor: Co.fontColor,
     );
   }
-
-  // static void locationDisabled() {
-  //   final context = AppConsts.navigatorKey.currentContext!;
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => Dialogs.confirmDialog(
-  //       title: L10n.tr().attention,
-  //       message: L10n.tr().pleaseEnableLocationService,
-  //     ),
-  //   );
-  // }
 }

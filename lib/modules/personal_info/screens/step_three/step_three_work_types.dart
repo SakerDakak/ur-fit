@@ -8,10 +8,10 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/views/widgets/custom_buttons.dart';
-import '../../../../cubit/setup_personal_info_cubit.dart';
-import '../../../widgets/equipment_item.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/views/widgets/custom_buttons.dart';
+import '../../cubit/setup_personal_info_cubit.dart';
+import '../widgets/radio_box_with_img.dart';
 
 class FinalStepWorkTypes extends StatelessWidget {
   const FinalStepWorkTypes({super.key});

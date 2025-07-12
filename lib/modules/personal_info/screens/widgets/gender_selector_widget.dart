@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 
-import '../../../../../../core/presentation/assets/assets_manager.dart';
-import '../../../../../../core/presentation/style/colors.dart';
-import '../../../../../../core/presentation/style/fonts.dart';
-import '../../../../../../core/presentation/utils/constants.dart';
-import '../../../../../../core/presentation/utils/enums.dart';
-import '../../../../../../core/presentation/views/widgets/custom_image_view.dart';
+import '../../../../core/presentation/assets/assets_manager.dart';
+import '../../../../core/presentation/style/colors.dart';
+import '../../../../core/presentation/style/fonts.dart';
+import '../../../../core/presentation/utils/constants.dart';
+import '../../../../core/presentation/utils/enums.dart';
+import '../../../../core/presentation/views/widgets/custom_image_view.dart';
 
-class GenderSelector extends StatefulWidget {
+class GenderSelectorWidget extends StatefulWidget {
   final void Function(GenderEnum gender) onChanged;
   final GenderEnum? initial;
-  const GenderSelector({super.key, required this.onChanged, this.initial});
+  const GenderSelectorWidget({super.key, required this.onChanged, this.initial});
 
   @override
-  State<GenderSelector> createState() => _GenderSelectorState();
+  State<GenderSelectorWidget> createState() => _GenderSelectorWidgetState();
 }
 
-class _GenderSelectorState extends State<GenderSelector> {
+class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
   GenderEnum? _selectedIndex;
   @override
   void initState() {
