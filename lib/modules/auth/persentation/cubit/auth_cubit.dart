@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
-import 'package:go_router/go_router.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
-import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/models/register_model.dart';
-import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
-import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   final _repo = di<AuthRepo>();
@@ -25,23 +20,11 @@ class AuthCubit extends Cubit<AuthStates> {
     user.fold((l) async {
       emit(LoginErrorState());
     }, (response) async {
-      final user = response.user;
       await Future.wait([
         if (remember) FlutterKeychain.put(key: 'email', value: emailController.text.trim()),
         if (remember) FlutterKeychain.put(key: 'password', value: loginPasswordController.text.trim()),
       ]);
-      if (user.isChecked != true) {
-        Session().tempToken = response.token;
-        emit(UnCheckedUser());
-      } else {
-        TokenService.setToken(response.token);
-        Session().currentUser = user;
-        if (user.hasCompleteStepOne) {
-          emit(CheckedWithInfoUser());
-        } else {
-          emit(CheckedUncompletedInfoUser());
-        }
-      }
+      TokenService.setToken(response.token);
     });
   }
 
@@ -66,25 +49,25 @@ class AuthCubit extends Cubit<AuthStates> {
     user.fold((l) {
       emit(RegisterErrorState(error: l.message));
     }, (response) async {
-      Session().tempToken = response.token;
+      TokenService.setToken(response.token);
       // await TokenService.setToken(response.token);
       emit(RegisterSuccessState());
     });
   }
 
-  Future<bool> resendOTP() async {
-    final result = await _repo.resendOtp(email: emailController.text.trim());
-    return result.fold((l) => false, (response) => true);
-  }
+  // Future<bool> resendOTP() async {
+  //   final result = await _repo.resendOtp(email: emailController.text.trim());
+  //   return result.fold((l) => false, (response) => true);
+  // }
 
-  Future<void> submitOTP(String otp) async {
-    final result = await _repo.otpCheckCode(code: otp, email: emailController.text.trim());
-    return result.fold((l) {}, (user) {
-      TokenService.setToken(Session().tempToken!);
-      Session().currentUser = user;
-      AppConst.navigatorKey.currentContext?.go(StartPersonalInfoScreen.route);
-    });
-  }
+  // Future<void> submitOTP(String otp) async {
+  //   final result = await _repo.otpCheckCode(code: otp, email: emailController.text.trim());
+  //   return result.fold((l) {}, (user) {
+  //     TokenService.setToken(Session().tempToken!);
+  //     Session().setCurrentUser = user;
+  //     AppConst.navigatorKey.currentContext?.go(StartPersonalInfoScreen.route);
+  //   });
+  // }
 
   sendOTP() async {
     final result = await _repo.resendOtp(email: emailController.text.trim());

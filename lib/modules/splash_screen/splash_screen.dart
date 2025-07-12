@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
-import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
-import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/di.dart';
-import 'package:urfit/modules/auth/data/models/user/user_model.dart';
+import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
-import 'package:urfit/modules/home_module/screens/main_page.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
-import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
 import '../../core/presentation/assets/assets_manager.dart';
 import '../../core/presentation/style/colors.dart';
@@ -32,32 +26,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     final result = await authRepo.getUserDataFromServer();
     result.fold((lt) {
       TokenService.deleteToken();
-      context.pushReplacement(AuthScreen.route);
+      context.go(AuthScreen.route);
     }, (user) {
-      if (user.isChecked != true) {
-        TokenService.deleteToken();
-        context.pushReplacement(AuthScreen.route);
-      } else {
-        Session().currentUser = user;
-        if (user.gender != null) _setAppTheme(user.gender!);
-        if (user.hasValidSubscription == true ||  user.hasCompleteProfile) {
-          context.go(MainPage.routeWithBool(false));
-        } else {
-          context.pushReplacement(StartPersonalInfoScreen.route);
-        }
-      }
+      AuthHelper().setUserAndNavigate(context, user, true);
     });
-  }
-
-  _setAppTheme(GenderEnum gender) async {
-    switch (gender) {
-      case GenderEnum.male:
-        context.read<AppCubit>().setMaleTheme();
-        break;
-      case GenderEnum.female:
-        context.read<AppCubit>().setFemaleTheme();
-        break;
-    }
   }
 
   _getSplash() async {

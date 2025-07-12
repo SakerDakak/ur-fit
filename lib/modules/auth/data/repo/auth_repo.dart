@@ -287,9 +287,9 @@ class AuthRepo {
       print(" #####  Google photo url: ${googleUser?.photoUrl}");
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
+      if (googleAuth == null) return left(ServerFailure(L10n.tr().googleAuthenticationFailed));
       final req = RegisterRequest(name: googleUser?.displayName, email: googleUser?.email);
-      return await _sendSocialAuth(accessToken: googleAuth!.accessToken!, req: req);
+      return await _sendSocialAuth(accessToken: googleAuth.accessToken!, req: req);
 
       // In mobile, being authenticated means being authorized...// However, on web...
     } catch (error) {

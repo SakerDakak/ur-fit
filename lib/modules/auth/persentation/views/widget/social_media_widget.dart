@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/data/comand.dart';
-import 'package:urfit/core/data/services/storage_keys.dart';
-import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
-import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/core/presentation/views/widgets/adaptive_progress_indicator.dart';
 import 'package:urfit/di.dart';
-import 'package:urfit/modules/auth/data/models/user/user_model.dart';
+import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
-import 'package:urfit/modules/home_module/screens/main_page.dart';
-import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
 class SocialMediaWidget extends StatefulWidget {
   const SocialMediaWidget({super.key});
@@ -34,17 +26,7 @@ class _SocialMediaWidgetState extends State<SocialMediaWidget> {
     res.fold((error) {
       Alerts.showToast(error.message);
     }, (result) async {
-      final user = result.user;
-      Session().currentUser = result.user;
-      await TokenService.setToken(result.token);
-      if (!mounted) return;
-      Alerts.showToast(result.message ?? '', error: false);
-      if (user.gender == GenderEnum.female) context.read<AppCubit>().setFemaleTheme();
-      if (user.hasCompleteProfile) {
-        context.go(MainPage.routeWithBool(false));
-      } else {
-        context.pushReplacement(StartPersonalInfoScreen.route);
-      }
+      AuthHelper().setUserAndNavigate(context, result.user);
     });
   }
 

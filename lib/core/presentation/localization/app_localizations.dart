@@ -98,6 +98,12 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @googleAuthenticationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Google authentication failed'**
+  String get googleAuthenticationFailed;
+
   /// No description provided for @youHaveSuccessfullySubscribedToPlan.
   ///
   /// In en, this message translates to:

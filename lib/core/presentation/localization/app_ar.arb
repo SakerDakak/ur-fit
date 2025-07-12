@@ -1,4 +1,5 @@
 {
+  "googleAuthenticationFailed": "فشل في التحقق من جوجل",
   "youHaveSuccessfullySubscribedToPlan": "تم الاشتراك في الخطة بنجاح",
   "retry": "اعادة المحاولة",
   "pleaseEnterValidAge": "رجاء ادخال سن صحيح",

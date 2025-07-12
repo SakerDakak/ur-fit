@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '916677939315',
     projectId: 'urfit-b2d73',
     storageBucket: 'urfit-b2d73.firebasestorage.app',
+    androidClientId: '916677939315-5k2sqnmr9decjlk88oskr352kk274t4d.apps.googleusercontent.com',
     iosClientId: '916677939315-tsq1iqpkh8i3r767lbvtv4ntdisegdd6.apps.googleusercontent.com',
     iosBundleId: 'com.rmz.urfit',
   );

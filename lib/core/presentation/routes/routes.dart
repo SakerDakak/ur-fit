@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_otp_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
@@ -101,10 +100,10 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: RegisterOTPScreen.routeWzExtra,
-        name: RegisterOTPScreen.routeWzExtra,
+        path: RegisterOTPScreen.route(null),
+        name: RegisterOTPScreen.route(null),
         builder: (context, state) {
-          return BlocProvider.value(value: state.extra as AuthCubit, child: const RegisterOTPScreen());
+          return RegisterOTPScreen(email: state.pathParameters['email'].toString());
         },
       ),
 

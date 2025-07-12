@@ -63,11 +63,13 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   nextPage([bool sendToBack = true]) {
+    if (isClosed) return;
     if (sendToBack) sendUpdateData();
     pageController.nextPage(duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 
   previousPage() {
+    if (isClosed) return;
     pageController.previousPage(duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 
@@ -316,15 +318,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
         emit(UpdateInfoError(userInfoRequest, failure.message));
       },
       (successData) async {
-        Session().currentUser = successData;
+        Session().setCurrentUser = successData;
         emit(UpdateInfoLoaded(UserInfoRequest.fromUserModel(successData)));
       },
     );
-  }
-
-  @override
-  Future<void> close() {
-    pageController.dispose();
-    return super.close();
   }
 }

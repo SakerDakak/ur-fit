@@ -142,7 +142,8 @@ class _RegisterFormState extends State<RegisterForm> {
                   }
                   if (state is RegisterSuccessState) {
                     Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail, error: false);
-                    context.push(RegisterOTPScreen.routeWzExtra, extra: authCubit);
+                    final email = authCubit.emailController.text.trim();
+                    context.push(RegisterOTPScreen.route(email));
                   } else if (state is RegisterErrorState) {
                     // Alerts.showToast(state.error?? '');
                   }

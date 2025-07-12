@@ -14,15 +14,18 @@ class Session {
   static final _inst = Session._();
   Session._();
   factory Session() => _inst;
-  UserModel? currentUser;
+  UserModel? _currentUser;
+  UserModel? get currentUser => _currentUser;
   int? countryId;
   int? cityId;
 
-  String? tempToken;
+  set setCurrentUser(UserModel? user) {
+    _currentUser = user;
+  }
 
   Future getUser() async {
     final result = await di<AuthRepo>().getUserDataFromServer();
-    result.fold((l) => print("getUserDataFromServer error: $l"), (loadedUser) => currentUser = loadedUser);
+    result.fold((l) => print("getUserDataFromServer error: $l"), (loadedUser) => setCurrentUser = loadedUser);
   }
 
   Future<FutureOr<void>> getUserDataFromServer() async {
@@ -30,7 +33,7 @@ class Session {
     await result.fold((l) {
       LoadingHelper.stopLoading();
     }, (loadedUser) async {
-      currentUser = loadedUser;
+      setCurrentUser = loadedUser;
       LoadingHelper.stopLoading();
     });
   }
@@ -39,9 +42,9 @@ class Session {
     LoadingHelper.startLoading();
     await di<AuthRepo>().signOut();
     await GoogleSignIn(scopes: ["email", "profile"]).signOut();
-    currentUser = null;
+    setCurrentUser = null;
     TokenService.deleteToken();
     LoadingHelper.stopLoading();
-    AppConst.navigatorKey.currentContext?.pushReplacementNamed(AuthScreen.route);
+    AppConst.navigatorKey.currentContext?.go(AuthScreen.route);
   }
 }

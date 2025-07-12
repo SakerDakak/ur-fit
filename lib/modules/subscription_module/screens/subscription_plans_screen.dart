@@ -204,7 +204,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     if (Session().currentUser != null) {
                       context.go(MainPage.routeWithBool(false));
                     } else {
-                      context.pushNamed(AuthScreen.route);
+                      context.go(AuthScreen.route);
                     }
                   },
                   child: Text(

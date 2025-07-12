@@ -7,13 +7,11 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
+import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
-import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/widget/social_media_widget.dart';
-import 'package:urfit/modules/home_module/screens/main_page.dart';
-import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/views/widgets/compact_form_field.dart';
@@ -56,12 +54,11 @@ class _LoginFormState extends State<LoginForm> {
                 height: 32.px,
               ),
               CompactTextFormField(
-                controller: authCubit.emailController,
-                hintText: L10n.tr().enterEmail,
-                autoFillHints: [AutofillHints.email],
-                title: L10n.tr().email,
-                validator: Validators.emailValidator
-              ),
+                  controller: authCubit.emailController,
+                  hintText: L10n.tr().enterEmail,
+                  autoFillHints: [AutofillHints.email],
+                  title: L10n.tr().email,
+                  validator: Validators.emailValidator),
               SizedBox(
                 height: 24.px,
               ),
@@ -141,17 +138,8 @@ class _LoginFormState extends State<LoginForm> {
                   } else {
                     LoadingHelper.stopLoading();
                   }
-                  if (state is UnCheckedUser) {
-                    // navigate to forget password screen
-                    authCubit.sendOTP();
-                    context.push(RegisterOTPScreen.routeWzExtra, extra: authCubit);
-                  } else if (state is CheckedUncompletedInfoUser) {
-                    /// case 2: user verified but has no valid subscription
-                    context.go(StartPersonalInfoScreen.route);
-                  } else if (state is CheckedWithInfoUser) {
-                    /// case 3: user verified, has valid subscription, and has personal info
-                    // context.pushReplacementNamed(AppRouter.authenticationScreen);
-                    context.go(MainPage.routeWithBool(false));
+                  if (state is LoginSuccessState) {
+                    AuthHelper().setUserAndNavigate(context, state.user);
                   }
                 },
                 builder: (context, state) => CustomElevatedButton(
