@@ -1,11 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../../subscription_module/data/models/package_model.dart';
@@ -86,7 +87,7 @@ class DiscountSection extends StatelessWidget {
                 start: 18,
                 textDirection: Directionality.of(context),
                 child: Image.asset(
-                  Assets.imageMan,
+                  Session().currentUser?.gender == GenderEnum.female ? Assets.imageFamaleCharacter : Assets.imageMan,
                   height: 117,
                 ),
               ),
@@ -207,7 +208,7 @@ class DiscountSection extends StatelessWidget {
   }
 
   Stack _buildTheStackedCircles(BuildContext context) {
-    return  Stack(
+    return Stack(
       alignment: Alignment.center,
       children: [
         const CircleAvatar(

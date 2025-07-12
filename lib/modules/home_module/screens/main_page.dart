@@ -5,7 +5,6 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 
-import '../../../core/presentation/assets/app_assets.dart';
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/colors.dart';
 import '../../../core/presentation/style/fonts.dart';
@@ -396,12 +395,14 @@ class CustomNavBarItem extends StatelessWidget {
           color: isActive ? activeColor : inactiveColor,
         ),
         const SizedBox(height: 4), // Adjust this value for spacing between icon and text
-        Text(
-          title,
-          style: TextStyle(
-            color: isActive ? activeColor : inactiveColor,
-            fontSize: 12,
-            fontWeight: FontWeight.w600, // Adjust as needed
+        FittedBox(
+          child: Text(
+            title,
+            style: TextStyle(
+              color: isActive ? activeColor : inactiveColor,
+              fontSize: 12,
+              fontWeight: FontWeight.w600, // Adjust as needed
+            ),
           ),
         ),
       ],

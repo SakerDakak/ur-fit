@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,9 +47,9 @@ class ApiClient {
     );
     headerPReparing();
 
-    if (kDebugMode) {
+    // if (kDebugMode) {
       dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    }
+    // }
   }
 
   Future<Response<T>> get<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {

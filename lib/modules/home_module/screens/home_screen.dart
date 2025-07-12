@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<HealthCubit>().initializeHealth();
     final user = Session().currentUser;
-    print("user: $user");
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         return Scaffold(

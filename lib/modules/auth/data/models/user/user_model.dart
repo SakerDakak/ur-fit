@@ -1,4 +1,6 @@
+import 'package:flutter/painting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 
 part 'user_model.freezed.dart';
@@ -311,4 +313,6 @@ extension UserModelExtension on UserModel {
       (equipments?.isNotEmpty ?? false);
 
   bool get hasCompleteProfile => hasCompleteStepOne && hasCompleteStepTwo && hasCompleteStepThree;
+
+  Color get color => gender == GenderEnum.male ? Co.primaryColor : Co.primaryColorFemale;
 }

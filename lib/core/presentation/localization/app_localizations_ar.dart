@@ -9,6 +9,10 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get youHaveSuccessfullySubscribedToPlan =>
+      'تم الاشتراك في الخطة بنجاح';
+
+  @override
   String get selectAll => 'اختيار الكل';
 
   @override

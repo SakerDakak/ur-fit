@@ -112,26 +112,6 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   getPaymentUrl() async {
     emit(state.copyWith(getPaymentUrlState: RequestState.loading));
     print("coupon code : ${state.coupon}");
-    // if(state.discountValue  != null && state.discountValue?.final_price == 0 || state.discountValue?.final_price == 0.0) {
-    //   final package = state.packages.firstWhere((package) => package.id == state.selectedPackage || package.id == state.packages.first.id);
-    //   switch(package.type){
-    //
-    //     case PlanType.exercise:
-    //       await AppConst.rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
-    //       break;
-    //     case PlanType.diet:
-    //       await AppConst.rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
-    //       sl<AuthenticationBloc>().add(GetUserDataFromServer());
-    //
-    //       break;
-    //     case PlanType.both:
-    //       await AppConst.rootScaffoldKey.currentContext!.read<MealsCubit>().generateMealPlan();
-    //       await AppConst.rootScaffoldKey.currentContext!.read<WorkoutCubit>().generateWorkOutPlan();
-    //       sl<AuthenticationBloc>().add(GetUserDataFromServer());
-    //       break;
-    //   }
-    //   LoadingHelper.stopLoading();
-    // }else {
     final result = await _subscriptionRepo.getPaymentUrl(
         packageId: state.selectedPackage ?? state.packages.first.id, couponeCode: state.coupon);
     result.fold(

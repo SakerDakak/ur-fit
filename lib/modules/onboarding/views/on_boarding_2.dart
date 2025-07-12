@@ -353,7 +353,7 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                   child: IconButton(
                       onPressed: () {
                         // if (currentIndex == 2) {
-                        context.push(ChooseLanguage.route);
+                        context.pushReplacement(ChooseLanguage.route);
                         // } else {
                         //   // currentIndex += 1;
                         //   pageController.animateToPage(currentIndex++,

@@ -32,7 +32,7 @@ class _SocialMediaWidgetState extends State<SocialMediaWidget> {
   Future<void> googleSignIn() async {
     final res = await di<AuthRepo>().getGoogleAuth();
     res.fold((error) {
-      // Handle error
+      Alerts.showToast(error.message);
     }, (result) async {
       final user = result.user;
       Session().currentUser = result.user;

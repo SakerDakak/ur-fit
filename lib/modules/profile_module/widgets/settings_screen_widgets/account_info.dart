@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-
-import '../../../../core/presentation/views/widgets/custom_image_view.dart';
 
 class AccountInfo extends StatelessWidget {
   const AccountInfo({super.key});
@@ -17,7 +14,7 @@ class AccountInfo extends StatelessWidget {
         const SizedBox(height: 8),
 
         // user image
-        CircleAvatar(radius: 26, backgroundImage: customImageView(AssetsManager.profileImage)),
+        // CircleAvatar(radius: 26, backgroundImage: customImageView(Assets.imageProfileImage)),
 
         const SizedBox(width: 8),
 

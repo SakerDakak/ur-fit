@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       } else {
         Session().currentUser = user;
         if (user.gender != null) _setAppTheme(user.gender!);
-        if (user.hasCompleteProfile) {
+        if (user.hasValidSubscription == true ||  user.hasCompleteProfile) {
           context.go(MainPage.routeWithBool(false));
         } else {
           context.pushReplacement(StartPersonalInfoScreen.route);

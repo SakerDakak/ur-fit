@@ -18,7 +18,7 @@ abstract class Co {
   static const Color whiteColor = Color(0xffFFFFFF);
   // static const Color greyColor = Color(0xff9CA3AF);
   static const Color menueColor = Color(0xffF3F4F6);
-  static const Color redColor = Color(0xffF87171);
+  static const Color redColor = Color(0xffFF0000);
   static const Color yellowColor = Color(0xffFBBF24);
   static const Color yellow700 = Color(0xffA16207);
   static const Color yellow50Color = Color(0xffFEFCE8);

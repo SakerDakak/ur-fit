@@ -98,6 +98,12 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @youHaveSuccessfullySubscribedToPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully subscribed to the plan'**
+  String get youHaveSuccessfullySubscribedToPlan;
+
   /// No description provided for @selectAll.
   ///
   /// In en, this message translates to:

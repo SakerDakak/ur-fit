@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 
-import '../../../core/presentation/assets/assets_manager.dart';
-import '../../../core/presentation/views/widgets/custom_image_view.dart';
-
 class AccountInfo extends StatelessWidget {
   const AccountInfo({super.key});
 
@@ -17,11 +14,11 @@ class AccountInfo extends StatelessWidget {
         const SizedBox(height: 8),
 
         // user image
-        CircleAvatar(
-          radius: 32,
-          backgroundImage: customImageView(AssetsManager.profileImage),
-        ),
-        const SizedBox(height: 12),
+        // CircleAvatar(
+        //   radius: 32,
+        //   backgroundImage: customImageView(Assets.imageProfileImage),
+        // ),
+        // const SizedBox(height: 12),
 
         // user name
         Text(

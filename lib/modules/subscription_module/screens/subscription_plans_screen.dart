@@ -1,16 +1,23 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/debouncer.dart';
+import 'package:urfit/core/presentation/views/widgets/adaptive_progress_indicator.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
+import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
+import 'package:urfit/modules/home_module/screens/main_page.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
-import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/action_buttons.dart';
+import 'package:urfit/modules/subscription_module/screens/payment_webview.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_plans.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_screen_appbar.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plan_description_shimmer.dart';
@@ -26,8 +33,7 @@ class SubscriptionPlansScreen extends StatefulWidget {
   const SubscriptionPlansScreen({super.key, required this.planType});
 
   @override
-  State<SubscriptionPlansScreen> createState() =>
-      _SubscriptionPlansScreenState();
+  State<SubscriptionPlansScreen> createState() => _SubscriptionPlansScreenState();
 }
 
 class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
@@ -43,14 +49,11 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // background image
           Image.asset(
             Assets.imageManPullUp,
             fit: BoxFit.cover,
             height: MediaQuery.sizeOf(context).height * 0.8,
           ),
-
-          // gradient shadow on top of the image
           Container(
             width: double.infinity,
             height: double.infinity,
@@ -67,8 +70,6 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
               ),
             ),
           ),
-
-          // screen content
           SafeArea(
             child: ListView(
               padding: const EdgeInsets.symmetric(
@@ -76,24 +77,19 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
               ),
               children: [
                 const SizedBox(height: 20),
-                // app bar
                 const SubscriptionScreenAppBar(),
-
                 const SizedBox(height: 50),
-
-                // available plans
                 BlocBuilder<SubscriptionCubit, SubscriptionState>(
                   builder: (context, state) {
                     return state.getPackagesState == RequestState.loading ||
                             state.getPackagesState == RequestState.failure
                         ? const PlansShimmer()
                         : SubscriptionPlans(
-                      planType: widget.planType,
+                            planType: widget.planType,
                             packages: state.packages,
                           );
                   },
                 ),
-
                 const SizedBox(height: 30),
 
                 // selected plan description
@@ -102,62 +98,57 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     return state.getPackagesState == RequestState.loading ||
                             state.getPackagesState == RequestState.failure
                         ? const PlanDescriptionShimmer()
-                        : HtmlWidget(
-                        state.packages.firstWhere((pack) => pack.id == state.selectedPackage || pack.id == state.packages.first.id).description ?? "");
+                        : HtmlWidget(state.packages
+                                .firstWhere(
+                                    (pack) => pack.id == state.selectedPackage || pack.id == state.packages.first.id)
+                                .description ??
+                            "");
                   },
                 ),
-
                 const SizedBox(height: 30),
-
                 CompactTextFormField(
                   hintText: L10n.tr().couponCode,
                   onChanged: (String? value) {
-                    if (value != null && value.isNotEmpty)
-                      Debouncer(milliseconds: 500).run(() {
-                        context
-                            .read<SubscriptionCubit>()
-                            .checkCouponCode(coupon: value);
-                      });
+                    if (value != null && value.isNotEmpty) {
+                      Debouncer(milliseconds: 500).run(
+                        () => context.read<SubscriptionCubit>().checkCouponCode(coupon: value),
+                      );
+                    }
                   },
                 ),
                 // start payment and cancel button
                 const SizedBox(height: 30),
                 BlocBuilder<SubscriptionCubit, SubscriptionState>(
                   builder: (context, state) {
-                    if (state.couponState == RequestState.loading) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    if (state.couponState == RequestState.failure) {
-                      return  Center(child: Text(state.errMessage,style: TStyle.semiBold_16.copyWith(color: Co.redColor),));
-                    }
-                    return state.couponState == RequestState.success
-                        ? Column(
+                    switch (state.couponState) {
+                      case RequestState.initial:
+                      case RequestState.loading:
+                        return const SizedBox.shrink();
+                      case RequestState.failure:
+                        return Center(
+                          child: Text(
+                            state.errMessage,
+                            style: TStyle.semiBold_16.copyWith(color: Co.redColor),
+                          ),
+                        );
+                      case RequestState.success:
+                        if (state.discountValue == null) return const SizedBox.shrink();
+                        return Column(
                           children: [
                             Row(
                               children: [
+                                Text(L10n.tr().priceBeforeDiscount, style: TStyle.semiBold_16),
+                                SizedBox(width: 10),
                                 Text(
-                                  L10n.tr().priceAfterDiscount,
-                                  style: TStyle.semiBold_16,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
-                                  style: TStyle.bold_16.copyWith(color: Co.primaryColor),
-                                ),
+                                    "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
+                                    style: TStyle.bold_16.copyWith(color: Co.primaryColor)),
                               ],
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(height: 10),
                             Row(
                               children: [
-                                Text(
-                                    L10n.tr().priceBeforeDiscount,
-                                    style: TStyle.semiBold_16,
-                                  ),
-                                SizedBox(
-                                  width: 10,
-                                ),
+                                Text(L10n.tr().priceAfterDiscount, style: TStyle.semiBold_16),
+                                SizedBox(width: 10),
                                 Text(
                                   "${L10n.tr().sar}${state.discountValue?.final_price.toStringAsFixed(2) ?? state.packages.firstWhere((package) => package.id == state.selectedPackage).price}",
                                   style: TStyle.bold_16.copyWith(color: Co.primaryColor),
@@ -165,13 +156,64 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                               ],
                             ),
                           ],
-                        )
-                        : const SizedBox();
+                        );
+                    }
                   },
                 ),
                 const SizedBox(height: 10),
-
-                const ActionButtons(),
+                BlocConsumer<SubscriptionCubit, SubscriptionState>(
+                  listenWhen: (previous, current) => current.getPaymentUrlState != previous.getPaymentUrlState,
+                  listener: (context, state) {
+                    if (state.getPaymentUrlState == RequestState.failure) {
+                      Alerts.showToast(state.errMessage, length: Toast.LENGTH_LONG);
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state.getPaymentUrlState == RequestState.loading) {
+                      return const Center(child: AdaptiveProgressIndicator());
+                    }
+                    if (Session().currentUser?.hasValidSubscription == true ||
+                        Session().currentUser?.packageId == state.selectedPackage) {
+                      return CustomElevatedButton(
+                        text: L10n.tr().youAreAlreadySubscribedToThisPlan,
+                        onPressed: null,
+                      );
+                    }
+                    return CustomElevatedButton(
+                      padding: EdgeInsets.zero,
+                      text: state.discountValue?.final_price != null && state.discountValue!.final_price <= 0
+                          ? L10n.tr().subscribe
+                          : L10n.tr().paymentGetWay,
+                      onPressed: () async {
+                        await context.read<SubscriptionCubit>().getPaymentUrl();
+                        if (!context.mounted) return;
+                        if (state.paymentUrl == null) {
+                          await Session().getUserDataFromServer();
+                          Alerts.showToast(L10n.tr().youHaveSuccessfullySubscribedToPlan, error: false);
+                          if (context.mounted) context.go(MainPage.routeWithBool(false));
+                        } else {
+                          context.pushNamed(PaymentWebView.route, queryParameters: {"url": state.paymentUrl});
+                        }
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 15),
+                TextButton(
+                  onPressed: () {
+                    if (Session().currentUser != null) {
+                      context.go(MainPage.routeWithBool(false));
+                    } else {
+                      context.pushNamed(AuthScreen.route);
+                    }
+                  },
+                  child: Text(
+                    L10n.tr().later,
+                    style: TStyle.bold_16.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                )
               ],
             ),
           ),

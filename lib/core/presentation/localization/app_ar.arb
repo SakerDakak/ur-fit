@@ -1,8 +1,9 @@
 {
+  "youHaveSuccessfullySubscribedToPlan": "تم الاشتراك في الخطة بنجاح",
   "retry": "اعادة المحاولة",
-  "pleaseEnterValidAge" : "رجاء ادخال سن صحيح",
-  "pleaseEnterValidHeight" : "رجاء ادخال طول صحيح",
-  "pleaseEnterValidWeight" : "رجاء ادخال وزن صحيح",
+  "pleaseEnterValidAge": "رجاء ادخال سن صحيح",
+  "pleaseEnterValidHeight": "رجاء ادخال طول صحيح",
+  "pleaseEnterValidWeight": "رجاء ادخال وزن صحيح",
   "yourHealth": "صحتك",
   "isMoreImportantThanAnything": "اهم من كل شئ",
   "welconeToMyDailyCompanionToAHealthyLife": "مرحبًا بك في رفيقي اليومي لحياة صحية",
@@ -224,5 +225,5 @@
   "enterHeight": "ادخل الطول",
   "enterWeight": "ادخل الوزن",
   "trainingTimes": "عدد التمارين",
-  "selectAll" : "اختيار الكل"
+  "selectAll": "اختيار الكل"
 }

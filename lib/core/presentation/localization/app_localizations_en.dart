@@ -9,6 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get youHaveSuccessfullySubscribedToPlan =>
+      'You have successfully subscribed to the plan';
+
+  @override
   String get selectAll => 'Select All';
 
   @override

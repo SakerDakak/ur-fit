@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 // import 'package:panara_dialogs/panara_dialogs.dart';
 
 class Alerts {
@@ -33,17 +35,18 @@ class Alerts {
     bool error = true,
     bool isInfo = false,
   }) {
+    final color = isInfo
+        ? Co.secondaryColor.withAlpha(125)
+        : error
+            ? Co.redColor
+            : Session().currentUser?.color ?? Co.blackColor;
     Fluttertoast.showToast(
       msg: message,
       toastLength: length,
       gravity: toastGravity,
       timeInSecForIosWeb: 3,
       fontSize: 16,
-      backgroundColor: isInfo
-          ? Co.secondaryColor.withAlpha(125)
-          : error
-              ? Co.redColor
-              : Co.blackColor,
+      backgroundColor: color,
       textColor: Co.fontColor,
     );
   }
