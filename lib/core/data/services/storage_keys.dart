@@ -12,7 +12,7 @@ class StorageKeys {
   static String favoriteIDs = "readNotifications";
   static String cart = "cart";
   // static String branchId = "branchId";
-  static const String themeData = 'themeData';
+  static const String isDarkTheme = 'isDarkTheme';
   static const String firstVisit = 'firstVisit';
   static const String lang = 'lang';
 }

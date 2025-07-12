@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
-import 'package:urfit/modules/meals_module/data/data_source/meals_local_datasource.dart';
 import 'package:urfit/modules/meals_module/data/data_source/meals_remote_datasource.dart';
 import 'package:urfit/modules/meals_module/repo/meals_repo.dart';
 import 'package:urfit/modules/onboarding/controller/onboarding_cubit.dart';
@@ -56,7 +55,7 @@ Future<void> init() async {
   /// Repository
   di.registerLazySingleton<AuthRepo>(() => AuthRepo(di()));
   di.registerLazySingleton<SubscriptionRepo>(() => SubscriptionRepo(di()));
-  di.registerLazySingleton<MealsRepo>(() => MealsRepo(di(), di()));
+  di.registerLazySingleton<MealsRepo>(() => MealsRepo(di()));
   di.registerLazySingleton<WorkoutRepo>(() => WorkoutRepo(di()));
   di.registerLazySingleton<SettingRepo>(() => SettingRepo(di()));
 
@@ -64,7 +63,7 @@ Future<void> init() async {
   // sl.registerLazySingleton<UserLocalDataSource>(() => UserLocalDataSource());
   di.registerLazySingleton<SubscriptionRemoteDataSource>(() => SubscriptionRemoteDataSource(di()));
   di.registerLazySingleton<MealsRemoteDataSource>(() => MealsRemoteDataSource(di()));
-  di.registerLazySingleton<MealsLocalDatasource>(() => MealsLocalDatasource());
+  // di.registerLazySingleton<MealsLocalDatasource>(() => MealsLocalDatasource());
   di.registerLazySingleton<WorkoutRemoteDataSource>(() => WorkoutRemoteDataSource(di()));
   di.registerLazySingleton<SettingRemoteDataSource>(() => SettingRemoteDataSource(di()));
 

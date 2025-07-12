@@ -235,6 +235,7 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         text: L10n.tr().move,
                         style: TStyle.bold_40.copyWith(color: Co.primaryColor, fontSize: 34),
                         children: [
+                          const TextSpan(text: ' '),
                           TextSpan(
                             text: L10n.tr().yourBodyToFreeYourPower,
                             style: TStyle.bold_40.copyWith(color: Co.whiteColor, fontSize: 34),
@@ -247,6 +248,7 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         text: L10n.tr().youDontNeedClub,
                         style: TStyle.bold_20.copyWith(color: Co.whiteColor, fontSize: 24),
                         children: [
+                          const TextSpan(text: ' '),
                           TextSpan(
                             text: L10n.tr().youNeedToStart,
                             style: TStyle.bold_20.copyWith(color: Co.secondaryColor, fontSize: 24),

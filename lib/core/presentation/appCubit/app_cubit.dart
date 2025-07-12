@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/di.dart';
@@ -11,7 +10,7 @@ part 'app_state.dart';
 class AppCubit extends Cubit<AppState> {
   // final EasyLocalization localization ;
   AppCubit() : super(AppState(currentLocal: di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
-  late Box themeBox;
+  // late Box themeBox;
   late String lang;
   bool? notificationEnabled;
 
@@ -49,8 +48,7 @@ class AppCubit extends Cubit<AppState> {
 
   storeThemeToHive(bool isDark) async {
     // print("store");
-    final themeBox = await Hive.openBox("ThemeMode");
-    themeBox.put("isDark", isDark);
+    di<SharedPreferences>().setBool(StorageKeys.isDarkTheme, isDark);
   }
 
   setFemaleTheme() {
@@ -63,8 +61,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   getThemeFromHive() async {
-    final themeBox = await Hive.openBox("ThemeMode");
-    emit(state.copyWith(isDark: await themeBox.get("isDark", defaultValue: false)));
+    emit(state.copyWith(isDark: di<SharedPreferences>().getBool(StorageKeys.isDarkTheme) ?? false));
   }
 
   // notificationTrigger(bool enable) async {

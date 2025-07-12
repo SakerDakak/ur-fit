@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:urfit/core/domain/error/failures.dart';
-import 'package:urfit/modules/meals_module/data/data_source/meals_local_datasource.dart';
 
 import '../../home_module/data/models/meal_plan_model.dart';
 import '../data/data_source/meals_remote_datasource.dart';
@@ -11,8 +10,8 @@ import '../data/models/search_recipe_model.dart';
 
 class MealsRepo {
   final MealsRemoteDataSource mealsRemoteDataSource;
-  final MealsLocalDatasource mealsLocalDatasource;
-  MealsRepo(this.mealsRemoteDataSource, this.mealsLocalDatasource);
+  // final MealsLocalDatasource mealsLocalDatasource;
+  MealsRepo(this.mealsRemoteDataSource);
   Future<Either<Failure, Recipe>> getRecipeDetails({required int id}) async {
     try {
       final result = await mealsRemoteDataSource.getRecipeDetails(id: id);
@@ -54,9 +53,9 @@ class MealsRepo {
 
   Either<Failure, List<NutritionData>> getLocalNutritionData() {
     try {
-      final result = mealsLocalDatasource.getAllData();
+      // final result = mealsLocalDatasource.getAllData();
 
-      return Right(result);
+      return Right([]);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -64,9 +63,9 @@ class MealsRepo {
 
   Future<Either<Failure, void>> addLocalNutritionData(NutritionData data) async {
     try {
-      final result = await mealsLocalDatasource.addData(data);
+      // final result = await mealsLocalDatasource.addData(data);
 
-      return Right(result);
+      return Right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
