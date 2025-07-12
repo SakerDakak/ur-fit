@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   Future _getUserAnNavigate() async {
     final authRepo = di<AuthRepo>();
     final result = await authRepo.getUserDataFromServer();
-
     result.fold((lt) {
       TokenService.deleteToken();
       context.pushReplacement(AuthScreen.route);

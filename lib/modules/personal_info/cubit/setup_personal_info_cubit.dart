@@ -33,11 +33,11 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   setInitPage() async {
     int index = 0;
     if ((state.userInfo.age ?? 0) < 1) {
-      index = 1;
+      index = 0;
     } else if ((state.userInfo.height ?? 0) < 1) {
-      index = 2;
+      index = 0;
     } else if ((state.userInfo.currentWeight ?? 0) < 1) {
-      index = 3;
+      index = 0;
     } else if (state.userInfo.selectedGaols.isEmpty) {
       index = 4;
     } else if (state.userInfo.bodyPartsIds.isEmpty) {
@@ -62,8 +62,8 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
     await pageController.animateToPage(index, duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 
-  nextPage() {
-    sendUpdateData();
+  nextPage([bool sendToBack = true]) {
+    if (sendToBack) sendUpdateData();
     pageController.nextPage(duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 

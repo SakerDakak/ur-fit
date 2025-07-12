@@ -9,6 +9,7 @@ import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
+import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
@@ -117,7 +118,9 @@ class _RegisterFormState extends State<RegisterForm> {
                     const Spacer(),
                     FittedBox(
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.push(ForgetPasswordScreen.route);
+                          },
                           child: Text(
                             L10n.tr().forgetPassword,
                             style: TStyle.bold_14.copyWith(color: Theme.of(context).colorScheme.primary),
@@ -140,6 +143,8 @@ class _RegisterFormState extends State<RegisterForm> {
                   if (state is RegisterSuccessState) {
                     Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail, error: false);
                     context.push(RegisterOTPScreen.routeWzExtra, extra: authCubit);
+                  } else if (state is RegisterErrorState) {
+                    // Alerts.showToast(state.error?? '');
                   }
                 },
                 buildWhen: (previous, current) => current is! RegisterStates,

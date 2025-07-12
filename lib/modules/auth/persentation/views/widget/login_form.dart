@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
+import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
@@ -59,16 +60,7 @@ class _LoginFormState extends State<LoginForm> {
                 hintText: L10n.tr().enterEmail,
                 autoFillHints: [AutofillHints.email],
                 title: L10n.tr().email,
-                validator: (String? value) {
-                  // print("validation : ${value}");
-                  if (value!.isEmpty) {
-                    return L10n.tr().emailIsRequired;
-                  } else if (!value.contains('@') && !value.contains('.')) {
-                    return L10n.tr().emailMustBeValid;
-                  } else {
-                    return null;
-                  }
-                },
+                validator: Validators.emailValidator
               ),
               SizedBox(
                 height: 24.px,

@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:urfit/core/data/api/api_client.dart';
 import 'package:urfit/core/data/api/endpoints.dart';
 import 'package:urfit/core/domain/error/exceptions.dart';
@@ -150,8 +152,6 @@ class AuthRepo {
     try {
       final response = await _apiClient.post(EndPoints.register, data: registerModel.toJson());
 
-      // print(await sl<BaseUserLocalDataSource>().getUserToken());
-      // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
       final token = response.data['data']["token"];
       final user = UserModel.fromJson(response.data['data']['user']);
       return Right((user: user, token: token));
@@ -257,5 +257,44 @@ class AuthRepo {
   //     return left(ServerFailure(e.toString()));
   //   }
   // }
+  Future<Either<Failure, ({UserModel user, String token, String? message})>> _sendSocialAuth(
+      {required String accessToken, required RegisterRequest req}) async {
+    try {
+      final response = await _apiClient.post(
+        EndPoints.loginWithGoogle,
+        parameter: {'access_token': accessToken},
+        data: req.toJson(),
+      );
+      final user = UserModel.fromJson(response.data['data']['user']);
+      final token = response.data['data']["token"].toString();
+      final message = response.data['status']?.toString();
+      return Right((user: user, token: token, message: message));
+    } catch (e) {
+      print("Error occurred: $e");
+      return left(ServerFailure(e.toString()));
+    }
+  }
 
+  Future<Either<Failure, ({UserModel user, String token, String? message})>> getGoogleAuth() async {
+    print(" ##### Starting Google Sign-In #####");
+    try {
+      final googleSignIn = GoogleSignIn(scopes: ["email", "profile"]);
+      await googleSignIn.signOut();
+      final googleUser = await googleSignIn.signIn();
+
+      print(" #####  Google user name: ${googleUser?.displayName}");
+      print(" #####  Google email: ${googleUser?.email}");
+      print(" #####  Google photo url: ${googleUser?.photoUrl}");
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      final req = RegisterRequest(name: googleUser?.displayName, email: googleUser?.email);
+      return await _sendSocialAuth(accessToken: googleAuth!.accessToken!, req: req);
+
+      // In mobile, being authenticated means being authorized...// However, on web...
+    } catch (error) {
+      print(" ##### Error during Google Sign-In: $error");
+      return left(ServerFailure(error.toString()));
+    }
+  }
 }

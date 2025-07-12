@@ -9,14 +9,28 @@ import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart
 
 import 'gender_selector.dart';
 
-class StepOneGender extends StatelessWidget {
+class StepOneGender extends StatefulWidget {
   const StepOneGender({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<SetupPersonalInfoCubit>();
+  State<StepOneGender> createState() => _StepOneGenderState();
+}
 
-    var selected = cubit.state.userInfo.gender;
+class _StepOneGenderState extends State<StepOneGender> {
+  late final SetupPersonalInfoCubit cubit;
+  GenderEnum? selected;
+  @override
+  void initState() {
+    cubit = context.read<SetupPersonalInfoCubit>();
+    selected = cubit.state.userInfo.gender;
+    if (cubit.state.userInfo.gender == GenderEnum.female) {
+      context.read<AppCubit>().setFemaleTheme();
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ListView(
       children: [
         // title
@@ -41,7 +55,9 @@ class StepOneGender extends StatelessWidget {
         GenderSelector(
           initial: selected,
           onChanged: (gender) {
-            selected = gender;
+            setState(() {
+              selected = gender;
+            });
             switch (gender) {
               case GenderEnum.male:
                 context.read<AppCubit>().setMaleTheme();
@@ -64,7 +80,7 @@ class StepOneGender extends StatelessWidget {
               ? null
               : () {
                   cubit.updateUserGender(selected!);
-                  cubit.nextPage();
+                  cubit.nextPage(false);
                 },
         ),
       ],

@@ -81,9 +81,7 @@ class _StepOneHeightState extends State<StepOneHeight> {
               },
             ),
           ),
-          SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Text(
             L10n.tr().cm,
             style: TStyle.semiBold_14.copyWith(
@@ -103,7 +101,7 @@ class _StepOneHeightState extends State<StepOneHeight> {
                       final height = int.tryParse(controller.text.trim()) ?? 0;
                       if (height < 100 || height > 250) return Alerts.showToast(L10n.tr().pleaseEnterValidHeight);
                       cubit.updateUserHeight(height);
-                      cubit.nextPage();
+                      cubit.nextPage(false);
                     },
             ),
           ),

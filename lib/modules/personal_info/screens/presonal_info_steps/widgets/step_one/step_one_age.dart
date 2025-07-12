@@ -101,7 +101,7 @@ class _StepOneAgeState extends State<StepOneAge> {
                       final age = int.tryParse(controller.text.trim()) ?? 0;
                       if (age < 15 || age > 99) return Alerts.showToast(L10n.tr().pleaseEnterValidAge);
                       cubit.updateUserAge(age);
-                      cubit.nextPage();
+                      cubit.nextPage(false);
                     },
             ),
           ),

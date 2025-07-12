@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
-import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/di.dart';
 
@@ -11,7 +11,6 @@ import 'package:urfit/di.dart';
 
 import '../../domain/error/exceptions.dart';
 import 'endpoints.dart';
-import 'status_code.dart';
 
 class ApiClient {
   late Dio dio;
@@ -40,6 +39,7 @@ class ApiClient {
       BaseOptions(
         receiveDataWhenStatusError: true,
         baseUrl: EndPoints.baseUrl,
+        validateStatus: (status) => (status ?? 400) < 400,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ class ApiClient {
     headerPReparing();
 
     if (kDebugMode) {
-      // dio.interceptors.add(PrettyDioLogger(requestBody: true));
+      dio.interceptors.add(PrettyDioLogger(requestBody: true));
     }
   }
 
@@ -110,6 +110,79 @@ class ApiClient {
     }
   }
 
+  ServerException _handleDioError(DioException error) {
+    print('object : ${error.type}');
+
+    switch (error.type) {
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
+      case DioExceptionType.connectionError:
+        return NoInternetConnectionException();
+      case DioExceptionType.unknown:
+        // Handle network errors
+        _showNetworkErrorBottomSheet(
+          AppConst.rootScaffoldKey.currentContext!,
+        );
+        return NoInternetConnectionException();
+
+      case DioExceptionType.cancel:
+        // Handle request cancellation
+        return ServerException("Request was canceled");
+
+      case DioExceptionType.badResponse:
+        // switch (error.response?.statusCode) {
+        //   case StatusCode.badRequest:
+        //   case StatusCode.unprocessableEntity:
+        //   case StatusCode.notAcceptable:
+        //     var responseData = error.response?.data;
+        //     print("responseData : $responseData");
+        //     String? message = responseData['data'];
+        //     Map<String, dynamic>? errors = responseData;
+
+        //     List<String> emailErrors = errors?['email']?.cast<String>() ?? [];
+        //     List<String> passwordErrors = errors?['password']?.cast<String>() ?? [];
+
+        //     if (emailErrors.isNotEmpty) {
+        //       if (emailErrors[0] == "validation.email") {
+        //         return BadRequestException(L10n.tr().emailMustBeValid);
+        //       } else {
+        //         return BadRequestException(emailErrors[0]);
+        //       }
+        //     } else if (passwordErrors.isNotEmpty) {
+        //       if (passwordErrors[0] == "validation.min.string") {
+        //         return BadRequestException(L10n.tr().passwordMustBeAtLeast6Characters);
+        //       } else {
+        //         return BadRequestException(passwordErrors[0]);
+        //       }
+        //     } else {
+        //       return BadRequestException(message ?? responseData['error']);
+        //     }
+
+        //   case StatusCode.unauthorized:
+        //     var responseData = error.response?.data;
+        //     print("responseData : $responseData");
+        //     String? message = responseData['data'];
+        //     return UnauthorizedException(message);
+
+        //   case StatusCode.forbidden:
+        //     return ForbiddenException(error.response?.data['isSubscribe'].toString());
+        //   case StatusCode.notFound:
+        //     return NotFoundException(error.response?.data['error']);
+
+        //   case StatusCode.internalServerError:
+        //     return InternalServerErrorException();
+
+        //   default:
+        //     return BadRequestException("Unexpected error occurred");
+        // }
+        return BadRequestException(_getErrorMessageFromResponse(error.response?.data));
+
+      case DioExceptionType.badCertificate:
+        return ServerException("Bad Certificate");
+    }
+  }
+
   Future<void> _showNetworkErrorBottomSheet(
     BuildContext context,
   ) async {
@@ -140,77 +213,27 @@ class ApiClient {
       },
     );
   }
+}
 
-  ServerException _handleDioError(DioException error) {
-    print('object : ${error.type}');
-
-    switch (error.type) {
-      case DioExceptionType.connectionTimeout:
-      case DioExceptionType.sendTimeout:
-      case DioExceptionType.receiveTimeout:
-      case DioExceptionType.connectionError:
-        return NoInternetConnectionException();
-      case DioExceptionType.unknown:
-        // Handle network errors
-        _showNetworkErrorBottomSheet(
-          AppConst.rootScaffoldKey.currentContext!,
-        );
-        return NoInternetConnectionException();
-
-      case DioExceptionType.cancel:
-        // Handle request cancellation
-        return ServerException("Request was canceled");
-
-      case DioExceptionType.badResponse:
-        switch (error.response?.statusCode) {
-          case StatusCode.badRequest:
-          case StatusCode.unprocessableEntity:
-          case StatusCode.notAcceptable:
-            var responseData = error.response?.data;
-            print("responseData : $responseData");
-            String? message = responseData['data'];
-            Map<String, dynamic>? errors = responseData;
-
-            List<String> emailErrors = errors?['email']?.cast<String>() ?? [];
-            List<String> passwordErrors = errors?['password']?.cast<String>() ?? [];
-
-            if (emailErrors.isNotEmpty) {
-              if (emailErrors[0] == "validation.email") {
-                return BadRequestException(L10n.tr().emailMustBeValid);
-              } else {
-                return BadRequestException(emailErrors[0]);
-              }
-            } else if (passwordErrors.isNotEmpty) {
-              if (passwordErrors[0] == "validation.min.string") {
-                return BadRequestException(L10n.tr().passwordMustBeAtLeast6Characters);
-              } else {
-                return BadRequestException(passwordErrors[0]);
-              }
-            } else {
-              return BadRequestException(message ?? responseData['error']);
-            }
-
-          case StatusCode.unauthorized:
-            var responseData = error.response?.data;
-            print("responseData : $responseData");
-            String? message = responseData['data'];
-            return UnauthorizedException(message);
-
-          case StatusCode.forbidden:
-            return ForbiddenException(error.response?.data['isSubscribe'].toString());
-          case StatusCode.notFound:
-            return NotFoundException(error.response?.data['error']);
-
-          case StatusCode.internalServerError:
-            return InternalServerErrorException();
-
-          default:
-            return ServerException("Unexpected error occurred");
-        }
-
-      case DioExceptionType.badCertificate:
-        return ServerException("Bad Certificate");
+String _getErrorMessageFromResponse(Map<String, dynamic> data) {
+  if (data.containsKey('message')) {
+    return data['message'];
+  } else if (data.containsKey('error')) {
+    return data['error'];
+  } else if (data.containsKey('errors')) {
+    return data['errors'];
+  } else if (data.containsKey('data')) {
+    return data['data'];
+  } else {
+    StringBuffer errorMessage = StringBuffer();
+    for (final error in data.values) {
+      if (error is List) {
+        errorMessage.writeAll(error, ', ');
+      } else {
+        errorMessage.write(error);
+      }
     }
+    return errorMessage.toString();
   }
 }
 

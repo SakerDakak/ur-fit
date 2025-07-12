@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
+import 'package:go_router/go_router.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/models/register_model.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
+import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   final _repo = di<AuthRepo>();
@@ -48,7 +51,7 @@ class AuthCubit extends Cubit<AuthStates> {
   final confirmPasswordController = TextEditingController();
   final loginPasswordController = TextEditingController();
 
-  register() async {
+  Future register() async {
     final req = RegisterRequest(
       name: nameController.text.trim(),
       email: emailController.text,
@@ -77,8 +80,9 @@ class AuthCubit extends Cubit<AuthStates> {
   Future<void> submitOTP(String otp) async {
     final result = await _repo.otpCheckCode(code: otp, email: emailController.text.trim());
     return result.fold((l) {}, (user) {
-      TokenService.setToken(Session().tempToken!).then((_) => Session().tempToken = null);
+      TokenService.setToken(Session().tempToken!);
       Session().currentUser = user;
+      AppConst.navigatorKey.currentContext?.go(StartPersonalInfoScreen.route);
     });
   }
 

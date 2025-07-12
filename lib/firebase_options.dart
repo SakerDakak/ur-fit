@@ -50,20 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC_a9eGvYIODsw7bPGdVEg3T-72d4RHhJQ',
-    appId: '1:459205756320:android:c4d5bae93f48a68c0c90c5',
-    messagingSenderId: '459205756320',
-    projectId: 'ur-fit-fe5fd',
-    storageBucket: 'ur-fit-fe5fd.firebasestorage.app',
+    apiKey: 'AIzaSyCUQO-_TDZGmw6cKg6TFxRI4L43njikgN8',
+    appId: '1:916677939315:android:0370383a365084438bda06',
+    messagingSenderId: '916677939315',
+    projectId: 'urfit-b2d73',
+    storageBucket: 'urfit-b2d73.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDNxHQGcb9C_xgAHruU5Ml-CPIe5FSgAQc',
-    appId: '1:459205756320:ios:f8af7abed99ee5d20c90c5',
-    messagingSenderId: '459205756320',
-    projectId: 'ur-fit-fe5fd',
-    storageBucket: 'ur-fit-fe5fd.firebasestorage.app',
-    iosClientId: '459205756320-mqh79aqgm89bbbmc9m68dje12gma8mqr.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCsZRyxVenznXFejo2-AJRO4e1S6H46Np0',
+    appId: '1:916677939315:ios:72fb7ad4b5ec90bf8bda06',
+    messagingSenderId: '916677939315',
+    projectId: 'urfit-b2d73',
+    storageBucket: 'urfit-b2d73.firebasestorage.app',
+    iosClientId: '916677939315-tsq1iqpkh8i3r767lbvtv4ntdisegdd6.apps.googleusercontent.com',
     iosBundleId: 'com.rmz.urfit',
   );
+
 }

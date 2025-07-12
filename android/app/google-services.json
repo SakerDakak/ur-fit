@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "459205756320",
-    "project_id": "ur-fit-fe5fd",
-    "storage_bucket": "ur-fit-fe5fd.firebasestorage.app"
+    "project_number": "916677939315",
+    "project_id": "urfit-b2d73",
+    "storage_bucket": "urfit-b2d73.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:459205756320:android:c4d5bae93f48a68c0c90c5",
+        "mobilesdk_app_id": "1:916677939315:android:0370383a365084438bda06",
         "android_client_info": {
           "package_name": "com.rmz.urfit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "459205756320-0atmh9roj5jo7oeg3jupacgelcum706c.apps.googleusercontent.com",
+          "client_id": "916677939315-ovu3nsfg35nca266l6vn8lfen5bm8588.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC_a9eGvYIODsw7bPGdVEg3T-72d4RHhJQ"
+          "current_key": "AIzaSyCUQO-_TDZGmw6cKg6TFxRI4L43njikgN8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "459205756320-0atmh9roj5jo7oeg3jupacgelcum706c.apps.googleusercontent.com",
+              "client_id": "916677939315-ovu3nsfg35nca266l6vn8lfen5bm8588.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "916677939315-tsq1iqpkh8i3r767lbvtv4ntdisegdd6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rmz.urfit"
+              }
             }
           ]
         }
