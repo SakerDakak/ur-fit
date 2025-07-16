@@ -61,9 +61,7 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
                   isSelected: selectedIndex == packages[i].id,
                   onTap: () {
                     context.read<SubscriptionCubit>().updateSelectedPackage(packages[i].id);
-                    setState(() {
-                      selectedIndex = packages[i].id;
-                    });
+                    setState(() => selectedIndex = packages[i].id);
                   },
                 ),
               );

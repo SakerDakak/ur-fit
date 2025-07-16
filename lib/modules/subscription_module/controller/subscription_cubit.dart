@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/loading_helper.dart';
@@ -39,8 +40,8 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
     });
   }
 
-  updateSelectedPackage(int index) async {
-    emit(state.copyWith(selectedPackage: index));
+  updateSelectedPackage(int id) async {
+    emit(state.copyWith(selectedPackage: id));
     if (state.coupon != null) {
       await checkCouponCode(coupon: state.coupon!);
     }
@@ -131,6 +132,10 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
     // }
   }
 
+  clearCoupon() {
+    emit(state.copyWith(coupon: null, discountValue: null, couponState: RequestState.initial));
+  }
+
   checkCouponCode({required String coupon}) async {
     final price = state.packages.firstWhere((package) => package.id == state.selectedPackage).price;
     emit(state.copyWith(couponState: RequestState.loading, coupon: coupon));
@@ -141,7 +146,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
 
       emit(state.copyWith(
         couponState: RequestState.failure,
-        errMessage: "هذا الكوبون غير صالح ",
+        errMessage: L10n.tr().couponIsInValid,
       ));
     }, (r) {
       emit(state.copyWith(

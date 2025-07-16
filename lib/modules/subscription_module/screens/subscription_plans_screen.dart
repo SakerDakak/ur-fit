@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -10,10 +14,10 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/core/presentation/utils/debouncer.dart';
 import 'package:urfit/core/presentation/views/widgets/adaptive_progress_indicator.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
+import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 import 'package:urfit/modules/home_module/screens/main_page.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
@@ -21,7 +25,6 @@ import 'package:urfit/modules/subscription_module/screens/payment_webview.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_plans.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_screen_appbar.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plan_description_shimmer.dart';
-import 'package:urfit/modules/subscription_module/widgets/shimmer/plans_shimmer.dart';
 
 import '../../../core/presentation/utils/enums.dart';
 import '../data/models/package_model.dart';
@@ -37,10 +40,30 @@ class SubscriptionPlansScreen extends StatefulWidget {
 }
 
 class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
+  Timer? _debounce;
+
+  _checkCoupon(String? value) async {
+    if (value == null || value.trim().isEmpty) {
+      context.read<SubscriptionCubit>().clearCoupon();
+      _debounce!.cancel();
+      return;
+    }
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 800), () async {
+      await context.read<SubscriptionCubit>().checkCouponCode(coupon: value);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     context.read<SubscriptionCubit>().getPackages();
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
   }
 
   @override
@@ -81,13 +104,22 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                 const SizedBox(height: 50),
                 BlocBuilder<SubscriptionCubit, SubscriptionState>(
                   builder: (context, state) {
-                    return state.getPackagesState == RequestState.loading ||
-                            state.getPackagesState == RequestState.failure
-                        ? const PlansShimmer()
-                        : SubscriptionPlans(
-                            planType: widget.planType,
-                            packages: state.packages,
-                          );
+                    if (state.getPackagesState == RequestState.failure) {
+                      return FailureWidget(
+                        message: state.errMessage,
+                        onRetry: () {
+                          context.read<SubscriptionCubit>().getPackages();
+                        },
+                      );
+                    }
+
+                    return Skeletonizer(
+                      enabled: state.getPackagesState == RequestState.loading,
+                      child: SubscriptionPlans(
+                        planType: widget.planType,
+                        packages: state.getPackagesState == RequestState.loading ? Fakers().packages : state.packages,
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(height: 30),
@@ -106,15 +138,25 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                   },
                 ),
                 const SizedBox(height: 30),
-                CompactTextFormField(
-                  hintText: L10n.tr().couponCode,
-                  onChanged: (String? value) {
-                    if (value != null && value.isNotEmpty) {
-                      Debouncer(milliseconds: 500).run(
-                        () => context.read<SubscriptionCubit>().checkCouponCode(coupon: value),
-                      );
-                    }
-                  },
+                Row(
+                  children: [
+                    Expanded(
+                      child: CompactTextFormField(
+                        hintText: L10n.tr().couponCode,
+                        onChanged: (String? value) {
+                          _checkCoupon(value);
+                        },
+                      ),
+                    ),
+                    BlocBuilder<SubscriptionCubit, SubscriptionState>(
+                        builder: (context, state) => switch (state.couponState) {
+                              RequestState.initial =>
+                                const Icon(Icons.discount_outlined, color: Colors.white70, size: 24),
+                              RequestState.loading => const AdaptiveProgressIndicator(size: 24),
+                              RequestState.failure => const Icon(Icons.info_outline, color: Colors.red, size: 24),
+                              RequestState.success => const Icon(Icons.check_circle, color: Colors.green, size: 24),
+                            }),
+                  ],
                 ),
                 // start payment and cancel button
                 const SizedBox(height: 30),
@@ -138,17 +180,17 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                             Row(
                               children: [
                                 Text(L10n.tr().priceBeforeDiscount, style: TStyle.semiBold_16),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Text(
                                     "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
                                     style: TStyle.bold_16.copyWith(color: Co.primaryColor)),
                               ],
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               children: [
                                 Text(L10n.tr().priceAfterDiscount, style: TStyle.semiBold_16),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Text(
                                   "${L10n.tr().sar}${state.discountValue?.final_price.toStringAsFixed(2) ?? state.packages.firstWhere((package) => package.id == state.selectedPackage).price}",
                                   style: TStyle.bold_16.copyWith(color: Co.primaryColor),
@@ -169,10 +211,10 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     }
                   },
                   builder: (context, state) {
-                    if (state.getPaymentUrlState == RequestState.loading) {
+                    if (state.getPaymentUrlState == RequestState.loading || state.getPaymentUrlState == RequestState.success) {
                       return const Center(child: AdaptiveProgressIndicator());
                     }
-                    if (Session().currentUser?.hasValidSubscription == true ||
+                    if (Session().currentUser?.hasValidSubscription == true &&
                         Session().currentUser?.packageId == state.selectedPackage) {
                       return CustomElevatedButton(
                         text: L10n.tr().youAreAlreadySubscribedToThisPlan,
@@ -192,7 +234,11 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                           Alerts.showToast(L10n.tr().youHaveSuccessfullySubscribedToPlan, error: false);
                           if (context.mounted) context.go(MainPage.routeWithBool(false));
                         } else {
-                          context.pushNamed(PaymentWebView.route, queryParameters: {"url": state.paymentUrl});
+                          final res = await context
+                              .pushNamed<String>(PaymentWebView.route, queryParameters: {"url": state.paymentUrl});
+                          if (res != null && context.mounted) {
+                            context.read<SubscriptionCubit>().paymentResponse(res);
+                          }
                         }
                       },
                     );

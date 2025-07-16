@@ -2,14 +2,11 @@ import 'dart:async';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-
-import '../../personal_info/cubit/setup_personal_info_cubit.dart';
 
 class LoadingPlanScreen extends StatefulWidget {
   const LoadingPlanScreen({super.key});
@@ -24,6 +21,8 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
 
   @override
   void initState() {
+    // context.read<SetupPersonalInfoCubit>().sendUpdateData();
+
     _loadingProgressSimulation();
     super.initState();
   }
@@ -48,7 +47,6 @@ class _LoadingPlanScreenState extends State<LoadingPlanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SetupPersonalInfoCubit>().sendUpdateData();
     return Scaffold(
       body: SafeArea(
         child: Padding(

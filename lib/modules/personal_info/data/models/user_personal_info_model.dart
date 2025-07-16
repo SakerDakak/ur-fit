@@ -105,4 +105,22 @@ class UserInfoRequest {
         notLikedMealsIds = user.foodsNotLiked?.map((notLiked) => notLiked.id).toSet() ?? {},
         bodyPartsIds = user.bodyParts?.toSet() ?? {},
         workoutTypesIds = user.workoutTypes?.map((workout) => workout.id).toSet() ?? {};
+
+  bool get isValid {
+    return gender != null &&
+        age != null &&
+        height != null &&
+        currentWeight != null &&
+        selectedGaols.isNotEmpty &&
+        bodyPartsIds.isNotEmpty &&
+        mealsVariantsId != null &&
+        likedMealsIds.isNotEmpty &&
+        // notLikedMealsIds.isNotEmpty &&
+        dietId != null &&
+        targetWeight != null &&
+        (weaklyTrainingCount ?? 0) > 0 &&
+        workoutTypesIds.isNotEmpty &&
+        // exerciseDayes.isNotEmpty &&
+        equipmentsIds.isNotEmpty;
+  }
 }

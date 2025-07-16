@@ -88,7 +88,6 @@ class _StepTwoGoalsState extends State<StepTwoGoals> {
                     padding: EdgeInsets.zero,
                     onPressed: state.userInfo.selectedGaols.isEmpty ? null : () {
                       print('Selected Goals: ${state.userInfo.selectedGaols}');
-                      cubit.sendUpdateData();
                       cubit.nextPage();
                     },
                   ),

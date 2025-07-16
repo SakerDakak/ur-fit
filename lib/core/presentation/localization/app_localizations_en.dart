@@ -9,6 +9,13 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get pleaseMakeSureThatYouSelectedAllTheRequiredFields =>
+      'Please make sure that you selected all the required fields';
+
+  @override
+  String get couponIsInValid => 'This coupon is invalid';
+
+  @override
   String get googleAuthenticationFailed => 'Google authentication failed';
 
   @override

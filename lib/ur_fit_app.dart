@@ -10,7 +10,6 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
-import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
 import 'core/presentation/routes/routes.dart';
@@ -38,7 +37,6 @@ class UrFitApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => di<MealsCubit>()),
         BlocProvider(create: (BuildContext context) => di<WorkoutCubit>()),
         BlocProvider(create: (BuildContext context) => di<SettingCubit>()),
-        BlocProvider(create: (BuildContext context) => di<SubscriptionCubit>()),
       ],
       child: Sizer(
         builder: (BuildContext context, Orientation orientation, ScreenType screenType) {

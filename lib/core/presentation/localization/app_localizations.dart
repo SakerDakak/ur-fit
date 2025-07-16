@@ -98,6 +98,18 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @pleaseMakeSureThatYouSelectedAllTheRequiredFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please make sure that you selected all the required fields'**
+  String get pleaseMakeSureThatYouSelectedAllTheRequiredFields;
+
+  /// No description provided for @couponIsInValid.
+  ///
+  /// In en, this message translates to:
+  /// **'This coupon is invalid'**
+  String get couponIsInValid;
+
   /// No description provided for @googleAuthenticationFailed.
   ///
   /// In en, this message translates to:

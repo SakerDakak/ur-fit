@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentWebView extends StatefulWidget {
@@ -31,8 +29,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
             print("url : ${url.url}");
             if (url.url != null &&
                 (url.url!.contains("http://urfit-app.rmz.im/") || url.url!.contains("https://urfit-app.rmz.im/"))) {
-              context.pop();
-              context.read<SubscriptionCubit>().paymentResponse(url.url!);
+              context.pop(url.url);
             }
           },
           onPageStarted: (String url) {},

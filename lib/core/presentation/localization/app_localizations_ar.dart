@@ -9,6 +9,13 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get pleaseMakeSureThatYouSelectedAllTheRequiredFields =>
+      'رجاء التأكد من اختيارك لكل الحقول المطلوبة';
+
+  @override
+  String get couponIsInValid => 'هذا الكوبون غير صالح';
+
+  @override
   String get googleAuthenticationFailed => 'فشل في التحقق من جوجل';
 
   @override

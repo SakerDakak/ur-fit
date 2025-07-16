@@ -62,7 +62,7 @@ class MealsCubit extends Cubit<MealsState> {
     return nutrients;
   }
 
-  searchMeals() async {
+  Future<void> searchMeals() async {
     emit(state.copyWith(getAllMealsState: RequestState.loading));
 
     var result = await _repo.searchRecipes(searchRecipeModel: state.searchRecipeModel);
@@ -87,7 +87,7 @@ class MealsCubit extends Cubit<MealsState> {
     );
   }
 
-  generateMealPlan() async {
+  Future<void> generateMealPlan() async {
     emit(state.copyWith(getMealPlansState: RequestState.loading));
     final user = Session().currentUser;
     double targetCalories = calculateTargetCalories(
@@ -229,7 +229,7 @@ class MealsCubit extends Cubit<MealsState> {
     searchMeals();
   }
 
-  getMealPlans({bool fromHistory = false}) async {
+  Future getMealPlans({bool fromHistory = false}) async {
     emit(state.copyWith(getMealPlansState: RequestState.loading));
 
     var result = await _repo.getMealPlans();
@@ -319,7 +319,8 @@ class MealsCubit extends Cubit<MealsState> {
     );
   }
 
-  addMealNutrients({required String mealId, required num calories, required num carb, required num protein}) async {
+  Future<void> addMealNutrients(
+      {required String mealId, required num calories, required num carb, required num protein}) async {
     final nutritionData = NutritionData()
       ..id = mealId
       ..calories = calories.toDouble()
@@ -330,7 +331,7 @@ class MealsCubit extends Cubit<MealsState> {
     await calculateNutritionData(calories: calories, carb: carb, protein: protein);
   }
 
-  calculateNutritionData({required num calories, required num carb, required num protein}) async {
+  Future<void> calculateNutritionData({required num calories, required num carb, required num protein}) async {
     state.allPlans.first.id;
     final result = await _repo.calculateNutrients(
         mealPlanId: state.allPlans.first.id,

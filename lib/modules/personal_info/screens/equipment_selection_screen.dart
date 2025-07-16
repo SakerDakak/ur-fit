@@ -5,6 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
@@ -79,6 +80,9 @@ class _EquipmentSelectionScreenState extends State<EquipmentSelectionScreen> {
                       onPressed: state.userInfo.equipmentsIds.isEmpty
                           ? null
                           : () async {
+                              if (!state.userInfo.isValid) {
+                                return Alerts.showToast(L10n.tr().pleaseMakeSureThatYouSelectedAllTheRequiredFields);
+                              }
                               await cubit.sendUpdateData();
                               if (!context.mounted) return;
                               if (state.userInfo.selectedGaols.any((e) => e == 1 || e == 2)) {

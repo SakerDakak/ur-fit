@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/views/widgets/adaptive_progress_indicator.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
@@ -28,21 +29,19 @@ class MealDetailsScreen extends StatelessWidget {
             context.pop();
             // context.read<MealsCubit>().clearMealDetails();
           }),
-      body: SingleChildScrollView(
-        child: BlocBuilder<MealsCubit, MealsState>(
-          buildWhen: (p, c) =>
-              p.mealDetails != c.mealDetails ||
-              p.getMealDetailsState != c.getMealDetailsState,
-          builder: (context, state) {
-            if (state.getMealDetailsState == RequestState.loading ||
-                state.getMealDetailsState == RequestState.failure) {
-              // return const ValuesGridviewShimmer();
-              return const CircularProgressIndicator();
-            } else {
-              final meal = state.mealDetails!;
-              final kcal = meal.nutrition.nutrients.first.amount;
-              final readyInMinutes = meal.readyInMinutes;
-              return Column(
+      body: BlocBuilder<MealsCubit, MealsState>(
+        buildWhen: (p, c) => p.mealDetails != c.mealDetails || p.getMealDetailsState != c.getMealDetailsState,
+        builder: (context, state) {
+          if (state.getMealDetailsState == RequestState.loading ||
+              state.getMealDetailsState == RequestState.failure) {
+            // return const ValuesGridviewShimmer();
+            return const Center(child: AdaptiveProgressIndicator());
+          } else {
+            final meal = state.mealDetails!;
+            final kcal = meal.nutrition.nutrients.first.amount;
+            final readyInMinutes = meal.readyInMinutes;
+            return SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
@@ -81,24 +80,22 @@ class MealDetailsScreen extends StatelessWidget {
                     builder: (context, state) {
                       return CustomElevatedButton(
                           text: "اختيار الوجبه",
-                          onPressed:state.nutritionData.any((data) => data.id == meal.id.toString()) ? null : () async {
-                            final calories = meal.nutrition.nutrients
-                                .firstWhere((nut) => nut.name == "Calories")
-                                .amount;
-                            final carbohydrates = meal.nutrition.nutrients
-                                .firstWhere(
-                                    (nut) => nut.name == "Carbohydrates")
-                                .amount;
-                            final protein = meal.nutrition.nutrients
-                                .firstWhere((nut) => nut.name == "Protein")
-                                .amount;
-
-                           await  context.read<MealsCubit>().addMealNutrients(
-                                mealId: meal.id.toString(),
-                                calories: calories,
-                                carb: carbohydrates,
-                                protein: protein);
-                          });
+                          onPressed: state.nutritionData.any((data) => data.id == meal.id.toString())
+                              ? null
+                              : () async {
+                                  final calories =
+                                      meal.nutrition.nutrients.firstWhere((nut) => nut.name == "Calories").amount;
+                                  final carbohydrates =
+                                      meal.nutrition.nutrients.firstWhere((nut) => nut.name == "Carbohydrates").amount;
+                                  final protein =
+                                      meal.nutrition.nutrients.firstWhere((nut) => nut.name == "Protein").amount;
+                    
+                                  await context.read<MealsCubit>().addMealNutrients(
+                                      mealId: meal.id.toString(),
+                                      calories: calories,
+                                      carb: carbohydrates,
+                                      protein: protein);
+                                });
                     },
                   ),
                   SizedBox(
@@ -109,16 +106,16 @@ class MealDetailsScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.px),
-                    child: Divider(),
+                    child: const Divider(),
                   ),
                   MealComponentWidget(
                     ingredients: meal.extendedIngredients,
                   )
                 ],
-              );
-            }
-          },
-        ),
+              ),
+            );
+          }
+        },
       ),
     );
   }

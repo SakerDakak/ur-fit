@@ -25,6 +25,7 @@ import 'package:urfit/modules/profile_module/screens/otp_screen_new.dart';
 import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/privacy_policy_screen.dart';
 import 'package:urfit/modules/profile_module/screens/settings_screen.dart';
+import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
 import 'package:urfit/modules/subscription_module/screens/payment_webview.dart';
 import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
@@ -188,8 +189,11 @@ class AppRouter {
         name: SubscriptionPlansScreen.routeWzExtra,
         builder: (context, state) {
           final planType = state.extra as PlanType? ?? PlanType.both;
-          return SubscriptionPlansScreen(
-            planType: planType,
+          return BlocProvider(
+            create: (context) => di<SubscriptionCubit>(),
+            child: SubscriptionPlansScreen(
+              planType: planType,
+            ),
           );
         },
       ),

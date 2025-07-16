@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,44 +16,44 @@ class MealsListview extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<MealsCubit>();
     final day = cubit.getPlanForToday();
-    final List<Map<String, dynamic>> dailyMealsListItem = [
-      {
-        "title": L10n.tr().breakFast,
-        "img": Assets.imageBreakFast,
-        "onTap": () {
+    final dailyMealsListItem = [
+      (
+        title: L10n.tr().breakFast,
+        img: Assets.imageBreakFast,
+        onTap: () {
           context.pushNamed(MealDetailsScreen.routeWzId, pathParameters: {"id": day!.meals[0].recipe_id.toString()});
         }
-      },
-      {
-        "title": L10n.tr().lunch,
-        "img": Assets.imageLunch,
-        "onTap": () {
+      ),
+      (
+        title: L10n.tr().lunch,
+        img: Assets.imageLunch,
+        onTap: () {
           context.pushNamed(MealDetailsScreen.routeWzId, pathParameters: {"id": day!.meals[1].recipe_id.toString()});
         }
-      },
-      {
-        "title": L10n.tr().dinner,
-        "img": Assets.imageDinner,
-        "onTap": () {
+      ),
+      (
+        title: L10n.tr().dinner,
+        img: Assets.imageDinner,
+        onTap: () {
           context.pushNamed(MealDetailsScreen.routeWzId, pathParameters: {"id": day!.meals[2].recipe_id.toString()});
-        }
-      },
-      {
-        "title": L10n.tr().otherMeals,
-        "img": Assets.imageAllMeals,
-        "onTap": () {
+        },
+      ),
+      (
+        title: L10n.tr().otherMeals,
+        img: Assets.imageAllMeals,
+        onTap: () {
           context.pushNamed(MealsPickerScreen.route);
-        }
-      },
+        },
+      ),
     ];
     return ListView.builder(
       itemCount: dailyMealsListItem.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) => DailyMealsListItem(
-          title: dailyMealsListItem[index]['title'],
-          img: dailyMealsListItem[index]['img'],
-          onTap: dailyMealsListItem[index]['onTap']),
+          title: dailyMealsListItem[index].title,
+          img: dailyMealsListItem[index].img,
+          onTap: dailyMealsListItem[index].onTap),
     );
   }
 }

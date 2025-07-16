@@ -15,7 +15,6 @@ export './setup_personal_info_state.dart';
 class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   final pageController = PageController();
   final PersonalInfoRepoImpl _repo;
-  late final UserInfoRequest userInfoRequest;
   List<UserGoalsModel> _goals = [];
   List<SelectionItemModel> _mealsNotLiked = [];
   List<SelectionItemModel> _mealsLiked = [];
@@ -26,9 +25,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   List<SelectionItemModel> _workoutTypes = [];
   List<SelectionItemModel> _equipments = [];
 
-  SetupPersonalInfoCubit(this._repo) : super(PersonalInfoInit(UserInfoRequest.fromUserModel(Session().currentUser!))) {
-    userInfoRequest = state.userInfo;
-  }
+  SetupPersonalInfoCubit(this._repo) : super(PersonalInfoInit(UserInfoRequest.fromUserModel(Session().currentUser!)));
 
   setInitPage() async {
     int index = 0;
@@ -192,130 +189,131 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getGoals() async {
-    if (_goals.isNotEmpty) return emit(GoalsLoaded(userInfoRequest, _goals));
-    emit(GoalsLoading(userInfoRequest));
+    if (_goals.isNotEmpty) return emit(GoalsLoaded(state.userInfo, _goals));
+    emit(GoalsLoading(state.userInfo));
     final result = await _repo.getGoals();
     result.fold(
-      (failure) => emit(GoalsError(userInfoRequest, failure.message)),
+      (failure) => emit(GoalsError(state.userInfo, failure.message)),
       (successData) {
         _goals = successData;
-        emit(GoalsLoaded(userInfoRequest, successData));
+        emit(GoalsLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getBodyPartsData() async {
-    if (_bodyPartsData.isNotEmpty) return emit(MuscleFocusLoaded(userInfoRequest, _bodyPartsData));
-    emit(MuscleFocusLoading(userInfoRequest));
+    if (_bodyPartsData.isNotEmpty) return emit(MuscleFocusLoaded(state.userInfo, _bodyPartsData));
+    emit(MuscleFocusLoading(state.userInfo));
     final result = await _repo.getMuscleFocus();
     result.fold(
-      (failure) => emit(MuscleFocusError(userInfoRequest, failure.message)),
+      (failure) => emit(MuscleFocusError(state.userInfo, failure.message)),
       (successData) {
         _bodyPartsData = successData;
-        emit(MuscleFocusLoaded(userInfoRequest, successData));
+        emit(MuscleFocusLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getNotLikedMealsOptions() async {
-    if (_mealsNotLiked.isNotEmpty) return emit(MealsNotLikedLoaded(userInfoRequest, _mealsNotLiked));
-    emit(MealsNotLikedLoading(userInfoRequest));
+    if (_mealsNotLiked.isNotEmpty) return emit(MealsNotLikedLoaded(state.userInfo, _mealsNotLiked));
+    emit(MealsNotLikedLoading(state.userInfo));
     final result = await _repo.getNotLikedMealsOptions();
     result.fold(
-      (failure) => emit(MealsNotLikedError(userInfoRequest, failure.message)),
+      (failure) => emit(MealsNotLikedError(state.userInfo, failure.message)),
       (successData) {
         _mealsNotLiked = successData;
-        emit(MealsNotLikedLoaded(userInfoRequest, successData));
+        emit(MealsNotLikedLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getLikedMealsOptions() async {
-    if (_mealsLiked.isNotEmpty) return emit(MealsLikedLoaded(userInfoRequest, _mealsLiked));
-    emit(MealsLikedLoading(userInfoRequest));
+    // if (_mealsLiked.isNotEmpty) return emit(MealsLikedLoaded(state.userInfo, _mealsLiked));
+    emit(MealsLikedLoading(state.userInfo));
     final result = await _repo.getLikedMealsOptions();
     result.fold(
-      (failure) => emit(MealsLikedError(userInfoRequest, failure.message)),
+      (failure) => emit(MealsLikedError(state.userInfo, failure.message)),
       (successData) {
         _mealsLiked = successData;
-        emit(MealsLikedLoaded(userInfoRequest, successData));
+        emit(MealsLikedLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getDietOptions() async {
-    if (_diet.isNotEmpty) return emit(DietLoaded(userInfoRequest, _diet));
-    emit(DietLoading(userInfoRequest));
+    if (_diet.isNotEmpty) return emit(DietLoaded(state.userInfo, _diet));
+    emit(DietLoading(state.userInfo));
     final result = await _repo.getDietOptions();
     result.fold(
-      (failure) => emit(DietError(userInfoRequest, failure.message)),
+      (failure) => emit(DietError(state.userInfo, failure.message)),
       (successData) {
         _diet = successData;
-        emit(DietLoaded(userInfoRequest, successData));
+        emit(DietLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getMealVariantsOptions() async {
-    if (_mealVariants.isNotEmpty) return emit(MealVariantsLoaded(userInfoRequest, _mealVariants));
-    emit(MealVariantsLoading(userInfoRequest));
+    if (_mealVariants.isNotEmpty) return emit(MealVariantsLoaded(state.userInfo, _mealVariants));
+    emit(MealVariantsLoading(state.userInfo));
     final result = await _repo.getMealsVariantsOptions();
     result.fold(
-      (failure) => emit(MealVariantsError(userInfoRequest, failure.message)),
+      (failure) => emit(MealVariantsError(state.userInfo, failure.message)),
       (successData) {
         _mealVariants = successData;
-        emit(MealVariantsLoaded(userInfoRequest, successData));
+        emit(MealVariantsLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getWorkoutTypes() async {
-    if (_workoutTypes.isNotEmpty) return emit(WorkoutTypesLoaded(userInfoRequest, _workoutTypes));
-    emit(WorkoutTypesLoading(userInfoRequest));
+    if (_workoutTypes.isNotEmpty) return emit(WorkoutTypesLoaded(state.userInfo, _workoutTypes));
+    emit(WorkoutTypesLoading(state.userInfo));
     final result = await _repo.getWorkoutTypes();
     result.fold(
-      (failure) => emit(WorkoutTypesError(userInfoRequest, failure.message)),
+      (failure) => emit(WorkoutTypesError(state.userInfo, failure.message)),
       (successData) {
         _workoutTypes = successData;
-        emit(WorkoutTypesLoaded(userInfoRequest, successData));
+        emit(WorkoutTypesLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getNoOfDailyMeals() async {
-    if (_noOfDailyMeals.isNotEmpty) return emit(NoOfDailyMealsLoaded(userInfoRequest, _noOfDailyMeals));
-    emit(NoOfDailyMealsLoading(userInfoRequest));
+    if (_noOfDailyMeals.isNotEmpty) return emit(NoOfDailyMealsLoaded(state.userInfo, _noOfDailyMeals));
+    emit(NoOfDailyMealsLoading(state.userInfo));
     final result = await _repo.getNoOfDailyMealsOptions();
     result.fold(
       (failure) {
-        emit(NoOfDailyMealsError(userInfoRequest, failure.message));
+        emit(NoOfDailyMealsError(state.userInfo, failure.message));
       },
       (successData) {
         _noOfDailyMeals = successData;
-        emit(NoOfDailyMealsLoaded(userInfoRequest, successData));
+        emit(NoOfDailyMealsLoaded(state.userInfo, successData));
       },
     );
   }
 
   Future<void> getEquipments() async {
-    if (_equipments.isNotEmpty) return emit(EquipmentsLoaded(userInfoRequest, _equipments));
-    emit(EquipmentsLoading(userInfoRequest));
+    if (_equipments.isNotEmpty) return emit(EquipmentsLoaded(state.userInfo, _equipments));
+    emit(EquipmentsLoading(state.userInfo));
     final result = await _repo.getEquipments();
     result.fold(
-      (failure) => emit(EquipmentsError(userInfoRequest, failure.message)),
+      (failure) => emit(EquipmentsError(state.userInfo, failure.message)),
       (successData) {
         _equipments = successData;
-        emit(EquipmentsLoaded(userInfoRequest, successData));
+        emit(EquipmentsLoaded(state.userInfo, successData));
       },
     );
   }
 
-  sendUpdateData() async {
-    emit(UpdateInfoLoading(userInfoRequest));
-    final result = await _repo.updatePersonalInfo(personalInfoModel: userInfoRequest);
+  sendUpdateData({bool validate = false}) async {
+    if (validate) {}
+    emit(UpdateInfoLoading(state.userInfo));
+    final result = await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
     result.fold(
       (failure) {
-        emit(UpdateInfoError(userInfoRequest, failure.message));
+        emit(UpdateInfoError(state.userInfo, failure.message));
       },
       (successData) async {
         Session().setCurrentUser = successData;
