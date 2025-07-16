@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/range_bar.dart';
@@ -16,22 +17,30 @@ class FilterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final category = ["فطار", "غداء", "عشاء"];
-    final difficulty = ['سهلة التحضير', 'متوسطة', 'صعبة التحضير'];
+    final category = [
+      L10n.tr().breakFast,
+      L10n.tr().lunch,
+      L10n.tr().dinner,
+    ];
+    final difficulty = [
+      L10n.tr().complicatedPreparation,
+      L10n.tr().mediumPreparation,
+      L10n.tr().easyPreparation,
+    ];
     final components = [
-      'شوفان',
-      'بيض',
-      'خضراوات',
-      'فواكه',
-      'سلطات',
-      'شوربات',
-      'مشويات',
-      'بروتينات',
-      'دواجن'
+      L10n.tr().oatmeal,
+      L10n.tr().eggs,
+      L10n.tr().vegetables,
+      L10n.tr().fruits,
+      L10n.tr().salads,
+      L10n.tr().soups,
+      L10n.tr().grilledFoods,
+      L10n.tr().proteins,
+      L10n.tr().poultry,
     ];
     return Scaffold(
       appBar: CustomAppBar(
-          title: 'فلتر',
+          title: L10n.tr().filter,
           onBack: () {
             context.pop();
           }),
@@ -39,7 +48,7 @@ class FilterScreen extends StatelessWidget {
         children: [
           FilterTitleWidget(
             icon: AssetsManager.mealCategory,
-            title: 'نوع الوجبة',
+            title: L10n.tr().mealCategory,
           ),
           SizedBox(
             height: 16.px,
@@ -55,7 +64,7 @@ class FilterScreen extends StatelessWidget {
           ),
           FilterTitleWidget(
             icon: AssetsManager.time,
-            title: 'مدة تحضير الوجبة',
+            title: L10n.tr().mealPreparationTime,
           ),
           SizedBox(
             height: 16.px,
@@ -68,11 +77,11 @@ class FilterScreen extends StatelessWidget {
               context.read<MealsCubit>().updateMaxReadyTime(lowerValue);
             },
             minRange: 10,
-            title: 'دقيقة',
+            title: L10n.tr().minutes,
           ),
           FilterTitleWidget(
             icon: AssetsManager.meals,
-            title: 'مكونات الوجبة',
+            title: L10n.tr().mealComponents,
           ),
           SizedBox(
             height: 16.px,
@@ -86,7 +95,7 @@ class FilterScreen extends StatelessWidget {
           ),
           FilterTitleWidget(
             icon: AssetsManager.calories,
-            title: 'السعرات الحرارية',
+            title: L10n.tr().calories,
           ),
           SizedBox(
             height: 16.px,
@@ -95,16 +104,14 @@ class FilterScreen extends StatelessWidget {
             maxRange: 1000,
             initialValues: [50, 200],
             onChanged: (int handlerIndex, lowerValue, upperValue) {
-              context
-                  .read<MealsCubit>()
-                  .updateMinMaxCalories(lowerValue, upperValue);
+              context.read<MealsCubit>().updateMinMaxCalories(lowerValue, upperValue);
             },
             minRange: 30,
-            title: 'سعر حرارى',
+            title: L10n.tr().calories,
           ),
           FilterTitleWidget(
             icon: AssetsManager.cooking,
-            title: 'تحضير الوجبة',
+            title: L10n.tr().mealPreperation,
           ),
           SizedBox(
             height: 16.px,
@@ -130,7 +137,7 @@ class FilterScreen extends StatelessWidget {
             selector: (state) => state.allMeals.length,
             builder: (context, mealsLength) {
               return CustomElevatedButton(
-                  text: 'نتائج للبحث ${mealsLength == 0 ? '' : mealsLength}', onPressed: () {});
+                  text: '${L10n.tr().searchResult} ${mealsLength == 0 ? '' : mealsLength}', onPressed: () {});
             },
           )
         ],

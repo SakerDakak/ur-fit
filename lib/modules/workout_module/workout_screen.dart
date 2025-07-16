@@ -115,7 +115,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                         return StartWorkoutCardShimmer();
                       } else {
                         if (cubit.getPlanForToday() == null) {
-                          return const Center(child: Text('لا يوجد تمرين لهذا اليوم'));
+                          return  Center(child: Text(L10n.tr().noWorkoutToday));
                         } else {
                           return StartWorkoutCard();
                         }

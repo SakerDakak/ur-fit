@@ -5,9 +5,7 @@ import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/views/widgets/range_bar.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/animated_value_container.dart';
 
 import '../../../../core/presentation/utils/constants.dart';
 import '../../../../core/presentation/views/widgets/weak_days_date.dart';
@@ -157,56 +155,6 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
   //     },
   //   );
   // }
-
-  Widget _buildNumberOfWeaklyTrainingSlider(SetupPersonalInfoCubit cubit) {
-    return BlocSelector<SetupPersonalInfoCubit, SetupPersonalInfoState, int?>(
-      selector: (state) => state.userInfo.weaklyTrainingCount,
-      builder: (_, state) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: AlignmentDirectional.centerStart,
-            child: Row(
-              children: [
-                Text(
-                  'عدد مرات التدريب الاسبوعى؟',
-                  style: TStyle.bold_14,
-                ),
-                const SizedBox(width: 20),
-                ValueContainer(
-                  value: state ?? "-",
-                ),
-                const SizedBox(width: 20),
-                Text(
-                  'تمرين',
-                  style: TStyle.bold_14.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          // target weight slider
-          RangeBar(
-            maxRange: 7,
-            minRange: 0,
-            padding: EdgeInsets.zero,
-            initialValues: const [0],
-            onChanged: (int handlerIndex, lowerValue, upperValue) {
-              // cubit.updateUserWeaklyTrainingCount((lowerValue as double).round());
-            },
-            isSingle: false,
-            alwaysShowTooltip: false,
-            title: 'تمرين',
-          ),
-        ],
-      ),
-    );
-  }
 
   _buildExerciseDays(SetupPersonalInfoCubit cubit) {
     final user = Session().currentUser;

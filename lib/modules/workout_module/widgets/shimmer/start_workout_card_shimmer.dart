@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 
-import '../../../../core/presentation/assets/app_assets.dart';
 import '../../../../core/presentation/style/colors.dart';
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/utils/constants.dart';
@@ -25,7 +25,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
               SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
               const SizedBox(width: 8),
               Text(
-                'تمرين اليوم سوف يركز على',
+                L10n.tr().todayEcerciseFocusOn,
                 style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
                   color: Co.fontColor,
@@ -100,7 +100,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                             borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                           ),
                           child: Text(
-                            'ابدا',
+                            L10n.tr().start,
                             style: TStyle.bold_14,
                           ),
                         ),
@@ -176,7 +176,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                             borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                           ),
                           child: Text(
-                            'ابدا',
+                            L10n.tr().start,
                             style: TStyle.bold_14,
                           ),
                         ),

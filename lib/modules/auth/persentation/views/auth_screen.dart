@@ -41,7 +41,6 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             children: [
               const IconWithTitle(),
               SizedBox(height: 32.px),
-              // Text("اختر دولتك",style: CustomTextStyle.cairoSemiBold16,),
               Center(
                 child: SizedBox(
                   width: 264.px,

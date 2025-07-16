@@ -9,6 +9,220 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get myTasks => 'مهامي';
+
+  @override
+  String get price => 'السعر';
+
+  @override
+  String get a____________________________________________ =>
+      '_________________________';
+
+  @override
+  String get subscriptionMethodWillBeSentToYourMail =>
+      'سيتم إرسال طريقة الاشتراك في البريد الإلكتروني';
+
+  @override
+  String get trialPeriodEnded => 'انتهت فترة التجربة';
+
+  @override
+  String get pleaseCheckYourInternetConnection =>
+      'رجاء التحقق من اتصالك بالانترنت';
+
+  @override
+  String get noInternetConnection => 'لا يوجد اتصال بالانترنت';
+
+  @override
+  String get somethingWentWrong => 'حدث خطأ ما';
+
+  @override
+  String get editWeight => 'تحديث الوزن';
+
+  @override
+  String get liters => 'لتر';
+
+  @override
+  String get noWorkoutToday => 'لا يوجد تمرين لهذا اليوم';
+
+  @override
+  String get nextExercise => 'الانتقال للتمرين التالي';
+
+  @override
+  String get finishExercise => 'انهاء التمرين';
+
+  @override
+  String get youHaveToSubscripeToAccessThisFeature =>
+      'يجب عليك الاشتراك للوصول لهذه الميزة';
+
+  @override
+  String get selectMeal => 'اختيار الوجبه';
+
+  @override
+  String get pleaseEnterTheVerificationCodeSentToYourEmail =>
+      'رجاء ادخال رمز التحقق الذى تم ارساله على البريد الالكترونى';
+
+  @override
+  String get noPreviousPlan => 'لا يوجد بيانات';
+
+  @override
+  String get programs => 'برامج';
+
+  @override
+  String get specifiedNutrationPlansForYourBody =>
+      'برامج غذائية متكاملة مخصصة لاحتياجات جسمك';
+
+  @override
+  String get categories => 'الاقسام';
+
+  @override
+  String get followingDailyTasksIncreaseYourChancesTo =>
+      'القيام بالمهام اليومية  يزيد من فرصك في ';
+
+  @override
+  String get reachPerfectBody => 'الوصول للجسم المثالي';
+
+  @override
+  String get oatmeal => 'دقيق الشوفان';
+
+  @override
+  String get eggs => 'بيض';
+
+  @override
+  String get vegetables => 'خضروات';
+
+  @override
+  String get fruits => 'فاكهة';
+
+  @override
+  String get salads => 'سلطات';
+
+  @override
+  String get soups => 'شوربات';
+
+  @override
+  String get grilledFoods => 'مشويات';
+
+  @override
+  String get poultry => 'دواجن';
+
+  @override
+  String get complicatedPreparation => 'تحضير معقد';
+
+  @override
+  String get easyPreparation => 'تحضير سهل';
+
+  @override
+  String get mediumPreparation => 'تحضير متوسط';
+
+  @override
+  String get searchResult => 'نتائج البحث';
+
+  @override
+  String get mealPreperation => 'تحضير الوجبة';
+
+  @override
+  String get mealComponents => 'مكونات الوجبة';
+
+  @override
+  String get mealPreparationTime => 'مدة تحضير الوجبة';
+
+  @override
+  String get mealCategory => 'نوع الوجبة';
+
+  @override
+  String get filter => 'تصفية';
+
+  @override
+  String get mealDetails => 'تفاصيل الوجبة';
+
+  @override
+  String get showLess => 'عرض أقل';
+
+  @override
+  String get showMore => 'عرض المزيد';
+
+  @override
+  String get mealDescription => 'وصف الوجبة';
+
+  @override
+  String get todayEcerciseFocusOn => 'تمرين اليوم يركز على';
+
+  @override
+  String get bestOffer => 'أفضل عرض';
+
+  @override
+  String get first => 'أولا';
+
+  @override
+  String get second => 'ثانيا';
+
+  @override
+  String get third => 'ثالثا';
+
+  @override
+  String get fourth => 'رابعا';
+
+  @override
+  String get fifth => 'خامسا';
+
+  @override
+  String get sixth => 'سادسا';
+
+  @override
+  String get seventh => 'سابعا';
+
+  @override
+  String get eighth => 'ثامنا';
+
+  @override
+  String get ninth => 'تاسعا';
+
+  @override
+  String get tenth => 'عاشرا';
+
+  @override
+  String get finaly => 'أخيرا';
+
+  @override
+  String get loading => 'جارى التحميل';
+
+  @override
+  String get excerciseDescription => 'وصف التمرين';
+
+  @override
+  String get instructions => 'تعليمات';
+
+  @override
+  String get group => 'مجموهة';
+
+  @override
+  String get groups => 'المجموعات';
+
+  @override
+  String get expectedBurnedCalories => 'السعرات الحرارية المتوقعة للحرق';
+
+  @override
+  String get trainDescription => 'وصف التمرين';
+
+  @override
+  String get currentWeightIs => 'وزنك الحالي هو';
+
+  @override
+  String get caloriesBurn => 'سعرات حرارية حرق';
+
+  @override
+  String get detailsOfTodayExercises => 'تفاصيل تمارين اليوم';
+
+  @override
+  String get excerciseDuration => 'مدة التمرين';
+
+  @override
+  String get minutes => 'دقائق';
+
+  @override
+  String get youAreSubscribedToAPlan => 'انت مشترك في خطة';
+
+  @override
   String get pleaseMakeSureThatYouSelectedAllTheRequiredFields =>
       'رجاء التأكد من اختيارك لكل الحقول المطلوبة';
 

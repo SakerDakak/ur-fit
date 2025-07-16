@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 
 import '../../../../core/presentation/assets/app_assets.dart';
 import '../../../../core/presentation/style/colors.dart';
@@ -22,10 +23,14 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
           // title
           Row(
             children: [
-              SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
+              SvgPicture.asset(
+                Assets.iconsDumbbell,
+                width: 16,
+                colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+              ),
               const SizedBox(width: 8),
               Text(
-                'تفاصيل تمارين اليوم',
+                L10n.tr().detailsOfTodayExercises,
                 style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
                   color: Co.fontColor,
@@ -33,9 +38,9 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
               ),
             ],
           ),
-      
+
           const SizedBox(height: 16),
-      
+
           // details card
           Container(
             padding: const EdgeInsets.all(12),
@@ -44,56 +49,56 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               border: Border.all(color: Co.strockColor),
             ),
-            child:  Column(
+            child: Column(
               children: [
                 // calories
                 CaloriesIndicator(
                   calories: 100,
-                  title: 'سعر حرارى حرق',
+                  title: L10n.tr().caloriesBurn,
                 ),
-      
+
                 SizedBox(height: 16),
-      
+
                 // more details
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // current weight
                     DetailsItem(
-                      'وزنك الحالى',
+                      L10n.tr().currentWeightIs,
                       Assets.iconsWeightIcon,
-                       "0",
-                      'كجم',
+                      "0",
+                      L10n.tr().kg,
                     ),
-      
+
                     SizedBox(
                       height: 40,
                       child: VerticalDivider(
                         color: Co.strockColor,
                       ),
                     ),
-      
+
                     // target weight
                     DetailsItem(
-                      'الهدف',
+                      L10n.tr().goal,
                       Assets.iconsFlag,
-                       "0",
-                      'كجم',
+                      "0",
+                      L10n.tr().kg,
                     ),
-      
+
                     SizedBox(
                       height: 40,
                       child: VerticalDivider(
                         color: Co.strockColor,
                       ),
                     ),
-      
+
                     // workout duration
                     DetailsItem(
-                      'مدة التمارين ',
+                      L10n.tr().excerciseDuration,
                       Assets.iconsDumbbell,
                       "20",
-                      'دقيقة',
+                      L10n.tr().minutes,
                     ),
                   ],
                 ),

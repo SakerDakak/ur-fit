@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
@@ -138,7 +139,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen> with TickerProvid
                               }
                             : null,
                         child: Text(
-                          'الانتقال للتمرين التالي',
+                          L10n.tr().nextExercise,
                           style: TStyle.semiBold_24.copyWith(
                               color: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
                                   ? Theme.of(context).colorScheme.primary
@@ -158,7 +159,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen> with TickerProvid
                               }
                             : null,
                         child: Text(
-                          'انهاء التمرين',
+                          L10n.tr().finishExercise,
                           style: TStyle.semiBold_24.copyWith(
                               fontSize: 18,
                               color: cubit.state.progressValue == cubit.getPlanForToday()!.exercises.length

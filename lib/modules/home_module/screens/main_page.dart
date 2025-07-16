@@ -75,8 +75,8 @@ class _MainPageState extends State<MainPage> {
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('يجب عليك الاشتراك للوصول لهذه الخدمة'),
+          SnackBar(
+            content: Text(L10n.tr().youHaveToSubscripeToAccessThisFeature),
             duration: Duration(seconds: 2),
           ),
         );

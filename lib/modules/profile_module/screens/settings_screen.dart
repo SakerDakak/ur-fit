@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
           // change name
           SettingsTile(
             onTap: () => _editName(context),
-            title: user?.name ?? 'تغير الاسم',
+            title: user?.name ?? L10n.tr().changeName,
             svgIconPath: Assets.iconsProfile,
           ),
 
@@ -48,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
           // change email
           SettingsTile(
             onTap: () => GoRouter.of(context).push(ChangeEmailScreen.route),
-            title: user?.email ?? 'تغير البريد الالكترونى',
+            title: user?.email ?? L10n.tr().changeEmail,
             svgIconPath: Assets.iconsEmail,
           ),
 

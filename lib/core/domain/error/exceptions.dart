@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 
 // import '../../../modules/auth/persentation/bloc/authentication_bloc/authentication_bloc.dart';
@@ -63,13 +64,13 @@ class ServerException extends Equatable implements Exception {
                       const SizedBox(height: 16.0),
                       // Success message text
                       Text(
-                        'تم انتهاء فترة التجربة',
+                        L10n.tr().trialPeriodEnded,
                         style: TStyle.regular_14,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        'سيتم إرسال طريقة الاشتراك في البريد الإلكتروني',
+                        L10n.tr().subscriptionMethodWillBeSentToYourMail,
                         style: TStyle.regular_14.copyWith(color: Co.greyColor),
                         textAlign: TextAlign.center,
                       ),
@@ -87,7 +88,7 @@ class ServerException extends Equatable implements Exception {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue, padding: const EdgeInsets.all(15)),
                             child:
-                                Text('تسجيل الخروج', style: TStyle.semiBold_14.copyWith(color: Colors.white)),
+                                Text(L10n.tr().logout, style: TStyle.semiBold_14.copyWith(color: Colors.white)),
                           ),
                         ),
                       ),
@@ -135,7 +136,7 @@ class ServerException extends Equatable implements Exception {
                         child: SvgPicture.asset(""),
                       ),
                       Text(
-                        'لقد فقدت الاتصال بالإنترنت',
+                        L10n.tr().noInternetConnection,
                         // style: Theme.of(context).textTheme.headline6,
                         textAlign: TextAlign.center,
                         style: TStyle.semiBold_16,
@@ -144,7 +145,7 @@ class ServerException extends Equatable implements Exception {
                         height: 14,
                       ),
                       Text(
-                        'لا يوجد اتصال بالإنترنت. تحقق من اتصال بالإنترنت.',
+                        L10n.tr().pleaseCheckYourInternetConnection,
                         textAlign: TextAlign.center,
                         style: TStyle.regular_16,
                       ),
@@ -164,7 +165,7 @@ class ServerException extends Equatable implements Exception {
                             AppConst.latestFunctionCalled?.call();
                           },
                           child: Text(
-                            'جرب مرة اخرى',
+                            L10n.tr().retry,
                             style: TStyle.semiBold_14.copyWith(color: Colors.white),
                           ),
                         ),

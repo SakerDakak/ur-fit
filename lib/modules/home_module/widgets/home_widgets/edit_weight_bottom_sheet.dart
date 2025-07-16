@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
@@ -66,7 +67,7 @@ class EditWeightBottomSheet extends StatelessWidget {
 
           // title
           Text(
-            'تحديث الوزن',
+            L10n.tr().editWeight,
             style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -83,7 +84,7 @@ class EditWeightBottomSheet extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'الوزن الحالى',
+                    L10n.tr().currentWeightIs,
                     style: TStyle.semiBold_16.copyWith(
                       color: Co.selectedFont,
                     ),
@@ -107,7 +108,7 @@ class EditWeightBottomSheet extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    'كجم',
+                    L10n.tr().kg,
                     style: TStyle.semiBold_16.copyWith(
                       color: Co.selectedFont,
                     ),
@@ -132,7 +133,7 @@ class EditWeightBottomSheet extends StatelessWidget {
 
           // confirm button
           CustomElevatedButton(
-            text: 'تاكيد',
+            text: L10n.tr().confirm,
             padding: EdgeInsets.zero,
             onPressed: () {},
           ),

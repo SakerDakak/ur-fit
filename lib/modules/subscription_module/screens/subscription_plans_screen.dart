@@ -211,13 +211,15 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     }
                   },
                   builder: (context, state) {
-                    if (state.getPaymentUrlState == RequestState.loading || state.getPaymentUrlState == RequestState.success) {
+                    if (state.getPaymentUrlState == RequestState.loading ||
+                        state.getPaymentUrlState == RequestState.success) {
                       return const Center(child: AdaptiveProgressIndicator());
                     }
-                    if (Session().currentUser?.hasValidSubscription == true &&
-                        Session().currentUser?.packageId == state.selectedPackage) {
+                    if (Session().currentUser?.hasValidSubscription == true) {
                       return CustomElevatedButton(
-                        text: L10n.tr().youAreAlreadySubscribedToThisPlan,
+                        text: Session().currentUser?.packageId == state.selectedPackage
+                            ? L10n.tr().youAreAlreadySubscribedToThisPlan
+                            : L10n.tr().youAreSubscribedToAPlan,
                         onPressed: null,
                       );
                     }

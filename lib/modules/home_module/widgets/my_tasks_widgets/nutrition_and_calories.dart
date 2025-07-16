@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 
 class NutritionAndBurnedCalories extends StatelessWidget {
@@ -26,7 +27,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              'التغذية',
+              L10n.tr().nutritions,
               style: TStyle.bold_14,
             )
           ],
@@ -46,7 +47,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              'سعر حرارى',
+              L10n.tr().calories,
               style: TStyle.bold_14.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -70,7 +71,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              'الحرق',
+              L10n.tr().caloriesBurn,
               style: TStyle.bold_14,
             )
           ],
@@ -90,7 +91,7 @@ class NutritionAndBurnedCalories extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              'سعر حرارى',
+              L10n.tr().calories,
               style: TStyle.bold_14.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../data/models/meal_details_model.dart';
@@ -16,7 +17,7 @@ class MealComponentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FilterTitleWidget(icon: AssetsManager.meals, title: 'مكونات الوجبة'),
+        FilterTitleWidget(icon: AssetsManager.meals, title: L10n.tr().mealComponents  ),
         ListView.builder(
           padding: EdgeInsets.symmetric(vertical: 16.px),
           physics: const NeverScrollableScrollPhysics(),

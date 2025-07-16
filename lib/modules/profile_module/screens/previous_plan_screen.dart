@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,41 +25,39 @@ class PreviousPlanScreen extends StatelessWidget {
     context.read<SettingCubit>().getPlanHistory();
     return Scaffold(
       appBar: AppBar(
-        title:  Text(L10n.tr().previousPlan),
+        title: Text(L10n.tr().previousPlan),
       ),
       body: BlocBuilder<SettingCubit, SettingState>(
         buildWhen: (p, c) => p.getPlanHistoryState != c.getPlanHistoryState || p.planHistoryModel != c.planHistoryModel,
         builder: (context, state) {
           print("history state : ${state.planHistoryModel}");
-          if (state.getPlanHistoryState == RequestState.loading ) {
+          if (state.getPlanHistoryState == RequestState.loading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          }else {
-            if(state.getPlanHistoryState == RequestState.failure){
-              return const Center(
-                child: Text('حدث خطأ ما'),
+          } else {
+            if (state.getPlanHistoryState == RequestState.failure) {
+              return Center(
+                child: Text(L10n.tr().somethingWentWrong),
               );
-            }else if(state.getPlanHistoryState  == RequestState.success &&  state.planHistoryModel?.package == null){
-              return const Center(
-                child: Text('لا يوجد بيانات'),
+            } else if (state.getPlanHistoryState == RequestState.success && state.planHistoryModel?.package == null) {
+              return  Center(
+                child: Text(L10n.tr().noPreviousPlan),
               );
-            }else {
+            } else {
               return ListView(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppConst.kHorizontalPadding),
+                padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
                 children: [
                   // plan duration
-                  if(state.planHistoryModel != null)
-                   PlanDuration(planHistoryModel: state.planHistoryModel!,),
+                  if (state.planHistoryModel != null)
+                    PlanDuration(
+                      planHistoryModel: state.planHistoryModel!,
+                    ),
 
                   const SizedBox(height: 8),
 
                   Divider(
-                    color: Theme
-                        .of(context)
-                        .colorScheme
-                        .primary,
+                    color: Theme.of(context).colorScheme.primary,
                     thickness: 2,
                   ),
 
@@ -80,7 +77,7 @@ class PreviousPlanScreen extends StatelessWidget {
                       SvgPicture.asset(
                         Assets.iconsArrowProgress,
                         width: 12,
-                        colorFilter:  ColorFilter.mode(
+                        colorFilter: ColorFilter.mode(
                           Theme.of(context).colorScheme.primary,
                           BlendMode.srcIn,
                         ),
@@ -96,7 +93,9 @@ class PreviousPlanScreen extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   // plan summary card (calories, weight, training duration...)
-                   PlanSummary(state: state,),
+                  PlanSummary(
+                    state: state,
+                  ),
 
                   const SizedBox(height: 16),
 
@@ -108,7 +107,9 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                   AverageAmountEatenPercentage( planHistoryModel: state.planHistoryModel!,),
+                  AverageAmountEatenPercentage(
+                    planHistoryModel: state.planHistoryModel!,
+                  ),
                   const Divider(
                     color: Co.strockColor,
                   ),
@@ -123,7 +124,10 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  CaloriesAndSteps(calories: state.planHistoryModel!.expectedResultOfExercisePlans!.calories, sets: state.planHistoryModel!.expectedResultOfExercisePlans!.sets,),
+                  CaloriesAndSteps(
+                    calories: state.planHistoryModel!.expectedResultOfExercisePlans!.calories,
+                    sets: state.planHistoryModel!.expectedResultOfExercisePlans!.sets,
+                  ),
 
                   const Divider(
                     color: Co.strockColor,
@@ -140,7 +144,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                   TargetedMuscles(planHistoryModel: state.planHistoryModel!),
+                  TargetedMuscles(planHistoryModel: state.planHistoryModel!),
 
                   const SizedBox(height: 24),
 
@@ -153,23 +157,7 @@ class PreviousPlanScreen extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  // OutlinedButton(
-                  //   onPressed: () {},
-                  //   style: OutlinedButton.styleFrom(
-                  //     side: const BorderSide(color: AppColors.primaryColor),
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-                  //     ),
-                  //   ),
-                  //   child: Text(
-                  //     'الاطلاع على خطط اخرى',
-                  //     style: CustomTextStyle.bold_16.copyWith(
-                  //       color: AppColors.primaryColor,
-                  //     ),
-                  //   ),
-                  // ),
 
-                  // const SizedBox(height: 24),
                 ],
               );
             }

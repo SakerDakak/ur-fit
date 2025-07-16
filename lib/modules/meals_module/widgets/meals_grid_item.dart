@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
 
@@ -29,7 +30,7 @@ class MealsGridItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(child: Text(meal.title.toString(),maxLines: 2,overflow: TextOverflow.ellipsis,)),
-                Text("السعر ${meal.nutrition?.nutrients.first.amount}")
+                Text("${L10n.tr().price} ${meal.nutrition?.nutrients.first.amount}")
 
                 // Text('١٥ دقيقة'),
               ],

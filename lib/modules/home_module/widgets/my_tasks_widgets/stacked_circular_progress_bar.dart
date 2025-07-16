@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 
@@ -76,7 +77,7 @@ class StackedCircularProgressBar extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text('300', style: TStyle.bold_14),
-                Text('وحدة', style: TStyle.semiBold_14),
+                Text(L10n.tr().unit, style: TStyle.semiBold_14),
               ],
             ),
           ),

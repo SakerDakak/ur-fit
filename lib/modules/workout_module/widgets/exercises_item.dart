@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 
 import '../../../core/presentation/style/colors.dart';
@@ -83,7 +84,7 @@ class ExercisesItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                     ),
                     child: Text(
-                      'ابدا',
+                      L10n.tr().start,
                       style: TStyle.bold_14,
                     ),
                   ),

@@ -42,7 +42,6 @@ class ContactUsScreen extends StatelessWidget {
 
           const SizedBox(height: 24),
 
-          // full name
            Form(
              key: _formKey,
              child: Column(
@@ -57,7 +56,6 @@ class ContactUsScreen extends StatelessWidget {
 
                            const SizedBox(height: 12),
 
-                           // email
                  CompactTextFormField(
                   title: L10n.tr().email,
                   hintText: L10n.tr().enterEmail,
@@ -67,16 +65,8 @@ class ContactUsScreen extends StatelessWidget {
 
                            const SizedBox(height: 12),
 
-                           // // subject
-                           // const CompactTextFormField(
-                           //   title: 'الموضوع',
-                           //   hintText: 'ادخل موضوع الرسالة',
-                           //   padding: EdgeInsets.zero,
-                           // ),
                            //
-                           // const SizedBox(height: 12),
 
-                           // message
                  CompactTextFormField(
                   title: L10n.tr().message,
                   hintText: L10n.tr().pleaseEnterYourMessage,
@@ -94,7 +84,6 @@ class ContactUsScreen extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // send button
           CustomElevatedButton(
             text: L10n.tr().send,
             onPressed: () {

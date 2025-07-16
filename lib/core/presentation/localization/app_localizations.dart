@@ -98,6 +98,420 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @myTasks.
+  ///
+  /// In en, this message translates to:
+  /// **'My Tasks'**
+  String get myTasks;
+
+  /// No description provided for @price.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get price;
+
+  /// No description provided for @a____________________________________________.
+  ///
+  /// In en, this message translates to:
+  /// **'_________________________'**
+  String get a____________________________________________;
+
+  /// No description provided for @subscriptionMethodWillBeSentToYourMail.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription method will be sent to your email'**
+  String get subscriptionMethodWillBeSentToYourMail;
+
+  /// No description provided for @trialPeriodEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial period has ended'**
+  String get trialPeriodEnded;
+
+  /// No description provided for @pleaseCheckYourInternetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your internet connection'**
+  String get pleaseCheckYourInternetConnection;
+
+  /// No description provided for @noInternetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get noInternetConnection;
+
+  /// No description provided for @somethingWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get somethingWentWrong;
+
+  /// No description provided for @editWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Weight'**
+  String get editWeight;
+
+  /// No description provided for @liters.
+  ///
+  /// In en, this message translates to:
+  /// **'Liters'**
+  String get liters;
+
+  /// No description provided for @noWorkoutToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No Workout Today'**
+  String get noWorkoutToday;
+
+  /// No description provided for @nextExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Exercise'**
+  String get nextExercise;
+
+  /// No description provided for @finishExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish Exercise'**
+  String get finishExercise;
+
+  /// No description provided for @youHaveToSubscripeToAccessThisFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'You have to subscribe to access this feature'**
+  String get youHaveToSubscripeToAccessThisFeature;
+
+  /// No description provided for @selectMeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Meal'**
+  String get selectMeal;
+
+  /// No description provided for @pleaseEnterTheVerificationCodeSentToYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the verification code sent to your email'**
+  String get pleaseEnterTheVerificationCodeSentToYourEmail;
+
+  /// No description provided for @noPreviousPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'No Previous Plan'**
+  String get noPreviousPlan;
+
+  /// No description provided for @programs.
+  ///
+  /// In en, this message translates to:
+  /// **'Programs'**
+  String get programs;
+
+  /// No description provided for @specifiedNutrationPlansForYourBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Specified Nutrition Plans For Your Body'**
+  String get specifiedNutrationPlansForYourBody;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @followingDailyTasksIncreaseYourChancesTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Following daily tasks increase your chances to'**
+  String get followingDailyTasksIncreaseYourChancesTo;
+
+  /// No description provided for @reachPerfectBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach perfect body'**
+  String get reachPerfectBody;
+
+  /// No description provided for @oatmeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Oatmeal'**
+  String get oatmeal;
+
+  /// No description provided for @eggs.
+  ///
+  /// In en, this message translates to:
+  /// **'Eggs'**
+  String get eggs;
+
+  /// No description provided for @vegetables.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetables'**
+  String get vegetables;
+
+  /// No description provided for @fruits.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruits'**
+  String get fruits;
+
+  /// No description provided for @salads.
+  ///
+  /// In en, this message translates to:
+  /// **'Salads'**
+  String get salads;
+
+  /// No description provided for @soups.
+  ///
+  /// In en, this message translates to:
+  /// **'Soups'**
+  String get soups;
+
+  /// No description provided for @grilledFoods.
+  ///
+  /// In en, this message translates to:
+  /// **'Grilled Foods'**
+  String get grilledFoods;
+
+  /// No description provided for @poultry.
+  ///
+  /// In en, this message translates to:
+  /// **'Poultry'**
+  String get poultry;
+
+  /// No description provided for @complicatedPreparation.
+  ///
+  /// In en, this message translates to:
+  /// **'Complicated Preparation'**
+  String get complicatedPreparation;
+
+  /// No description provided for @easyPreparation.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy Preparation'**
+  String get easyPreparation;
+
+  /// No description provided for @mediumPreparation.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium Preparation'**
+  String get mediumPreparation;
+
+  /// No description provided for @searchResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Result'**
+  String get searchResult;
+
+  /// No description provided for @mealPreperation.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Preparation'**
+  String get mealPreperation;
+
+  /// No description provided for @mealComponents.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Components'**
+  String get mealComponents;
+
+  /// No description provided for @mealPreparationTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Preparation Time'**
+  String get mealPreparationTime;
+
+  /// No description provided for @mealCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Category'**
+  String get mealCategory;
+
+  /// No description provided for @filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
+  /// No description provided for @mealDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Details'**
+  String get mealDetails;
+
+  /// No description provided for @showLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Less'**
+  String get showLess;
+
+  /// No description provided for @showMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show More'**
+  String get showMore;
+
+  /// No description provided for @mealDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Description'**
+  String get mealDescription;
+
+  /// No description provided for @todayEcerciseFocusOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s exercise focuses on'**
+  String get todayEcerciseFocusOn;
+
+  /// No description provided for @bestOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Offer'**
+  String get bestOffer;
+
+  /// No description provided for @first.
+  ///
+  /// In en, this message translates to:
+  /// **'First'**
+  String get first;
+
+  /// No description provided for @second.
+  ///
+  /// In en, this message translates to:
+  /// **'Second'**
+  String get second;
+
+  /// No description provided for @third.
+  ///
+  /// In en, this message translates to:
+  /// **'Third'**
+  String get third;
+
+  /// No description provided for @fourth.
+  ///
+  /// In en, this message translates to:
+  /// **'Fourth'**
+  String get fourth;
+
+  /// No description provided for @fifth.
+  ///
+  /// In en, this message translates to:
+  /// **'Fifth'**
+  String get fifth;
+
+  /// No description provided for @sixth.
+  ///
+  /// In en, this message translates to:
+  /// **'Sixth'**
+  String get sixth;
+
+  /// No description provided for @seventh.
+  ///
+  /// In en, this message translates to:
+  /// **'Seventh'**
+  String get seventh;
+
+  /// No description provided for @eighth.
+  ///
+  /// In en, this message translates to:
+  /// **'Eighth'**
+  String get eighth;
+
+  /// No description provided for @ninth.
+  ///
+  /// In en, this message translates to:
+  /// **'Ninth'**
+  String get ninth;
+
+  /// No description provided for @tenth.
+  ///
+  /// In en, this message translates to:
+  /// **'Tenth'**
+  String get tenth;
+
+  /// No description provided for @finaly.
+  ///
+  /// In en, this message translates to:
+  /// **'Finally'**
+  String get finaly;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get loading;
+
+  /// No description provided for @excerciseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise Description'**
+  String get excerciseDescription;
+
+  /// No description provided for @instructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Instructions'**
+  String get instructions;
+
+  /// No description provided for @group.
+  ///
+  /// In en, this message translates to:
+  /// **'Group'**
+  String get group;
+
+  /// No description provided for @groups.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get groups;
+
+  /// No description provided for @expectedBurnedCalories.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Burned Calories'**
+  String get expectedBurnedCalories;
+
+  /// No description provided for @trainDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Train Description'**
+  String get trainDescription;
+
+  /// No description provided for @currentWeightIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current weight is'**
+  String get currentWeightIs;
+
+  /// No description provided for @caloriesBurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Calories burned'**
+  String get caloriesBurn;
+
+  /// No description provided for @detailsOfTodayExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Details of today\'s exercises'**
+  String get detailsOfTodayExercises;
+
+  /// No description provided for @excerciseDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise duration'**
+  String get excerciseDuration;
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get minutes;
+
+  /// No description provided for @youAreSubscribedToAPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'You are subscribed to a plan'**
+  String get youAreSubscribedToAPlan;
+
   /// No description provided for @pleaseMakeSureThatYouSelectedAllTheRequiredFields.
   ///
   /// In en, this message translates to:

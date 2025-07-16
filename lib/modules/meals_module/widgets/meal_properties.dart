@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/fonts.dart';
@@ -27,7 +28,7 @@ class MealProperties extends StatelessWidget {
                 width: 4.px,
               ),
               Text(
-                '${readyInMinutes} دقيقة',
+                '${readyInMinutes} ${L10n.tr().minutes}',
                 style: TStyle.regular_16,
               ),
             ],
@@ -40,7 +41,7 @@ class MealProperties extends StatelessWidget {
                 width: 4.px,
               ),
               Text(
-                '${kcal} سعر حرارى',
+                '${kcal} ${L10n.tr().calories}',
                 style: TStyle.regular_16,
               ),
             ],
@@ -53,7 +54,7 @@ class MealProperties extends StatelessWidget {
                 width: 4.px,
               ),
               Text(
-                'سهل التحضير',
+                L10n.tr().easyPreparation,
                 style: TStyle.regular_16,
               ),
             ],

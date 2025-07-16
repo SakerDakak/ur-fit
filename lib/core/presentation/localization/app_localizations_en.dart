@@ -9,6 +9,220 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get myTasks => 'My Tasks';
+
+  @override
+  String get price => 'Price';
+
+  @override
+  String get a____________________________________________ =>
+      '_________________________';
+
+  @override
+  String get subscriptionMethodWillBeSentToYourMail =>
+      'Subscription method will be sent to your email';
+
+  @override
+  String get trialPeriodEnded => 'Trial period has ended';
+
+  @override
+  String get pleaseCheckYourInternetConnection =>
+      'Please check your internet connection';
+
+  @override
+  String get noInternetConnection => 'No internet connection';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
+
+  @override
+  String get editWeight => 'Edit Weight';
+
+  @override
+  String get liters => 'Liters';
+
+  @override
+  String get noWorkoutToday => 'No Workout Today';
+
+  @override
+  String get nextExercise => 'Next Exercise';
+
+  @override
+  String get finishExercise => 'Finish Exercise';
+
+  @override
+  String get youHaveToSubscripeToAccessThisFeature =>
+      'You have to subscribe to access this feature';
+
+  @override
+  String get selectMeal => 'Select Meal';
+
+  @override
+  String get pleaseEnterTheVerificationCodeSentToYourEmail =>
+      'Please enter the verification code sent to your email';
+
+  @override
+  String get noPreviousPlan => 'No Previous Plan';
+
+  @override
+  String get programs => 'Programs';
+
+  @override
+  String get specifiedNutrationPlansForYourBody =>
+      'Specified Nutrition Plans For Your Body';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get followingDailyTasksIncreaseYourChancesTo =>
+      'Following daily tasks increase your chances to';
+
+  @override
+  String get reachPerfectBody => 'Reach perfect body';
+
+  @override
+  String get oatmeal => 'Oatmeal';
+
+  @override
+  String get eggs => 'Eggs';
+
+  @override
+  String get vegetables => 'Vegetables';
+
+  @override
+  String get fruits => 'Fruits';
+
+  @override
+  String get salads => 'Salads';
+
+  @override
+  String get soups => 'Soups';
+
+  @override
+  String get grilledFoods => 'Grilled Foods';
+
+  @override
+  String get poultry => 'Poultry';
+
+  @override
+  String get complicatedPreparation => 'Complicated Preparation';
+
+  @override
+  String get easyPreparation => 'Easy Preparation';
+
+  @override
+  String get mediumPreparation => 'Medium Preparation';
+
+  @override
+  String get searchResult => 'Search Result';
+
+  @override
+  String get mealPreperation => 'Meal Preparation';
+
+  @override
+  String get mealComponents => 'Meal Components';
+
+  @override
+  String get mealPreparationTime => 'Meal Preparation Time';
+
+  @override
+  String get mealCategory => 'Meal Category';
+
+  @override
+  String get filter => 'Filter';
+
+  @override
+  String get mealDetails => 'Meal Details';
+
+  @override
+  String get showLess => 'Show Less';
+
+  @override
+  String get showMore => 'Show More';
+
+  @override
+  String get mealDescription => 'Meal Description';
+
+  @override
+  String get todayEcerciseFocusOn => 'Today\'s exercise focuses on';
+
+  @override
+  String get bestOffer => 'Best Offer';
+
+  @override
+  String get first => 'First';
+
+  @override
+  String get second => 'Second';
+
+  @override
+  String get third => 'Third';
+
+  @override
+  String get fourth => 'Fourth';
+
+  @override
+  String get fifth => 'Fifth';
+
+  @override
+  String get sixth => 'Sixth';
+
+  @override
+  String get seventh => 'Seventh';
+
+  @override
+  String get eighth => 'Eighth';
+
+  @override
+  String get ninth => 'Ninth';
+
+  @override
+  String get tenth => 'Tenth';
+
+  @override
+  String get finaly => 'Finally';
+
+  @override
+  String get loading => 'Loading';
+
+  @override
+  String get excerciseDescription => 'Exercise Description';
+
+  @override
+  String get instructions => 'Instructions';
+
+  @override
+  String get group => 'Group';
+
+  @override
+  String get groups => 'Groups';
+
+  @override
+  String get expectedBurnedCalories => 'Expected Burned Calories';
+
+  @override
+  String get trainDescription => 'Train Description';
+
+  @override
+  String get currentWeightIs => 'Your current weight is';
+
+  @override
+  String get caloriesBurn => 'Calories burned';
+
+  @override
+  String get detailsOfTodayExercises => 'Details of today\'s exercises';
+
+  @override
+  String get excerciseDuration => 'Exercise duration';
+
+  @override
+  String get minutes => 'Minutes';
+
+  @override
+  String get youAreSubscribedToAPlan => 'You are subscribed to a plan';
+
+  @override
   String get pleaseMakeSureThatYouSelectedAllTheRequiredFields =>
       'Please make sure that you selected all the required fields';
 

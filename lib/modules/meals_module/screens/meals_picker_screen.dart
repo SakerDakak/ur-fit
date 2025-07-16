@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/screens/filter_screen.dart';
@@ -19,10 +20,10 @@ class MealsPickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<MealsCubit>().searchMeals();
-    List<String> items = ["فطار", "غداء", "عشاء"];
+    List<String> items = [L10n.tr().breakFast, L10n.tr().lunch, L10n.tr().dinner];
     return Scaffold(
       appBar: CustomAppBar(
-          title: 'التغذية',
+          title: L10n.tr().nutritions,
           onBack: () {
             context.pop();
           }),

@@ -5,6 +5,7 @@ import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
@@ -25,10 +26,9 @@ class TodayWorkoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
     final List<String> workoutList = exercises.map((e) => stringFromInt(e.id)).toList();
-    // final List<String> numericalList = ['اولا', 'ثانيا', 'ثالثا'];
     return Scaffold(
         appBar: CustomAppBar(
-            title: 'تمرين اليوم',
+            title: L10n.tr().detailsOfTodayExercises,
             onBack: () {
               context.pop();
             }),
@@ -69,7 +69,7 @@ class TodayWorkoutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      '${context.read<WorkoutCubit>().getPlanForToday()!.caloriesBurned} سعر حرارى',
+                                      '${context.read<WorkoutCubit>().getPlanForToday()!.caloriesBurned} ${L10n.tr().calorie}',
                                       style: TStyle.regular_14.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -88,7 +88,7 @@ class TodayWorkoutScreen extends StatelessWidget {
                                         width: 4.px,
                                       ),
                                       Text(
-                                        '${cubit.formattedTime(seconds: cubit.getPlanForToday()!.timePerExercise * cubit.getPlanForToday()!.sets)} دقيقة',
+                                        '${cubit.formattedTime(seconds: cubit.getPlanForToday()!.timePerExercise * cubit.getPlanForToday()!.sets)} ${L10n.tr().min}',
                                         style: TStyle.regular_14.copyWith(
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -103,7 +103,7 @@ class TodayWorkoutScreen extends StatelessWidget {
                                   fit: BoxFit.cover,
                                   image: NetworkImage("${exercises[state.progressValue - 1].gifUrl}"),
                                   autostart: Autostart.no,
-                                  placeholder: (context) => const Center(child: Text('Loading...')),
+                                  placeholder: (context) =>  Center(child: Text(L10n.tr().loading)),
                                 ),
                               )),
                         ),
@@ -117,7 +117,7 @@ class TodayWorkoutScreen extends StatelessWidget {
                       height: 20.px,
                     ),
                     CustomElevatedButton(
-                        text: 'ابدأ',
+                        text: L10n.tr().start,
                         onPressed: () {
                           context.pushNamed(PlayWorkoutScreen.routeWzTitleAnExtra,
                               pathParameters: {'title': exercises[state.progressValue - 1].name},
@@ -151,9 +151,8 @@ class TrainingDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'ارشادات',
-          style: TStyle.bold_16
-              .copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
+          L10n.tr().instructions,
+          style: TStyle.bold_16.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         ...description.map(
           (des) => Padding(
@@ -167,33 +166,32 @@ class TrainingDescription extends StatelessWidget {
           ),
         ),
         Text(
-          'وصف التمرين ',
-          style: TStyle.bold_16
-              .copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
+          L10n.tr().excerciseDescription,
+          style: TStyle.bold_16.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
         ),
         SizedBox(
           height: 16.px,
         ),
         TrainingDescriptionItem(
-          title: 'مدة التمرين',
+          title: L10n.tr().excerciseDuration,
           value:
-              '${context.read<WorkoutCubit>().formattedTime(seconds: exercisePlan!.timePerExercise * exercisePlan.sets)} دقيقة',
+              '${context.read<WorkoutCubit>().formattedTime(seconds: exercisePlan!.timePerExercise * exercisePlan.sets)} ${L10n.tr().min}',
           icon: AssetsManager.time,
         ),
         SizedBox(
           height: 16.px,
         ),
         TrainingDescriptionItem(
-          title: 'المتوقع حرقه',
-          value: '${exercisePlan.caloriesBurned} وحدة حرارية',
+          title: L10n.tr().expectedBurnedCalories,
+          value: '${exercisePlan.caloriesBurned} ${L10n.tr().calorie}',
           icon: AssetsManager.calories,
         ),
         SizedBox(
           height: 16.px,
         ),
         TrainingDescriptionItem(
-          title: 'المجموعات',
-          value: '${exercisePlan.sets} مجموعه',
+          title: L10n.tr().groups,
+          value: '${exercisePlan.sets} ${L10n.tr().group}',
           icon: AssetsManager.steps,
         ),
       ],
@@ -275,8 +273,7 @@ class WorkOutProgressHeader extends StatelessWidget {
                         maxLines: 3,
                         style: TStyle.regular_14.copyWith(
                           fontWeight: FontWeight.w600,
-                          color:
-                              state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : Co.whiteColor,
+                          color: state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : Co.whiteColor,
                         ),
                       ),
                     )
@@ -295,8 +292,7 @@ class WorkOutProgressHeader extends StatelessWidget {
                       workout,
                       style: TStyle.regular_14.copyWith(
                         fontWeight: FontWeight.w600,
-                        color:
-                            state.progressValue >= index ? Theme.of(context).colorScheme.primary : Co.whiteColor,
+                        color: state.progressValue >= index ? Theme.of(context).colorScheme.primary : Co.whiteColor,
                       ),
                     ),
                   );
@@ -328,7 +324,7 @@ class WorkOutProgressHeader extends StatelessWidget {
                         }
                       : null,
                   child: Text(
-                    'تخطى',
+                    L10n.tr().skip,
                     style: TStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
                       color: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
@@ -349,26 +345,26 @@ class WorkOutProgressHeader extends StatelessWidget {
 String stringFromInt(int value) {
   switch (value) {
     case 1:
-      return 'اولا';
+      return L10n.tr().first;
     case 2:
-      return 'ثانيا';
+      return L10n.tr().second;
     case 3:
-      return 'ثالثا';
+      return L10n.tr().third;
     case 4:
-      return 'رابعا';
+      return L10n.tr().fourth;
     case 5:
-      return 'خامسا';
+      return L10n.tr().fifth;
     case 6:
-      return 'سادسا';
+      return L10n.tr().sixth;
     case 7:
-      return 'سابعا';
+      return L10n.tr().seventh;
     case 8:
-      return 'ثامنا';
+      return L10n.tr().eighth;
     case 9:
-      return 'تاسعا';
+      return L10n.tr().ninth;
     case 10:
-      return 'عاشرا';
+      return L10n.tr().tenth;
     default:
-      return 'اخيرا';
+      return L10n.tr().finaly;
   }
 }

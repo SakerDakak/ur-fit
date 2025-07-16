@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/views/widgets/adaptive_progress_indicator.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
@@ -24,7 +25,7 @@ class MealDetailsScreen extends StatelessWidget {
     context.read<MealsCubit>().getMealDetails(id);
     return Scaffold(
       appBar: CustomAppBar(
-          title: 'تفاصيل الوجبة',
+          title: L10n.tr().mealDetails,
           onBack: () {
             context.pop();
             // context.read<MealsCubit>().clearMealDetails();
@@ -79,7 +80,7 @@ class MealDetailsScreen extends StatelessWidget {
                   BlocBuilder<MealsCubit, MealsState>(
                     builder: (context, state) {
                       return CustomElevatedButton(
-                          text: "اختيار الوجبه",
+                          text: L10n.tr().selectMeal,
                           onPressed: state.nutritionData.any((data) => data.id == meal.id.toString())
                               ? null
                               : () async {

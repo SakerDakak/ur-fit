@@ -136,7 +136,7 @@ class PlanCard extends StatelessWidget {
             children: [
               // subscription period
               Text(
-                package?.name ?? 'month',
+                package?.name ?? L10n.tr().month,
                 style: TStyle.bold_16.copyWith(
                   color: isSelected ? Co.selectedFont : null,
                 ),
@@ -152,7 +152,7 @@ class PlanCard extends StatelessWidget {
                   color: Co.yellow,
                 ),
                 child: Text(
-                  'افضل العروض',
+                  L10n.tr().bestOffer,
                   style: TStyle.medium_12.copyWith(
                     color: Co.selectedFont,
                   ),
@@ -213,15 +213,6 @@ class PlanCard extends StatelessWidget {
               ),
 
               const SizedBox(height: 10),
-
-              // discount percent
-              // if(package?.discount_code != null)
-              //   Text(
-              //   '+خصم ${package?.discount_value}%',
-              //   style: CustomTextStyle.regular_14.copyWith(
-              //     color: isSelected ? AppColors.selectedFont : null,
-              //   ),
-              // ),
             ],
           ),
         ),

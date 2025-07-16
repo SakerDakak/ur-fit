@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 
 import '../../../../core/presentation/style/colors.dart';
 import '../../../../core/presentation/style/fonts.dart';
@@ -24,7 +25,7 @@ class PlanDescriptionShimmer extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'برامج غذائية متكاملة مخصصة لاحتياجات جسمك.',
+                L10n.tr().specifiedNutrationPlansForYourBody,
                 style: TStyle.bold_16,
               ),
             )

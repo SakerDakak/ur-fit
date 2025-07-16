@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
@@ -14,7 +15,7 @@ class Sections extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 2,
       itemBuilder: (context, index) => _SectionCard(
-        title: 'التمارين',
+        title: L10n.tr().exercises,
         onTap: () {},
       ),
     );
@@ -97,7 +98,7 @@ class _SectionCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                     ),
                     child: Text(
-                      'ابدا',
+                      L10n.tr().start,
                       style: TStyle.bold_14,
                     ),
                   )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
@@ -22,7 +23,7 @@ class WeightProgressCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  '80 كجم',
+                  '80 ${L10n.tr().kg}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TStyle.semiBold_14.copyWith(
@@ -32,7 +33,7 @@ class WeightProgressCard extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  '65 كجم',
+                  '65 ${L10n.tr().kg}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.end,
@@ -47,9 +48,9 @@ class WeightProgressCard extends StatelessWidget {
           const SizedBox(height: 16),
 
           // progress bar
-          const _CustomProgressBar(
+          _CustomProgressBar(
             percent: 50 / 100,
-            progressHeaderText: '75 كجم',
+            progressHeaderText: '75 ${L10n.tr().kg}',
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 
@@ -27,7 +28,7 @@ class PlanDescription extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'برامج ${package[index].type.name} متكاملة مخصصة لاحتياجات جسمك.',
+                '${L10n.tr().programs} ${package[index].type.name} ${L10n.tr().specifiedNutrationPlansForYourBody}.',
                 style: TStyle.bold_16,
               ),
             )

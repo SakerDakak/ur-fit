@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
@@ -28,7 +29,7 @@ class OtpScreenNew extends StatelessWidget {
 
               // title
               Text(
-                'ادخل رمز التحقق',
+                L10n.tr().enterOtpCode,
                 style: TStyle.bold_20,
               ),
 
@@ -36,7 +37,7 @@ class OtpScreenNew extends StatelessWidget {
 
               // description
               Text(
-                'رجاء ادخال رمز التحقق الذى تم ارساله على البريد الالكترونى',
+                L10n.tr().pleaseEnterTheVerificationCodeSentToYourEmail,
                 textAlign: TextAlign.center,
                 style: TStyle.regular_14,
               ),
@@ -63,13 +64,13 @@ class OtpScreenNew extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'لم يصلك رمز التحقق؟',
+                    L10n.tr().didntGetOtp,
                     style: TStyle.regular_14,
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      'اضغط هنا لاعادة الارسال',
+                      L10n.tr().pressToResendOtp,
                       style: TStyle.regular_14.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -82,10 +83,8 @@ class OtpScreenNew extends StatelessWidget {
 
               // confirm button
               CustomElevatedButton(
-                text: 'تاكيد',
-                onPressed: () {
-
-                },
+                text: L10n.tr().confirm,
+                onPressed: () {},
                 padding: EdgeInsets.zero,
               ),
 

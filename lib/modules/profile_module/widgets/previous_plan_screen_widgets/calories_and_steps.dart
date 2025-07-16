@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
@@ -21,7 +22,7 @@ class CaloriesAndSteps extends StatelessWidget {
             contentColor: Co.selectedFont,
             cardColor: Theme.of(context).colorScheme.primary,
             value: calories.round(),
-            unit: 'سعرحرارى',
+            unit: L10n.tr().calories,
           ),
         ),
 
@@ -35,7 +36,7 @@ class CaloriesAndSteps extends StatelessWidget {
             cardColor: Co.cardColor,
             backgroundCirclesColor: Co.strockColor.withOpacity(0.4),
             value: sets.toInt(),
-            unit: 'مجموعة',
+            unit: L10n.tr().group,
           ),
         ),
       ],

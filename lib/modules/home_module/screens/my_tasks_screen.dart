@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/package_progress_exercise.dart';
@@ -16,7 +17,7 @@ class MyTasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('مهامي'),
+        title:  Text(L10n.tr().myTasks),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
@@ -36,11 +37,11 @@ class MyTasksScreen extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: 'اتباع المهام اليومية تزيد فرص الوصل ',
+                  text: L10n.tr().followingDailyTasksIncreaseYourChancesTo,
                   style: TStyle.bold_14,
                 ),
                 TextSpan(
-                  text: 'لجسمك المثالى!',
+                  text: L10n.tr().reachPerfectBody,
                   style: TStyle.bold_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -60,7 +61,7 @@ class MyTasksScreen extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'اليوم',
+                L10n.tr().today,
                 style: TStyle.bold_16,
               ),
             ],
@@ -73,7 +74,7 @@ class MyTasksScreen extends StatelessWidget {
 
           // sections
           Text(
-            'الاقسام',
+            L10n.tr().categories,
             style: TStyle.bold_16,
           ),
           const SizedBox(height: 16),

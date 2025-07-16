@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 
@@ -9,15 +10,15 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // current weight
         _DetailsItem(
-          'تمارين',
+          L10n.tr().exercises,
           Assets.iconsDumbbell,
           '30',
-          'دقيقة',
+          L10n.tr().minutes,
         ),
 
         SizedBox(
@@ -29,10 +30,10 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
 
         // target weight
         _DetailsItem(
-          'مياه',
+          L10n.tr().water,
           Assets.iconsWater,
           '6',
-          'لتر',
+          L10n.tr().liters,
         ),
 
         SizedBox(
@@ -44,10 +45,10 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
 
         // workout duration
         _DetailsItem(
-          'نوم',
+          L10n.tr().sleep,
           Assets.iconsBed,
           '8',
-          'ساعات',
+          L10n.tr().hours,
         ),
       ],
     );
@@ -76,7 +77,7 @@ class _DetailsItem extends StatelessWidget {
           svgIconPath,
           height: 16,
           width: 16,
-          colorFilter:  ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
             Theme.of(context).colorScheme.primary,
             BlendMode.srcIn,
           ),
