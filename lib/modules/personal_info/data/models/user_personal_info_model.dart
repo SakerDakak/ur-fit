@@ -44,7 +44,7 @@ class UserInfoRequest {
   int? mealsVariantsId;
   Set<int> workoutTypesIds;
   Set<String> bodyPartsIds;
-  Set<String> exerciseDayes;
+  Set<Day> exerciseDayes;
   Set<int> equipmentsIds;
   String? numOfDailyMeals;
   int? mealVarietyLevel;
@@ -80,7 +80,7 @@ class UserInfoRequest {
       "diet_id": dietId,
       "meal_variety_id": mealsVariantsId,
       "goal_id": selectedGaols.toList(),
-      "exercise_days": exerciseDayes.toList(),
+      "exercise_days": exerciseDayes.map((e) => e.name).toList(),
       "recipe_types": likedMealsIds.toList(),
       "foods_not_liked": notLikedMealsIds.toList(),
       "workout_type_id": workoutTypesIds.toList(),
@@ -99,7 +99,7 @@ class UserInfoRequest {
         equipmentsIds = user.equipments?.map((equipment) => equipment.id).toSet() ?? {},
         targetWeight = user.targetWeight?.toDouble(),
         likedMealsIds = user.recipeTypes?.map((recipe) => recipe.id).toSet() ?? {},
-        exerciseDayes = user.exerciseDays?.toSet() ?? {},
+        exerciseDayes = user.exerciseDays?.map((e) => Day.values.firstWhere((d) => e == d.name)).toSet() ?? {},
         mealsVariantsId = user.mealVariety?.id,
         weaklyTrainingCount = user.trainingDaysPerWeek,
         notLikedMealsIds = user.foodsNotLiked?.map((notLiked) => notLiked.id).toSet() ?? {},
@@ -122,5 +122,58 @@ class UserInfoRequest {
         workoutTypesIds.isNotEmpty &&
         // exerciseDayes.isNotEmpty &&
         equipmentsIds.isNotEmpty;
+  }
+}
+
+enum Day {
+  /// Sunday.
+  sunday(1),
+
+  /// Monday.
+  monday(2),
+
+  /// Tuesday.
+  tuesday(3),
+
+  /// Wednesday.
+  wednesday(4),
+
+  /// Thursday.
+  thursday(5),
+
+  /// Friday.
+  friday(6),
+
+  /// Saturday.
+  saturday(7);
+
+  /// Constructs an instance of [Day].
+  const Day(this.value);
+
+  static Day ofInt(int value) {
+    return Day.values.firstWhere((day) => day.value == value, orElse: () => Day.sunday);
+  }
+
+  /// The integer representation of [Day].
+  final int value;
+
+  @override
+  String get name {
+    switch (this) {
+      case Day.sunday:
+        return 'Sunday';
+      case Day.monday:
+        return 'Monday';
+      case Day.tuesday:
+        return 'Tuesday';
+      case Day.wednesday:
+        return 'Wednesday';
+      case Day.thursday:
+        return 'Thursday';
+      case Day.friday:
+        return 'Friday';
+      case Day.saturday:
+        return 'Saturday';
+    }
   }
 }

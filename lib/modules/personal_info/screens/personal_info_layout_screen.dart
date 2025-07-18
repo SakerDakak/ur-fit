@@ -17,6 +17,7 @@ import 'package:urfit/modules/personal_info/screens/step_three/step_three_meals_
 import 'package:urfit/modules/personal_info/screens/step_three/step_three_not_preferred_meals.dart';
 import 'package:urfit/modules/personal_info/screens/step_three/step_three_preferred_meals.dart';
 import 'package:urfit/modules/personal_info/screens/step_three/step_three_target_weight.dart';
+import 'package:urfit/modules/personal_info/screens/step_three/step_three_week_days.dart';
 import 'package:urfit/modules/personal_info/screens/step_three/step_three_weekly_exercise_times.dart';
 import 'package:urfit/modules/personal_info/screens/step_three/step_three_work_types.dart';
 import 'package:urfit/modules/personal_info/screens/step_two/step_two_goals.dart';
@@ -60,7 +61,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
       return 1;
     } else if (index < 5) {
       return 2;
-    } else if (index < 12) {
+    } else if (index < 14) {
       return 3;
     }
     return 0;
@@ -76,14 +77,15 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     const StepTwoGoals(),
 
     ///
-    const FinalStepBodyParts(),
-    const FinalStepMealsVariety(),
-    const FinalStepPreferredMeals(),
-    const FinalStepNotPreferredMeals(),
-    const FinalStepDietType(),
-    const FinalStepTargetWeight(),
-    const FinalStepWeeklyExerciseTimes(),
-    const FinalStepWorkTypes(),
+    const StepThreeBodyParts(),
+    const StepThreeMealsVariety(),
+    const StepThreePreferredMeals(),
+    const StepThreeNotPreferredMeals(),
+    const StepThreeDietType(),
+    const StepThreeTargetWeight(),
+    const StepThreeWeeklyExerciseTimes(),
+    const StepThreeWeekDays(),
+    const StepThreeWorkTypes(),
 
     ///
     const EquipmentSelectionScreen(),
@@ -124,7 +126,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
                 ValueListenableBuilder(
                     valueListenable: currentPAge,
                     builder: (context, value, child) {
-                      if (value > 11) return const SizedBox.shrink();
+                      if (value > 13) return const SizedBox.shrink();
                       return Column(
                         children: [
                           Row(

@@ -3,10 +3,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
-import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
-import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
+import 'package:urfit/modules/personal_info/screens/widgets/body_parts_image_widget.dart';
 import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
 import '../../../../core/presentation/style/fonts.dart';
@@ -14,14 +13,14 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class FinalStepBodyParts extends StatefulWidget {
-  const FinalStepBodyParts({super.key});
+class StepThreeBodyParts extends StatefulWidget {
+  const StepThreeBodyParts({super.key});
 
   @override
-  State<FinalStepBodyParts> createState() => _FinalStepBodyPartsState();
+  State<StepThreeBodyParts> createState() => _StepThreeBodyPartsState();
 }
 
-class _FinalStepBodyPartsState extends State<FinalStepBodyParts> {
+class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
   late final SetupPersonalInfoCubit cubit;
 
   @override
@@ -102,11 +101,7 @@ class _FinalStepBodyPartsState extends State<FinalStepBodyParts> {
                   ),
                   Expanded(
                     child: Skeleton.keep(
-                      child: FittedBox(
-                          child: Image.asset(
-                        context.read<AppCubit>().state.isFemale ? Assets.imageFemaleFitness : Assets.imageBodyPart,
-                        alignment: AlignmentDirectional.topStart,
-                      )),
+                      child: BodyPartsImageWidget(),
                     ),
                   ),
                 ],

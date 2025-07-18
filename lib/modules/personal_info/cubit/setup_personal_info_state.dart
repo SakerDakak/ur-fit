@@ -165,6 +165,11 @@ class WorkoutTypesError extends WorkoutTypesStates {
   WorkoutTypesError(super.userInfo, this.error);
 }
 
+class WeekDaysUpdatedState extends SetupPersonalInfoState {
+  WeekDaysUpdatedState(super.userInfo);
+}
+
+
 /// Equipments States
 sealed class EquipmentsStates extends SetupPersonalInfoState {
   final List<SelectionItemModel> equipments;

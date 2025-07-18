@@ -12,8 +12,8 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class FinalStepNotPreferredMeals extends StatelessWidget {
-  const FinalStepNotPreferredMeals({super.key});
+class StepThreeNotPreferredMeals extends StatelessWidget {
+  const StepThreeNotPreferredMeals({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -13,14 +13,14 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class FinalStepPreferredMeals extends StatefulWidget {
-  const FinalStepPreferredMeals({super.key});
+class StepThreePreferredMeals extends StatefulWidget {
+  const StepThreePreferredMeals({super.key});
 
   @override
-  State<FinalStepPreferredMeals> createState() => _FinalStepPreferredMealsState();
+  State<StepThreePreferredMeals> createState() => _StepThreePreferredMealsState();
 }
 
-class _FinalStepPreferredMealsState extends State<FinalStepPreferredMeals> {
+class _StepThreePreferredMealsState extends State<StepThreePreferredMeals> {
   late final SetupPersonalInfoCubit cubit;
   final user = Session().currentUser;
 

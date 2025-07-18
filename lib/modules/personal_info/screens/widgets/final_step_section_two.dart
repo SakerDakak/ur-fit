@@ -177,6 +177,7 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
 
                   return GestureDetector(
                     onTap: () {
+                      print('asd asddas');
                       // cubit.updateSelectedExerciseDaysData(
                       //     DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i]));
                     },

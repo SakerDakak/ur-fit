@@ -12,8 +12,8 @@ import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/animated_value_container.dart';
 import '../widgets/values_gridview.dart';
 
-class FinalStepDietType extends StatelessWidget {
-  const FinalStepDietType({super.key});
+class StepThreeDietType extends StatelessWidget {
+  const StepThreeDietType({super.key});
 
   @override
   Widget build(BuildContext context) {

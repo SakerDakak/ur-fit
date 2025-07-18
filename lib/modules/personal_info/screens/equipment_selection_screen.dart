@@ -85,9 +85,14 @@ class _EquipmentSelectionScreenState extends State<EquipmentSelectionScreen> {
                               }
                               await cubit.sendUpdateData();
                               if (!context.mounted) return;
-                              if (state.userInfo.selectedGaols.any((e) => e == 1 || e == 2)) {
+                              final diet = {1, 2};
+                              final excercise = {3, 4};
+                              if (state.userInfo.selectedGaols.any((e) => diet.contains(e)) &&
+                                  state.userInfo.selectedGaols.any((e) => excercise.contains(e))) {
                                 context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both);
-                              } else {
+                              } else if (state.userInfo.selectedGaols.any((e) => diet.contains(e))) {
+                                context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.diet);
+                              } else if (state.userInfo.selectedGaols.any((e) => excercise.contains(e))) {
                                 context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.exercise);
                               }
                             },

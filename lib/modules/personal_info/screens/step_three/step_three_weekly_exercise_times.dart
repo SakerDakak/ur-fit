@@ -8,14 +8,14 @@ import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 
-class FinalStepWeeklyExerciseTimes extends StatefulWidget {
-  const FinalStepWeeklyExerciseTimes({super.key});
+class StepThreeWeeklyExerciseTimes extends StatefulWidget {
+  const StepThreeWeeklyExerciseTimes({super.key});
 
   @override
-  State<FinalStepWeeklyExerciseTimes> createState() => _FinalStepWeeklyExerciseTimesState();
+  State<StepThreeWeeklyExerciseTimes> createState() => _StepThreeWeeklyExerciseTimesState();
 }
 
-class _FinalStepWeeklyExerciseTimesState extends State<FinalStepWeeklyExerciseTimes> {
+class _StepThreeWeeklyExerciseTimesState extends State<StepThreeWeeklyExerciseTimes> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 

@@ -8,14 +8,14 @@ import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 
-class FinalStepTargetWeight extends StatefulWidget {
-  const FinalStepTargetWeight({super.key});
+class StepThreeTargetWeight extends StatefulWidget {
+  const StepThreeTargetWeight({super.key});
 
   @override
-  State<FinalStepTargetWeight> createState() => _FinalStepTargetWeightState();
+  State<StepThreeTargetWeight> createState() => _StepThreeTargetWeightState();
 }
 
-class _FinalStepTargetWeightState extends State<FinalStepTargetWeight> {
+class _StepThreeTargetWeightState extends State<StepThreeTargetWeight> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 

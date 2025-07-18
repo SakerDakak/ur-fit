@@ -13,8 +13,8 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class FinalStepWorkTypes extends StatelessWidget {
-  const FinalStepWorkTypes({super.key});
+class StepThreeWorkTypes extends StatelessWidget {
+  const StepThreeWorkTypes({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,6 +11,7 @@ import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart
 import 'package:urfit/modules/personal_info/data/data_source/personal_info_datasource.dart';
 import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
 import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
+import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
 import 'package:urfit/modules/profile_module/data/setting_remote_data_source.dart';
 import 'package:urfit/modules/profile_module/repo/setting_repo.dart';
 import 'package:urfit/modules/subscription_module/controller/subscription_cubit.dart';
@@ -78,6 +79,7 @@ Future<void> init() async {
   di.registerFactory(() => WorkoutCubit(di()));
   di.registerFactory(() => SettingCubit(di()));
   di.registerFactory(() => AuthCubit());
+  di.registerFactory(() => UpdateUserInfoCubit(di()));
 
   // sl.registerFactoryParam((int? param1, param2) => QuranCubit(quranRepository: sl(),initialIndex: param1),);
   // sl.registerFactory(() => LiveCubit(sl()));

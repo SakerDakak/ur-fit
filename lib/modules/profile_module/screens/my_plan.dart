@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/default_animated_switcher.dart';
+import 'package:urfit/di.dart';
 import 'package:urfit/modules/profile_module/cubit/update_user_info_cubit.dart';
 import 'package:urfit/modules/profile_module/cubit/update_user_info_state.dart';
 import 'package:urfit/modules/profile_module/widgets/my_plan_screen_widgets/custom_navigation_bar.dart';
@@ -19,85 +19,89 @@ class MyPlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<UpdateUserInfoCubit>();
+    return BlocProvider(
+      create: (context) => di<UpdateUserInfoCubit>(),
+      child: Builder(builder: (context) {
+        final cubit = context.read<UpdateUserInfoCubit>();
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) {
+              return;
+            }
 
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) {
-          return;
-        }
+            _handleBackNavigation(context, cubit);
+          },
+          child: Scaffold(
+            body: SafeArea(
+              child: Column(
+                children: [
+                  const SizedBox(height: 28),
 
-        _handleBackNavigation(context, cubit);
-      },
-      child: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(height: 28),
-
-              // app bar
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppConst.kHorizontalPadding,
-                ),
-                child: Row(
-                  children: [
-                    // back button
-                    IconButton(
-                      onPressed: () => _handleBackNavigation(context, cubit),
-                      icon: const Icon(Icons.arrow_back),
+                  // app bar
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConst.kHorizontalPadding,
                     ),
+                    child: Row(
+                      children: [
+                        // back button
+                        IconButton(
+                          onPressed: () => _handleBackNavigation(context, cubit),
+                          icon: const Icon(Icons.arrow_back),
+                        ),
 
-                    // page title
-                    Expanded(
-                      child: Text(
-                        L10n.tr().myPlan,
-                        textAlign: TextAlign.center,
-                        style: TStyle.bold_16,
-                      ),
+                        // page title
+                        Expanded(
+                          child: Text(
+                            L10n.tr().myPlan,
+                            textAlign: TextAlign.center,
+                            style: TStyle.bold_16,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              const SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
-              // current page indicator
-              BlocBuilder<UpdateUserInfoCubit, UpdateUserInfoState>(
-                buildWhen: (p, c) => p.currentPageIndex != c.currentPageIndex,
-                builder: (context, state) {
-                  return DefaultAnimatedSwitcher(
-                    transitionType: DefaultAnimatedSwitcherTransition.size,
-                    child: SizedBox(
-                      key: ValueKey(
-                        cubit.state.currentPageIndex > 2,
-                      ),
-                      child: cubit.state.currentPageIndex > 2
-                          ? const SizedBox.shrink()
-                          : _buildTheFirstThreePagesTabsIndicator(cubit,context),
+                  // current page indicator
+                  BlocBuilder<UpdateUserInfoCubit, UpdateUserInfoState>(
+                    buildWhen: (p, c) => p.currentPageIndex != c.currentPageIndex,
+                    builder: (context, state) {
+                      return DefaultAnimatedSwitcher(
+                        transitionType: DefaultAnimatedSwitcherTransition.size,
+                        child: SizedBox(
+                          key: ValueKey(
+                            cubit.state.currentPageIndex > 2,
+                          ),
+                          child: cubit.state.currentPageIndex > 2
+                              ? const SizedBox.shrink()
+                              : _buildTheFirstThreePagesTabsIndicator(cubit, context),
+                        ),
+                      );
+                    },
+                  ),
+
+                  // page view
+                  Expanded(
+                    child: PageView(
+                      controller: cubit.pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: const [
+                        PersonalInfoPage(),
+                        GoalsPage(),
+                        YourChoicesPage(),
+                        EquipmentsPage(),
+                      ],
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
-
-              // page view
-              Expanded(
-                child: PageView(
-                  controller: cubit.pageController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: const [
-                    PersonalInfoPage(),
-                    GoalsPage(),
-                    YourChoicesPage(),
-                    EquipmentsPage(),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 

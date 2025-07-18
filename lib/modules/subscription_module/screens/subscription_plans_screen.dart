@@ -68,6 +68,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(" PLAN TYPEEEEEE ::: ${widget.planType.name}");
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(

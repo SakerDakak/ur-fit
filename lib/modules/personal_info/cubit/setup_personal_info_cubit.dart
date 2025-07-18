@@ -43,18 +43,20 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       index = 6;
     } else if (state.userInfo.likedMealsIds.isEmpty) {
       index = 7;
-    } else if (state.userInfo.notLikedMealsIds.isEmpty) {
-      index = 8;
+    // } else if (state.userInfo.notLikedMealsIds.isEmpty) {
+    //   index = 8;
     } else if ((state.userInfo.dietId ?? 0) < 1) {
       index = 9;
     } else if ((state.userInfo.targetWeight ?? 0) < 1) {
       index = 10;
     } else if ((state.userInfo.weaklyTrainingCount ?? 0) < 1) {
       index = 11;
-    } else if (state.userInfo.workoutTypesIds.isEmpty) {
+    } else if (state.userInfo.exerciseDayes.isEmpty) {
       index = 12;
-    } else if (state.userInfo.equipmentsIds.isEmpty) {
+    } else if (state.userInfo.workoutTypesIds.isEmpty) {
       index = 13;
+    } else if (state.userInfo.equipmentsIds.isEmpty) {
+      index = 14;
     }
     await pageController.animateToPage(index, duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
@@ -158,6 +160,15 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
     emit(WorkoutTypesLoaded(state.userInfo, _workoutTypes));
   }
 
+  void toggleWeekDays(Day day) {
+    if (state.userInfo.exerciseDayes.contains(day)) {
+      state.userInfo.exerciseDayes.remove(day);
+    } else {
+      state.userInfo.exerciseDayes.add(day);
+    }
+    emit(WeekDaysUpdatedState(state.userInfo));
+  }
+
   void toggleEquipment(int id) {
     if (state.userInfo.equipmentsIds.contains(id)) {
       state.userInfo.equipmentsIds.remove(id);
@@ -228,7 +239,7 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getLikedMealsOptions() async {
-    // if (_mealsLiked.isNotEmpty) return emit(MealsLikedLoaded(state.userInfo, _mealsLiked));
+    if (_mealsLiked.isNotEmpty) return emit(MealsLikedLoaded(state.userInfo, _mealsLiked));
     emit(MealsLikedLoading(state.userInfo));
     final result = await _repo.getLikedMealsOptions();
     result.fold(
