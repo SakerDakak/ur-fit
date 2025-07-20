@@ -5,9 +5,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-const channelId = "kure";
-const channelName = "Kure App";
-const channelDescription = "Kure Notification Channel";
+const channelId = "urfit";
+const channelName = "UrFit App";
+const channelDescription = "UrFit Notification Channel";
 
 class LocalNotificationServices {
   static final _inst = LocalNotificationServices._();
@@ -19,7 +19,7 @@ class LocalNotificationServices {
   }
 
   init() async {
-    var initializationSettingsAndroid = const AndroidInitializationSettings('@drawable/ic_launcher_foreground');
+    var initializationSettingsAndroid = const AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOS = const DarwinInitializationSettings(
       requestProvisionalPermission: true,
       requestCriticalPermission: true,

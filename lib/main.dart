@@ -13,11 +13,9 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await init();
   // await HiveServices().init();
   // await HiveServices().register();
   // await HiveServices().openBoxes();
-  Bloc.observer = MyBlocObserver();
   try {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     FlutterError.onError = (errorDetails) {
@@ -32,6 +30,9 @@ Future<void> main() async {
     print('Error initializing Firebase: $e');
     print('Stack trace: $s');
   }
+  await init();
+  Bloc.observer = MyBlocObserver();
+
   runApp(
     const UrFitApp(),
   );

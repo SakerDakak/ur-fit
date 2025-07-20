@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:urfit/core/data/services/firebase/fcm_service.dart';
+import 'package:urfit/core/data/services/firebase/local_notification_services.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
@@ -36,6 +38,10 @@ Future<void> init() async {
     di.getAsync<SharedPreferences>(),
     di.getAsync<PackageInfo>(),
   ]);
+
+  /// init singletons
+  FCMService();
+  LocalNotificationServices.inst.init();
 
   ///services
   di.registerLazySingleton<ApiClient>(() => ApiClient());

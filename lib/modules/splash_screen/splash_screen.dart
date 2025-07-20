@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/data/services/firebase/fcm_service.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
@@ -33,6 +34,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   }
 
   _getSplash() async {
+    FCMService().fcmGetInitMessage();
     if (TokenService.getToken() == null) {
       context.pushReplacement(OnBoardingSecScreen.route);
     } else {
