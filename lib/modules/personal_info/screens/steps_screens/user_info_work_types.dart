@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
-import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
@@ -13,14 +12,13 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class StepThreeWorkTypes extends StatelessWidget {
-  const StepThreeWorkTypes({super.key});
+class UserInfoWorkTypesOrLocation extends StatelessWidget {
+  const UserInfoWorkTypesOrLocation({super.key});
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SetupPersonalInfoCubit>();
     cubit.getWorkoutTypes();
-    final user = Session().currentUser;
 
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (p, c) => c is WorkoutTypesStates,
@@ -44,7 +42,7 @@ class StepThreeWorkTypes extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        L10n.tr().preferredEquipment,
+                        L10n.tr().excerciseLocation,
                         style: TStyle.semiBold_16,
                         textAlign: TextAlign.start,
                       ),

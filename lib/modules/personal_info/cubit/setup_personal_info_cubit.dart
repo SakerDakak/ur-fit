@@ -24,10 +24,11 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   List<BodyPartsModel> _bodyPartsData = [];
   List<SelectionItemModel> _workoutTypes = [];
   List<SelectionItemModel> _equipments = [];
-
+  late  ColorScheme colorScheme;
   SetupPersonalInfoCubit(this._repo) : super(PersonalInfoInit(UserInfoRequest.fromUserModel(Session().currentUser!)));
 
   setInitPage() async {
+    print('Setting initial page');
     int index = 0;
     if ((state.userInfo.age ?? 0) < 1) {
       index = 0;
@@ -35,19 +36,19 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       index = 0;
     } else if ((state.userInfo.currentWeight ?? 0) < 1) {
       index = 0;
-    } else if (state.userInfo.selectedGaols.isEmpty) {
+    } else if ((state.userInfo.targetWeight ?? 0) < 1) {
       index = 4;
-    } else if (state.userInfo.bodyPartsIds.isEmpty) {
+    } else if (state.userInfo.selectedGaols.isEmpty) {
       index = 5;
     } else if ((state.userInfo.mealsVariantsId ?? 0) < 1) {
       index = 6;
     } else if (state.userInfo.likedMealsIds.isEmpty) {
       index = 7;
-    // } else if (state.userInfo.notLikedMealsIds.isEmpty) {
-    //   index = 8;
+      // } else if (state.userInfo.notLikedMealsIds.isEmpty) {
+      //   index = 8;
     } else if ((state.userInfo.dietId ?? 0) < 1) {
       index = 9;
-    } else if ((state.userInfo.targetWeight ?? 0) < 1) {
+    } else if (state.userInfo.bodyPartsIds.isEmpty) {
       index = 10;
     } else if ((state.userInfo.weaklyTrainingCount ?? 0) < 1) {
       index = 11;

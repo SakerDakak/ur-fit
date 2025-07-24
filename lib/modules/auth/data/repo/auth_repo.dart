@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:urfit/core/data/api/api_client.dart';
 import 'package:urfit/core/data/api/endpoints.dart';
+import 'package:urfit/core/data/services/firebase/fcm_service.dart';
 import 'package:urfit/core/domain/error/exceptions.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 
@@ -20,7 +21,9 @@ class AuthRepo {
   Future<Either<Failure, ({UserModel user, String token})>> login(
       {required String email, required String password}) async {
     try {
-      final response = await _apiClient.post(EndPoints.login, data: {'email': email, 'password': password});
+      final fcm = await FCMService().getDeviceToken();
+      final response =
+          await _apiClient.post(EndPoints.login, data: {'email': email, 'password': password, 'fcm_token': fcm});
       final result = response.data['data'];
       final token = result["token"];
       final user = UserModel.fromJson(result['user']);

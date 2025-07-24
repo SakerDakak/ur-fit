@@ -305,10 +305,11 @@ extension UserModelExtension on UserModel {
   bool get hasCompleteStepThree =>
       (bodyParts?.isNotEmpty ?? false) &&
       (mealVariety != null) &&
-      (foodsNotLiked?.isNotEmpty ?? false) &&
+      // (foodsNotLiked?.isNotEmpty ?? false) &&
       (diet != null) &&
       (targetWeight != null) &&
       (trainingDaysPerWeek != null) &&
+      (exerciseDays?.isNotEmpty ?? false) &&
       (workoutTypes?.isNotEmpty ?? false) &&
       (equipments?.isNotEmpty ?? false);
 

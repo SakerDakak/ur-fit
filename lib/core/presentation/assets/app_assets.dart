@@ -116,6 +116,8 @@ class Assets {
 
   static const String imageFamaleCharacter = "assets/image/famale_character.png";
 
+  static const String imageFemaleBody = "assets/image/female_body.png";
+
   static const String imageFemaleFitness = "assets/image/female_fitness.png";
 
   static const String imageFemaleGender = "assets/image/female_gender.png";

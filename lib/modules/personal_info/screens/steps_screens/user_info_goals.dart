@@ -9,14 +9,14 @@ import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/personal_info/screens/widgets/goals_item.dart';
 
-class StepTwoGoals extends StatefulWidget {
-  const StepTwoGoals({super.key});
+class UserInfoGoals extends StatefulWidget {
+  const UserInfoGoals({super.key});
 
   @override
-  State<StepTwoGoals> createState() => _StepTwoGoalsState();
+  State<UserInfoGoals> createState() => _UserInfoGoalsState();
 }
 
-class _StepTwoGoalsState extends State<StepTwoGoals> {
+class _UserInfoGoalsState extends State<UserInfoGoals> {
   @override
   void initState() {
     context.read<SetupPersonalInfoCubit>().getGoals();

@@ -226,12 +226,12 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: EquipmentSelectionScreen.route,
-        name: EquipmentSelectionScreen.route,
+        path: UserInfoEquipmentScreen.route,
+        name: UserInfoEquipmentScreen.route,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => di<SetupPersonalInfoCubit>(),
-            child: const EquipmentSelectionScreen(),
+            child: const UserInfoEquipmentScreen(),
           );
         },
       ),

@@ -13,16 +13,15 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class StepThreeBodyParts extends StatefulWidget {
-  const StepThreeBodyParts({super.key});
+class UserInfoBodyParts extends StatefulWidget {
+  const UserInfoBodyParts({super.key});
 
   @override
-  State<StepThreeBodyParts> createState() => _StepThreeBodyPartsState();
+  State<UserInfoBodyParts> createState() => _UserInfoBodyPartsState();
 }
 
-class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
+class _UserInfoBodyPartsState extends State<UserInfoBodyParts> {
   late final SetupPersonalInfoCubit cubit;
-
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
@@ -32,8 +31,7 @@ class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+    return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (previous, current) => current is MuscleFocusStates,
       builder: (context, state) {
         if (state is! MuscleFocusStates) return const SizedBox.shrink();
@@ -44,15 +42,40 @@ class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
           );
         }
         final bodyParts = state is MuscleFocusLoading ? Fakers().bodyPartsModel : state.muscleFocusData;
+        final isAllSelected = state.userInfo.bodyPartsIds.length == bodyParts.length;
         return Skeletonizer(
           enabled: state is MuscleFocusLoading,
           child: Column(
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(L10n.tr().focusedBodyPart, style: TStyle.semiBold_16, textAlign: TextAlign.start),
-                  AbsorbPointer(
+                  Column(
+                    spacing: 6,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(L10n.tr().focusedBodyPart, style: TStyle.semiBold_16, textAlign: TextAlign.start),
+                      AbsorbPointer(
+                        absorbing: state is MuscleFocusLoading,
+                        child: GestureDetector(
+                          onTap: () async {
+                            if (isAllSelected) {
+                              cubit.toggleBodyParts('', addSet: {});
+                            } else {
+                              cubit.toggleBodyParts('', addSet: bodyParts.map((e) => e.key).toSet());
+                            }
+                          },
+                          child: Text(
+                            isAllSelected ? L10n.tr().unselectAll : L10n.tr().selectAll,
+                            style: TStyle.semiBold_16.copyWith(
+                                color: isAllSelected ? Colors.blueGrey : cubit.colorScheme.primary),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                if(!isAllSelected && bodyParts.length> 4)  AbsorbPointer(
                     absorbing: state is MuscleFocusLoading,
                     child: GestureDetector(
                       onTap: () async {
@@ -71,7 +94,7 @@ class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
                       },
                       child: Text(
                         L10n.tr().seeMore,
-                        style: TStyle.semiBold_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                        style: TStyle.semiBold_16.copyWith(color: cubit.colorScheme.primary),
                       ),
                     ),
                   ),
@@ -79,33 +102,38 @@ class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
               ),
 
               const SizedBox(height: 16),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Animate(
-                      effects: const [FadeEffect()],
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: bodyParts.length > 4 ? 4 : bodyParts.length,
-                          itemBuilder: (context, index) {
-                            final item = bodyParts[index];
-                            return RadioBoxWithImage(
-                                shortMode: true,
-                                title: item.value,
-                                imageUrl: item.image,
-                                onTap: () => cubit.toggleBodyParts(item.key),
-                                isSelected: state.userInfo.bodyPartsIds.contains(item.key));
-                          }),
+              Expanded(
+                flex: 5,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Animate(
+                        effects: const [FadeEffect()],
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: isAllSelected ? bodyParts.length : bodyParts.length > 4 ? 4 : bodyParts.length,
+                            itemBuilder: (context, index) {
+                              final item = bodyParts[index];
+                              return RadioBoxWithImage(
+                                  shortMode: true,
+                                  title: item.value,
+                                  imageUrl: item.image,
+                                  onTap: () => cubit.toggleBodyParts(item.key),
+                                  isSelected: state.userInfo.bodyPartsIds.contains(item.key));
+                            }),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Skeleton.keep(
-                      child: BodyPartsImageWidget(),
+                    const Expanded(
+                      child: Skeleton.keep(
+                        child: BodyPartsImageWidget(),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              const SizedBox(height: 16),
+
               // continue button
               CustomElevatedButton(
                 text: L10n.tr().continuee,
@@ -116,10 +144,11 @@ class _StepThreeBodyPartsState extends State<StepThreeBodyParts> {
                         cubit.nextPage();
                       },
               ),
+              const SizedBox(height: 40)
             ],
           ),
         );
       },
-    ));
+    );
   }
 }

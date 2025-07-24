@@ -9,10 +9,50 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get currentBMI => 'Current BMI';
+
+  @override
+  String get targetBMI => 'Target BMI';
+
+  @override
+  String get bmi => 'BMI';
+
+  @override
+  String get bmiDescription =>
+      'A number calculated from your height and weight to estimate body fat and assess if you’re underweight, normal, overweight, or obese.';
+
+  @override
+  String get guide => 'Guide';
+
+  @override
+  String get below => 'Below';
+
+  @override
+  String get andAbove => 'and above';
+
+  @override
+  String get underWeight => 'Underweight';
+
+  @override
+  String get normalWeight => 'Normal weight';
+
+  @override
+  String get overWeight => 'Overweight';
+
+  @override
+  String get obesity => 'Obesity';
+
+  @override
+  String get excerciseLocation => 'Exercise Location';
+
+  @override
   String get myTasks => 'My Tasks';
 
   @override
   String get price => 'Price';
+
+  @override
+  String get unselectAll => 'Unselect All';
 
   @override
   String get a____________________________________________ =>

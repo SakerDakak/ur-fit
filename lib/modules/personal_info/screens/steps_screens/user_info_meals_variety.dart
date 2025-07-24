@@ -12,8 +12,8 @@ import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/animated_value_container.dart';
 import '../widgets/values_gridview.dart';
 
-class StepThreeMealsVariety extends StatelessWidget {
-  const StepThreeMealsVariety({super.key});
+class UserInfoVariety extends StatelessWidget {
+  const UserInfoVariety({super.key});
 
   @override
   Widget build(BuildContext context) {

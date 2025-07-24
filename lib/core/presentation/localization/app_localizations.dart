@@ -98,6 +98,78 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @currentBMI.
+  ///
+  /// In en, this message translates to:
+  /// **'Current BMI'**
+  String get currentBMI;
+
+  /// No description provided for @targetBMI.
+  ///
+  /// In en, this message translates to:
+  /// **'Target BMI'**
+  String get targetBMI;
+
+  /// No description provided for @bmi.
+  ///
+  /// In en, this message translates to:
+  /// **'BMI'**
+  String get bmi;
+
+  /// No description provided for @bmiDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A number calculated from your height and weight to estimate body fat and assess if you’re underweight, normal, overweight, or obese.'**
+  String get bmiDescription;
+
+  /// No description provided for @guide.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide'**
+  String get guide;
+
+  /// No description provided for @below.
+  ///
+  /// In en, this message translates to:
+  /// **'Below'**
+  String get below;
+
+  /// No description provided for @andAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'and above'**
+  String get andAbove;
+
+  /// No description provided for @underWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Underweight'**
+  String get underWeight;
+
+  /// No description provided for @normalWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal weight'**
+  String get normalWeight;
+
+  /// No description provided for @overWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Overweight'**
+  String get overWeight;
+
+  /// No description provided for @obesity.
+  ///
+  /// In en, this message translates to:
+  /// **'Obesity'**
+  String get obesity;
+
+  /// No description provided for @excerciseLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise Location'**
+  String get excerciseLocation;
+
   /// No description provided for @myTasks.
   ///
   /// In en, this message translates to:
@@ -109,6 +181,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Price'**
   String get price;
+
+  /// No description provided for @unselectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselect All'**
+  String get unselectAll;
 
   /// No description provided for @a____________________________________________.
   ///

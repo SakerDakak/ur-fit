@@ -37,6 +37,7 @@ class AuthHelper {
       }
       Session().setCurrentUser = user;
       if (user.hasValidSubscription == true || user.hasCompleteProfile) {
+        // context.go(StartPersonalInfoScreen.route);
         context.go(MainPage.routeWithBool(false));
       } else {
         context.go(StartPersonalInfoScreen.route);

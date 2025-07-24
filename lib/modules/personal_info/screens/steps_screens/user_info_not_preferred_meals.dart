@@ -12,8 +12,8 @@ import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 import '../widgets/radio_box_with_img.dart';
 
-class FinalStepNotPreferredMeals extends StatelessWidget {
-  const FinalStepNotPreferredMeals({super.key});
+class UserInfoNotPreferredMeals extends StatelessWidget {
+  const UserInfoNotPreferredMeals({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
           );
         }
         final meals = state is MealsNotLikedLoading ? Fakers().selectionModels : state.meals;
+        final isAllSelected = state.userInfo.notLikedMealsIds.length == meals.length;
         return SingleChildScrollView(
           child: Column(
             children: [
@@ -63,7 +64,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                         child: Text(
                           L10n.tr().seeMore,
                           style: TStyle.semiBold_16.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: cubit.colorScheme.primary,
                           ),
                         ),
                       ),
@@ -75,15 +76,16 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TextButton(
-                      onPressed: () => cubit.toggleNotLikedMeal(0, addSet: state.meals.map((e) => e.id).toSet()),
+                      onPressed: () => cubit.toggleNotLikedMeal(0,
+                          addSet: isAllSelected ? {} : state.meals.map((e) => e.id).toSet()),
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        L10n.tr().selectAll,
+                        isAllSelected ? L10n.tr().unselectAll : L10n.tr().selectAll,
                         style: TStyle.bold_16.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: isAllSelected ? cubit.colorScheme.tertiary : cubit.colorScheme.primary,
                         ),
                       ))
                 ],
@@ -106,7 +108,7 @@ class FinalStepNotPreferredMeals extends StatelessWidget {
                 ),
               ),
               CustomElevatedButton(
-                text: L10n.tr().continuee,
+                text: state.userInfo.notLikedMealsIds.isEmpty ? L10n.tr().skip : L10n.tr().continuee,
                 padding: EdgeInsets.zero,
                 onPressed: () => cubit.nextPage(),
               ),

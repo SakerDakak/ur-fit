@@ -10,8 +10,8 @@ import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
 
-class StepThreeWeekDays extends StatelessWidget {
-  const StepThreeWeekDays({super.key});
+class UserInfoWeekDays extends StatelessWidget {
+  const UserInfoWeekDays({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class StepThreeWeekDays extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            DateFormat.E().format(WeakDaysDate.getCurrentWeekDays()[index]),
+                            DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[index]),
                             style: TStyle.regular_14.copyWith(
                               fontWeight: isSelected ? FontWeight.w700 : null,
                               color: isSelected ? Co.selectedFont : Co.fontColor,

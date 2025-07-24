@@ -9,14 +9,14 @@ import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart
 
 import '../widgets/gender_selector_widget.dart';
 
-class StepOneGender extends StatefulWidget {
-  const StepOneGender({super.key});
+class UserInfoGender extends StatefulWidget {
+  const UserInfoGender({super.key});
 
   @override
-  State<StepOneGender> createState() => _StepOneGenderState();
+  State<UserInfoGender> createState() => _UserInfoGenderState();
 }
 
-class _StepOneGenderState extends State<StepOneGender> {
+class _UserInfoGenderState extends State<UserInfoGender> {
   late final SetupPersonalInfoCubit cubit;
   GenderEnum? selected;
   @override
@@ -61,9 +61,11 @@ class _StepOneGenderState extends State<StepOneGender> {
             switch (gender) {
               case GenderEnum.male:
                 context.read<AppCubit>().setMaleTheme();
+
                 break;
               case GenderEnum.female:
                 context.read<AppCubit>().setFemaleTheme();
+
                 break;
             }
           },

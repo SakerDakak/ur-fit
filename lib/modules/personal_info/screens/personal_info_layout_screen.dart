@@ -7,20 +7,20 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/personal_info/screens/equipment_selection_screen.dart';
-import 'package:urfit/modules/personal_info/screens/step_one/step_one_age.dart';
-import 'package:urfit/modules/personal_info/screens/step_one/step_one_gender.dart';
-import 'package:urfit/modules/personal_info/screens/step_one/step_one_height.dart';
-import 'package:urfit/modules/personal_info/screens/step_one/step_one_weight.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_body_parts.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_diet_type.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_meals_variety.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_not_preferred_meals.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_preferred_meals.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_target_weight.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_week_days.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_weekly_exercise_times.dart';
-import 'package:urfit/modules/personal_info/screens/step_three/step_three_work_types.dart';
-import 'package:urfit/modules/personal_info/screens/step_two/step_two_goals.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_age.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_body_parts.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_diet_type.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_gender.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_goals.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_height.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_meals_variety.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_not_preferred_meals.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_preferred_meals.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_target_weight.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_week_days.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_weekly_exercise_times.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_weight.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_work_types.dart';
 
 class PresonalInfoLayoutScreen extends StatefulWidget {
   const PresonalInfoLayoutScreen({super.key});
@@ -51,15 +51,41 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     cubit = context.read<SetupPersonalInfoCubit>();
     cubit.pageController.addListener(_listenToPageChanges);
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      cubit.colorScheme = Theme.of(context).colorScheme;
       Future.delayed(Durations.short2, () => cubit.setInitPage());
     });
     super.initState();
   }
 
+  final _personalInfoPages = [
+    const UserInfoGender(), //0
+    const UserInfoAge(), //1
+    const UserInfoHeight(), //2
+    const UserInfoWeight(), //3
+    const UserInfoTargetWeight(), //4
+    // body mass index
+
+    ///
+    const UserInfoGoals(), //5
+
+    ///
+    const UserInfoVariety(), //6
+    const UserInfoPreferredMeals(), //7
+    const UserInfoNotPreferredMeals(), //8
+    const UserInfoDietType(), //9
+    const UserInfoBodyParts(), //10
+    const UserInfoWeeklyExerciseTimes(), //11
+    const UserInfoWeekDays(), //12
+    const UserInfoWorkTypesOrLocation(), //13
+
+    ///
+    const UserInfoEquipmentScreen(), //14
+  ];
+
   _calculateStep(int index) {
-    if (index < 4) {
+    if (index < 5) {
       return 1;
-    } else if (index < 5) {
+    } else if (index < 6) {
       return 2;
     } else if (index < 14) {
       return 3;
@@ -67,29 +93,20 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     return 0;
   }
 
-  final _personalInfoPages = [
-    const StepOneGender(),
-    const StepOneAge(),
-    const StepOneHeight(),
-    const StepOneWeight(),
+  String _getCurrentStepTxt(int step) {
+    switch (step) {
+      case 1:
+        return L10n.tr().firstStep;
+      case 2:
+        return L10n.tr().secondStep;
+      case 3:
+        return L10n.tr().thirdStep;
 
-    ///
-    const StepTwoGoals(),
-
-    ///
-    const StepThreeBodyParts(),
-    const StepThreeMealsVariety(),
-    const StepThreePreferredMeals(),
-    const StepThreeNotPreferredMeals(),
-    const StepThreeDietType(),
-    const StepThreeTargetWeight(),
-    const StepThreeWeeklyExerciseTimes(),
-    const StepThreeWeekDays(),
-    const StepThreeWorkTypes(),
-
-    ///
-    const EquipmentSelectionScreen(),
-  ];
+      default:
+        return '';
+      // return '';
+    }
+  }
 
   @override
   void dispose() {
@@ -172,20 +189,5 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
             ),
           ),
         ));
-  }
-
-  String _getCurrentStepTxt(int step) {
-    switch (step) {
-      case 1:
-        return L10n.tr().firstStep;
-      case 2:
-        return L10n.tr().secondStep;
-      case 3:
-        return L10n.tr().thirdStep;
-
-      default:
-        return '';
-      // return '';
-    }
   }
 }

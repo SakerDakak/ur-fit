@@ -9,10 +9,50 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get currentBMI => 'BMI الحالي';
+
+  @override
+  String get targetBMI => 'BMI المستهدف';
+
+  @override
+  String get bmi => 'مؤشر كتلة الجسم (BMI - Body Mass Index)';
+
+  @override
+  String get bmiDescription =>
+      'رقم يتم حسابه من طولك ووزنك لتقدير نسبة الدهون في الجسم وتقييم ما إذا كان وزنك طبيعي او تعاني من نقص الوزن أو زيادة الوزن أو السمنة.';
+
+  @override
+  String get guide => 'دليل';
+
+  @override
+  String get below => 'أقل من';
+
+  @override
+  String get andAbove => 'او اكثر';
+
+  @override
+  String get underWeight => 'نقص الوزن';
+
+  @override
+  String get normalWeight => 'وزن طبيعي';
+
+  @override
+  String get overWeight => 'زيادة الوزن';
+
+  @override
+  String get obesity => 'سمنة';
+
+  @override
+  String get excerciseLocation => 'مكان التمرين';
+
+  @override
   String get myTasks => 'مهامي';
 
   @override
   String get price => 'السعر';
+
+  @override
+  String get unselectAll => 'إلغاء تحديد الكل';
 
   @override
   String get a____________________________________________ =>

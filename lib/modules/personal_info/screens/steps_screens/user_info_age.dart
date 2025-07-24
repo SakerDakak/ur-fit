@@ -8,21 +8,24 @@ import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 
-class StepOneHeight extends StatefulWidget {
-  const StepOneHeight({super.key});
+class UserInfoAge extends StatefulWidget {
+  const UserInfoAge({super.key});
 
   @override
-  State<StepOneHeight> createState() => _StepOneHeightState();
+  State<UserInfoAge> createState() => _UserInfoAgeState();
 }
 
-class _StepOneHeightState extends State<StepOneHeight> {
+class _UserInfoAgeState extends State<UserInfoAge> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
-    controller.text = cubit.state.userInfo.height?.toString() ?? '';
+    controller.text = cubit.state.userInfo.age?.toString() ?? '';
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      cubit.colorScheme = Theme.of(context).colorScheme;
+    });
     super.initState();
   }
 
@@ -40,7 +43,7 @@ class _StepOneHeightState extends State<StepOneHeight> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              L10n.tr().whatsYourHeight,
+              L10n.tr().whatsYourAge,
               style: TStyle.semiBold_16,
               textAlign: TextAlign.start,
             ),
@@ -54,14 +57,14 @@ class _StepOneHeightState extends State<StepOneHeight> {
               onTapOutside: (PointerDownEvent event) {
                 FocusScope.of(context).unfocus();
               },
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               style: TStyle.semiBold_16.copyWith(
                 color: Colors.white,
               ),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               decoration: InputDecoration(
-                hintText: L10n.tr().enterHeight,
+                hintText: L10n.tr().enterAge,
                 hintStyle: TStyle.semiBold_16.copyWith(
                   color: Colors.white.withOpacity(0.6),
                 ),
@@ -74,16 +77,16 @@ class _StepOneHeightState extends State<StepOneHeight> {
                 ),
               ),
               onChanged: (value) {
-                final height = double.tryParse(value);
-                if (height != null) {
-                  // cubit.updateUserHeight(height);
+                final age = int.tryParse(value);
+                if (age != null) {
+                  // cubit.updateUserAge(age);
                 }
               },
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
-            L10n.tr().cm,
+            L10n.tr().year,
             style: TStyle.semiBold_14.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -98,9 +101,9 @@ class _StepOneHeightState extends State<StepOneHeight> {
               onPressed: controller.text.trim().isEmpty
                   ? null
                   : () {
-                      final height = int.tryParse(controller.text.trim()) ?? 0;
-                      if (height < 100 || height > 250) return Alerts.showToast(L10n.tr().pleaseEnterValidHeight);
-                      cubit.updateUserHeight(height);
+                      final age = int.tryParse(controller.text.trim()) ?? 0;
+                      if (age < 16 || age > 99) return Alerts.showToast(L10n.tr().pleaseEnterValidAge);
+                      cubit.updateUserAge(age);
                       cubit.nextPage(false);
                     },
             ),

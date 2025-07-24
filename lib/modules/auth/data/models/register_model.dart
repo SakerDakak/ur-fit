@@ -5,6 +5,7 @@ class RegisterRequest {
   final int? cityId;
   final String? password;
   final String? passwordConfirmation;
+  final String? fcm;
 
   RegisterRequest({
     this.name,
@@ -13,6 +14,7 @@ class RegisterRequest {
     this.cityId,
     this.password,
     this.passwordConfirmation,
+    this.fcm,
   });
 
   Map<String, dynamic> toJson() {
@@ -23,6 +25,7 @@ class RegisterRequest {
       'city_id': cityId,
       'password': password,
       'password_confirmation': passwordConfirmation,
+      'fcm_token': fcm,
     };
   }
 }

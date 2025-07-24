@@ -14,14 +14,14 @@ import 'package:urfit/modules/subscription_module/screens/subscription_plans_scr
 
 import '../../../core/presentation/views/widgets/selection_item_model_list.dart';
 
-class EquipmentSelectionScreen extends StatefulWidget {
-  const EquipmentSelectionScreen({super.key});
+class UserInfoEquipmentScreen extends StatefulWidget {
+  const UserInfoEquipmentScreen({super.key});
   static const route = '/EquipmentSelectionScreen';
   @override
-  State<EquipmentSelectionScreen> createState() => _EquipmentSelectionScreenState();
+  State<UserInfoEquipmentScreen> createState() => _UserInfoEquipmentScreenState();
 }
 
-class _EquipmentSelectionScreenState extends State<EquipmentSelectionScreen> {
+class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
   late final SetupPersonalInfoCubit cubit;
 
   @override

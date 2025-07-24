@@ -8,21 +8,21 @@ import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
 import '../../cubit/setup_personal_info_cubit.dart';
 
-class StepOneWeight extends StatefulWidget {
-  const StepOneWeight({super.key});
+class UserInfoHeight extends StatefulWidget {
+  const UserInfoHeight({super.key});
 
   @override
-  State<StepOneWeight> createState() => _StepOneWeightState();
+  State<UserInfoHeight> createState() => _UserInfoHeightState();
 }
 
-class _StepOneWeightState extends State<StepOneWeight> {
+class _UserInfoHeightState extends State<UserInfoHeight> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
-    controller.text = cubit.state.userInfo.currentWeight?.toString() ?? '';
+    controller.text = cubit.state.userInfo.height?.toString() ?? '';
     super.initState();
   }
 
@@ -40,7 +40,7 @@ class _StepOneWeightState extends State<StepOneWeight> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              L10n.tr().whatsYourWeight,
+              L10n.tr().whatsYourHeight,
               style: TStyle.semiBold_16,
               textAlign: TextAlign.start,
             ),
@@ -61,7 +61,7 @@ class _StepOneWeightState extends State<StepOneWeight> {
                 color: Colors.white,
               ),
               decoration: InputDecoration(
-                hintText: L10n.tr().enterWeight,
+                hintText: L10n.tr().enterHeight,
                 hintStyle: TStyle.semiBold_16.copyWith(
                   color: Colors.white.withOpacity(0.6),
                 ),
@@ -74,16 +74,16 @@ class _StepOneWeightState extends State<StepOneWeight> {
                 ),
               ),
               onChanged: (value) {
-                final weight = double.tryParse(value);
-                if (weight != null) {
-                  // cubit.updateUserWeight(weight);
+                final height = double.tryParse(value);
+                if (height != null) {
+                  // cubit.updateUserHeight(height);
                 }
               },
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
-            L10n.tr().kg,
+            L10n.tr().cm,
             style: TStyle.semiBold_14.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -98,10 +98,10 @@ class _StepOneWeightState extends State<StepOneWeight> {
               onPressed: controller.text.trim().isEmpty
                   ? null
                   : () {
-                      final weight = double.tryParse(controller.text.trim()) ?? 0;
-                      if (weight < 25 || weight > 300) return Alerts.showToast(L10n.tr().pleaseEnterValidWeight);
-                      cubit.updateUserWeight(weight);
-                      cubit.nextPage();
+                      final height = int.tryParse(controller.text.trim()) ?? 0;
+                      if (height < 100 || height > 250) return Alerts.showToast(L10n.tr().pleaseEnterValidHeight);
+                      cubit.updateUserHeight(height);
+                      cubit.nextPage(false);
                     },
             ),
           ),
