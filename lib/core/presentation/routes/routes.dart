@@ -6,6 +6,8 @@ import 'package:urfit/modules/auth/persentation/views/forget_password_otp_screen
 import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
+import 'package:urfit/modules/inuries/presentaion/cubit/injuries_cubit.dart';
+import 'package:urfit/modules/inuries/presentaion/views/injuries_screen.dart';
 import 'package:urfit/modules/meals_module/screens/filter_screen.dart';
 import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
 import 'package:urfit/modules/meals_module/screens/meals_picker_screen.dart';
@@ -207,6 +209,14 @@ class AppRouter {
           print("Params : ${state.uri.queryParameters}");
           return Scaffold(body: PaymentWebView(url: url));
         },
+      ),
+
+      GoRoute(
+        path: InjuriesScreen.routeWzExtra,
+        name: InjuriesScreen.routeWzExtra,
+        builder: (context, state) => BlocProvider(
+          create: (context) => di<InjuriesCubit>(),
+          child: InjuriesScreen(planType: state.extra as PlanType)),
       ),
 
       /// setup personal info route

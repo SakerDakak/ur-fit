@@ -18,7 +18,6 @@ import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_not_
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_preferred_meals.dart';
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_target_weight.dart';
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_week_days.dart';
-import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_weekly_exercise_times.dart';
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_weight.dart';
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_work_types.dart';
 
@@ -74,7 +73,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     const UserInfoNotPreferredMeals(), //8
     const UserInfoDietType(), //9
     const UserInfoBodyParts(), //10
-    const UserInfoWeeklyExerciseTimes(), //11
+    // const UserInfoWeeklyExerciseTimes(), //11
     const UserInfoWeekDays(), //12
     const UserInfoWorkTypesOrLocation(), //13
 

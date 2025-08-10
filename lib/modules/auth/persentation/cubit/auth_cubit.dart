@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keychain/flutter_keychain.dart';
-import 'package:urfit/core/data/services/firebase/fcm_service.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/di.dart';
@@ -43,7 +42,6 @@ class AuthCubit extends Cubit<AuthStates> {
       passwordConfirmation: confirmPasswordController.text,
       cityId: Session().cityId,
       countryId: Session().countryId,
-      fcm: await FCMService().getDeviceToken(),
     );
     emit(RegisterLoadingState());
     // AppConst.latestFunctionCalled = register;

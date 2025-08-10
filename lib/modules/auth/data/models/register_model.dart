@@ -1,3 +1,5 @@
+import 'package:urfit/core/data/services/firebase/fcm_service.dart';
+
 class RegisterRequest {
   final String? name;
   final String? email;
@@ -17,7 +19,7 @@ class RegisterRequest {
     this.fcm,
   });
 
-  Map<String, dynamic> toJson() {
+  Future<Map<String, dynamic>> toJson() async {
     return {
       'name': name,
       'email': email,
@@ -25,7 +27,7 @@ class RegisterRequest {
       'city_id': cityId,
       'password': password,
       'password_confirmation': passwordConfirmation,
-      'fcm_token': fcm,
+      'fcm_token': await FCMService().getDeviceToken(),
     };
   }
 }

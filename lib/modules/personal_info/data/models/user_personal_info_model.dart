@@ -118,10 +118,32 @@ class UserInfoRequest {
         // notLikedMealsIds.isNotEmpty &&
         dietId != null &&
         targetWeight != null &&
-        (weaklyTrainingCount ?? 0) > 0 &&
         workoutTypesIds.isNotEmpty &&
         // exerciseDayes.isNotEmpty &&
         equipmentsIds.isNotEmpty;
+  }
+
+  @override
+  String toString() {
+    return 'UserInfoRequest{'
+        'gender: $gender, '
+        'age: $age, '
+        'height: $height, '
+        'currentWeight: $currentWeight, '
+        'selectedGaols: $selectedGaols, '
+        'targetWeight: $targetWeight, '
+        'dietId: $dietId, '
+        'likedMealsIds: $likedMealsIds, '
+        'notLikedMealsIds: $notLikedMealsIds, '
+        'mealsVariantsId: $mealsVariantsId, '
+        'workoutTypesIds: $workoutTypesIds, '
+        'bodyPartsIds: $bodyPartsIds, '
+        'exerciseDayes: $exerciseDayes, '
+        'equipmentsIds: $equipmentsIds, '
+        'numOfDailyMeals: $numOfDailyMeals, '
+        'mealVarietyLevel: $mealVarietyLevel, '
+        'weaklyTrainingCount: $weaklyTrainingCount'
+        '}';
   }
 }
 

@@ -8,9 +8,9 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
+import 'package:urfit/modules/inuries/presentaion/views/injuries_screen.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
-import 'package:urfit/modules/subscription_module/screens/subscription_plans_screen.dart';
 
 import '../../../core/presentation/views/widgets/selection_item_model_list.dart';
 
@@ -80,6 +80,7 @@ class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
                       onPressed: state.userInfo.equipmentsIds.isEmpty
                           ? null
                           : () async {
+                            print(state.userInfo.toString());
                               if (!state.userInfo.isValid) {
                                 return Alerts.showToast(L10n.tr().pleaseMakeSureThatYouSelectedAllTheRequiredFields);
                               }
@@ -89,11 +90,11 @@ class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
                               final excercise = {3, 4};
                               if (state.userInfo.selectedGaols.any((e) => diet.contains(e)) &&
                                   state.userInfo.selectedGaols.any((e) => excercise.contains(e))) {
-                                context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both);
+                                context.push(InjuriesScreen.routeWzExtra, extra: PlanType.both);
                               } else if (state.userInfo.selectedGaols.any((e) => diet.contains(e))) {
-                                context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.diet);
+                                context.push(InjuriesScreen.routeWzExtra, extra: PlanType.diet);
                               } else if (state.userInfo.selectedGaols.any((e) => excercise.contains(e))) {
-                                context.push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.exercise);
+                                context.push(InjuriesScreen.routeWzExtra, extra: PlanType.exercise);
                               }
                             },
                     );

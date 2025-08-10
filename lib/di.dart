@@ -5,6 +5,8 @@ import 'package:urfit/core/data/services/firebase/fcm_service.dart';
 import 'package:urfit/core/data/services/firebase/local_notification_services.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
+import 'package:urfit/modules/inuries/data/injuries_repo.dart';
+import 'package:urfit/modules/inuries/presentaion/cubit/injuries_cubit.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/data/data_source/meals_remote_datasource.dart';
 import 'package:urfit/modules/meals_module/repo/meals_repo.dart';
@@ -65,6 +67,7 @@ Future<void> init() async {
   di.registerLazySingleton<MealsRepo>(() => MealsRepo(di()));
   di.registerLazySingleton<WorkoutRepo>(() => WorkoutRepo(di()));
   di.registerLazySingleton<SettingRepo>(() => SettingRepo(di()));
+  di.registerLazySingleton<InjuriesRepo>(() => InjuriesRepo(di()));
 
   // sl.registerLazySingleton<AuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSource(sl()));
   // sl.registerLazySingleton<UserLocalDataSource>(() => UserLocalDataSource());
@@ -86,6 +89,7 @@ Future<void> init() async {
   di.registerFactory(() => SettingCubit(di()));
   di.registerFactory(() => AuthCubit());
   di.registerFactory(() => UpdateUserInfoCubit(di()));
+  di.registerFactory(() => InjuriesCubit  (di()));
 
   // sl.registerFactoryParam((int? param1, param2) => QuranCubit(quranRepository: sl(),initialIndex: param1),);
   // sl.registerFactory(() => LiveCubit(sl()));

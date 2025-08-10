@@ -53,4 +53,9 @@ class EndPoints {
   static const getSliderImages = '/api/sliderImages';
   static const loginWithGoogle = '/api/auth/google';
   static const discountValue = '/api/get-the-discount-value';
+
+  ///
+  static const getQuestions = '/api/questions';
+  static const updateAffectedBodyParts = '/api/update-affected-body-parts';
+  static const getAffectedBodyParts = '/api/get-affected-body-parts';
 }

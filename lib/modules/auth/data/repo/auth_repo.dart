@@ -21,9 +21,11 @@ class AuthRepo {
   Future<Either<Failure, ({UserModel user, String token})>> login(
       {required String email, required String password}) async {
     try {
-      final fcm = await FCMService().getDeviceToken();
-      final response =
-          await _apiClient.post(EndPoints.login, data: {'email': email, 'password': password, 'fcm_token': fcm});
+      final response = await _apiClient.post(EndPoints.login, data: {
+        'email': email,
+        'password': password,
+        'fcm_token': await FCMService().getDeviceToken(),
+      });
       final result = response.data['data'];
       final token = result["token"];
       final user = UserModel.fromJson(result['user']);
@@ -44,6 +46,7 @@ class AuthRepo {
       await _apiClient.post(EndPoints.logout);
       // final deleteReuslt = await userLocalDataSource.deleteUser();
       // final  result;
+      // await FCMService().deleteToken();
       return const Right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
@@ -118,42 +121,9 @@ class AuthRepo {
     }
   }
 
-  // Future<Either<Failure, void>> verifyEmailOtp({required String code, required verificationId}) async {
-  //   try {
-  //     final result = await _apiClient
-  //         .post(EndPoints.verifyEmailCode, data: {'code': code, '2fa': verificationId, 'token_for': "mobile"});
-  //     return const Right(null);
-  //   } on Exception catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
-
-  // Future<Either<Failure, void>> resetPassword(
-  //     {required String password, required String confirmPassword, required String email}) async {
-  //   try {
-  //     final result = await _apiClient.post(EndPoints.setNewPassword, data: {
-  //       'password': password,
-  //       'password_confirmation': confirmPassword,
-  //       'email': email,
-  //     });
-  //     return const Right(null);
-  //   } on Exception catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
-
-  // Future<Either<Failure, Map<String, dynamic>>> getUserTypes() async {
-  //   try {
-  //     final result = await _apiClient.get(EndPoints.getUserTypes);
-  //     return Right(result.data);
-  //   } on Exception catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
-
   Future<Either<Failure, ({UserModel user, String token})>> register(RegisterRequest registerModel) async {
     try {
-      final response = await _apiClient.post(EndPoints.register, data: registerModel.toJson());
+      final response = await _apiClient.post(EndPoints.register, data: await registerModel.toJson());
 
       final token = response.data['data']["token"];
       final user = UserModel.fromJson(response.data['data']['user']);
@@ -172,36 +142,6 @@ class AuthRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-
-  // Future<Either<Failure, Map<String, dynamic>>> registerUpdatePhone(
-  //     {required String phone, required String verificationId}) async {
-  //   try {
-  //     final result =
-  //         await _apiClient.post(EndPoints.registerUpdatePhone, data: {'2fa': verificationId, 'phone': phone});
-  //     return Right(result.data);
-  //   } on Exception catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
-
-  // Future<Either<Failure, Either<Map<String, dynamic>, UserModel?>>> registerVerifyCode(
-  //     {required String code, required String verificationId}) async {
-  //   try {
-  //     final result = await _apiClient
-  //         .post(EndPoints.registerVerifyPhone, data: {'2fa': verificationId, 'code': code, 'token_for': "mobile-app"});
-  //     if (result.data['token'] != null) {
-  //       await TokenService.setToken(result.data["token"]);
-  //       // print(await sl<BaseUserLocalDataSource>().getUserToken());
-  //       // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result.data['user'])));
-  //       final user = UserModel.fromJson(result.data['user']);
-  //       return Right(Right(user));
-  //     } else {
-  //       return Right(left(result.data));
-  //     }
-  //   } on Exception catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
 
   Future<Either<Failure, List<CountryModel>>> getCountries() async {
     try {
@@ -237,36 +177,13 @@ class AuthRepo {
     }
   }
 
-  // Future<Either<Failure, UserModel?>> loginWithGoogle(
-  //     {required String accessToken, required RegisterModel registerModel}) async {
-  //   try {
-  //     // TODO: implement loginWithGoogle
-  //     final response = await _apiClient.post(
-  //       EndPoints.loginWithGoogle,
-  //       parameter: {'access_token': accessToken},
-  //       data: registerModel.toJson(),
-  //     );
-  //     final result = response.data['data'];
-  //     await TokenService.setToken(result["token"]);
-  //     // print(await sl<BaseUserLocalDataSource>().getUserToken());
-  //     // await saveUser(CacheUser.fromUserModel(UserModel.fromJson(result['user'])));
-  //     final user = UserModel.fromJson(result['user']);
-  //     return Right(user);
-  //   } on Exception catch (e) {
-  //     print("e $e");
-  //     if (e.runtimeType == DioException) {
-  //       return left(ServerFailure((e as DioException).response?.data?['data'].toString() ?? ""));
-  //     }
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
   Future<Either<Failure, ({UserModel user, String token, String? message})>> _sendSocialAuth(
       {required String accessToken, required RegisterRequest req}) async {
     try {
       final response = await _apiClient.post(
         EndPoints.loginWithGoogle,
         parameter: {'access_token': accessToken},
-        data: req.toJson(),
+        data: await req.toJson(),
       );
       final user = UserModel.fromJson(response.data['data']['user']);
       final token = response.data['data']["token"].toString();

@@ -9,6 +9,47 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get injuriesOrDiseases => 'إصابات أو أمراض';
+
+  @override
+  String get doYouHaveCurrentlyAnyPainOrInjury =>
+      'هل تعاني حاليا من اي الم او اصابة في جسمك';
+
+  @override
+  String get inWhichBodyPartYouFeelPainOrHaveInjury =>
+      'في أي جزء من الجسم تشعر بالألم أو لديك إصابة؟';
+
+  @override
+  String get back => 'الظهر';
+
+  @override
+  String get cardiacDisease => 'امراض القلب';
+
+  @override
+  String get chest => 'الصدر';
+
+  @override
+  String get lowerArms => 'الذراعين السفليتين';
+
+  @override
+  String get lowerLegs => 'الساقين السفليتين';
+
+  @override
+  String get neck => 'الرقبة';
+
+  @override
+  String get shoulders => 'الأكتاف';
+
+  @override
+  String get upperArms => 'الذراعين العلويتين';
+
+  @override
+  String get upperLegs => 'الساقين العلويتين';
+
+  @override
+  String get waist => 'الخصر';
+
+  @override
   String get currentBMI => 'BMI الحالي';
 
   @override

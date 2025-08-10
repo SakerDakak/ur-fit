@@ -50,15 +50,16 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       index = 9;
     } else if (state.userInfo.bodyPartsIds.isEmpty) {
       index = 10;
-    } else if ((state.userInfo.weaklyTrainingCount ?? 0) < 1) {
-      index = 11;
     } else if (state.userInfo.exerciseDayes.isEmpty) {
-      index = 12;
+      index = 11;
     } else if (state.userInfo.workoutTypesIds.isEmpty) {
-      index = 13;
+      index = 12;
     } else if (state.userInfo.equipmentsIds.isEmpty) {
-      index = 14;
+      index = 13;
     }
+    //  else if ((state.userInfo.weaklyTrainingCount ?? 0) < 1) {
+    //   index = 14;
+    // }
     await pageController.animateToPage(index, duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 

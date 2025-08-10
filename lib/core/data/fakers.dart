@@ -1,3 +1,5 @@
+import 'package:urfit/core/presentation/utils/enums.dart';
+import 'package:urfit/modules/inuries/data/question_model.dart';
 import 'package:urfit/modules/personal_info/data/models/body_parts_model.dart';
 import 'package:urfit/modules/personal_info/data/models/no_of_daily_meals.dart';
 import 'package:urfit/modules/personal_info/data/models/selection_item_model.dart';
@@ -31,15 +33,19 @@ class Fakers {
   ];
 
   List<PackageModel> get packages => List.generate(
-    12,
-    (index) => PackageModel(
-        id: index + 1,
-        name: '${index + 1} Plan',
-        price: "${(index + 1) * 9.99}",
-        duration: 15,
-        type: PlanType.values[index % PlanType.values.length],
-        is_active: 1,
-        image: '',
-        description: ''),
+        12,
+        (index) => PackageModel(
+            id: index + 1,
+            name: '${index + 1} Plan',
+            price: "${(index + 1) * 9.99}",
+            duration: 15,
+            type: PlanType.values[index % PlanType.values.length],
+            is_active: 1,
+            image: '',
+            description: ''),
+      );
+  final List<QuestionModel> questions = List.generate(
+    6,
+    (index) => QuestionModel(id: 0, question: 'Do you have equipment ?', key: BodyParts.back),
   );
 }

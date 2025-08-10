@@ -57,6 +57,8 @@ class FCMService {
     return fcmToken ?? '@';
   }
 
+  Future<void> deleteToken() async => await _fcm.deleteToken();
+
   Future<void> _printOrder(Map<String, dynamic> msg) async {
     // if (msg['order_id'] != null) {
     //   if (Session().user != null) {
@@ -77,8 +79,8 @@ class FCMService {
       debugPrint(message.data.toString());
       print(message.toMap());
       if (!Platform.isIOS) {
-      await LocalNotificationServices.inst.showNotification(message);
-      _printOrder(message.data);
+        await LocalNotificationServices.inst.showNotification(message);
+        _printOrder(message.data);
       }
     });
   }

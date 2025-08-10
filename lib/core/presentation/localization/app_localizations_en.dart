@@ -9,6 +9,47 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get injuriesOrDiseases => 'Injuries or Diseases';
+
+  @override
+  String get doYouHaveCurrentlyAnyPainOrInjury =>
+      'Do you currently have any pain or injury?';
+
+  @override
+  String get inWhichBodyPartYouFeelPainOrHaveInjury =>
+      'In which body part do you feel pain or have injury?';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get cardiacDisease => 'Cardiac Disease';
+
+  @override
+  String get chest => 'Chest';
+
+  @override
+  String get lowerArms => 'Lower Arms';
+
+  @override
+  String get lowerLegs => 'Lower Legs';
+
+  @override
+  String get neck => 'Neck';
+
+  @override
+  String get shoulders => 'Shoulders';
+
+  @override
+  String get upperArms => 'Upper Arms';
+
+  @override
+  String get upperLegs => 'Upper Legs';
+
+  @override
+  String get waist => 'Waist';
+
+  @override
   String get currentBMI => 'Current BMI';
 
   @override

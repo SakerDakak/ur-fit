@@ -98,6 +98,84 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @injuriesOrDiseases.
+  ///
+  /// In en, this message translates to:
+  /// **'Injuries or Diseases'**
+  String get injuriesOrDiseases;
+
+  /// No description provided for @doYouHaveCurrentlyAnyPainOrInjury.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you currently have any pain or injury?'**
+  String get doYouHaveCurrentlyAnyPainOrInjury;
+
+  /// No description provided for @inWhichBodyPartYouFeelPainOrHaveInjury.
+  ///
+  /// In en, this message translates to:
+  /// **'In which body part do you feel pain or have injury?'**
+  String get inWhichBodyPartYouFeelPainOrHaveInjury;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @cardiacDisease.
+  ///
+  /// In en, this message translates to:
+  /// **'Cardiac Disease'**
+  String get cardiacDisease;
+
+  /// No description provided for @chest.
+  ///
+  /// In en, this message translates to:
+  /// **'Chest'**
+  String get chest;
+
+  /// No description provided for @lowerArms.
+  ///
+  /// In en, this message translates to:
+  /// **'Lower Arms'**
+  String get lowerArms;
+
+  /// No description provided for @lowerLegs.
+  ///
+  /// In en, this message translates to:
+  /// **'Lower Legs'**
+  String get lowerLegs;
+
+  /// No description provided for @neck.
+  ///
+  /// In en, this message translates to:
+  /// **'Neck'**
+  String get neck;
+
+  /// No description provided for @shoulders.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoulders'**
+  String get shoulders;
+
+  /// No description provided for @upperArms.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper Arms'**
+  String get upperArms;
+
+  /// No description provided for @upperLegs.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper Legs'**
+  String get upperLegs;
+
+  /// No description provided for @waist.
+  ///
+  /// In en, this message translates to:
+  /// **'Waist'**
+  String get waist;
+
   /// No description provided for @currentBMI.
   ///
   /// In en, this message translates to:
