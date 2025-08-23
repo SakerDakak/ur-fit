@@ -1,9 +1,8 @@
 part of 'setting_cubit.dart';
 
 @freezed
-class SettingState with _$SettingState {
+abstract class SettingState with _$SettingState {
   const factory SettingState({
-
     @Default(null) PlanHistoryModel? planHistoryModel,
     @Default(0) num totalCalories,
     @Default('') String errorMessage,
@@ -13,5 +12,7 @@ class SettingState with _$SettingState {
     @Default(RequestState.initial) RequestState getPlanDataState,
     @Default(RequestState.initial) RequestState getPlanHistoryState,
     @Default(RequestState.initial) RequestState getStaticPageState,
-}) = _SettingState;
+    @Default(RequestState.initial) RequestState deleteAccountState,
+    @Default('') String deleteAccountMessage,
+  }) = _SettingState;
 }

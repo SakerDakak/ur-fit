@@ -39,4 +39,13 @@ class SettingRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  Future<Either<Failure, String>> deleteAccount() async {
+    try {
+      final result = await settingRemoteDataSource.deleteAccount();
+      return Right(result);
+    } on Exception catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

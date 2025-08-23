@@ -1,7 +1,7 @@
 part of 'workout_cubit.dart';
 
 @freezed
-class WorkoutState with _$WorkoutState {
+abstract class WorkoutState with _$WorkoutState {
   const factory WorkoutState({
     @Default([]) List<WorkoutPlan> allPlans,
     @Default(1) int progressValue,

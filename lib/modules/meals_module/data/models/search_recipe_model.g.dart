@@ -6,8 +6,8 @@ part of 'search_recipe_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SearchRecipeImpl _$$SearchRecipeImplFromJson(Map<String, dynamic> json) =>
-    _$SearchRecipeImpl(
+_SearchRecipe _$SearchRecipeFromJson(Map<String, dynamic> json) =>
+    _SearchRecipe(
       query: json['query'] as String?,
       type: json['type'] as String?,
       maxReadyTime: json['maxReadyTime'] as num?,
@@ -19,7 +19,7 @@ _$SearchRecipeImpl _$$SearchRecipeImplFromJson(Map<String, dynamic> json) =>
       number: (json['number'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$SearchRecipeImplToJson(_$SearchRecipeImpl instance) =>
+Map<String, dynamic> _$SearchRecipeToJson(_SearchRecipe instance) =>
     <String, dynamic>{
       'query': instance.query,
       'type': instance.type,

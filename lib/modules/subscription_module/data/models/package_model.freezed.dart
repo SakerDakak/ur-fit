@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,235 +9,39 @@ part of 'package_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 PackageModel _$PackageModelFromJson(Map<String, dynamic> json) {
   return _Package.fromJson(json);
 }
 
 /// @nodoc
 mixin _$PackageModel {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  int get duration => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
-  PlanType get type => throw _privateConstructorUsedError;
-  int get is_active => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-
-  /// Serializes this PackageModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
+  String get name;
+  int get duration;
+  String get price;
+  PlanType get type;
+  int get is_active;
+  String? get image;
+  String? get description;
 
   /// Create a copy of PackageModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PackageModelCopyWith<PackageModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$PackageModelCopyWithImpl<PackageModel>(
+          this as PackageModel, _$identity);
 
-/// @nodoc
-abstract class $PackageModelCopyWith<$Res> {
-  factory $PackageModelCopyWith(
-          PackageModel value, $Res Function(PackageModel) then) =
-      _$PackageModelCopyWithImpl<$Res, PackageModel>;
-  @useResult
-  $Res call(
-      {int id,
-      String name,
-      int duration,
-      String price,
-      PlanType type,
-      int is_active,
-      String? image,
-      String? description});
-}
-
-/// @nodoc
-class _$PackageModelCopyWithImpl<$Res, $Val extends PackageModel>
-    implements $PackageModelCopyWith<$Res> {
-  _$PackageModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PackageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? duration = null,
-    Object? price = null,
-    Object? type = null,
-    Object? is_active = null,
-    Object? image = freezed,
-    Object? description = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      duration: null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PlanType,
-      is_active: null == is_active
-          ? _value.is_active
-          : is_active // ignore: cast_nullable_to_non_nullable
-              as int,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$PackageImplCopyWith<$Res>
-    implements $PackageModelCopyWith<$Res> {
-  factory _$$PackageImplCopyWith(
-          _$PackageImpl value, $Res Function(_$PackageImpl) then) =
-      __$$PackageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String name,
-      int duration,
-      String price,
-      PlanType type,
-      int is_active,
-      String? image,
-      String? description});
-}
-
-/// @nodoc
-class __$$PackageImplCopyWithImpl<$Res>
-    extends _$PackageModelCopyWithImpl<$Res, _$PackageImpl>
-    implements _$$PackageImplCopyWith<$Res> {
-  __$$PackageImplCopyWithImpl(
-      _$PackageImpl _value, $Res Function(_$PackageImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PackageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? duration = null,
-    Object? price = null,
-    Object? type = null,
-    Object? is_active = null,
-    Object? image = freezed,
-    Object? description = freezed,
-  }) {
-    return _then(_$PackageImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      duration: null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PlanType,
-      is_active: null == is_active
-          ? _value.is_active
-          : is_active // ignore: cast_nullable_to_non_nullable
-              as int,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$PackageImpl implements _Package {
-  const _$PackageImpl(
-      {required this.id,
-      required this.name,
-      required this.duration,
-      required this.price,
-      required this.type,
-      required this.is_active,
-      required this.image,
-      required this.description});
-
-  factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PackageImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final int duration;
-  @override
-  final String price;
-  @override
-  final PlanType type;
-  @override
-  final int is_active;
-  @override
-  final String? image;
-  @override
-  final String? description;
-
-  @override
-  String toString() {
-    return 'PackageModel(id: $id, name: $name, duration: $duration, price: $price, type: $type, is_active: $is_active, image: $image, description: $description)';
-  }
+  /// Serializes this PackageModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PackageImpl &&
+            other is PackageModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.duration, duration) ||
@@ -256,56 +60,403 @@ class _$PackageImpl implements _Package {
   int get hashCode => Object.hash(runtimeType, id, name, duration, price, type,
       is_active, image, description);
 
-  /// Create a copy of PackageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
-      __$$PackageImplCopyWithImpl<_$PackageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PackageImplToJson(
-      this,
-    );
+  String toString() {
+    return 'PackageModel(id: $id, name: $name, duration: $duration, price: $price, type: $type, is_active: $is_active, image: $image, description: $description)';
   }
 }
 
-abstract class _Package implements PackageModel {
-  const factory _Package(
-      {required final int id,
-      required final String name,
-      required final int duration,
-      required final String price,
-      required final PlanType type,
-      required final int is_active,
-      required final String? image,
-      required final String? description}) = _$PackageImpl;
+/// @nodoc
+abstract mixin class $PackageModelCopyWith<$Res> {
+  factory $PackageModelCopyWith(
+          PackageModel value, $Res Function(PackageModel) _then) =
+      _$PackageModelCopyWithImpl;
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      int duration,
+      String price,
+      PlanType type,
+      int is_active,
+      String? image,
+      String? description});
+}
 
-  factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
+/// @nodoc
+class _$PackageModelCopyWithImpl<$Res> implements $PackageModelCopyWith<$Res> {
+  _$PackageModelCopyWithImpl(this._self, this._then);
+
+  final PackageModel _self;
+  final $Res Function(PackageModel) _then;
+
+  /// Create a copy of PackageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? duration = null,
+    Object? price = null,
+    Object? type = null,
+    Object? is_active = null,
+    Object? image = freezed,
+    Object? description = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      duration: null == duration
+          ? _self.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      price: null == price
+          ? _self.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PlanType,
+      is_active: null == is_active
+          ? _self.is_active
+          : is_active // ignore: cast_nullable_to_non_nullable
+              as int,
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PackageModel].
+extension PackageModelPatterns on PackageModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Package value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Package() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Package value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Package():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Package value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Package() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name, int duration, String price,
+            PlanType type, int is_active, String? image, String? description)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Package() when $default != null:
+        return $default(_that.id, _that.name, _that.duration, _that.price,
+            _that.type, _that.is_active, _that.image, _that.description);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name, int duration, String price,
+            PlanType type, int is_active, String? image, String? description)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Package():
+        return $default(_that.id, _that.name, _that.duration, _that.price,
+            _that.type, _that.is_active, _that.image, _that.description);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name, int duration, String price,
+            PlanType type, int is_active, String? image, String? description)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Package() when $default != null:
+        return $default(_that.id, _that.name, _that.duration, _that.price,
+            _that.type, _that.is_active, _that.image, _that.description);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Package implements PackageModel {
+  const _Package(
+      {required this.id,
+      required this.name,
+      required this.duration,
+      required this.price,
+      required this.type,
+      required this.is_active,
+      required this.image,
+      required this.description});
+  factory _Package.fromJson(Map<String, dynamic> json) =>
+      _$PackageFromJson(json);
 
   @override
-  int get id;
+  final int id;
   @override
-  String get name;
+  final String name;
   @override
-  int get duration;
+  final int duration;
   @override
-  String get price;
+  final String price;
   @override
-  PlanType get type;
+  final PlanType type;
   @override
-  int get is_active;
+  final int is_active;
   @override
-  String? get image;
+  final String? image;
   @override
-  String? get description;
+  final String? description;
 
   /// Create a copy of PackageModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$PackageCopyWith<_Package> get copyWith =>
+      __$PackageCopyWithImpl<_Package>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PackageToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Package &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.is_active, is_active) ||
+                other.is_active == is_active) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, duration, price, type,
+      is_active, image, description);
+
+  @override
+  String toString() {
+    return 'PackageModel(id: $id, name: $name, duration: $duration, price: $price, type: $type, is_active: $is_active, image: $image, description: $description)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$PackageCopyWith<$Res>
+    implements $PackageModelCopyWith<$Res> {
+  factory _$PackageCopyWith(_Package value, $Res Function(_Package) _then) =
+      __$PackageCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      int duration,
+      String price,
+      PlanType type,
+      int is_active,
+      String? image,
+      String? description});
+}
+
+/// @nodoc
+class __$PackageCopyWithImpl<$Res> implements _$PackageCopyWith<$Res> {
+  __$PackageCopyWithImpl(this._self, this._then);
+
+  final _Package _self;
+  final $Res Function(_Package) _then;
+
+  /// Create a copy of PackageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? duration = null,
+    Object? price = null,
+    Object? type = null,
+    Object? is_active = null,
+    Object? image = freezed,
+    Object? description = freezed,
+  }) {
+    return _then(_Package(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      duration: null == duration
+          ? _self.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      price: null == price
+          ? _self.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PlanType,
+      is_active: null == is_active
+          ? _self.is_active
+          : is_active // ignore: cast_nullable_to_non_nullable
+              as int,
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on

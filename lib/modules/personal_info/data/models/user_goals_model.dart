@@ -5,7 +5,7 @@ part 'user_goals_model.freezed.dart';
 part 'user_goals_model.g.dart';
 
 @freezed
-class UserGoalsModel with _$UserGoalsModel {
+abstract class UserGoalsModel with _$UserGoalsModel {
   const factory UserGoalsModel({
     required int id,
     required String name,

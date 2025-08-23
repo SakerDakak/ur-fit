@@ -5,7 +5,7 @@ part 'meal_details_model.freezed.dart';
 part 'meal_details_model.g.dart';
 
 @freezed
-class Recipe with _$Recipe {
+abstract class Recipe with _$Recipe {
   const factory Recipe({
     required bool vegetarian,
     required bool vegan,
@@ -46,7 +46,7 @@ class Recipe with _$Recipe {
 }
 
 @freezed
-class Ingredient with _$Ingredient {
+abstract class Ingredient with _$Ingredient {
   const factory Ingredient({
     required int id,
     required String aisle,
@@ -66,7 +66,7 @@ class Ingredient with _$Ingredient {
 }
 
 @freezed
-class Measures with _$Measures {
+abstract class Measures with _$Measures {
   const factory Measures({
     required Measure us,
     required Measure metric,
@@ -76,7 +76,7 @@ class Measures with _$Measures {
 }
 
 @freezed
-class Measure with _$Measure {
+abstract class Measure with _$Measure {
   const factory Measure({
     required double amount,
     required String unitShort,
@@ -87,7 +87,7 @@ class Measure with _$Measure {
 }
 
 @freezed
-class AnalyzedInstruction with _$AnalyzedInstruction {
+abstract class AnalyzedInstruction with _$AnalyzedInstruction {
   const factory AnalyzedInstruction({
     required String name,
     required List<InstructionStep> steps,
@@ -97,7 +97,7 @@ class AnalyzedInstruction with _$AnalyzedInstruction {
 }
 
 @freezed
-class InstructionStep with _$InstructionStep {
+abstract class InstructionStep with _$InstructionStep {
   const factory InstructionStep({
     required int number,
     required String step,
@@ -110,7 +110,7 @@ class InstructionStep with _$InstructionStep {
 }
 
 @freezed
-class IngredientStep with _$IngredientStep {
+abstract class IngredientStep with _$IngredientStep {
   const factory IngredientStep({
     required int id,
     required String name,
@@ -122,7 +122,7 @@ class IngredientStep with _$IngredientStep {
 }
 
 @freezed
-class Equipment with _$Equipment {
+abstract class Equipment with _$Equipment {
   const factory Equipment({
     required int id,
     required String name,
@@ -134,7 +134,7 @@ class Equipment with _$Equipment {
 }
 
 @freezed
-class Length with _$Length {
+abstract class Length with _$Length {
   const factory Length({
     required int number,
     required String unit,

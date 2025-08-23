@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 
 class AccountInfo extends StatelessWidget {
-  const AccountInfo({super.key});
-
+  const AccountInfo({super.key, required this.user});
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
-    final user = Session().currentUser;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

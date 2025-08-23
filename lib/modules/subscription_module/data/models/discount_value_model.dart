@@ -9,7 +9,7 @@ part 'discount_value_model.freezed.dart';
 part 'discount_value_model.g.dart';
 
 @freezed
-class DiscountValueModel with _$DiscountValueModel {
+abstract class DiscountValueModel with _$DiscountValueModel {
   const factory DiscountValueModel({
     required num discount_value_price,
     required num final_price,

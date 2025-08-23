@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,163 +9,32 @@ part of 'static_page_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-StaticPageModel _$StaticPageModelFromJson(Map<String, dynamic> json) {
-  return _StaticPageModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$StaticPageModel {
-  int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
-
-  /// Serializes this StaticPageModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
+  String get title;
+  String get content;
+  String get key;
 
   /// Create a copy of StaticPageModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $StaticPageModelCopyWith<StaticPageModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$StaticPageModelCopyWithImpl<StaticPageModel>(
+          this as StaticPageModel, _$identity);
 
-/// @nodoc
-abstract class $StaticPageModelCopyWith<$Res> {
-  factory $StaticPageModelCopyWith(
-          StaticPageModel value, $Res Function(StaticPageModel) then) =
-      _$StaticPageModelCopyWithImpl<$Res, StaticPageModel>;
-  @useResult
-  $Res call({int id, String title, String content, String key});
-}
-
-/// @nodoc
-class _$StaticPageModelCopyWithImpl<$Res, $Val extends StaticPageModel>
-    implements $StaticPageModelCopyWith<$Res> {
-  _$StaticPageModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of StaticPageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? content = null,
-    Object? key = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$StaticPageModelImplCopyWith<$Res>
-    implements $StaticPageModelCopyWith<$Res> {
-  factory _$$StaticPageModelImplCopyWith(_$StaticPageModelImpl value,
-          $Res Function(_$StaticPageModelImpl) then) =
-      __$$StaticPageModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int id, String title, String content, String key});
-}
-
-/// @nodoc
-class __$$StaticPageModelImplCopyWithImpl<$Res>
-    extends _$StaticPageModelCopyWithImpl<$Res, _$StaticPageModelImpl>
-    implements _$$StaticPageModelImplCopyWith<$Res> {
-  __$$StaticPageModelImplCopyWithImpl(
-      _$StaticPageModelImpl _value, $Res Function(_$StaticPageModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of StaticPageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? content = null,
-    Object? key = null,
-  }) {
-    return _then(_$StaticPageModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$StaticPageModelImpl implements _StaticPageModel {
-  const _$StaticPageModelImpl(
-      {required this.id,
-      required this.title,
-      required this.content,
-      required this.key});
-
-  factory _$StaticPageModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StaticPageModelImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String title;
-  @override
-  final String content;
-  @override
-  final String key;
-
-  @override
-  String toString() {
-    return 'StaticPageModel(id: $id, title: $title, content: $content, key: $key)';
-  }
+  /// Serializes this StaticPageModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StaticPageModelImpl &&
+            other is StaticPageModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
@@ -176,46 +45,323 @@ class _$StaticPageModelImpl implements _StaticPageModel {
   @override
   int get hashCode => Object.hash(runtimeType, id, title, content, key);
 
-  /// Create a copy of StaticPageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$StaticPageModelImplCopyWith<_$StaticPageModelImpl> get copyWith =>
-      __$$StaticPageModelImplCopyWithImpl<_$StaticPageModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StaticPageModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'StaticPageModel(id: $id, title: $title, content: $content, key: $key)';
   }
 }
 
-abstract class _StaticPageModel implements StaticPageModel {
-  const factory _StaticPageModel(
-      {required final int id,
-      required final String title,
-      required final String content,
-      required final String key}) = _$StaticPageModelImpl;
+/// @nodoc
+abstract mixin class $StaticPageModelCopyWith<$Res> {
+  factory $StaticPageModelCopyWith(
+          StaticPageModel value, $Res Function(StaticPageModel) _then) =
+      _$StaticPageModelCopyWithImpl;
+  @useResult
+  $Res call({int id, String title, String content, String key});
+}
 
-  factory _StaticPageModel.fromJson(Map<String, dynamic> json) =
-      _$StaticPageModelImpl.fromJson;
+/// @nodoc
+class _$StaticPageModelCopyWithImpl<$Res>
+    implements $StaticPageModelCopyWith<$Res> {
+  _$StaticPageModelCopyWithImpl(this._self, this._then);
+
+  final StaticPageModel _self;
+  final $Res Function(StaticPageModel) _then;
+
+  /// Create a copy of StaticPageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? content = null,
+    Object? key = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [StaticPageModel].
+extension StaticPageModelPatterns on StaticPageModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_StaticPageModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StaticPageModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_StaticPageModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StaticPageModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_StaticPageModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StaticPageModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String title, String content, String key)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StaticPageModel() when $default != null:
+        return $default(_that.id, _that.title, _that.content, _that.key);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String title, String content, String key) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StaticPageModel():
+        return $default(_that.id, _that.title, _that.content, _that.key);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String title, String content, String key)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StaticPageModel() when $default != null:
+        return $default(_that.id, _that.title, _that.content, _that.key);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _StaticPageModel implements StaticPageModel {
+  const _StaticPageModel(
+      {required this.id,
+      required this.title,
+      required this.content,
+      required this.key});
+  factory _StaticPageModel.fromJson(Map<String, dynamic> json) =>
+      _$StaticPageModelFromJson(json);
 
   @override
-  int get id;
+  final int id;
   @override
-  String get title;
+  final String title;
   @override
-  String get content;
+  final String content;
   @override
-  String get key;
+  final String key;
 
   /// Create a copy of StaticPageModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StaticPageModelImplCopyWith<_$StaticPageModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$StaticPageModelCopyWith<_StaticPageModel> get copyWith =>
+      __$StaticPageModelCopyWithImpl<_StaticPageModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$StaticPageModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _StaticPageModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, title, content, key);
+
+  @override
+  String toString() {
+    return 'StaticPageModel(id: $id, title: $title, content: $content, key: $key)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$StaticPageModelCopyWith<$Res>
+    implements $StaticPageModelCopyWith<$Res> {
+  factory _$StaticPageModelCopyWith(
+          _StaticPageModel value, $Res Function(_StaticPageModel) _then) =
+      __$StaticPageModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int id, String title, String content, String key});
+}
+
+/// @nodoc
+class __$StaticPageModelCopyWithImpl<$Res>
+    implements _$StaticPageModelCopyWith<$Res> {
+  __$StaticPageModelCopyWithImpl(this._self, this._then);
+
+  final _StaticPageModel _self;
+  final $Res Function(_StaticPageModel) _then;
+
+  /// Create a copy of StaticPageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? content = null,
+    Object? key = null,
+  }) {
+    return _then(_StaticPageModel(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

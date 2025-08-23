@@ -4,7 +4,7 @@ part 'workout_model.freezed.dart';
 part 'workout_model.g.dart';
 
 @freezed
-class WorkoutPlan with _$WorkoutPlan {
+abstract class WorkoutPlan with _$WorkoutPlan {
   factory WorkoutPlan({
     required int id,
     @JsonKey(name: 'user_id') required int userId,
@@ -20,7 +20,7 @@ class WorkoutPlan with _$WorkoutPlan {
 }
 
 @freezed
-class WorkoutDay with _$WorkoutDay {
+abstract class WorkoutDay with _$WorkoutDay {
   factory WorkoutDay({
 
     required int id,
@@ -39,7 +39,7 @@ class WorkoutDay with _$WorkoutDay {
 }
 
 @freezed
-class Exercise with _$Exercise {
+abstract class Exercise with _$Exercise {
   factory Exercise({
     required int id,
     required String name,

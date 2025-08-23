@@ -6,15 +6,15 @@ part of 'country_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CountryModelImpl _$$CountryModelImplFromJson(Map<String, dynamic> json) =>
-    _$CountryModelImpl(
+_CountryModel _$CountryModelFromJson(Map<String, dynamic> json) =>
+    _CountryModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       is_active: (json['is_active'] as num).toInt(),
       created_at: json['created_at'] as String,
     );
 
-Map<String, dynamic> _$$CountryModelImplToJson(_$CountryModelImpl instance) =>
+Map<String, dynamic> _$CountryModelToJson(_CountryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

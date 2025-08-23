@@ -6,7 +6,7 @@ part of 'meal_details_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RecipeImpl _$$RecipeImplFromJson(Map<String, dynamic> json) => _$RecipeImpl(
+_Recipe _$RecipeFromJson(Map<String, dynamic> json) => _Recipe(
       vegetarian: json['vegetarian'] as bool,
       vegan: json['vegan'] as bool,
       glutenFree: json['glutenFree'] as bool,
@@ -51,8 +51,7 @@ _$RecipeImpl _$$RecipeImplFromJson(Map<String, dynamic> json) => _$RecipeImpl(
           .toList(),
     );
 
-Map<String, dynamic> _$$RecipeImplToJson(_$RecipeImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RecipeToJson(_Recipe instance) => <String, dynamic>{
       'vegetarian': instance.vegetarian,
       'vegan': instance.vegan,
       'glutenFree': instance.glutenFree,
@@ -88,8 +87,7 @@ Map<String, dynamic> _$$RecipeImplToJson(_$RecipeImpl instance) =>
       'analyzedInstructions': instance.analyzedInstructions,
     };
 
-_$IngredientImpl _$$IngredientImplFromJson(Map<String, dynamic> json) =>
-    _$IngredientImpl(
+_Ingredient _$IngredientFromJson(Map<String, dynamic> json) => _Ingredient(
       id: (json['id'] as num).toInt(),
       aisle: json['aisle'] as String,
       image: json['image'] as String?,
@@ -104,7 +102,7 @@ _$IngredientImpl _$$IngredientImplFromJson(Map<String, dynamic> json) =>
       measures: Measures.fromJson(json['measures'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$IngredientImplToJson(_$IngredientImpl instance) =>
+Map<String, dynamic> _$IngredientToJson(_Ingredient instance) =>
     <String, dynamic>{
       'id': instance.id,
       'aisle': instance.aisle,
@@ -120,51 +118,45 @@ Map<String, dynamic> _$$IngredientImplToJson(_$IngredientImpl instance) =>
       'measures': instance.measures,
     };
 
-_$MeasuresImpl _$$MeasuresImplFromJson(Map<String, dynamic> json) =>
-    _$MeasuresImpl(
+_Measures _$MeasuresFromJson(Map<String, dynamic> json) => _Measures(
       us: Measure.fromJson(json['us'] as Map<String, dynamic>),
       metric: Measure.fromJson(json['metric'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$MeasuresImplToJson(_$MeasuresImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MeasuresToJson(_Measures instance) => <String, dynamic>{
       'us': instance.us,
       'metric': instance.metric,
     };
 
-_$MeasureImpl _$$MeasureImplFromJson(Map<String, dynamic> json) =>
-    _$MeasureImpl(
+_Measure _$MeasureFromJson(Map<String, dynamic> json) => _Measure(
       amount: (json['amount'] as num).toDouble(),
       unitShort: json['unitShort'] as String,
       unitLong: json['unitLong'] as String,
     );
 
-Map<String, dynamic> _$$MeasureImplToJson(_$MeasureImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MeasureToJson(_Measure instance) => <String, dynamic>{
       'amount': instance.amount,
       'unitShort': instance.unitShort,
       'unitLong': instance.unitLong,
     };
 
-_$AnalyzedInstructionImpl _$$AnalyzedInstructionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AnalyzedInstructionImpl(
+_AnalyzedInstruction _$AnalyzedInstructionFromJson(Map<String, dynamic> json) =>
+    _AnalyzedInstruction(
       name: json['name'] as String,
       steps: (json['steps'] as List<dynamic>)
           .map((e) => InstructionStep.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$AnalyzedInstructionImplToJson(
-        _$AnalyzedInstructionImpl instance) =>
+Map<String, dynamic> _$AnalyzedInstructionToJson(
+        _AnalyzedInstruction instance) =>
     <String, dynamic>{
       'name': instance.name,
       'steps': instance.steps,
     };
 
-_$InstructionStepImpl _$$InstructionStepImplFromJson(
-        Map<String, dynamic> json) =>
-    _$InstructionStepImpl(
+_InstructionStep _$InstructionStepFromJson(Map<String, dynamic> json) =>
+    _InstructionStep(
       number: (json['number'] as num).toInt(),
       step: json['step'] as String,
       ingredients: (json['ingredients'] as List<dynamic>)
@@ -178,8 +170,7 @@ _$InstructionStepImpl _$$InstructionStepImplFromJson(
           : Length.fromJson(json['length'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$InstructionStepImplToJson(
-        _$InstructionStepImpl instance) =>
+Map<String, dynamic> _$InstructionStepToJson(_InstructionStep instance) =>
     <String, dynamic>{
       'number': instance.number,
       'step': instance.step,
@@ -188,16 +179,15 @@ Map<String, dynamic> _$$InstructionStepImplToJson(
       'length': instance.length,
     };
 
-_$IngredientStepImpl _$$IngredientStepImplFromJson(Map<String, dynamic> json) =>
-    _$IngredientStepImpl(
+_IngredientStep _$IngredientStepFromJson(Map<String, dynamic> json) =>
+    _IngredientStep(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       localizedName: json['localizedName'] as String,
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$IngredientStepImplToJson(
-        _$IngredientStepImpl instance) =>
+Map<String, dynamic> _$IngredientStepToJson(_IngredientStep instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -205,15 +195,14 @@ Map<String, dynamic> _$$IngredientStepImplToJson(
       'image': instance.image,
     };
 
-_$EquipmentImpl _$$EquipmentImplFromJson(Map<String, dynamic> json) =>
-    _$EquipmentImpl(
+_Equipment _$EquipmentFromJson(Map<String, dynamic> json) => _Equipment(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       localizedName: json['localizedName'] as String,
       image: json['image'] as String,
     );
 
-Map<String, dynamic> _$$EquipmentImplToJson(_$EquipmentImpl instance) =>
+Map<String, dynamic> _$EquipmentToJson(_Equipment instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -221,13 +210,12 @@ Map<String, dynamic> _$$EquipmentImplToJson(_$EquipmentImpl instance) =>
       'image': instance.image,
     };
 
-_$LengthImpl _$$LengthImplFromJson(Map<String, dynamic> json) => _$LengthImpl(
+_Length _$LengthFromJson(Map<String, dynamic> json) => _Length(
       number: (json['number'] as num).toInt(),
       unit: json['unit'] as String,
     );
 
-Map<String, dynamic> _$$LengthImplToJson(_$LengthImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LengthToJson(_Length instance) => <String, dynamic>{
       'number': instance.number,
       'unit': instance.unit,
     };

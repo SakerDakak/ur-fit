@@ -6,7 +6,7 @@ part 'meal_model.freezed.dart';
 part 'meal_model.g.dart';
 
 @freezed
-class MealModel with _$MealModel {
+abstract class MealModel with _$MealModel {
   const factory MealModel({
     required int id,
     required String? title,

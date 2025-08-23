@@ -98,6 +98,12 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @infoUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Information updated successfully'**
+  String get infoUpdatedSuccessfully;
+
   /// No description provided for @injuriesOrDiseases.
   ///
   /// In en, this message translates to:
@@ -1987,6 +1993,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exercise times'**
   String get trainingTimes;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
 }
 
 class _AppLocalizationsDelegate

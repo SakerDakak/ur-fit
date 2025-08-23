@@ -41,7 +41,7 @@ class ChangePasswordScreen extends StatelessWidget {
           // old password field
           CompactPasswordTextFormField(
             title: L10n.tr().currentPassword,
-            hintText: '12345678',
+            hintText: 'xxxxxx',
             padding: EdgeInsets.zero,
             borderColor: Co.strockColor,
             titleStyle: TStyle.regular_14,
@@ -52,7 +52,7 @@ class ChangePasswordScreen extends StatelessWidget {
           // new password field
           CompactPasswordTextFormField(
             title: L10n.tr().newPassword,
-            hintText: '12345678',
+            hintText: 'xxxxxx',
             padding: EdgeInsets.zero,
             borderColor: Co.strockColor,
             titleStyle: TStyle.regular_14,
@@ -63,7 +63,7 @@ class ChangePasswordScreen extends StatelessWidget {
           // confirm new password field
           CompactPasswordTextFormField(
             title: L10n.tr().confirmPassword,
-            hintText: '12345678',
+            hintText: 'xxxxxx',
             padding: EdgeInsets.zero,
             borderColor: Co.strockColor,
             titleStyle: TStyle.regular_14,

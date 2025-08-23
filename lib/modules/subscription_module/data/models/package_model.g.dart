@@ -6,8 +6,7 @@ part of 'package_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PackageImpl _$$PackageImplFromJson(Map<String, dynamic> json) =>
-    _$PackageImpl(
+_Package _$PackageFromJson(Map<String, dynamic> json) => _Package(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       duration: (json['duration'] as num).toInt(),
@@ -18,8 +17,7 @@ _$PackageImpl _$$PackageImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$$PackageImplToJson(_$PackageImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PackageToJson(_Package instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'duration': instance.duration,

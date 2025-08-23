@@ -6,17 +6,15 @@ part of 'static_page_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StaticPageModelImpl _$$StaticPageModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$StaticPageModelImpl(
+_StaticPageModel _$StaticPageModelFromJson(Map<String, dynamic> json) =>
+    _StaticPageModel(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       content: json['content'] as String,
       key: json['key'] as String,
     );
 
-Map<String, dynamic> _$$StaticPageModelImplToJson(
-        _$StaticPageModelImpl instance) =>
+Map<String, dynamic> _$StaticPageModelToJson(_StaticPageModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

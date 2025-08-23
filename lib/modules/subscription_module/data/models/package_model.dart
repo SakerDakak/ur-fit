@@ -10,7 +10,7 @@ part 'package_model.g.dart';
 enum PlanType { exercise, diet, both }
 
 @freezed
-class PackageModel with _$PackageModel {
+abstract class PackageModel with _$PackageModel {
 const factory PackageModel({
 required int id,
 required String name,

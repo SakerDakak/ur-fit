@@ -16,7 +16,7 @@ class CustomCurveSlider extends StatefulWidget {
   final Size maxIconSize;
   final int displayedValueFractionDigits;
   final bool roundValueToInt;
-  final void Function(dynamic value)? onValueChanged;
+  final void Function(double value)? onValueChanged;
   final void Function(dynamic value)? onDragEnd;
 
   const CustomCurveSlider({

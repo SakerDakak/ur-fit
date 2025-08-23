@@ -4,7 +4,7 @@ part 'country_model.freezed.dart';
 part 'country_model.g.dart';
 
 @Freezed(makeCollectionsUnmodifiable: false)
-class CountryModel with _$CountryModel {
+abstract class CountryModel with _$CountryModel {
   factory CountryModel({
     required int id,
     required String name,

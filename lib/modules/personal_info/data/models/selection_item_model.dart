@@ -4,7 +4,7 @@ part 'selection_item_model.freezed.dart';
 part 'selection_item_model.g.dart';
 
 @freezed
-class SelectionItemModel with _$SelectionItemModel {
+abstract class SelectionItemModel with _$SelectionItemModel {
   const factory SelectionItemModel({
     required int id,
     required String name,

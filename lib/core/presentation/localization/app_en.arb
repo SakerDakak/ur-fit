@@ -1,4 +1,5 @@
 {
+  "infoUpdatedSuccessfully": "Information updated successfully",
   "injuriesOrDiseases": "Injuries or Diseases",
   "doYouHaveCurrentlyAnyPainOrInjury": "Do you currently have any pain or injury?",
   "inWhichBodyPartYouFeelPainOrHaveInjury": "In which body part do you feel pain or have injury?",
@@ -323,5 +324,6 @@
   "enterAge": "Enter age",
   "enterHeight": "Enter height",
   "enterWeight": "Enter weight",
-  "trainingTimes": "Exercise times"
+  "trainingTimes": "Exercise times",
+  "save": "Save"
 }

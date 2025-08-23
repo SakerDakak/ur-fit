@@ -1,7 +1,7 @@
 part of 'meals_cubit.dart';
 
 @freezed
-class MealsState with _$MealsState {
+abstract class MealsState with _$MealsState {
   const factory MealsState({
     required SearchRecipeModel searchRecipeModel,
     @Default(0) int currentTypeIndex,

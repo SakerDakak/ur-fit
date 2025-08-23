@@ -21,8 +21,12 @@ class Session {
   int? get countryId => di<SharedPreferences>().getInt(StorageKeys.countryId);
   int? get cityId => di<SharedPreferences>().getInt(StorageKeys.cityId);
 
-  set setCountryId(int id) => di<SharedPreferences>().setInt(StorageKeys.countryId, id);
-  set setCityId(int id) => di<SharedPreferences>().setInt(StorageKeys.cityId, id);
+  set setCountryId(int? id) => id == null
+      ? di<SharedPreferences>().remove(StorageKeys.countryId)
+      : di<SharedPreferences>().setInt(StorageKeys.countryId, id);
+  set setCityId(int? id) => id == null
+      ? di<SharedPreferences>().remove(StorageKeys.cityId)
+      : di<SharedPreferences>().setInt(StorageKeys.cityId, id);
 
   set setCurrentUser(UserModel? user) => _currentUser = user;
 
@@ -44,5 +48,12 @@ class Session {
     TokenService.deleteToken();
     LoadingHelper.stopLoading();
     AppConst.navigatorKey.currentContext?.go(AuthScreen.route);
+  }
+
+  clearUserData() async {
+    _currentUser = null;
+    TokenService.deleteToken();
+    setCountryId = null;
+    setCityId = null;
   }
 }

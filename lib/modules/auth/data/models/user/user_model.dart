@@ -11,7 +11,7 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
-class UserModel with _$UserModel {
+abstract class UserModel with _$UserModel {
   const factory UserModel({
     required int id,
     required String name,
@@ -187,7 +187,7 @@ class MealVarietyConverter implements JsonConverter<MealVariety?, dynamic> {
 }
 
 @freezed
-class Country with _$Country {
+abstract class Country with _$Country {
   factory Country({
     required int id,
     required String name,
@@ -197,7 +197,7 @@ class Country with _$Country {
 }
 
 @freezed
-class City with _$City {
+abstract class City with _$City {
   factory City({
     required int id,
     required String name,
@@ -207,7 +207,7 @@ class City with _$City {
 }
 
 @freezed
-class Goal with _$Goal {
+abstract class Goal with _$Goal {
   factory Goal({
     required int id,
     required String name,
@@ -217,7 +217,7 @@ class Goal with _$Goal {
 }
 
 @freezed
-class BodyShape with _$BodyShape {
+abstract class BodyShape with _$BodyShape {
   factory BodyShape({
     required int id,
     required String name,
@@ -227,7 +227,7 @@ class BodyShape with _$BodyShape {
 }
 
 @freezed
-class MuscleFocus with _$MuscleFocus {
+abstract class MuscleFocus with _$MuscleFocus {
   factory MuscleFocus({
     required int id,
     required String name,
@@ -237,7 +237,7 @@ class MuscleFocus with _$MuscleFocus {
 }
 
 @freezed
-class WorkoutType with _$WorkoutType {
+abstract class WorkoutType with _$WorkoutType {
   factory WorkoutType({
     required int id,
     required String name,
@@ -247,7 +247,7 @@ class WorkoutType with _$WorkoutType {
 }
 
 @freezed
-class Equipment with _$Equipment {
+abstract class Equipment with _$Equipment {
   factory Equipment({
     required int id,
     required String name,
@@ -258,7 +258,7 @@ class Equipment with _$Equipment {
 }
 
 @freezed
-class Diet with _$Diet {
+abstract class Diet with _$Diet {
   factory Diet({
     required int id,
     required String key,
@@ -269,7 +269,7 @@ class Diet with _$Diet {
 }
 
 @freezed
-class RecipeType with _$RecipeType {
+abstract class RecipeType with _$RecipeType {
   factory RecipeType({
     required int id,
     required String name,
@@ -279,7 +279,7 @@ class RecipeType with _$RecipeType {
 }
 
 @freezed
-class FoodNotLiked with _$FoodNotLiked {
+abstract class FoodNotLiked with _$FoodNotLiked {
   factory FoodNotLiked({
     required int id,
     required String name,
@@ -289,7 +289,7 @@ class FoodNotLiked with _$FoodNotLiked {
 }
 
 @freezed
-class MealVariety with _$MealVariety {
+abstract class MealVariety with _$MealVariety {
   factory MealVariety({
     required int id,
     required String name,

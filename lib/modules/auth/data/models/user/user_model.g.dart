@@ -6,7 +6,7 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
+_User _$UserFromJson(Map<String, dynamic> json) => _User(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       email: json['email'] as String,
@@ -55,8 +55,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       haveMealPlan: json['is_have_meal_plan'] as bool?,
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'email': instance.email,
@@ -90,134 +89,123 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'is_have_meal_plan': instance.haveMealPlan,
     };
 
-_$CountryImpl _$$CountryImplFromJson(Map<String, dynamic> json) =>
-    _$CountryImpl(
+_Country _$CountryFromJson(Map<String, dynamic> json) => _Country(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$CountryImplToJson(_$CountryImpl instance) =>
+Map<String, dynamic> _$CountryToJson(_Country instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+_City _$CityFromJson(Map<String, dynamic> json) => _City(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$CityToJson(_City instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+_Goal _$GoalFromJson(Map<String, dynamic> json) => _Goal(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$GoalToJson(_Goal instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+_BodyShape _$BodyShapeFromJson(Map<String, dynamic> json) => _BodyShape(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$BodyShapeToJson(_BodyShape instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$CityImpl _$$CityImplFromJson(Map<String, dynamic> json) => _$CityImpl(
+_MuscleFocus _$MuscleFocusFromJson(Map<String, dynamic> json) => _MuscleFocus(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$CityImplToJson(_$CityImpl instance) =>
+Map<String, dynamic> _$MuscleFocusToJson(_MuscleFocus instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$GoalImpl _$$GoalImplFromJson(Map<String, dynamic> json) => _$GoalImpl(
+_WorkoutType _$WorkoutTypeFromJson(Map<String, dynamic> json) => _WorkoutType(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$GoalImplToJson(_$GoalImpl instance) =>
+Map<String, dynamic> _$WorkoutTypeToJson(_WorkoutType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$BodyShapeImpl _$$BodyShapeImplFromJson(Map<String, dynamic> json) =>
-    _$BodyShapeImpl(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$$BodyShapeImplToJson(_$BodyShapeImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
-
-_$MuscleFocusImpl _$$MuscleFocusImplFromJson(Map<String, dynamic> json) =>
-    _$MuscleFocusImpl(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$$MuscleFocusImplToJson(_$MuscleFocusImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
-
-_$WorkoutTypeImpl _$$WorkoutTypeImplFromJson(Map<String, dynamic> json) =>
-    _$WorkoutTypeImpl(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$$WorkoutTypeImplToJson(_$WorkoutTypeImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
-
-_$EquipmentImpl _$$EquipmentImplFromJson(Map<String, dynamic> json) =>
-    _$EquipmentImpl(
+_Equipment _$EquipmentFromJson(Map<String, dynamic> json) => _Equipment(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       image: json['image'] as String,
     );
 
-Map<String, dynamic> _$$EquipmentImplToJson(_$EquipmentImpl instance) =>
+Map<String, dynamic> _$EquipmentToJson(_Equipment instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'image': instance.image,
     };
 
-_$DietImpl _$$DietImplFromJson(Map<String, dynamic> json) => _$DietImpl(
+_Diet _$DietFromJson(Map<String, dynamic> json) => _Diet(
       id: (json['id'] as num).toInt(),
       key: json['key'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$DietImplToJson(_$DietImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DietToJson(_Diet instance) => <String, dynamic>{
       'id': instance.id,
       'key': instance.key,
       'name': instance.name,
     };
 
-_$RecipeTypeImpl _$$RecipeTypeImplFromJson(Map<String, dynamic> json) =>
-    _$RecipeTypeImpl(
+_RecipeType _$RecipeTypeFromJson(Map<String, dynamic> json) => _RecipeType(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$RecipeTypeImplToJson(_$RecipeTypeImpl instance) =>
+Map<String, dynamic> _$RecipeTypeToJson(_RecipeType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$FoodNotLikedImpl _$$FoodNotLikedImplFromJson(Map<String, dynamic> json) =>
-    _$FoodNotLikedImpl(
+_FoodNotLiked _$FoodNotLikedFromJson(Map<String, dynamic> json) =>
+    _FoodNotLiked(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$FoodNotLikedImplToJson(_$FoodNotLikedImpl instance) =>
+Map<String, dynamic> _$FoodNotLikedToJson(_FoodNotLiked instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$MealVarietyImpl _$$MealVarietyImplFromJson(Map<String, dynamic> json) =>
-    _$MealVarietyImpl(
+_MealVariety _$MealVarietyFromJson(Map<String, dynamic> json) => _MealVariety(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$MealVarietyImplToJson(_$MealVarietyImpl instance) =>
+Map<String, dynamic> _$MealVarietyToJson(_MealVariety instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

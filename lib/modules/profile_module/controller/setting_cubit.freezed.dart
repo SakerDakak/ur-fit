@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,36 +9,86 @@ part of 'setting_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SettingState {
-  PlanHistoryModel? get planHistoryModel => throw _privateConstructorUsedError;
-  num get totalCalories => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-  Nutrients? get nutrition => throw _privateConstructorUsedError;
-  ExerciseHistoryData? get exerciseHistoryData =>
-      throw _privateConstructorUsedError;
-  StaticPageModel? get staticPageModel => throw _privateConstructorUsedError;
-  RequestState get getPlanDataState => throw _privateConstructorUsedError;
-  RequestState get getPlanHistoryState => throw _privateConstructorUsedError;
-  RequestState get getStaticPageState => throw _privateConstructorUsedError;
+  PlanHistoryModel? get planHistoryModel;
+  num get totalCalories;
+  String get errorMessage;
+  Nutrients? get nutrition;
+  ExerciseHistoryData? get exerciseHistoryData;
+  StaticPageModel? get staticPageModel;
+  RequestState get getPlanDataState;
+  RequestState get getPlanHistoryState;
+  RequestState get getStaticPageState;
+  RequestState get deleteAccountState;
+  String get deleteAccountMessage;
 
   /// Create a copy of SettingState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $SettingStateCopyWith<SettingState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$SettingStateCopyWithImpl<SettingState>(
+          this as SettingState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SettingState &&
+            (identical(other.planHistoryModel, planHistoryModel) ||
+                other.planHistoryModel == planHistoryModel) &&
+            (identical(other.totalCalories, totalCalories) ||
+                other.totalCalories == totalCalories) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
+            (identical(other.nutrition, nutrition) ||
+                other.nutrition == nutrition) &&
+            (identical(other.exerciseHistoryData, exerciseHistoryData) ||
+                other.exerciseHistoryData == exerciseHistoryData) &&
+            (identical(other.staticPageModel, staticPageModel) ||
+                other.staticPageModel == staticPageModel) &&
+            (identical(other.getPlanDataState, getPlanDataState) ||
+                other.getPlanDataState == getPlanDataState) &&
+            (identical(other.getPlanHistoryState, getPlanHistoryState) ||
+                other.getPlanHistoryState == getPlanHistoryState) &&
+            (identical(other.getStaticPageState, getStaticPageState) ||
+                other.getStaticPageState == getStaticPageState) &&
+            (identical(other.deleteAccountState, deleteAccountState) ||
+                other.deleteAccountState == deleteAccountState) &&
+            (identical(other.deleteAccountMessage, deleteAccountMessage) ||
+                other.deleteAccountMessage == deleteAccountMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      planHistoryModel,
+      totalCalories,
+      errorMessage,
+      nutrition,
+      exerciseHistoryData,
+      staticPageModel,
+      getPlanDataState,
+      getPlanHistoryState,
+      getStaticPageState,
+      deleteAccountState,
+      deleteAccountMessage);
+
+  @override
+  String toString() {
+    return 'SettingState(planHistoryModel: $planHistoryModel, totalCalories: $totalCalories, errorMessage: $errorMessage, nutrition: $nutrition, exerciseHistoryData: $exerciseHistoryData, staticPageModel: $staticPageModel, getPlanDataState: $getPlanDataState, getPlanHistoryState: $getPlanHistoryState, getStaticPageState: $getStaticPageState, deleteAccountState: $deleteAccountState, deleteAccountMessage: $deleteAccountMessage)';
+  }
 }
 
 /// @nodoc
-abstract class $SettingStateCopyWith<$Res> {
+abstract mixin class $SettingStateCopyWith<$Res> {
   factory $SettingStateCopyWith(
-          SettingState value, $Res Function(SettingState) then) =
-      _$SettingStateCopyWithImpl<$Res, SettingState>;
+          SettingState value, $Res Function(SettingState) _then) =
+      _$SettingStateCopyWithImpl;
   @useResult
   $Res call(
       {PlanHistoryModel? planHistoryModel,
@@ -49,7 +99,9 @@ abstract class $SettingStateCopyWith<$Res> {
       StaticPageModel? staticPageModel,
       RequestState getPlanDataState,
       RequestState getPlanHistoryState,
-      RequestState getStaticPageState});
+      RequestState getStaticPageState,
+      RequestState deleteAccountState,
+      String deleteAccountMessage});
 
   $PlanHistoryModelCopyWith<$Res>? get planHistoryModel;
   $NutrientsCopyWith<$Res>? get nutrition;
@@ -58,14 +110,11 @@ abstract class $SettingStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
-    implements $SettingStateCopyWith<$Res> {
-  _$SettingStateCopyWithImpl(this._value, this._then);
+class _$SettingStateCopyWithImpl<$Res> implements $SettingStateCopyWith<$Res> {
+  _$SettingStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SettingState _self;
+  final $Res Function(SettingState) _then;
 
   /// Create a copy of SettingState
   /// with the given fields replaced by the non-null parameter values.
@@ -81,45 +130,55 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
     Object? getPlanDataState = null,
     Object? getPlanHistoryState = null,
     Object? getStaticPageState = null,
+    Object? deleteAccountState = null,
+    Object? deleteAccountMessage = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       planHistoryModel: freezed == planHistoryModel
-          ? _value.planHistoryModel
+          ? _self.planHistoryModel
           : planHistoryModel // ignore: cast_nullable_to_non_nullable
               as PlanHistoryModel?,
       totalCalories: null == totalCalories
-          ? _value.totalCalories
+          ? _self.totalCalories
           : totalCalories // ignore: cast_nullable_to_non_nullable
               as num,
       errorMessage: null == errorMessage
-          ? _value.errorMessage
+          ? _self.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
       nutrition: freezed == nutrition
-          ? _value.nutrition
+          ? _self.nutrition
           : nutrition // ignore: cast_nullable_to_non_nullable
               as Nutrients?,
       exerciseHistoryData: freezed == exerciseHistoryData
-          ? _value.exerciseHistoryData
+          ? _self.exerciseHistoryData
           : exerciseHistoryData // ignore: cast_nullable_to_non_nullable
               as ExerciseHistoryData?,
       staticPageModel: freezed == staticPageModel
-          ? _value.staticPageModel
+          ? _self.staticPageModel
           : staticPageModel // ignore: cast_nullable_to_non_nullable
               as StaticPageModel?,
       getPlanDataState: null == getPlanDataState
-          ? _value.getPlanDataState
+          ? _self.getPlanDataState
           : getPlanDataState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getPlanHistoryState: null == getPlanHistoryState
-          ? _value.getPlanHistoryState
+          ? _self.getPlanHistoryState
           : getPlanHistoryState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getStaticPageState: null == getStaticPageState
-          ? _value.getStaticPageState
+          ? _self.getStaticPageState
           : getStaticPageState // ignore: cast_nullable_to_non_nullable
               as RequestState,
-    ) as $Val);
+      deleteAccountState: null == deleteAccountState
+          ? _self.deleteAccountState
+          : deleteAccountState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      deleteAccountMessage: null == deleteAccountMessage
+          ? _self.deleteAccountMessage
+          : deleteAccountMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 
   /// Create a copy of SettingState
@@ -127,12 +186,12 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
   @override
   @pragma('vm:prefer-inline')
   $PlanHistoryModelCopyWith<$Res>? get planHistoryModel {
-    if (_value.planHistoryModel == null) {
+    if (_self.planHistoryModel == null) {
       return null;
     }
 
-    return $PlanHistoryModelCopyWith<$Res>(_value.planHistoryModel!, (value) {
-      return _then(_value.copyWith(planHistoryModel: value) as $Val);
+    return $PlanHistoryModelCopyWith<$Res>(_self.planHistoryModel!, (value) {
+      return _then(_self.copyWith(planHistoryModel: value));
     });
   }
 
@@ -141,12 +200,12 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
   @override
   @pragma('vm:prefer-inline')
   $NutrientsCopyWith<$Res>? get nutrition {
-    if (_value.nutrition == null) {
+    if (_self.nutrition == null) {
       return null;
     }
 
-    return $NutrientsCopyWith<$Res>(_value.nutrition!, (value) {
-      return _then(_value.copyWith(nutrition: value) as $Val);
+    return $NutrientsCopyWith<$Res>(_self.nutrition!, (value) {
+      return _then(_self.copyWith(nutrition: value));
     });
   }
 
@@ -155,13 +214,13 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
   @override
   @pragma('vm:prefer-inline')
   $ExerciseHistoryDataCopyWith<$Res>? get exerciseHistoryData {
-    if (_value.exerciseHistoryData == null) {
+    if (_self.exerciseHistoryData == null) {
       return null;
     }
 
-    return $ExerciseHistoryDataCopyWith<$Res>(_value.exerciseHistoryData!,
+    return $ExerciseHistoryDataCopyWith<$Res>(_self.exerciseHistoryData!,
         (value) {
-      return _then(_value.copyWith(exerciseHistoryData: value) as $Val);
+      return _then(_self.copyWith(exerciseHistoryData: value));
     });
   }
 
@@ -170,113 +229,246 @@ class _$SettingStateCopyWithImpl<$Res, $Val extends SettingState>
   @override
   @pragma('vm:prefer-inline')
   $StaticPageModelCopyWith<$Res>? get staticPageModel {
-    if (_value.staticPageModel == null) {
+    if (_self.staticPageModel == null) {
       return null;
     }
 
-    return $StaticPageModelCopyWith<$Res>(_value.staticPageModel!, (value) {
-      return _then(_value.copyWith(staticPageModel: value) as $Val);
+    return $StaticPageModelCopyWith<$Res>(_self.staticPageModel!, (value) {
+      return _then(_self.copyWith(staticPageModel: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$SettingStateImplCopyWith<$Res>
-    implements $SettingStateCopyWith<$Res> {
-  factory _$$SettingStateImplCopyWith(
-          _$SettingStateImpl value, $Res Function(_$SettingStateImpl) then) =
-      __$$SettingStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {PlanHistoryModel? planHistoryModel,
-      num totalCalories,
-      String errorMessage,
-      Nutrients? nutrition,
-      ExerciseHistoryData? exerciseHistoryData,
-      StaticPageModel? staticPageModel,
-      RequestState getPlanDataState,
-      RequestState getPlanHistoryState,
-      RequestState getStaticPageState});
+/// Adds pattern-matching-related methods to [SettingState].
+extension SettingStatePatterns on SettingState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $PlanHistoryModelCopyWith<$Res>? get planHistoryModel;
-  @override
-  $NutrientsCopyWith<$Res>? get nutrition;
-  @override
-  $ExerciseHistoryDataCopyWith<$Res>? get exerciseHistoryData;
-  @override
-  $StaticPageModelCopyWith<$Res>? get staticPageModel;
-}
-
-/// @nodoc
-class __$$SettingStateImplCopyWithImpl<$Res>
-    extends _$SettingStateCopyWithImpl<$Res, _$SettingStateImpl>
-    implements _$$SettingStateImplCopyWith<$Res> {
-  __$$SettingStateImplCopyWithImpl(
-      _$SettingStateImpl _value, $Res Function(_$SettingStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SettingState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? planHistoryModel = freezed,
-    Object? totalCalories = null,
-    Object? errorMessage = null,
-    Object? nutrition = freezed,
-    Object? exerciseHistoryData = freezed,
-    Object? staticPageModel = freezed,
-    Object? getPlanDataState = null,
-    Object? getPlanHistoryState = null,
-    Object? getStaticPageState = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SettingState value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$SettingStateImpl(
-      planHistoryModel: freezed == planHistoryModel
-          ? _value.planHistoryModel
-          : planHistoryModel // ignore: cast_nullable_to_non_nullable
-              as PlanHistoryModel?,
-      totalCalories: null == totalCalories
-          ? _value.totalCalories
-          : totalCalories // ignore: cast_nullable_to_non_nullable
-              as num,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      nutrition: freezed == nutrition
-          ? _value.nutrition
-          : nutrition // ignore: cast_nullable_to_non_nullable
-              as Nutrients?,
-      exerciseHistoryData: freezed == exerciseHistoryData
-          ? _value.exerciseHistoryData
-          : exerciseHistoryData // ignore: cast_nullable_to_non_nullable
-              as ExerciseHistoryData?,
-      staticPageModel: freezed == staticPageModel
-          ? _value.staticPageModel
-          : staticPageModel // ignore: cast_nullable_to_non_nullable
-              as StaticPageModel?,
-      getPlanDataState: null == getPlanDataState
-          ? _value.getPlanDataState
-          : getPlanDataState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getPlanHistoryState: null == getPlanHistoryState
-          ? _value.getPlanHistoryState
-          : getPlanHistoryState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getStaticPageState: null == getStaticPageState
-          ? _value.getStaticPageState
-          : getStaticPageState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _SettingState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SettingState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SettingState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SettingState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SettingState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            PlanHistoryModel? planHistoryModel,
+            num totalCalories,
+            String errorMessage,
+            Nutrients? nutrition,
+            ExerciseHistoryData? exerciseHistoryData,
+            StaticPageModel? staticPageModel,
+            RequestState getPlanDataState,
+            RequestState getPlanHistoryState,
+            RequestState getStaticPageState,
+            RequestState deleteAccountState,
+            String deleteAccountMessage)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SettingState() when $default != null:
+        return $default(
+            _that.planHistoryModel,
+            _that.totalCalories,
+            _that.errorMessage,
+            _that.nutrition,
+            _that.exerciseHistoryData,
+            _that.staticPageModel,
+            _that.getPlanDataState,
+            _that.getPlanHistoryState,
+            _that.getStaticPageState,
+            _that.deleteAccountState,
+            _that.deleteAccountMessage);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            PlanHistoryModel? planHistoryModel,
+            num totalCalories,
+            String errorMessage,
+            Nutrients? nutrition,
+            ExerciseHistoryData? exerciseHistoryData,
+            StaticPageModel? staticPageModel,
+            RequestState getPlanDataState,
+            RequestState getPlanHistoryState,
+            RequestState getStaticPageState,
+            RequestState deleteAccountState,
+            String deleteAccountMessage)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SettingState():
+        return $default(
+            _that.planHistoryModel,
+            _that.totalCalories,
+            _that.errorMessage,
+            _that.nutrition,
+            _that.exerciseHistoryData,
+            _that.staticPageModel,
+            _that.getPlanDataState,
+            _that.getPlanHistoryState,
+            _that.getStaticPageState,
+            _that.deleteAccountState,
+            _that.deleteAccountMessage);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            PlanHistoryModel? planHistoryModel,
+            num totalCalories,
+            String errorMessage,
+            Nutrients? nutrition,
+            ExerciseHistoryData? exerciseHistoryData,
+            StaticPageModel? staticPageModel,
+            RequestState getPlanDataState,
+            RequestState getPlanHistoryState,
+            RequestState getStaticPageState,
+            RequestState deleteAccountState,
+            String deleteAccountMessage)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SettingState() when $default != null:
+        return $default(
+            _that.planHistoryModel,
+            _that.totalCalories,
+            _that.errorMessage,
+            _that.nutrition,
+            _that.exerciseHistoryData,
+            _that.staticPageModel,
+            _that.getPlanDataState,
+            _that.getPlanHistoryState,
+            _that.getStaticPageState,
+            _that.deleteAccountState,
+            _that.deleteAccountMessage);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$SettingStateImpl implements _SettingState {
-  const _$SettingStateImpl(
+class _SettingState implements SettingState {
+  const _SettingState(
       {this.planHistoryModel = null,
       this.totalCalories = 0,
       this.errorMessage = '',
@@ -285,7 +477,9 @@ class _$SettingStateImpl implements _SettingState {
       this.staticPageModel = null,
       this.getPlanDataState = RequestState.initial,
       this.getPlanHistoryState = RequestState.initial,
-      this.getStaticPageState = RequestState.initial});
+      this.getStaticPageState = RequestState.initial,
+      this.deleteAccountState = RequestState.initial,
+      this.deleteAccountMessage = ''});
 
   @override
   @JsonKey()
@@ -314,17 +508,26 @@ class _$SettingStateImpl implements _SettingState {
   @override
   @JsonKey()
   final RequestState getStaticPageState;
-
   @override
-  String toString() {
-    return 'SettingState(planHistoryModel: $planHistoryModel, totalCalories: $totalCalories, errorMessage: $errorMessage, nutrition: $nutrition, exerciseHistoryData: $exerciseHistoryData, staticPageModel: $staticPageModel, getPlanDataState: $getPlanDataState, getPlanHistoryState: $getPlanHistoryState, getStaticPageState: $getStaticPageState)';
-  }
+  @JsonKey()
+  final RequestState deleteAccountState;
+  @override
+  @JsonKey()
+  final String deleteAccountMessage;
+
+  /// Create a copy of SettingState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SettingStateCopyWith<_SettingState> get copyWith =>
+      __$SettingStateCopyWithImpl<_SettingState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SettingStateImpl &&
+            other is _SettingState &&
             (identical(other.planHistoryModel, planHistoryModel) ||
                 other.planHistoryModel == planHistoryModel) &&
             (identical(other.totalCalories, totalCalories) ||
@@ -342,7 +545,11 @@ class _$SettingStateImpl implements _SettingState {
             (identical(other.getPlanHistoryState, getPlanHistoryState) ||
                 other.getPlanHistoryState == getPlanHistoryState) &&
             (identical(other.getStaticPageState, getStaticPageState) ||
-                other.getStaticPageState == getStaticPageState));
+                other.getStaticPageState == getStaticPageState) &&
+            (identical(other.deleteAccountState, deleteAccountState) ||
+                other.deleteAccountState == deleteAccountState) &&
+            (identical(other.deleteAccountMessage, deleteAccountMessage) ||
+                other.deleteAccountMessage == deleteAccountMessage));
   }
 
   @override
@@ -356,52 +563,176 @@ class _$SettingStateImpl implements _SettingState {
       staticPageModel,
       getPlanDataState,
       getPlanHistoryState,
-      getStaticPageState);
+      getStaticPageState,
+      deleteAccountState,
+      deleteAccountMessage);
+
+  @override
+  String toString() {
+    return 'SettingState(planHistoryModel: $planHistoryModel, totalCalories: $totalCalories, errorMessage: $errorMessage, nutrition: $nutrition, exerciseHistoryData: $exerciseHistoryData, staticPageModel: $staticPageModel, getPlanDataState: $getPlanDataState, getPlanHistoryState: $getPlanHistoryState, getStaticPageState: $getStaticPageState, deleteAccountState: $deleteAccountState, deleteAccountMessage: $deleteAccountMessage)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SettingStateCopyWith<$Res>
+    implements $SettingStateCopyWith<$Res> {
+  factory _$SettingStateCopyWith(
+          _SettingState value, $Res Function(_SettingState) _then) =
+      __$SettingStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {PlanHistoryModel? planHistoryModel,
+      num totalCalories,
+      String errorMessage,
+      Nutrients? nutrition,
+      ExerciseHistoryData? exerciseHistoryData,
+      StaticPageModel? staticPageModel,
+      RequestState getPlanDataState,
+      RequestState getPlanHistoryState,
+      RequestState getStaticPageState,
+      RequestState deleteAccountState,
+      String deleteAccountMessage});
+
+  @override
+  $PlanHistoryModelCopyWith<$Res>? get planHistoryModel;
+  @override
+  $NutrientsCopyWith<$Res>? get nutrition;
+  @override
+  $ExerciseHistoryDataCopyWith<$Res>? get exerciseHistoryData;
+  @override
+  $StaticPageModelCopyWith<$Res>? get staticPageModel;
+}
+
+/// @nodoc
+class __$SettingStateCopyWithImpl<$Res>
+    implements _$SettingStateCopyWith<$Res> {
+  __$SettingStateCopyWithImpl(this._self, this._then);
+
+  final _SettingState _self;
+  final $Res Function(_SettingState) _then;
 
   /// Create a copy of SettingState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SettingStateImplCopyWith<_$SettingStateImpl> get copyWith =>
-      __$$SettingStateImplCopyWithImpl<_$SettingStateImpl>(this, _$identity);
-}
-
-abstract class _SettingState implements SettingState {
-  const factory _SettingState(
-      {final PlanHistoryModel? planHistoryModel,
-      final num totalCalories,
-      final String errorMessage,
-      final Nutrients? nutrition,
-      final ExerciseHistoryData? exerciseHistoryData,
-      final StaticPageModel? staticPageModel,
-      final RequestState getPlanDataState,
-      final RequestState getPlanHistoryState,
-      final RequestState getStaticPageState}) = _$SettingStateImpl;
-
-  @override
-  PlanHistoryModel? get planHistoryModel;
-  @override
-  num get totalCalories;
-  @override
-  String get errorMessage;
-  @override
-  Nutrients? get nutrition;
-  @override
-  ExerciseHistoryData? get exerciseHistoryData;
-  @override
-  StaticPageModel? get staticPageModel;
-  @override
-  RequestState get getPlanDataState;
-  @override
-  RequestState get getPlanHistoryState;
-  @override
-  RequestState get getStaticPageState;
+  $Res call({
+    Object? planHistoryModel = freezed,
+    Object? totalCalories = null,
+    Object? errorMessage = null,
+    Object? nutrition = freezed,
+    Object? exerciseHistoryData = freezed,
+    Object? staticPageModel = freezed,
+    Object? getPlanDataState = null,
+    Object? getPlanHistoryState = null,
+    Object? getStaticPageState = null,
+    Object? deleteAccountState = null,
+    Object? deleteAccountMessage = null,
+  }) {
+    return _then(_SettingState(
+      planHistoryModel: freezed == planHistoryModel
+          ? _self.planHistoryModel
+          : planHistoryModel // ignore: cast_nullable_to_non_nullable
+              as PlanHistoryModel?,
+      totalCalories: null == totalCalories
+          ? _self.totalCalories
+          : totalCalories // ignore: cast_nullable_to_non_nullable
+              as num,
+      errorMessage: null == errorMessage
+          ? _self.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      nutrition: freezed == nutrition
+          ? _self.nutrition
+          : nutrition // ignore: cast_nullable_to_non_nullable
+              as Nutrients?,
+      exerciseHistoryData: freezed == exerciseHistoryData
+          ? _self.exerciseHistoryData
+          : exerciseHistoryData // ignore: cast_nullable_to_non_nullable
+              as ExerciseHistoryData?,
+      staticPageModel: freezed == staticPageModel
+          ? _self.staticPageModel
+          : staticPageModel // ignore: cast_nullable_to_non_nullable
+              as StaticPageModel?,
+      getPlanDataState: null == getPlanDataState
+          ? _self.getPlanDataState
+          : getPlanDataState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getPlanHistoryState: null == getPlanHistoryState
+          ? _self.getPlanHistoryState
+          : getPlanHistoryState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getStaticPageState: null == getStaticPageState
+          ? _self.getStaticPageState
+          : getStaticPageState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      deleteAccountState: null == deleteAccountState
+          ? _self.deleteAccountState
+          : deleteAccountState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      deleteAccountMessage: null == deleteAccountMessage
+          ? _self.deleteAccountMessage
+          : deleteAccountMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 
   /// Create a copy of SettingState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SettingStateImplCopyWith<_$SettingStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $PlanHistoryModelCopyWith<$Res>? get planHistoryModel {
+    if (_self.planHistoryModel == null) {
+      return null;
+    }
+
+    return $PlanHistoryModelCopyWith<$Res>(_self.planHistoryModel!, (value) {
+      return _then(_self.copyWith(planHistoryModel: value));
+    });
+  }
+
+  /// Create a copy of SettingState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NutrientsCopyWith<$Res>? get nutrition {
+    if (_self.nutrition == null) {
+      return null;
+    }
+
+    return $NutrientsCopyWith<$Res>(_self.nutrition!, (value) {
+      return _then(_self.copyWith(nutrition: value));
+    });
+  }
+
+  /// Create a copy of SettingState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ExerciseHistoryDataCopyWith<$Res>? get exerciseHistoryData {
+    if (_self.exerciseHistoryData == null) {
+      return null;
+    }
+
+    return $ExerciseHistoryDataCopyWith<$Res>(_self.exerciseHistoryData!,
+        (value) {
+      return _then(_self.copyWith(exerciseHistoryData: value));
+    });
+  }
+
+  /// Create a copy of SettingState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StaticPageModelCopyWith<$Res>? get staticPageModel {
+    if (_self.staticPageModel == null) {
+      return null;
+    }
+
+    return $StaticPageModelCopyWith<$Res>(_self.staticPageModel!, (value) {
+      return _then(_self.copyWith(staticPageModel: value));
+    });
+  }
 }
+
+// dart format on

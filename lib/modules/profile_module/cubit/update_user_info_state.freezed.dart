@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,61 +9,161 @@ part of 'update_user_info_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UpdateUserInfoState {
-  UserPersonalInfoModel get userInfo => throw _privateConstructorUsedError;
-  String get oldPassword => throw _privateConstructorUsedError;
-  String get newPassword => throw _privateConstructorUsedError;
-  String get confirmPassword => throw _privateConstructorUsedError;
-  int get currentInfoStep => throw _privateConstructorUsedError;
-  int get currentStepOneIndex => throw _privateConstructorUsedError;
-  int get currentStepTwoIndex => throw _privateConstructorUsedError;
-  int get currentStepThreeIndex => throw _privateConstructorUsedError;
-  int get currentPageIndex => throw _privateConstructorUsedError;
-  List<UserGoalsModel> get goals => throw _privateConstructorUsedError;
-  List<SelectionItemModel> get mealsNotLiked =>
-      throw _privateConstructorUsedError;
-  List<SelectionItemModel> get mealsLiked => throw _privateConstructorUsedError;
-  List<SelectionItemModel> get diet => throw _privateConstructorUsedError;
-  List<SelectionItemModel> get mealVariants =>
-      throw _privateConstructorUsedError;
-  List<NoOfDailyMealsModel> get noOfDailyMeals =>
-      throw _privateConstructorUsedError;
-  List<BodyPartsModel> get muscleFocusData =>
-      throw _privateConstructorUsedError;
-  List<SelectionItemModel> get workoutTypes =>
-      throw _privateConstructorUsedError;
-  List<SelectionItemModel> get equipments => throw _privateConstructorUsedError;
-  String get errMessage => throw _privateConstructorUsedError;
-  RequestState get getGoalsState => throw _privateConstructorUsedError;
-  RequestState get changePasswordState => throw _privateConstructorUsedError;
-  RequestState get getNotLikedMealsState => throw _privateConstructorUsedError;
-  RequestState get getLikedMealsState => throw _privateConstructorUsedError;
-  RequestState get getDietOptionsState => throw _privateConstructorUsedError;
-  RequestState get getMealVariantsState => throw _privateConstructorUsedError;
-  RequestState get getNoOfDailyMealsState => throw _privateConstructorUsedError;
-  RequestState get getMuscleFocusState => throw _privateConstructorUsedError;
-  RequestState get getWorkoutTypesState => throw _privateConstructorUsedError;
-  RequestState get getEquipmentsState => throw _privateConstructorUsedError;
-  RequestState get updatePersonalInfo => throw _privateConstructorUsedError;
+  UserPersonalInfoModel get userInfo;
+  String get oldPassword;
+  String get newPassword;
+  String get confirmPassword;
+  int get currentInfoStep;
+  int get currentStepOneIndex;
+  int get currentStepTwoIndex;
+  int get currentStepThreeIndex;
+  int get currentPageIndex;
+  List<UserGoalsModel> get goals;
+  List<SelectionItemModel> get mealsNotLiked;
+  List<SelectionItemModel> get mealsLiked;
+  List<SelectionItemModel> get diet;
+  List<SelectionItemModel> get mealVariants;
+  List<NoOfDailyMealsModel> get noOfDailyMeals;
+  List<BodyPartsModel> get muscleFocusData;
+  List<SelectionItemModel> get workoutTypes;
+  List<SelectionItemModel> get equipments;
+  String get errMessage;
+  RequestState get getGoalsState;
+  RequestState get changePasswordState;
+  RequestState get getNotLikedMealsState;
+  RequestState get getLikedMealsState;
+  RequestState get getDietOptionsState;
+  RequestState get getMealVariantsState;
+  RequestState get getNoOfDailyMealsState;
+  RequestState get getMuscleFocusState;
+  RequestState get getWorkoutTypesState;
+  RequestState get getEquipmentsState;
+  RequestState get updatePersonalInfo;
 
   /// Create a copy of UpdateUserInfoState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $UpdateUserInfoStateCopyWith<UpdateUserInfoState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$UpdateUserInfoStateCopyWithImpl<UpdateUserInfoState>(
+          this as UpdateUserInfoState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdateUserInfoState &&
+            (identical(other.userInfo, userInfo) ||
+                other.userInfo == userInfo) &&
+            (identical(other.oldPassword, oldPassword) ||
+                other.oldPassword == oldPassword) &&
+            (identical(other.newPassword, newPassword) ||
+                other.newPassword == newPassword) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword) &&
+            (identical(other.currentInfoStep, currentInfoStep) ||
+                other.currentInfoStep == currentInfoStep) &&
+            (identical(other.currentStepOneIndex, currentStepOneIndex) ||
+                other.currentStepOneIndex == currentStepOneIndex) &&
+            (identical(other.currentStepTwoIndex, currentStepTwoIndex) ||
+                other.currentStepTwoIndex == currentStepTwoIndex) &&
+            (identical(other.currentStepThreeIndex, currentStepThreeIndex) ||
+                other.currentStepThreeIndex == currentStepThreeIndex) &&
+            (identical(other.currentPageIndex, currentPageIndex) ||
+                other.currentPageIndex == currentPageIndex) &&
+            const DeepCollectionEquality().equals(other.goals, goals) &&
+            const DeepCollectionEquality()
+                .equals(other.mealsNotLiked, mealsNotLiked) &&
+            const DeepCollectionEquality()
+                .equals(other.mealsLiked, mealsLiked) &&
+            const DeepCollectionEquality().equals(other.diet, diet) &&
+            const DeepCollectionEquality()
+                .equals(other.mealVariants, mealVariants) &&
+            const DeepCollectionEquality()
+                .equals(other.noOfDailyMeals, noOfDailyMeals) &&
+            const DeepCollectionEquality()
+                .equals(other.muscleFocusData, muscleFocusData) &&
+            const DeepCollectionEquality()
+                .equals(other.workoutTypes, workoutTypes) &&
+            const DeepCollectionEquality()
+                .equals(other.equipments, equipments) &&
+            (identical(other.errMessage, errMessage) ||
+                other.errMessage == errMessage) &&
+            (identical(other.getGoalsState, getGoalsState) ||
+                other.getGoalsState == getGoalsState) &&
+            (identical(other.changePasswordState, changePasswordState) ||
+                other.changePasswordState == changePasswordState) &&
+            (identical(other.getNotLikedMealsState, getNotLikedMealsState) ||
+                other.getNotLikedMealsState == getNotLikedMealsState) &&
+            (identical(other.getLikedMealsState, getLikedMealsState) ||
+                other.getLikedMealsState == getLikedMealsState) &&
+            (identical(other.getDietOptionsState, getDietOptionsState) ||
+                other.getDietOptionsState == getDietOptionsState) &&
+            (identical(other.getMealVariantsState, getMealVariantsState) ||
+                other.getMealVariantsState == getMealVariantsState) &&
+            (identical(other.getNoOfDailyMealsState, getNoOfDailyMealsState) ||
+                other.getNoOfDailyMealsState == getNoOfDailyMealsState) &&
+            (identical(other.getMuscleFocusState, getMuscleFocusState) ||
+                other.getMuscleFocusState == getMuscleFocusState) &&
+            (identical(other.getWorkoutTypesState, getWorkoutTypesState) ||
+                other.getWorkoutTypesState == getWorkoutTypesState) &&
+            (identical(other.getEquipmentsState, getEquipmentsState) ||
+                other.getEquipmentsState == getEquipmentsState) &&
+            (identical(other.updatePersonalInfo, updatePersonalInfo) ||
+                other.updatePersonalInfo == updatePersonalInfo));
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        userInfo,
+        oldPassword,
+        newPassword,
+        confirmPassword,
+        currentInfoStep,
+        currentStepOneIndex,
+        currentStepTwoIndex,
+        currentStepThreeIndex,
+        currentPageIndex,
+        const DeepCollectionEquality().hash(goals),
+        const DeepCollectionEquality().hash(mealsNotLiked),
+        const DeepCollectionEquality().hash(mealsLiked),
+        const DeepCollectionEquality().hash(diet),
+        const DeepCollectionEquality().hash(mealVariants),
+        const DeepCollectionEquality().hash(noOfDailyMeals),
+        const DeepCollectionEquality().hash(muscleFocusData),
+        const DeepCollectionEquality().hash(workoutTypes),
+        const DeepCollectionEquality().hash(equipments),
+        errMessage,
+        getGoalsState,
+        changePasswordState,
+        getNotLikedMealsState,
+        getLikedMealsState,
+        getDietOptionsState,
+        getMealVariantsState,
+        getNoOfDailyMealsState,
+        getMuscleFocusState,
+        getWorkoutTypesState,
+        getEquipmentsState,
+        updatePersonalInfo
+      ]);
+
+  @override
+  String toString() {
+    return 'UpdateUserInfoState(userInfo: $userInfo, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, currentInfoStep: $currentInfoStep, currentStepOneIndex: $currentStepOneIndex, currentStepTwoIndex: $currentStepTwoIndex, currentStepThreeIndex: $currentStepThreeIndex, currentPageIndex: $currentPageIndex, goals: $goals, mealsNotLiked: $mealsNotLiked, mealsLiked: $mealsLiked, diet: $diet, mealVariants: $mealVariants, noOfDailyMeals: $noOfDailyMeals, muscleFocusData: $muscleFocusData, workoutTypes: $workoutTypes, equipments: $equipments, errMessage: $errMessage, getGoalsState: $getGoalsState, changePasswordState: $changePasswordState, getNotLikedMealsState: $getNotLikedMealsState, getLikedMealsState: $getLikedMealsState, getDietOptionsState: $getDietOptionsState, getMealVariantsState: $getMealVariantsState, getNoOfDailyMealsState: $getNoOfDailyMealsState, getMuscleFocusState: $getMuscleFocusState, getWorkoutTypesState: $getWorkoutTypesState, getEquipmentsState: $getEquipmentsState, updatePersonalInfo: $updatePersonalInfo)';
+  }
 }
 
 /// @nodoc
-abstract class $UpdateUserInfoStateCopyWith<$Res> {
+abstract mixin class $UpdateUserInfoStateCopyWith<$Res> {
   factory $UpdateUserInfoStateCopyWith(
-          UpdateUserInfoState value, $Res Function(UpdateUserInfoState) then) =
-      _$UpdateUserInfoStateCopyWithImpl<$Res, UpdateUserInfoState>;
+          UpdateUserInfoState value, $Res Function(UpdateUserInfoState) _then) =
+      _$UpdateUserInfoStateCopyWithImpl;
   @useResult
   $Res call(
       {UserPersonalInfoModel userInfo,
@@ -101,14 +201,12 @@ abstract class $UpdateUserInfoStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateUserInfoStateCopyWithImpl<$Res, $Val extends UpdateUserInfoState>
+class _$UpdateUserInfoStateCopyWithImpl<$Res>
     implements $UpdateUserInfoStateCopyWith<$Res> {
-  _$UpdateUserInfoStateCopyWithImpl(this._value, this._then);
+  _$UpdateUserInfoStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UpdateUserInfoState _self;
+  final $Res Function(UpdateUserInfoState) _then;
 
   /// Create a copy of UpdateUserInfoState
   /// with the given fields replaced by the non-null parameter values.
@@ -146,128 +244,128 @@ class _$UpdateUserInfoStateCopyWithImpl<$Res, $Val extends UpdateUserInfoState>
     Object? getEquipmentsState = null,
     Object? updatePersonalInfo = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       userInfo: null == userInfo
-          ? _value.userInfo
+          ? _self.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as UserPersonalInfoModel,
       oldPassword: null == oldPassword
-          ? _value.oldPassword
+          ? _self.oldPassword
           : oldPassword // ignore: cast_nullable_to_non_nullable
               as String,
       newPassword: null == newPassword
-          ? _value.newPassword
+          ? _self.newPassword
           : newPassword // ignore: cast_nullable_to_non_nullable
               as String,
       confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
+          ? _self.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
       currentInfoStep: null == currentInfoStep
-          ? _value.currentInfoStep
+          ? _self.currentInfoStep
           : currentInfoStep // ignore: cast_nullable_to_non_nullable
               as int,
       currentStepOneIndex: null == currentStepOneIndex
-          ? _value.currentStepOneIndex
+          ? _self.currentStepOneIndex
           : currentStepOneIndex // ignore: cast_nullable_to_non_nullable
               as int,
       currentStepTwoIndex: null == currentStepTwoIndex
-          ? _value.currentStepTwoIndex
+          ? _self.currentStepTwoIndex
           : currentStepTwoIndex // ignore: cast_nullable_to_non_nullable
               as int,
       currentStepThreeIndex: null == currentStepThreeIndex
-          ? _value.currentStepThreeIndex
+          ? _self.currentStepThreeIndex
           : currentStepThreeIndex // ignore: cast_nullable_to_non_nullable
               as int,
       currentPageIndex: null == currentPageIndex
-          ? _value.currentPageIndex
+          ? _self.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
               as int,
       goals: null == goals
-          ? _value.goals
+          ? _self.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as List<UserGoalsModel>,
       mealsNotLiked: null == mealsNotLiked
-          ? _value.mealsNotLiked
+          ? _self.mealsNotLiked
           : mealsNotLiked // ignore: cast_nullable_to_non_nullable
               as List<SelectionItemModel>,
       mealsLiked: null == mealsLiked
-          ? _value.mealsLiked
+          ? _self.mealsLiked
           : mealsLiked // ignore: cast_nullable_to_non_nullable
               as List<SelectionItemModel>,
       diet: null == diet
-          ? _value.diet
+          ? _self.diet
           : diet // ignore: cast_nullable_to_non_nullable
               as List<SelectionItemModel>,
       mealVariants: null == mealVariants
-          ? _value.mealVariants
+          ? _self.mealVariants
           : mealVariants // ignore: cast_nullable_to_non_nullable
               as List<SelectionItemModel>,
       noOfDailyMeals: null == noOfDailyMeals
-          ? _value.noOfDailyMeals
+          ? _self.noOfDailyMeals
           : noOfDailyMeals // ignore: cast_nullable_to_non_nullable
               as List<NoOfDailyMealsModel>,
       muscleFocusData: null == muscleFocusData
-          ? _value.muscleFocusData
+          ? _self.muscleFocusData
           : muscleFocusData // ignore: cast_nullable_to_non_nullable
               as List<BodyPartsModel>,
       workoutTypes: null == workoutTypes
-          ? _value.workoutTypes
+          ? _self.workoutTypes
           : workoutTypes // ignore: cast_nullable_to_non_nullable
               as List<SelectionItemModel>,
       equipments: null == equipments
-          ? _value.equipments
+          ? _self.equipments
           : equipments // ignore: cast_nullable_to_non_nullable
               as List<SelectionItemModel>,
       errMessage: null == errMessage
-          ? _value.errMessage
+          ? _self.errMessage
           : errMessage // ignore: cast_nullable_to_non_nullable
               as String,
       getGoalsState: null == getGoalsState
-          ? _value.getGoalsState
+          ? _self.getGoalsState
           : getGoalsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       changePasswordState: null == changePasswordState
-          ? _value.changePasswordState
+          ? _self.changePasswordState
           : changePasswordState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getNotLikedMealsState: null == getNotLikedMealsState
-          ? _value.getNotLikedMealsState
+          ? _self.getNotLikedMealsState
           : getNotLikedMealsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getLikedMealsState: null == getLikedMealsState
-          ? _value.getLikedMealsState
+          ? _self.getLikedMealsState
           : getLikedMealsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getDietOptionsState: null == getDietOptionsState
-          ? _value.getDietOptionsState
+          ? _self.getDietOptionsState
           : getDietOptionsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getMealVariantsState: null == getMealVariantsState
-          ? _value.getMealVariantsState
+          ? _self.getMealVariantsState
           : getMealVariantsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getNoOfDailyMealsState: null == getNoOfDailyMealsState
-          ? _value.getNoOfDailyMealsState
+          ? _self.getNoOfDailyMealsState
           : getNoOfDailyMealsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getMuscleFocusState: null == getMuscleFocusState
-          ? _value.getMuscleFocusState
+          ? _self.getMuscleFocusState
           : getMuscleFocusState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getWorkoutTypesState: null == getWorkoutTypesState
-          ? _value.getWorkoutTypesState
+          ? _self.getWorkoutTypesState
           : getWorkoutTypesState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getEquipmentsState: null == getEquipmentsState
-          ? _value.getEquipmentsState
+          ? _self.getEquipmentsState
           : getEquipmentsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       updatePersonalInfo: null == updatePersonalInfo
-          ? _value.updatePersonalInfo
+          ? _self.updatePersonalInfo
           : updatePersonalInfo // ignore: cast_nullable_to_non_nullable
               as RequestState,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of UpdateUserInfoState
@@ -275,229 +373,356 @@ class _$UpdateUserInfoStateCopyWithImpl<$Res, $Val extends UpdateUserInfoState>
   @override
   @pragma('vm:prefer-inline')
   $UserPersonalInfoModelCopyWith<$Res> get userInfo {
-    return $UserPersonalInfoModelCopyWith<$Res>(_value.userInfo, (value) {
-      return _then(_value.copyWith(userInfo: value) as $Val);
+    return $UserPersonalInfoModelCopyWith<$Res>(_self.userInfo, (value) {
+      return _then(_self.copyWith(userInfo: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$UpdateUserInfoStateImplCopyWith<$Res>
-    implements $UpdateUserInfoStateCopyWith<$Res> {
-  factory _$$UpdateUserInfoStateImplCopyWith(_$UpdateUserInfoStateImpl value,
-          $Res Function(_$UpdateUserInfoStateImpl) then) =
-      __$$UpdateUserInfoStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {UserPersonalInfoModel userInfo,
-      String oldPassword,
-      String newPassword,
-      String confirmPassword,
-      int currentInfoStep,
-      int currentStepOneIndex,
-      int currentStepTwoIndex,
-      int currentStepThreeIndex,
-      int currentPageIndex,
-      List<UserGoalsModel> goals,
-      List<SelectionItemModel> mealsNotLiked,
-      List<SelectionItemModel> mealsLiked,
-      List<SelectionItemModel> diet,
-      List<SelectionItemModel> mealVariants,
-      List<NoOfDailyMealsModel> noOfDailyMeals,
-      List<BodyPartsModel> muscleFocusData,
-      List<SelectionItemModel> workoutTypes,
-      List<SelectionItemModel> equipments,
-      String errMessage,
-      RequestState getGoalsState,
-      RequestState changePasswordState,
-      RequestState getNotLikedMealsState,
-      RequestState getLikedMealsState,
-      RequestState getDietOptionsState,
-      RequestState getMealVariantsState,
-      RequestState getNoOfDailyMealsState,
-      RequestState getMuscleFocusState,
-      RequestState getWorkoutTypesState,
-      RequestState getEquipmentsState,
-      RequestState updatePersonalInfo});
+/// Adds pattern-matching-related methods to [UpdateUserInfoState].
+extension UpdateUserInfoStatePatterns on UpdateUserInfoState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $UserPersonalInfoModelCopyWith<$Res> get userInfo;
-}
-
-/// @nodoc
-class __$$UpdateUserInfoStateImplCopyWithImpl<$Res>
-    extends _$UpdateUserInfoStateCopyWithImpl<$Res, _$UpdateUserInfoStateImpl>
-    implements _$$UpdateUserInfoStateImplCopyWith<$Res> {
-  __$$UpdateUserInfoStateImplCopyWithImpl(_$UpdateUserInfoStateImpl _value,
-      $Res Function(_$UpdateUserInfoStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of UpdateUserInfoState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userInfo = null,
-    Object? oldPassword = null,
-    Object? newPassword = null,
-    Object? confirmPassword = null,
-    Object? currentInfoStep = null,
-    Object? currentStepOneIndex = null,
-    Object? currentStepTwoIndex = null,
-    Object? currentStepThreeIndex = null,
-    Object? currentPageIndex = null,
-    Object? goals = null,
-    Object? mealsNotLiked = null,
-    Object? mealsLiked = null,
-    Object? diet = null,
-    Object? mealVariants = null,
-    Object? noOfDailyMeals = null,
-    Object? muscleFocusData = null,
-    Object? workoutTypes = null,
-    Object? equipments = null,
-    Object? errMessage = null,
-    Object? getGoalsState = null,
-    Object? changePasswordState = null,
-    Object? getNotLikedMealsState = null,
-    Object? getLikedMealsState = null,
-    Object? getDietOptionsState = null,
-    Object? getMealVariantsState = null,
-    Object? getNoOfDailyMealsState = null,
-    Object? getMuscleFocusState = null,
-    Object? getWorkoutTypesState = null,
-    Object? getEquipmentsState = null,
-    Object? updatePersonalInfo = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UpdateUserInfoState value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$UpdateUserInfoStateImpl(
-      userInfo: null == userInfo
-          ? _value.userInfo
-          : userInfo // ignore: cast_nullable_to_non_nullable
-              as UserPersonalInfoModel,
-      oldPassword: null == oldPassword
-          ? _value.oldPassword
-          : oldPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      currentInfoStep: null == currentInfoStep
-          ? _value.currentInfoStep
-          : currentInfoStep // ignore: cast_nullable_to_non_nullable
-              as int,
-      currentStepOneIndex: null == currentStepOneIndex
-          ? _value.currentStepOneIndex
-          : currentStepOneIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      currentStepTwoIndex: null == currentStepTwoIndex
-          ? _value.currentStepTwoIndex
-          : currentStepTwoIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      currentStepThreeIndex: null == currentStepThreeIndex
-          ? _value.currentStepThreeIndex
-          : currentStepThreeIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      currentPageIndex: null == currentPageIndex
-          ? _value.currentPageIndex
-          : currentPageIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      goals: null == goals
-          ? _value._goals
-          : goals // ignore: cast_nullable_to_non_nullable
-              as List<UserGoalsModel>,
-      mealsNotLiked: null == mealsNotLiked
-          ? _value._mealsNotLiked
-          : mealsNotLiked // ignore: cast_nullable_to_non_nullable
-              as List<SelectionItemModel>,
-      mealsLiked: null == mealsLiked
-          ? _value._mealsLiked
-          : mealsLiked // ignore: cast_nullable_to_non_nullable
-              as List<SelectionItemModel>,
-      diet: null == diet
-          ? _value._diet
-          : diet // ignore: cast_nullable_to_non_nullable
-              as List<SelectionItemModel>,
-      mealVariants: null == mealVariants
-          ? _value._mealVariants
-          : mealVariants // ignore: cast_nullable_to_non_nullable
-              as List<SelectionItemModel>,
-      noOfDailyMeals: null == noOfDailyMeals
-          ? _value._noOfDailyMeals
-          : noOfDailyMeals // ignore: cast_nullable_to_non_nullable
-              as List<NoOfDailyMealsModel>,
-      muscleFocusData: null == muscleFocusData
-          ? _value._muscleFocusData
-          : muscleFocusData // ignore: cast_nullable_to_non_nullable
-              as List<BodyPartsModel>,
-      workoutTypes: null == workoutTypes
-          ? _value._workoutTypes
-          : workoutTypes // ignore: cast_nullable_to_non_nullable
-              as List<SelectionItemModel>,
-      equipments: null == equipments
-          ? _value._equipments
-          : equipments // ignore: cast_nullable_to_non_nullable
-              as List<SelectionItemModel>,
-      errMessage: null == errMessage
-          ? _value.errMessage
-          : errMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      getGoalsState: null == getGoalsState
-          ? _value.getGoalsState
-          : getGoalsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      changePasswordState: null == changePasswordState
-          ? _value.changePasswordState
-          : changePasswordState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getNotLikedMealsState: null == getNotLikedMealsState
-          ? _value.getNotLikedMealsState
-          : getNotLikedMealsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getLikedMealsState: null == getLikedMealsState
-          ? _value.getLikedMealsState
-          : getLikedMealsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getDietOptionsState: null == getDietOptionsState
-          ? _value.getDietOptionsState
-          : getDietOptionsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getMealVariantsState: null == getMealVariantsState
-          ? _value.getMealVariantsState
-          : getMealVariantsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getNoOfDailyMealsState: null == getNoOfDailyMealsState
-          ? _value.getNoOfDailyMealsState
-          : getNoOfDailyMealsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getMuscleFocusState: null == getMuscleFocusState
-          ? _value.getMuscleFocusState
-          : getMuscleFocusState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getWorkoutTypesState: null == getWorkoutTypesState
-          ? _value.getWorkoutTypesState
-          : getWorkoutTypesState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getEquipmentsState: null == getEquipmentsState
-          ? _value.getEquipmentsState
-          : getEquipmentsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      updatePersonalInfo: null == updatePersonalInfo
-          ? _value.updatePersonalInfo
-          : updatePersonalInfo // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserInfoState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UpdateUserInfoState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserInfoState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UpdateUserInfoState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserInfoState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            UserPersonalInfoModel userInfo,
+            String oldPassword,
+            String newPassword,
+            String confirmPassword,
+            int currentInfoStep,
+            int currentStepOneIndex,
+            int currentStepTwoIndex,
+            int currentStepThreeIndex,
+            int currentPageIndex,
+            List<UserGoalsModel> goals,
+            List<SelectionItemModel> mealsNotLiked,
+            List<SelectionItemModel> mealsLiked,
+            List<SelectionItemModel> diet,
+            List<SelectionItemModel> mealVariants,
+            List<NoOfDailyMealsModel> noOfDailyMeals,
+            List<BodyPartsModel> muscleFocusData,
+            List<SelectionItemModel> workoutTypes,
+            List<SelectionItemModel> equipments,
+            String errMessage,
+            RequestState getGoalsState,
+            RequestState changePasswordState,
+            RequestState getNotLikedMealsState,
+            RequestState getLikedMealsState,
+            RequestState getDietOptionsState,
+            RequestState getMealVariantsState,
+            RequestState getNoOfDailyMealsState,
+            RequestState getMuscleFocusState,
+            RequestState getWorkoutTypesState,
+            RequestState getEquipmentsState,
+            RequestState updatePersonalInfo)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserInfoState() when $default != null:
+        return $default(
+            _that.userInfo,
+            _that.oldPassword,
+            _that.newPassword,
+            _that.confirmPassword,
+            _that.currentInfoStep,
+            _that.currentStepOneIndex,
+            _that.currentStepTwoIndex,
+            _that.currentStepThreeIndex,
+            _that.currentPageIndex,
+            _that.goals,
+            _that.mealsNotLiked,
+            _that.mealsLiked,
+            _that.diet,
+            _that.mealVariants,
+            _that.noOfDailyMeals,
+            _that.muscleFocusData,
+            _that.workoutTypes,
+            _that.equipments,
+            _that.errMessage,
+            _that.getGoalsState,
+            _that.changePasswordState,
+            _that.getNotLikedMealsState,
+            _that.getLikedMealsState,
+            _that.getDietOptionsState,
+            _that.getMealVariantsState,
+            _that.getNoOfDailyMealsState,
+            _that.getMuscleFocusState,
+            _that.getWorkoutTypesState,
+            _that.getEquipmentsState,
+            _that.updatePersonalInfo);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            UserPersonalInfoModel userInfo,
+            String oldPassword,
+            String newPassword,
+            String confirmPassword,
+            int currentInfoStep,
+            int currentStepOneIndex,
+            int currentStepTwoIndex,
+            int currentStepThreeIndex,
+            int currentPageIndex,
+            List<UserGoalsModel> goals,
+            List<SelectionItemModel> mealsNotLiked,
+            List<SelectionItemModel> mealsLiked,
+            List<SelectionItemModel> diet,
+            List<SelectionItemModel> mealVariants,
+            List<NoOfDailyMealsModel> noOfDailyMeals,
+            List<BodyPartsModel> muscleFocusData,
+            List<SelectionItemModel> workoutTypes,
+            List<SelectionItemModel> equipments,
+            String errMessage,
+            RequestState getGoalsState,
+            RequestState changePasswordState,
+            RequestState getNotLikedMealsState,
+            RequestState getLikedMealsState,
+            RequestState getDietOptionsState,
+            RequestState getMealVariantsState,
+            RequestState getNoOfDailyMealsState,
+            RequestState getMuscleFocusState,
+            RequestState getWorkoutTypesState,
+            RequestState getEquipmentsState,
+            RequestState updatePersonalInfo)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserInfoState():
+        return $default(
+            _that.userInfo,
+            _that.oldPassword,
+            _that.newPassword,
+            _that.confirmPassword,
+            _that.currentInfoStep,
+            _that.currentStepOneIndex,
+            _that.currentStepTwoIndex,
+            _that.currentStepThreeIndex,
+            _that.currentPageIndex,
+            _that.goals,
+            _that.mealsNotLiked,
+            _that.mealsLiked,
+            _that.diet,
+            _that.mealVariants,
+            _that.noOfDailyMeals,
+            _that.muscleFocusData,
+            _that.workoutTypes,
+            _that.equipments,
+            _that.errMessage,
+            _that.getGoalsState,
+            _that.changePasswordState,
+            _that.getNotLikedMealsState,
+            _that.getLikedMealsState,
+            _that.getDietOptionsState,
+            _that.getMealVariantsState,
+            _that.getNoOfDailyMealsState,
+            _that.getMuscleFocusState,
+            _that.getWorkoutTypesState,
+            _that.getEquipmentsState,
+            _that.updatePersonalInfo);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            UserPersonalInfoModel userInfo,
+            String oldPassword,
+            String newPassword,
+            String confirmPassword,
+            int currentInfoStep,
+            int currentStepOneIndex,
+            int currentStepTwoIndex,
+            int currentStepThreeIndex,
+            int currentPageIndex,
+            List<UserGoalsModel> goals,
+            List<SelectionItemModel> mealsNotLiked,
+            List<SelectionItemModel> mealsLiked,
+            List<SelectionItemModel> diet,
+            List<SelectionItemModel> mealVariants,
+            List<NoOfDailyMealsModel> noOfDailyMeals,
+            List<BodyPartsModel> muscleFocusData,
+            List<SelectionItemModel> workoutTypes,
+            List<SelectionItemModel> equipments,
+            String errMessage,
+            RequestState getGoalsState,
+            RequestState changePasswordState,
+            RequestState getNotLikedMealsState,
+            RequestState getLikedMealsState,
+            RequestState getDietOptionsState,
+            RequestState getMealVariantsState,
+            RequestState getNoOfDailyMealsState,
+            RequestState getMuscleFocusState,
+            RequestState getWorkoutTypesState,
+            RequestState getEquipmentsState,
+            RequestState updatePersonalInfo)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserInfoState() when $default != null:
+        return $default(
+            _that.userInfo,
+            _that.oldPassword,
+            _that.newPassword,
+            _that.confirmPassword,
+            _that.currentInfoStep,
+            _that.currentStepOneIndex,
+            _that.currentStepTwoIndex,
+            _that.currentStepThreeIndex,
+            _that.currentPageIndex,
+            _that.goals,
+            _that.mealsNotLiked,
+            _that.mealsLiked,
+            _that.diet,
+            _that.mealVariants,
+            _that.noOfDailyMeals,
+            _that.muscleFocusData,
+            _that.workoutTypes,
+            _that.equipments,
+            _that.errMessage,
+            _that.getGoalsState,
+            _that.changePasswordState,
+            _that.getNotLikedMealsState,
+            _that.getLikedMealsState,
+            _that.getDietOptionsState,
+            _that.getMealVariantsState,
+            _that.getNoOfDailyMealsState,
+            _that.getMuscleFocusState,
+            _that.getWorkoutTypesState,
+            _that.getEquipmentsState,
+            _that.updatePersonalInfo);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$UpdateUserInfoStateImpl implements _UpdateUserInfoState {
-  const _$UpdateUserInfoStateImpl(
+class _UpdateUserInfoState implements UpdateUserInfoState {
+  const _UpdateUserInfoState(
       {required this.userInfo,
       this.oldPassword = "",
       this.newPassword = "",
@@ -682,16 +907,20 @@ class _$UpdateUserInfoStateImpl implements _UpdateUserInfoState {
   @JsonKey()
   final RequestState updatePersonalInfo;
 
+  /// Create a copy of UpdateUserInfoState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'UpdateUserInfoState(userInfo: $userInfo, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, currentInfoStep: $currentInfoStep, currentStepOneIndex: $currentStepOneIndex, currentStepTwoIndex: $currentStepTwoIndex, currentStepThreeIndex: $currentStepThreeIndex, currentPageIndex: $currentPageIndex, goals: $goals, mealsNotLiked: $mealsNotLiked, mealsLiked: $mealsLiked, diet: $diet, mealVariants: $mealVariants, noOfDailyMeals: $noOfDailyMeals, muscleFocusData: $muscleFocusData, workoutTypes: $workoutTypes, equipments: $equipments, errMessage: $errMessage, getGoalsState: $getGoalsState, changePasswordState: $changePasswordState, getNotLikedMealsState: $getNotLikedMealsState, getLikedMealsState: $getLikedMealsState, getDietOptionsState: $getDietOptionsState, getMealVariantsState: $getMealVariantsState, getNoOfDailyMealsState: $getNoOfDailyMealsState, getMuscleFocusState: $getMuscleFocusState, getWorkoutTypesState: $getWorkoutTypesState, getEquipmentsState: $getEquipmentsState, updatePersonalInfo: $updatePersonalInfo)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UpdateUserInfoStateCopyWith<_UpdateUserInfoState> get copyWith =>
+      __$UpdateUserInfoStateCopyWithImpl<_UpdateUserInfoState>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateUserInfoStateImpl &&
+            other is _UpdateUserInfoState &&
             (identical(other.userInfo, userInfo) ||
                 other.userInfo == userInfo) &&
             (identical(other.oldPassword, oldPassword) ||
@@ -787,114 +1016,233 @@ class _$UpdateUserInfoStateImpl implements _UpdateUserInfoState {
         updatePersonalInfo
       ]);
 
+  @override
+  String toString() {
+    return 'UpdateUserInfoState(userInfo: $userInfo, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, currentInfoStep: $currentInfoStep, currentStepOneIndex: $currentStepOneIndex, currentStepTwoIndex: $currentStepTwoIndex, currentStepThreeIndex: $currentStepThreeIndex, currentPageIndex: $currentPageIndex, goals: $goals, mealsNotLiked: $mealsNotLiked, mealsLiked: $mealsLiked, diet: $diet, mealVariants: $mealVariants, noOfDailyMeals: $noOfDailyMeals, muscleFocusData: $muscleFocusData, workoutTypes: $workoutTypes, equipments: $equipments, errMessage: $errMessage, getGoalsState: $getGoalsState, changePasswordState: $changePasswordState, getNotLikedMealsState: $getNotLikedMealsState, getLikedMealsState: $getLikedMealsState, getDietOptionsState: $getDietOptionsState, getMealVariantsState: $getMealVariantsState, getNoOfDailyMealsState: $getNoOfDailyMealsState, getMuscleFocusState: $getMuscleFocusState, getWorkoutTypesState: $getWorkoutTypesState, getEquipmentsState: $getEquipmentsState, updatePersonalInfo: $updatePersonalInfo)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$UpdateUserInfoStateCopyWith<$Res>
+    implements $UpdateUserInfoStateCopyWith<$Res> {
+  factory _$UpdateUserInfoStateCopyWith(_UpdateUserInfoState value,
+          $Res Function(_UpdateUserInfoState) _then) =
+      __$UpdateUserInfoStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {UserPersonalInfoModel userInfo,
+      String oldPassword,
+      String newPassword,
+      String confirmPassword,
+      int currentInfoStep,
+      int currentStepOneIndex,
+      int currentStepTwoIndex,
+      int currentStepThreeIndex,
+      int currentPageIndex,
+      List<UserGoalsModel> goals,
+      List<SelectionItemModel> mealsNotLiked,
+      List<SelectionItemModel> mealsLiked,
+      List<SelectionItemModel> diet,
+      List<SelectionItemModel> mealVariants,
+      List<NoOfDailyMealsModel> noOfDailyMeals,
+      List<BodyPartsModel> muscleFocusData,
+      List<SelectionItemModel> workoutTypes,
+      List<SelectionItemModel> equipments,
+      String errMessage,
+      RequestState getGoalsState,
+      RequestState changePasswordState,
+      RequestState getNotLikedMealsState,
+      RequestState getLikedMealsState,
+      RequestState getDietOptionsState,
+      RequestState getMealVariantsState,
+      RequestState getNoOfDailyMealsState,
+      RequestState getMuscleFocusState,
+      RequestState getWorkoutTypesState,
+      RequestState getEquipmentsState,
+      RequestState updatePersonalInfo});
+
+  @override
+  $UserPersonalInfoModelCopyWith<$Res> get userInfo;
+}
+
+/// @nodoc
+class __$UpdateUserInfoStateCopyWithImpl<$Res>
+    implements _$UpdateUserInfoStateCopyWith<$Res> {
+  __$UpdateUserInfoStateCopyWithImpl(this._self, this._then);
+
+  final _UpdateUserInfoState _self;
+  final $Res Function(_UpdateUserInfoState) _then;
+
   /// Create a copy of UpdateUserInfoState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateUserInfoStateImplCopyWith<_$UpdateUserInfoStateImpl> get copyWith =>
-      __$$UpdateUserInfoStateImplCopyWithImpl<_$UpdateUserInfoStateImpl>(
-          this, _$identity);
-}
-
-abstract class _UpdateUserInfoState implements UpdateUserInfoState {
-  const factory _UpdateUserInfoState(
-      {required final UserPersonalInfoModel userInfo,
-      final String oldPassword,
-      final String newPassword,
-      final String confirmPassword,
-      final int currentInfoStep,
-      final int currentStepOneIndex,
-      final int currentStepTwoIndex,
-      final int currentStepThreeIndex,
-      final int currentPageIndex,
-      final List<UserGoalsModel> goals,
-      final List<SelectionItemModel> mealsNotLiked,
-      final List<SelectionItemModel> mealsLiked,
-      final List<SelectionItemModel> diet,
-      final List<SelectionItemModel> mealVariants,
-      final List<NoOfDailyMealsModel> noOfDailyMeals,
-      final List<BodyPartsModel> muscleFocusData,
-      final List<SelectionItemModel> workoutTypes,
-      final List<SelectionItemModel> equipments,
-      final String errMessage,
-      final RequestState getGoalsState,
-      final RequestState changePasswordState,
-      final RequestState getNotLikedMealsState,
-      final RequestState getLikedMealsState,
-      final RequestState getDietOptionsState,
-      final RequestState getMealVariantsState,
-      final RequestState getNoOfDailyMealsState,
-      final RequestState getMuscleFocusState,
-      final RequestState getWorkoutTypesState,
-      final RequestState getEquipmentsState,
-      final RequestState updatePersonalInfo}) = _$UpdateUserInfoStateImpl;
-
-  @override
-  UserPersonalInfoModel get userInfo;
-  @override
-  String get oldPassword;
-  @override
-  String get newPassword;
-  @override
-  String get confirmPassword;
-  @override
-  int get currentInfoStep;
-  @override
-  int get currentStepOneIndex;
-  @override
-  int get currentStepTwoIndex;
-  @override
-  int get currentStepThreeIndex;
-  @override
-  int get currentPageIndex;
-  @override
-  List<UserGoalsModel> get goals;
-  @override
-  List<SelectionItemModel> get mealsNotLiked;
-  @override
-  List<SelectionItemModel> get mealsLiked;
-  @override
-  List<SelectionItemModel> get diet;
-  @override
-  List<SelectionItemModel> get mealVariants;
-  @override
-  List<NoOfDailyMealsModel> get noOfDailyMeals;
-  @override
-  List<BodyPartsModel> get muscleFocusData;
-  @override
-  List<SelectionItemModel> get workoutTypes;
-  @override
-  List<SelectionItemModel> get equipments;
-  @override
-  String get errMessage;
-  @override
-  RequestState get getGoalsState;
-  @override
-  RequestState get changePasswordState;
-  @override
-  RequestState get getNotLikedMealsState;
-  @override
-  RequestState get getLikedMealsState;
-  @override
-  RequestState get getDietOptionsState;
-  @override
-  RequestState get getMealVariantsState;
-  @override
-  RequestState get getNoOfDailyMealsState;
-  @override
-  RequestState get getMuscleFocusState;
-  @override
-  RequestState get getWorkoutTypesState;
-  @override
-  RequestState get getEquipmentsState;
-  @override
-  RequestState get updatePersonalInfo;
+  $Res call({
+    Object? userInfo = null,
+    Object? oldPassword = null,
+    Object? newPassword = null,
+    Object? confirmPassword = null,
+    Object? currentInfoStep = null,
+    Object? currentStepOneIndex = null,
+    Object? currentStepTwoIndex = null,
+    Object? currentStepThreeIndex = null,
+    Object? currentPageIndex = null,
+    Object? goals = null,
+    Object? mealsNotLiked = null,
+    Object? mealsLiked = null,
+    Object? diet = null,
+    Object? mealVariants = null,
+    Object? noOfDailyMeals = null,
+    Object? muscleFocusData = null,
+    Object? workoutTypes = null,
+    Object? equipments = null,
+    Object? errMessage = null,
+    Object? getGoalsState = null,
+    Object? changePasswordState = null,
+    Object? getNotLikedMealsState = null,
+    Object? getLikedMealsState = null,
+    Object? getDietOptionsState = null,
+    Object? getMealVariantsState = null,
+    Object? getNoOfDailyMealsState = null,
+    Object? getMuscleFocusState = null,
+    Object? getWorkoutTypesState = null,
+    Object? getEquipmentsState = null,
+    Object? updatePersonalInfo = null,
+  }) {
+    return _then(_UpdateUserInfoState(
+      userInfo: null == userInfo
+          ? _self.userInfo
+          : userInfo // ignore: cast_nullable_to_non_nullable
+              as UserPersonalInfoModel,
+      oldPassword: null == oldPassword
+          ? _self.oldPassword
+          : oldPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      newPassword: null == newPassword
+          ? _self.newPassword
+          : newPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _self.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      currentInfoStep: null == currentInfoStep
+          ? _self.currentInfoStep
+          : currentInfoStep // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepOneIndex: null == currentStepOneIndex
+          ? _self.currentStepOneIndex
+          : currentStepOneIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepTwoIndex: null == currentStepTwoIndex
+          ? _self.currentStepTwoIndex
+          : currentStepTwoIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentStepThreeIndex: null == currentStepThreeIndex
+          ? _self.currentStepThreeIndex
+          : currentStepThreeIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentPageIndex: null == currentPageIndex
+          ? _self.currentPageIndex
+          : currentPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      goals: null == goals
+          ? _self._goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as List<UserGoalsModel>,
+      mealsNotLiked: null == mealsNotLiked
+          ? _self._mealsNotLiked
+          : mealsNotLiked // ignore: cast_nullable_to_non_nullable
+              as List<SelectionItemModel>,
+      mealsLiked: null == mealsLiked
+          ? _self._mealsLiked
+          : mealsLiked // ignore: cast_nullable_to_non_nullable
+              as List<SelectionItemModel>,
+      diet: null == diet
+          ? _self._diet
+          : diet // ignore: cast_nullable_to_non_nullable
+              as List<SelectionItemModel>,
+      mealVariants: null == mealVariants
+          ? _self._mealVariants
+          : mealVariants // ignore: cast_nullable_to_non_nullable
+              as List<SelectionItemModel>,
+      noOfDailyMeals: null == noOfDailyMeals
+          ? _self._noOfDailyMeals
+          : noOfDailyMeals // ignore: cast_nullable_to_non_nullable
+              as List<NoOfDailyMealsModel>,
+      muscleFocusData: null == muscleFocusData
+          ? _self._muscleFocusData
+          : muscleFocusData // ignore: cast_nullable_to_non_nullable
+              as List<BodyPartsModel>,
+      workoutTypes: null == workoutTypes
+          ? _self._workoutTypes
+          : workoutTypes // ignore: cast_nullable_to_non_nullable
+              as List<SelectionItemModel>,
+      equipments: null == equipments
+          ? _self._equipments
+          : equipments // ignore: cast_nullable_to_non_nullable
+              as List<SelectionItemModel>,
+      errMessage: null == errMessage
+          ? _self.errMessage
+          : errMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      getGoalsState: null == getGoalsState
+          ? _self.getGoalsState
+          : getGoalsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      changePasswordState: null == changePasswordState
+          ? _self.changePasswordState
+          : changePasswordState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getNotLikedMealsState: null == getNotLikedMealsState
+          ? _self.getNotLikedMealsState
+          : getNotLikedMealsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getLikedMealsState: null == getLikedMealsState
+          ? _self.getLikedMealsState
+          : getLikedMealsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getDietOptionsState: null == getDietOptionsState
+          ? _self.getDietOptionsState
+          : getDietOptionsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getMealVariantsState: null == getMealVariantsState
+          ? _self.getMealVariantsState
+          : getMealVariantsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getNoOfDailyMealsState: null == getNoOfDailyMealsState
+          ? _self.getNoOfDailyMealsState
+          : getNoOfDailyMealsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getMuscleFocusState: null == getMuscleFocusState
+          ? _self.getMuscleFocusState
+          : getMuscleFocusState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getWorkoutTypesState: null == getWorkoutTypesState
+          ? _self.getWorkoutTypesState
+          : getWorkoutTypesState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getEquipmentsState: null == getEquipmentsState
+          ? _self.getEquipmentsState
+          : getEquipmentsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      updatePersonalInfo: null == updatePersonalInfo
+          ? _self.updatePersonalInfo
+          : updatePersonalInfo // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+    ));
+  }
 
   /// Create a copy of UpdateUserInfoState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateUserInfoStateImplCopyWith<_$UpdateUserInfoStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $UserPersonalInfoModelCopyWith<$Res> get userInfo {
+    return $UserPersonalInfoModelCopyWith<$Res>(_self.userInfo, (value) {
+      return _then(_self.copyWith(userInfo: value));
+    });
+  }
 }
+
+// dart format on

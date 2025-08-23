@@ -6,7 +6,7 @@ part 'meal_plan_model.g.dart';
 
 
 @freezed
-class MealPlanModel with _$MealPlanModel {
+abstract class MealPlanModel with _$MealPlanModel {
   const factory MealPlanModel({
     required int id,
     required String timeFrame,
@@ -20,7 +20,7 @@ class MealPlanModel with _$MealPlanModel {
 }
 
 @freezed
-class Week with _$Week {
+abstract class Week with _$Week {
   const factory Week({
     required Day Monday,
     required Day Tuesday,
@@ -35,7 +35,7 @@ class Week with _$Week {
 }
 
 @freezed
-class Day with _$Day {
+abstract class Day with _$Day {
   const factory Day({
     required List<Meal> meals,
     required Nutrients nutrients,
@@ -45,7 +45,7 @@ class Day with _$Day {
 }
 
 @freezed
-class Meal with _$Meal {
+abstract class Meal with _$Meal {
   const factory Meal({
     required int id,
     required String recipe_id,
@@ -60,7 +60,7 @@ class Meal with _$Meal {
 }
 
 @freezed
-class Nutrients with _$Nutrients {
+abstract class Nutrients with _$Nutrients {
   const factory Nutrients({
     required double calories,
     required double protein,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -22,9 +23,9 @@ import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_weig
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_work_types.dart';
 
 class PresonalInfoLayoutScreen extends StatefulWidget {
-  const PresonalInfoLayoutScreen({super.key});
-  static const route = '/PresonalInfoLayoutScreen';
-
+  const PresonalInfoLayoutScreen({super.key, required this.isEditingProfile});
+  static const routeWzExtra = '/PresonalInfoLayoutScreen';
+  final bool isEditingProfile;
   @override
   State<PresonalInfoLayoutScreen> createState() => _PresonalInfoLayoutScreenState();
 }
@@ -56,7 +57,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     super.initState();
   }
 
-  final _personalInfoPages = [
+   List<Widget> get _personalInfoPages => [
     const UserInfoGender(), //0
     const UserInfoAge(), //1
     const UserInfoHeight(), //2
@@ -78,7 +79,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     const UserInfoWorkTypesOrLocation(), //13
 
     ///
-    const UserInfoEquipmentScreen(), //14
+    UserInfoEquipmentScreen(isEditMode: widget.isEditingProfile), //14
   ];
 
   _calculateStep(int index) {
@@ -121,11 +122,23 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
           automaticallyImplyLeading: false,
           leading: ValueListenableBuilder(
             valueListenable: currentPAge,
-            builder: (context, value, child) =>
-                AnimatedScale(scale: value > 0 ? 1 : 0, duration: Durations.short4, child: child!),
-            child: IconButton(
-              onPressed: () => cubit.previousPage(),
-              icon: const Icon(Icons.arrow_back),
+            builder: (context, value, child) => AnimatedScale(
+              scale: widget.isEditingProfile
+                  ? 1
+                  : value > 0
+                      ? 1
+                      : 0,
+              duration: Durations.short4,
+              child: IconButton(
+                onPressed: () {
+                  if (widget.isEditingProfile && value == 0) {
+                    context.pop();
+                  } else {
+                    cubit.previousPage();
+                  }
+                },
+                icon: const Icon(Icons.arrow_back),
+              ),
             ),
           ),
           title: Text(

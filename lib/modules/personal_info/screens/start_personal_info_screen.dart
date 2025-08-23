@@ -63,7 +63,7 @@ class StartPersonalInfoScreen extends StatelessWidget {
                   // start setup button
                   CustomElevatedButton(
                     text: L10n.tr().start,
-                    onPressed: () => context.push(PresonalInfoLayoutScreen.route),
+                    onPressed: () => context.push(PresonalInfoLayoutScreen.routeWzExtra),
                   ),
         
                   const SizedBox(height: 10),

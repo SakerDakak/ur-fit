@@ -15,8 +15,9 @@ import 'package:urfit/modules/subscription_module/data/models/package_model.dart
 import '../../../core/presentation/views/widgets/selection_item_model_list.dart';
 
 class UserInfoEquipmentScreen extends StatefulWidget {
-  const UserInfoEquipmentScreen({super.key});
+  const UserInfoEquipmentScreen({super.key, required this.isEditMode});
   static const route = '/EquipmentSelectionScreen';
+  final bool isEditMode;
   @override
   State<UserInfoEquipmentScreen> createState() => _UserInfoEquipmentScreenState();
 }
@@ -75,17 +76,21 @@ class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
                       return const Center(child: CircularProgressIndicator());
                     }
                     return CustomElevatedButton(
-                      text: L10n.tr().createMyPlan,
+                      text: widget.isEditMode? L10n.tr().save :  L10n.tr().createMyPlan,
                       padding: EdgeInsets.zero,
                       onPressed: state.userInfo.equipmentsIds.isEmpty
                           ? null
                           : () async {
-                            print(state.userInfo.toString());
+                              print(state.userInfo.toString());
                               if (!state.userInfo.isValid) {
                                 return Alerts.showToast(L10n.tr().pleaseMakeSureThatYouSelectedAllTheRequiredFields);
                               }
                               await cubit.sendUpdateData();
                               if (!context.mounted) return;
+                              if (widget.isEditMode) {
+                                Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
+                                return context.pop();
+                              }
                               final diet = {1, 2};
                               final excercise = {3, 4};
                               if (state.userInfo.selectedGaols.any((e) => diet.contains(e)) &&

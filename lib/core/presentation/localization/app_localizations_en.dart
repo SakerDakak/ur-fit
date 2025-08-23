@@ -9,6 +9,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get infoUpdatedSuccessfully => 'Information updated successfully';
+
+  @override
   String get injuriesOrDiseases => 'Injuries or Diseases';
 
   @override
@@ -985,4 +988,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trainingTimes => 'Exercise times';
+
+  @override
+  String get save => 'Save';
 }

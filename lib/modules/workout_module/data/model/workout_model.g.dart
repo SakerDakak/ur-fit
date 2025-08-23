@@ -6,8 +6,7 @@ part of 'workout_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WorkoutPlanImpl _$$WorkoutPlanImplFromJson(Map<String, dynamic> json) =>
-    _$WorkoutPlanImpl(
+_WorkoutPlan _$WorkoutPlanFromJson(Map<String, dynamic> json) => _WorkoutPlan(
       id: (json['id'] as num).toInt(),
       userId: (json['user_id'] as num).toInt(),
       name: json['name'] as String?,
@@ -20,7 +19,7 @@ _$WorkoutPlanImpl _$$WorkoutPlanImplFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] as String,
     );
 
-Map<String, dynamic> _$$WorkoutPlanImplToJson(_$WorkoutPlanImpl instance) =>
+Map<String, dynamic> _$WorkoutPlanToJson(_WorkoutPlan instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
@@ -32,8 +31,7 @@ Map<String, dynamic> _$$WorkoutPlanImplToJson(_$WorkoutPlanImpl instance) =>
       'updated_at': instance.updatedAt,
     };
 
-_$WorkoutDayImpl _$$WorkoutDayImplFromJson(Map<String, dynamic> json) =>
-    _$WorkoutDayImpl(
+_WorkoutDay _$WorkoutDayFromJson(Map<String, dynamic> json) => _WorkoutDay(
       id: (json['id'] as num).toInt(),
       day: json['day'] as String,
       sets: (json['sets'] as num).toInt(),
@@ -47,7 +45,7 @@ _$WorkoutDayImpl _$$WorkoutDayImplFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] as String,
     );
 
-Map<String, dynamic> _$$WorkoutDayImplToJson(_$WorkoutDayImpl instance) =>
+Map<String, dynamic> _$WorkoutDayToJson(_WorkoutDay instance) =>
     <String, dynamic>{
       'id': instance.id,
       'day': instance.day,
@@ -60,8 +58,7 @@ Map<String, dynamic> _$$WorkoutDayImplToJson(_$WorkoutDayImpl instance) =>
       'updated_at': instance.updatedAt,
     };
 
-_$ExerciseImpl _$$ExerciseImplFromJson(Map<String, dynamic> json) =>
-    _$ExerciseImpl(
+_Exercise _$ExerciseFromJson(Map<String, dynamic> json) => _Exercise(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       bodyPart: json['body_part'] as String,
@@ -76,8 +73,7 @@ _$ExerciseImpl _$$ExerciseImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ExerciseImplToJson(_$ExerciseImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ExerciseToJson(_Exercise instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'body_part': instance.bodyPart,

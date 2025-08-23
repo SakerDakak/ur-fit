@@ -82,4 +82,15 @@ class SettingCubit extends Cubit<SettingState> {
           getStaticPageState: RequestState.success, staticPageModel: r));
     });
   }
+
+
+ Future deleteAccount() async {
+    emit(state.copyWith(deleteAccountState: RequestState.loading));
+    final result = await settingRepo.deleteAccount();
+    result.fold((l) {
+      emit(state.copyWith(deleteAccountState: RequestState.failure, errorMessage: l.toString()));
+    }, (r) {
+      emit(state.copyWith(deleteAccountState: RequestState.success, deleteAccountMessage: r));
+    });
+  }
 }

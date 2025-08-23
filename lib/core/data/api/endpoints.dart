@@ -17,6 +17,8 @@ class EndPoints {
   static const verifyEmailCode = "/password/reset/verify";
   static const forgetResetPassword = "/password/reset";
   static const checkVersion = "/version";
+  static const deleteAccount = '/api/deleteAccount';
+
 
   static const getUserTypes = "/register/user-types";
   static const register = "/api/register";

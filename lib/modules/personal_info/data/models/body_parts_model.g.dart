@@ -6,15 +6,14 @@ part of 'body_parts_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BodyPartsModelImpl _$$BodyPartsModelImplFromJson(Map<String, dynamic> json) =>
-    _$BodyPartsModelImpl(
+_BodyPartsModel _$BodyPartsModelFromJson(Map<String, dynamic> json) =>
+    _BodyPartsModel(
       key: json['key'] as String,
       value: json['value'] as String,
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$BodyPartsModelImplToJson(
-        _$BodyPartsModelImpl instance) =>
+Map<String, dynamic> _$BodyPartsModelToJson(_BodyPartsModel instance) =>
     <String, dynamic>{
       'key': instance.key,
       'value': instance.value,

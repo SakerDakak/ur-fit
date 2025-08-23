@@ -7,7 +7,7 @@ part 'user_personal_info_model.freezed.dart';
 part 'user_personal_info_model.g.dart';
 
 @Freezed(makeCollectionsUnmodifiable: false)
-class UserPersonalInfoModel with _$UserPersonalInfoModel {
+abstract class UserPersonalInfoModel with _$UserPersonalInfoModel {
   factory UserPersonalInfoModel({
     GenderEnum? gender,
     int? age,
@@ -32,6 +32,7 @@ class UserPersonalInfoModel with _$UserPersonalInfoModel {
 }
 
 class UserInfoRequest {
+  String? name;
   GenderEnum? gender;
   int? age;
   int? height;
@@ -50,27 +51,30 @@ class UserInfoRequest {
   int? mealVarietyLevel;
   int? weaklyTrainingCount;
 
-  UserInfoRequest(
-      {this.gender,
-      this.age,
-      this.height,
-      this.currentWeight,
-      this.selectedGaols = const {},
-      this.targetWeight,
-      this.dietId,
-      this.likedMealsIds = const {},
-      this.notLikedMealsIds = const {},
-      this.mealsVariantsId,
-      this.workoutTypesIds = const {},
-      this.bodyPartsIds = const {},
-      this.exerciseDayes = const {},
-      this.equipmentsIds = const {},
-      this.numOfDailyMeals,
-      this.mealVarietyLevel,
-      this.weaklyTrainingCount});
+  UserInfoRequest({
+    this.name,
+    this.gender,
+    this.age,
+    this.height,
+    this.currentWeight,
+    this.selectedGaols = const {},
+    this.targetWeight,
+    this.dietId,
+    this.likedMealsIds = const {},
+    this.notLikedMealsIds = const {},
+    this.mealsVariantsId,
+    this.workoutTypesIds = const {},
+    this.bodyPartsIds = const {},
+    this.exerciseDayes = const {},
+    this.equipmentsIds = const {},
+    this.numOfDailyMeals,
+    this.mealVarietyLevel,
+    this.weaklyTrainingCount,
+  });
 
   Map<String, dynamic> toJson() {
     return {
+      if (name != null) "name": name,
       "gender": gender?.name,
       "age": age?.toDouble(),
       "height": height,
@@ -91,6 +95,7 @@ class UserInfoRequest {
 
   UserInfoRequest.fromUserModel(UserModel user)
       : selectedGaols = user.goals?.map((goal) => goal.id).toSet() ?? {},
+        name = user.name,
         gender = user.gender,
         height = user.height,
         age = user.age,

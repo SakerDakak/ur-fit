@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,39 +9,91 @@ part of 'meals_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MealsState {
-  SearchRecipeModel get searchRecipeModel => throw _privateConstructorUsedError;
-  int get currentTypeIndex => throw _privateConstructorUsedError;
-  List<MealModel> get allMeals => throw _privateConstructorUsedError;
-  List<NutritionData> get nutritionData => throw _privateConstructorUsedError;
-  Recipe? get mealDetails => throw _privateConstructorUsedError;
-  num get gainedCalories => throw _privateConstructorUsedError;
-  num get gainedCarb => throw _privateConstructorUsedError;
-  num get gainedProtein => throw _privateConstructorUsedError;
-  List<MealPlanModel> get allPlans => throw _privateConstructorUsedError;
-  String get errMessage => throw _privateConstructorUsedError;
-  RequestState get getAllMealsState => throw _privateConstructorUsedError;
-  RequestState get getMealDetailsState => throw _privateConstructorUsedError;
-  RequestState get getMealPlansState => throw _privateConstructorUsedError;
+  SearchRecipeModel get searchRecipeModel;
+  int get currentTypeIndex;
+  List<MealModel> get allMeals;
+  List<NutritionData> get nutritionData;
+  Recipe? get mealDetails;
+  num get gainedCalories;
+  num get gainedCarb;
+  num get gainedProtein;
+  List<MealPlanModel> get allPlans;
+  String get errMessage;
+  RequestState get getAllMealsState;
+  RequestState get getMealDetailsState;
+  RequestState get getMealPlansState;
 
   /// Create a copy of MealsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MealsStateCopyWith<MealsState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$MealsStateCopyWithImpl<MealsState>(this as MealsState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MealsState &&
+            (identical(other.searchRecipeModel, searchRecipeModel) ||
+                other.searchRecipeModel == searchRecipeModel) &&
+            (identical(other.currentTypeIndex, currentTypeIndex) ||
+                other.currentTypeIndex == currentTypeIndex) &&
+            const DeepCollectionEquality().equals(other.allMeals, allMeals) &&
+            const DeepCollectionEquality()
+                .equals(other.nutritionData, nutritionData) &&
+            (identical(other.mealDetails, mealDetails) ||
+                other.mealDetails == mealDetails) &&
+            (identical(other.gainedCalories, gainedCalories) ||
+                other.gainedCalories == gainedCalories) &&
+            (identical(other.gainedCarb, gainedCarb) ||
+                other.gainedCarb == gainedCarb) &&
+            (identical(other.gainedProtein, gainedProtein) ||
+                other.gainedProtein == gainedProtein) &&
+            const DeepCollectionEquality().equals(other.allPlans, allPlans) &&
+            (identical(other.errMessage, errMessage) ||
+                other.errMessage == errMessage) &&
+            (identical(other.getAllMealsState, getAllMealsState) ||
+                other.getAllMealsState == getAllMealsState) &&
+            (identical(other.getMealDetailsState, getMealDetailsState) ||
+                other.getMealDetailsState == getMealDetailsState) &&
+            (identical(other.getMealPlansState, getMealPlansState) ||
+                other.getMealPlansState == getMealPlansState));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      searchRecipeModel,
+      currentTypeIndex,
+      const DeepCollectionEquality().hash(allMeals),
+      const DeepCollectionEquality().hash(nutritionData),
+      mealDetails,
+      gainedCalories,
+      gainedCarb,
+      gainedProtein,
+      const DeepCollectionEquality().hash(allPlans),
+      errMessage,
+      getAllMealsState,
+      getMealDetailsState,
+      getMealPlansState);
+
+  @override
+  String toString() {
+    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState)';
+  }
 }
 
 /// @nodoc
-abstract class $MealsStateCopyWith<$Res> {
+abstract mixin class $MealsStateCopyWith<$Res> {
   factory $MealsStateCopyWith(
-          MealsState value, $Res Function(MealsState) then) =
-      _$MealsStateCopyWithImpl<$Res, MealsState>;
+          MealsState value, $Res Function(MealsState) _then) =
+      _$MealsStateCopyWithImpl;
   @useResult
   $Res call(
       {SearchRecipeModel searchRecipeModel,
@@ -63,14 +115,11 @@ abstract class $MealsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MealsStateCopyWithImpl<$Res, $Val extends MealsState>
-    implements $MealsStateCopyWith<$Res> {
-  _$MealsStateCopyWithImpl(this._value, this._then);
+class _$MealsStateCopyWithImpl<$Res> implements $MealsStateCopyWith<$Res> {
+  _$MealsStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MealsState _self;
+  final $Res Function(MealsState) _then;
 
   /// Create a copy of MealsState
   /// with the given fields replaced by the non-null parameter values.
@@ -91,60 +140,60 @@ class _$MealsStateCopyWithImpl<$Res, $Val extends MealsState>
     Object? getMealDetailsState = null,
     Object? getMealPlansState = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       searchRecipeModel: null == searchRecipeModel
-          ? _value.searchRecipeModel
+          ? _self.searchRecipeModel
           : searchRecipeModel // ignore: cast_nullable_to_non_nullable
               as SearchRecipeModel,
       currentTypeIndex: null == currentTypeIndex
-          ? _value.currentTypeIndex
+          ? _self.currentTypeIndex
           : currentTypeIndex // ignore: cast_nullable_to_non_nullable
               as int,
       allMeals: null == allMeals
-          ? _value.allMeals
+          ? _self.allMeals
           : allMeals // ignore: cast_nullable_to_non_nullable
               as List<MealModel>,
       nutritionData: null == nutritionData
-          ? _value.nutritionData
+          ? _self.nutritionData
           : nutritionData // ignore: cast_nullable_to_non_nullable
               as List<NutritionData>,
       mealDetails: freezed == mealDetails
-          ? _value.mealDetails
+          ? _self.mealDetails
           : mealDetails // ignore: cast_nullable_to_non_nullable
               as Recipe?,
       gainedCalories: null == gainedCalories
-          ? _value.gainedCalories
+          ? _self.gainedCalories
           : gainedCalories // ignore: cast_nullable_to_non_nullable
               as num,
       gainedCarb: null == gainedCarb
-          ? _value.gainedCarb
+          ? _self.gainedCarb
           : gainedCarb // ignore: cast_nullable_to_non_nullable
               as num,
       gainedProtein: null == gainedProtein
-          ? _value.gainedProtein
+          ? _self.gainedProtein
           : gainedProtein // ignore: cast_nullable_to_non_nullable
               as num,
       allPlans: null == allPlans
-          ? _value.allPlans
+          ? _self.allPlans
           : allPlans // ignore: cast_nullable_to_non_nullable
               as List<MealPlanModel>,
       errMessage: null == errMessage
-          ? _value.errMessage
+          ? _self.errMessage
           : errMessage // ignore: cast_nullable_to_non_nullable
               as String,
       getAllMealsState: null == getAllMealsState
-          ? _value.getAllMealsState
+          ? _self.getAllMealsState
           : getAllMealsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getMealDetailsState: null == getMealDetailsState
-          ? _value.getMealDetailsState
+          ? _self.getMealDetailsState
           : getMealDetailsState // ignore: cast_nullable_to_non_nullable
               as RequestState,
       getMealPlansState: null == getMealPlansState
-          ? _value.getMealPlansState
+          ? _self.getMealPlansState
           : getMealPlansState // ignore: cast_nullable_to_non_nullable
               as RequestState,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of MealsState
@@ -152,8 +201,8 @@ class _$MealsStateCopyWithImpl<$Res, $Val extends MealsState>
   @override
   @pragma('vm:prefer-inline')
   $SearchRecipeModelCopyWith<$Res> get searchRecipeModel {
-    return $SearchRecipeModelCopyWith<$Res>(_value.searchRecipeModel, (value) {
-      return _then(_value.copyWith(searchRecipeModel: value) as $Val);
+    return $SearchRecipeModelCopyWith<$Res>(_self.searchRecipeModel, (value) {
+      return _then(_self.copyWith(searchRecipeModel: value));
     });
   }
 
@@ -162,133 +211,258 @@ class _$MealsStateCopyWithImpl<$Res, $Val extends MealsState>
   @override
   @pragma('vm:prefer-inline')
   $RecipeCopyWith<$Res>? get mealDetails {
-    if (_value.mealDetails == null) {
+    if (_self.mealDetails == null) {
       return null;
     }
 
-    return $RecipeCopyWith<$Res>(_value.mealDetails!, (value) {
-      return _then(_value.copyWith(mealDetails: value) as $Val);
+    return $RecipeCopyWith<$Res>(_self.mealDetails!, (value) {
+      return _then(_self.copyWith(mealDetails: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$MealsStateImplCopyWith<$Res>
-    implements $MealsStateCopyWith<$Res> {
-  factory _$$MealsStateImplCopyWith(
-          _$MealsStateImpl value, $Res Function(_$MealsStateImpl) then) =
-      __$$MealsStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {SearchRecipeModel searchRecipeModel,
-      int currentTypeIndex,
-      List<MealModel> allMeals,
-      List<NutritionData> nutritionData,
-      Recipe? mealDetails,
-      num gainedCalories,
-      num gainedCarb,
-      num gainedProtein,
-      List<MealPlanModel> allPlans,
-      String errMessage,
-      RequestState getAllMealsState,
-      RequestState getMealDetailsState,
-      RequestState getMealPlansState});
+/// Adds pattern-matching-related methods to [MealsState].
+extension MealsStatePatterns on MealsState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $SearchRecipeModelCopyWith<$Res> get searchRecipeModel;
-  @override
-  $RecipeCopyWith<$Res>? get mealDetails;
-}
-
-/// @nodoc
-class __$$MealsStateImplCopyWithImpl<$Res>
-    extends _$MealsStateCopyWithImpl<$Res, _$MealsStateImpl>
-    implements _$$MealsStateImplCopyWith<$Res> {
-  __$$MealsStateImplCopyWithImpl(
-      _$MealsStateImpl _value, $Res Function(_$MealsStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MealsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? searchRecipeModel = null,
-    Object? currentTypeIndex = null,
-    Object? allMeals = null,
-    Object? nutritionData = null,
-    Object? mealDetails = freezed,
-    Object? gainedCalories = null,
-    Object? gainedCarb = null,
-    Object? gainedProtein = null,
-    Object? allPlans = null,
-    Object? errMessage = null,
-    Object? getAllMealsState = null,
-    Object? getMealDetailsState = null,
-    Object? getMealPlansState = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MealsState value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$MealsStateImpl(
-      searchRecipeModel: null == searchRecipeModel
-          ? _value.searchRecipeModel
-          : searchRecipeModel // ignore: cast_nullable_to_non_nullable
-              as SearchRecipeModel,
-      currentTypeIndex: null == currentTypeIndex
-          ? _value.currentTypeIndex
-          : currentTypeIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      allMeals: null == allMeals
-          ? _value._allMeals
-          : allMeals // ignore: cast_nullable_to_non_nullable
-              as List<MealModel>,
-      nutritionData: null == nutritionData
-          ? _value._nutritionData
-          : nutritionData // ignore: cast_nullable_to_non_nullable
-              as List<NutritionData>,
-      mealDetails: freezed == mealDetails
-          ? _value.mealDetails
-          : mealDetails // ignore: cast_nullable_to_non_nullable
-              as Recipe?,
-      gainedCalories: null == gainedCalories
-          ? _value.gainedCalories
-          : gainedCalories // ignore: cast_nullable_to_non_nullable
-              as num,
-      gainedCarb: null == gainedCarb
-          ? _value.gainedCarb
-          : gainedCarb // ignore: cast_nullable_to_non_nullable
-              as num,
-      gainedProtein: null == gainedProtein
-          ? _value.gainedProtein
-          : gainedProtein // ignore: cast_nullable_to_non_nullable
-              as num,
-      allPlans: null == allPlans
-          ? _value._allPlans
-          : allPlans // ignore: cast_nullable_to_non_nullable
-              as List<MealPlanModel>,
-      errMessage: null == errMessage
-          ? _value.errMessage
-          : errMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      getAllMealsState: null == getAllMealsState
-          ? _value.getAllMealsState
-          : getAllMealsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getMealDetailsState: null == getMealDetailsState
-          ? _value.getMealDetailsState
-          : getMealDetailsState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      getMealPlansState: null == getMealPlansState
-          ? _value.getMealPlansState
-          : getMealPlansState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _MealsState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MealsState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealsState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MealsState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealsState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            SearchRecipeModel searchRecipeModel,
+            int currentTypeIndex,
+            List<MealModel> allMeals,
+            List<NutritionData> nutritionData,
+            Recipe? mealDetails,
+            num gainedCalories,
+            num gainedCarb,
+            num gainedProtein,
+            List<MealPlanModel> allPlans,
+            String errMessage,
+            RequestState getAllMealsState,
+            RequestState getMealDetailsState,
+            RequestState getMealPlansState)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MealsState() when $default != null:
+        return $default(
+            _that.searchRecipeModel,
+            _that.currentTypeIndex,
+            _that.allMeals,
+            _that.nutritionData,
+            _that.mealDetails,
+            _that.gainedCalories,
+            _that.gainedCarb,
+            _that.gainedProtein,
+            _that.allPlans,
+            _that.errMessage,
+            _that.getAllMealsState,
+            _that.getMealDetailsState,
+            _that.getMealPlansState);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            SearchRecipeModel searchRecipeModel,
+            int currentTypeIndex,
+            List<MealModel> allMeals,
+            List<NutritionData> nutritionData,
+            Recipe? mealDetails,
+            num gainedCalories,
+            num gainedCarb,
+            num gainedProtein,
+            List<MealPlanModel> allPlans,
+            String errMessage,
+            RequestState getAllMealsState,
+            RequestState getMealDetailsState,
+            RequestState getMealPlansState)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealsState():
+        return $default(
+            _that.searchRecipeModel,
+            _that.currentTypeIndex,
+            _that.allMeals,
+            _that.nutritionData,
+            _that.mealDetails,
+            _that.gainedCalories,
+            _that.gainedCarb,
+            _that.gainedProtein,
+            _that.allPlans,
+            _that.errMessage,
+            _that.getAllMealsState,
+            _that.getMealDetailsState,
+            _that.getMealPlansState);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            SearchRecipeModel searchRecipeModel,
+            int currentTypeIndex,
+            List<MealModel> allMeals,
+            List<NutritionData> nutritionData,
+            Recipe? mealDetails,
+            num gainedCalories,
+            num gainedCarb,
+            num gainedProtein,
+            List<MealPlanModel> allPlans,
+            String errMessage,
+            RequestState getAllMealsState,
+            RequestState getMealDetailsState,
+            RequestState getMealPlansState)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealsState() when $default != null:
+        return $default(
+            _that.searchRecipeModel,
+            _that.currentTypeIndex,
+            _that.allMeals,
+            _that.nutritionData,
+            _that.mealDetails,
+            _that.gainedCalories,
+            _that.gainedCarb,
+            _that.gainedProtein,
+            _that.allPlans,
+            _that.errMessage,
+            _that.getAllMealsState,
+            _that.getMealDetailsState,
+            _that.getMealPlansState);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$MealsStateImpl implements _MealsState {
-  const _$MealsStateImpl(
+class _MealsState implements MealsState {
+  const _MealsState(
       {required this.searchRecipeModel,
       this.currentTypeIndex = 0,
       final List<MealModel> allMeals = const [],
@@ -363,16 +537,19 @@ class _$MealsStateImpl implements _MealsState {
   @JsonKey()
   final RequestState getMealPlansState;
 
+  /// Create a copy of MealsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MealsStateCopyWith<_MealsState> get copyWith =>
+      __$MealsStateCopyWithImpl<_MealsState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MealsStateImpl &&
+            other is _MealsState &&
             (identical(other.searchRecipeModel, searchRecipeModel) ||
                 other.searchRecipeModel == searchRecipeModel) &&
             (identical(other.currentTypeIndex, currentTypeIndex) ||
@@ -416,62 +593,146 @@ class _$MealsStateImpl implements _MealsState {
       getMealDetailsState,
       getMealPlansState);
 
+  @override
+  String toString() {
+    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MealsStateCopyWith<$Res>
+    implements $MealsStateCopyWith<$Res> {
+  factory _$MealsStateCopyWith(
+          _MealsState value, $Res Function(_MealsState) _then) =
+      __$MealsStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {SearchRecipeModel searchRecipeModel,
+      int currentTypeIndex,
+      List<MealModel> allMeals,
+      List<NutritionData> nutritionData,
+      Recipe? mealDetails,
+      num gainedCalories,
+      num gainedCarb,
+      num gainedProtein,
+      List<MealPlanModel> allPlans,
+      String errMessage,
+      RequestState getAllMealsState,
+      RequestState getMealDetailsState,
+      RequestState getMealPlansState});
+
+  @override
+  $SearchRecipeModelCopyWith<$Res> get searchRecipeModel;
+  @override
+  $RecipeCopyWith<$Res>? get mealDetails;
+}
+
+/// @nodoc
+class __$MealsStateCopyWithImpl<$Res> implements _$MealsStateCopyWith<$Res> {
+  __$MealsStateCopyWithImpl(this._self, this._then);
+
+  final _MealsState _self;
+  final $Res Function(_MealsState) _then;
+
   /// Create a copy of MealsState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MealsStateImplCopyWith<_$MealsStateImpl> get copyWith =>
-      __$$MealsStateImplCopyWithImpl<_$MealsStateImpl>(this, _$identity);
-}
-
-abstract class _MealsState implements MealsState {
-  const factory _MealsState(
-      {required final SearchRecipeModel searchRecipeModel,
-      final int currentTypeIndex,
-      final List<MealModel> allMeals,
-      final List<NutritionData> nutritionData,
-      final Recipe? mealDetails,
-      final num gainedCalories,
-      final num gainedCarb,
-      final num gainedProtein,
-      final List<MealPlanModel> allPlans,
-      final String errMessage,
-      final RequestState getAllMealsState,
-      final RequestState getMealDetailsState,
-      final RequestState getMealPlansState}) = _$MealsStateImpl;
-
-  @override
-  SearchRecipeModel get searchRecipeModel;
-  @override
-  int get currentTypeIndex;
-  @override
-  List<MealModel> get allMeals;
-  @override
-  List<NutritionData> get nutritionData;
-  @override
-  Recipe? get mealDetails;
-  @override
-  num get gainedCalories;
-  @override
-  num get gainedCarb;
-  @override
-  num get gainedProtein;
-  @override
-  List<MealPlanModel> get allPlans;
-  @override
-  String get errMessage;
-  @override
-  RequestState get getAllMealsState;
-  @override
-  RequestState get getMealDetailsState;
-  @override
-  RequestState get getMealPlansState;
+  $Res call({
+    Object? searchRecipeModel = null,
+    Object? currentTypeIndex = null,
+    Object? allMeals = null,
+    Object? nutritionData = null,
+    Object? mealDetails = freezed,
+    Object? gainedCalories = null,
+    Object? gainedCarb = null,
+    Object? gainedProtein = null,
+    Object? allPlans = null,
+    Object? errMessage = null,
+    Object? getAllMealsState = null,
+    Object? getMealDetailsState = null,
+    Object? getMealPlansState = null,
+  }) {
+    return _then(_MealsState(
+      searchRecipeModel: null == searchRecipeModel
+          ? _self.searchRecipeModel
+          : searchRecipeModel // ignore: cast_nullable_to_non_nullable
+              as SearchRecipeModel,
+      currentTypeIndex: null == currentTypeIndex
+          ? _self.currentTypeIndex
+          : currentTypeIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      allMeals: null == allMeals
+          ? _self._allMeals
+          : allMeals // ignore: cast_nullable_to_non_nullable
+              as List<MealModel>,
+      nutritionData: null == nutritionData
+          ? _self._nutritionData
+          : nutritionData // ignore: cast_nullable_to_non_nullable
+              as List<NutritionData>,
+      mealDetails: freezed == mealDetails
+          ? _self.mealDetails
+          : mealDetails // ignore: cast_nullable_to_non_nullable
+              as Recipe?,
+      gainedCalories: null == gainedCalories
+          ? _self.gainedCalories
+          : gainedCalories // ignore: cast_nullable_to_non_nullable
+              as num,
+      gainedCarb: null == gainedCarb
+          ? _self.gainedCarb
+          : gainedCarb // ignore: cast_nullable_to_non_nullable
+              as num,
+      gainedProtein: null == gainedProtein
+          ? _self.gainedProtein
+          : gainedProtein // ignore: cast_nullable_to_non_nullable
+              as num,
+      allPlans: null == allPlans
+          ? _self._allPlans
+          : allPlans // ignore: cast_nullable_to_non_nullable
+              as List<MealPlanModel>,
+      errMessage: null == errMessage
+          ? _self.errMessage
+          : errMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      getAllMealsState: null == getAllMealsState
+          ? _self.getAllMealsState
+          : getAllMealsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getMealDetailsState: null == getMealDetailsState
+          ? _self.getMealDetailsState
+          : getMealDetailsState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+      getMealPlansState: null == getMealPlansState
+          ? _self.getMealPlansState
+          : getMealPlansState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+    ));
+  }
 
   /// Create a copy of MealsState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MealsStateImplCopyWith<_$MealsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $SearchRecipeModelCopyWith<$Res> get searchRecipeModel {
+    return $SearchRecipeModelCopyWith<$Res>(_self.searchRecipeModel, (value) {
+      return _then(_self.copyWith(searchRecipeModel: value));
+    });
+  }
+
+  /// Create a copy of MealsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RecipeCopyWith<$Res>? get mealDetails {
+    if (_self.mealDetails == null) {
+      return null;
+    }
+
+    return $RecipeCopyWith<$Res>(_self.mealDetails!, (value) {
+      return _then(_self.copyWith(mealDetails: value));
+    });
+  }
 }
+
+// dart format on

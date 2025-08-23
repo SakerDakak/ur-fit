@@ -6,7 +6,7 @@ part 'search_recipe_model.g.dart';
 
 
 @freezed
-class SearchRecipeModel with _$SearchRecipeModel {
+abstract class SearchRecipeModel with _$SearchRecipeModel {
   const factory SearchRecipeModel({
     String? query,
     String? type,

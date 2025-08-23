@@ -1,7 +1,7 @@
 part of 'subscription_cubit.dart';
 
 @freezed
-class SubscriptionState with _$SubscriptionState {
+abstract class SubscriptionState with _$SubscriptionState {
   const factory SubscriptionState({
     @Default([]) List<PackageModel> packages,
     @Default(null) int? selectedPackage,

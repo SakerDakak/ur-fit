@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -8,17 +9,23 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_curve_slider.dart';
 
-class EditWeightBottomSheet extends StatelessWidget {
+class EditWeightBottomSheet extends StatefulWidget {
   const EditWeightBottomSheet({
     super.key,
   });
 
   @override
+  State<EditWeightBottomSheet> createState() => _EditWeightBottomSheetState();
+}
+
+class _EditWeightBottomSheetState extends State<EditWeightBottomSheet> {
+  var currentWeight = Session().currentUser?.currentWeight ?? 0;
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
+      padding: EdgeInsets.symmetric(
         horizontal: AppConst.kHorizontalPadding,
-        vertical: 15,
+        vertical: MediaQuery.paddingOf(context).bottom,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -100,7 +107,7 @@ class EditWeightBottomSheet extends StatelessWidget {
                       border: Border.all(color: Co.strockColor),
                     ),
                     child: Text(
-                      '75',
+                      currentWeight.toString(),
                       style: TStyle.semiBold_16.copyWith(
                         color: Co.selectedFont,
                       ),
@@ -124,9 +131,17 @@ class EditWeightBottomSheet extends StatelessWidget {
           CustomCurveSlider(
             minValue: 30,
             maxValue: 150,
+            initialValue: currentWeight.toDouble(),
             minIconSvgPath: Assets.iconsSkinnyBody,
             maxIconSvgPath: Assets.iconsFatBody,
-            onValueChanged: (value) {},
+            onValueChanged: (value) {
+              try {
+                currentWeight = value.toInt();
+              } catch (e) {
+                print(e);
+                //handle error
+              }
+            },
           ),
 
           const SizedBox(height: 25),
@@ -135,7 +150,13 @@ class EditWeightBottomSheet extends StatelessWidget {
           CustomElevatedButton(
             text: L10n.tr().confirm,
             padding: EdgeInsets.zero,
-            onPressed: () {},
+            onPressed: () {
+              if (currentWeight != Session().currentUser?.currentWeight) {
+                Navigator.pop(context, currentWeight);
+              } else {
+                Navigator.pop(context);
+              }
+            },
           ),
 
           const SizedBox(height: kBottomNavigationBarHeight),

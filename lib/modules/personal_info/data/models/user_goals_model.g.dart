@@ -6,9 +6,9 @@ part of 'user_goals_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GoalsSectionOneModelImpl _$$GoalsSectionOneModelImplFromJson(
+_GoalsSectionOneModel _$GoalsSectionOneModelFromJson(
         Map<String, dynamic> json) =>
-    _$GoalsSectionOneModelImpl(
+    _GoalsSectionOneModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String,
@@ -18,8 +18,8 @@ _$GoalsSectionOneModelImpl _$$GoalsSectionOneModelImplFromJson(
           _$GoalsSectionOneEnumEnumMap, json['sectionOneType']),
     );
 
-Map<String, dynamic> _$$GoalsSectionOneModelImplToJson(
-        _$GoalsSectionOneModelImpl instance) =>
+Map<String, dynamic> _$GoalsSectionOneModelToJson(
+        _GoalsSectionOneModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

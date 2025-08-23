@@ -5,15 +5,25 @@ import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/utils/loading_helper.dart';
+import 'package:urfit/di.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/edit_weight_bottom_sheet.dart';
+import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
+import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
 
-class CurrentWeightCard extends StatelessWidget {
+class CurrentWeightCard extends StatefulWidget {
   const CurrentWeightCard({super.key});
 
   @override
+  State<CurrentWeightCard> createState() => _CurrentWeightCardState();
+}
+
+class _CurrentWeightCardState extends State<CurrentWeightCard> {
+  var user = Session().currentUser;
+  @override
   Widget build(BuildContext context) {
-    final user = Session().currentUser;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -71,8 +81,8 @@ class CurrentWeightCard extends StatelessWidget {
     );
   }
 
-  void _editWeight(BuildContext context) {
-    showModalBottomSheet(
+  void _editWeight(BuildContext context) async {
+    final weight = await showModalBottomSheet<int>(
       backgroundColor: Co.whiteColor,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
@@ -83,6 +93,20 @@ class CurrentWeightCard extends StatelessWidget {
       context: context,
       builder: (context) => const EditWeightBottomSheet(),
     );
+    if (weight != null) {
+      LoadingHelper.startLoading();
+      final response = await di<PersonalInfoRepoImpl>().updatePersonalInfo(
+          personalInfoModel: UserInfoRequest.fromUserModel(Session().currentUser!.copyWith(currentWeight: weight)));
+      LoadingHelper.stopLoading();
+      response.fold(
+        (ifLeft) {},
+        (ifRight) {
+          Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
+          Session().setCurrentUser = ifRight;
+          setState(() => user = ifRight);
+        },
+      );
+    }
   }
 }
 

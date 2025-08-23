@@ -9,6 +9,9 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get infoUpdatedSuccessfully => 'تم تحديث المعلومات بنجاح';
+
+  @override
   String get injuriesOrDiseases => 'إصابات أو أمراض';
 
   @override
@@ -987,4 +990,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get trainingTimes => 'عدد التمارين';
+
+  @override
+  String get save => 'حفظ';
 }

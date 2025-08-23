@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,194 +9,36 @@ part of 'meal_plan_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 MealPlanModel _$MealPlanModelFromJson(Map<String, dynamic> json) {
   return _MealPlan.fromJson(json);
 }
 
 /// @nodoc
 mixin _$MealPlanModel {
-  int get id => throw _privateConstructorUsedError;
-  String get timeFrame => throw _privateConstructorUsedError;
-  String get startDate => throw _privateConstructorUsedError;
-  String get endDate => throw _privateConstructorUsedError;
-  Week get week => throw _privateConstructorUsedError;
-
-  /// Serializes this MealPlanModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
+  String get timeFrame;
+  String get startDate;
+  String get endDate;
+  Week get week;
 
   /// Create a copy of MealPlanModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MealPlanModelCopyWith<MealPlanModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$MealPlanModelCopyWithImpl<MealPlanModel>(
+          this as MealPlanModel, _$identity);
 
-/// @nodoc
-abstract class $MealPlanModelCopyWith<$Res> {
-  factory $MealPlanModelCopyWith(
-          MealPlanModel value, $Res Function(MealPlanModel) then) =
-      _$MealPlanModelCopyWithImpl<$Res, MealPlanModel>;
-  @useResult
-  $Res call(
-      {int id, String timeFrame, String startDate, String endDate, Week week});
-
-  $WeekCopyWith<$Res> get week;
-}
-
-/// @nodoc
-class _$MealPlanModelCopyWithImpl<$Res, $Val extends MealPlanModel>
-    implements $MealPlanModelCopyWith<$Res> {
-  _$MealPlanModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MealPlanModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? timeFrame = null,
-    Object? startDate = null,
-    Object? endDate = null,
-    Object? week = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      timeFrame: null == timeFrame
-          ? _value.timeFrame
-          : timeFrame // ignore: cast_nullable_to_non_nullable
-              as String,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      week: null == week
-          ? _value.week
-          : week // ignore: cast_nullable_to_non_nullable
-              as Week,
-    ) as $Val);
-  }
-
-  /// Create a copy of MealPlanModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $WeekCopyWith<$Res> get week {
-    return $WeekCopyWith<$Res>(_value.week, (value) {
-      return _then(_value.copyWith(week: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$MealPlanImplCopyWith<$Res>
-    implements $MealPlanModelCopyWith<$Res> {
-  factory _$$MealPlanImplCopyWith(
-          _$MealPlanImpl value, $Res Function(_$MealPlanImpl) then) =
-      __$$MealPlanImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id, String timeFrame, String startDate, String endDate, Week week});
-
-  @override
-  $WeekCopyWith<$Res> get week;
-}
-
-/// @nodoc
-class __$$MealPlanImplCopyWithImpl<$Res>
-    extends _$MealPlanModelCopyWithImpl<$Res, _$MealPlanImpl>
-    implements _$$MealPlanImplCopyWith<$Res> {
-  __$$MealPlanImplCopyWithImpl(
-      _$MealPlanImpl _value, $Res Function(_$MealPlanImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MealPlanModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? timeFrame = null,
-    Object? startDate = null,
-    Object? endDate = null,
-    Object? week = null,
-  }) {
-    return _then(_$MealPlanImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      timeFrame: null == timeFrame
-          ? _value.timeFrame
-          : timeFrame // ignore: cast_nullable_to_non_nullable
-              as String,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      week: null == week
-          ? _value.week
-          : week // ignore: cast_nullable_to_non_nullable
-              as Week,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$MealPlanImpl implements _MealPlan {
-  const _$MealPlanImpl(
-      {required this.id,
-      required this.timeFrame,
-      required this.startDate,
-      required this.endDate,
-      required this.week});
-
-  factory _$MealPlanImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MealPlanImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String timeFrame;
-  @override
-  final String startDate;
-  @override
-  final String endDate;
-  @override
-  final Week week;
-
-  @override
-  String toString() {
-    return 'MealPlanModel(id: $id, timeFrame: $timeFrame, startDate: $startDate, endDate: $endDate, week: $week)';
-  }
+  /// Serializes this MealPlanModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MealPlanImpl &&
+            other is MealPlanModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.timeFrame, timeFrame) ||
                 other.timeFrame == timeFrame) &&
@@ -211,349 +53,399 @@ class _$MealPlanImpl implements _MealPlan {
   int get hashCode =>
       Object.hash(runtimeType, id, timeFrame, startDate, endDate, week);
 
-  /// Create a copy of MealPlanModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$MealPlanImplCopyWith<_$MealPlanImpl> get copyWith =>
-      __$$MealPlanImplCopyWithImpl<_$MealPlanImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MealPlanImplToJson(
-      this,
-    );
+  String toString() {
+    return 'MealPlanModel(id: $id, timeFrame: $timeFrame, startDate: $startDate, endDate: $endDate, week: $week)';
   }
 }
 
-abstract class _MealPlan implements MealPlanModel {
-  const factory _MealPlan(
-      {required final int id,
-      required final String timeFrame,
-      required final String startDate,
-      required final String endDate,
-      required final Week week}) = _$MealPlanImpl;
-
-  factory _MealPlan.fromJson(Map<String, dynamic> json) =
-      _$MealPlanImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get timeFrame;
-  @override
-  String get startDate;
-  @override
-  String get endDate;
-  @override
-  Week get week;
-
-  /// Create a copy of MealPlanModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MealPlanImplCopyWith<_$MealPlanImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Week _$WeekFromJson(Map<String, dynamic> json) {
-  return _Week.fromJson(json);
-}
-
 /// @nodoc
-mixin _$Week {
-  Day get Monday => throw _privateConstructorUsedError;
-  Day get Tuesday => throw _privateConstructorUsedError;
-  Day get Wednesday => throw _privateConstructorUsedError;
-  Day get Thursday => throw _privateConstructorUsedError;
-  Day get Friday => throw _privateConstructorUsedError;
-  Day get Saturday => throw _privateConstructorUsedError;
-  Day get Sunday => throw _privateConstructorUsedError;
-
-  /// Serializes this Week to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WeekCopyWith<Week> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WeekCopyWith<$Res> {
-  factory $WeekCopyWith(Week value, $Res Function(Week) then) =
-      _$WeekCopyWithImpl<$Res, Week>;
+abstract mixin class $MealPlanModelCopyWith<$Res> {
+  factory $MealPlanModelCopyWith(
+          MealPlanModel value, $Res Function(MealPlanModel) _then) =
+      _$MealPlanModelCopyWithImpl;
   @useResult
   $Res call(
-      {Day Monday,
-      Day Tuesday,
-      Day Wednesday,
-      Day Thursday,
-      Day Friday,
-      Day Saturday,
-      Day Sunday});
+      {int id, String timeFrame, String startDate, String endDate, Week week});
 
-  $DayCopyWith<$Res> get Monday;
-  $DayCopyWith<$Res> get Tuesday;
-  $DayCopyWith<$Res> get Wednesday;
-  $DayCopyWith<$Res> get Thursday;
-  $DayCopyWith<$Res> get Friday;
-  $DayCopyWith<$Res> get Saturday;
-  $DayCopyWith<$Res> get Sunday;
+  $WeekCopyWith<$Res> get week;
 }
 
 /// @nodoc
-class _$WeekCopyWithImpl<$Res, $Val extends Week>
-    implements $WeekCopyWith<$Res> {
-  _$WeekCopyWithImpl(this._value, this._then);
+class _$MealPlanModelCopyWithImpl<$Res>
+    implements $MealPlanModelCopyWith<$Res> {
+  _$MealPlanModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MealPlanModel _self;
+  final $Res Function(MealPlanModel) _then;
 
-  /// Create a copy of Week
+  /// Create a copy of MealPlanModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? Monday = null,
-    Object? Tuesday = null,
-    Object? Wednesday = null,
-    Object? Thursday = null,
-    Object? Friday = null,
-    Object? Saturday = null,
-    Object? Sunday = null,
+    Object? id = null,
+    Object? timeFrame = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? week = null,
   }) {
-    return _then(_value.copyWith(
-      Monday: null == Monday
-          ? _value.Monday
-          : Monday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Tuesday: null == Tuesday
-          ? _value.Tuesday
-          : Tuesday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Wednesday: null == Wednesday
-          ? _value.Wednesday
-          : Wednesday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Thursday: null == Thursday
-          ? _value.Thursday
-          : Thursday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Friday: null == Friday
-          ? _value.Friday
-          : Friday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Saturday: null == Saturday
-          ? _value.Saturday
-          : Saturday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Sunday: null == Sunday
-          ? _value.Sunday
-          : Sunday // ignore: cast_nullable_to_non_nullable
-              as Day,
-    ) as $Val);
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Monday {
-    return $DayCopyWith<$Res>(_value.Monday, (value) {
-      return _then(_value.copyWith(Monday: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Tuesday {
-    return $DayCopyWith<$Res>(_value.Tuesday, (value) {
-      return _then(_value.copyWith(Tuesday: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Wednesday {
-    return $DayCopyWith<$Res>(_value.Wednesday, (value) {
-      return _then(_value.copyWith(Wednesday: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Thursday {
-    return $DayCopyWith<$Res>(_value.Thursday, (value) {
-      return _then(_value.copyWith(Thursday: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Friday {
-    return $DayCopyWith<$Res>(_value.Friday, (value) {
-      return _then(_value.copyWith(Friday: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Saturday {
-    return $DayCopyWith<$Res>(_value.Saturday, (value) {
-      return _then(_value.copyWith(Saturday: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DayCopyWith<$Res> get Sunday {
-    return $DayCopyWith<$Res>(_value.Sunday, (value) {
-      return _then(_value.copyWith(Sunday: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$WeekImplCopyWith<$Res> implements $WeekCopyWith<$Res> {
-  factory _$$WeekImplCopyWith(
-          _$WeekImpl value, $Res Function(_$WeekImpl) then) =
-      __$$WeekImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {Day Monday,
-      Day Tuesday,
-      Day Wednesday,
-      Day Thursday,
-      Day Friday,
-      Day Saturday,
-      Day Sunday});
-
-  @override
-  $DayCopyWith<$Res> get Monday;
-  @override
-  $DayCopyWith<$Res> get Tuesday;
-  @override
-  $DayCopyWith<$Res> get Wednesday;
-  @override
-  $DayCopyWith<$Res> get Thursday;
-  @override
-  $DayCopyWith<$Res> get Friday;
-  @override
-  $DayCopyWith<$Res> get Saturday;
-  @override
-  $DayCopyWith<$Res> get Sunday;
-}
-
-/// @nodoc
-class __$$WeekImplCopyWithImpl<$Res>
-    extends _$WeekCopyWithImpl<$Res, _$WeekImpl>
-    implements _$$WeekImplCopyWith<$Res> {
-  __$$WeekImplCopyWithImpl(_$WeekImpl _value, $Res Function(_$WeekImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? Monday = null,
-    Object? Tuesday = null,
-    Object? Wednesday = null,
-    Object? Thursday = null,
-    Object? Friday = null,
-    Object? Saturday = null,
-    Object? Sunday = null,
-  }) {
-    return _then(_$WeekImpl(
-      Monday: null == Monday
-          ? _value.Monday
-          : Monday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Tuesday: null == Tuesday
-          ? _value.Tuesday
-          : Tuesday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Wednesday: null == Wednesday
-          ? _value.Wednesday
-          : Wednesday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Thursday: null == Thursday
-          ? _value.Thursday
-          : Thursday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Friday: null == Friday
-          ? _value.Friday
-          : Friday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Saturday: null == Saturday
-          ? _value.Saturday
-          : Saturday // ignore: cast_nullable_to_non_nullable
-              as Day,
-      Sunday: null == Sunday
-          ? _value.Sunday
-          : Sunday // ignore: cast_nullable_to_non_nullable
-              as Day,
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeFrame: null == timeFrame
+          ? _self.timeFrame
+          : timeFrame // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDate: null == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _self.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      week: null == week
+          ? _self.week
+          : week // ignore: cast_nullable_to_non_nullable
+              as Week,
     ));
+  }
+
+  /// Create a copy of MealPlanModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WeekCopyWith<$Res> get week {
+    return $WeekCopyWith<$Res>(_self.week, (value) {
+      return _then(_self.copyWith(week: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [MealPlanModel].
+extension MealPlanModelPatterns on MealPlanModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MealPlan value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MealPlan() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MealPlan value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealPlan():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MealPlan value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealPlan() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String timeFrame, String startDate, String endDate,
+            Week week)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MealPlan() when $default != null:
+        return $default(_that.id, _that.timeFrame, _that.startDate,
+            _that.endDate, _that.week);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String timeFrame, String startDate, String endDate,
+            Week week)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealPlan():
+        return $default(_that.id, _that.timeFrame, _that.startDate,
+            _that.endDate, _that.week);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String timeFrame, String startDate,
+            String endDate, Week week)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealPlan() when $default != null:
+        return $default(_that.id, _that.timeFrame, _that.startDate,
+            _that.endDate, _that.week);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$WeekImpl implements _Week {
-  const _$WeekImpl(
-      {required this.Monday,
-      required this.Tuesday,
-      required this.Wednesday,
-      required this.Thursday,
-      required this.Friday,
-      required this.Saturday,
-      required this.Sunday});
-
-  factory _$WeekImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WeekImplFromJson(json);
+class _MealPlan implements MealPlanModel {
+  const _MealPlan(
+      {required this.id,
+      required this.timeFrame,
+      required this.startDate,
+      required this.endDate,
+      required this.week});
+  factory _MealPlan.fromJson(Map<String, dynamic> json) =>
+      _$MealPlanFromJson(json);
 
   @override
-  final Day Monday;
+  final int id;
   @override
-  final Day Tuesday;
+  final String timeFrame;
   @override
-  final Day Wednesday;
+  final String startDate;
   @override
-  final Day Thursday;
+  final String endDate;
   @override
-  final Day Friday;
+  final Week week;
+
+  /// Create a copy of MealPlanModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  final Day Saturday;
-  @override
-  final Day Sunday;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MealPlanCopyWith<_MealPlan> get copyWith =>
+      __$MealPlanCopyWithImpl<_MealPlan>(this, _$identity);
 
   @override
-  String toString() {
-    return 'Week(Monday: $Monday, Tuesday: $Tuesday, Wednesday: $Wednesday, Thursday: $Thursday, Friday: $Friday, Saturday: $Saturday, Sunday: $Sunday)';
+  Map<String, dynamic> toJson() {
+    return _$MealPlanToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WeekImpl &&
+            other is _MealPlan &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.timeFrame, timeFrame) ||
+                other.timeFrame == timeFrame) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.week, week) || other.week == week));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, timeFrame, startDate, endDate, week);
+
+  @override
+  String toString() {
+    return 'MealPlanModel(id: $id, timeFrame: $timeFrame, startDate: $startDate, endDate: $endDate, week: $week)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MealPlanCopyWith<$Res>
+    implements $MealPlanModelCopyWith<$Res> {
+  factory _$MealPlanCopyWith(_MealPlan value, $Res Function(_MealPlan) _then) =
+      __$MealPlanCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int id, String timeFrame, String startDate, String endDate, Week week});
+
+  @override
+  $WeekCopyWith<$Res> get week;
+}
+
+/// @nodoc
+class __$MealPlanCopyWithImpl<$Res> implements _$MealPlanCopyWith<$Res> {
+  __$MealPlanCopyWithImpl(this._self, this._then);
+
+  final _MealPlan _self;
+  final $Res Function(_MealPlan) _then;
+
+  /// Create a copy of MealPlanModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? timeFrame = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? week = null,
+  }) {
+    return _then(_MealPlan(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeFrame: null == timeFrame
+          ? _self.timeFrame
+          : timeFrame // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDate: null == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _self.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      week: null == week
+          ? _self.week
+          : week // ignore: cast_nullable_to_non_nullable
+              as Week,
+    ));
+  }
+
+  /// Create a copy of MealPlanModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WeekCopyWith<$Res> get week {
+    return $WeekCopyWith<$Res>(_self.week, (value) {
+      return _then(_self.copyWith(week: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$Week {
+  Day get Monday;
+  Day get Tuesday;
+  Day get Wednesday;
+  Day get Thursday;
+  Day get Friday;
+  Day get Saturday;
+  Day get Sunday;
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $WeekCopyWith<Week> get copyWith =>
+      _$WeekCopyWithImpl<Week>(this as Week, _$identity);
+
+  /// Serializes this Week to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Week &&
             (identical(other.Monday, Monday) || other.Monday == Monday) &&
             (identical(other.Tuesday, Tuesday) || other.Tuesday == Tuesday) &&
             (identical(other.Wednesday, Wednesday) ||
@@ -571,79 +463,588 @@ class _$WeekImpl implements _Week {
   int get hashCode => Object.hash(runtimeType, Monday, Tuesday, Wednesday,
       Thursday, Friday, Saturday, Sunday);
 
-  /// Create a copy of Week
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$WeekImplCopyWith<_$WeekImpl> get copyWith =>
-      __$$WeekImplCopyWithImpl<_$WeekImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WeekImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Week(Monday: $Monday, Tuesday: $Tuesday, Wednesday: $Wednesday, Thursday: $Thursday, Friday: $Friday, Saturday: $Saturday, Sunday: $Sunday)';
   }
 }
 
-abstract class _Week implements Week {
-  const factory _Week(
-      {required final Day Monday,
-      required final Day Tuesday,
-      required final Day Wednesday,
-      required final Day Thursday,
-      required final Day Friday,
-      required final Day Saturday,
-      required final Day Sunday}) = _$WeekImpl;
+/// @nodoc
+abstract mixin class $WeekCopyWith<$Res> {
+  factory $WeekCopyWith(Week value, $Res Function(Week) _then) =
+      _$WeekCopyWithImpl;
+  @useResult
+  $Res call(
+      {Day Monday,
+      Day Tuesday,
+      Day Wednesday,
+      Day Thursday,
+      Day Friday,
+      Day Saturday,
+      Day Sunday});
 
-  factory _Week.fromJson(Map<String, dynamic> json) = _$WeekImpl.fromJson;
+  $DayCopyWith<$Res> get Monday;
+  $DayCopyWith<$Res> get Tuesday;
+  $DayCopyWith<$Res> get Wednesday;
+  $DayCopyWith<$Res> get Thursday;
+  $DayCopyWith<$Res> get Friday;
+  $DayCopyWith<$Res> get Saturday;
+  $DayCopyWith<$Res> get Sunday;
+}
+
+/// @nodoc
+class _$WeekCopyWithImpl<$Res> implements $WeekCopyWith<$Res> {
+  _$WeekCopyWithImpl(this._self, this._then);
+
+  final Week _self;
+  final $Res Function(Week) _then;
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? Monday = null,
+    Object? Tuesday = null,
+    Object? Wednesday = null,
+    Object? Thursday = null,
+    Object? Friday = null,
+    Object? Saturday = null,
+    Object? Sunday = null,
+  }) {
+    return _then(_self.copyWith(
+      Monday: null == Monday
+          ? _self.Monday
+          : Monday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Tuesday: null == Tuesday
+          ? _self.Tuesday
+          : Tuesday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Wednesday: null == Wednesday
+          ? _self.Wednesday
+          : Wednesday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Thursday: null == Thursday
+          ? _self.Thursday
+          : Thursday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Friday: null == Friday
+          ? _self.Friday
+          : Friday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Saturday: null == Saturday
+          ? _self.Saturday
+          : Saturday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Sunday: null == Sunday
+          ? _self.Sunday
+          : Sunday // ignore: cast_nullable_to_non_nullable
+              as Day,
+    ));
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Monday {
+    return $DayCopyWith<$Res>(_self.Monday, (value) {
+      return _then(_self.copyWith(Monday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Tuesday {
+    return $DayCopyWith<$Res>(_self.Tuesday, (value) {
+      return _then(_self.copyWith(Tuesday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Wednesday {
+    return $DayCopyWith<$Res>(_self.Wednesday, (value) {
+      return _then(_self.copyWith(Wednesday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Thursday {
+    return $DayCopyWith<$Res>(_self.Thursday, (value) {
+      return _then(_self.copyWith(Thursday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Friday {
+    return $DayCopyWith<$Res>(_self.Friday, (value) {
+      return _then(_self.copyWith(Friday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Saturday {
+    return $DayCopyWith<$Res>(_self.Saturday, (value) {
+      return _then(_self.copyWith(Saturday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Sunday {
+    return $DayCopyWith<$Res>(_self.Sunday, (value) {
+      return _then(_self.copyWith(Sunday: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [Week].
+extension WeekPatterns on Week {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Week value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Week() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Week value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Week():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Week value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Week() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Day Monday, Day Tuesday, Day Wednesday, Day Thursday,
+            Day Friday, Day Saturday, Day Sunday)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Week() when $default != null:
+        return $default(_that.Monday, _that.Tuesday, _that.Wednesday,
+            _that.Thursday, _that.Friday, _that.Saturday, _that.Sunday);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Day Monday, Day Tuesday, Day Wednesday, Day Thursday,
+            Day Friday, Day Saturday, Day Sunday)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Week():
+        return $default(_that.Monday, _that.Tuesday, _that.Wednesday,
+            _that.Thursday, _that.Friday, _that.Saturday, _that.Sunday);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Day Monday, Day Tuesday, Day Wednesday, Day Thursday,
+            Day Friday, Day Saturday, Day Sunday)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Week() when $default != null:
+        return $default(_that.Monday, _that.Tuesday, _that.Wednesday,
+            _that.Thursday, _that.Friday, _that.Saturday, _that.Sunday);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Week implements Week {
+  const _Week(
+      {required this.Monday,
+      required this.Tuesday,
+      required this.Wednesday,
+      required this.Thursday,
+      required this.Friday,
+      required this.Saturday,
+      required this.Sunday});
+  factory _Week.fromJson(Map<String, dynamic> json) => _$WeekFromJson(json);
 
   @override
-  Day get Monday;
+  final Day Monday;
   @override
-  Day get Tuesday;
+  final Day Tuesday;
   @override
-  Day get Wednesday;
+  final Day Wednesday;
   @override
-  Day get Thursday;
+  final Day Thursday;
   @override
-  Day get Friday;
+  final Day Friday;
   @override
-  Day get Saturday;
+  final Day Saturday;
   @override
-  Day get Sunday;
+  final Day Sunday;
 
   /// Create a copy of Week
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WeekImplCopyWith<_$WeekImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$WeekCopyWith<_Week> get copyWith =>
+      __$WeekCopyWithImpl<_Week>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$WeekToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Week &&
+            (identical(other.Monday, Monday) || other.Monday == Monday) &&
+            (identical(other.Tuesday, Tuesday) || other.Tuesday == Tuesday) &&
+            (identical(other.Wednesday, Wednesday) ||
+                other.Wednesday == Wednesday) &&
+            (identical(other.Thursday, Thursday) ||
+                other.Thursday == Thursday) &&
+            (identical(other.Friday, Friday) || other.Friday == Friday) &&
+            (identical(other.Saturday, Saturday) ||
+                other.Saturday == Saturday) &&
+            (identical(other.Sunday, Sunday) || other.Sunday == Sunday));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, Monday, Tuesday, Wednesday,
+      Thursday, Friday, Saturday, Sunday);
+
+  @override
+  String toString() {
+    return 'Week(Monday: $Monday, Tuesday: $Tuesday, Wednesday: $Wednesday, Thursday: $Thursday, Friday: $Friday, Saturday: $Saturday, Sunday: $Sunday)';
+  }
 }
 
-Day _$DayFromJson(Map<String, dynamic> json) {
-  return _Day.fromJson(json);
+/// @nodoc
+abstract mixin class _$WeekCopyWith<$Res> implements $WeekCopyWith<$Res> {
+  factory _$WeekCopyWith(_Week value, $Res Function(_Week) _then) =
+      __$WeekCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {Day Monday,
+      Day Tuesday,
+      Day Wednesday,
+      Day Thursday,
+      Day Friday,
+      Day Saturday,
+      Day Sunday});
+
+  @override
+  $DayCopyWith<$Res> get Monday;
+  @override
+  $DayCopyWith<$Res> get Tuesday;
+  @override
+  $DayCopyWith<$Res> get Wednesday;
+  @override
+  $DayCopyWith<$Res> get Thursday;
+  @override
+  $DayCopyWith<$Res> get Friday;
+  @override
+  $DayCopyWith<$Res> get Saturday;
+  @override
+  $DayCopyWith<$Res> get Sunday;
+}
+
+/// @nodoc
+class __$WeekCopyWithImpl<$Res> implements _$WeekCopyWith<$Res> {
+  __$WeekCopyWithImpl(this._self, this._then);
+
+  final _Week _self;
+  final $Res Function(_Week) _then;
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? Monday = null,
+    Object? Tuesday = null,
+    Object? Wednesday = null,
+    Object? Thursday = null,
+    Object? Friday = null,
+    Object? Saturday = null,
+    Object? Sunday = null,
+  }) {
+    return _then(_Week(
+      Monday: null == Monday
+          ? _self.Monday
+          : Monday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Tuesday: null == Tuesday
+          ? _self.Tuesday
+          : Tuesday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Wednesday: null == Wednesday
+          ? _self.Wednesday
+          : Wednesday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Thursday: null == Thursday
+          ? _self.Thursday
+          : Thursday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Friday: null == Friday
+          ? _self.Friday
+          : Friday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Saturday: null == Saturday
+          ? _self.Saturday
+          : Saturday // ignore: cast_nullable_to_non_nullable
+              as Day,
+      Sunday: null == Sunday
+          ? _self.Sunday
+          : Sunday // ignore: cast_nullable_to_non_nullable
+              as Day,
+    ));
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Monday {
+    return $DayCopyWith<$Res>(_self.Monday, (value) {
+      return _then(_self.copyWith(Monday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Tuesday {
+    return $DayCopyWith<$Res>(_self.Tuesday, (value) {
+      return _then(_self.copyWith(Tuesday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Wednesday {
+    return $DayCopyWith<$Res>(_self.Wednesday, (value) {
+      return _then(_self.copyWith(Wednesday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Thursday {
+    return $DayCopyWith<$Res>(_self.Thursday, (value) {
+      return _then(_self.copyWith(Thursday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Friday {
+    return $DayCopyWith<$Res>(_self.Friday, (value) {
+      return _then(_self.copyWith(Friday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Saturday {
+    return $DayCopyWith<$Res>(_self.Saturday, (value) {
+      return _then(_self.copyWith(Saturday: value));
+    });
+  }
+
+  /// Create a copy of Week
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<$Res> get Sunday {
+    return $DayCopyWith<$Res>(_self.Sunday, (value) {
+      return _then(_self.copyWith(Sunday: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$Day {
-  List<Meal> get meals => throw _privateConstructorUsedError;
-  Nutrients get nutrients => throw _privateConstructorUsedError;
-
-  /// Serializes this Day to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<Meal> get meals;
+  Nutrients get nutrients;
 
   /// Create a copy of Day
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DayCopyWith<Day> get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $DayCopyWith<Day> get copyWith =>
+      _$DayCopyWithImpl<Day>(this as Day, _$identity);
+
+  /// Serializes this Day to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Day &&
+            const DeepCollectionEquality().equals(other.meals, meals) &&
+            (identical(other.nutrients, nutrients) ||
+                other.nutrients == nutrients));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(meals), nutrients);
+
+  @override
+  String toString() {
+    return 'Day(meals: $meals, nutrients: $nutrients)';
+  }
 }
 
 /// @nodoc
-abstract class $DayCopyWith<$Res> {
-  factory $DayCopyWith(Day value, $Res Function(Day) then) =
-      _$DayCopyWithImpl<$Res, Day>;
+abstract mixin class $DayCopyWith<$Res> {
+  factory $DayCopyWith(Day value, $Res Function(Day) _then) = _$DayCopyWithImpl;
   @useResult
   $Res call({List<Meal> meals, Nutrients nutrients});
 
@@ -651,13 +1052,11 @@ abstract class $DayCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
-  _$DayCopyWithImpl(this._value, this._then);
+class _$DayCopyWithImpl<$Res> implements $DayCopyWith<$Res> {
+  _$DayCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Day _self;
+  final $Res Function(Day) _then;
 
   /// Create a copy of Day
   /// with the given fields replaced by the non-null parameter values.
@@ -667,16 +1066,16 @@ class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
     Object? meals = null,
     Object? nutrients = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       meals: null == meals
-          ? _value.meals
+          ? _self.meals
           : meals // ignore: cast_nullable_to_non_nullable
               as List<Meal>,
       nutrients: null == nutrients
-          ? _value.nutrients
+          ? _self.nutrients
           : nutrients // ignore: cast_nullable_to_non_nullable
               as Nutrients,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of Day
@@ -684,59 +1083,175 @@ class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $NutrientsCopyWith<$Res> get nutrients {
-    return $NutrientsCopyWith<$Res>(_value.nutrients, (value) {
-      return _then(_value.copyWith(nutrients: value) as $Val);
+    return $NutrientsCopyWith<$Res>(_self.nutrients, (value) {
+      return _then(_self.copyWith(nutrients: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$DayImplCopyWith<$Res> implements $DayCopyWith<$Res> {
-  factory _$$DayImplCopyWith(_$DayImpl value, $Res Function(_$DayImpl) then) =
-      __$$DayImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<Meal> meals, Nutrients nutrients});
+/// Adds pattern-matching-related methods to [Day].
+extension DayPatterns on Day {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $NutrientsCopyWith<$Res> get nutrients;
-}
-
-/// @nodoc
-class __$$DayImplCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$DayImpl>
-    implements _$$DayImplCopyWith<$Res> {
-  __$$DayImplCopyWithImpl(_$DayImpl _value, $Res Function(_$DayImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Day
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? meals = null,
-    Object? nutrients = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Day value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$DayImpl(
-      meals: null == meals
-          ? _value._meals
-          : meals // ignore: cast_nullable_to_non_nullable
-              as List<Meal>,
-      nutrients: null == nutrients
-          ? _value.nutrients
-          : nutrients // ignore: cast_nullable_to_non_nullable
-              as Nutrients,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _Day() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Day value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Day():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Day value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Day() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<Meal> meals, Nutrients nutrients)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Day() when $default != null:
+        return $default(_that.meals, _that.nutrients);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<Meal> meals, Nutrients nutrients) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Day():
+        return $default(_that.meals, _that.nutrients);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<Meal> meals, Nutrients nutrients)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Day() when $default != null:
+        return $default(_that.meals, _that.nutrients);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DayImpl implements _Day {
-  const _$DayImpl({required final List<Meal> meals, required this.nutrients})
+class _Day implements Day {
+  const _Day({required final List<Meal> meals, required this.nutrients})
       : _meals = meals;
-
-  factory _$DayImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DayImplFromJson(json);
+  factory _Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
 
   final List<Meal> _meals;
   @override
@@ -749,16 +1264,26 @@ class _$DayImpl implements _Day {
   @override
   final Nutrients nutrients;
 
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Day(meals: $meals, nutrients: $nutrients)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DayCopyWith<_Day> get copyWith =>
+      __$DayCopyWithImpl<_Day>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DayToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DayImpl &&
+            other is _Day &&
             const DeepCollectionEquality().equals(other._meals, _meals) &&
             (identical(other.nutrients, nutrients) ||
                 other.nutrients == nutrients));
@@ -769,246 +1294,87 @@ class _$DayImpl implements _Day {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_meals), nutrients);
 
-  /// Create a copy of Day
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DayImplCopyWith<_$DayImpl> get copyWith =>
-      __$$DayImplCopyWithImpl<_$DayImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DayImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Day(meals: $meals, nutrients: $nutrients)';
   }
 }
 
-abstract class _Day implements Day {
-  const factory _Day(
-      {required final List<Meal> meals,
-      required final Nutrients nutrients}) = _$DayImpl;
-
-  factory _Day.fromJson(Map<String, dynamic> json) = _$DayImpl.fromJson;
+/// @nodoc
+abstract mixin class _$DayCopyWith<$Res> implements $DayCopyWith<$Res> {
+  factory _$DayCopyWith(_Day value, $Res Function(_Day) _then) =
+      __$DayCopyWithImpl;
+  @override
+  @useResult
+  $Res call({List<Meal> meals, Nutrients nutrients});
 
   @override
-  List<Meal> get meals;
-  @override
-  Nutrients get nutrients;
+  $NutrientsCopyWith<$Res> get nutrients;
+}
+
+/// @nodoc
+class __$DayCopyWithImpl<$Res> implements _$DayCopyWith<$Res> {
+  __$DayCopyWithImpl(this._self, this._then);
+
+  final _Day _self;
+  final $Res Function(_Day) _then;
 
   /// Create a copy of Day
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DayImplCopyWith<_$DayImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? meals = null,
+    Object? nutrients = null,
+  }) {
+    return _then(_Day(
+      meals: null == meals
+          ? _self._meals
+          : meals // ignore: cast_nullable_to_non_nullable
+              as List<Meal>,
+      nutrients: null == nutrients
+          ? _self.nutrients
+          : nutrients // ignore: cast_nullable_to_non_nullable
+              as Nutrients,
+    ));
+  }
 
-Meal _$MealFromJson(Map<String, dynamic> json) {
-  return _Meal.fromJson(json);
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NutrientsCopyWith<$Res> get nutrients {
+    return $NutrientsCopyWith<$Res>(_self.nutrients, (value) {
+      return _then(_self.copyWith(nutrients: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$Meal {
-  int get id => throw _privateConstructorUsedError;
-  String get recipe_id => throw _privateConstructorUsedError;
-  String get imageType => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  int get readyInMinutes => throw _privateConstructorUsedError;
-  int get servings => throw _privateConstructorUsedError;
-  String get sourceUrl => throw _privateConstructorUsedError;
-
-  /// Serializes this Meal to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
+  String get recipe_id;
+  String get imageType;
+  String get title;
+  int get readyInMinutes;
+  int get servings;
+  String get sourceUrl;
 
   /// Create a copy of Meal
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MealCopyWith<Meal> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MealCopyWith<$Res> {
-  factory $MealCopyWith(Meal value, $Res Function(Meal) then) =
-      _$MealCopyWithImpl<$Res, Meal>;
-  @useResult
-  $Res call(
-      {int id,
-      String recipe_id,
-      String imageType,
-      String title,
-      int readyInMinutes,
-      int servings,
-      String sourceUrl});
-}
-
-/// @nodoc
-class _$MealCopyWithImpl<$Res, $Val extends Meal>
-    implements $MealCopyWith<$Res> {
-  _$MealCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Meal
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? recipe_id = null,
-    Object? imageType = null,
-    Object? title = null,
-    Object? readyInMinutes = null,
-    Object? servings = null,
-    Object? sourceUrl = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      recipe_id: null == recipe_id
-          ? _value.recipe_id
-          : recipe_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageType: null == imageType
-          ? _value.imageType
-          : imageType // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      readyInMinutes: null == readyInMinutes
-          ? _value.readyInMinutes
-          : readyInMinutes // ignore: cast_nullable_to_non_nullable
-              as int,
-      servings: null == servings
-          ? _value.servings
-          : servings // ignore: cast_nullable_to_non_nullable
-              as int,
-      sourceUrl: null == sourceUrl
-          ? _value.sourceUrl
-          : sourceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
+  $MealCopyWith<Meal> get copyWith =>
+      _$MealCopyWithImpl<Meal>(this as Meal, _$identity);
 
-/// @nodoc
-abstract class _$$MealImplCopyWith<$Res> implements $MealCopyWith<$Res> {
-  factory _$$MealImplCopyWith(
-          _$MealImpl value, $Res Function(_$MealImpl) then) =
-      __$$MealImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String recipe_id,
-      String imageType,
-      String title,
-      int readyInMinutes,
-      int servings,
-      String sourceUrl});
-}
-
-/// @nodoc
-class __$$MealImplCopyWithImpl<$Res>
-    extends _$MealCopyWithImpl<$Res, _$MealImpl>
-    implements _$$MealImplCopyWith<$Res> {
-  __$$MealImplCopyWithImpl(_$MealImpl _value, $Res Function(_$MealImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Meal
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? recipe_id = null,
-    Object? imageType = null,
-    Object? title = null,
-    Object? readyInMinutes = null,
-    Object? servings = null,
-    Object? sourceUrl = null,
-  }) {
-    return _then(_$MealImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      recipe_id: null == recipe_id
-          ? _value.recipe_id
-          : recipe_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageType: null == imageType
-          ? _value.imageType
-          : imageType // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      readyInMinutes: null == readyInMinutes
-          ? _value.readyInMinutes
-          : readyInMinutes // ignore: cast_nullable_to_non_nullable
-              as int,
-      servings: null == servings
-          ? _value.servings
-          : servings // ignore: cast_nullable_to_non_nullable
-              as int,
-      sourceUrl: null == sourceUrl
-          ? _value.sourceUrl
-          : sourceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$MealImpl implements _Meal {
-  const _$MealImpl(
-      {required this.id,
-      required this.recipe_id,
-      required this.imageType,
-      required this.title,
-      required this.readyInMinutes,
-      required this.servings,
-      required this.sourceUrl});
-
-  factory _$MealImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MealImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String recipe_id;
-  @override
-  final String imageType;
-  @override
-  final String title;
-  @override
-  final int readyInMinutes;
-  @override
-  final int servings;
-  @override
-  final String sourceUrl;
-
-  @override
-  String toString() {
-    return 'Meal(id: $id, recipe_id: $recipe_id, imageType: $imageType, title: $title, readyInMinutes: $readyInMinutes, servings: $servings, sourceUrl: $sourceUrl)';
-  }
+  /// Serializes this Meal to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MealImpl &&
+            other is Meal &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.recipe_id, recipe_id) ||
                 other.recipe_id == recipe_id) &&
@@ -1028,210 +1394,410 @@ class _$MealImpl implements _Meal {
   int get hashCode => Object.hash(runtimeType, id, recipe_id, imageType, title,
       readyInMinutes, servings, sourceUrl);
 
-  /// Create a copy of Meal
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$MealImplCopyWith<_$MealImpl> get copyWith =>
-      __$$MealImplCopyWithImpl<_$MealImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MealImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Meal implements Meal {
-  const factory _Meal(
-      {required final int id,
-      required final String recipe_id,
-      required final String imageType,
-      required final String title,
-      required final int readyInMinutes,
-      required final int servings,
-      required final String sourceUrl}) = _$MealImpl;
-
-  factory _Meal.fromJson(Map<String, dynamic> json) = _$MealImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get recipe_id;
-  @override
-  String get imageType;
-  @override
-  String get title;
-  @override
-  int get readyInMinutes;
-  @override
-  int get servings;
-  @override
-  String get sourceUrl;
-
-  /// Create a copy of Meal
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MealImplCopyWith<_$MealImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Nutrients _$NutrientsFromJson(Map<String, dynamic> json) {
-  return _Nutrients.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Nutrients {
-  double get calories => throw _privateConstructorUsedError;
-  double get protein => throw _privateConstructorUsedError;
-  double get fat => throw _privateConstructorUsedError;
-  double get carbohydrates => throw _privateConstructorUsedError;
-
-  /// Serializes this Nutrients to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Nutrients
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $NutrientsCopyWith<Nutrients> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $NutrientsCopyWith<$Res> {
-  factory $NutrientsCopyWith(Nutrients value, $Res Function(Nutrients) then) =
-      _$NutrientsCopyWithImpl<$Res, Nutrients>;
-  @useResult
-  $Res call(
-      {double calories, double protein, double fat, double carbohydrates});
-}
-
-/// @nodoc
-class _$NutrientsCopyWithImpl<$Res, $Val extends Nutrients>
-    implements $NutrientsCopyWith<$Res> {
-  _$NutrientsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Nutrients
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? calories = null,
-    Object? protein = null,
-    Object? fat = null,
-    Object? carbohydrates = null,
-  }) {
-    return _then(_value.copyWith(
-      calories: null == calories
-          ? _value.calories
-          : calories // ignore: cast_nullable_to_non_nullable
-              as double,
-      protein: null == protein
-          ? _value.protein
-          : protein // ignore: cast_nullable_to_non_nullable
-              as double,
-      fat: null == fat
-          ? _value.fat
-          : fat // ignore: cast_nullable_to_non_nullable
-              as double,
-      carbohydrates: null == carbohydrates
-          ? _value.carbohydrates
-          : carbohydrates // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  String toString() {
+    return 'Meal(id: $id, recipe_id: $recipe_id, imageType: $imageType, title: $title, readyInMinutes: $readyInMinutes, servings: $servings, sourceUrl: $sourceUrl)';
   }
 }
 
 /// @nodoc
-abstract class _$$NutrientsImplCopyWith<$Res>
-    implements $NutrientsCopyWith<$Res> {
-  factory _$$NutrientsImplCopyWith(
-          _$NutrientsImpl value, $Res Function(_$NutrientsImpl) then) =
-      __$$NutrientsImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $MealCopyWith<$Res> {
+  factory $MealCopyWith(Meal value, $Res Function(Meal) _then) =
+      _$MealCopyWithImpl;
   @useResult
   $Res call(
-      {double calories, double protein, double fat, double carbohydrates});
+      {int id,
+      String recipe_id,
+      String imageType,
+      String title,
+      int readyInMinutes,
+      int servings,
+      String sourceUrl});
 }
 
 /// @nodoc
-class __$$NutrientsImplCopyWithImpl<$Res>
-    extends _$NutrientsCopyWithImpl<$Res, _$NutrientsImpl>
-    implements _$$NutrientsImplCopyWith<$Res> {
-  __$$NutrientsImplCopyWithImpl(
-      _$NutrientsImpl _value, $Res Function(_$NutrientsImpl) _then)
-      : super(_value, _then);
+class _$MealCopyWithImpl<$Res> implements $MealCopyWith<$Res> {
+  _$MealCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of Nutrients
+  final Meal _self;
+  final $Res Function(Meal) _then;
+
+  /// Create a copy of Meal
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? calories = null,
-    Object? protein = null,
-    Object? fat = null,
-    Object? carbohydrates = null,
+    Object? id = null,
+    Object? recipe_id = null,
+    Object? imageType = null,
+    Object? title = null,
+    Object? readyInMinutes = null,
+    Object? servings = null,
+    Object? sourceUrl = null,
   }) {
-    return _then(_$NutrientsImpl(
-      calories: null == calories
-          ? _value.calories
-          : calories // ignore: cast_nullable_to_non_nullable
-              as double,
-      protein: null == protein
-          ? _value.protein
-          : protein // ignore: cast_nullable_to_non_nullable
-              as double,
-      fat: null == fat
-          ? _value.fat
-          : fat // ignore: cast_nullable_to_non_nullable
-              as double,
-      carbohydrates: null == carbohydrates
-          ? _value.carbohydrates
-          : carbohydrates // ignore: cast_nullable_to_non_nullable
-              as double,
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      recipe_id: null == recipe_id
+          ? _self.recipe_id
+          : recipe_id // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageType: null == imageType
+          ? _self.imageType
+          : imageType // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      readyInMinutes: null == readyInMinutes
+          ? _self.readyInMinutes
+          : readyInMinutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      servings: null == servings
+          ? _self.servings
+          : servings // ignore: cast_nullable_to_non_nullable
+              as int,
+      sourceUrl: null == sourceUrl
+          ? _self.sourceUrl
+          : sourceUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [Meal].
+extension MealPatterns on Meal {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Meal value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Meal() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Meal value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Meal():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Meal value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Meal() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String recipe_id, String imageType, String title,
+            int readyInMinutes, int servings, String sourceUrl)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Meal() when $default != null:
+        return $default(_that.id, _that.recipe_id, _that.imageType, _that.title,
+            _that.readyInMinutes, _that.servings, _that.sourceUrl);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String recipe_id, String imageType, String title,
+            int readyInMinutes, int servings, String sourceUrl)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Meal():
+        return $default(_that.id, _that.recipe_id, _that.imageType, _that.title,
+            _that.readyInMinutes, _that.servings, _that.sourceUrl);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String recipe_id, String imageType, String title,
+            int readyInMinutes, int servings, String sourceUrl)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Meal() when $default != null:
+        return $default(_that.id, _that.recipe_id, _that.imageType, _that.title,
+            _that.readyInMinutes, _that.servings, _that.sourceUrl);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$NutrientsImpl implements _Nutrients {
-  const _$NutrientsImpl(
-      {required this.calories,
-      required this.protein,
-      required this.fat,
-      required this.carbohydrates});
-
-  factory _$NutrientsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NutrientsImplFromJson(json);
-
-  @override
-  final double calories;
-  @override
-  final double protein;
-  @override
-  final double fat;
-  @override
-  final double carbohydrates;
+class _Meal implements Meal {
+  const _Meal(
+      {required this.id,
+      required this.recipe_id,
+      required this.imageType,
+      required this.title,
+      required this.readyInMinutes,
+      required this.servings,
+      required this.sourceUrl});
+  factory _Meal.fromJson(Map<String, dynamic> json) => _$MealFromJson(json);
 
   @override
-  String toString() {
-    return 'Nutrients(calories: $calories, protein: $protein, fat: $fat, carbohydrates: $carbohydrates)';
+  final int id;
+  @override
+  final String recipe_id;
+  @override
+  final String imageType;
+  @override
+  final String title;
+  @override
+  final int readyInMinutes;
+  @override
+  final int servings;
+  @override
+  final String sourceUrl;
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MealCopyWith<_Meal> get copyWith =>
+      __$MealCopyWithImpl<_Meal>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MealToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NutrientsImpl &&
+            other is _Meal &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.recipe_id, recipe_id) ||
+                other.recipe_id == recipe_id) &&
+            (identical(other.imageType, imageType) ||
+                other.imageType == imageType) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.readyInMinutes, readyInMinutes) ||
+                other.readyInMinutes == readyInMinutes) &&
+            (identical(other.servings, servings) ||
+                other.servings == servings) &&
+            (identical(other.sourceUrl, sourceUrl) ||
+                other.sourceUrl == sourceUrl));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, recipe_id, imageType, title,
+      readyInMinutes, servings, sourceUrl);
+
+  @override
+  String toString() {
+    return 'Meal(id: $id, recipe_id: $recipe_id, imageType: $imageType, title: $title, readyInMinutes: $readyInMinutes, servings: $servings, sourceUrl: $sourceUrl)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MealCopyWith<$Res> implements $MealCopyWith<$Res> {
+  factory _$MealCopyWith(_Meal value, $Res Function(_Meal) _then) =
+      __$MealCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String recipe_id,
+      String imageType,
+      String title,
+      int readyInMinutes,
+      int servings,
+      String sourceUrl});
+}
+
+/// @nodoc
+class __$MealCopyWithImpl<$Res> implements _$MealCopyWith<$Res> {
+  __$MealCopyWithImpl(this._self, this._then);
+
+  final _Meal _self;
+  final $Res Function(_Meal) _then;
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? recipe_id = null,
+    Object? imageType = null,
+    Object? title = null,
+    Object? readyInMinutes = null,
+    Object? servings = null,
+    Object? sourceUrl = null,
+  }) {
+    return _then(_Meal(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      recipe_id: null == recipe_id
+          ? _self.recipe_id
+          : recipe_id // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageType: null == imageType
+          ? _self.imageType
+          : imageType // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      readyInMinutes: null == readyInMinutes
+          ? _self.readyInMinutes
+          : readyInMinutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      servings: null == servings
+          ? _self.servings
+          : servings // ignore: cast_nullable_to_non_nullable
+              as int,
+      sourceUrl: null == sourceUrl
+          ? _self.sourceUrl
+          : sourceUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$Nutrients {
+  double get calories;
+  double get protein;
+  double get fat;
+  double get carbohydrates;
+
+  /// Create a copy of Nutrients
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $NutrientsCopyWith<Nutrients> get copyWith =>
+      _$NutrientsCopyWithImpl<Nutrients>(this as Nutrients, _$identity);
+
+  /// Serializes this Nutrients to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Nutrients &&
             (identical(other.calories, calories) ||
                 other.calories == calories) &&
             (identical(other.protein, protein) || other.protein == protein) &&
@@ -1245,45 +1811,332 @@ class _$NutrientsImpl implements _Nutrients {
   int get hashCode =>
       Object.hash(runtimeType, calories, protein, fat, carbohydrates);
 
-  /// Create a copy of Nutrients
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$NutrientsImplCopyWith<_$NutrientsImpl> get copyWith =>
-      __$$NutrientsImplCopyWithImpl<_$NutrientsImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$NutrientsImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Nutrients(calories: $calories, protein: $protein, fat: $fat, carbohydrates: $carbohydrates)';
   }
 }
 
-abstract class _Nutrients implements Nutrients {
-  const factory _Nutrients(
-      {required final double calories,
-      required final double protein,
-      required final double fat,
-      required final double carbohydrates}) = _$NutrientsImpl;
+/// @nodoc
+abstract mixin class $NutrientsCopyWith<$Res> {
+  factory $NutrientsCopyWith(Nutrients value, $Res Function(Nutrients) _then) =
+      _$NutrientsCopyWithImpl;
+  @useResult
+  $Res call(
+      {double calories, double protein, double fat, double carbohydrates});
+}
 
-  factory _Nutrients.fromJson(Map<String, dynamic> json) =
-      _$NutrientsImpl.fromJson;
+/// @nodoc
+class _$NutrientsCopyWithImpl<$Res> implements $NutrientsCopyWith<$Res> {
+  _$NutrientsCopyWithImpl(this._self, this._then);
+
+  final Nutrients _self;
+  final $Res Function(Nutrients) _then;
+
+  /// Create a copy of Nutrients
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? calories = null,
+    Object? protein = null,
+    Object? fat = null,
+    Object? carbohydrates = null,
+  }) {
+    return _then(_self.copyWith(
+      calories: null == calories
+          ? _self.calories
+          : calories // ignore: cast_nullable_to_non_nullable
+              as double,
+      protein: null == protein
+          ? _self.protein
+          : protein // ignore: cast_nullable_to_non_nullable
+              as double,
+      fat: null == fat
+          ? _self.fat
+          : fat // ignore: cast_nullable_to_non_nullable
+              as double,
+      carbohydrates: null == carbohydrates
+          ? _self.carbohydrates
+          : carbohydrates // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [Nutrients].
+extension NutrientsPatterns on Nutrients {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Nutrients value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Nutrients() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Nutrients value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Nutrients():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Nutrients value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Nutrients() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            double calories, double protein, double fat, double carbohydrates)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Nutrients() when $default != null:
+        return $default(
+            _that.calories, _that.protein, _that.fat, _that.carbohydrates);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            double calories, double protein, double fat, double carbohydrates)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Nutrients():
+        return $default(
+            _that.calories, _that.protein, _that.fat, _that.carbohydrates);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            double calories, double protein, double fat, double carbohydrates)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Nutrients() when $default != null:
+        return $default(
+            _that.calories, _that.protein, _that.fat, _that.carbohydrates);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Nutrients implements Nutrients {
+  const _Nutrients(
+      {required this.calories,
+      required this.protein,
+      required this.fat,
+      required this.carbohydrates});
+  factory _Nutrients.fromJson(Map<String, dynamic> json) =>
+      _$NutrientsFromJson(json);
 
   @override
-  double get calories;
+  final double calories;
   @override
-  double get protein;
+  final double protein;
   @override
-  double get fat;
+  final double fat;
   @override
-  double get carbohydrates;
+  final double carbohydrates;
 
   /// Create a copy of Nutrients
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NutrientsImplCopyWith<_$NutrientsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$NutrientsCopyWith<_Nutrients> get copyWith =>
+      __$NutrientsCopyWithImpl<_Nutrients>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$NutrientsToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Nutrients &&
+            (identical(other.calories, calories) ||
+                other.calories == calories) &&
+            (identical(other.protein, protein) || other.protein == protein) &&
+            (identical(other.fat, fat) || other.fat == fat) &&
+            (identical(other.carbohydrates, carbohydrates) ||
+                other.carbohydrates == carbohydrates));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, calories, protein, fat, carbohydrates);
+
+  @override
+  String toString() {
+    return 'Nutrients(calories: $calories, protein: $protein, fat: $fat, carbohydrates: $carbohydrates)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$NutrientsCopyWith<$Res>
+    implements $NutrientsCopyWith<$Res> {
+  factory _$NutrientsCopyWith(
+          _Nutrients value, $Res Function(_Nutrients) _then) =
+      __$NutrientsCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {double calories, double protein, double fat, double carbohydrates});
+}
+
+/// @nodoc
+class __$NutrientsCopyWithImpl<$Res> implements _$NutrientsCopyWith<$Res> {
+  __$NutrientsCopyWithImpl(this._self, this._then);
+
+  final _Nutrients _self;
+  final $Res Function(_Nutrients) _then;
+
+  /// Create a copy of Nutrients
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? calories = null,
+    Object? protein = null,
+    Object? fat = null,
+    Object? carbohydrates = null,
+  }) {
+    return _then(_Nutrients(
+      calories: null == calories
+          ? _self.calories
+          : calories // ignore: cast_nullable_to_non_nullable
+              as double,
+      protein: null == protein
+          ? _self.protein
+          : protein // ignore: cast_nullable_to_non_nullable
+              as double,
+      fat: null == fat
+          ? _self.fat
+          : fat // ignore: cast_nullable_to_non_nullable
+              as double,
+      carbohydrates: null == carbohydrates
+          ? _self.carbohydrates
+          : carbohydrates // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+// dart format on

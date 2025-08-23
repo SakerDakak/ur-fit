@@ -5,7 +5,7 @@ part 'static_page_model.freezed.dart';
 part 'static_page_model.g.dart';
 
 @freezed
-class StaticPageModel with _$StaticPageModel {
+abstract class StaticPageModel with _$StaticPageModel {
   const factory StaticPageModel({
     required int id,
     required String title,

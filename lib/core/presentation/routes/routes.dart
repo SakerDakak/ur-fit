@@ -15,14 +15,12 @@ import 'package:urfit/modules/onboarding/views/choose_city.dart';
 import 'package:urfit/modules/onboarding/views/choose_language.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/personal_info/screens/equipment_selection_screen.dart';
 import 'package:urfit/modules/personal_info/screens/personal_info_layout_screen.dart';
 import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
 import 'package:urfit/modules/profile_module/screens/loading_plan_screen.dart';
-import 'package:urfit/modules/profile_module/screens/my_plan.dart';
 import 'package:urfit/modules/profile_module/screens/otp_screen_new.dart';
 import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/privacy_policy_screen.dart';
@@ -215,8 +213,7 @@ class AppRouter {
         path: InjuriesScreen.routeWzExtra,
         name: InjuriesScreen.routeWzExtra,
         builder: (context, state) => BlocProvider(
-          create: (context) => di<InjuriesCubit>(),
-          child: InjuriesScreen(planType: state.extra as PlanType)),
+            create: (context) => di<InjuriesCubit>(), child: InjuriesScreen(planType: state.extra as PlanType)),
       ),
 
       /// setup personal info route
@@ -226,25 +223,25 @@ class AppRouter {
         builder: (context, state) => const StartPersonalInfoScreen(),
       ),
       GoRoute(
-        path: PresonalInfoLayoutScreen.route,
-        name: PresonalInfoLayoutScreen.route,
+        path: PresonalInfoLayoutScreen.routeWzExtra,
+        name: PresonalInfoLayoutScreen.routeWzExtra,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => di<SetupPersonalInfoCubit>(),
-            child: const PresonalInfoLayoutScreen(),
+            child: PresonalInfoLayoutScreen(isEditingProfile: state.extra as bool? ?? false),
           );
         },
       ),
-      GoRoute(
-        path: UserInfoEquipmentScreen.route,
-        name: UserInfoEquipmentScreen.route,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (context) => di<SetupPersonalInfoCubit>(),
-            child: const UserInfoEquipmentScreen(),
-          );
-        },
-      ),
+      // GoRoute(
+      //   path: UserInfoEquipmentScreen.route,
+      //   name: UserInfoEquipmentScreen.route,
+      //   builder: (context, state) {
+      //     return BlocProvider(
+      //       create: (context) => di<SetupPersonalInfoCubit>(),
+      //       child:  UserInfoEquipmentScreen(),
+      //     );
+      //   },
+      // ),
 
       /// my plan route
       GoRoute(
@@ -285,16 +282,16 @@ class AppRouter {
       ),
 
       /// loading plan route
-      GoRoute(
-        path: MyPlanScreen.route,
-        name: MyPlanScreen.route,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (context) => di<SetupPersonalInfoCubit>(),
-            child: const MyPlanScreen(),
-          );
-        },
-      ),
+      // GoRoute(
+      //   path: MyPlanScreen.route,
+      //   name: MyPlanScreen.route,
+      //   builder: (context, state) {
+      //     return BlocProvider(
+      //       create: (context) => di<SetupPersonalInfoCubit>(),
+      //       child: const MyPlanScreen(),
+      //     );
+      //   },
+      // ),
 
       /// privacy policy route
       GoRoute(

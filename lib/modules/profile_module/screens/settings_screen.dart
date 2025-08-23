@@ -1,11 +1,19 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
+import 'package:urfit/core/presentation/utils/enums.dart';
+import 'package:urfit/core/presentation/utils/loading_helper.dart';
+import 'package:urfit/di.dart';
+import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
+import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
+import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
+import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/account_info.dart';
@@ -14,17 +22,21 @@ import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/del
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/logout_dialog.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/settings_tile.dart';
 
-
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
   static const route = '/settingsScreen';
 
   @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  var user = Session().currentUser;
+  @override
   Widget build(BuildContext context) {
-    final user = Session().currentUser;
     return Scaffold(
       appBar: AppBar(
-        title:  Text(L10n.tr().settings),
+        title: Text(L10n.tr().settings),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
@@ -32,7 +44,7 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 20),
 
           // account info
-          const AccountInfo(),
+          if (user != null) AccountInfo(user: user!),
 
           const SizedBox(height: 30),
 
@@ -73,10 +85,26 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 16),
 
           // delete account
-          SettingsTile(
-            onTap: () => _deleteAccount(context),
-            title: L10n.tr().deleteAccount,
-            svgIconPath: Assets.iconsDelete,
+          BlocConsumer<SettingCubit, SettingState>(
+            listener: (context, state) {
+              if (state.deleteAccountState == RequestState.loading) {
+                LoadingHelper.startLoading();
+              } else {
+                LoadingHelper.stopLoading();
+              }
+              if (state.deleteAccountState == RequestState.success) {
+                Session().clearUserData();
+                Alerts.showToast(state.deleteAccountMessage, error: false);
+                if (context.mounted) context.go(OnBoardingSecScreen.route);
+              } else if (state.deleteAccountState == RequestState.failure) {
+                Alerts.showToast(state.deleteAccountMessage);
+              }
+            },
+            builder: (context, state) => SettingsTile(
+              onTap: () => _deleteAccount(context),
+              title: L10n.tr().deleteAccount,
+              svgIconPath: Assets.iconsDelete,
+            ),
           ),
           const SizedBox(height: 16),
         ],
@@ -84,8 +112,8 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  void _editName(BuildContext context) {
-    showModalBottomSheet(
+  Future<void> _editName(BuildContext context) async {
+    final name = await showModalBottomSheet<String>(
       backgroundColor: Co.whiteColor,
       useSafeArea: true,
       isScrollControlled: true,
@@ -97,6 +125,22 @@ class SettingsScreen extends StatelessWidget {
       context: context,
       builder: (context) => const ChangeNameSheet(),
     );
+    if (name != null) {
+      LoadingHelper.startLoading();
+      final response = await di<PersonalInfoRepoImpl>()
+          .updatePersonalInfo(personalInfoModel: UserInfoRequest.fromUserModel(user!.copyWith(name: name)));
+      LoadingHelper.stopLoading();
+      response.fold(
+        (ifLeft) {},
+        (ifRight) {
+          Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
+          Session().setCurrentUser = ifRight;
+          setState(() {
+            user = ifRight;
+          });
+        },
+      );
+    }
   }
 
   void _logout(BuildContext context) {

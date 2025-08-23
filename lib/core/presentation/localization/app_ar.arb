@@ -1,4 +1,5 @@
 {
+  "infoUpdatedSuccessfully" : "تم تحديث المعلومات بنجاح",
   "injuriesOrDiseases": "إصابات أو أمراض",
   "doYouHaveCurrentlyAnyPainOrInjury": "هل تعاني حاليا من اي الم او اصابة في جسمك",
   "inWhichBodyPartYouFeelPainOrHaveInjury": "في أي جزء من الجسم تشعر بالألم أو لديك إصابة؟",
@@ -323,5 +324,6 @@
   "enterHeight": "ادخل الطول",
   "enterWeight": "ادخل الوزن",
   "trainingTimes": "عدد التمارين",
-  "selectAll": "اختيار الكل"
+  "selectAll": "اختيار الكل",
+  "save": "حفظ"
 }

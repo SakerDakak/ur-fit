@@ -6,16 +6,14 @@ part of 'selection_item_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SelectionItemModelImpl _$$SelectionItemModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SelectionItemModelImpl(
+_SelectionItemModel _$SelectionItemModelFromJson(Map<String, dynamic> json) =>
+    _SelectionItemModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$SelectionItemModelImplToJson(
-        _$SelectionItemModelImpl instance) =>
+Map<String, dynamic> _$SelectionItemModelToJson(_SelectionItemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

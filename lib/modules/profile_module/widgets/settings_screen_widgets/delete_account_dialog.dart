@@ -1,13 +1,14 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
-
+import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 
 class DeleteAccountDialog extends StatelessWidget {
   const DeleteAccountDialog({super.key});
@@ -50,7 +51,7 @@ class DeleteAccountDialog extends StatelessWidget {
           SvgPicture.asset(
             Assets.iconsDelete,
             height: 20,
-            colorFilter:  ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
               Theme.of(context).colorScheme.primary,
               BlendMode.srcIn,
             ),
@@ -95,7 +96,10 @@ class DeleteAccountDialog extends StatelessWidget {
                 Expanded(
                   child: CustomElevatedButton(
                     text: L10n.tr().yes,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pop();
+                      context.read<SettingCubit>().deleteAccount();
+                    },
                     padding: EdgeInsets.zero,
                   ),
                 ),

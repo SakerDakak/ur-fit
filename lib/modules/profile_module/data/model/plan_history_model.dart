@@ -4,7 +4,7 @@ part 'plan_history_model.freezed.dart';
 part 'plan_history_model.g.dart';
 
 @freezed
-class PlanHistoryModel with _$PlanHistoryModel {
+abstract class PlanHistoryModel with _$PlanHistoryModel {
   const factory PlanHistoryModel({
     required Package? package,
     required SubscriptionData? subscription_data,
@@ -20,7 +20,7 @@ class PlanHistoryModel with _$PlanHistoryModel {
 }
 
 @freezed
-class Package with _$Package {
+abstract class Package with _$Package {
   const factory Package({
     required int id,
     required String name,
@@ -36,7 +36,7 @@ class Package with _$Package {
 }
 
 @freezed
-class SubscriptionData with _$SubscriptionData {
+abstract class SubscriptionData with _$SubscriptionData {
   const factory SubscriptionData({
     required int id,
     required int? user_id,
@@ -51,7 +51,7 @@ class SubscriptionData with _$SubscriptionData {
 }
 
 @freezed
-class MealPlans with _$MealPlans {
+abstract class MealPlans with _$MealPlans {
   const factory MealPlans({
     required num calories,
     required num protein,
@@ -62,7 +62,7 @@ class MealPlans with _$MealPlans {
 }
 
 @freezed
-class ExercisePlans with _$ExercisePlans {
+abstract class ExercisePlans with _$ExercisePlans {
   const factory ExercisePlans({
     required num calories,
     required num sets,
@@ -73,7 +73,7 @@ class ExercisePlans with _$ExercisePlans {
 }
 
 @freezed
-class ExpectedResultOfExercisePlans with _$ExpectedResultOfExercisePlans {
+abstract class ExpectedResultOfExercisePlans with _$ExpectedResultOfExercisePlans {
   const factory ExpectedResultOfExercisePlans({
     required num calories,
     required num sets,
@@ -84,7 +84,7 @@ class ExpectedResultOfExercisePlans with _$ExpectedResultOfExercisePlans {
 }
 
 @freezed
-class ExpectedResultOfMealPlans with _$ExpectedResultOfMealPlans {
+abstract class ExpectedResultOfMealPlans with _$ExpectedResultOfMealPlans {
   const factory ExpectedResultOfMealPlans({
     required num calories,
     required num protein,

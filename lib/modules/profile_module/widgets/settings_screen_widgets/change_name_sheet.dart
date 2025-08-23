@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -10,13 +10,24 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
-
-class ChangeNameSheet extends StatelessWidget {
+class ChangeNameSheet extends StatefulWidget {
   const ChangeNameSheet({super.key});
 
   @override
+  State<ChangeNameSheet> createState() => _ChangeNameSheetState();
+}
+
+class _ChangeNameSheetState extends State<ChangeNameSheet> {
+  final nameController = TextEditingController(text: Session().currentUser?.name);
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final user = Session().currentUser;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConst.kHorizontalPadding,
@@ -64,7 +75,7 @@ class ChangeNameSheet extends StatelessWidget {
             SvgPicture.asset(
               Assets.iconsProfile,
               height: 24,
-              colorFilter:  ColorFilter.mode(
+              colorFilter: ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,
                 BlendMode.srcIn,
               ),
@@ -96,8 +107,8 @@ class ChangeNameSheet extends StatelessWidget {
 
             // name text field
             CompactTextFormField(
+              controller: nameController,
               hintText: L10n.tr().fullName,
-              initialValue: user?.name.toString(),
               padding: EdgeInsets.zero,
               borderColor: Co.strockColor,
               style: TStyle.regular_14.copyWith(
@@ -110,7 +121,11 @@ class ChangeNameSheet extends StatelessWidget {
             // confirm button
             CustomElevatedButton(
               text: L10n.tr().confirm,
-              onPressed: () {},
+              onPressed: () async {
+                if (nameController.text.trim().length < 3) return;
+                final name = nameController.text.trim();
+                context.pop(name);
+              },
               padding: EdgeInsets.zero,
             ),
 

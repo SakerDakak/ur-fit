@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,107 +9,69 @@ part of 'workout_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$WorkoutState {
-  List<WorkoutPlan> get allPlans => throw _privateConstructorUsedError;
-  int get progressValue => throw _privateConstructorUsedError;
-  int get selectedDay => throw _privateConstructorUsedError;
-  String get errMessage => throw _privateConstructorUsedError;
-  bool get isPlaying => throw _privateConstructorUsedError;
-  Map<int, int> get remainingSets => throw _privateConstructorUsedError;
-  RequestState get getWorkOutPlanState => throw _privateConstructorUsedError;
+  List<WorkoutPlan> get allPlans;
+  int get progressValue;
+  int get selectedDay;
+  String get errMessage;
+  bool get isPlaying;
+  Map<int, int> get remainingSets;
+  RequestState get getWorkOutPlanState;
 
   /// Create a copy of WorkoutState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WorkoutStateCopyWith<WorkoutState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WorkoutStateCopyWith<$Res> {
-  factory $WorkoutStateCopyWith(
-          WorkoutState value, $Res Function(WorkoutState) then) =
-      _$WorkoutStateCopyWithImpl<$Res, WorkoutState>;
-  @useResult
-  $Res call(
-      {List<WorkoutPlan> allPlans,
-      int progressValue,
-      int selectedDay,
-      String errMessage,
-      bool isPlaying,
-      Map<int, int> remainingSets,
-      RequestState getWorkOutPlanState});
-}
-
-/// @nodoc
-class _$WorkoutStateCopyWithImpl<$Res, $Val extends WorkoutState>
-    implements $WorkoutStateCopyWith<$Res> {
-  _$WorkoutStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of WorkoutState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $WorkoutStateCopyWith<WorkoutState> get copyWith =>
+      _$WorkoutStateCopyWithImpl<WorkoutState>(
+          this as WorkoutState, _$identity);
+
   @override
-  $Res call({
-    Object? allPlans = null,
-    Object? progressValue = null,
-    Object? selectedDay = null,
-    Object? errMessage = null,
-    Object? isPlaying = null,
-    Object? remainingSets = null,
-    Object? getWorkOutPlanState = null,
-  }) {
-    return _then(_value.copyWith(
-      allPlans: null == allPlans
-          ? _value.allPlans
-          : allPlans // ignore: cast_nullable_to_non_nullable
-              as List<WorkoutPlan>,
-      progressValue: null == progressValue
-          ? _value.progressValue
-          : progressValue // ignore: cast_nullable_to_non_nullable
-              as int,
-      selectedDay: null == selectedDay
-          ? _value.selectedDay
-          : selectedDay // ignore: cast_nullable_to_non_nullable
-              as int,
-      errMessage: null == errMessage
-          ? _value.errMessage
-          : errMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      isPlaying: null == isPlaying
-          ? _value.isPlaying
-          : isPlaying // ignore: cast_nullable_to_non_nullable
-              as bool,
-      remainingSets: null == remainingSets
-          ? _value.remainingSets
-          : remainingSets // ignore: cast_nullable_to_non_nullable
-              as Map<int, int>,
-      getWorkOutPlanState: null == getWorkOutPlanState
-          ? _value.getWorkOutPlanState
-          : getWorkOutPlanState // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is WorkoutState &&
+            const DeepCollectionEquality().equals(other.allPlans, allPlans) &&
+            (identical(other.progressValue, progressValue) ||
+                other.progressValue == progressValue) &&
+            (identical(other.selectedDay, selectedDay) ||
+                other.selectedDay == selectedDay) &&
+            (identical(other.errMessage, errMessage) ||
+                other.errMessage == errMessage) &&
+            (identical(other.isPlaying, isPlaying) ||
+                other.isPlaying == isPlaying) &&
+            const DeepCollectionEquality()
+                .equals(other.remainingSets, remainingSets) &&
+            (identical(other.getWorkOutPlanState, getWorkOutPlanState) ||
+                other.getWorkOutPlanState == getWorkOutPlanState));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(allPlans),
+      progressValue,
+      selectedDay,
+      errMessage,
+      isPlaying,
+      const DeepCollectionEquality().hash(remainingSets),
+      getWorkOutPlanState);
+
+  @override
+  String toString() {
+    return 'WorkoutState(allPlans: $allPlans, progressValue: $progressValue, selectedDay: $selectedDay, errMessage: $errMessage, isPlaying: $isPlaying, remainingSets: $remainingSets, getWorkOutPlanState: $getWorkOutPlanState)';
   }
 }
 
 /// @nodoc
-abstract class _$$WorkoutStateImplCopyWith<$Res>
-    implements $WorkoutStateCopyWith<$Res> {
-  factory _$$WorkoutStateImplCopyWith(
-          _$WorkoutStateImpl value, $Res Function(_$WorkoutStateImpl) then) =
-      __$$WorkoutStateImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $WorkoutStateCopyWith<$Res> {
+  factory $WorkoutStateCopyWith(
+          WorkoutState value, $Res Function(WorkoutState) _then) =
+      _$WorkoutStateCopyWithImpl;
   @useResult
   $Res call(
       {List<WorkoutPlan> allPlans,
@@ -122,12 +84,11 @@ abstract class _$$WorkoutStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$WorkoutStateImplCopyWithImpl<$Res>
-    extends _$WorkoutStateCopyWithImpl<$Res, _$WorkoutStateImpl>
-    implements _$$WorkoutStateImplCopyWith<$Res> {
-  __$$WorkoutStateImplCopyWithImpl(
-      _$WorkoutStateImpl _value, $Res Function(_$WorkoutStateImpl) _then)
-      : super(_value, _then);
+class _$WorkoutStateCopyWithImpl<$Res> implements $WorkoutStateCopyWith<$Res> {
+  _$WorkoutStateCopyWithImpl(this._self, this._then);
+
+  final WorkoutState _self;
+  final $Res Function(WorkoutState) _then;
 
   /// Create a copy of WorkoutState
   /// with the given fields replaced by the non-null parameter values.
@@ -142,43 +103,245 @@ class __$$WorkoutStateImplCopyWithImpl<$Res>
     Object? remainingSets = null,
     Object? getWorkOutPlanState = null,
   }) {
-    return _then(_$WorkoutStateImpl(
+    return _then(_self.copyWith(
       allPlans: null == allPlans
-          ? _value._allPlans
+          ? _self.allPlans
           : allPlans // ignore: cast_nullable_to_non_nullable
               as List<WorkoutPlan>,
       progressValue: null == progressValue
-          ? _value.progressValue
+          ? _self.progressValue
           : progressValue // ignore: cast_nullable_to_non_nullable
               as int,
       selectedDay: null == selectedDay
-          ? _value.selectedDay
+          ? _self.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
               as int,
       errMessage: null == errMessage
-          ? _value.errMessage
+          ? _self.errMessage
           : errMessage // ignore: cast_nullable_to_non_nullable
               as String,
       isPlaying: null == isPlaying
-          ? _value.isPlaying
+          ? _self.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
       remainingSets: null == remainingSets
-          ? _value._remainingSets
+          ? _self.remainingSets
           : remainingSets // ignore: cast_nullable_to_non_nullable
               as Map<int, int>,
       getWorkOutPlanState: null == getWorkOutPlanState
-          ? _value.getWorkOutPlanState
+          ? _self.getWorkOutPlanState
           : getWorkOutPlanState // ignore: cast_nullable_to_non_nullable
               as RequestState,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [WorkoutState].
+extension WorkoutStatePatterns on WorkoutState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_WorkoutState value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_WorkoutState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_WorkoutState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            List<WorkoutPlan> allPlans,
+            int progressValue,
+            int selectedDay,
+            String errMessage,
+            bool isPlaying,
+            Map<int, int> remainingSets,
+            RequestState getWorkOutPlanState)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutState() when $default != null:
+        return $default(
+            _that.allPlans,
+            _that.progressValue,
+            _that.selectedDay,
+            _that.errMessage,
+            _that.isPlaying,
+            _that.remainingSets,
+            _that.getWorkOutPlanState);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            List<WorkoutPlan> allPlans,
+            int progressValue,
+            int selectedDay,
+            String errMessage,
+            bool isPlaying,
+            Map<int, int> remainingSets,
+            RequestState getWorkOutPlanState)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutState():
+        return $default(
+            _that.allPlans,
+            _that.progressValue,
+            _that.selectedDay,
+            _that.errMessage,
+            _that.isPlaying,
+            _that.remainingSets,
+            _that.getWorkOutPlanState);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            List<WorkoutPlan> allPlans,
+            int progressValue,
+            int selectedDay,
+            String errMessage,
+            bool isPlaying,
+            Map<int, int> remainingSets,
+            RequestState getWorkOutPlanState)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutState() when $default != null:
+        return $default(
+            _that.allPlans,
+            _that.progressValue,
+            _that.selectedDay,
+            _that.errMessage,
+            _that.isPlaying,
+            _that.remainingSets,
+            _that.getWorkOutPlanState);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 
-class _$WorkoutStateImpl implements _WorkoutState {
-  const _$WorkoutStateImpl(
+class _WorkoutState implements WorkoutState {
+  const _WorkoutState(
       {final List<WorkoutPlan> allPlans = const [],
       this.progressValue = 1,
       this.selectedDay = 0,
@@ -223,16 +386,19 @@ class _$WorkoutStateImpl implements _WorkoutState {
   @JsonKey()
   final RequestState getWorkOutPlanState;
 
+  /// Create a copy of WorkoutState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'WorkoutState(allPlans: $allPlans, progressValue: $progressValue, selectedDay: $selectedDay, errMessage: $errMessage, isPlaying: $isPlaying, remainingSets: $remainingSets, getWorkOutPlanState: $getWorkOutPlanState)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$WorkoutStateCopyWith<_WorkoutState> get copyWith =>
+      __$WorkoutStateCopyWithImpl<_WorkoutState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WorkoutStateImpl &&
+            other is _WorkoutState &&
             const DeepCollectionEquality().equals(other._allPlans, _allPlans) &&
             (identical(other.progressValue, progressValue) ||
                 other.progressValue == progressValue) &&
@@ -259,44 +425,82 @@ class _$WorkoutStateImpl implements _WorkoutState {
       const DeepCollectionEquality().hash(_remainingSets),
       getWorkOutPlanState);
 
+  @override
+  String toString() {
+    return 'WorkoutState(allPlans: $allPlans, progressValue: $progressValue, selectedDay: $selectedDay, errMessage: $errMessage, isPlaying: $isPlaying, remainingSets: $remainingSets, getWorkOutPlanState: $getWorkOutPlanState)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$WorkoutStateCopyWith<$Res>
+    implements $WorkoutStateCopyWith<$Res> {
+  factory _$WorkoutStateCopyWith(
+          _WorkoutState value, $Res Function(_WorkoutState) _then) =
+      __$WorkoutStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {List<WorkoutPlan> allPlans,
+      int progressValue,
+      int selectedDay,
+      String errMessage,
+      bool isPlaying,
+      Map<int, int> remainingSets,
+      RequestState getWorkOutPlanState});
+}
+
+/// @nodoc
+class __$WorkoutStateCopyWithImpl<$Res>
+    implements _$WorkoutStateCopyWith<$Res> {
+  __$WorkoutStateCopyWithImpl(this._self, this._then);
+
+  final _WorkoutState _self;
+  final $Res Function(_WorkoutState) _then;
+
   /// Create a copy of WorkoutState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$WorkoutStateImplCopyWith<_$WorkoutStateImpl> get copyWith =>
-      __$$WorkoutStateImplCopyWithImpl<_$WorkoutStateImpl>(this, _$identity);
+  $Res call({
+    Object? allPlans = null,
+    Object? progressValue = null,
+    Object? selectedDay = null,
+    Object? errMessage = null,
+    Object? isPlaying = null,
+    Object? remainingSets = null,
+    Object? getWorkOutPlanState = null,
+  }) {
+    return _then(_WorkoutState(
+      allPlans: null == allPlans
+          ? _self._allPlans
+          : allPlans // ignore: cast_nullable_to_non_nullable
+              as List<WorkoutPlan>,
+      progressValue: null == progressValue
+          ? _self.progressValue
+          : progressValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedDay: null == selectedDay
+          ? _self.selectedDay
+          : selectedDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      errMessage: null == errMessage
+          ? _self.errMessage
+          : errMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPlaying: null == isPlaying
+          ? _self.isPlaying
+          : isPlaying // ignore: cast_nullable_to_non_nullable
+              as bool,
+      remainingSets: null == remainingSets
+          ? _self._remainingSets
+          : remainingSets // ignore: cast_nullable_to_non_nullable
+              as Map<int, int>,
+      getWorkOutPlanState: null == getWorkOutPlanState
+          ? _self.getWorkOutPlanState
+          : getWorkOutPlanState // ignore: cast_nullable_to_non_nullable
+              as RequestState,
+    ));
+  }
 }
 
-abstract class _WorkoutState implements WorkoutState {
-  const factory _WorkoutState(
-      {final List<WorkoutPlan> allPlans,
-      final int progressValue,
-      final int selectedDay,
-      final String errMessage,
-      final bool isPlaying,
-      final Map<int, int> remainingSets,
-      final RequestState getWorkOutPlanState}) = _$WorkoutStateImpl;
-
-  @override
-  List<WorkoutPlan> get allPlans;
-  @override
-  int get progressValue;
-  @override
-  int get selectedDay;
-  @override
-  String get errMessage;
-  @override
-  bool get isPlaying;
-  @override
-  Map<int, int> get remainingSets;
-  @override
-  RequestState get getWorkOutPlanState;
-
-  /// Create a copy of WorkoutState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WorkoutStateImplCopyWith<_$WorkoutStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

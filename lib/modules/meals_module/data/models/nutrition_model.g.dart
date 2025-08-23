@@ -6,28 +6,26 @@ part of 'nutrition_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NutritionImpl _$$NutritionImplFromJson(Map<String, dynamic> json) =>
-    _$NutritionImpl(
+_Nutrition _$NutritionFromJson(Map<String, dynamic> json) => _Nutrition(
       name: json['name'] as String,
       amount: json['amount'] as num,
       unit: json['unit'] as String,
     );
 
-Map<String, dynamic> _$$NutritionImplToJson(_$NutritionImpl instance) =>
+Map<String, dynamic> _$NutritionToJson(_Nutrition instance) =>
     <String, dynamic>{
       'name': instance.name,
       'amount': instance.amount,
       'unit': instance.unit,
     };
 
-_$NutritionsImpl _$$NutritionsImplFromJson(Map<String, dynamic> json) =>
-    _$NutritionsImpl(
+_Nutritions _$NutritionsFromJson(Map<String, dynamic> json) => _Nutritions(
       nutrients: (json['nutrients'] as List<dynamic>)
           .map((e) => NutritionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$NutritionsImplToJson(_$NutritionsImpl instance) =>
+Map<String, dynamic> _$NutritionsToJson(_Nutritions instance) =>
     <String, dynamic>{
       'nutrients': instance.nutrients,
     };

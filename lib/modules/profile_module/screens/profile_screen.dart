@@ -10,8 +10,8 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/app_language_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/default_list_tile.dart';
+import 'package:urfit/modules/personal_info/screens/personal_info_layout_screen.dart';
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
-import 'package:urfit/modules/profile_module/screens/my_plan.dart';
 import 'package:urfit/modules/profile_module/screens/previous_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/privacy_policy_screen.dart';
 import 'package:urfit/modules/profile_module/screens/settings_screen.dart';
@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
 
               // my plan tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(MyPlanScreen.route),
+                onTap: () => GoRouter.of(context).push(PresonalInfoLayoutScreen.routeWzExtra, extra: true),
                 title: L10n.tr().myPlan,
                 leadingIconSvgPath: Assets.iconsPaper,
               ),
@@ -167,7 +167,8 @@ class ProfileScreen extends StatelessWidget {
                     return const SizedBox.shrink();
                   } else {
                     final data = snapshot.data;
-                    return Center(child: Text("V ${data?.$1.version}+${data?.$1.buildNumber} (${data?.$2?.number ?? 0})"));
+                    return Center(
+                        child: Text("V ${data?.$1.version}+${data?.$1.buildNumber} (${data?.$2?.number ?? 0})"));
                   }
                 },
               )

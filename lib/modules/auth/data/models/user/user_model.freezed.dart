@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,89 +9,186 @@ part of 'user_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
 }
 
 /// @nodoc
 mixin _$UserModel {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  bool? get hasValidSubscription => throw _privateConstructorUsedError;
+  int get id;
+  String get name;
+  String get email;
+  bool? get hasValidSubscription;
   @CountryConverter()
-  Country? get country => throw _privateConstructorUsedError;
+  Country? get country;
   @CityConverter()
   @JsonKey(name: 'city_id')
-  City? get city => throw _privateConstructorUsedError;
+  City? get city;
   @GenderEnumConverter()
-  GenderEnum? get gender => throw _privateConstructorUsedError;
+  GenderEnum? get gender;
   @JsonKey(name: 'package_id')
-  int? get packageId => throw _privateConstructorUsedError;
-  int? get age => throw _privateConstructorUsedError;
+  int? get packageId;
+  int? get age;
   @JsonKey(name: 'current_weight')
-  int? get currentWeight => throw _privateConstructorUsedError;
-  int? get height => throw _privateConstructorUsedError;
-  int? get otpCode => throw _privateConstructorUsedError;
-  List<Goal>? get goals => throw _privateConstructorUsedError;
+  int? get currentWeight;
+  int? get height;
+  int? get otpCode;
+  List<Goal>? get goals;
   @JsonKey(name: 'target_weight')
-  int? get targetWeight => throw _privateConstructorUsedError;
+  int? get targetWeight;
   @BodyShapeConverter()
   @JsonKey(name: 'body_shape')
-  BodyShape? get bodyShape =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
+  BodyShape?
+      get bodyShape; // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
   @JsonKey(name: 'training_days_per_week')
-  int? get trainingDaysPerWeek => throw _privateConstructorUsedError;
+  int? get trainingDaysPerWeek;
   @JsonKey(name: 'body_parts')
-  List<String>? get bodyParts => throw _privateConstructorUsedError;
+  List<String>? get bodyParts;
   @JsonKey(name: 'exercise_days')
-  List<String>? get exerciseDays => throw _privateConstructorUsedError;
+  List<String>? get exerciseDays;
   @JsonKey(name: 'workoutTypes')
-  List<WorkoutType>? get workoutTypes => throw _privateConstructorUsedError;
-  List<Equipment>? get equipments => throw _privateConstructorUsedError;
+  List<WorkoutType>? get workoutTypes;
+  List<Equipment>? get equipments;
   @DietConverter()
-  Diet? get diet => throw _privateConstructorUsedError;
+  Diet? get diet;
   @JsonKey(name: 'recipe_types')
-  List<RecipeType>? get recipeTypes => throw _privateConstructorUsedError;
+  List<RecipeType>? get recipeTypes;
   @JsonKey(name: 'foods_not_liked')
-  List<FoodNotLiked>? get foodsNotLiked => throw _privateConstructorUsedError;
+  List<FoodNotLiked>? get foodsNotLiked;
   @MealVarietyConverter()
   @JsonKey(name: 'meal_variety')
-  MealVariety? get mealVariety => throw _privateConstructorUsedError;
+  MealVariety? get mealVariety;
   @JsonKey(name: 'email_verified_at')
-  String? get emailVerifiedAt => throw _privateConstructorUsedError;
+  String? get emailVerifiedAt;
   @JsonKey(name: 'is_checked')
-  bool? get isChecked => throw _privateConstructorUsedError;
+  bool? get isChecked;
   @JsonKey(name: 'is_completed')
-  bool? get isCompleted => throw _privateConstructorUsedError;
+  bool? get isCompleted;
   @JsonKey(name: 'is_active')
-  bool? get isActive => throw _privateConstructorUsedError;
+  bool? get isActive;
   @JsonKey(name: 'country_key')
-  String? get countryKey => throw _privateConstructorUsedError;
+  String? get countryKey;
   @JsonKey(name: 'is_have_exercise_plan')
-  bool? get haveExercisePlan => throw _privateConstructorUsedError;
+  bool? get haveExercisePlan;
   @JsonKey(name: 'is_have_meal_plan')
-  bool? get haveMealPlan => throw _privateConstructorUsedError;
-
-  /// Serializes this UserModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool? get haveMealPlan;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $UserModelCopyWith<UserModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$UserModelCopyWithImpl<UserModel>(this as UserModel, _$identity);
+
+  /// Serializes this UserModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.hasValidSubscription, hasValidSubscription) ||
+                other.hasValidSubscription == hasValidSubscription) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.packageId, packageId) ||
+                other.packageId == packageId) &&
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.currentWeight, currentWeight) ||
+                other.currentWeight == currentWeight) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.otpCode, otpCode) || other.otpCode == otpCode) &&
+            const DeepCollectionEquality().equals(other.goals, goals) &&
+            (identical(other.targetWeight, targetWeight) ||
+                other.targetWeight == targetWeight) &&
+            (identical(other.bodyShape, bodyShape) ||
+                other.bodyShape == bodyShape) &&
+            (identical(other.trainingDaysPerWeek, trainingDaysPerWeek) ||
+                other.trainingDaysPerWeek == trainingDaysPerWeek) &&
+            const DeepCollectionEquality().equals(other.bodyParts, bodyParts) &&
+            const DeepCollectionEquality()
+                .equals(other.exerciseDays, exerciseDays) &&
+            const DeepCollectionEquality()
+                .equals(other.workoutTypes, workoutTypes) &&
+            const DeepCollectionEquality()
+                .equals(other.equipments, equipments) &&
+            (identical(other.diet, diet) || other.diet == diet) &&
+            const DeepCollectionEquality()
+                .equals(other.recipeTypes, recipeTypes) &&
+            const DeepCollectionEquality()
+                .equals(other.foodsNotLiked, foodsNotLiked) &&
+            (identical(other.mealVariety, mealVariety) ||
+                other.mealVariety == mealVariety) &&
+            (identical(other.emailVerifiedAt, emailVerifiedAt) ||
+                other.emailVerifiedAt == emailVerifiedAt) &&
+            (identical(other.isChecked, isChecked) ||
+                other.isChecked == isChecked) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.countryKey, countryKey) ||
+                other.countryKey == countryKey) &&
+            (identical(other.haveExercisePlan, haveExercisePlan) ||
+                other.haveExercisePlan == haveExercisePlan) &&
+            (identical(other.haveMealPlan, haveMealPlan) ||
+                other.haveMealPlan == haveMealPlan));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        email,
+        hasValidSubscription,
+        country,
+        city,
+        gender,
+        packageId,
+        age,
+        currentWeight,
+        height,
+        otpCode,
+        const DeepCollectionEquality().hash(goals),
+        targetWeight,
+        bodyShape,
+        trainingDaysPerWeek,
+        const DeepCollectionEquality().hash(bodyParts),
+        const DeepCollectionEquality().hash(exerciseDays),
+        const DeepCollectionEquality().hash(workoutTypes),
+        const DeepCollectionEquality().hash(equipments),
+        diet,
+        const DeepCollectionEquality().hash(recipeTypes),
+        const DeepCollectionEquality().hash(foodsNotLiked),
+        mealVariety,
+        emailVerifiedAt,
+        isChecked,
+        isCompleted,
+        isActive,
+        countryKey,
+        haveExercisePlan,
+        haveMealPlan
+      ]);
+
+  @override
+  String toString() {
+    return 'UserModel(id: $id, name: $name, email: $email, hasValidSubscription: $hasValidSubscription, country: $country, city: $city, gender: $gender, packageId: $packageId, age: $age, currentWeight: $currentWeight, height: $height, otpCode: $otpCode, goals: $goals, targetWeight: $targetWeight, bodyShape: $bodyShape, trainingDaysPerWeek: $trainingDaysPerWeek, bodyParts: $bodyParts, exerciseDays: $exerciseDays, workoutTypes: $workoutTypes, equipments: $equipments, diet: $diet, recipeTypes: $recipeTypes, foodsNotLiked: $foodsNotLiked, mealVariety: $mealVariety, emailVerifiedAt: $emailVerifiedAt, isChecked: $isChecked, isCompleted: $isCompleted, isActive: $isActive, countryKey: $countryKey, haveExercisePlan: $haveExercisePlan, haveMealPlan: $haveMealPlan)';
+  }
 }
 
 /// @nodoc
-abstract class $UserModelCopyWith<$Res> {
-  factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
-      _$UserModelCopyWithImpl<$Res, UserModel>;
+abstract mixin class $UserModelCopyWith<$Res> {
+  factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) =
+      _$UserModelCopyWithImpl;
   @useResult
   $Res call(
       {int id,
@@ -136,14 +233,11 @@ abstract class $UserModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
-    implements $UserModelCopyWith<$Res> {
-  _$UserModelCopyWithImpl(this._value, this._then);
+class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
+  _$UserModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UserModel _self;
+  final $Res Function(UserModel) _then;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -182,132 +276,132 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? haveExercisePlan = freezed,
     Object? haveMealPlan = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
-          ? _value.email
+          ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
       hasValidSubscription: freezed == hasValidSubscription
-          ? _value.hasValidSubscription
+          ? _self.hasValidSubscription
           : hasValidSubscription // ignore: cast_nullable_to_non_nullable
               as bool?,
       country: freezed == country
-          ? _value.country
+          ? _self.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country?,
       city: freezed == city
-          ? _value.city
+          ? _self.city
           : city // ignore: cast_nullable_to_non_nullable
               as City?,
       gender: freezed == gender
-          ? _value.gender
+          ? _self.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as GenderEnum?,
       packageId: freezed == packageId
-          ? _value.packageId
+          ? _self.packageId
           : packageId // ignore: cast_nullable_to_non_nullable
               as int?,
       age: freezed == age
-          ? _value.age
+          ? _self.age
           : age // ignore: cast_nullable_to_non_nullable
               as int?,
       currentWeight: freezed == currentWeight
-          ? _value.currentWeight
+          ? _self.currentWeight
           : currentWeight // ignore: cast_nullable_to_non_nullable
               as int?,
       height: freezed == height
-          ? _value.height
+          ? _self.height
           : height // ignore: cast_nullable_to_non_nullable
               as int?,
       otpCode: freezed == otpCode
-          ? _value.otpCode
+          ? _self.otpCode
           : otpCode // ignore: cast_nullable_to_non_nullable
               as int?,
       goals: freezed == goals
-          ? _value.goals
+          ? _self.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as List<Goal>?,
       targetWeight: freezed == targetWeight
-          ? _value.targetWeight
+          ? _self.targetWeight
           : targetWeight // ignore: cast_nullable_to_non_nullable
               as int?,
       bodyShape: freezed == bodyShape
-          ? _value.bodyShape
+          ? _self.bodyShape
           : bodyShape // ignore: cast_nullable_to_non_nullable
               as BodyShape?,
       trainingDaysPerWeek: freezed == trainingDaysPerWeek
-          ? _value.trainingDaysPerWeek
+          ? _self.trainingDaysPerWeek
           : trainingDaysPerWeek // ignore: cast_nullable_to_non_nullable
               as int?,
       bodyParts: freezed == bodyParts
-          ? _value.bodyParts
+          ? _self.bodyParts
           : bodyParts // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       exerciseDays: freezed == exerciseDays
-          ? _value.exerciseDays
+          ? _self.exerciseDays
           : exerciseDays // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       workoutTypes: freezed == workoutTypes
-          ? _value.workoutTypes
+          ? _self.workoutTypes
           : workoutTypes // ignore: cast_nullable_to_non_nullable
               as List<WorkoutType>?,
       equipments: freezed == equipments
-          ? _value.equipments
+          ? _self.equipments
           : equipments // ignore: cast_nullable_to_non_nullable
               as List<Equipment>?,
       diet: freezed == diet
-          ? _value.diet
+          ? _self.diet
           : diet // ignore: cast_nullable_to_non_nullable
               as Diet?,
       recipeTypes: freezed == recipeTypes
-          ? _value.recipeTypes
+          ? _self.recipeTypes
           : recipeTypes // ignore: cast_nullable_to_non_nullable
               as List<RecipeType>?,
       foodsNotLiked: freezed == foodsNotLiked
-          ? _value.foodsNotLiked
+          ? _self.foodsNotLiked
           : foodsNotLiked // ignore: cast_nullable_to_non_nullable
               as List<FoodNotLiked>?,
       mealVariety: freezed == mealVariety
-          ? _value.mealVariety
+          ? _self.mealVariety
           : mealVariety // ignore: cast_nullable_to_non_nullable
               as MealVariety?,
       emailVerifiedAt: freezed == emailVerifiedAt
-          ? _value.emailVerifiedAt
+          ? _self.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
               as String?,
       isChecked: freezed == isChecked
-          ? _value.isChecked
+          ? _self.isChecked
           : isChecked // ignore: cast_nullable_to_non_nullable
               as bool?,
       isCompleted: freezed == isCompleted
-          ? _value.isCompleted
+          ? _self.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool?,
       isActive: freezed == isActive
-          ? _value.isActive
+          ? _self.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool?,
       countryKey: freezed == countryKey
-          ? _value.countryKey
+          ? _self.countryKey
           : countryKey // ignore: cast_nullable_to_non_nullable
               as String?,
       haveExercisePlan: freezed == haveExercisePlan
-          ? _value.haveExercisePlan
+          ? _self.haveExercisePlan
           : haveExercisePlan // ignore: cast_nullable_to_non_nullable
               as bool?,
       haveMealPlan: freezed == haveMealPlan
-          ? _value.haveMealPlan
+          ? _self.haveMealPlan
           : haveMealPlan // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of UserModel
@@ -315,12 +409,12 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   @pragma('vm:prefer-inline')
   $CountryCopyWith<$Res>? get country {
-    if (_value.country == null) {
+    if (_self.country == null) {
       return null;
     }
 
-    return $CountryCopyWith<$Res>(_value.country!, (value) {
-      return _then(_value.copyWith(country: value) as $Val);
+    return $CountryCopyWith<$Res>(_self.country!, (value) {
+      return _then(_self.copyWith(country: value));
     });
   }
 
@@ -329,12 +423,12 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   @pragma('vm:prefer-inline')
   $CityCopyWith<$Res>? get city {
-    if (_value.city == null) {
+    if (_self.city == null) {
       return null;
     }
 
-    return $CityCopyWith<$Res>(_value.city!, (value) {
-      return _then(_value.copyWith(city: value) as $Val);
+    return $CityCopyWith<$Res>(_self.city!, (value) {
+      return _then(_self.copyWith(city: value));
     });
   }
 
@@ -343,12 +437,12 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   @pragma('vm:prefer-inline')
   $BodyShapeCopyWith<$Res>? get bodyShape {
-    if (_value.bodyShape == null) {
+    if (_self.bodyShape == null) {
       return null;
     }
 
-    return $BodyShapeCopyWith<$Res>(_value.bodyShape!, (value) {
-      return _then(_value.copyWith(bodyShape: value) as $Val);
+    return $BodyShapeCopyWith<$Res>(_self.bodyShape!, (value) {
+      return _then(_self.copyWith(bodyShape: value));
     });
   }
 
@@ -357,12 +451,12 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   @pragma('vm:prefer-inline')
   $DietCopyWith<$Res>? get diet {
-    if (_value.diet == null) {
+    if (_self.diet == null) {
       return null;
     }
 
-    return $DietCopyWith<$Res>(_value.diet!, (value) {
-      return _then(_value.copyWith(diet: value) as $Val);
+    return $DietCopyWith<$Res>(_self.diet!, (value) {
+      return _then(_self.copyWith(diet: value));
     });
   }
 
@@ -371,247 +465,378 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   @pragma('vm:prefer-inline')
   $MealVarietyCopyWith<$Res>? get mealVariety {
-    if (_value.mealVariety == null) {
+    if (_self.mealVariety == null) {
       return null;
     }
 
-    return $MealVarietyCopyWith<$Res>(_value.mealVariety!, (value) {
-      return _then(_value.copyWith(mealVariety: value) as $Val);
+    return $MealVarietyCopyWith<$Res>(_self.mealVariety!, (value) {
+      return _then(_self.copyWith(mealVariety: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$UserImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
-  factory _$$UserImplCopyWith(
-          _$UserImpl value, $Res Function(_$UserImpl) then) =
-      __$$UserImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String name,
-      String email,
-      bool? hasValidSubscription,
-      @CountryConverter() Country? country,
-      @CityConverter() @JsonKey(name: 'city_id') City? city,
-      @GenderEnumConverter() GenderEnum? gender,
-      @JsonKey(name: 'package_id') int? packageId,
-      int? age,
-      @JsonKey(name: 'current_weight') int? currentWeight,
-      int? height,
-      int? otpCode,
-      List<Goal>? goals,
-      @JsonKey(name: 'target_weight') int? targetWeight,
-      @BodyShapeConverter() @JsonKey(name: 'body_shape') BodyShape? bodyShape,
-      @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
-      @JsonKey(name: 'body_parts') List<String>? bodyParts,
-      @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
-      @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
-      List<Equipment>? equipments,
-      @DietConverter() Diet? diet,
-      @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
-      @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
-      @MealVarietyConverter()
-      @JsonKey(name: 'meal_variety')
-      MealVariety? mealVariety,
-      @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
-      @JsonKey(name: 'is_checked') bool? isChecked,
-      @JsonKey(name: 'is_completed') bool? isCompleted,
-      @JsonKey(name: 'is_active') bool? isActive,
-      @JsonKey(name: 'country_key') String? countryKey,
-      @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
-      @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan});
+/// Adds pattern-matching-related methods to [UserModel].
+extension UserModelPatterns on UserModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $CountryCopyWith<$Res>? get country;
-  @override
-  $CityCopyWith<$Res>? get city;
-  @override
-  $BodyShapeCopyWith<$Res>? get bodyShape;
-  @override
-  $DietCopyWith<$Res>? get diet;
-  @override
-  $MealVarietyCopyWith<$Res>? get mealVariety;
-}
-
-/// @nodoc
-class __$$UserImplCopyWithImpl<$Res>
-    extends _$UserModelCopyWithImpl<$Res, _$UserImpl>
-    implements _$$UserImplCopyWith<$Res> {
-  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? email = null,
-    Object? hasValidSubscription = freezed,
-    Object? country = freezed,
-    Object? city = freezed,
-    Object? gender = freezed,
-    Object? packageId = freezed,
-    Object? age = freezed,
-    Object? currentWeight = freezed,
-    Object? height = freezed,
-    Object? otpCode = freezed,
-    Object? goals = freezed,
-    Object? targetWeight = freezed,
-    Object? bodyShape = freezed,
-    Object? trainingDaysPerWeek = freezed,
-    Object? bodyParts = freezed,
-    Object? exerciseDays = freezed,
-    Object? workoutTypes = freezed,
-    Object? equipments = freezed,
-    Object? diet = freezed,
-    Object? recipeTypes = freezed,
-    Object? foodsNotLiked = freezed,
-    Object? mealVariety = freezed,
-    Object? emailVerifiedAt = freezed,
-    Object? isChecked = freezed,
-    Object? isCompleted = freezed,
-    Object? isActive = freezed,
-    Object? countryKey = freezed,
-    Object? haveExercisePlan = freezed,
-    Object? haveMealPlan = freezed,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_User value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$UserImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasValidSubscription: freezed == hasValidSubscription
-          ? _value.hasValidSubscription
-          : hasValidSubscription // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      country: freezed == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as Country?,
-      city: freezed == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as City?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as GenderEnum?,
-      packageId: freezed == packageId
-          ? _value.packageId
-          : packageId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      age: freezed == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentWeight: freezed == currentWeight
-          ? _value.currentWeight
-          : currentWeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      otpCode: freezed == otpCode
-          ? _value.otpCode
-          : otpCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goals: freezed == goals
-          ? _value._goals
-          : goals // ignore: cast_nullable_to_non_nullable
-              as List<Goal>?,
-      targetWeight: freezed == targetWeight
-          ? _value.targetWeight
-          : targetWeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bodyShape: freezed == bodyShape
-          ? _value.bodyShape
-          : bodyShape // ignore: cast_nullable_to_non_nullable
-              as BodyShape?,
-      trainingDaysPerWeek: freezed == trainingDaysPerWeek
-          ? _value.trainingDaysPerWeek
-          : trainingDaysPerWeek // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bodyParts: freezed == bodyParts
-          ? _value._bodyParts
-          : bodyParts // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      exerciseDays: freezed == exerciseDays
-          ? _value._exerciseDays
-          : exerciseDays // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      workoutTypes: freezed == workoutTypes
-          ? _value._workoutTypes
-          : workoutTypes // ignore: cast_nullable_to_non_nullable
-              as List<WorkoutType>?,
-      equipments: freezed == equipments
-          ? _value._equipments
-          : equipments // ignore: cast_nullable_to_non_nullable
-              as List<Equipment>?,
-      diet: freezed == diet
-          ? _value.diet
-          : diet // ignore: cast_nullable_to_non_nullable
-              as Diet?,
-      recipeTypes: freezed == recipeTypes
-          ? _value._recipeTypes
-          : recipeTypes // ignore: cast_nullable_to_non_nullable
-              as List<RecipeType>?,
-      foodsNotLiked: freezed == foodsNotLiked
-          ? _value._foodsNotLiked
-          : foodsNotLiked // ignore: cast_nullable_to_non_nullable
-              as List<FoodNotLiked>?,
-      mealVariety: freezed == mealVariety
-          ? _value.mealVariety
-          : mealVariety // ignore: cast_nullable_to_non_nullable
-              as MealVariety?,
-      emailVerifiedAt: freezed == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isChecked: freezed == isChecked
-          ? _value.isChecked
-          : isChecked // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isCompleted: freezed == isCompleted
-          ? _value.isCompleted
-          : isCompleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isActive: freezed == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      countryKey: freezed == countryKey
-          ? _value.countryKey
-          : countryKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-      haveExercisePlan: freezed == haveExercisePlan
-          ? _value.haveExercisePlan
-          : haveExercisePlan // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      haveMealPlan: freezed == haveMealPlan
-          ? _value.haveMealPlan
-          : haveMealPlan // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _User() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_User value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _User():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_User value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _User() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String name,
+            String email,
+            bool? hasValidSubscription,
+            @CountryConverter() Country? country,
+            @CityConverter() @JsonKey(name: 'city_id') City? city,
+            @GenderEnumConverter() GenderEnum? gender,
+            @JsonKey(name: 'package_id') int? packageId,
+            int? age,
+            @JsonKey(name: 'current_weight') int? currentWeight,
+            int? height,
+            int? otpCode,
+            List<Goal>? goals,
+            @JsonKey(name: 'target_weight') int? targetWeight,
+            @BodyShapeConverter()
+            @JsonKey(name: 'body_shape')
+            BodyShape? bodyShape,
+            @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
+            @JsonKey(name: 'body_parts') List<String>? bodyParts,
+            @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
+            @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
+            List<Equipment>? equipments,
+            @DietConverter() Diet? diet,
+            @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+            @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+            @MealVarietyConverter()
+            @JsonKey(name: 'meal_variety')
+            MealVariety? mealVariety,
+            @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
+            @JsonKey(name: 'is_checked') bool? isChecked,
+            @JsonKey(name: 'is_completed') bool? isCompleted,
+            @JsonKey(name: 'is_active') bool? isActive,
+            @JsonKey(name: 'country_key') String? countryKey,
+            @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
+            @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _User() when $default != null:
+        return $default(
+            _that.id,
+            _that.name,
+            _that.email,
+            _that.hasValidSubscription,
+            _that.country,
+            _that.city,
+            _that.gender,
+            _that.packageId,
+            _that.age,
+            _that.currentWeight,
+            _that.height,
+            _that.otpCode,
+            _that.goals,
+            _that.targetWeight,
+            _that.bodyShape,
+            _that.trainingDaysPerWeek,
+            _that.bodyParts,
+            _that.exerciseDays,
+            _that.workoutTypes,
+            _that.equipments,
+            _that.diet,
+            _that.recipeTypes,
+            _that.foodsNotLiked,
+            _that.mealVariety,
+            _that.emailVerifiedAt,
+            _that.isChecked,
+            _that.isCompleted,
+            _that.isActive,
+            _that.countryKey,
+            _that.haveExercisePlan,
+            _that.haveMealPlan);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int id,
+            String name,
+            String email,
+            bool? hasValidSubscription,
+            @CountryConverter() Country? country,
+            @CityConverter() @JsonKey(name: 'city_id') City? city,
+            @GenderEnumConverter() GenderEnum? gender,
+            @JsonKey(name: 'package_id') int? packageId,
+            int? age,
+            @JsonKey(name: 'current_weight') int? currentWeight,
+            int? height,
+            int? otpCode,
+            List<Goal>? goals,
+            @JsonKey(name: 'target_weight') int? targetWeight,
+            @BodyShapeConverter()
+            @JsonKey(name: 'body_shape')
+            BodyShape? bodyShape,
+            @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
+            @JsonKey(name: 'body_parts') List<String>? bodyParts,
+            @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
+            @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
+            List<Equipment>? equipments,
+            @DietConverter() Diet? diet,
+            @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+            @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+            @MealVarietyConverter()
+            @JsonKey(name: 'meal_variety')
+            MealVariety? mealVariety,
+            @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
+            @JsonKey(name: 'is_checked') bool? isChecked,
+            @JsonKey(name: 'is_completed') bool? isCompleted,
+            @JsonKey(name: 'is_active') bool? isActive,
+            @JsonKey(name: 'country_key') String? countryKey,
+            @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
+            @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _User():
+        return $default(
+            _that.id,
+            _that.name,
+            _that.email,
+            _that.hasValidSubscription,
+            _that.country,
+            _that.city,
+            _that.gender,
+            _that.packageId,
+            _that.age,
+            _that.currentWeight,
+            _that.height,
+            _that.otpCode,
+            _that.goals,
+            _that.targetWeight,
+            _that.bodyShape,
+            _that.trainingDaysPerWeek,
+            _that.bodyParts,
+            _that.exerciseDays,
+            _that.workoutTypes,
+            _that.equipments,
+            _that.diet,
+            _that.recipeTypes,
+            _that.foodsNotLiked,
+            _that.mealVariety,
+            _that.emailVerifiedAt,
+            _that.isChecked,
+            _that.isCompleted,
+            _that.isActive,
+            _that.countryKey,
+            _that.haveExercisePlan,
+            _that.haveMealPlan);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int id,
+            String name,
+            String email,
+            bool? hasValidSubscription,
+            @CountryConverter() Country? country,
+            @CityConverter() @JsonKey(name: 'city_id') City? city,
+            @GenderEnumConverter() GenderEnum? gender,
+            @JsonKey(name: 'package_id') int? packageId,
+            int? age,
+            @JsonKey(name: 'current_weight') int? currentWeight,
+            int? height,
+            int? otpCode,
+            List<Goal>? goals,
+            @JsonKey(name: 'target_weight') int? targetWeight,
+            @BodyShapeConverter()
+            @JsonKey(name: 'body_shape')
+            BodyShape? bodyShape,
+            @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
+            @JsonKey(name: 'body_parts') List<String>? bodyParts,
+            @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
+            @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
+            List<Equipment>? equipments,
+            @DietConverter() Diet? diet,
+            @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+            @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+            @MealVarietyConverter()
+            @JsonKey(name: 'meal_variety')
+            MealVariety? mealVariety,
+            @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
+            @JsonKey(name: 'is_checked') bool? isChecked,
+            @JsonKey(name: 'is_completed') bool? isCompleted,
+            @JsonKey(name: 'is_active') bool? isActive,
+            @JsonKey(name: 'country_key') String? countryKey,
+            @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
+            @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _User() when $default != null:
+        return $default(
+            _that.id,
+            _that.name,
+            _that.email,
+            _that.hasValidSubscription,
+            _that.country,
+            _that.city,
+            _that.gender,
+            _that.packageId,
+            _that.age,
+            _that.currentWeight,
+            _that.height,
+            _that.otpCode,
+            _that.goals,
+            _that.targetWeight,
+            _that.bodyShape,
+            _that.trainingDaysPerWeek,
+            _that.bodyParts,
+            _that.exerciseDays,
+            _that.workoutTypes,
+            _that.equipments,
+            _that.diet,
+            _that.recipeTypes,
+            _that.foodsNotLiked,
+            _that.mealVariety,
+            _that.emailVerifiedAt,
+            _that.isChecked,
+            _that.isCompleted,
+            _that.isActive,
+            _that.countryKey,
+            _that.haveExercisePlan,
+            _that.haveMealPlan);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserImpl implements _User {
-  const _$UserImpl(
+class _User implements UserModel {
+  const _User(
       {required this.id,
       required this.name,
       required this.email,
@@ -658,9 +883,7 @@ class _$UserImpl implements _User {
         _equipments = equipments,
         _recipeTypes = recipeTypes,
         _foodsNotLiked = foodsNotLiked;
-
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
+  factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   @override
   final int id;
@@ -807,16 +1030,26 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'is_have_meal_plan')
   final bool? haveMealPlan;
 
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, hasValidSubscription: $hasValidSubscription, country: $country, city: $city, gender: $gender, packageId: $packageId, age: $age, currentWeight: $currentWeight, height: $height, otpCode: $otpCode, goals: $goals, targetWeight: $targetWeight, bodyShape: $bodyShape, trainingDaysPerWeek: $trainingDaysPerWeek, bodyParts: $bodyParts, exerciseDays: $exerciseDays, workoutTypes: $workoutTypes, equipments: $equipments, diet: $diet, recipeTypes: $recipeTypes, foodsNotLiked: $foodsNotLiked, mealVariety: $mealVariety, emailVerifiedAt: $emailVerifiedAt, isChecked: $isChecked, isCompleted: $isCompleted, isActive: $isActive, countryKey: $countryKey, haveExercisePlan: $haveExercisePlan, haveMealPlan: $haveMealPlan)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserCopyWith<_User> get copyWith =>
+      __$UserCopyWithImpl<_User>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UserToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserImpl &&
+            other is _User &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
@@ -907,284 +1140,567 @@ class _$UserImpl implements _User {
         haveMealPlan
       ]);
 
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
-      this,
-    );
+  String toString() {
+    return 'UserModel(id: $id, name: $name, email: $email, hasValidSubscription: $hasValidSubscription, country: $country, city: $city, gender: $gender, packageId: $packageId, age: $age, currentWeight: $currentWeight, height: $height, otpCode: $otpCode, goals: $goals, targetWeight: $targetWeight, bodyShape: $bodyShape, trainingDaysPerWeek: $trainingDaysPerWeek, bodyParts: $bodyParts, exerciseDays: $exerciseDays, workoutTypes: $workoutTypes, equipments: $equipments, diet: $diet, recipeTypes: $recipeTypes, foodsNotLiked: $foodsNotLiked, mealVariety: $mealVariety, emailVerifiedAt: $emailVerifiedAt, isChecked: $isChecked, isCompleted: $isCompleted, isActive: $isActive, countryKey: $countryKey, haveExercisePlan: $haveExercisePlan, haveMealPlan: $haveMealPlan)';
   }
 }
 
-abstract class _User implements UserModel {
-  const factory _User(
-      {required final int id,
-      required final String name,
-      required final String email,
-      required final bool? hasValidSubscription,
-      @CountryConverter() required final Country? country,
-      @CityConverter() @JsonKey(name: 'city_id') required final City? city,
-      @GenderEnumConverter() final GenderEnum? gender,
-      @JsonKey(name: 'package_id') required final int? packageId,
-      required final int? age,
-      @JsonKey(name: 'current_weight') required final int? currentWeight,
-      required final int? height,
-      required final int? otpCode,
-      required final List<Goal>? goals,
-      @JsonKey(name: 'target_weight') required final int? targetWeight,
-      @BodyShapeConverter()
-      @JsonKey(name: 'body_shape')
-      required final BodyShape? bodyShape,
-      @JsonKey(name: 'training_days_per_week')
-      required final int? trainingDaysPerWeek,
-      @JsonKey(name: 'body_parts') required final List<String>? bodyParts,
-      @JsonKey(name: 'exercise_days') required final List<String>? exerciseDays,
-      @JsonKey(name: 'workoutTypes')
-      required final List<WorkoutType>? workoutTypes,
-      required final List<Equipment>? equipments,
-      @DietConverter() required final Diet? diet,
-      @JsonKey(name: 'recipe_types')
-      required final List<RecipeType>? recipeTypes,
-      @JsonKey(name: 'foods_not_liked')
-      required final List<FoodNotLiked>? foodsNotLiked,
+/// @nodoc
+abstract mixin class _$UserCopyWith<$Res> implements $UserModelCopyWith<$Res> {
+  factory _$UserCopyWith(_User value, $Res Function(_User) _then) =
+      __$UserCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      String email,
+      bool? hasValidSubscription,
+      @CountryConverter() Country? country,
+      @CityConverter() @JsonKey(name: 'city_id') City? city,
+      @GenderEnumConverter() GenderEnum? gender,
+      @JsonKey(name: 'package_id') int? packageId,
+      int? age,
+      @JsonKey(name: 'current_weight') int? currentWeight,
+      int? height,
+      int? otpCode,
+      List<Goal>? goals,
+      @JsonKey(name: 'target_weight') int? targetWeight,
+      @BodyShapeConverter() @JsonKey(name: 'body_shape') BodyShape? bodyShape,
+      @JsonKey(name: 'training_days_per_week') int? trainingDaysPerWeek,
+      @JsonKey(name: 'body_parts') List<String>? bodyParts,
+      @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
+      @JsonKey(name: 'workoutTypes') List<WorkoutType>? workoutTypes,
+      List<Equipment>? equipments,
+      @DietConverter() Diet? diet,
+      @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+      @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
       @MealVarietyConverter()
       @JsonKey(name: 'meal_variety')
-      required final MealVariety? mealVariety,
-      @JsonKey(name: 'email_verified_at') final String? emailVerifiedAt,
-      @JsonKey(name: 'is_checked') required final bool? isChecked,
-      @JsonKey(name: 'is_completed') required final bool? isCompleted,
-      @JsonKey(name: 'is_active') required final bool? isActive,
-      @JsonKey(name: 'country_key') required final String? countryKey,
-      @JsonKey(name: 'is_have_exercise_plan')
-      required final bool? haveExercisePlan,
-      @JsonKey(name: 'is_have_meal_plan')
-      required final bool? haveMealPlan}) = _$UserImpl;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
+      MealVariety? mealVariety,
+      @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
+      @JsonKey(name: 'is_checked') bool? isChecked,
+      @JsonKey(name: 'is_completed') bool? isCompleted,
+      @JsonKey(name: 'is_active') bool? isActive,
+      @JsonKey(name: 'country_key') String? countryKey,
+      @JsonKey(name: 'is_have_exercise_plan') bool? haveExercisePlan,
+      @JsonKey(name: 'is_have_meal_plan') bool? haveMealPlan});
 
   @override
-  int get id;
+  $CountryCopyWith<$Res>? get country;
   @override
-  String get name;
+  $CityCopyWith<$Res>? get city;
   @override
-  String get email;
+  $BodyShapeCopyWith<$Res>? get bodyShape;
   @override
-  bool? get hasValidSubscription;
+  $DietCopyWith<$Res>? get diet;
   @override
-  @CountryConverter()
-  Country? get country;
-  @override
-  @CityConverter()
-  @JsonKey(name: 'city_id')
-  City? get city;
-  @override
-  @GenderEnumConverter()
-  GenderEnum? get gender;
-  @override
-  @JsonKey(name: 'package_id')
-  int? get packageId;
-  @override
-  int? get age;
-  @override
-  @JsonKey(name: 'current_weight')
-  int? get currentWeight;
-  @override
-  int? get height;
-  @override
-  int? get otpCode;
-  @override
-  List<Goal>? get goals;
-  @override
-  @JsonKey(name: 'target_weight')
-  int? get targetWeight;
-  @override
-  @BodyShapeConverter()
-  @JsonKey(name: 'body_shape')
-  BodyShape?
-      get bodyShape; // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-  @override
-  @JsonKey(name: 'training_days_per_week')
-  int? get trainingDaysPerWeek;
-  @override
-  @JsonKey(name: 'body_parts')
-  List<String>? get bodyParts;
-  @override
-  @JsonKey(name: 'exercise_days')
-  List<String>? get exerciseDays;
-  @override
-  @JsonKey(name: 'workoutTypes')
-  List<WorkoutType>? get workoutTypes;
-  @override
-  List<Equipment>? get equipments;
-  @override
-  @DietConverter()
-  Diet? get diet;
-  @override
-  @JsonKey(name: 'recipe_types')
-  List<RecipeType>? get recipeTypes;
-  @override
-  @JsonKey(name: 'foods_not_liked')
-  List<FoodNotLiked>? get foodsNotLiked;
-  @override
-  @MealVarietyConverter()
-  @JsonKey(name: 'meal_variety')
-  MealVariety? get mealVariety;
-  @override
-  @JsonKey(name: 'email_verified_at')
-  String? get emailVerifiedAt;
-  @override
-  @JsonKey(name: 'is_checked')
-  bool? get isChecked;
-  @override
-  @JsonKey(name: 'is_completed')
-  bool? get isCompleted;
-  @override
-  @JsonKey(name: 'is_active')
-  bool? get isActive;
-  @override
-  @JsonKey(name: 'country_key')
-  String? get countryKey;
-  @override
-  @JsonKey(name: 'is_have_exercise_plan')
-  bool? get haveExercisePlan;
-  @override
-  @JsonKey(name: 'is_have_meal_plan')
-  bool? get haveMealPlan;
+  $MealVarietyCopyWith<$Res>? get mealVariety;
+}
+
+/// @nodoc
+class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
+  __$UserCopyWithImpl(this._self, this._then);
+
+  final _User _self;
+  final $Res Function(_User) _then;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? email = null,
+    Object? hasValidSubscription = freezed,
+    Object? country = freezed,
+    Object? city = freezed,
+    Object? gender = freezed,
+    Object? packageId = freezed,
+    Object? age = freezed,
+    Object? currentWeight = freezed,
+    Object? height = freezed,
+    Object? otpCode = freezed,
+    Object? goals = freezed,
+    Object? targetWeight = freezed,
+    Object? bodyShape = freezed,
+    Object? trainingDaysPerWeek = freezed,
+    Object? bodyParts = freezed,
+    Object? exerciseDays = freezed,
+    Object? workoutTypes = freezed,
+    Object? equipments = freezed,
+    Object? diet = freezed,
+    Object? recipeTypes = freezed,
+    Object? foodsNotLiked = freezed,
+    Object? mealVariety = freezed,
+    Object? emailVerifiedAt = freezed,
+    Object? isChecked = freezed,
+    Object? isCompleted = freezed,
+    Object? isActive = freezed,
+    Object? countryKey = freezed,
+    Object? haveExercisePlan = freezed,
+    Object? haveMealPlan = freezed,
+  }) {
+    return _then(_User(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasValidSubscription: freezed == hasValidSubscription
+          ? _self.hasValidSubscription
+          : hasValidSubscription // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      country: freezed == country
+          ? _self.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as Country?,
+      city: freezed == city
+          ? _self.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as City?,
+      gender: freezed == gender
+          ? _self.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as GenderEnum?,
+      packageId: freezed == packageId
+          ? _self.packageId
+          : packageId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      age: freezed == age
+          ? _self.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currentWeight: freezed == currentWeight
+          ? _self.currentWeight
+          : currentWeight // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _self.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      otpCode: freezed == otpCode
+          ? _self.otpCode
+          : otpCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      goals: freezed == goals
+          ? _self._goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as List<Goal>?,
+      targetWeight: freezed == targetWeight
+          ? _self.targetWeight
+          : targetWeight // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bodyShape: freezed == bodyShape
+          ? _self.bodyShape
+          : bodyShape // ignore: cast_nullable_to_non_nullable
+              as BodyShape?,
+      trainingDaysPerWeek: freezed == trainingDaysPerWeek
+          ? _self.trainingDaysPerWeek
+          : trainingDaysPerWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bodyParts: freezed == bodyParts
+          ? _self._bodyParts
+          : bodyParts // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      exerciseDays: freezed == exerciseDays
+          ? _self._exerciseDays
+          : exerciseDays // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      workoutTypes: freezed == workoutTypes
+          ? _self._workoutTypes
+          : workoutTypes // ignore: cast_nullable_to_non_nullable
+              as List<WorkoutType>?,
+      equipments: freezed == equipments
+          ? _self._equipments
+          : equipments // ignore: cast_nullable_to_non_nullable
+              as List<Equipment>?,
+      diet: freezed == diet
+          ? _self.diet
+          : diet // ignore: cast_nullable_to_non_nullable
+              as Diet?,
+      recipeTypes: freezed == recipeTypes
+          ? _self._recipeTypes
+          : recipeTypes // ignore: cast_nullable_to_non_nullable
+              as List<RecipeType>?,
+      foodsNotLiked: freezed == foodsNotLiked
+          ? _self._foodsNotLiked
+          : foodsNotLiked // ignore: cast_nullable_to_non_nullable
+              as List<FoodNotLiked>?,
+      mealVariety: freezed == mealVariety
+          ? _self.mealVariety
+          : mealVariety // ignore: cast_nullable_to_non_nullable
+              as MealVariety?,
+      emailVerifiedAt: freezed == emailVerifiedAt
+          ? _self.emailVerifiedAt
+          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isChecked: freezed == isChecked
+          ? _self.isChecked
+          : isChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isCompleted: freezed == isCompleted
+          ? _self.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isActive: freezed == isActive
+          ? _self.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      countryKey: freezed == countryKey
+          ? _self.countryKey
+          : countryKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      haveExercisePlan: freezed == haveExercisePlan
+          ? _self.haveExercisePlan
+          : haveExercisePlan // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      haveMealPlan: freezed == haveMealPlan
+          ? _self.haveMealPlan
+          : haveMealPlan // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 
-Country _$CountryFromJson(Map<String, dynamic> json) {
-  return _Country.fromJson(json);
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CountryCopyWith<$Res>? get country {
+    if (_self.country == null) {
+      return null;
+    }
+
+    return $CountryCopyWith<$Res>(_self.country!, (value) {
+      return _then(_self.copyWith(country: value));
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CityCopyWith<$Res>? get city {
+    if (_self.city == null) {
+      return null;
+    }
+
+    return $CityCopyWith<$Res>(_self.city!, (value) {
+      return _then(_self.copyWith(city: value));
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BodyShapeCopyWith<$Res>? get bodyShape {
+    if (_self.bodyShape == null) {
+      return null;
+    }
+
+    return $BodyShapeCopyWith<$Res>(_self.bodyShape!, (value) {
+      return _then(_self.copyWith(bodyShape: value));
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DietCopyWith<$Res>? get diet {
+    if (_self.diet == null) {
+      return null;
+    }
+
+    return $DietCopyWith<$Res>(_self.diet!, (value) {
+      return _then(_self.copyWith(diet: value));
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MealVarietyCopyWith<$Res>? get mealVariety {
+    if (_self.mealVariety == null) {
+      return null;
+    }
+
+    return $MealVarietyCopyWith<$Res>(_self.mealVariety!, (value) {
+      return _then(_self.copyWith(mealVariety: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$Country {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this Country to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
+  String get name;
 
   /// Create a copy of Country
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CountryCopyWith<Country> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CountryCopyWith<$Res> {
-  factory $CountryCopyWith(Country value, $Res Function(Country) then) =
-      _$CountryCopyWithImpl<$Res, Country>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$CountryCopyWithImpl<$Res, $Val extends Country>
-    implements $CountryCopyWith<$Res> {
-  _$CountryCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Country
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $CountryCopyWith<Country> get copyWith =>
+      _$CountryCopyWithImpl<Country>(this as Country, _$identity);
+
+  /// Serializes this Country to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Country &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
   }
-}
 
-/// @nodoc
-abstract class _$$CountryImplCopyWith<$Res> implements $CountryCopyWith<$Res> {
-  factory _$$CountryImplCopyWith(
-          _$CountryImpl value, $Res Function(_$CountryImpl) then) =
-      __$$CountryImplCopyWithImpl<$Res>;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class __$$CountryImplCopyWithImpl<$Res>
-    extends _$CountryCopyWithImpl<$Res, _$CountryImpl>
-    implements _$$CountryImplCopyWith<$Res> {
-  __$$CountryImplCopyWithImpl(
-      _$CountryImpl _value, $Res Function(_$CountryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Country
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_$CountryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$CountryImpl implements _Country {
-  _$CountryImpl({required this.id, required this.name});
-
-  factory _$CountryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CountryImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'Country(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $CountryCopyWith<$Res> {
+  factory $CountryCopyWith(Country value, $Res Function(Country) _then) =
+      _$CountryCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$CountryCopyWithImpl<$Res> implements $CountryCopyWith<$Res> {
+  _$CountryCopyWithImpl(this._self, this._then);
+
+  final Country _self;
+  final $Res Function(Country) _then;
+
+  /// Create a copy of Country
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [Country].
+extension CountryPatterns on Country {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Country value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Country() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Country value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Country():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Country value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Country() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Country() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Country():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Country() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Country implements Country {
+  _Country({required this.id, required this.name});
+  factory _Country.fromJson(Map<String, dynamic> json) =>
+      _$CountryFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of Country
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CountryCopyWith<_Country> get copyWith =>
+      __$CountryCopyWithImpl<_Country>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CountryToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CountryImpl &&
+            other is _Country &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1193,130 +1709,43 @@ class _$CountryImpl implements _Country {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of Country
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CountryImplCopyWith<_$CountryImpl> get copyWith =>
-      __$$CountryImplCopyWithImpl<_$CountryImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CountryImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Country implements Country {
-  factory _Country({required final int id, required final String name}) =
-      _$CountryImpl;
-
-  factory _Country.fromJson(Map<String, dynamic> json) = _$CountryImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of Country
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CountryImplCopyWith<_$CountryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-City _$CityFromJson(Map<String, dynamic> json) {
-  return _City.fromJson(json);
-}
-
-/// @nodoc
-mixin _$City {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this City to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of City
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CityCopyWith<City> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CityCopyWith<$Res> {
-  factory $CityCopyWith(City value, $Res Function(City) then) =
-      _$CityCopyWithImpl<$Res, City>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$CityCopyWithImpl<$Res, $Val extends City>
-    implements $CityCopyWith<$Res> {
-  _$CityCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of City
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'Country(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$CityImplCopyWith<$Res> implements $CityCopyWith<$Res> {
-  factory _$$CityImplCopyWith(
-          _$CityImpl value, $Res Function(_$CityImpl) then) =
-      __$$CityImplCopyWithImpl<$Res>;
+abstract mixin class _$CountryCopyWith<$Res> implements $CountryCopyWith<$Res> {
+  factory _$CountryCopyWith(_Country value, $Res Function(_Country) _then) =
+      __$CountryCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$CityImplCopyWithImpl<$Res>
-    extends _$CityCopyWithImpl<$Res, _$CityImpl>
-    implements _$$CityImplCopyWith<$Res> {
-  __$$CityImplCopyWithImpl(_$CityImpl _value, $Res Function(_$CityImpl) _then)
-      : super(_value, _then);
+class __$CountryCopyWithImpl<$Res> implements _$CountryCopyWith<$Res> {
+  __$CountryCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of City
+  final _Country _self;
+  final $Res Function(_Country) _then;
+
+  /// Create a copy of Country
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$CityImpl(
+    return _then(_Country(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1324,28 +1753,263 @@ class __$$CityImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$CityImpl implements _City {
-  _$CityImpl({required this.id, required this.name});
+mixin _$City {
+  int get id;
+  String get name;
 
-  factory _$CityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CityImplFromJson(json);
+  /// Create a copy of City
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CityCopyWith<City> get copyWith =>
+      _$CityCopyWithImpl<City>(this as City, _$identity);
+
+  /// Serializes this City to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is City &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'City(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $CityCopyWith<$Res> {
+  factory $CityCopyWith(City value, $Res Function(City) _then) =
+      _$CityCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$CityCopyWithImpl<$Res> implements $CityCopyWith<$Res> {
+  _$CityCopyWithImpl(this._self, this._then);
+
+  final City _self;
+  final $Res Function(City) _then;
+
+  /// Create a copy of City
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [City].
+extension CityPatterns on City {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_City value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _City() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_City value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _City():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_City value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _City() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _City() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _City():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _City() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _City implements City {
+  _City({required this.id, required this.name});
+  factory _City.fromJson(Map<String, dynamic> json) => _$CityFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of City
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CityCopyWith<_City> get copyWith =>
+      __$CityCopyWithImpl<_City>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CityToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CityImpl &&
+            other is _City &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1354,130 +2018,43 @@ class _$CityImpl implements _City {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of City
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CityImplCopyWith<_$CityImpl> get copyWith =>
-      __$$CityImplCopyWithImpl<_$CityImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CityImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _City implements City {
-  factory _City({required final int id, required final String name}) =
-      _$CityImpl;
-
-  factory _City.fromJson(Map<String, dynamic> json) = _$CityImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of City
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CityImplCopyWith<_$CityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Goal _$GoalFromJson(Map<String, dynamic> json) {
-  return _Goal.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Goal {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this Goal to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Goal
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GoalCopyWith<Goal> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GoalCopyWith<$Res> {
-  factory $GoalCopyWith(Goal value, $Res Function(Goal) then) =
-      _$GoalCopyWithImpl<$Res, Goal>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$GoalCopyWithImpl<$Res, $Val extends Goal>
-    implements $GoalCopyWith<$Res> {
-  _$GoalCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Goal
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'City(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$GoalImplCopyWith<$Res> implements $GoalCopyWith<$Res> {
-  factory _$$GoalImplCopyWith(
-          _$GoalImpl value, $Res Function(_$GoalImpl) then) =
-      __$$GoalImplCopyWithImpl<$Res>;
+abstract mixin class _$CityCopyWith<$Res> implements $CityCopyWith<$Res> {
+  factory _$CityCopyWith(_City value, $Res Function(_City) _then) =
+      __$CityCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$GoalImplCopyWithImpl<$Res>
-    extends _$GoalCopyWithImpl<$Res, _$GoalImpl>
-    implements _$$GoalImplCopyWith<$Res> {
-  __$$GoalImplCopyWithImpl(_$GoalImpl _value, $Res Function(_$GoalImpl) _then)
-      : super(_value, _then);
+class __$CityCopyWithImpl<$Res> implements _$CityCopyWith<$Res> {
+  __$CityCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of Goal
+  final _City _self;
+  final $Res Function(_City) _then;
+
+  /// Create a copy of City
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$GoalImpl(
+    return _then(_City(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1485,28 +2062,263 @@ class __$$GoalImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$GoalImpl implements _Goal {
-  _$GoalImpl({required this.id, required this.name});
+mixin _$Goal {
+  int get id;
+  String get name;
 
-  factory _$GoalImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GoalImplFromJson(json);
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $GoalCopyWith<Goal> get copyWith =>
+      _$GoalCopyWithImpl<Goal>(this as Goal, _$identity);
+
+  /// Serializes this Goal to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Goal &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'Goal(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $GoalCopyWith<$Res> {
+  factory $GoalCopyWith(Goal value, $Res Function(Goal) _then) =
+      _$GoalCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
+  _$GoalCopyWithImpl(this._self, this._then);
+
+  final Goal _self;
+  final $Res Function(Goal) _then;
+
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [Goal].
+extension GoalPatterns on Goal {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Goal value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Goal() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Goal value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Goal():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Goal value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Goal() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Goal() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Goal():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Goal() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Goal implements Goal {
+  _Goal({required this.id, required this.name});
+  factory _Goal.fromJson(Map<String, dynamic> json) => _$GoalFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GoalCopyWith<_Goal> get copyWith =>
+      __$GoalCopyWithImpl<_Goal>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$GoalToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GoalImpl &&
+            other is _Goal &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1515,133 +2327,43 @@ class _$GoalImpl implements _Goal {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of Goal
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$GoalImplCopyWith<_$GoalImpl> get copyWith =>
-      __$$GoalImplCopyWithImpl<_$GoalImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GoalImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Goal implements Goal {
-  factory _Goal({required final int id, required final String name}) =
-      _$GoalImpl;
-
-  factory _Goal.fromJson(Map<String, dynamic> json) = _$GoalImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of Goal
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GoalImplCopyWith<_$GoalImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-BodyShape _$BodyShapeFromJson(Map<String, dynamic> json) {
-  return _BodyShape.fromJson(json);
-}
-
-/// @nodoc
-mixin _$BodyShape {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this BodyShape to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BodyShape
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BodyShapeCopyWith<BodyShape> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BodyShapeCopyWith<$Res> {
-  factory $BodyShapeCopyWith(BodyShape value, $Res Function(BodyShape) then) =
-      _$BodyShapeCopyWithImpl<$Res, BodyShape>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$BodyShapeCopyWithImpl<$Res, $Val extends BodyShape>
-    implements $BodyShapeCopyWith<$Res> {
-  _$BodyShapeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BodyShape
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'Goal(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$BodyShapeImplCopyWith<$Res>
-    implements $BodyShapeCopyWith<$Res> {
-  factory _$$BodyShapeImplCopyWith(
-          _$BodyShapeImpl value, $Res Function(_$BodyShapeImpl) then) =
-      __$$BodyShapeImplCopyWithImpl<$Res>;
+abstract mixin class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
+  factory _$GoalCopyWith(_Goal value, $Res Function(_Goal) _then) =
+      __$GoalCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$BodyShapeImplCopyWithImpl<$Res>
-    extends _$BodyShapeCopyWithImpl<$Res, _$BodyShapeImpl>
-    implements _$$BodyShapeImplCopyWith<$Res> {
-  __$$BodyShapeImplCopyWithImpl(
-      _$BodyShapeImpl _value, $Res Function(_$BodyShapeImpl) _then)
-      : super(_value, _then);
+class __$GoalCopyWithImpl<$Res> implements _$GoalCopyWith<$Res> {
+  __$GoalCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of BodyShape
+  final _Goal _self;
+  final $Res Function(_Goal) _then;
+
+  /// Create a copy of Goal
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$BodyShapeImpl(
+    return _then(_Goal(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1649,28 +2371,264 @@ class __$$BodyShapeImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$BodyShapeImpl implements _BodyShape {
-  _$BodyShapeImpl({required this.id, required this.name});
+mixin _$BodyShape {
+  int get id;
+  String get name;
 
-  factory _$BodyShapeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BodyShapeImplFromJson(json);
+  /// Create a copy of BodyShape
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $BodyShapeCopyWith<BodyShape> get copyWith =>
+      _$BodyShapeCopyWithImpl<BodyShape>(this as BodyShape, _$identity);
+
+  /// Serializes this BodyShape to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BodyShape &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'BodyShape(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $BodyShapeCopyWith<$Res> {
+  factory $BodyShapeCopyWith(BodyShape value, $Res Function(BodyShape) _then) =
+      _$BodyShapeCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$BodyShapeCopyWithImpl<$Res> implements $BodyShapeCopyWith<$Res> {
+  _$BodyShapeCopyWithImpl(this._self, this._then);
+
+  final BodyShape _self;
+  final $Res Function(BodyShape) _then;
+
+  /// Create a copy of BodyShape
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [BodyShape].
+extension BodyShapePatterns on BodyShape {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BodyShape value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BodyShape() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BodyShape value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BodyShape():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BodyShape value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BodyShape() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BodyShape() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BodyShape():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BodyShape() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _BodyShape implements BodyShape {
+  _BodyShape({required this.id, required this.name});
+  factory _BodyShape.fromJson(Map<String, dynamic> json) =>
+      _$BodyShapeFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of BodyShape
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BodyShapeCopyWith<_BodyShape> get copyWith =>
+      __$BodyShapeCopyWithImpl<_BodyShape>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BodyShapeToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BodyShapeImpl &&
+            other is _BodyShape &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1679,135 +2637,45 @@ class _$BodyShapeImpl implements _BodyShape {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of BodyShape
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$BodyShapeImplCopyWith<_$BodyShapeImpl> get copyWith =>
-      __$$BodyShapeImplCopyWithImpl<_$BodyShapeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BodyShapeImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _BodyShape implements BodyShape {
-  factory _BodyShape({required final int id, required final String name}) =
-      _$BodyShapeImpl;
-
-  factory _BodyShape.fromJson(Map<String, dynamic> json) =
-      _$BodyShapeImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of BodyShape
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BodyShapeImplCopyWith<_$BodyShapeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-MuscleFocus _$MuscleFocusFromJson(Map<String, dynamic> json) {
-  return _MuscleFocus.fromJson(json);
-}
-
-/// @nodoc
-mixin _$MuscleFocus {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this MuscleFocus to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MuscleFocus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $MuscleFocusCopyWith<MuscleFocus> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MuscleFocusCopyWith<$Res> {
-  factory $MuscleFocusCopyWith(
-          MuscleFocus value, $Res Function(MuscleFocus) then) =
-      _$MuscleFocusCopyWithImpl<$Res, MuscleFocus>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$MuscleFocusCopyWithImpl<$Res, $Val extends MuscleFocus>
-    implements $MuscleFocusCopyWith<$Res> {
-  _$MuscleFocusCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MuscleFocus
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'BodyShape(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$MuscleFocusImplCopyWith<$Res>
-    implements $MuscleFocusCopyWith<$Res> {
-  factory _$$MuscleFocusImplCopyWith(
-          _$MuscleFocusImpl value, $Res Function(_$MuscleFocusImpl) then) =
-      __$$MuscleFocusImplCopyWithImpl<$Res>;
+abstract mixin class _$BodyShapeCopyWith<$Res>
+    implements $BodyShapeCopyWith<$Res> {
+  factory _$BodyShapeCopyWith(
+          _BodyShape value, $Res Function(_BodyShape) _then) =
+      __$BodyShapeCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$MuscleFocusImplCopyWithImpl<$Res>
-    extends _$MuscleFocusCopyWithImpl<$Res, _$MuscleFocusImpl>
-    implements _$$MuscleFocusImplCopyWith<$Res> {
-  __$$MuscleFocusImplCopyWithImpl(
-      _$MuscleFocusImpl _value, $Res Function(_$MuscleFocusImpl) _then)
-      : super(_value, _then);
+class __$BodyShapeCopyWithImpl<$Res> implements _$BodyShapeCopyWith<$Res> {
+  __$BodyShapeCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of MuscleFocus
+  final _BodyShape _self;
+  final $Res Function(_BodyShape) _then;
+
+  /// Create a copy of BodyShape
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$MuscleFocusImpl(
+    return _then(_BodyShape(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1815,28 +2683,265 @@ class __$$MuscleFocusImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$MuscleFocusImpl implements _MuscleFocus {
-  _$MuscleFocusImpl({required this.id, required this.name});
+mixin _$MuscleFocus {
+  int get id;
+  String get name;
 
-  factory _$MuscleFocusImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MuscleFocusImplFromJson(json);
+  /// Create a copy of MuscleFocus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MuscleFocusCopyWith<MuscleFocus> get copyWith =>
+      _$MuscleFocusCopyWithImpl<MuscleFocus>(this as MuscleFocus, _$identity);
+
+  /// Serializes this MuscleFocus to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MuscleFocus &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'MuscleFocus(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $MuscleFocusCopyWith<$Res> {
+  factory $MuscleFocusCopyWith(
+          MuscleFocus value, $Res Function(MuscleFocus) _then) =
+      _$MuscleFocusCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$MuscleFocusCopyWithImpl<$Res> implements $MuscleFocusCopyWith<$Res> {
+  _$MuscleFocusCopyWithImpl(this._self, this._then);
+
+  final MuscleFocus _self;
+  final $Res Function(MuscleFocus) _then;
+
+  /// Create a copy of MuscleFocus
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [MuscleFocus].
+extension MuscleFocusPatterns on MuscleFocus {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MuscleFocus value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MuscleFocus() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MuscleFocus value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MuscleFocus():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MuscleFocus value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MuscleFocus() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MuscleFocus() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MuscleFocus():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MuscleFocus() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _MuscleFocus implements MuscleFocus {
+  _MuscleFocus({required this.id, required this.name});
+  factory _MuscleFocus.fromJson(Map<String, dynamic> json) =>
+      _$MuscleFocusFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of MuscleFocus
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MuscleFocusCopyWith<_MuscleFocus> get copyWith =>
+      __$MuscleFocusCopyWithImpl<_MuscleFocus>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MuscleFocusToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MuscleFocusImpl &&
+            other is _MuscleFocus &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1845,135 +2950,45 @@ class _$MuscleFocusImpl implements _MuscleFocus {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of MuscleFocus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$MuscleFocusImplCopyWith<_$MuscleFocusImpl> get copyWith =>
-      __$$MuscleFocusImplCopyWithImpl<_$MuscleFocusImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MuscleFocusImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _MuscleFocus implements MuscleFocus {
-  factory _MuscleFocus({required final int id, required final String name}) =
-      _$MuscleFocusImpl;
-
-  factory _MuscleFocus.fromJson(Map<String, dynamic> json) =
-      _$MuscleFocusImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of MuscleFocus
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MuscleFocusImplCopyWith<_$MuscleFocusImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-WorkoutType _$WorkoutTypeFromJson(Map<String, dynamic> json) {
-  return _WorkoutType.fromJson(json);
-}
-
-/// @nodoc
-mixin _$WorkoutType {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this WorkoutType to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of WorkoutType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WorkoutTypeCopyWith<WorkoutType> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WorkoutTypeCopyWith<$Res> {
-  factory $WorkoutTypeCopyWith(
-          WorkoutType value, $Res Function(WorkoutType) then) =
-      _$WorkoutTypeCopyWithImpl<$Res, WorkoutType>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$WorkoutTypeCopyWithImpl<$Res, $Val extends WorkoutType>
-    implements $WorkoutTypeCopyWith<$Res> {
-  _$WorkoutTypeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of WorkoutType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'MuscleFocus(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$WorkoutTypeImplCopyWith<$Res>
-    implements $WorkoutTypeCopyWith<$Res> {
-  factory _$$WorkoutTypeImplCopyWith(
-          _$WorkoutTypeImpl value, $Res Function(_$WorkoutTypeImpl) then) =
-      __$$WorkoutTypeImplCopyWithImpl<$Res>;
+abstract mixin class _$MuscleFocusCopyWith<$Res>
+    implements $MuscleFocusCopyWith<$Res> {
+  factory _$MuscleFocusCopyWith(
+          _MuscleFocus value, $Res Function(_MuscleFocus) _then) =
+      __$MuscleFocusCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$WorkoutTypeImplCopyWithImpl<$Res>
-    extends _$WorkoutTypeCopyWithImpl<$Res, _$WorkoutTypeImpl>
-    implements _$$WorkoutTypeImplCopyWith<$Res> {
-  __$$WorkoutTypeImplCopyWithImpl(
-      _$WorkoutTypeImpl _value, $Res Function(_$WorkoutTypeImpl) _then)
-      : super(_value, _then);
+class __$MuscleFocusCopyWithImpl<$Res> implements _$MuscleFocusCopyWith<$Res> {
+  __$MuscleFocusCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of WorkoutType
+  final _MuscleFocus _self;
+  final $Res Function(_MuscleFocus) _then;
+
+  /// Create a copy of MuscleFocus
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$WorkoutTypeImpl(
+    return _then(_MuscleFocus(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1981,28 +2996,265 @@ class __$$WorkoutTypeImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$WorkoutTypeImpl implements _WorkoutType {
-  _$WorkoutTypeImpl({required this.id, required this.name});
+mixin _$WorkoutType {
+  int get id;
+  String get name;
 
-  factory _$WorkoutTypeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WorkoutTypeImplFromJson(json);
+  /// Create a copy of WorkoutType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $WorkoutTypeCopyWith<WorkoutType> get copyWith =>
+      _$WorkoutTypeCopyWithImpl<WorkoutType>(this as WorkoutType, _$identity);
+
+  /// Serializes this WorkoutType to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is WorkoutType &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'WorkoutType(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $WorkoutTypeCopyWith<$Res> {
+  factory $WorkoutTypeCopyWith(
+          WorkoutType value, $Res Function(WorkoutType) _then) =
+      _$WorkoutTypeCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$WorkoutTypeCopyWithImpl<$Res> implements $WorkoutTypeCopyWith<$Res> {
+  _$WorkoutTypeCopyWithImpl(this._self, this._then);
+
+  final WorkoutType _self;
+  final $Res Function(WorkoutType) _then;
+
+  /// Create a copy of WorkoutType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [WorkoutType].
+extension WorkoutTypePatterns on WorkoutType {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_WorkoutType value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutType() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_WorkoutType value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutType():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_WorkoutType value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutType() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutType() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutType():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WorkoutType() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _WorkoutType implements WorkoutType {
+  _WorkoutType({required this.id, required this.name});
+  factory _WorkoutType.fromJson(Map<String, dynamic> json) =>
+      _$WorkoutTypeFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of WorkoutType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$WorkoutTypeCopyWith<_WorkoutType> get copyWith =>
+      __$WorkoutTypeCopyWithImpl<_WorkoutType>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$WorkoutTypeToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WorkoutTypeImpl &&
+            other is _WorkoutType &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -2011,176 +3263,72 @@ class _$WorkoutTypeImpl implements _WorkoutType {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of WorkoutType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$WorkoutTypeImplCopyWith<_$WorkoutTypeImpl> get copyWith =>
-      __$$WorkoutTypeImplCopyWithImpl<_$WorkoutTypeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WorkoutTypeImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _WorkoutType implements WorkoutType {
-  factory _WorkoutType({required final int id, required final String name}) =
-      _$WorkoutTypeImpl;
-
-  factory _WorkoutType.fromJson(Map<String, dynamic> json) =
-      _$WorkoutTypeImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of WorkoutType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WorkoutTypeImplCopyWith<_$WorkoutTypeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Equipment _$EquipmentFromJson(Map<String, dynamic> json) {
-  return _Equipment.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Equipment {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-
-  /// Serializes this Equipment to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Equipment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $EquipmentCopyWith<Equipment> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $EquipmentCopyWith<$Res> {
-  factory $EquipmentCopyWith(Equipment value, $Res Function(Equipment) then) =
-      _$EquipmentCopyWithImpl<$Res, Equipment>;
-  @useResult
-  $Res call({int id, String name, String image});
-}
-
-/// @nodoc
-class _$EquipmentCopyWithImpl<$Res, $Val extends Equipment>
-    implements $EquipmentCopyWith<$Res> {
-  _$EquipmentCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Equipment
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? image = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'WorkoutType(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$EquipmentImplCopyWith<$Res>
-    implements $EquipmentCopyWith<$Res> {
-  factory _$$EquipmentImplCopyWith(
-          _$EquipmentImpl value, $Res Function(_$EquipmentImpl) then) =
-      __$$EquipmentImplCopyWithImpl<$Res>;
+abstract mixin class _$WorkoutTypeCopyWith<$Res>
+    implements $WorkoutTypeCopyWith<$Res> {
+  factory _$WorkoutTypeCopyWith(
+          _WorkoutType value, $Res Function(_WorkoutType) _then) =
+      __$WorkoutTypeCopyWithImpl;
   @override
   @useResult
-  $Res call({int id, String name, String image});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$EquipmentImplCopyWithImpl<$Res>
-    extends _$EquipmentCopyWithImpl<$Res, _$EquipmentImpl>
-    implements _$$EquipmentImplCopyWith<$Res> {
-  __$$EquipmentImplCopyWithImpl(
-      _$EquipmentImpl _value, $Res Function(_$EquipmentImpl) _then)
-      : super(_value, _then);
+class __$WorkoutTypeCopyWithImpl<$Res> implements _$WorkoutTypeCopyWith<$Res> {
+  __$WorkoutTypeCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of Equipment
+  final _WorkoutType _self;
+  final $Res Function(_WorkoutType) _then;
+
+  /// Create a copy of WorkoutType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? image = null,
   }) {
-    return _then(_$EquipmentImpl(
+    return _then(_WorkoutType(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$EquipmentImpl implements _Equipment {
-  _$EquipmentImpl({required this.id, required this.name, required this.image});
+mixin _$Equipment {
+  int get id;
+  String get name;
+  String get image;
 
-  factory _$EquipmentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EquipmentImplFromJson(json);
+  /// Create a copy of Equipment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $EquipmentCopyWith<Equipment> get copyWith =>
+      _$EquipmentCopyWithImpl<Equipment>(this as Equipment, _$identity);
 
-  @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final String image;
-
-  @override
-  String toString() {
-    return 'Equipment(id: $id, name: $name, image: $image)';
-  }
+  /// Serializes this Equipment to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EquipmentImpl &&
+            other is Equipment &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.image, image) || other.image == image));
@@ -2190,177 +3338,324 @@ class _$EquipmentImpl implements _Equipment {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, image);
 
-  /// Create a copy of Equipment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$EquipmentImplCopyWith<_$EquipmentImpl> get copyWith =>
-      __$$EquipmentImplCopyWithImpl<_$EquipmentImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$EquipmentImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Equipment(id: $id, name: $name, image: $image)';
   }
 }
 
-abstract class _Equipment implements Equipment {
-  factory _Equipment(
-      {required final int id,
-      required final String name,
-      required final String image}) = _$EquipmentImpl;
+/// @nodoc
+abstract mixin class $EquipmentCopyWith<$Res> {
+  factory $EquipmentCopyWith(Equipment value, $Res Function(Equipment) _then) =
+      _$EquipmentCopyWithImpl;
+  @useResult
+  $Res call({int id, String name, String image});
+}
 
-  factory _Equipment.fromJson(Map<String, dynamic> json) =
-      _$EquipmentImpl.fromJson;
+/// @nodoc
+class _$EquipmentCopyWithImpl<$Res> implements $EquipmentCopyWith<$Res> {
+  _$EquipmentCopyWithImpl(this._self, this._then);
 
-  @override
-  int get id;
-  @override
-  String get name;
-  @override
-  String get image;
+  final Equipment _self;
+  final $Res Function(Equipment) _then;
 
   /// Create a copy of Equipment
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EquipmentImplCopyWith<_$EquipmentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Diet _$DietFromJson(Map<String, dynamic> json) {
-  return _Diet.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Diet {
-  int get id => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this Diet to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Diet
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DietCopyWith<Diet> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DietCopyWith<$Res> {
-  factory $DietCopyWith(Diet value, $Res Function(Diet) then) =
-      _$DietCopyWithImpl<$Res, Diet>;
-  @useResult
-  $Res call({int id, String key, String name});
-}
-
-/// @nodoc
-class _$DietCopyWithImpl<$Res, $Val extends Diet>
-    implements $DietCopyWith<$Res> {
-  _$DietCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Diet
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? key = null,
     Object? name = null,
+    Object? image = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$DietImplCopyWith<$Res> implements $DietCopyWith<$Res> {
-  factory _$$DietImplCopyWith(
-          _$DietImpl value, $Res Function(_$DietImpl) then) =
-      __$$DietImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int id, String key, String name});
-}
-
-/// @nodoc
-class __$$DietImplCopyWithImpl<$Res>
-    extends _$DietCopyWithImpl<$Res, _$DietImpl>
-    implements _$$DietImplCopyWith<$Res> {
-  __$$DietImplCopyWithImpl(_$DietImpl _value, $Res Function(_$DietImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Diet
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? key = null,
-    Object? name = null,
-  }) {
-    return _then(_$DietImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      image: null == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [Equipment].
+extension EquipmentPatterns on Equipment {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Equipment value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Equipment() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Equipment value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Equipment():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Equipment value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Equipment() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name, String image)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Equipment() when $default != null:
+        return $default(_that.id, _that.name, _that.image);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name, String image) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Equipment():
+        return $default(_that.id, _that.name, _that.image);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name, String image)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Equipment() when $default != null:
+        return $default(_that.id, _that.name, _that.image);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$DietImpl implements _Diet {
-  _$DietImpl({required this.id, required this.key, required this.name});
-
-  factory _$DietImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DietImplFromJson(json);
+class _Equipment implements Equipment {
+  _Equipment({required this.id, required this.name, required this.image});
+  factory _Equipment.fromJson(Map<String, dynamic> json) =>
+      _$EquipmentFromJson(json);
 
   @override
   final int id;
   @override
-  final String key;
-  @override
   final String name;
+  @override
+  final String image;
+
+  /// Create a copy of Equipment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$EquipmentCopyWith<_Equipment> get copyWith =>
+      __$EquipmentCopyWithImpl<_Equipment>(this, _$identity);
 
   @override
-  String toString() {
-    return 'Diet(id: $id, key: $key, name: $name)';
+  Map<String, dynamic> toJson() {
+    return _$EquipmentToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DietImpl &&
+            other is _Equipment &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, image);
+
+  @override
+  String toString() {
+    return 'Equipment(id: $id, name: $name, image: $image)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$EquipmentCopyWith<$Res>
+    implements $EquipmentCopyWith<$Res> {
+  factory _$EquipmentCopyWith(
+          _Equipment value, $Res Function(_Equipment) _then) =
+      __$EquipmentCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int id, String name, String image});
+}
+
+/// @nodoc
+class __$EquipmentCopyWithImpl<$Res> implements _$EquipmentCopyWith<$Res> {
+  __$EquipmentCopyWithImpl(this._self, this._then);
+
+  final _Equipment _self;
+  final $Res Function(_Equipment) _then;
+
+  /// Create a copy of Equipment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? image = null,
+  }) {
+    return _then(_Equipment(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$Diet {
+  int get id;
+  String get key;
+  String get name;
+
+  /// Create a copy of Diet
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DietCopyWith<Diet> get copyWith =>
+      _$DietCopyWithImpl<Diet>(this as Diet, _$identity);
+
+  /// Serializes this Diet to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Diet &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.name, name) || other.name == name));
@@ -2370,138 +3665,294 @@ class _$DietImpl implements _Diet {
   @override
   int get hashCode => Object.hash(runtimeType, id, key, name);
 
+  @override
+  String toString() {
+    return 'Diet(id: $id, key: $key, name: $name)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DietCopyWith<$Res> {
+  factory $DietCopyWith(Diet value, $Res Function(Diet) _then) =
+      _$DietCopyWithImpl;
+  @useResult
+  $Res call({int id, String key, String name});
+}
+
+/// @nodoc
+class _$DietCopyWithImpl<$Res> implements $DietCopyWith<$Res> {
+  _$DietCopyWithImpl(this._self, this._then);
+
+  final Diet _self;
+  final $Res Function(Diet) _then;
+
   /// Create a copy of Diet
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$DietImplCopyWith<_$DietImpl> get copyWith =>
-      __$$DietImplCopyWithImpl<_$DietImpl>(this, _$identity);
+  @override
+  $Res call({
+    Object? id = null,
+    Object? key = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [Diet].
+extension DietPatterns on Diet {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Diet value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Diet() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Diet value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Diet():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Diet value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Diet() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String key, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Diet() when $default != null:
+        return $default(_that.id, _that.key, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String key, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Diet():
+        return $default(_that.id, _that.key, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String key, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Diet() when $default != null:
+        return $default(_that.id, _that.key, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Diet implements Diet {
+  _Diet({required this.id, required this.key, required this.name});
+  factory _Diet.fromJson(Map<String, dynamic> json) => _$DietFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String key;
+  @override
+  final String name;
+
+  /// Create a copy of Diet
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DietCopyWith<_Diet> get copyWith =>
+      __$DietCopyWithImpl<_Diet>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DietImplToJson(
+    return _$DietToJson(
       this,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Diet &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, key, name);
+
+  @override
+  String toString() {
+    return 'Diet(id: $id, key: $key, name: $name)';
+  }
 }
 
-abstract class _Diet implements Diet {
-  factory _Diet(
-      {required final int id,
-      required final String key,
-      required final String name}) = _$DietImpl;
+/// @nodoc
+abstract mixin class _$DietCopyWith<$Res> implements $DietCopyWith<$Res> {
+  factory _$DietCopyWith(_Diet value, $Res Function(_Diet) _then) =
+      __$DietCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int id, String key, String name});
+}
 
-  factory _Diet.fromJson(Map<String, dynamic> json) = _$DietImpl.fromJson;
+/// @nodoc
+class __$DietCopyWithImpl<$Res> implements _$DietCopyWith<$Res> {
+  __$DietCopyWithImpl(this._self, this._then);
 
-  @override
-  int get id;
-  @override
-  String get key;
-  @override
-  String get name;
+  final _Diet _self;
+  final $Res Function(_Diet) _then;
 
   /// Create a copy of Diet
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DietImplCopyWith<_$DietImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-RecipeType _$RecipeTypeFromJson(Map<String, dynamic> json) {
-  return _RecipeType.fromJson(json);
-}
-
-/// @nodoc
-mixin _$RecipeType {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this RecipeType to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RecipeType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $RecipeTypeCopyWith<RecipeType> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RecipeTypeCopyWith<$Res> {
-  factory $RecipeTypeCopyWith(
-          RecipeType value, $Res Function(RecipeType) then) =
-      _$RecipeTypeCopyWithImpl<$Res, RecipeType>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$RecipeTypeCopyWithImpl<$Res, $Val extends RecipeType>
-    implements $RecipeTypeCopyWith<$Res> {
-  _$RecipeTypeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of RecipeType
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? id = null,
+    Object? key = null,
     Object? name = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_Diet(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$RecipeTypeImplCopyWith<$Res>
-    implements $RecipeTypeCopyWith<$Res> {
-  factory _$$RecipeTypeImplCopyWith(
-          _$RecipeTypeImpl value, $Res Function(_$RecipeTypeImpl) then) =
-      __$$RecipeTypeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class __$$RecipeTypeImplCopyWithImpl<$Res>
-    extends _$RecipeTypeCopyWithImpl<$Res, _$RecipeTypeImpl>
-    implements _$$RecipeTypeImplCopyWith<$Res> {
-  __$$RecipeTypeImplCopyWithImpl(
-      _$RecipeTypeImpl _value, $Res Function(_$RecipeTypeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of RecipeType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_$RecipeTypeImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -2509,28 +3960,265 @@ class __$$RecipeTypeImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$RecipeTypeImpl implements _RecipeType {
-  _$RecipeTypeImpl({required this.id, required this.name});
+mixin _$RecipeType {
+  int get id;
+  String get name;
 
-  factory _$RecipeTypeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RecipeTypeImplFromJson(json);
+  /// Create a copy of RecipeType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RecipeTypeCopyWith<RecipeType> get copyWith =>
+      _$RecipeTypeCopyWithImpl<RecipeType>(this as RecipeType, _$identity);
+
+  /// Serializes this RecipeType to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RecipeType &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'RecipeType(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $RecipeTypeCopyWith<$Res> {
+  factory $RecipeTypeCopyWith(
+          RecipeType value, $Res Function(RecipeType) _then) =
+      _$RecipeTypeCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$RecipeTypeCopyWithImpl<$Res> implements $RecipeTypeCopyWith<$Res> {
+  _$RecipeTypeCopyWithImpl(this._self, this._then);
+
+  final RecipeType _self;
+  final $Res Function(RecipeType) _then;
+
+  /// Create a copy of RecipeType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [RecipeType].
+extension RecipeTypePatterns on RecipeType {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_RecipeType value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RecipeType() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_RecipeType value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RecipeType():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_RecipeType value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RecipeType() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RecipeType() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RecipeType():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RecipeType() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _RecipeType implements RecipeType {
+  _RecipeType({required this.id, required this.name});
+  factory _RecipeType.fromJson(Map<String, dynamic> json) =>
+      _$RecipeTypeFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of RecipeType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$RecipeTypeCopyWith<_RecipeType> get copyWith =>
+      __$RecipeTypeCopyWithImpl<_RecipeType>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RecipeTypeToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecipeTypeImpl &&
+            other is _RecipeType &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -2539,135 +4227,45 @@ class _$RecipeTypeImpl implements _RecipeType {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of RecipeType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$RecipeTypeImplCopyWith<_$RecipeTypeImpl> get copyWith =>
-      __$$RecipeTypeImplCopyWithImpl<_$RecipeTypeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RecipeTypeImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _RecipeType implements RecipeType {
-  factory _RecipeType({required final int id, required final String name}) =
-      _$RecipeTypeImpl;
-
-  factory _RecipeType.fromJson(Map<String, dynamic> json) =
-      _$RecipeTypeImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of RecipeType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RecipeTypeImplCopyWith<_$RecipeTypeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-FoodNotLiked _$FoodNotLikedFromJson(Map<String, dynamic> json) {
-  return _FoodNotLiked.fromJson(json);
-}
-
-/// @nodoc
-mixin _$FoodNotLiked {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this FoodNotLiked to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FoodNotLiked
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $FoodNotLikedCopyWith<FoodNotLiked> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FoodNotLikedCopyWith<$Res> {
-  factory $FoodNotLikedCopyWith(
-          FoodNotLiked value, $Res Function(FoodNotLiked) then) =
-      _$FoodNotLikedCopyWithImpl<$Res, FoodNotLiked>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$FoodNotLikedCopyWithImpl<$Res, $Val extends FoodNotLiked>
-    implements $FoodNotLikedCopyWith<$Res> {
-  _$FoodNotLikedCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of FoodNotLiked
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'RecipeType(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$FoodNotLikedImplCopyWith<$Res>
-    implements $FoodNotLikedCopyWith<$Res> {
-  factory _$$FoodNotLikedImplCopyWith(
-          _$FoodNotLikedImpl value, $Res Function(_$FoodNotLikedImpl) then) =
-      __$$FoodNotLikedImplCopyWithImpl<$Res>;
+abstract mixin class _$RecipeTypeCopyWith<$Res>
+    implements $RecipeTypeCopyWith<$Res> {
+  factory _$RecipeTypeCopyWith(
+          _RecipeType value, $Res Function(_RecipeType) _then) =
+      __$RecipeTypeCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$FoodNotLikedImplCopyWithImpl<$Res>
-    extends _$FoodNotLikedCopyWithImpl<$Res, _$FoodNotLikedImpl>
-    implements _$$FoodNotLikedImplCopyWith<$Res> {
-  __$$FoodNotLikedImplCopyWithImpl(
-      _$FoodNotLikedImpl _value, $Res Function(_$FoodNotLikedImpl) _then)
-      : super(_value, _then);
+class __$RecipeTypeCopyWithImpl<$Res> implements _$RecipeTypeCopyWith<$Res> {
+  __$RecipeTypeCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of FoodNotLiked
+  final _RecipeType _self;
+  final $Res Function(_RecipeType) _then;
+
+  /// Create a copy of RecipeType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$FoodNotLikedImpl(
+    return _then(_RecipeType(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -2675,28 +4273,266 @@ class __$$FoodNotLikedImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$FoodNotLikedImpl implements _FoodNotLiked {
-  _$FoodNotLikedImpl({required this.id, required this.name});
+mixin _$FoodNotLiked {
+  int get id;
+  String get name;
 
-  factory _$FoodNotLikedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FoodNotLikedImplFromJson(json);
+  /// Create a copy of FoodNotLiked
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FoodNotLikedCopyWith<FoodNotLiked> get copyWith =>
+      _$FoodNotLikedCopyWithImpl<FoodNotLiked>(
+          this as FoodNotLiked, _$identity);
+
+  /// Serializes this FoodNotLiked to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
-  final int id;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FoodNotLiked &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  final String name;
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @override
   String toString() {
     return 'FoodNotLiked(id: $id, name: $name)';
   }
+}
+
+/// @nodoc
+abstract mixin class $FoodNotLikedCopyWith<$Res> {
+  factory $FoodNotLikedCopyWith(
+          FoodNotLiked value, $Res Function(FoodNotLiked) _then) =
+      _$FoodNotLikedCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$FoodNotLikedCopyWithImpl<$Res> implements $FoodNotLikedCopyWith<$Res> {
+  _$FoodNotLikedCopyWithImpl(this._self, this._then);
+
+  final FoodNotLiked _self;
+  final $Res Function(FoodNotLiked) _then;
+
+  /// Create a copy of FoodNotLiked
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FoodNotLiked].
+extension FoodNotLikedPatterns on FoodNotLiked {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FoodNotLiked value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FoodNotLiked() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FoodNotLiked value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FoodNotLiked():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FoodNotLiked value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FoodNotLiked() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FoodNotLiked() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FoodNotLiked():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FoodNotLiked() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FoodNotLiked implements FoodNotLiked {
+  _FoodNotLiked({required this.id, required this.name});
+  factory _FoodNotLiked.fromJson(Map<String, dynamic> json) =>
+      _$FoodNotLikedFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  /// Create a copy of FoodNotLiked
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FoodNotLikedCopyWith<_FoodNotLiked> get copyWith =>
+      __$FoodNotLikedCopyWithImpl<_FoodNotLiked>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FoodNotLikedToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FoodNotLikedImpl &&
+            other is _FoodNotLiked &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -2705,135 +4541,46 @@ class _$FoodNotLikedImpl implements _FoodNotLiked {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of FoodNotLiked
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$FoodNotLikedImplCopyWith<_$FoodNotLikedImpl> get copyWith =>
-      __$$FoodNotLikedImplCopyWithImpl<_$FoodNotLikedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FoodNotLikedImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _FoodNotLiked implements FoodNotLiked {
-  factory _FoodNotLiked({required final int id, required final String name}) =
-      _$FoodNotLikedImpl;
-
-  factory _FoodNotLiked.fromJson(Map<String, dynamic> json) =
-      _$FoodNotLikedImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-
-  /// Create a copy of FoodNotLiked
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FoodNotLikedImplCopyWith<_$FoodNotLikedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-MealVariety _$MealVarietyFromJson(Map<String, dynamic> json) {
-  return _MealVariety.fromJson(json);
-}
-
-/// @nodoc
-mixin _$MealVariety {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this MealVariety to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MealVariety
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $MealVarietyCopyWith<MealVariety> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MealVarietyCopyWith<$Res> {
-  factory $MealVarietyCopyWith(
-          MealVariety value, $Res Function(MealVariety) then) =
-      _$MealVarietyCopyWithImpl<$Res, MealVariety>;
-  @useResult
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class _$MealVarietyCopyWithImpl<$Res, $Val extends MealVariety>
-    implements $MealVarietyCopyWith<$Res> {
-  _$MealVarietyCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MealVariety
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'FoodNotLiked(id: $id, name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$MealVarietyImplCopyWith<$Res>
-    implements $MealVarietyCopyWith<$Res> {
-  factory _$$MealVarietyImplCopyWith(
-          _$MealVarietyImpl value, $Res Function(_$MealVarietyImpl) then) =
-      __$$MealVarietyImplCopyWithImpl<$Res>;
+abstract mixin class _$FoodNotLikedCopyWith<$Res>
+    implements $FoodNotLikedCopyWith<$Res> {
+  factory _$FoodNotLikedCopyWith(
+          _FoodNotLiked value, $Res Function(_FoodNotLiked) _then) =
+      __$FoodNotLikedCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$MealVarietyImplCopyWithImpl<$Res>
-    extends _$MealVarietyCopyWithImpl<$Res, _$MealVarietyImpl>
-    implements _$$MealVarietyImplCopyWith<$Res> {
-  __$$MealVarietyImplCopyWithImpl(
-      _$MealVarietyImpl _value, $Res Function(_$MealVarietyImpl) _then)
-      : super(_value, _then);
+class __$FoodNotLikedCopyWithImpl<$Res>
+    implements _$FoodNotLikedCopyWith<$Res> {
+  __$FoodNotLikedCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of MealVariety
+  final _FoodNotLiked _self;
+  final $Res Function(_FoodNotLiked) _then;
+
+  /// Create a copy of FoodNotLiked
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$MealVarietyImpl(
+    return _then(_FoodNotLiked(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -2841,28 +4588,25 @@ class __$$MealVarietyImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$MealVarietyImpl implements _MealVariety {
-  _$MealVarietyImpl({required this.id, required this.name});
+mixin _$MealVariety {
+  int get id;
+  String get name;
 
-  factory _$MealVarietyImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MealVarietyImplFromJson(json);
+  /// Create a copy of MealVariety
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MealVarietyCopyWith<MealVariety> get copyWith =>
+      _$MealVarietyCopyWithImpl<MealVariety>(this as MealVariety, _$identity);
 
-  @override
-  final int id;
-  @override
-  final String name;
-
-  @override
-  String toString() {
-    return 'MealVariety(id: $id, name: $name)';
-  }
+  /// Serializes this MealVariety to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MealVarietyImpl &&
+            other is MealVariety &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -2871,38 +4615,289 @@ class _$MealVarietyImpl implements _MealVariety {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of MealVariety
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$MealVarietyImplCopyWith<_$MealVarietyImpl> get copyWith =>
-      __$$MealVarietyImplCopyWithImpl<_$MealVarietyImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MealVarietyImplToJson(
-      this,
-    );
+  String toString() {
+    return 'MealVariety(id: $id, name: $name)';
   }
 }
 
-abstract class _MealVariety implements MealVariety {
-  factory _MealVariety({required final int id, required final String name}) =
-      _$MealVarietyImpl;
+/// @nodoc
+abstract mixin class $MealVarietyCopyWith<$Res> {
+  factory $MealVarietyCopyWith(
+          MealVariety value, $Res Function(MealVariety) _then) =
+      _$MealVarietyCopyWithImpl;
+  @useResult
+  $Res call({int id, String name});
+}
 
-  factory _MealVariety.fromJson(Map<String, dynamic> json) =
-      _$MealVarietyImpl.fromJson;
+/// @nodoc
+class _$MealVarietyCopyWithImpl<$Res> implements $MealVarietyCopyWith<$Res> {
+  _$MealVarietyCopyWithImpl(this._self, this._then);
+
+  final MealVariety _self;
+  final $Res Function(MealVariety) _then;
+
+  /// Create a copy of MealVariety
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [MealVariety].
+extension MealVarietyPatterns on MealVariety {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MealVariety value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MealVariety() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MealVariety value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealVariety():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MealVariety value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealVariety() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MealVariety() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealVariety():
+        return $default(_that.id, _that.name);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int id, String name)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MealVariety() when $default != null:
+        return $default(_that.id, _that.name);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _MealVariety implements MealVariety {
+  _MealVariety({required this.id, required this.name});
+  factory _MealVariety.fromJson(Map<String, dynamic> json) =>
+      _$MealVarietyFromJson(json);
 
   @override
-  int get id;
+  final int id;
   @override
-  String get name;
+  final String name;
 
   /// Create a copy of MealVariety
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MealVarietyImplCopyWith<_$MealVarietyImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$MealVarietyCopyWith<_MealVariety> get copyWith =>
+      __$MealVarietyCopyWithImpl<_MealVariety>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MealVarietyToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _MealVariety &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name);
+
+  @override
+  String toString() {
+    return 'MealVariety(id: $id, name: $name)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$MealVarietyCopyWith<$Res>
+    implements $MealVarietyCopyWith<$Res> {
+  factory _$MealVarietyCopyWith(
+          _MealVariety value, $Res Function(_MealVariety) _then) =
+      __$MealVarietyCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class __$MealVarietyCopyWithImpl<$Res> implements _$MealVarietyCopyWith<$Res> {
+  __$MealVarietyCopyWithImpl(this._self, this._then);
+
+  final _MealVariety _self;
+  final $Res Function(_MealVariety) _then;
+
+  /// Create a copy of MealVariety
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_MealVariety(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

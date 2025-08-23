@@ -4,7 +4,7 @@ part 'nutrition_model.freezed.dart';
 part 'nutrition_model.g.dart';
 
 @freezed
-class NutritionModel with _$NutritionModel {
+abstract class NutritionModel with _$NutritionModel {
   const factory NutritionModel({
     required String name,
     required num amount,
@@ -16,7 +16,7 @@ class NutritionModel with _$NutritionModel {
 }
 
 @freezed
-class NutritionsModel with _$NutritionsModel {
+abstract class NutritionsModel with _$NutritionsModel {
   const factory NutritionsModel({
     required List<NutritionModel> nutrients,
   }) = _Nutritions;

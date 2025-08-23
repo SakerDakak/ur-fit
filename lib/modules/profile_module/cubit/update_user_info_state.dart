@@ -9,7 +9,7 @@ import 'package:urfit/modules/personal_info/data/models/user_personal_info_model
 part 'update_user_info_state.freezed.dart';
 
 @freezed
-class UpdateUserInfoState with _$UpdateUserInfoState {
+abstract class UpdateUserInfoState with _$UpdateUserInfoState {
   const factory UpdateUserInfoState({
     required UserPersonalInfoModel userInfo,
     @Default("") String oldPassword,

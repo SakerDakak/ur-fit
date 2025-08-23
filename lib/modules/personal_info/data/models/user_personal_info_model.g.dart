@@ -6,9 +6,9 @@ part of 'user_personal_info_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserPersonalInfoModelImpl _$$UserPersonalInfoModelImplFromJson(
+_UserPersonalInfoModel _$UserPersonalInfoModelFromJson(
         Map<String, dynamic> json) =>
-    _$UserPersonalInfoModelImpl(
+    _UserPersonalInfoModel(
       gender: $enumDecodeNullable(_$GenderEnumEnumMap, json['gender']),
       age: (json['age'] as num?)?.toInt(),
       height: (json['height'] as num?)?.toDouble(),
@@ -48,8 +48,8 @@ _$UserPersonalInfoModelImpl _$$UserPersonalInfoModelImplFromJson(
       weaklyTrainingCount: (json['weaklyTrainingCount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UserPersonalInfoModelImplToJson(
-        _$UserPersonalInfoModelImpl instance) =>
+Map<String, dynamic> _$UserPersonalInfoModelToJson(
+        _UserPersonalInfoModel instance) =>
     <String, dynamic>{
       'gender': _$GenderEnumEnumMap[instance.gender],
       'age': instance.age,
