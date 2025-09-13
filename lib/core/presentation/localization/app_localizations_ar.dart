@@ -277,7 +277,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get instructions => 'تعليمات';
 
   @override
-  String get group => 'مجموهة';
+  String get group => 'مجموعة';
 
   @override
   String get groups => 'المجموعات';
