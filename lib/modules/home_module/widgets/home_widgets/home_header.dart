@@ -25,20 +25,14 @@ class HomeHeader extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.px),
           child: Row(
             children: [
-              // SvgPicture.asset(
-              //   AssetsManager.notification,
-              //   alignment: Alignment.topCenter,
-              // ),
-              Spacer(),
-              Text('${L10n.tr().homeWelcome} ${isGuest ? L10n.tr().guest : user?.name}',
-                  style: TStyle.semiBold_14.copyWith(color: Colors.white)),
-              SizedBox(width: 8.px),
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 20,
-                backgroundImage: customImageView(Session().currentUser?.gender == GenderEnum.female
-                    ? Assets.imageFemaleProfile
-                    : Assets.imageProfileImage),
+                child: Icon(Icons.person),
               ),
+              SizedBox(width: 8.px),
+              Text('${isGuest ? L10n.tr().guest : user?.name}',
+                  style: TStyle.semiBold_14.copyWith(color: Colors.white)),
+              const Spacer(),
             ],
           ),
         ),
