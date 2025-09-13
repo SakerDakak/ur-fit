@@ -24,7 +24,7 @@ class DiscountSection extends StatelessWidget {
           TextSpan(
             children: [
               TextSpan(
-                text: L10n.tr().youCanGet,
+                text: "${L10n.tr().youCanGet} ",
                 style: TStyle.regular_14.copyWith(
                   fontWeight: FontWeight.w700,
                   color: Co.fontColor,
@@ -87,7 +87,9 @@ class DiscountSection extends StatelessWidget {
                 start: 18,
                 textDirection: Directionality.of(context),
                 child: Image.asset(
-                  Session().currentUser?.gender == GenderEnum.female ? Assets.imageFamaleCharacter : Assets.imageMan,
+                  Session().currentUser?.gender == GenderEnum.female
+                      ? Assets.imageFamaleCharacter
+                      : Assets.imageMan,
                   height: 117,
                 ),
               ),
