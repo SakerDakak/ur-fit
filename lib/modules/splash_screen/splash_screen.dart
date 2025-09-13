@@ -40,8 +40,14 @@ class _SplashScreenState extends State<SplashScreen>
     if (TokenService.getToken() == null) {
       // التحقق من إكمال شاشة التعريف
       if (OnboardingService.isOnboardingCompleted()) {
-        // إذا تم إكمال Onboarding، انتقل إلى شاشة اختيار اللغة
-        context.pushReplacement(ChooseLanguage.route);
+        // التحقق من إكمال اختيار اللغة
+        if (CitySelectionService.isCitySelectionCompleted()) {
+          // إذا تم إكمال كل شيء، انتقل إلى شاشة تسجيل الدخول
+          context.pushReplacement(AuthScreen.route);
+        } else {
+          // إذا لم يتم إكمال اختيار اللغة، انتقل إلى شاشة اختيار اللغة
+          context.pushReplacement(ChooseLanguage.route);
+        }
       } else {
         // إذا لم يتم إكمال Onboarding، اعرض شاشة التعريف
         context.pushReplacement(OnBoardingSecScreen.route);

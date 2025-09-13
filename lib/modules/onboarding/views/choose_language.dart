@@ -20,8 +20,7 @@ class ChooseLanguage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int _initialPage = 0;
-    List<Map<String, dynamic>> items = [
+    final List<Map<String, dynamic>> items = [
       {
         'name': 'عربى',
         'value': 'ar',
@@ -33,7 +32,8 @@ class ChooseLanguage extends StatelessWidget {
         'icon': AssetsManager.americaFlag,
       },
     ];
-    Map<String, dynamic> selectedLang = L10n.isAr(context) ? items.first : items.last;
+    Map<String, dynamic> selectedLang =
+        L10n.isAr(context) ? items.first : items.last;
 
     return Scaffold(
       backgroundColor: Co.backGround,
@@ -83,8 +83,8 @@ class ChooseLanguage extends StatelessWidget {
             SizedBox(
               height: 36.px,
             ),
-            SliderDots(
-              page: _initialPage,
+            const SliderDots(
+              page: 0,
             ),
           ],
         ),

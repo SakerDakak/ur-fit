@@ -43,7 +43,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
       body: SafeArea(
         child: Column(
           children: [
-            IconWithTitle(),
+            const IconWithTitle(),
             SizedBox(
               height: 32.px,
             ),
@@ -72,8 +72,11 @@ class _ChooseCountryState extends State<ChooseCountry> {
                             ? state.countries
                             : List.generate(
                                 3,
-                                (index) =>
-                                    CountryModel(id: index, name: 'Fake Country $index', is_active: 1, created_at: '')),
+                                (index) => CountryModel(
+                                    id: index,
+                                    name: 'Fake Country $index',
+                                    is_active: 1,
+                                    created_at: '')),
                         onSelect: (value) {
                           selectedCountry = value;
                         },
@@ -91,14 +94,16 @@ class _ChooseCountryState extends State<ChooseCountry> {
                 onPressed: () {
                   if (selectedCountry == null) return;
                   // selectedCountry = selectedCountry ?? context.read<OnboardingCubit>().state.countries.first;
-                  context.read<OnboardingCubit>().setCountries(selectedCountry!);
+                  context
+                      .read<OnboardingCubit>()
+                      .setCountries(selectedCountry!);
                   // context.read<LoginBloc>().add(SetCountryEvent(selectedCountry!.id));
                   context.push(ChooseCity.route);
                 }),
             SizedBox(
               height: 36.px,
             ),
-            SliderDots(page: 1),
+            const SliderDots(page: 1),
           ],
         ),
       ),

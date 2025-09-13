@@ -9,6 +9,7 @@ class StorageKeys {
   static const String cityId = 'city_id';
   static const String countryId = 'country_id';
   static const String isOnboardingCompleted = 'isOnboardingCompleted';
+  static const String isCitySelectionCompleted = 'isCitySelectionCompleted';
 }
 
 class TokenService {
@@ -50,5 +51,30 @@ class OnboardingService {
     debugPrint("تم إعادة تعيين حالة شاشة التعريف");
     return await di<SharedPreferences>()
         .remove(StorageKeys.isOnboardingCompleted);
+  }
+}
+
+class CitySelectionService {
+  CitySelectionService._();
+
+  /// التحقق من إكمال اختيار المدينة
+  static bool isCitySelectionCompleted() {
+    return di<SharedPreferences>()
+            .getBool(StorageKeys.isCitySelectionCompleted) ??
+        false;
+  }
+
+  /// حفظ حالة إكمال اختيار المدينة
+  static Future<bool> setCitySelectionCompleted() async {
+    debugPrint("تم حفظ حالة إكمال اختيار المدينة");
+    return await di<SharedPreferences>()
+        .setBool(StorageKeys.isCitySelectionCompleted, true);
+  }
+
+  /// إعادة تعيين حالة اختيار المدينة (للتطوير والاختبار)
+  static Future<bool> resetCitySelection() async {
+    debugPrint("تم إعادة تعيين حالة اختيار المدينة");
+    return await di<SharedPreferences>()
+        .remove(StorageKeys.isCitySelectionCompleted);
   }
 }

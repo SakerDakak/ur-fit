@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
@@ -43,7 +44,7 @@ class _ChooseCityState extends State<ChooseCity> {
       body: SafeArea(
         child: Column(
           children: [
-            IconWithTitle(),
+            const IconWithTitle(),
             SizedBox(
               height: 32.px,
             ),
@@ -57,7 +58,9 @@ class _ChooseCityState extends State<ChooseCity> {
             BlocBuilder<OnboardingCubit, OnboardingState>(
               buildWhen: (previous, current) => current is CitiesStates,
               builder: (context, state) {
-                if (state is OnboardingCitiesLoaded) selectedCity = state.cities.firstOrNull;
+                if (state is OnboardingCitiesLoaded) {
+                  selectedCity = state.cities.firstOrNull;
+                }
 
                 return Expanded(
                   child: Skeletonizer(
@@ -70,8 +73,13 @@ class _ChooseCityState extends State<ChooseCity> {
                             ? state.cities
                             : List.generate(
                                 5,
-                                (index) =>
-                                    CountryModel(id: index, name: 'Fake City $index', is_active: 1, created_at: '')),
+                                (index) => CountryModel(
+                                  id: index,
+                                  name: 'Fake City $index',
+                                  is_active: 1,
+                                  created_at: '',
+                                ),
+                              ),
                         onSelect: (dynamic value) {
                           selectedCity = value as CountryModel;
                         },
@@ -86,20 +94,21 @@ class _ChooseCityState extends State<ChooseCity> {
             ),
             CustomElevatedButton(
                 text: L10n.tr().continuee,
-                onPressed: () {
+                onPressed: () async {
                   if (selectedCity == null) return;
 
-                  // selectedCity = selectedCity ?? context.read<OnboardingCubit>().state.cities.first;
-                  // context.read<LoginBloc>().add(SetCityEvent(selectedCity!.id));
-                  // context.read<AuthenticationBloc>().add(DoneOnBoardingEvent(selectedCity!));
+                  // حفظ حالة إكمال اختيار المدينة
+                  await CitySelectionService.setCitySelectionCompleted();
+
                   Session().setCityId = selectedCity!.id;
-                  Session().setCountryId = context.read<OnboardingCubit>().selectedCountryId!;
+                  Session().setCountryId =
+                      context.read<OnboardingCubit>().selectedCountryId!;
                   context.push(AuthScreen.route);
                 }),
             SizedBox(
               height: 36.px,
             ),
-            SliderDots(page: 2),
+            const SliderDots(page: 2),
           ],
         ),
       ),
