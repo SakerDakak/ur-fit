@@ -9,7 +9,6 @@ import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
-import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
@@ -55,7 +54,8 @@ class _RegisterFormState extends State<RegisterForm> {
                 title: L10n.tr().fullName,
                 autoFillHints: [AutofillHints.name],
                 controller: authCubit.nameController,
-                validator: (v) => Validators.valueIsNumAtLeast(v, 3, L10n.tr().fullName),
+                validator: (v) =>
+                    Validators.valueIsNumAtLeast(v, 3, L10n.tr().fullName),
               ),
               SizedBox(height: 24.px),
               CompactTextFormField(
@@ -69,7 +69,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 hintText: L10n.tr().enterPassword,
                 title: L10n.tr().password,
                 controller: authCubit.passwordController,
-                autoFillHints: [AutofillHints.newPassword],
+                autoFillHints: [AutofillHints.password],
                 validator: Validators.moreThanSix,
               ),
               SizedBox(height: 16.px),
@@ -78,56 +78,46 @@ class _RegisterFormState extends State<RegisterForm> {
                 title: L10n.tr().confirmPassword,
                 controller: authCubit.confirmPasswordController,
                 validator: (String? value) {
-                  if (value != authCubit.passwordController.text) return L10n.tr().passwordsDoNotMatch;
+                  if (value != authCubit.passwordController.text) {
+                    return L10n.tr().passwordsDoNotMatch;
+                  }
                   return null;
                 },
               ),
               SizedBox(height: 16.px),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.px),
-                child: Row(
-                  children: [
-                    ValueListenableBuilder(
-                      valueListenable: agreeToTerms,
-                      builder: (context, value, child) => TextButton(
-                        onPressed: () => agreeToTerms.value = !value,
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              L10n.tr().agreeTerms,
-                              style: TStyle.bold_14,
+              Row(
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: agreeToTerms,
+                    builder: (context, value, child) => TextButton(
+                      onPressed: () => agreeToTerms.value = !value,
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IgnorePointer(
+                            child: Checkbox(
+                              value: value, // acceptTerms,
+                              onChanged: (val) => agreeToTerms.value = !value,
+                              checkColor: Co.whiteColor,
+                              focusColor: Theme.of(context).colorScheme.primary,
+                              activeColor:
+                                  Theme.of(context).colorScheme.primary,
+                              side: BorderSide(
+                                  color: Theme.of(context).colorScheme.primary),
                             ),
-                            IgnorePointer(
-                              child: Checkbox(
-                                value: value, // acceptTerms,
-                                onChanged: (val) => agreeToTerms.value = !value,
-                                checkColor: Co.whiteColor,
-                                focusColor: Theme.of(context).colorScheme.primary,
-                                activeColor: Theme.of(context).colorScheme.primary,
-                                side: BorderSide(color: Theme.of(context).colorScheme.primary),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            L10n.tr().agreeTerms,
+                            style: TStyle.bold_14,
+                          ),
+                        ],
                       ),
                     ),
-                    const Spacer(),
-                    FittedBox(
-                      child: TextButton(
-                          onPressed: () {
-                            context.push(ForgetPasswordScreen.route);
-                          },
-                          child: Text(
-                            L10n.tr().forgetPassword,
-                            style: TStyle.bold_14.copyWith(color: Theme.of(context).colorScheme.primary),
-                          )),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 24.px,
@@ -141,7 +131,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     LoadingHelper.stopLoading();
                   }
                   if (state is RegisterSuccessState) {
-                    Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail, error: false);
+                    Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail,
+                        error: false);
                     final email = authCubit.emailController.text.trim();
                     context.push(RegisterOTPScreen.route(email));
                   } else if (state is RegisterErrorState) {

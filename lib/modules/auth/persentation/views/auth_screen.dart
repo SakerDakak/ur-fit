@@ -19,7 +19,8 @@ class AuthScreen extends StatefulWidget {
   State<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateMixin {
+class _AuthScreenState extends State<AuthScreen>
+    with SingleTickerProviderStateMixin {
   late final TabController controller;
 
   @override
@@ -45,18 +46,23 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                 child: SizedBox(
                   width: 264.px,
                   child: Container(
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.px)),
+                    decoration: BoxDecoration(
+                        color: Co.cardColor,
+                        borderRadius: BorderRadius.circular(8.px)),
                     child: TabBar(
                       controller: controller,
-                      indicatorPadding: EdgeInsets.symmetric(horizontal: 5.px, vertical: 3.px),
+                      indicatorPadding: EdgeInsets.symmetric(
+                          horizontal: 5.px, vertical: 3.px),
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorWeight: 0,
                       labelColor: Theme.of(context).colorScheme.primary,
                       labelStyle: TStyle.semiBold_24.copyWith(fontSize: 18.px),
-                      unselectedLabelColor: Co.darkGrey,
+                      unselectedLabelColor: Co.whiteColor,
                       // tabAlignment: TabAlignment.center,
                       dividerColor: Colors.transparent,
-                      indicator: BoxDecoration(color: Co.backGround, borderRadius: BorderRadius.circular(8.px)),
+                      indicator: BoxDecoration(
+                          color: Co.backGround,
+                          borderRadius: BorderRadius.circular(8.px)),
                       indicatorColor: Colors.transparent,
                       tabs: [
                         Tab(
