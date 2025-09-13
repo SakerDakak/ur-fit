@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -23,6 +24,16 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
   int currentIndex = 0;
   PageController pageController = PageController(initialPage: 0);
   late final Timer timer;
+
+  /// دالة للتعامل مع إكمال شاشة التعريف والانتقال للشاشة التالية
+  Future<void> _completeOnboardingAndNavigate() async {
+    // حفظ حالة إكمال Onboarding
+    await OnboardingService.setOnboardingCompleted();
+    // الانتقال لشاشة اختيار اللغة
+    if (mounted) {
+      context.pushReplacement(ChooseLanguage.route);
+    }
+  }
 
   @override
   void initState() {
@@ -224,19 +235,22 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      Container(
-                        height: 50.px,
-                        width: 249.px,
-                        decoration: BoxDecoration(
-                          color: Co.secondaryColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Center(
-                          child: Text(
-                            L10n.tr().startYourHealthJourneyToday,
-                            style: TStyle.semiBold_16
-                                .copyWith(color: Co.whiteColor, fontSize: 16),
-                            textAlign: TextAlign.center,
+                      GestureDetector(
+                        onTap: _completeOnboardingAndNavigate,
+                        child: Container(
+                          height: 50.px,
+                          width: 249.px,
+                          decoration: BoxDecoration(
+                            color: Co.secondaryColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Text(
+                              L10n.tr().startYourHealthJourneyToday,
+                              style: TStyle.semiBold_16
+                                  .copyWith(color: Co.whiteColor, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),
@@ -296,21 +310,24 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      Container(
-                        height: 50.px,
-                        margin: EdgeInsets.symmetric(horizontal: 20.px),
-                        padding: EdgeInsets.symmetric(horizontal: 6.px),
-                        decoration: BoxDecoration(
-                          color: Co.secondaryColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Center(
-                          child: Text(
-                            L10n.tr().everyMpementsGetYouCloserToYourGoal,
-                            style: TStyle.semiBold_16.copyWith(
-                                color: Co.whiteColor,
-                                fontSize: L10n.isAr(context) ? 16 : 14),
-                            textAlign: TextAlign.center,
+                      GestureDetector(
+                        onTap: _completeOnboardingAndNavigate,
+                        child: Container(
+                          height: 50.px,
+                          margin: EdgeInsets.symmetric(horizontal: 20.px),
+                          padding: EdgeInsets.symmetric(horizontal: 6.px),
+                          decoration: BoxDecoration(
+                            color: Co.secondaryColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Text(
+                              L10n.tr().everyMpementsGetYouCloserToYourGoal,
+                              style: TStyle.semiBold_16.copyWith(
+                                  color: Co.whiteColor,
+                                  fontSize: L10n.isAr(context) ? 16 : 14),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),
@@ -369,19 +386,22 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      Container(
-                        height: 50.px,
-                        width: 249.px,
-                        decoration: BoxDecoration(
-                          color: Co.secondaryColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Center(
-                          child: Text(
-                            L10n.tr().startYourHealthJourneyToday,
-                            style: TStyle.semiBold_16
-                                .copyWith(color: Co.whiteColor, fontSize: 16),
-                            textAlign: TextAlign.center,
+                      GestureDetector(
+                        onTap: _completeOnboardingAndNavigate,
+                        child: Container(
+                          height: 50.px,
+                          width: 249.px,
+                          decoration: BoxDecoration(
+                            color: Co.secondaryColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Text(
+                              L10n.tr().startYourHealthJourneyToday,
+                              style: TStyle.semiBold_16
+                                  .copyWith(color: Co.whiteColor, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),
@@ -392,32 +412,21 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
             ),
           ),
           Align(
-            alignment: Alignment.bottomRight,
+            alignment: AlignmentDirectional.bottomEnd,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: IconButton(
-                      onPressed: () {
-                        // if (currentIndex == 2) {
-                        context.pushReplacement(ChooseLanguage.route);
-                        // } else {
-                        //   // currentIndex += 1;
-                        //   pageController.animateToPage(currentIndex++,
-                        //       duration: const Duration(milliseconds: 300), curve: Curves.linear);
-                        // }
-                      },
-                      icon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.arrow_back),
-                          SizedBox(
-                            width: 10.px,
-                          ),
-                          Text(L10n.tr().skip),
-                        ],
-                      )),
+                child: IconButton(
+                  onPressed: _completeOnboardingAndNavigate,
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(L10n.tr().skip),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.arrow_forward,
+                          color: Co.whiteColor, size: 20),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -7,6 +7,7 @@ import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
+import 'package:urfit/modules/onboarding/views/choose_language.dart';
 
 import '../../core/presentation/assets/assets_manager.dart';
 import '../../core/presentation/style/colors.dart';
@@ -19,7 +20,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   Future _getUserAnNavigate() async {
@@ -36,7 +38,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   _getSplash() async {
     FCMService().fcmGetInitMessage();
     if (TokenService.getToken() == null) {
-      context.pushReplacement(OnBoardingSecScreen.route);
+      // التحقق من إكمال شاشة التعريف
+      if (OnboardingService.isOnboardingCompleted()) {
+        // إذا تم إكمال Onboarding، انتقل إلى شاشة اختيار اللغة
+        context.pushReplacement(ChooseLanguage.route);
+      } else {
+        // إذا لم يتم إكمال Onboarding، اعرض شاشة التعريف
+        context.pushReplacement(OnBoardingSecScreen.route);
+      }
     } else {
       await _getUserAnNavigate();
     }

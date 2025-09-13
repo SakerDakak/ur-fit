@@ -8,7 +8,7 @@ class StorageKeys {
   static const String lang = 'lang';
   static const String cityId = 'city_id';
   static const String countryId = 'country_id';
-
+  static const String isOnboardingCompleted = 'isOnboardingCompleted';
 }
 
 class TokenService {
@@ -26,5 +26,29 @@ class TokenService {
 
   static Future<bool> deleteToken() async {
     return await di<SharedPreferences>().remove(StorageKeys.token);
+  }
+}
+
+class OnboardingService {
+  OnboardingService._();
+
+  /// التحقق من إكمال شاشة التعريف
+  static bool isOnboardingCompleted() {
+    return di<SharedPreferences>().getBool(StorageKeys.isOnboardingCompleted) ??
+        false;
+  }
+
+  /// حفظ حالة إكمال شاشة التعريف
+  static Future<bool> setOnboardingCompleted() async {
+    debugPrint("تم حفظ حالة إكمال شاشة التعريف");
+    return await di<SharedPreferences>()
+        .setBool(StorageKeys.isOnboardingCompleted, true);
+  }
+
+  /// إعادة تعيين حالة شاشة التعريف (للتطوير والاختبار)
+  static Future<bool> resetOnboarding() async {
+    debugPrint("تم إعادة تعيين حالة شاشة التعريف");
+    return await di<SharedPreferences>()
+        .remove(StorageKeys.isOnboardingCompleted);
   }
 }
