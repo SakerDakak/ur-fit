@@ -169,23 +169,27 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 18),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
-                        height: 100,
+                        height: 80,
                       ),
                       const IconWithTitle(),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 14),
                       RichText(
+                        textAlign: TextAlign.center,
                         text: TextSpan(
                           text: L10n.tr().yourHealth,
-                          style: TStyle.bold_40
-                              .copyWith(color: Co.secondaryColor, fontSize: 34),
+                          style: TStyle.bold_40.copyWith(
+                              color: Co.secondaryColor,
+                              fontSize: L10n.isAr(context) ? 34 : 28),
                           children: [
                             const TextSpan(text: ' '),
                             TextSpan(
                               text: L10n.tr().isMoreImportantThanAnything,
-                              style: TStyle.bold_40
-                                  .copyWith(color: Co.whiteColor, fontSize: 34),
+                              style: TStyle.bold_20.copyWith(
+                                  color: Co.whiteColor,
+                                  fontSize: L10n.isAr(context) ? 34 : 28),
                             ),
                           ],
                         ),
@@ -195,13 +199,18 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         text: TextSpan(
                           text:
                               L10n.tr().welconeToMyDailyCompanionToAHealthyLife,
-                          style: TStyle.bold_20
-                              .copyWith(color: Co.whiteColor, fontSize: 24),
+                          style: (L10n.isAr(context)
+                                  ? TStyle.bold_20
+                                  : TStyle.bold_14)
+                              .copyWith(
+                                  color: Co.whiteColor,
+                                  fontSize: L10n.isAr(context) ? 24 : 18),
                           children: [
                             TextSpan(
                               text: '!',
                               style: TStyle.bold_20.copyWith(
-                                  color: Co.secondaryColor, fontSize: 24),
+                                  color: Co.secondaryColor,
+                                  fontSize: L10n.isAr(context) ? 24 : 18),
                             ),
                           ],
                         ),
@@ -240,39 +249,45 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 100,
+                        height: 80,
                       ),
                       const IconWithTitle(),
+                      const SizedBox(height: 14),
+                      RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: L10n.tr().move,
+                            style: TStyle.bold_40.copyWith(
+                                color: Co.primaryColor,
+                                fontSize: L10n.isAr(context) ? 34 : 28),
+                            children: [
+                              const TextSpan(text: ' '),
+                              TextSpan(
+                                text: L10n.tr().yourBodyToFreeYourPower,
+                                style: TStyle.bold_40.copyWith(
+                                    color: Co.whiteColor,
+                                    fontSize: L10n.isAr(context) ? 34 : 28),
+                              ),
+                            ],
+                          )),
                       const SizedBox(height: 20),
                       RichText(
+                          textAlign: TextAlign.center,
                           text: TextSpan(
-                        text: L10n.tr().move,
-                        style: TStyle.bold_40
-                            .copyWith(color: Co.primaryColor, fontSize: 34),
-                        children: [
-                          const TextSpan(text: ' '),
-                          TextSpan(
-                            text: L10n.tr().yourBodyToFreeYourPower,
-                            style: TStyle.bold_40
-                                .copyWith(color: Co.whiteColor, fontSize: 34),
-                          ),
-                        ],
-                      )),
-                      const SizedBox(height: 20),
-                      RichText(
-                          text: TextSpan(
-                        text: L10n.tr().youDontNeedClub,
-                        style: TStyle.bold_20
-                            .copyWith(color: Co.whiteColor, fontSize: 24),
-                        children: [
-                          const TextSpan(text: ' '),
-                          TextSpan(
-                            text: L10n.tr().youNeedToStart,
-                            style: TStyle.bold_20
-                                .copyWith(color: Co.primaryColor, fontSize: 24),
-                          ),
-                        ],
-                      )),
+                            text: L10n.tr().youDontNeedClub,
+                            style: TStyle.bold_20.copyWith(
+                                color: Co.whiteColor,
+                                fontSize: L10n.isAr(context) ? 24 : 18),
+                            children: [
+                              const TextSpan(text: ' '),
+                              TextSpan(
+                                text: L10n.tr().youNeedToStart,
+                                style: TStyle.bold_20.copyWith(
+                                    color: Co.primaryColor,
+                                    fontSize: L10n.isAr(context) ? 24 : 18),
+                              ),
+                            ],
+                          )),
                       const SizedBox(height: 20),
                       Text(
                         L10n.tr().onboardingParagraphTwo,
@@ -283,7 +298,8 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                       const SizedBox(height: 20),
                       Container(
                         height: 50.px,
-                        width: 249.px,
+                        margin: EdgeInsets.symmetric(horizontal: 20.px),
+                        padding: EdgeInsets.symmetric(horizontal: 6.px),
                         decoration: BoxDecoration(
                           color: Co.secondaryColor,
                           borderRadius: BorderRadius.circular(12),
@@ -291,8 +307,9 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                         child: Center(
                           child: Text(
                             L10n.tr().everyMpementsGetYouCloserToYourGoal,
-                            style: TStyle.semiBold_16
-                                .copyWith(color: Co.whiteColor, fontSize: 16),
+                            style: TStyle.semiBold_16.copyWith(
+                                color: Co.whiteColor,
+                                fontSize: L10n.isAr(context) ? 16 : 14),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -306,21 +323,23 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 100,
+                        height: 80,
                       ),
                       const IconWithTitle(),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 14),
                       RichText(
                           text: TextSpan(
                         text: L10n.tr().eat,
-                        style: TStyle.bold_40
-                            .copyWith(color: Co.secondaryColor, fontSize: 34),
+                        style: TStyle.bold_40.copyWith(
+                            color: Co.secondaryColor,
+                            fontSize: L10n.isAr(context) ? 34 : 28),
                         children: [
                           const TextSpan(text: ' '),
                           TextSpan(
                             text: L10n.tr().rightLiveRight,
-                            style: TStyle.bold_40
-                                .copyWith(color: Co.whiteColor, fontSize: 34),
+                            style: TStyle.bold_40.copyWith(
+                                color: Co.whiteColor,
+                                fontSize: L10n.isAr(context) ? 34 : 28),
                           ),
                         ],
                       )),
@@ -330,13 +349,15 @@ class _OnBoardingSecScreenState extends State<OnBoardingSecScreen> {
                           text: TextSpan(
                             text: L10n.tr()
                                 .sayGoodByeToConfusionAndreceiveHealthyDeliciousMeals,
-                            style: TStyle.bold_20
-                                .copyWith(color: Co.whiteColor, fontSize: 24),
+                            style: TStyle.bold_20.copyWith(
+                                color: Co.whiteColor,
+                                fontSize: L10n.isAr(context) ? 24 : 18),
                             children: [
                               TextSpan(
                                 text: '!',
                                 style: TStyle.bold_20.copyWith(
-                                    color: Co.secondaryColor, fontSize: 24),
+                                    color: Co.secondaryColor,
+                                    fontSize: L10n.isAr(context) ? 24 : 18),
                               ),
                             ],
                           )),
