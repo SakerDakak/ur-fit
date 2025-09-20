@@ -6,7 +6,6 @@ import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/core/presentation/views/widgets/compact_form_field.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
@@ -25,15 +24,31 @@ class ForgetPasswordScreen extends StatefulWidget {
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
 
   Future forgetPassword() async {
-    LoadingHelper.startLoading();
+    setState(() {
+      isLoading = true;
+    });
+
     final email = emailController.text.trim();
     final response = await di<AuthRepo>().forgetPassword(email: email);
-    LoadingHelper.stopLoading();
+
+    setState(() {
+      isLoading = false;
+    });
+
     response.fold(
       (error) {
-        ///
+        // التحقق من نوع الخطأ وعرض الرسالة المناسبة
+        final String errorMessage = error.message;
+        if (errorMessage.contains('404') ||
+            errorMessage.contains('not found') ||
+            errorMessage.contains('GET method is not supported')) {
+          Alerts.showToast(L10n.tr().emailNotFound, error: true);
+        } else {
+          Alerts.showToast(errorMessage, error: true);
+        }
       },
       (success) {
         Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail, error: false);
@@ -101,6 +116,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               ),
               CustomElevatedButton(
                   text: L10n.tr().send,
+                  isLoading: isLoading,
                   onPressed: () {
                     if (_formKey.currentState!.validate() != true) return;
 

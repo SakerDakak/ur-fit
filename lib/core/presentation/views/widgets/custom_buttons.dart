@@ -30,12 +30,24 @@ class CustomElevatedButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
-            backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primary,
+            backgroundColor:
+                backgroundColor ?? Theme.of(context).colorScheme.primary,
           ),
-          child: Text(
-            text,
-            style: TStyle.semiBold_16,
-          ),
+          child: isLoading
+              ? SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                )
+              : Text(
+                  text,
+                  style: TStyle.semiBold_16,
+                ),
         ),
       ),
     );

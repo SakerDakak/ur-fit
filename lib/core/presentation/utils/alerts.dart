@@ -16,7 +16,10 @@ class Alerts {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         showCloseIcon: true,
         behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.only(bottom: MediaQuery.sizeOf(context).height * 0.63, right: 8, left: 8),
+        margin: EdgeInsets.only(
+            bottom: MediaQuery.sizeOf(context).height * 0.63,
+            right: 8,
+            left: 8),
         dismissDirection: DismissDirection.up,
         duration: const Duration(seconds: 2),
         backgroundColor: Co.secondaryColor.withAlpha(175),
@@ -31,7 +34,7 @@ class Alerts {
   static void showToast(
     String message, {
     Toast length = Toast.LENGTH_SHORT,
-    ToastGravity toastGravity = ToastGravity.BOTTOM,
+    ToastGravity toastGravity = ToastGravity.TOP,
     bool error = true,
     bool isInfo = false,
   }) {

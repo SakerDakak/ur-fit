@@ -98,6 +98,7 @@
   "pleaseMakeSureThatYouSelectedAllTheRequiredFields": "Please make sure that you selected all the required fields",
   "couponIsInValid": "This coupon is invalid",
   "googleAuthenticationFailed": "Google authentication failed",
+  "emailNotFound": "Email not found",
   "youHaveSuccessfullySubscribedToPlan": "You have successfully subscribed to the plan",
   "selectAll": "Select All",
   "retry": "Retry",

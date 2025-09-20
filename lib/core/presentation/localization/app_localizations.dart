@@ -692,6 +692,12 @@ abstract class AppLocalizations {
   /// **'Google authentication failed'**
   String get googleAuthenticationFailed;
 
+  /// No description provided for @emailNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Email not found'**
+  String get emailNotFound;
+
   /// No description provided for @youHaveSuccessfullySubscribedToPlan.
   ///
   /// In en, this message translates to:

@@ -10,6 +10,7 @@ import 'package:urfit/di.dart';
 
 import '../../domain/error/exceptions.dart';
 import 'endpoints.dart';
+import 'status_code.dart';
 
 class ApiClient {
   late Dio dio;
@@ -48,11 +49,12 @@ class ApiClient {
     headerPReparing();
 
     // if (kDebugMode) {
-      dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true));
     // }
   }
 
-  Future<Response<T>> get<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> get<T>(String url,
+      {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
     try {
       headerPReparing();
       return await dio.get(
@@ -73,7 +75,8 @@ class ApiClient {
     }
   }
 
-  Future<Response<T>> post<T>(String url, {dynamic data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> post<T>(String url,
+      {dynamic data, Map<String, dynamic>? parameter}) async {
     try {
       headerPReparing();
       return await dio.post(url, data: data, queryParameters: parameter);
@@ -85,7 +88,8 @@ class ApiClient {
     }
   }
 
-  Future<Response<T>> update<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> update<T>(String url,
+      {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
     try {
       headerPReparing();
       return await dio.patch(url, data: data, queryParameters: parameter);
@@ -97,7 +101,8 @@ class ApiClient {
     }
   }
 
-  Future<Response<T>> delete<T>(String url, {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
+  Future<Response<T>> delete<T>(String url,
+      {Map<String, dynamic>? data, Map<String, dynamic>? parameter}) async {
     try {
       headerPReparing();
       return await dio.delete(url, data: data, queryParameters: parameter);
@@ -130,52 +135,30 @@ class ApiClient {
         return ServerException("Request was canceled");
 
       case DioExceptionType.badResponse:
-        // switch (error.response?.statusCode) {
-        //   case StatusCode.badRequest:
-        //   case StatusCode.unprocessableEntity:
-        //   case StatusCode.notAcceptable:
-        //     var responseData = error.response?.data;
-        //     print("responseData : $responseData");
-        //     String? message = responseData['data'];
-        //     Map<String, dynamic>? errors = responseData;
-
-        //     List<String> emailErrors = errors?['email']?.cast<String>() ?? [];
-        //     List<String> passwordErrors = errors?['password']?.cast<String>() ?? [];
-
-        //     if (emailErrors.isNotEmpty) {
-        //       if (emailErrors[0] == "validation.email") {
-        //         return BadRequestException(L10n.tr().emailMustBeValid);
-        //       } else {
-        //         return BadRequestException(emailErrors[0]);
-        //       }
-        //     } else if (passwordErrors.isNotEmpty) {
-        //       if (passwordErrors[0] == "validation.min.string") {
-        //         return BadRequestException(L10n.tr().passwordMustBeAtLeast6Characters);
-        //       } else {
-        //         return BadRequestException(passwordErrors[0]);
-        //       }
-        //     } else {
-        //       return BadRequestException(message ?? responseData['error']);
-        //     }
-
-        //   case StatusCode.unauthorized:
-        //     var responseData = error.response?.data;
-        //     print("responseData : $responseData");
-        //     String? message = responseData['data'];
-        //     return UnauthorizedException(message);
-
-        //   case StatusCode.forbidden:
-        //     return ForbiddenException(error.response?.data['isSubscribe'].toString());
-        //   case StatusCode.notFound:
-        //     return NotFoundException(error.response?.data['error']);
-
-        //   case StatusCode.internalServerError:
-        //     return InternalServerErrorException();
-
-        //   default:
-        //     return BadRequestException("Unexpected error occurred");
-        // }
-        return BadRequestException(_getErrorMessageFromResponse(error.response?.data));
+        // التحقق من كود الحالة للتعامل مع الأخطاء المختلفة
+        switch (error.response?.statusCode) {
+          case StatusCode.notFound:
+            // لخطأ 404، نعيد ServerException بدون عرض رسالة تلقائية
+            return ServerException(
+                _getErrorMessageFromResponse(error.response?.data), false);
+          case StatusCode.badRequest:
+          case StatusCode.unprocessableEntity:
+          case StatusCode.notAcceptable:
+            return BadRequestException(
+                _getErrorMessageFromResponse(error.response?.data));
+          case StatusCode.unauthorized:
+            final responseData = error.response?.data;
+            final String? message = responseData?['data'];
+            return UnauthorizedException(message);
+          case StatusCode.forbidden:
+            return ForbiddenException(
+                error.response?.data?['isSubscribe']?.toString());
+          case StatusCode.internalServerError:
+            return InternalServerErrorException();
+          default:
+            return BadRequestException(
+                _getErrorMessageFromResponse(error.response?.data));
+        }
 
       case DioExceptionType.badCertificate:
         return ServerException("Bad Certificate");
@@ -224,7 +207,7 @@ String _getErrorMessageFromResponse(Map<String, dynamic> data) {
   } else if (data.containsKey('data')) {
     return data['data'];
   } else {
-    StringBuffer errorMessage = StringBuffer();
+    final StringBuffer errorMessage = StringBuffer();
     for (final error in data.values) {
       if (error is List) {
         errorMessage.writeAll(error, ', ');

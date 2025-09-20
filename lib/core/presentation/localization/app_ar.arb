@@ -98,6 +98,7 @@
   "pleaseMakeSureThatYouSelectedAllTheRequiredFields": "رجاء التأكد من اختيارك لكل الحقول المطلوبة",
   "couponIsInValid": "هذا الكوبون غير صالح",
   "googleAuthenticationFailed": "فشل في التحقق من جوجل",
+  "emailNotFound": "الايميل غير موجود",
   "youHaveSuccessfullySubscribedToPlan": "تم الاشتراك في الخطة بنجاح",
   "retry": "اعادة المحاولة",
   "pleaseEnterValidAge": "رجاء ادخال سن صحيح",

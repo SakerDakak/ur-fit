@@ -317,6 +317,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get googleAuthenticationFailed => 'Google authentication failed';
 
   @override
+  String get emailNotFound => 'Email not found';
+
+  @override
   String get youHaveSuccessfullySubscribedToPlan =>
       'You have successfully subscribed to the plan';
 
