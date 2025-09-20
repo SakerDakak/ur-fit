@@ -68,9 +68,9 @@ class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
                       children: [
                         // workout image
                         const PositionedDirectional(
-                          top: -40,
+                          top: 5,
                           start: -10,
-                          bottom: 5,
+                          bottom: -40,
                           child: CircleAvatar(
                             radius: 69,
                             backgroundColor: Color(0xff484848),
@@ -81,7 +81,8 @@ class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
                           ),
                         ),
                         PositionedDirectional(
-                            start: 0,
+                            start: 6,
+                            bottom: -24,
                             child: Image(
                               image: customImageView(
                                 GenderEnum.values[i] == GenderEnum.male
@@ -89,9 +90,7 @@ class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
                                     : AssetsManager.femaleGender,
                               ),
                               height: 115,
-                              width: GenderEnum.values[i] == GenderEnum.male
-                                  ? 180
-                                  : 200,
+                              width: 100,
                               fit: BoxFit.fitWidth,
                               alignment: Alignment.topCenter,
                             )),

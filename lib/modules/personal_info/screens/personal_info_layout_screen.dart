@@ -27,7 +27,8 @@ class PresonalInfoLayoutScreen extends StatefulWidget {
   static const routeWzExtra = '/PresonalInfoLayoutScreen';
   final bool isEditingProfile;
   @override
-  State<PresonalInfoLayoutScreen> createState() => _PresonalInfoLayoutScreenState();
+  State<PresonalInfoLayoutScreen> createState() =>
+      _PresonalInfoLayoutScreenState();
 }
 
 class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
@@ -38,7 +39,8 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     final page = cubit.pageController.page;
     if (page != null) {
       final newPage = page.floor();
-      print('Page listener - raw page: $page, floored: $newPage, current: ${currentPAge.value}');
+      print(
+          'Page listener - raw page: $page, floored: $newPage, current: ${currentPAge.value}');
       if (newPage != currentPAge.value) {
         currentPAge.value = newPage;
         print('Updated currentPage to: $newPage');
@@ -57,30 +59,30 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     super.initState();
   }
 
-   List<Widget> get _personalInfoPages => [
-    const UserInfoGender(), //0
-    const UserInfoAge(), //1
-    const UserInfoHeight(), //2
-    const UserInfoWeight(), //3
-    const UserInfoTargetWeight(), //4
-    // body mass index
+  List<Widget> get _personalInfoPages => [
+        const UserInfoGender(), //0
+        const UserInfoAge(), //1
+        const UserInfoHeight(), //2
+        const UserInfoWeight(), //3
+        const UserInfoTargetWeight(), //4
+        // body mass index
 
-    ///
-    const UserInfoGoals(), //5
+        ///
+        const UserInfoGoals(), //5
 
-    ///
-    const UserInfoVariety(), //6
-    const UserInfoPreferredMeals(), //7
-    const UserInfoNotPreferredMeals(), //8
-    const UserInfoDietType(), //9
-    const UserInfoBodyParts(), //10
-    // const UserInfoWeeklyExerciseTimes(), //11
-    const UserInfoWeekDays(), //12
-    const UserInfoWorkTypesOrLocation(), //13
+        ///
+        const UserInfoVariety(), //6
+        const UserInfoPreferredMeals(), //7
+        const UserInfoNotPreferredMeals(), //8
+        const UserInfoDietType(), //9
+        const UserInfoBodyParts(), //10
+        // const UserInfoWeeklyExerciseTimes(), //11
+        const UserInfoWeekDays(), //12
+        const UserInfoWorkTypesOrLocation(), //13
 
-    ///
-    UserInfoEquipmentScreen(isEditMode: widget.isEditingProfile), //14
-  ];
+        ///
+        UserInfoEquipmentScreen(isEditMode: widget.isEditingProfile), //14
+      ];
 
   _calculateStep(int index) {
     if (index < 5) {
@@ -149,7 +151,8 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppConst.kHorizontalPadding),
             child: Column(
               children: [
                 ValueListenableBuilder(
@@ -170,15 +173,18 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 8),
 
                           // progress bar
                           LinearPercentIndicator(
                             percent: _calculateStep(value) / 3,
-                            isRTL: Directionality.of(context) == TextDirection.rtl,
+                            isRTL:
+                                Directionality.of(context) == TextDirection.rtl,
                             barRadius: const Radius.circular(8),
                             lineHeight: 2,
                             backgroundColor: Co.whiteColor,
-                            progressColor: Theme.of(context).colorScheme.primary,
+                            progressColor:
+                                Theme.of(context).colorScheme.primary,
                             padding: EdgeInsets.zero,
                             animation: true,
                             animateFromLastPercent: true,
