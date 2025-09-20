@@ -326,6 +326,10 @@ extension UserModelExtension on UserModel {
   bool get hasCompleteProfile =>
       hasCompleteStepOne && hasCompleteStepTwo && hasCompleteStepThree;
 
-  Color get color =>
-      gender == GenderEnum.male ? Co.primaryColor : Co.primaryColorFemale;
+  Color get color {
+    if (gender == null) {
+      return Co.primaryColor; // لون أزرق افتراضي عند عدم وجود معلومات جنس
+    }
+    return gender == GenderEnum.male ? Co.primaryColor : Co.primaryColorFemale;
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -13,6 +15,13 @@ class StartPersonalInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // تطبيق الثيم الافتراضي (أزرق) إذا لم تكن هناك معلومات جنس
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final user = Session().currentUser;
+      if (user?.gender == null) {
+        context.read<AppCubit>().setDefaultTheme();
+      }
+    });
     return Scaffold(
       body: Stack(
         children: [

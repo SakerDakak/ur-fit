@@ -11,7 +11,12 @@ class AppState extends Equatable {
     this.isFemale = false,
   });
 
-  AppState copyWith({String? currentLocal, bool? isDark, bool? isFemale, bool? notification}) => AppState(
+  AppState copyWith(
+          {String? currentLocal,
+          bool? isDark,
+          bool? isFemale,
+          bool? notification}) =>
+      AppState(
         currentLocal: currentLocal ?? this.currentLocal,
         isDark: isDark ?? this.isDark,
         isFemale: isFemale ?? this.isFemale,

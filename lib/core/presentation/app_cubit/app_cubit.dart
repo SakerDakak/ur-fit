@@ -63,6 +63,11 @@ class AppCubit extends Cubit<AppState> {
     emit(state.copyWith(isFemale: false));
   }
 
+  // دالة جديدة لتعيين الثيم الافتراضي (أزرق) عند عدم وجود معلومات جنس
+  setDefaultTheme() {
+    emit(state.copyWith(isFemale: false)); // أزرق افتراضي
+  }
+
   getThemeFromHive() async {
     emit(state.copyWith(
         isDark:
