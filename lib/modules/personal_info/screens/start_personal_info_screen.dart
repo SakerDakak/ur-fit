@@ -14,82 +14,100 @@ class StartPersonalInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            // image
-            Positioned(
-              left: -20,
-              right: -20,
-              top: 40,
-              child: Image.asset(
-                Assets.imageSetupPersonalInfoOnboarding,
+      body: Stack(
+        children: [
+          // image
+          Positioned.fill(
+            child: Image.asset(
+              Assets.imageSetupPersonalInfoOnboarding,
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 500,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.0),
+                    Colors.black.withValues(alpha: 0.4),
+                    Colors.black.withValues(alpha: 0.6),
+                    Colors.black.withValues(alpha: 0.8),
+                  ],
+                ),
               ),
             ),
-        
-            // content
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // user name
-                  Text(
-                    '${L10n.tr().welcome}  ${Session().currentUser?.name}',
-                    style: TStyle.bold_24.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+          ),
+
+          // content
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // user name
+                Text(
+                  '${L10n.tr().welcome}  ${Session().currentUser?.name}',
+                  style: TStyle.bold_24.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
                   ),
-        
-                  const SizedBox(height: 16),
-        
-                  // welcome message
-                  Text(
-                    L10n.tr().welcomingPhrase1,
-                    style: TStyle.bold_24,
-                  ),
-        
-                  const SizedBox(height: 16),
-        
-                  // setup instructions
-                  Text(
-                    L10n.tr().welcomingPhrase2,
-                    style: TStyle.medium_16,
-                    textAlign: TextAlign.center,
-                  ),
-        
-                  const SizedBox(height: 20),
-        
-                  // start setup button
-                  CustomElevatedButton(
-                    text: L10n.tr().start,
-                    onPressed: () => context.push(PresonalInfoLayoutScreen.routeWzExtra),
-                  ),
-        
-                  const SizedBox(height: 10),
-        
-                  // skip button
-                  // TextButton(
-                  //   onPressed: () {
-                  //     context.pushNamed(Routes.authenticationScreen);
-                  //     context
-                  //         .read<AuthenticationBloc>()
-                  //         .add(LoggedIn(token: 'token'));
-                  //   },
-                  //   child: Text(
-                  //     L10n.tr().later,
-                  //     style: CustomTextStyle.bold_16.copyWith(
-                  //       color: Theme.of(context).colorScheme.primary,
-                  //     ),
-                  //   ),
-                  // ),
-        
-                  const SizedBox(height: 30),
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+
+                const SizedBox(height: 16),
+
+                // welcome message
+                Text(
+                  L10n.tr().welcomingPhrase1,
+                  style: TStyle.bold_24,
+                ),
+
+                const SizedBox(height: 16),
+
+                // setup instructions
+                Text(
+                  L10n.tr().welcomingPhrase2,
+                  style: TStyle.medium_16,
+                  textAlign: TextAlign.center,
+                ),
+
+                const SizedBox(height: 20),
+
+                // start setup button
+                CustomElevatedButton(
+                  text: L10n.tr().start,
+                  onPressed: () =>
+                      context.push(PresonalInfoLayoutScreen.routeWzExtra),
+                ),
+
+                const SizedBox(height: 10),
+
+                // skip button
+                // TextButton(
+                //   onPressed: () {
+                //     context.pushNamed(Routes.authenticationScreen);
+                //     context
+                //         .read<AuthenticationBloc>()
+                //         .add(LoggedIn(token: 'token'));
+                //   },
+                //   child: Text(
+                //     L10n.tr().later,
+                //     style: CustomTextStyle.bold_16.copyWith(
+                //       color: Theme.of(context).colorScheme.primary,
+                //     ),
+                //   ),
+                // ),
+
+                const SizedBox(height: 30),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
