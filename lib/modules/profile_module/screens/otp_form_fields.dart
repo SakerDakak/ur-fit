@@ -88,7 +88,7 @@ class _OtpFormFieldsState extends State<OtpFormFields> {
                           FocusScope.of(context).previousFocus();
                         }
                         if (formKey.currentState!.validate()) {
-                          String otpCode =
+                          final String otpCode =
                               controllers.map((e) => e.text).join();
                           widget.onCompleted(otpCode);
                         }

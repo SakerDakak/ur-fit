@@ -18,36 +18,37 @@ abstract class UserModel with _$UserModel {
     required String email,
     required bool? hasValidSubscription,
     @CountryConverter() required Country? country,
-    @CityConverter() @JsonKey(name: 'city_id') required City? city,
+    @CityConverter() required City? city,
     @GenderEnumConverter() GenderEnum? gender,
-    @JsonKey(name: 'package_id') required int? packageId,
+    required int? packageId,
     required int? age,
-    @JsonKey(name: 'current_weight') required int? currentWeight,
+    required int? currentWeight,
     required int? height,
     required int? otpCode,
     required List<Goal>? goals,
-    @JsonKey(name: 'target_weight') required int? targetWeight,
-    @BodyShapeConverter() @JsonKey(name: 'body_shape') required BodyShape? bodyShape,
-    // @JsonKey(name: 'muscleFocuses') required List<MuscleFocus>? muscleFocuses,
-    @JsonKey(name: 'training_days_per_week') required int? trainingDaysPerWeek,
-    @JsonKey(name: 'body_parts') required List<String>? bodyParts,
-    @JsonKey(name: 'exercise_days') required List<String>? exerciseDays,
-    @JsonKey(name: 'workoutTypes') required List<WorkoutType>? workoutTypes,
+    required int? targetWeight,
+    @BodyShapeConverter() required BodyShape? bodyShape,
+    // required List<MuscleFocus>? muscleFocuses,
+    required int? trainingDaysPerWeek,
+    required List<String>? bodyParts,
+    required List<String>? exerciseDays,
+    required List<WorkoutType>? workoutTypes,
     required List<Equipment>? equipments,
     @DietConverter() required Diet? diet,
-    @JsonKey(name: 'recipe_types') required List<RecipeType>? recipeTypes,
-    @JsonKey(name: 'foods_not_liked') required List<FoodNotLiked>? foodsNotLiked,
-    @MealVarietyConverter() @JsonKey(name: 'meal_variety') required MealVariety? mealVariety,
-    @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
-    @JsonKey(name: 'is_checked') required bool? isChecked,
-    @JsonKey(name: 'is_completed') required bool? isCompleted,
-    @JsonKey(name: 'is_active') required bool? isActive,
-    @JsonKey(name: 'country_key') required String? countryKey,
-    @JsonKey(name: 'is_have_exercise_plan') required bool? haveExercisePlan,
-    @JsonKey(name: 'is_have_meal_plan') required bool? haveMealPlan,
+    required List<RecipeType>? recipeTypes,
+    required List<FoodNotLiked>? foodsNotLiked,
+    @MealVarietyConverter() required MealVariety? mealVariety,
+    String? emailVerifiedAt,
+    required bool? isChecked,
+    required bool? isCompleted,
+    required bool? isActive,
+    required String? countryKey,
+    required bool? haveExercisePlan,
+    required bool? haveMealPlan,
   }) = _User;
 
-  factory UserModel.fromJson(Map<String, Object?> json) => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, Object?> json) =>
+      _$UserModelFromJson(json);
 }
 
 // Custom converter for JSON
@@ -193,7 +194,8 @@ abstract class Country with _$Country {
     required String name,
   }) = _Country;
 
-  factory Country.fromJson(Map<String, dynamic> json) => _$CountryFromJson(json);
+  factory Country.fromJson(Map<String, dynamic> json) =>
+      _$CountryFromJson(json);
 }
 
 @freezed
@@ -223,7 +225,8 @@ abstract class BodyShape with _$BodyShape {
     required String name,
   }) = _BodyShape;
 
-  factory BodyShape.fromJson(Map<String, dynamic> json) => _$BodyShapeFromJson(json);
+  factory BodyShape.fromJson(Map<String, dynamic> json) =>
+      _$BodyShapeFromJson(json);
 }
 
 @freezed
@@ -233,7 +236,8 @@ abstract class MuscleFocus with _$MuscleFocus {
     required String name,
   }) = _MuscleFocus;
 
-  factory MuscleFocus.fromJson(Map<String, dynamic> json) => _$MuscleFocusFromJson(json);
+  factory MuscleFocus.fromJson(Map<String, dynamic> json) =>
+      _$MuscleFocusFromJson(json);
 }
 
 @freezed
@@ -243,7 +247,8 @@ abstract class WorkoutType with _$WorkoutType {
     required String name,
   }) = _WorkoutType;
 
-  factory WorkoutType.fromJson(Map<String, dynamic> json) => _$WorkoutTypeFromJson(json);
+  factory WorkoutType.fromJson(Map<String, dynamic> json) =>
+      _$WorkoutTypeFromJson(json);
 }
 
 @freezed
@@ -254,7 +259,8 @@ abstract class Equipment with _$Equipment {
     required String image,
   }) = _Equipment;
 
-  factory Equipment.fromJson(Map<String, dynamic> json) => _$EquipmentFromJson(json);
+  factory Equipment.fromJson(Map<String, dynamic> json) =>
+      _$EquipmentFromJson(json);
 }
 
 @freezed
@@ -275,7 +281,8 @@ abstract class RecipeType with _$RecipeType {
     required String name,
   }) = _RecipeType;
 
-  factory RecipeType.fromJson(Map<String, dynamic> json) => _$RecipeTypeFromJson(json);
+  factory RecipeType.fromJson(Map<String, dynamic> json) =>
+      _$RecipeTypeFromJson(json);
 }
 
 @freezed
@@ -285,7 +292,8 @@ abstract class FoodNotLiked with _$FoodNotLiked {
     required String name,
   }) = _FoodNotLiked;
 
-  factory FoodNotLiked.fromJson(Map<String, dynamic> json) => _$FoodNotLikedFromJson(json);
+  factory FoodNotLiked.fromJson(Map<String, dynamic> json) =>
+      _$FoodNotLikedFromJson(json);
 }
 
 @freezed
@@ -295,12 +303,14 @@ abstract class MealVariety with _$MealVariety {
     required String name,
   }) = _MealVariety;
 
-  factory MealVariety.fromJson(Map<String, dynamic> json) => _$MealVarietyFromJson(json);
+  factory MealVariety.fromJson(Map<String, dynamic> json) =>
+      _$MealVarietyFromJson(json);
 }
 
 extension UserModelExtension on UserModel {
   bool get hasCompleteStepOne =>
-      hasValidSubscription == true || (age != null && currentWeight != null && height != null);
+      hasValidSubscription == true ||
+      (age != null && currentWeight != null && height != null);
   bool get hasCompleteStepTwo => (goals?.isNotEmpty ?? false);
   bool get hasCompleteStepThree =>
       (bodyParts?.isNotEmpty ?? false) &&
@@ -313,7 +323,9 @@ extension UserModelExtension on UserModel {
       (workoutTypes?.isNotEmpty ?? false) &&
       (equipments?.isNotEmpty ?? false);
 
-  bool get hasCompleteProfile => hasCompleteStepOne && hasCompleteStepTwo && hasCompleteStepThree;
+  bool get hasCompleteProfile =>
+      hasCompleteStepOne && hasCompleteStepTwo && hasCompleteStepThree;
 
-  Color get color => gender == GenderEnum.male ? Co.primaryColor : Co.primaryColorFemale;
+  Color get color =>
+      gender == GenderEnum.male ? Co.primaryColor : Co.primaryColorFemale;
 }

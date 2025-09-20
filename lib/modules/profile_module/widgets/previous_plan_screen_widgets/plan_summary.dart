@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -17,7 +15,7 @@ class PlanSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Session().currentUser;
+    // تم حذف المتغير غير المستخدم
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -33,7 +31,7 @@ class PlanSummary extends StatelessWidget {
             title: L10n.tr().calories,
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // more details
           Row(
@@ -47,7 +45,7 @@ class PlanSummary extends StatelessWidget {
                 L10n.tr().kg,
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 40,
                 child: VerticalDivider(
                   color: Co.strockColor,
@@ -58,11 +56,12 @@ class PlanSummary extends StatelessWidget {
               _DetailsItem(
                 L10n.tr().calories,
                 Assets.iconsMeals,
-                state.planHistoryModel!.expectedResultOfMealPlans!.calories.toStringAsFixed(1),
+                state.planHistoryModel!.expectedResultOfMealPlans!.calories
+                    .toStringAsFixed(1),
                 L10n.tr().calorie,
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 40,
                 child: VerticalDivider(
                   color: Co.strockColor,
@@ -73,7 +72,10 @@ class PlanSummary extends StatelessWidget {
               _DetailsItem(
                 L10n.tr().time,
                 Assets.iconsDumbbell,
-                context.read<SettingCubit>().formattedTime(seconds: state.planHistoryModel!.expectedResultOfExercisePlans!.times.toInt()),
+                context.read<SettingCubit>().formattedTime(
+                    seconds: state
+                        .planHistoryModel!.expectedResultOfExercisePlans!.times
+                        .toInt()),
                 L10n.tr().min,
               ),
             ],
@@ -85,10 +87,12 @@ class PlanSummary extends StatelessWidget {
 }
 
 class _DetailsItem extends StatelessWidget {
-  const _DetailsItem(this.title,
-      this.svgIconPath,
-      this.value,
-      this.valueType,);
+  const _DetailsItem(
+    this.title,
+    this.svgIconPath,
+    this.value,
+    this.valueType,
+  );
 
   final String title;
   final String svgIconPath;
@@ -104,7 +108,7 @@ class _DetailsItem extends StatelessWidget {
           svgIconPath,
           height: 16,
           width: 16,
-          colorFilter:  ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
             Theme.of(context).colorScheme.primary,
             BlendMode.srcIn,
           ),

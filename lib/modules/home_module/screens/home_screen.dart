@@ -40,33 +40,33 @@ class HomeScreen extends StatelessWidget {
                   ),
                   children: [
                     // discount card
-                    DiscountSection(),
+                    const DiscountSection(),
 
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // days of current weak
-                    WeakDaysDate(),
+                    const WeakDaysDate(),
 
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // current and target weight card
                     if (!isGuest && user?.currentWeight != null && user?.targetWeight != null)
                       const CurrentWeightCard(),
 
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // horizontal divider
-                    Divider(color: Co.strockColor),
+                    const Divider(color: Co.strockColor),
 
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // today tasks
                     // StartTodyTasksSection(),
 
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     // statistics section
-                    StatisticsSection(),
+                    const StatisticsSection(),
                   ],
                 ),
               ),

@@ -12,7 +12,7 @@ class SubscriptionRepo {
 
   Future<Either<Failure, List<PackageModel>>> getPackages({PlanType? planType}) async {
     try {
-      var result = await dataSource.getPackages(planType: planType);
+      final result = await dataSource.getPackages(planType: planType);
 
       return right(result);
     } catch (e) {
@@ -22,7 +22,7 @@ class SubscriptionRepo {
 
   Future<Either<Failure, String?>> getPaymentUrl({required int packageId, String? couponeCode}) async {
     try {
-      var result = await dataSource.getPaymentUrl(packageId: packageId, couponeCode: couponeCode);
+      final result = await dataSource.getPaymentUrl(packageId: packageId, couponeCode: couponeCode);
 
       return right(result);
     } catch (e) {
@@ -32,7 +32,7 @@ class SubscriptionRepo {
 
   Future<Either<Failure, String?>> paymentResponse({required String url}) async {
     try {
-      var result = await dataSource.paymentResponse(url: url);
+      final result = await dataSource.paymentResponse(url: url);
 
       return right(result);
     } catch (e) {
@@ -42,7 +42,7 @@ class SubscriptionRepo {
 
   Future<Either<Failure, DiscountValueModel?>> getDiscountValue({required num price, required String coupon}) async {
     try {
-      var result = await dataSource.getDiscountValue(price: price, coupon: coupon);
+      final result = await dataSource.getDiscountValue(price: price, coupon: coupon);
 
       return right(result);
     } catch (e) {

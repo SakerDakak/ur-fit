@@ -87,7 +87,7 @@ class StepsTrackingCard extends StatelessWidget {
               selector: (state) => state.totalSteps,
               builder: (context, steps) {
                 return Text(
-                  '${steps} ${L10n.tr().step}',
+                  '$steps ${L10n.tr().step}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TStyle.regular_14.copyWith(

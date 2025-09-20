@@ -23,7 +23,7 @@ class AccountInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user!.name.toString(),
+                user.name.toString(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TStyle.bold_16,

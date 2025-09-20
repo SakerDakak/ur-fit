@@ -25,7 +25,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-bool _isBottomNavVisible = true;
+// تم حذف المتغير غير المستخدم
 
 class _MainPageState extends State<MainPage> {
   late List<Widget> _widgetOptions;
@@ -146,10 +146,7 @@ class _MainPageState extends State<MainPage> {
                         borderRadius: BorderRadius.all(Radius.circular(16.0))),
                     content: Builder(
                       builder: (context) {
-                        // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                        final height = MediaQuery.of(context).size.height;
-                        final width = MediaQuery.of(context).size.width;
-
+                        // تم حذف المتغيرات غير المستخدمة
                         return Container(
                           // color: Colors.red,
                           decoration: BoxDecoration(
@@ -167,24 +164,22 @@ class _MainPageState extends State<MainPage> {
                               Positioned(
                                 left: 0,
                                 top: -100,
-                                child: Container(
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    clipBehavior: Clip.none,
-                                    fit: StackFit.loose,
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 220,
-                                        backgroundColor: Co.strockColor
-                                            .withValues(alpha: 0.2),
-                                      ),
-                                      CircleAvatar(
-                                        radius: 150,
-                                        backgroundColor: Co.strockColor
-                                            .withValues(alpha: 0.4),
-                                      ),
-                                    ],
-                                  ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  clipBehavior: Clip.none,
+                                  fit: StackFit.loose,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 220,
+                                      backgroundColor:
+                                          Co.strockColor.withValues(alpha: 0.2),
+                                    ),
+                                    CircleAvatar(
+                                      radius: 150,
+                                      backgroundColor:
+                                          Co.strockColor.withValues(alpha: 0.4),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Positioned(
@@ -206,8 +201,7 @@ class _MainPageState extends State<MainPage> {
                                       ))),
                               Align(
                                   alignment: Alignment.center,
-                                  child: Container(
-                                      child: Column(
+                                  child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       const SizedBox(
@@ -253,7 +247,7 @@ class _MainPageState extends State<MainPage> {
                                             .copyWith(color: Co.whiteColor),
                                       ),
                                     ],
-                                  ))),
+                                  )),
                               const Align(
                                 alignment: Alignment.topRight,
                                 child: CloseButton(),
@@ -410,7 +404,10 @@ class CustomNavBarItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           iconPath,
-          color: isActive ? activeColor : inactiveColor,
+          colorFilter: ColorFilter.mode(
+            isActive ? activeColor : inactiveColor,
+            BlendMode.srcIn,
+          ),
         ),
         const SizedBox(
             height: 4), // Adjust this value for spacing between icon and text

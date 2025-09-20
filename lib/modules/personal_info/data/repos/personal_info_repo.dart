@@ -16,7 +16,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<SelectionItemModel>>> getDietOptions() async {
     try {
-      var result = await _dataSource.getDietOptions();
+      final result = await _dataSource.getDietOptions();
 
       return right(result);
     } catch (e) {
@@ -26,7 +26,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<SelectionItemModel>>> getLikedMealsOptions() async {
     try {
-      var result = await _dataSource.getLikedMealsOptions();
+      final result = await _dataSource.getLikedMealsOptions();
 
       return right(result);
     } catch (e) {
@@ -36,7 +36,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<SelectionItemModel>>> getMealsVariantsOptions() async {
     try {
-      var result = await _dataSource.getMealsVariantsOptions();
+      final result = await _dataSource.getMealsVariantsOptions();
 
       return right(result);
     } catch (e) {
@@ -46,7 +46,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<SelectionItemModel>>> getNotLikedMealsOptions() async {
     try {
-      var result = await _dataSource.getNotLikedMealsOptions();
+      final result = await _dataSource.getNotLikedMealsOptions();
 
       return right(result);
     } catch (e) {
@@ -56,7 +56,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<UserGoalsModel>>> getGoals() async {
     try {
-      var result = await _dataSource.getGoals();
+      final result = await _dataSource.getGoals();
 
       return right(result);
     } catch (e) {
@@ -66,7 +66,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<BodyPartsModel>>> getMuscleFocus() async {
     try {
-      var result = await _dataSource.getMuscleFocus();
+      final result = await _dataSource.getMuscleFocus();
 
       return right(result);
     } catch (e) {
@@ -76,7 +76,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<SelectionItemModel>>> getWorkoutTypes() async {
     try {
-      var result = await _dataSource.getWorkoutTypes();
+      final result = await _dataSource.getWorkoutTypes();
 
       return right(result);
     } catch (e) {
@@ -86,7 +86,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<SelectionItemModel>>> getEquipments() async {
     try {
-      var result = await _dataSource.getEquipments();
+      final result = await _dataSource.getEquipments();
 
       return right(result);
     } catch (e) {
@@ -96,7 +96,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, List<NoOfDailyMealsModel>>> getNoOfDailyMealsOptions() async {
     try {
-      var result = await _dataSource.getNoOfDailyMealsOptions();
+      final result = await _dataSource.getNoOfDailyMealsOptions();
 
       return right(result);
     } catch (e) {
@@ -106,7 +106,7 @@ class PersonalInfoRepoImpl {
 
   Future<Either<Failure, UserModel>> updatePersonalInfo({required UserInfoRequest personalInfoModel}) async {
     try {
-      var result = await _dataSource.updatePersonalInfo(personalInfoModel: personalInfoModel);
+      final result = await _dataSource.updatePersonalInfo(personalInfoModel: personalInfoModel);
       // await sl<AuthenticationRepo>().saveUser(CacheUser.fromUserModel(result));
 
       return right(result);

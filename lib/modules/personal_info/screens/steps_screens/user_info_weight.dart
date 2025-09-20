@@ -63,7 +63,7 @@ class _UserInfoWeightState extends State<UserInfoWeight> {
               decoration: InputDecoration(
                 hintText: L10n.tr().enterWeight,
                 hintStyle: TStyle.semiBold_16.copyWith(
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withValues(alpha: 0.6),
                 ),
                 filled: true,
                 fillColor: const Color(0xFF2D2D2D),
@@ -81,7 +81,7 @@ class _UserInfoWeightState extends State<UserInfoWeight> {
               },
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             L10n.tr().kg,
             style: TStyle.semiBold_14.copyWith(
@@ -98,8 +98,12 @@ class _UserInfoWeightState extends State<UserInfoWeight> {
               onPressed: controller.text.trim().isEmpty
                   ? null
                   : () {
-                      final weight = double.tryParse(controller.text.trim()) ?? 0;
-                      if (weight < 25 || weight > 300) return Alerts.showToast(L10n.tr().pleaseEnterValidWeight);
+                      final weight =
+                          double.tryParse(controller.text.trim()) ?? 0;
+                      if (weight < 25 || weight > 300) {
+                        return Alerts.showToast(
+                            L10n.tr().pleaseEnterValidWeight);
+                      }
                       cubit.updateUserWeight(weight);
                       cubit.nextPage();
                     },

@@ -55,7 +55,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen> with TickerProvid
 
   void startTimer() {
     final cubit = context.read<WorkoutCubit>();
-    const oneSec = const Duration(seconds: 1);
+    const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
       (Timer timer) {

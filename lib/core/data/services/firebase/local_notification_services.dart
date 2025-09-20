@@ -19,13 +19,13 @@ class LocalNotificationServices {
   }
 
   init() async {
-    var initializationSettingsAndroid = const AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializationSettingsIOS = const DarwinInitializationSettings(
+    final initializationSettingsAndroid = const AndroidInitializationSettings('@mipmap/ic_launcher');
+    final initializationSettingsIOS = const DarwinInitializationSettings(
       requestProvisionalPermission: true,
       requestCriticalPermission: true,
     );
 
-    var initializationSettings = InitializationSettings(
+    final initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
@@ -67,7 +67,7 @@ class LocalNotificationServices {
   var ios = const DarwinNotificationDetails();
   Future showNotification(RemoteMessage message) async {
     await init();
-    var platform = NotificationDetails(android: android, iOS: ios);
+    final platform = NotificationDetails(android: android, iOS: ios);
     debugPrint(message.data.toString());
     await _flutterLocalNotificationsPlugin.show(
       message.notification.hashCode,
@@ -79,7 +79,7 @@ class LocalNotificationServices {
   }
 
   Future<void> _createAndroidNotificationChannel(String id, String name, String description) async {
-    var androidNotificationChannel = AndroidNotificationChannel(
+    final androidNotificationChannel = AndroidNotificationChannel(
       id,
       name,
       description: description,

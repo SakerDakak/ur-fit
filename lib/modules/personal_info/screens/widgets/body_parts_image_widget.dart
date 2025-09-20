@@ -36,11 +36,11 @@ class BodyPartsImageWidget extends StatelessWidget {
 }
 
 class _CircleMark extends StatelessWidget {
-  const _CircleMark({required this.alignment, required this.show, required this.size, this.child});
+  const _CircleMark(
+      {required this.alignment, required this.show, required this.size});
   final AlignmentGeometry alignment;
   final bool show;
   final double size;
-  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -49,22 +49,21 @@ class _CircleMark extends StatelessWidget {
         scale: show ? 1.0 : 0.0,
         duration: Durations.long1,
         curve: Curves.easeInOutBack,
-        child: child ??
-            DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Co.primaryColor.withAlpha(100),
-                border: Border.all(color: Co.primaryColor),
-              ),
-              child: SizedBox(height: size, width: size),
-            ),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Co.primaryColor.withAlpha(100),
+            border: Border.all(color: Co.primaryColor),
+          ),
+          child: SizedBox(height: size, width: size),
+        ),
       ),
     );
   }
 }
 
 class _MaleImage extends StatelessWidget {
-  const _MaleImage({super.key, required this.bodyPartsIds});
+  const _MaleImage({required this.bodyPartsIds});
   final Set<String> bodyPartsIds;
   @override
   Widget build(BuildContext context) {
@@ -151,7 +150,7 @@ class _MaleImage extends StatelessWidget {
 }
 
 class _FemaleImage extends StatelessWidget {
-  const _FemaleImage({super.key, required this.bodyPartsIds});
+  const _FemaleImage({required this.bodyPartsIds});
   final Set<String> bodyPartsIds;
   @override
   Widget build(BuildContext context) {
@@ -172,7 +171,7 @@ class _FemaleImage extends StatelessWidget {
         _CircleMark(
           alignment: const Alignment(0.35, -0.6),
           size: 18,
-          show: bodyPartsIds.contains('shoulders'),// right shoulder
+          show: bodyPartsIds.contains('shoulders'), // right shoulder
         ),
         _CircleMark(
           alignment: const Alignment(-0.5, -0.53),

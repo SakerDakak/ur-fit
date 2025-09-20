@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/di.dart';
@@ -27,7 +27,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
   getCities() async {
     emit(OnboardingLoadingCities());
-    final result = await authenticationRepo.getCities(countryId: _selectedCountry!.id);
+    final result =
+        await authenticationRepo.getCities(countryId: _selectedCountry!.id);
     result.fold(
       (l) => emit(OnboardingCitiesFailed(l.message)),
       (r) => emit(OnboardingCitiesLoaded(r)),

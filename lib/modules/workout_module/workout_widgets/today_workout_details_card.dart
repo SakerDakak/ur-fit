@@ -30,7 +30,8 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
             SvgPicture.asset(
               Assets.iconsDumbbell,
               width: 16,
-              colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.primary, BlendMode.srcIn),
             ),
             const SizedBox(width: 8),
             Text(
@@ -61,7 +62,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                 title: L10n.tr().calories,
               ),
 
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               // more details
               Row(
@@ -75,7 +76,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                     L10n.tr().kg,
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                     child: VerticalDivider(
                       color: Co.strockColor,
@@ -90,7 +91,7 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                     L10n.tr().kg,
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                     child: VerticalDivider(
                       color: Co.strockColor,
@@ -101,7 +102,8 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
                   DetailsItem(
                     L10n.tr().time,
                     Assets.iconsDumbbell,
-                    (day.timePerExercise * day.exercises.length).toStringAsFixed(0),
+                    (day.timePerExercise * day.exercises.length)
+                        .toStringAsFixed(0),
                     L10n.tr().min,
                   ),
                 ],
@@ -119,8 +121,9 @@ class DetailsItem extends StatelessWidget {
     this.title,
     this.svgIconPath,
     this.value,
-    this.valueType,
-  );
+    this.valueType, {
+    super.key,
+  });
 
   final String title;
   final String svgIconPath;

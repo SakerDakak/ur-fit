@@ -44,7 +44,7 @@ class _SectionCard extends StatelessWidget {
           border: Border.all(color: Co.strockColor),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               offset: const Offset(0, 4),
               blurRadius: 4,
               spreadRadius: 0,
@@ -78,7 +78,7 @@ class _SectionCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           offset: const Offset(0, 4),
                           blurRadius: 4,
                           spreadRadius: 0,
@@ -95,7 +95,8 @@ class _SectionCard extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+                      borderRadius:
+                          BorderRadius.circular(AppConst.kBorderRadius),
                     ),
                     child: Text(
                       L10n.tr().start,
@@ -112,21 +113,21 @@ class _SectionCard extends StatelessWidget {
   }
 
   Stack _buildImageCircleAvatar(BuildContext context) {
-    return  Stack(
+    return Stack(
       alignment: Alignment.center,
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 55,
           backgroundColor: Color(0xff484848),
         ),
-        CircleAvatar(
+        const CircleAvatar(
           radius: 45,
           backgroundColor: Color(0xff575757),
         ),
         CircleAvatar(
           radius: 35,
           backgroundColor: Theme.of(context).colorScheme.primary,
-          backgroundImage: CachedNetworkImageProvider(
+          backgroundImage: const CachedNetworkImageProvider(
             'https://s3-alpha-sig.figma.com/img/f06c/51a6/6c6ee43165334dccd6f0dff1e2a5500d?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NtqQfNCZBntSo4cFjzuL~ildCNgKeBQkV2KDClLYuEv-uZJ1DAGeFVlo92fN~ek3q16harFjkgRFAZpCs7FGrEali9gxGAiBNNb~tpvsTHp5Zw94GuIR9MkzsAwFYD3LIA~SASV9POMyM~xBIVaWQQcUfR~-YcvcXHYBtaHTPCFiac64fKrNg3vU-psF9MufTjIhdAaqib-n5qp2Qg4JW43~AqR2arjrm0lWoTcJA27-6wqumuTpm8GNYV4PbeAg6iHX-RPmg82rq56qsSXnCJPO4ctDXDwOrBfTdArulUTtS5FmR7aOl3swRyd36SAMyhFUV2iBGYl68oJXTB4Etg__',
           ),
         ),

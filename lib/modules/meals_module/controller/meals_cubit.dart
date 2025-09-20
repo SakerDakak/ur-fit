@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
@@ -18,8 +18,11 @@ class MealsCubit extends Cubit<MealsState> {
 
   MealsCubit(this._repo)
       : super(const MealsState(
-            searchRecipeModel:
-                SearchRecipeModel(type: "breakfast", minCalories: 50, maxCalories: 200, maxReadyTime: 20)));
+            searchRecipeModel: SearchRecipeModel(
+                type: "breakfast",
+                minCalories: 50,
+                maxCalories: 200,
+                maxReadyTime: 20)));
 
   Future<Nutrients> getMealPlanByDate(String date) async {
     await getMealPlans();
@@ -53,7 +56,7 @@ class MealsCubit extends Cubit<MealsState> {
     totalProteinForAllWeek += plan.week.Wednesday.nutrients.protein;
     totalProteinForAllWeek += plan.week.Tuesday.nutrients.protein;
 
-    Nutrients nutrients = Nutrients(
+    final Nutrients nutrients = Nutrients(
         calories: totalCaloriesForAllWeek.toDouble(),
         carbohydrates: totalCarbsForAllWeek.toDouble(),
         protein: totalProteinForAllWeek.toDouble(),
@@ -65,7 +68,8 @@ class MealsCubit extends Cubit<MealsState> {
   Future<void> searchMeals() async {
     emit(state.copyWith(getAllMealsState: RequestState.loading));
 
-    var result = await _repo.searchRecipes(searchRecipeModel: state.searchRecipeModel);
+    final result =
+        await _repo.searchRecipes(searchRecipeModel: state.searchRecipeModel);
 
     result.fold(
       (failure) {
@@ -90,7 +94,7 @@ class MealsCubit extends Cubit<MealsState> {
   Future<void> generateMealPlan() async {
     emit(state.copyWith(getMealPlansState: RequestState.loading));
     final user = Session().currentUser;
-    double targetCalories = calculateTargetCalories(
+    final double targetCalories = calculateTargetCalories(
       currentWeight: user!.currentWeight!.toDouble(),
       targetWeight: user.targetWeight!.toDouble(),
       height: user.height!.toDouble(),
@@ -98,7 +102,7 @@ class MealsCubit extends Cubit<MealsState> {
       gender: user.gender!.name,
       activityLevel: 'moderate',
     );
-    var result = await _repo.generateMealPlan(targetCalories: targetCalories);
+    final result = await _repo.generateMealPlan(targetCalories: targetCalories);
 
     result.fold(
       (failure) {
@@ -127,7 +131,8 @@ class MealsCubit extends Cubit<MealsState> {
     required double height, // in cm
     required int age, // in years
     required String gender, // "male" or "female"
-    required String activityLevel, // "sedentary", "light", "moderate", "active", "very_active"
+    required String
+        activityLevel, // "sedentary", "light", "moderate", "active", "very_active"
   }) {
     // Calculate BMR using Mifflin-St Jeor Equation
     double bmr;
@@ -162,13 +167,13 @@ class MealsCubit extends Cubit<MealsState> {
             'Invalid activity level. Use "sedentary", "light", "moderate", "active", or "very_active".');
     }
 
-    double maintenanceCalories = bmr * activityFactor;
+    final double maintenanceCalories = bmr * activityFactor;
 
     // Determine daily calorie adjustment for target weight
-    double calorieAdjustment = (targetWeight - currentWeight) * 7700 / 30;
+    final double calorieAdjustment = (targetWeight - currentWeight) * 7700 / 30;
 
     // Calculate target calories
-    double targetCalories = maintenanceCalories + calorieAdjustment;
+    final double targetCalories = maintenanceCalories + calorieAdjustment;
 
     return targetCalories;
   }
@@ -205,34 +210,43 @@ class MealsCubit extends Cubit<MealsState> {
   updateSearchType(int type) {
     if (type == 0) {
       emit(state.copyWith(
-          searchRecipeModel: state.searchRecipeModel.copyWith(type: "breakfast"), currentTypeIndex: type));
+          searchRecipeModel:
+              state.searchRecipeModel.copyWith(type: "breakfast"),
+          currentTypeIndex: type));
     } else {
       emit(state.copyWith(
-          searchRecipeModel: state.searchRecipeModel.copyWith(type: "main course"), currentTypeIndex: type));
+          searchRecipeModel:
+              state.searchRecipeModel.copyWith(type: "main course"),
+          currentTypeIndex: type));
     }
     searchMeals();
   }
 
   updateMaxReadyTime(double min) {
-    emit(state.copyWith(searchRecipeModel: state.searchRecipeModel.copyWith(maxReadyTime: min.toInt())));
+    emit(state.copyWith(
+        searchRecipeModel:
+            state.searchRecipeModel.copyWith(maxReadyTime: min.toInt())));
     searchMeals();
   }
 
   updateMinMaxCalories(double min, double max) {
     emit(state.copyWith(
-        searchRecipeModel: state.searchRecipeModel.copyWith(minCalories: min.toInt(), maxCalories: max.toInt())));
+        searchRecipeModel: state.searchRecipeModel
+            .copyWith(minCalories: min.toInt(), maxCalories: max.toInt())));
     searchMeals();
   }
 
   updateIncludedIngredients(List<String>? ingredients) {
-    emit(state.copyWith(searchRecipeModel: state.searchRecipeModel.copyWith(includeIngredients: ingredients)));
+    emit(state.copyWith(
+        searchRecipeModel:
+            state.searchRecipeModel.copyWith(includeIngredients: ingredients)));
     searchMeals();
   }
 
   Future getMealPlans({bool fromHistory = false}) async {
     emit(state.copyWith(getMealPlansState: RequestState.loading));
 
-    var result = await _repo.getMealPlans();
+    final result = await _repo.getMealPlans();
 
     result.fold(
       (failure) {
@@ -246,7 +260,9 @@ class MealsCubit extends Cubit<MealsState> {
       (successData) async {
         print("success $successData");
 
-        if (DateTime.parse(successData.first.endDate).isBefore(DateTime.now()) && !fromHistory) {
+        if (DateTime.parse(successData.first.endDate)
+                .isBefore(DateTime.now()) &&
+            !fromHistory) {
           await generateMealPlan();
           await getMealPlans();
         } else {
@@ -320,7 +336,10 @@ class MealsCubit extends Cubit<MealsState> {
   }
 
   Future<void> addMealNutrients(
-      {required String mealId, required num calories, required num carb, required num protein}) async {
+      {required String mealId,
+      required num calories,
+      required num carb,
+      required num protein}) async {
     final nutritionData = NutritionData()
       ..id = mealId
       ..calories = calories.toDouble()
@@ -328,10 +347,12 @@ class MealsCubit extends Cubit<MealsState> {
       ..protein = protein.toDouble();
     await _repo.addLocalNutritionData(nutritionData);
     getNutrientsData();
-    await calculateNutritionData(calories: calories, carb: carb, protein: protein);
+    await calculateNutritionData(
+        calories: calories, carb: carb, protein: protein);
   }
 
-  Future<void> calculateNutritionData({required num calories, required num carb, required num protein}) async {
+  Future<void> calculateNutritionData(
+      {required num calories, required num carb, required num protein}) async {
     state.allPlans.first.id;
     final result = await _repo.calculateNutrients(
         mealPlanId: state.allPlans.first.id,

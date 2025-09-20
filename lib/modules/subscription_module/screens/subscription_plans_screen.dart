@@ -36,7 +36,8 @@ class SubscriptionPlansScreen extends StatefulWidget {
   const SubscriptionPlansScreen({super.key, required this.planType});
 
   @override
-  State<SubscriptionPlansScreen> createState() => _SubscriptionPlansScreenState();
+  State<SubscriptionPlansScreen> createState() =>
+      _SubscriptionPlansScreenState();
 }
 
 class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
@@ -87,9 +88,9 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                 end: Alignment.topCenter,
                 colors: [
                   Colors.black,
-                  Colors.black.withOpacity(0.9),
-                  Colors.black.withOpacity(0.5),
-                  Colors.black.withOpacity(0.35),
+                  Colors.black.withValues(alpha: 0.9),
+                  Colors.black.withValues(alpha: 0.5),
+                  Colors.black.withValues(alpha: 0.35),
                 ],
               ),
             ),
@@ -118,7 +119,9 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                       enabled: state.getPackagesState == RequestState.loading,
                       child: SubscriptionPlans(
                         planType: widget.planType,
-                        packages: state.getPackagesState == RequestState.loading ? Fakers().packages : state.packages,
+                        packages: state.getPackagesState == RequestState.loading
+                            ? Fakers().packages
+                            : state.packages,
                       ),
                     );
                   },
@@ -132,8 +135,9 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                             state.getPackagesState == RequestState.failure
                         ? const PlanDescriptionShimmer()
                         : HtmlWidget(state.packages
-                                .firstWhere(
-                                    (pack) => pack.id == state.selectedPackage || pack.id == state.packages.first.id)
+                                .firstWhere((pack) =>
+                                    pack.id == state.selectedPackage ||
+                                    pack.id == state.packages.first.id)
                                 .description ??
                             "");
                   },
@@ -150,12 +154,22 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                       ),
                     ),
                     BlocBuilder<SubscriptionCubit, SubscriptionState>(
-                        builder: (context, state) => switch (state.couponState) {
-                              RequestState.initial =>
-                                const Icon(Icons.discount_outlined, color: Colors.white70, size: 24),
-                              RequestState.loading => const AdaptiveProgressIndicator(size: 24),
-                              RequestState.failure => const Icon(Icons.info_outline, color: Colors.red, size: 24),
-                              RequestState.success => const Icon(Icons.check_circle, color: Colors.green, size: 24),
+                        builder: (context, state) =>
+                            switch (state.couponState) {
+                              RequestState.initial => const Icon(
+                                  Icons.discount_outlined,
+                                  color: Colors.white70,
+                                  size: 24),
+                              RequestState.loading =>
+                                const AdaptiveProgressIndicator(size: 24),
+                              RequestState.failure => const Icon(
+                                  Icons.info_outline,
+                                  color: Colors.red,
+                                  size: 24),
+                              RequestState.success => const Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green,
+                                  size: 24),
                             }),
                   ],
                 ),
@@ -171,30 +185,37 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                         return Center(
                           child: Text(
                             state.errMessage,
-                            style: TStyle.semiBold_16.copyWith(color: Co.redColor),
+                            style:
+                                TStyle.semiBold_16.copyWith(color: Co.redColor),
                           ),
                         );
                       case RequestState.success:
-                        if (state.discountValue == null) return const SizedBox.shrink();
+                        if (state.discountValue == null) {
+                          return const SizedBox.shrink();
+                        }
                         return Column(
                           children: [
                             Row(
                               children: [
-                                Text(L10n.tr().priceBeforeDiscount, style: TStyle.semiBold_16),
+                                Text(L10n.tr().priceBeforeDiscount,
+                                    style: TStyle.semiBold_16),
                                 const SizedBox(width: 10),
                                 Text(
                                     "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
-                                    style: TStyle.bold_16.copyWith(color: Co.primaryColor)),
+                                    style: TStyle.bold_16
+                                        .copyWith(color: Co.primaryColor)),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
-                                Text(L10n.tr().priceAfterDiscount, style: TStyle.semiBold_16),
+                                Text(L10n.tr().priceAfterDiscount,
+                                    style: TStyle.semiBold_16),
                                 const SizedBox(width: 10),
                                 Text(
                                   "${L10n.tr().sar}${state.discountValue?.final_price.toStringAsFixed(2) ?? state.packages.firstWhere((package) => package.id == state.selectedPackage).price}",
-                                  style: TStyle.bold_16.copyWith(color: Co.primaryColor),
+                                  style: TStyle.bold_16
+                                      .copyWith(color: Co.primaryColor),
                                 ),
                               ],
                             ),
@@ -205,10 +226,12 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                 ),
                 const SizedBox(height: 10),
                 BlocConsumer<SubscriptionCubit, SubscriptionState>(
-                  listenWhen: (previous, current) => current.getPaymentUrlState != previous.getPaymentUrlState,
+                  listenWhen: (previous, current) =>
+                      current.getPaymentUrlState != previous.getPaymentUrlState,
                   listener: (context, state) {
                     if (state.getPaymentUrlState == RequestState.failure) {
-                      Alerts.showToast(state.errMessage, length: Toast.LENGTH_LONG);
+                      Alerts.showToast(state.errMessage,
+                          length: Toast.LENGTH_LONG);
                     }
                   },
                   builder: (context, state) {
@@ -218,7 +241,8 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     }
                     if (Session().currentUser?.hasValidSubscription == true) {
                       return CustomElevatedButton(
-                        text: Session().currentUser?.packageId == state.selectedPackage
+                        text: Session().currentUser?.packageId ==
+                                state.selectedPackage
                             ? L10n.tr().youAreAlreadySubscribedToThisPlan
                             : L10n.tr().youAreSubscribedToAPlan,
                         onPressed: null,
@@ -226,7 +250,8 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     }
                     return CustomElevatedButton(
                       padding: EdgeInsets.zero,
-                      text: state.discountValue?.final_price != null && state.discountValue!.final_price <= 0
+                      text: state.discountValue?.final_price != null &&
+                              state.discountValue!.final_price <= 0
                           ? L10n.tr().subscribe
                           : L10n.tr().paymentGetWay,
                       onPressed: () async {
@@ -234,13 +259,20 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                         if (!context.mounted) return;
                         if (state.paymentUrl == null) {
                           await Session().getUserDataFromServer();
-                          Alerts.showToast(L10n.tr().youHaveSuccessfullySubscribedToPlan, error: false);
-                          if (context.mounted) context.go(MainPage.routeWithBool(false));
+                          Alerts.showToast(
+                              L10n.tr().youHaveSuccessfullySubscribedToPlan,
+                              error: false);
+                          if (context.mounted) {
+                            context.go(MainPage.routeWithBool(false));
+                          }
                         } else {
-                          final res = await context
-                              .pushNamed<String>(PaymentWebView.route, queryParameters: {"url": state.paymentUrl});
+                          final res = await context.pushNamed<String>(
+                              PaymentWebView.route,
+                              queryParameters: {"url": state.paymentUrl});
                           if (res != null && context.mounted) {
-                            context.read<SubscriptionCubit>().paymentResponse(res);
+                            context
+                                .read<SubscriptionCubit>()
+                                .paymentResponse(res);
                           }
                         }
                       },

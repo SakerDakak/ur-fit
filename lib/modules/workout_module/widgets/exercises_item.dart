@@ -17,7 +17,6 @@ class ExercisesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     print("fix image : ${exercises.first.gifUrl}");
     return Container(
       clipBehavior: Clip.antiAlias,
@@ -26,7 +25,7 @@ class ExercisesItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha: 0.2),
             offset: const Offset(0, 4),
             blurRadius: 4,
             spreadRadius: 0,
@@ -39,7 +38,7 @@ class ExercisesItem extends StatelessWidget {
           Positioned(
             top: -10,
             bottom: -10,
-            child: workoutImage(context,imageUrl: exercises.first.gifUrl),
+            child: workoutImage(context, imageUrl: exercises.first.gifUrl),
           ),
 
           // workout title and start button
@@ -60,7 +59,7 @@ class ExercisesItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TStyle.bold_16.copyWith(shadows: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         offset: const Offset(0, 4),
                         blurRadius: 4,
                         spreadRadius: 0,
@@ -71,8 +70,9 @@ class ExercisesItem extends StatelessWidget {
 
                 // start button
                 GestureDetector(
-                  onTap: (){
-                    context.pushNamed(TodayWorkoutScreen.routeWzExtra,extra: exercises);
+                  onTap: () {
+                    context.pushNamed(TodayWorkoutScreen.routeWzExtra,
+                        extra: exercises);
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
@@ -81,7 +81,8 @@ class ExercisesItem extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+                      borderRadius:
+                          BorderRadius.circular(AppConst.kBorderRadius),
                     ),
                     child: Text(
                       L10n.tr().start,
@@ -97,8 +98,9 @@ class ExercisesItem extends StatelessWidget {
     );
   }
 }
-Stack workoutImage(BuildContext context , {String? imageUrl}) {
-  return  Stack(
+
+Stack workoutImage(BuildContext context, {String? imageUrl}) {
+  return Stack(
     alignment: Alignment.center,
     children: [
       const CircleAvatar(
@@ -110,18 +112,17 @@ Stack workoutImage(BuildContext context , {String? imageUrl}) {
         backgroundColor: Color(0xff575757),
       ),
       CircleAvatar(
-        radius: 35,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child:  Image(
-          errorBuilder: (context, error, stackTrace) {
-            return  SvgPicture.asset(AssetsManager.workout);
-          },
-          image: customImageView(imageUrl ?? 'https://s3-alpha-sig.figma.com/img/f06c/51a6/6c6ee43165334dccd6f0dff1e2a5500d?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NtqQfNCZBntSo4cFjzuL~ildCNgKeBQkV2KDClLYuEv-uZJ1DAGeFVlo92fN~ek3q16harFjkgRFAZpCs7FGrEali9gxGAiBNNb~tpvsTHp5Zw94GuIR9MkzsAwFYD3LIA~SASV9POMyM~xBIVaWQQcUfR~-YcvcXHYBtaHTPCFiac64fKrNg3vU-psF9MufTjIhdAaqib-n5qp2Qg4JW43~AqR2arjrm0lWoTcJA27-6wqumuTpm8GNYV4PbeAg6iHX-RPmg82rq56qsSXnCJPO4ctDXDwOrBfTdArulUTtS5FmR7aOl3swRyd36SAMyhFUV2iBGYl68oJXTB4Etg__',
-
-
-          ),
-        )
-      ),
+          radius: 35,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          child: Image(
+            errorBuilder: (context, error, stackTrace) {
+              return SvgPicture.asset(AssetsManager.workout);
+            },
+            image: customImageView(
+              imageUrl ??
+                  'https://s3-alpha-sig.figma.com/img/f06c/51a6/6c6ee43165334dccd6f0dff1e2a5500d?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NtqQfNCZBntSo4cFjzuL~ildCNgKeBQkV2KDClLYuEv-uZJ1DAGeFVlo92fN~ek3q16harFjkgRFAZpCs7FGrEali9gxGAiBNNb~tpvsTHp5Zw94GuIR9MkzsAwFYD3LIA~SASV9POMyM~xBIVaWQQcUfR~-YcvcXHYBtaHTPCFiac64fKrNg3vU-psF9MufTjIhdAaqib-n5qp2Qg4JW43~AqR2arjrm0lWoTcJA27-6wqumuTpm8GNYV4PbeAg6iHX-RPmg82rq56qsSXnCJPO4ctDXDwOrBfTdArulUTtS5FmR7aOl3swRyd36SAMyhFUV2iBGYl68oJXTB4Etg__',
+            ),
+          )),
     ],
   );
 }

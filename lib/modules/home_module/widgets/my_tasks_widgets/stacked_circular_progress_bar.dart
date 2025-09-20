@@ -19,13 +19,13 @@ class StackedCircularProgressBar extends StatelessWidget {
         // background circle 1
         CircleAvatar(
           radius: 75,
-          backgroundColor: Co.whiteColor.withOpacity(0.05),
+          backgroundColor: Co.whiteColor.withValues(alpha: 0.05),
         ),
 
         // background circle 2
         CircleAvatar(
           radius: 60,
-          backgroundColor: Co.whiteColor.withOpacity(0.05),
+          backgroundColor: Co.whiteColor.withValues(alpha: 0.05),
         ),
 
         // background circle 3 with radial gradient
@@ -55,12 +55,12 @@ class StackedCircularProgressBar extends StatelessWidget {
           animationDuration: 1000,
           backgroundColor: Colors.transparent,
           circularStrokeCap: CircularStrokeCap.round,
-          linearGradient:  LinearGradient(
+          linearGradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
               Theme.of(context).colorScheme.primary,
-              Color(0xff0A282C),
+              const Color(0xff0A282C),
             ],
           ),
           center: FittedBox(
@@ -70,7 +70,7 @@ class StackedCircularProgressBar extends StatelessWidget {
                 SvgPicture.asset(
                   Assets.iconsThunder,
                   height: 14,
-                  colorFilter:  ColorFilter.mode(
+                  colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.primary,
                     BlendMode.srcIn,
                   ),

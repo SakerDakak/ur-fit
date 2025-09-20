@@ -12,7 +12,8 @@ import '../../../../core/presentation/views/widgets/custom_image_view.dart';
 class GenderSelectorWidget extends StatefulWidget {
   final void Function(GenderEnum gender) onChanged;
   final GenderEnum? initial;
-  const GenderSelectorWidget({super.key, required this.onChanged, this.initial});
+  const GenderSelectorWidget(
+      {super.key, required this.onChanged, this.initial});
 
   @override
   State<GenderSelectorWidget> createState() => _GenderSelectorWidgetState();
@@ -53,7 +54,7 @@ class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
                 border: Border.all(color: Co.strockColor),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withValues(alpha: 0.2),
                     offset: const Offset(0, 4),
                     blurRadius: 4,
                     spreadRadius: 0,
@@ -88,7 +89,9 @@ class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
                                     : AssetsManager.femaleGender,
                               ),
                               height: 115,
-                              width: GenderEnum.values[i] == GenderEnum.male ? 180 : 200,
+                              width: GenderEnum.values[i] == GenderEnum.male
+                                  ? 180
+                                  : 200,
                               fit: BoxFit.fitWidth,
                               alignment: Alignment.topCenter,
                             )),
@@ -98,12 +101,14 @@ class _GenderSelectorWidgetState extends State<GenderSelectorWidget> {
                     ),
                   ),
                   Text(
-                    GenderEnum.values[i] == GenderEnum.male ? L10n.tr().male : L10n.tr().female,
+                    GenderEnum.values[i] == GenderEnum.male
+                        ? L10n.tr().male
+                        : L10n.tr().female,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TStyle.bold_16.copyWith(shadows: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         offset: const Offset(0, 4),
                         blurRadius: 4,
                         spreadRadius: 0,

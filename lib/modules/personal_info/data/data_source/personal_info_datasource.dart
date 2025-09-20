@@ -19,7 +19,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.diets,
     );
 
-    List<SelectionItemModel> data = [];
+    final List<SelectionItemModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(SelectionItemModel.fromJson(element));
@@ -33,7 +33,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.recipeTypes,
     );
 
-    List<SelectionItemModel> data = [];
+    final List<SelectionItemModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(SelectionItemModel.fromJson(element));
@@ -47,7 +47,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.mealsVariants,
     );
 
-    List<SelectionItemModel> data = [];
+    final List<SelectionItemModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(SelectionItemModel.fromJson(element));
@@ -61,7 +61,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.foodsNotLiked,
     );
 
-    List<SelectionItemModel> data = [];
+    final List<SelectionItemModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(SelectionItemModel.fromJson(element));
@@ -71,7 +71,7 @@ class PersonalInfoDataSourceImpl {
   }
 
   Future<List<UserGoalsModel>> getGoals() async {
-    List<String> defaultImages = [
+    final List<String> defaultImages = [
       AssetsManager.goalsNutrition,
       AssetsManager.goalsGoodLook,
       AssetsManager.goalsBuildMuscles,
@@ -101,7 +101,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.muscleFocus,
     );
 
-    List<BodyPartsModel> data = [];
+    final List<BodyPartsModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(BodyPartsModel.fromJson(element));
@@ -115,7 +115,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.workoutTypes,
     );
 
-    List<SelectionItemModel> data = [];
+    final List<SelectionItemModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(SelectionItemModel.fromJson(element));
@@ -129,7 +129,7 @@ class PersonalInfoDataSourceImpl {
       EndPoints.equipments,
     );
 
-    List<SelectionItemModel> data = [];
+    final List<SelectionItemModel> data = [];
 
     for (var element in res.data['data']) {
       data.add(SelectionItemModel.fromJson(element));
@@ -138,7 +138,8 @@ class PersonalInfoDataSourceImpl {
     return data;
   }
 
-  Future<UserModel> updatePersonalInfo({required UserInfoRequest personalInfoModel}) async {
+  Future<UserModel> updatePersonalInfo(
+      {required UserInfoRequest personalInfoModel}) async {
     final res = await dioServices.post(
       EndPoints.updateProfile,
       data: personalInfoModel.toJson(),
@@ -152,12 +153,16 @@ class PersonalInfoDataSourceImpl {
       EndPoints.noOfDailyMeals,
     );
 
-    return (res.data['data'] as List).map((e) => NoOfDailyMealsModel.fromJson(e)).toList();
+    return (res.data['data'] as List)
+        .map((e) => NoOfDailyMealsModel.fromJson(e))
+        .toList();
   }
 
   Future<void> changePassword(
-      {required String oldPassword, required String newPassword, required String confirmPassword}) async {
-    final res = await dioServices.post(EndPoints.changePassword, data: {
+      {required String oldPassword,
+      required String newPassword,
+      required String confirmPassword}) async {
+    await dioServices.post(EndPoints.changePassword, data: {
       "old_password : $oldPassword",
       "new_password : $newPassword",
       "new_password_confirmation : $confirmPassword"

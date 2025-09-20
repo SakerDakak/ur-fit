@@ -8,7 +8,8 @@ class DailyMealsListItem extends StatelessWidget {
   final String title;
   final String img;
   final VoidCallback onTap;
-  const DailyMealsListItem({super.key, required this.title, required this.img, required this.onTap});
+  const DailyMealsListItem(
+      {super.key, required this.title, required this.img, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class DailyMealsListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               offset: const Offset(0, 4),
               blurRadius: 4,
               spreadRadius: 0,
@@ -36,7 +37,7 @@ class DailyMealsListItem extends StatelessWidget {
               top: -10,
               start: -5,
               bottom: -10,
-              child: _mealImage(context,img),
+              child: _mealImage(context, img),
             ),
 
             // workout title and start button
@@ -57,7 +58,7 @@ class DailyMealsListItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           offset: const Offset(0, 4),
                           blurRadius: 4,
                           spreadRadius: 0,
@@ -72,7 +73,7 @@ class DailyMealsListItem extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios_new,
                       size: 20,
-                      color: Co.whiteColor.withOpacity(0.8),
+                      color: Co.whiteColor.withValues(alpha: 0.8),
                     ),
                   ),
                 ],
@@ -84,8 +85,9 @@ class DailyMealsListItem extends StatelessWidget {
     );
   }
 }
-Stack _mealImage(BuildContext context , String img) {
-  return  Stack(
+
+Stack _mealImage(BuildContext context, String img) {
+  return Stack(
     alignment: Alignment.center,
     children: [
       const CircleAvatar(
@@ -99,7 +101,7 @@ Stack _mealImage(BuildContext context , String img) {
       CircleAvatar(
         radius: 35,
         backgroundColor: Theme.of(context).colorScheme.primary,
-        backgroundImage:  AssetImage(img),
+        backgroundImage: AssetImage(img),
       ),
     ],
   );

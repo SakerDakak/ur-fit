@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:urfit/core/domain/error/session.dart';
 
 import '../../../personal_info/data/models/user_goals_model.dart';
 import '../../../personal_info/screens/widgets/goals_item.dart';
@@ -9,11 +8,15 @@ class GoalSection extends StatelessWidget {
   final Function(int) onTap;
   final Set<int> selectedGoals;
   final List<UserGoalsModel> goals;
-  const GoalSection({super.key, required this.goals, required this.onTap, required this.selectedGoals});
+  const GoalSection(
+      {super.key,
+      required this.goals,
+      required this.onTap,
+      required this.selectedGoals});
 
   @override
   Widget build(BuildContext context) {
-    final user = Session().currentUser;
+    // تم حذف المتغير غير المستخدم
     // print("user goals : ${user?.goals}");
 
     // return state.getGoalsState == RequestState.loading ||

@@ -52,18 +52,24 @@ class _SeeMoreSheetState<T> extends State<SeeMoreSheet<T>> {
                 Container(
                     height: 30,
                     width: 30,
-                    decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Co.greyColor)),
-                    child: const FittedBox(child: CloseButton(color: Colors.black))),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Co.greyColor)),
+                    child: const FittedBox(
+                        child: CloseButton(color: Colors.black))),
               ],
             ),
           ),
           Center(
               child: SvgPicture.asset(Assets.iconsMeals,
-                  colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn), height: 32)),
+                  colorFilter:
+                      const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                  height: 32)),
           const SizedBox(height: 12),
           Text(
             L10n.tr().focusedBodyPart,
-            style: TStyle.semiBold_16.copyWith(color: Theme.of(context).colorScheme.primary),
+            style: TStyle.semiBold_16
+                .copyWith(color: Theme.of(context).colorScheme.primary),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
@@ -75,7 +81,9 @@ class _SeeMoreSheetState<T> extends State<SeeMoreSheet<T>> {
                   value: item.$2,
                   onTap: () {
                     setState(() {
-                      selected.contains(item.$1) ? selected.remove(item.$1) : selected.add(item.$1);
+                      selected.contains(item.$1)
+                          ? selected.remove(item.$1)
+                          : selected.add(item.$1);
                     });
                     print("selected body parts: $selected");
                   },
@@ -97,6 +105,5 @@ class _SeeMoreSheetState<T> extends State<SeeMoreSheet<T>> {
         ],
       ),
     );
-    ;
   }
 }

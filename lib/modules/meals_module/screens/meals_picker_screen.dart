@@ -20,7 +20,7 @@ class MealsPickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<MealsCubit>().searchMeals();
-    List<String> items = [L10n.tr().breakFast, L10n.tr().lunch, L10n.tr().dinner];
+    final List<String> items = [L10n.tr().breakFast, L10n.tr().lunch, L10n.tr().dinner];
     return Scaffold(
       appBar: CustomAppBar(
           title: L10n.tr().nutritions,
@@ -39,7 +39,7 @@ class MealsPickerScreen extends StatelessWidget {
             canSelectMultiple: false,
             onSelected: (List<bool> selected) {
               print(selected);
-              int selectedIndex = selected.indexWhere((index) => index == true);
+              final int selectedIndex = selected.indexWhere((index) => index == true);
               context.read<MealsCubit>().updateSearchType(selectedIndex);
             },
           ),
@@ -57,7 +57,7 @@ class MealsPickerScreen extends StatelessWidget {
                     return Text(items[index]);
                   },
                 ),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                     onTap: () {
                       context.pushNamed(FilterScreen.route);
@@ -69,7 +69,7 @@ class MealsPickerScreen extends StatelessWidget {
           SizedBox(
             height: 16.px,
           ),
-          Expanded(child: const MealsGridview()),
+          const Expanded(child: MealsGridview()),
         ],
       ),
     );

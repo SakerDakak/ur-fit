@@ -15,10 +15,10 @@ class ContactUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    TextEditingController _nameController = TextEditingController();
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _messageController = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController messageController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +43,7 @@ class ContactUsScreen extends StatelessWidget {
           const SizedBox(height: 24),
 
            Form(
-             key: _formKey,
+             key: formKey,
              child: Column(
                children: [
                  CompactTextFormField(
@@ -51,7 +51,7 @@ class ContactUsScreen extends StatelessWidget {
                   title: L10n.tr().fullName,
                   hintText: L10n.tr().enterFullName,
                   padding: EdgeInsets.zero,
-                  controller: _nameController,
+                  controller: nameController,
                            ),
 
                            const SizedBox(height: 12),
@@ -60,7 +60,7 @@ class ContactUsScreen extends StatelessWidget {
                   title: L10n.tr().email,
                   hintText: L10n.tr().enterEmail,
                   padding: EdgeInsets.zero,
-                  controller: _emailController,
+                  controller: emailController,
                            ),
 
                            const SizedBox(height: 12),
@@ -71,8 +71,8 @@ class ContactUsScreen extends StatelessWidget {
                   title: L10n.tr().message,
                   hintText: L10n.tr().pleaseEnterYourMessage,
                   padding: EdgeInsets.zero,
-                  controller: _messageController,
-                  contentPadding: EdgeInsets.symmetric(
+                  controller: messageController,
+                  contentPadding: const EdgeInsets.symmetric(
                     vertical: 15,
                     horizontal: 15.0,
                   ),

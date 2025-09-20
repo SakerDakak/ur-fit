@@ -33,7 +33,7 @@ class RadioBoxWithImage extends StatelessWidget {
           border: Border.all(color: Co.strockColor),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               offset: const Offset(0, 4),
               blurRadius: 4,
               spreadRadius: 0,
@@ -50,10 +50,10 @@ class RadioBoxWithImage extends StatelessWidget {
                   bottom: -10,
                   child: CircleAvatar(
                     radius: 50,
-                    backgroundColor: Color(0xff484848),
+                    backgroundColor: const Color(0xff484848),
                     child: CircleAvatar(
                       radius: 35,
-                      backgroundColor: Color(0xff575757),
+                      backgroundColor: const Color(0xff575757),
                       child: CircleAvatar(
                         radius: 25,
                         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -81,7 +81,7 @@ class RadioBoxWithImage extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TStyle.bold_16.copyWith(shadows: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           offset: const Offset(0, 4),
                           blurRadius: 4,
                           spreadRadius: 0,

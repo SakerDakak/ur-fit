@@ -21,7 +21,7 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
           L10n.tr().minutes,
         ),
 
-        SizedBox(
+        const SizedBox(
           height: 40,
           child: VerticalDivider(
             color: Co.strockColor,
@@ -36,7 +36,7 @@ class SleepWaterTrainingStatistics extends StatelessWidget {
           L10n.tr().liters,
         ),
 
-        SizedBox(
+        const SizedBox(
           height: 40,
           child: VerticalDivider(
             color: Co.strockColor,

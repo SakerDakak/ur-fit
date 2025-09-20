@@ -20,31 +20,31 @@ class AppLanguageButtons extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
             size: 24,
           ),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           BlocSelector<AppCubit, AppState, bool>(
             selector: (state) => state.currentLocal == 'ar',
-            builder: (context, bool) {
+            builder: (context, bool isArabic) {
               return GestureDetector(
                 onTap: () {
                   context.read<AppCubit>().changeLang('ar');
                 },
                 child: _LanguageButton(
-                  isSelected: bool,
+                  isSelected: isArabic,
                   langName: 'عربى',
                 ),
               );
             },
           ),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           BlocSelector<AppCubit, AppState, bool>(
             selector: (state) => state.currentLocal == 'en',
-            builder: (context, bool) {
+            builder: (context, bool isEnglish) {
               return GestureDetector(
                 onTap: () {
                   context.read<AppCubit>().changeLang('en');
                 },
                 child: _LanguageButton(
-                  isSelected: bool,
+                  isSelected: isEnglish,
                   langName: 'English',
                 ),
               );
@@ -76,7 +76,9 @@ class _LanguageButton extends StatelessWidget {
         vertical: 2,
       ),
       decoration: BoxDecoration(
-        color: isSelected ? Theme.of(context).colorScheme.primary : Colors.transparent,
+        color: isSelected
+            ? Theme.of(context).colorScheme.primary
+            : Colors.transparent,
         border: Border.all(color: Theme.of(context).colorScheme.primary),
         borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
       ),

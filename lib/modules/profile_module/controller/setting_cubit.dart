@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
@@ -18,7 +17,6 @@ class SettingCubit extends Cubit<SettingState> {
   SettingCubit(this.settingRepo) : super(const SettingState());
 
   getPlanHistory() async {
-
     emit(state.copyWith(getPlanHistoryState: RequestState.loading));
     final result = await settingRepo.getPlanHistory();
     result.fold((l) {
@@ -27,9 +25,6 @@ class SettingCubit extends Cubit<SettingState> {
         errorMessage: l.toString(),
       ));
     }, (r) {
-
-
-
       emit(state.copyWith(
           getPlanHistoryState: RequestState.success, planHistoryModel: r));
     });
@@ -76,21 +71,21 @@ class SettingCubit extends Cubit<SettingState> {
         errorMessage: l.toString(),
       ));
     }, (r) {
-
-
       emit(state.copyWith(
           getStaticPageState: RequestState.success, staticPageModel: r));
     });
   }
 
-
- Future deleteAccount() async {
+  Future deleteAccount() async {
     emit(state.copyWith(deleteAccountState: RequestState.loading));
     final result = await settingRepo.deleteAccount();
     result.fold((l) {
-      emit(state.copyWith(deleteAccountState: RequestState.failure, errorMessage: l.toString()));
+      emit(state.copyWith(
+          deleteAccountState: RequestState.failure,
+          errorMessage: l.toString()));
     }, (r) {
-      emit(state.copyWith(deleteAccountState: RequestState.success, deleteAccountMessage: r));
+      emit(state.copyWith(
+          deleteAccountState: RequestState.success, deleteAccountMessage: r));
     });
   }
 }

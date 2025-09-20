@@ -66,7 +66,7 @@ class _UserInfoAgeState extends State<UserInfoAge> {
               decoration: InputDecoration(
                 hintText: L10n.tr().enterAge,
                 hintStyle: TStyle.semiBold_16.copyWith(
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withValues(alpha: 0.6),
                 ),
                 filled: true,
                 fillColor: const Color(0xFF2D2D2D),
@@ -84,7 +84,7 @@ class _UserInfoAgeState extends State<UserInfoAge> {
               },
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             L10n.tr().year,
             style: TStyle.semiBold_14.copyWith(
@@ -102,7 +102,9 @@ class _UserInfoAgeState extends State<UserInfoAge> {
                   ? null
                   : () {
                       final age = int.tryParse(controller.text.trim()) ?? 0;
-                      if (age < 16 || age > 99) return Alerts.showToast(L10n.tr().pleaseEnterValidAge);
+                      if (age < 16 || age > 99) {
+                        return Alerts.showToast(L10n.tr().pleaseEnterValidAge);
+                      }
                       cubit.updateUserAge(age);
                       cubit.nextPage(false);
                     },

@@ -37,7 +37,7 @@ class _UserInfoPreferredMealsState extends State<UserInfoPreferredMeals> {
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (previous, current) => current is MealsLikedStates,
       builder: (context, state) {
-        if (state is! MealsLikedStates) return SizedBox.shrink();
+        if (state is! MealsLikedStates) return const SizedBox.shrink();
         if (state is MealsLikedError) {
           return FailureWidget(
             message: state.error,

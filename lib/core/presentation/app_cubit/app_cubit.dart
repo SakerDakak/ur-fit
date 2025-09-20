@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +9,10 @@ part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   // final EasyLocalization localization ;
-  AppCubit() : super(AppState(currentLocal: di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
+  AppCubit()
+      : super(AppState(
+            currentLocal:
+                di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
   // late Box themeBox;
   late String lang;
   bool? notificationEnabled;
@@ -61,7 +64,9 @@ class AppCubit extends Cubit<AppState> {
   }
 
   getThemeFromHive() async {
-    emit(state.copyWith(isDark: di<SharedPreferences>().getBool(StorageKeys.isDarkTheme) ?? false));
+    emit(state.copyWith(
+        isDark:
+            di<SharedPreferences>().getBool(StorageKeys.isDarkTheme) ?? false));
   }
 
   // notificationTrigger(bool enable) async {

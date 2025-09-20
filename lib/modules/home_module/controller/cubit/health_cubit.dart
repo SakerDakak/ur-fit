@@ -32,7 +32,7 @@ class HealthCubit extends Cubit<HealthState> {
     await Health().configure();
 
     // define the types to get
-    var types = [
+    final types = [
       HealthDataType.STEPS,
       HealthDataType.BASAL_ENERGY_BURNED,
       HealthDataType.WORKOUT,
@@ -43,7 +43,7 @@ class HealthCubit extends Cubit<HealthState> {
     ];
 
     // requesting access to the data types before reading them
-    bool requested = await Health().requestAuthorization(types, permissions: [
+    final bool requested = await Health().requestAuthorization(types, permissions: [
       HealthDataAccess.READ_WRITE,
       HealthDataAccess.READ_WRITE,
       HealthDataAccess.READ_WRITE,
@@ -52,13 +52,13 @@ class HealthCubit extends Cubit<HealthState> {
       HealthDataAccess.READ_WRITE
     ]);
     // bool?  request  = await Health().hasPermissions(types,permissions: [HealthDataAccess.READ_WRITE,HealthDataAccess.READ_WRITE]);
-    print("request : ${requested}");
-    var now = DateTime.now();
+    print("request : $requested");
+    final now = DateTime.now();
 
     // fetch health data from the last 24 hours
-    List<HealthDataPoint> healthData = await Health().getHealthDataFromTypes(
+    final List<HealthDataPoint> healthData = await Health().getHealthDataFromTypes(
       types: types,
-      startTime: now.subtract(Duration(days: 1)),
+      startTime: now.subtract(const Duration(days: 1)),
       endTime: now,
     );
 
@@ -68,7 +68,7 @@ class HealthCubit extends Cubit<HealthState> {
     final num totalSleep = getTotalSleepTime(healthData);
     final num exerciseTime = getExerciseTimeInMin(healthData);
     final int? totalSteps = await Health().getTotalStepsInInterval(
-      now.subtract(Duration(days: 1)),
+      now.subtract(const Duration(days: 1)),
       now,
     );
 

@@ -57,7 +57,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                   title: L10n.tr().caloriesBurn,
                 ),
 
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // more details
                 Row(
@@ -71,7 +71,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                       L10n.tr().kg,
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                       child: VerticalDivider(
                         color: Co.strockColor,
@@ -86,7 +86,7 @@ class WorkoutDetailCardShimmer extends StatelessWidget {
                       L10n.tr().kg,
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                       child: VerticalDivider(
                         color: Co.strockColor,

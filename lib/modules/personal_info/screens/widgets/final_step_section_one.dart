@@ -23,9 +23,8 @@ class _FinalStepSectionOneState extends State<FinalStepSectionOne> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SetupPersonalInfoCubit>();
-
-    return Column(
+    // تم حذف المتغير غير المستخدم
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // // title

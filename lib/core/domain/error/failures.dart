@@ -6,22 +6,13 @@ abstract class Failure {
 
 // General failures
 class ServerFailure extends Failure {
-  @override
-  final String message;
-
-  ServerFailure(this.message) : super(message);
+  ServerFailure(super.message);
 }
 
 class CacheFailure extends Failure {
-  @override
-  final String message;
-
-  CacheFailure(this.message) : super(message);
+  CacheFailure(super.message);
 }
 
 class NetworkFailure extends Failure {
-  @override
-  final String message;
-
-  NetworkFailure(this.message) : super(message);
+  NetworkFailure(super.message);
 }

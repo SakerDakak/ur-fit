@@ -37,7 +37,7 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
 
   @override
   Widget build(BuildContext context) {
-    print("packages ${seeAll}");
+    print("packages $seeAll");
     final cubit = context.read<SubscriptionCubit>();
     if (cubit.state.selectedPackage == null) {
       cubit.updateSelectedPackage(selectedIndex);
@@ -55,7 +55,7 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
             if (i < (seeAll ? packages.length : packages.where((package) => package.type == widget.planType).length)) {
               return Padding(
                 // add padding if index is less than the items (length -1)
-                padding: EdgeInsetsDirectional.only(end: 8),
+                padding: const EdgeInsetsDirectional.only(end: 8),
                 child: PlanCard(
                   package: packages[i],
                   isSelected: selectedIndex == packages[i].id,
@@ -68,7 +68,7 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
             } else {
               return Padding(
                 // add padding if index is equal to the items (length -1)
-                padding: EdgeInsetsDirectional.only(end: 8),
+                padding: const EdgeInsetsDirectional.only(end: 8),
                 child: GestureDetector(
                   onTap: () {
                     print("see all");
@@ -106,7 +106,7 @@ class _SubscriptionPlansState extends State<SubscriptionPlans> {
 }
 
 class PlanCard extends StatelessWidget {
-  const PlanCard({
+  const PlanCard({super.key, 
     required this.isSelected,
     required this.onTap,
     required this.package,

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/domain/error/session.dart';
-import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
-import 'package:urfit/core/presentation/utils/enums.dart';
-import 'package:urfit/core/presentation/views/widgets/custom_image_view.dart';
 
 import '../../../../core/presentation/style/fonts.dart';
 

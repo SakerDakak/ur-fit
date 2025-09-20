@@ -53,7 +53,7 @@ class TrainingDurationCard extends StatelessWidget {
               selector: (state) => state.exerciseTime,
               builder: (context, exerciseTime) {
                 return Text(
-                  '${exerciseTime} ${L10n.tr().min}',
+                  '$exerciseTime ${L10n.tr().min}',
                   textAlign: TextAlign.center,
                   style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,

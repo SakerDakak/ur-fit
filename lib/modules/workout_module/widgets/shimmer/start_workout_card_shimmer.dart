@@ -22,7 +22,12 @@ class StartWorkoutCardShimmer extends StatelessWidget {
           // title
           Row(
             children: [
-              SvgPicture.asset(Assets.iconsDumbbell, width: 16,colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),),
+              SvgPicture.asset(
+                Assets.iconsDumbbell,
+                width: 16,
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+              ),
               const SizedBox(width: 8),
               Text(
                 L10n.tr().todayEcerciseFocusOn,
@@ -33,18 +38,18 @@ class StartWorkoutCardShimmer extends StatelessWidget {
               ),
             ],
           ),
-      
+
           const SizedBox(height: 16),
-      
+
           // card
-           Container(
+          Container(
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               color: Co.cardColor,
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.withValues(alpha: 0.2),
                   offset: const Offset(0, 4),
                   blurRadius: 4,
                   spreadRadius: 0,
@@ -57,7 +62,8 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                 Positioned(
                   top: -10,
                   bottom: -10,
-                  child: workoutImage(context,imageUrl: AssetsManager.trainingDummy),
+                  child: workoutImage(context,
+                      imageUrl: AssetsManager.trainingDummy),
                 ),
 
                 // workout title and start button
@@ -78,7 +84,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TStyle.bold_16.copyWith(shadows: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               offset: const Offset(0, 4),
                               blurRadius: 4,
                               spreadRadius: 0,
@@ -89,7 +95,6 @@ class StartWorkoutCardShimmer extends StatelessWidget {
 
                       // start button
                       GestureDetector(
-
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 30,
@@ -97,7 +102,8 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+                            borderRadius:
+                                BorderRadius.circular(AppConst.kBorderRadius),
                           ),
                           child: Text(
                             L10n.tr().start,
@@ -111,7 +117,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
 
           Container(
             clipBehavior: Clip.antiAlias,
@@ -120,7 +126,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.withValues(alpha: 0.2),
                   offset: const Offset(0, 4),
                   blurRadius: 4,
                   spreadRadius: 0,
@@ -133,7 +139,8 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                 Positioned(
                   top: -10,
                   bottom: -10,
-                  child: workoutImage(context,imageUrl: AssetsManager.trainingDummy),
+                  child: workoutImage(context,
+                      imageUrl: AssetsManager.trainingDummy),
                 ),
 
                 // workout title and start button
@@ -154,7 +161,7 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TStyle.bold_16.copyWith(shadows: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               offset: const Offset(0, 4),
                               blurRadius: 4,
                               spreadRadius: 0,
@@ -165,7 +172,6 @@ class StartWorkoutCardShimmer extends StatelessWidget {
 
                       // start button
                       GestureDetector(
-
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 30,
@@ -173,7 +179,8 @@ class StartWorkoutCardShimmer extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+                            borderRadius:
+                                BorderRadius.circular(AppConst.kBorderRadius),
                           ),
                           child: Text(
                             L10n.tr().start,

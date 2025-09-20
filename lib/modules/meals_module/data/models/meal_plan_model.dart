@@ -3,8 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'meal_plan_model.freezed.dart';
 part 'meal_plan_model.g.dart';
 
-
-
 @freezed
 abstract class MealPlan with _$MealPlan {
   const factory MealPlan({
@@ -48,7 +46,7 @@ abstract class Day with _$Day {
 abstract class Meal with _$Meal {
   const factory Meal({
     required int id,
-    @JsonKey(name: 'recipe_id') required String recipeId,
+    required String recipeId,
     required String imageType,
     required String title,
     required int readyInMinutes,

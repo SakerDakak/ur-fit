@@ -63,7 +63,7 @@ class _UserInfoHeightState extends State<UserInfoHeight> {
               decoration: InputDecoration(
                 hintText: L10n.tr().enterHeight,
                 hintStyle: TStyle.semiBold_16.copyWith(
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withValues(alpha: 0.6),
                 ),
                 filled: true,
                 fillColor: const Color(0xFF2D2D2D),
@@ -99,7 +99,10 @@ class _UserInfoHeightState extends State<UserInfoHeight> {
                   ? null
                   : () {
                       final height = int.tryParse(controller.text.trim()) ?? 0;
-                      if (height < 100 || height > 250) return Alerts.showToast(L10n.tr().pleaseEnterValidHeight);
+                      if (height < 100 || height > 250) {
+                        return Alerts.showToast(
+                            L10n.tr().pleaseEnterValidHeight);
+                      }
                       cubit.updateUserHeight(height);
                       cubit.nextPage(false);
                     },

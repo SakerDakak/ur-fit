@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 
 import '../../../../modules/workout_module/controller/workout_cubit.dart';
 
@@ -13,8 +12,7 @@ class WeakDaysDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final workoutCubit = context.read<WorkoutCubit>();
-    final mealCubit = context.read<MealsCubit>();
+    // تم حذف المتغيرات غير المستخدمة
     // if(workoutCubit.getCurrentWorkOutPlan() == null){
     //   workoutCubit.generateWorkOutPlan();
     // }
@@ -30,7 +28,8 @@ class WeakDaysDate extends StatelessWidget {
               builder: (context, state) {
                 return Container(
                   margin: EdgeInsetsDirectional.only(end: i != 6 ? 8 : 0),
-                  padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
                   decoration: BoxDecoration(
                     color: isToday(i) || state.selectedDay == i + 1
                         ? Theme.of(context).colorScheme.primary
@@ -43,18 +42,24 @@ class WeakDaysDate extends StatelessWidget {
                       Text(
                         DateFormat.Md().format(getCurrentWeekDays()[i]),
                         style: TStyle.regular_14.copyWith(
-                          fontWeight: isToday(i) || state.selectedDay == i + 1 ? FontWeight.w700 : null,
-                          color:
-                              isToday(i) || state.selectedDay == i + 1 ? Co.selectedFont : Co.fontColor,
+                          fontWeight: isToday(i) || state.selectedDay == i + 1
+                              ? FontWeight.w700
+                              : null,
+                          color: isToday(i) || state.selectedDay == i + 1
+                              ? Co.selectedFont
+                              : Co.fontColor,
                         ),
                       ),
                       const SizedBox(height: 12),
                       Text(
                         DateFormat.E().format(getCurrentWeekDays()[i]),
                         style: TStyle.regular_14.copyWith(
-                          fontWeight: isToday(i) || state.selectedDay == i + 1 ? FontWeight.w700 : null,
-                          color:
-                              isToday(i) || state.selectedDay == i + 1 ? Co.selectedFont : Co.fontColor,
+                          fontWeight: isToday(i) || state.selectedDay == i + 1
+                              ? FontWeight.w700
+                              : null,
+                          color: isToday(i) || state.selectedDay == i + 1
+                              ? Co.selectedFont
+                              : Co.fontColor,
                         ),
                       ),
                     ],
@@ -74,9 +79,9 @@ class WeakDaysDate extends StatelessWidget {
   static List<DateTime> getCurrentWeekDays() {
     final now = DateTime.now();
 
-    int daysToFriday = (now.weekday - 6) % 7;
+    final int daysToFriday = (now.weekday - 6) % 7;
 
-    DateTime saturday = now.subtract(
+    final DateTime saturday = now.subtract(
       Duration(days: daysToFriday),
     );
 

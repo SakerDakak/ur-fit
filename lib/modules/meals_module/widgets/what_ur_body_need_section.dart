@@ -60,7 +60,7 @@ class WhatUrBodyNeedSection extends StatelessWidget {
                 title: L10n.tr().calories,
               ),
 
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               BlocBuilder<MealsCubit, MealsState>(
                 builder: (context, state) {
@@ -97,7 +97,7 @@ class WhatUrBodyNeedSection extends StatelessWidget {
 }
 
 class ProgressItem extends StatelessWidget {
-  const ProgressItem({required this.title, required this.percent});
+  const ProgressItem({super.key, required this.title, required this.percent});
 
   final String title;
   final double percent;

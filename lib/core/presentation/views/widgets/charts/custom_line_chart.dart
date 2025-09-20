@@ -18,7 +18,8 @@ class CustomLineChart extends StatelessWidget {
         titlesData: const FlTitlesData(show: false),
         gridData: const FlGridData(show: false),
         lineBarsData: [
-          LineChartBarData(color: Theme.of(context).colorScheme.primary,
+          LineChartBarData(
+            color: Theme.of(context).colorScheme.primary,
             dotData: const FlDotData(show: false),
             isCurved: true,
             preventCurveOverShooting: true,
@@ -30,9 +31,9 @@ class CustomLineChart extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Co.whiteColor.withOpacity(0.8),
-                  Co.whiteColor.withOpacity(0.5),
-                  Co.whiteColor.withOpacity(0),
+                  Co.whiteColor.withValues(alpha: 0.8),
+                  Co.whiteColor.withValues(alpha: 0.5),
+                  Co.whiteColor.withValues(alpha: 0),
                 ],
               ),
             ),

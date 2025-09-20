@@ -53,7 +53,9 @@ class _MealsScreenState extends State<MealsScreen> {
     return BlocBuilder<MealsCubit, MealsState>(
       builder: (context, state) {
         return Scaffold(
-          body: user?.haveMealPlan != true && state.getMealPlansState != RequestState.loading && state.allPlans.isEmpty
+          body: user?.haveMealPlan != true &&
+                  state.getMealPlansState != RequestState.loading &&
+                  state.allPlans.isEmpty
               ? Center(child: Text(L10n.tr().noSubscription))
               : RefreshIndicator(
                   onRefresh: () async {
@@ -67,7 +69,7 @@ class _MealsScreenState extends State<MealsScreen> {
                     ),
                     children: [
                       // plan remaining time
-                      PackageProgressMeals(),
+                      const PackageProgressMeals(),
 
                       const SizedBox(height: 16),
 
@@ -78,15 +80,16 @@ class _MealsScreenState extends State<MealsScreen> {
 
                       // what ur body needs today card
                       BlocBuilder<MealsCubit, MealsState>(
-                        buildWhen: (p, c) => p.allPlans != c.allPlans || p.getMealPlansState != c.getMealPlansState,
+                        buildWhen: (p, c) =>
+                            p.allPlans != c.allPlans ||
+                            p.getMealPlansState != c.getMealPlansState,
                         builder: (context, state) {
                           if (state.getMealPlansState == RequestState.loading ||
                               state.getMealPlansState == RequestState.failure) {
                             return const WhatUrBodyNeedsShimmer();
                           } else {
-                            final day = cubit.getPlanForToday();
-
-                            return WhatUrBodyNeedSection();
+                            // تم حذف المتغير غير المستخدم
+                            return const WhatUrBodyNeedSection();
                           }
                         },
                       ),
@@ -95,7 +98,9 @@ class _MealsScreenState extends State<MealsScreen> {
 
                       // meals list
                       BlocBuilder<MealsCubit, MealsState>(
-                        buildWhen: (p, c) => p.allPlans != c.allPlans || p.getMealPlansState != c.getMealPlansState,
+                        buildWhen: (p, c) =>
+                            p.allPlans != c.allPlans ||
+                            p.getMealPlansState != c.getMealPlansState,
                         builder: (context, state) {
                           if (state.getMealPlansState == RequestState.failure) {
                             return FailureWidget(
@@ -105,7 +110,9 @@ class _MealsScreenState extends State<MealsScreen> {
                           }
 
                           return Skeletonizer(
-                              enabled: state.getMealPlansState == RequestState.loading, child: MealsListview());
+                              enabled: state.getMealPlansState ==
+                                  RequestState.loading,
+                              child: const MealsListview());
                         },
                       ),
                     ],

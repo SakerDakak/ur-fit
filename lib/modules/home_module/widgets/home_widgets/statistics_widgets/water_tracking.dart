@@ -77,7 +77,7 @@ class WaterTracking extends StatelessWidget {
             selector: (state) => state.totalLitreOfWater,
             builder: (context, water) {
               return Text(
-                '${water} ${L10n.tr().litre}',
+                '$water ${L10n.tr().litre}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TStyle.regular_14.copyWith(

@@ -9,9 +9,12 @@ abstract class AppTheme {
         primaryColorLight: isFemale ? Co.primaryColorFemale : Co.primaryColor,
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
-          seedColor:isFemale ? Co.primaryColorFemale : Co.primaryColor, // This sets the primary color
-          primary:
-          isFemale ? Co.primaryColorFemale : Co.primaryColor, // Explicitly setting the primary color
+          seedColor: isFemale
+              ? Co.primaryColorFemale
+              : Co.primaryColor, // This sets the primary color
+          primary: isFemale
+              ? Co.primaryColorFemale
+              : Co.primaryColor, // Explicitly setting the primary color
           onPrimary: Colors.white, // Color for text and icons on primary color
           secondary: Colors.blueAccent, // Secondary color
           onSecondary:
@@ -19,11 +22,13 @@ abstract class AppTheme {
         ),
         primaryColor: isFemale ? Co.primaryColorFemale : Co.primaryColor,
         canvasColor: Colors.white,
-        indicatorColor: Colors.white,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: isFemale ? Co.primaryColorFemale : Co.primaryColor,
-          selectionColor: isFemale ? Co.primaryColorFemale.withOpacity(0.4) : Co.primaryColor.withOpacity(0.4),
-          selectionHandleColor: isFemale ? Co.primaryColorFemale : Co.primaryColor,
+          selectionColor: isFemale
+              ? Co.primaryColorFemale.withValues(alpha: 0.4)
+              : Co.primaryColor.withValues(alpha: 0.4),
+          selectionHandleColor:
+              isFemale ? Co.primaryColorFemale : Co.primaryColor,
         ),
         scaffoldBackgroundColor: Co.backGround,
         bottomSheetTheme: const BottomSheetThemeData(
@@ -55,7 +60,7 @@ abstract class AppTheme {
           backgroundColor: Co.backGround,
           elevation: 0,
           scrolledUnderElevation: 0,
-        ),
+        ), tabBarTheme: const TabBarThemeData(indicatorColor: Colors.white),
       );
 
   static ThemeData lightTheme() => ThemeData();

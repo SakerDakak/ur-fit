@@ -28,7 +28,7 @@ class MealProperties extends StatelessWidget {
                 width: 4.px,
               ),
               Text(
-                '${readyInMinutes} ${L10n.tr().minutes}',
+                '$readyInMinutes ${L10n.tr().minutes}',
                 style: TStyle.regular_16,
               ),
             ],
@@ -41,7 +41,7 @@ class MealProperties extends StatelessWidget {
                 width: 4.px,
               ),
               Text(
-                '${kcal} ${L10n.tr().calories}',
+                '$kcal ${L10n.tr().calories}',
                 style: TStyle.regular_16,
               ),
             ],

@@ -108,7 +108,7 @@
 //           border: Border.all(color: Co.strockColor),
 //           boxShadow: [
 //             BoxShadow(
-//               color: Colors.black.withOpacity(0.2),
+//               color: Colors.black.withValues(alpha: 0.2),
 //               offset: const Offset(0, 4),
 //               blurRadius: 4,
 //               spreadRadius: 0,
@@ -143,7 +143,7 @@
 //                       overflow: TextOverflow.ellipsis,
 //                       style: TStyle.bold_16.copyWith(shadows: [
 //                         BoxShadow(
-//                           color: Colors.black.withOpacity(0.2),
+//                           color: Colors.black.withValues(alpha: 0.2),
 //                           offset: const Offset(0, 4),
 //                           blurRadius: 4,
 //                           spreadRadius: 0,

@@ -28,7 +28,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     final cubit = context.read<WorkoutCubit>();
     if (user?.haveExercisePlan == true && user?.hasValidSubscription == true) {
       cubit.getWorkOutPlan().then((value) {
-        ;
         setState(() {});
       });
     } else if (user?.haveExercisePlan == false &&
@@ -41,8 +40,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             user?.packageId == 5 ||
             user?.packageId == 8)) {
       cubit.generateWorkOutPlan().then((value) {
-        ;
-        Future.delayed(Duration(milliseconds: 500), () {
+        Future.delayed(const Duration(milliseconds: 500), () {
           cubit.getWorkOutPlan();
           setState(() {});
         });
@@ -69,7 +67,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   ),
                   children: [
                     // package progress and end date
-                    PackageProgressExercise(),
+                    const PackageProgressExercise(),
 
                     const SizedBox(height: 16),
 
@@ -80,7 +78,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
                     // workout details (calories, workout duration ...)
                     BlocBuilder<WorkoutCubit, WorkoutState>(
-                      buildWhen: (p, c) => p.allPlans != c.allPlans || p.getWorkOutPlanState != c.getWorkOutPlanState,
+                      buildWhen: (p, c) =>
+                          p.allPlans != c.allPlans ||
+                          p.getWorkOutPlanState != c.getWorkOutPlanState,
                       builder: (context, state) {
                         if (state.getWorkOutPlanState == RequestState.loading ||
                             state.getWorkOutPlanState == RequestState.failure) {
@@ -89,7 +89,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                           if (cubit.getPlanForToday() != null) {
                             return const TodayWorkoutDetailsCard();
                           } else {
-                            return SizedBox();
+                            return const SizedBox();
                           }
                         }
                       },
@@ -112,12 +112,12 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                         builder: (context, state) {
                       if (state.getWorkOutPlanState == RequestState.loading ||
                           state.getWorkOutPlanState == RequestState.failure) {
-                        return StartWorkoutCardShimmer();
+                        return const StartWorkoutCardShimmer();
                       } else {
                         if (cubit.getPlanForToday() == null) {
-                          return  Center(child: Text(L10n.tr().noWorkoutToday));
+                          return Center(child: Text(L10n.tr().noWorkoutToday));
                         } else {
-                          return StartWorkoutCard();
+                          return const StartWorkoutCard();
                         }
                       }
                     }),

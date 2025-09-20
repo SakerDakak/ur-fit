@@ -16,24 +16,37 @@ class MealsRemoteDataSource {
     return Recipe.fromJson(response.data);
   }
 
-  Future<List<MealModel>> searchRecipes({required SearchRecipeModel searchRecipeModel}) async {
-    final response = await dioServices.get(EndPoints.searchRecipe, parameter: searchRecipeModel.toJson());
+  Future<List<MealModel>> searchRecipes(
+      {required SearchRecipeModel searchRecipeModel}) async {
+    final response = await dioServices.get(EndPoints.searchRecipe,
+        parameter: searchRecipeModel.toJson());
     return (response.data as List).map((e) => MealModel.fromJson(e)).toList();
   }
 
-  Future<MealPlanModel> generateMealPlan({required double targetCalories}) async {
-    final response = await dioServices.post(EndPoints.generateMealPlan, data: {"targetCalories": targetCalories});
+  Future<MealPlanModel> generateMealPlan(
+      {required double targetCalories}) async {
+    final response = await dioServices.post(EndPoints.generateMealPlan,
+        data: {"targetCalories": targetCalories});
     return MealPlanModel.fromJson(response.data['meal_plan']);
   }
 
   Future<List<MealPlanModel>> getMealPlans() async {
     final response = await dioServices.get(EndPoints.getMealPlan);
-    return (response.data['data'] as List).map((plan) => MealPlanModel.fromJson(plan)).toList();
+    return (response.data['data'] as List)
+        .map((plan) => MealPlanModel.fromJson(plan))
+        .toList();
   }
 
   Future<void> calculateNutrients(
-      {required int mealPlanId, required num calories, required num protein, required num carbs}) async {
-    final response = await dioServices.post(EndPoints.calculateNutrients,
-        data: {'meal_plan_id': mealPlanId, "calories": calories, "protein": protein, "carbs": carbs});
+      {required int mealPlanId,
+      required num calories,
+      required num protein,
+      required num carbs}) async {
+    await dioServices.post(EndPoints.calculateNutrients, data: {
+      'meal_plan_id': mealPlanId,
+      "calories": calories,
+      "protein": protein,
+      "carbs": carbs
+    });
   }
 }

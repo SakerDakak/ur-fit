@@ -71,8 +71,8 @@ class _CustomCurveSliderState extends State<CustomCurveSlider> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, c) {
-        double minCurvePosition = widget.minIconSize.width;
-        double maxCurvePosition = c.maxWidth - widget.maxIconSize.width - _curveWidth;
+        final double minCurvePosition = widget.minIconSize.width;
+        final double maxCurvePosition = c.maxWidth - widget.maxIconSize.width - _curveWidth;
 
         return GestureDetector(
           onHorizontalDragEnd: (details) => widget.onDragEnd?.call(_returnDisplayedValue()),
@@ -80,7 +80,7 @@ class _CustomCurveSliderState extends State<CustomCurveSlider> {
             setState(
               () {
                 // Determine the change in the position
-                double dx = details.delta.dx;
+                final double dx = details.delta.dx;
 
                 // Update the value based on the change in position
                 // Scaling it to fit the 0 to 1 range
@@ -172,13 +172,13 @@ class CurveSliderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint sliderPaint = Paint()
+    final Paint sliderPaint = Paint()
       ..color = Co.strockColor
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 3;
 
-    TextPainter textPainter = TextPainter(
+    final TextPainter textPainter = TextPainter(
       text: TextSpan(
         text: displayedValue == null
             ? '-'
@@ -192,12 +192,12 @@ class CurveSliderPainter extends CustomPainter {
 
     textPainter.layout();
 
-    Path path = Path();
+    final Path path = Path();
 
     // value container size
     const valueContainerHeight = 24.0;
     const valueContainerPadding = 8;
-    double valueContainerWidth = textPainter.size.width + valueContainerPadding;
+    final double valueContainerWidth = textPainter.size.width + valueContainerPadding;
 
     final h = size.height;
     final w = size.width;
@@ -226,19 +226,19 @@ class CurveSliderPainter extends CustomPainter {
 
     // selected value container
     final valueContainerPaint = Paint()..color = Co.strockColor;
-    Rect rect = Rect.fromLTWH(
+    final Rect rect = Rect.fromLTWH(
       ((curveWidth) / 2) - (valueContainerWidth / 2) + curvePosition,
       0,
       valueContainerWidth,
       valueContainerHeight,
     );
 
-    RRect rRect = RRect.fromRectAndRadius(rect, const Radius.circular(4));
+    final RRect rRect = RRect.fromRectAndRadius(rect, const Radius.circular(4));
     canvas.drawRRect(rRect, valueContainerPaint);
 
     // paint the text
-    double textX = ((curveWidth) / 2) - (valueContainerWidth / 2) + (valueContainerPadding / 2) + curvePosition;
-    double textY = (valueContainerHeight - textPainter.size.height) / 2;
+    final double textX = ((curveWidth) / 2) - (valueContainerWidth / 2) + (valueContainerPadding / 2) + curvePosition;
+    final double textY = (valueContainerHeight - textPainter.size.height) / 2;
 
     textPainter.paint(canvas, Offset(textX, textY));
   }

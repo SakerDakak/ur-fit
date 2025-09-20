@@ -48,7 +48,7 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
               border: Border.all(color: Co.strockColor),
               borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
             ),
-            child: Column(
+            child: const Column(
               children: [
                 // calories
                 CaloriesIndicator(

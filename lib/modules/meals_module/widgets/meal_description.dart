@@ -17,7 +17,7 @@ class MealDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var document = parse(description);
+    final document = parse(description);
     return Column(
       children: [
         FilterTitleWidget(icon: AssetsManager.mealCategory, title: L10n.tr().mealDescription),

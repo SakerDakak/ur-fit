@@ -10,7 +10,7 @@ class StatisticsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return  const SizedBox(
       height: 240,
       child: Row(
         children: [

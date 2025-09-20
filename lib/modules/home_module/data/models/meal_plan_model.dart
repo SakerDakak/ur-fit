@@ -3,8 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'meal_plan_model.freezed.dart';
 part 'meal_plan_model.g.dart';
 
-
-
 @freezed
 abstract class MealPlanModel with _$MealPlanModel {
   const factory MealPlanModel({

@@ -54,7 +54,7 @@ class SleepTrackingCard extends StatelessWidget {
               selector: (state) => state.totalSleep,
               builder: (context, sleep) {
                 return Text(
-                  '${sleep}\n${L10n.tr().hours}',
+                  '$sleep\n${L10n.tr().hours}',
                   textAlign: TextAlign.center,
                   style: TStyle.regular_14.copyWith(
                     fontWeight: FontWeight.w600,

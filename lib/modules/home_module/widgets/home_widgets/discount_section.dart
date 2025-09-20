@@ -61,7 +61,7 @@ class DiscountSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         offset: const Offset(0, 4),
                         blurRadius: 4,
                         spreadRadius: 0,
@@ -118,7 +118,7 @@ class DiscountSection extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.primary,
                                 shadows: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2),
                                     offset: const Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 0,
@@ -133,7 +133,7 @@ class DiscountSection extends StatelessWidget {
                                 color: Co.fontColor,
                                 shadows: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2),
                                     offset: const Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 0,
@@ -148,7 +148,7 @@ class DiscountSection extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.primary,
                                 shadows: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2),
                                     offset: const Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 0,
@@ -173,7 +173,7 @@ class DiscountSection extends StatelessWidget {
                                 color: Co.fontColor,
                                 shadows: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2),
                                     offset: const Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 0,
@@ -187,7 +187,7 @@ class DiscountSection extends StatelessWidget {
                                 decoration: TextDecoration.underline,
                                 shadows: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2),
                                     offset: const Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 0,

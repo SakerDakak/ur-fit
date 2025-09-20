@@ -139,10 +139,12 @@ class CompactPasswordTextFormField extends StatefulWidget {
   });
 
   @override
-  _CompactPasswordTextFormFieldState createState() => _CompactPasswordTextFormFieldState();
+  State<CompactPasswordTextFormField> createState() =>
+      _CompactPasswordTextFormFieldState();
 }
 
-class _CompactPasswordTextFormFieldState extends State<CompactPasswordTextFormField> {
+class _CompactPasswordTextFormFieldState
+    extends State<CompactPasswordTextFormField> {
   bool _obscureText = true;
 
   @override
@@ -200,7 +202,9 @@ class _CompactPasswordTextFormFieldState extends State<CompactPasswordTextFormFi
               ),
               suffixIcon: IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                  _obscureText
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined,
                   color: Colors.white,
                 ),
                 onPressed: () {

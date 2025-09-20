@@ -12,17 +12,20 @@ class UserInfoWeeklyExerciseTimes extends StatefulWidget {
   const UserInfoWeeklyExerciseTimes({super.key});
 
   @override
-  State<UserInfoWeeklyExerciseTimes> createState() => _UserInfoWeeklyExerciseTimesState();
+  State<UserInfoWeeklyExerciseTimes> createState() =>
+      _UserInfoWeeklyExerciseTimesState();
 }
 
-class _UserInfoWeeklyExerciseTimesState extends State<UserInfoWeeklyExerciseTimes> {
+class _UserInfoWeeklyExerciseTimesState
+    extends State<UserInfoWeeklyExerciseTimes> {
   final controller = TextEditingController();
   late final SetupPersonalInfoCubit cubit;
 
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
-    controller.text = cubit.state.userInfo.weaklyTrainingCount?.toString() ?? '';
+    controller.text =
+        cubit.state.userInfo.weaklyTrainingCount?.toString() ?? '';
     super.initState();
   }
 
@@ -64,7 +67,7 @@ class _UserInfoWeeklyExerciseTimesState extends State<UserInfoWeeklyExerciseTime
               decoration: InputDecoration(
                 hintText: L10n.tr().trainingTimes,
                 hintStyle: TStyle.semiBold_16.copyWith(
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withValues(alpha: 0.6),
                 ),
                 filled: true,
                 fillColor: const Color(0xFF2D2D2D),
@@ -82,10 +85,11 @@ class _UserInfoWeeklyExerciseTimesState extends State<UserInfoWeeklyExerciseTime
               },
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             L10n.tr().exercise,
-            style: TStyle.semiBold_14.copyWith(color: Theme.of(context).colorScheme.primary),
+            style: TStyle.semiBold_14
+                .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 100),
           // continue button
@@ -98,7 +102,10 @@ class _UserInfoWeeklyExerciseTimesState extends State<UserInfoWeeklyExerciseTime
                   ? null
                   : () {
                       final times = int.tryParse(controller.text.trim()) ?? 0;
-                      if (times < 1 || times > 100) return Alerts.showToast(L10n.tr().pleaseEnterValidWeight);
+                      if (times < 1 || times > 100) {
+                        return Alerts.showToast(
+                            L10n.tr().pleaseEnterValidWeight);
+                      }
                       cubit.updateWeeklyTrainingCount(times);
                       cubit.nextPage();
                     },

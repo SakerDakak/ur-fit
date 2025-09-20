@@ -31,7 +31,7 @@ class ComponentItem extends StatelessWidget {
                     .copyWith(color: Theme.of(context).colorScheme.primary)),
           ),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

@@ -161,19 +161,26 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-        buildWhen: (p, c) => p.userInfo.exerciseDayes != c.userInfo.exerciseDayes,
+        buildWhen: (p, c) =>
+            p.userInfo.exerciseDayes != c.userInfo.exerciseDayes,
         builder: (context, state) {
           return Row(
             children: [
               for (int i = 0; i < 7; i++)
                 Builder(builder: (context) {
-                  print("date : ${DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i])}");
-                  bool isSelected = state.userInfo.exerciseDayes
-                          .contains(DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i])) ||
+                  print(
+                      "date : ${DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i])}");
+                  final bool isSelected = state.userInfo.exerciseDayes.any(
+                          (day) =>
+                              day.name ==
+                              DateFormat.EEEE().format(
+                                  WeakDaysDate.getCurrentWeekDays()[i])) ||
                       (user != null &&
                           user.exerciseDays != null &&
-                          user.exerciseDays!
-                              .any((day) => day == DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i])));
+                          user.exerciseDays!.any((day) =>
+                              day ==
+                              DateFormat.EEEE().format(
+                                  WeakDaysDate.getCurrentWeekDays()[i])));
 
                   return GestureDetector(
                     onTap: () {
@@ -183,19 +190,25 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
                     },
                     child: Container(
                       margin: EdgeInsetsDirectional.only(end: i != 6 ? 8 : 0),
-                      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 11, vertical: 8),
                       decoration: BoxDecoration(
-                        color: isSelected ? Theme.of(context).colorScheme.primary : Co.cardColor,
-                        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+                        color: isSelected
+                            ? Theme.of(context).colorScheme.primary
+                            : Co.cardColor,
+                        borderRadius:
+                            BorderRadius.circular(AppConst.kBorderRadius),
                         border: Border.all(color: Co.strockColor),
                       ),
                       child: Column(
                         children: [
                           Text(
-                            DateFormat.E().format(WeakDaysDate.getCurrentWeekDays()[i]),
+                            DateFormat.E()
+                                .format(WeakDaysDate.getCurrentWeekDays()[i]),
                             style: TStyle.regular_14.copyWith(
                               fontWeight: isSelected ? FontWeight.w700 : null,
-                              color: isSelected ? Co.selectedFont : Co.fontColor,
+                              color:
+                                  isSelected ? Co.selectedFont : Co.fontColor,
                             ),
                           ),
                         ],

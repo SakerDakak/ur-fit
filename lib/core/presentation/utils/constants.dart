@@ -4,11 +4,15 @@ class AppConst {
   static const kHorizontalPadding = 16.0;
   static const kBottomPadding = 100.0;
   static const kBorderRadius = 8.0;
-  static final defaultHpadding = const EdgeInsetsGeometry.symmetric(horizontal: kHorizontalPadding);
-  static final defaultVpadding = const EdgeInsetsGeometry.only(bottom: kBottomPadding);
-  static final defaultPadding = const EdgeInsetsGeometry.all(kHorizontalPadding);
+  static final defaultHpadding =
+      const EdgeInsetsGeometry.symmetric(horizontal: kHorizontalPadding);
+  static final defaultVpadding =
+      const EdgeInsetsGeometry.only(bottom: kBottomPadding);
+  static final defaultPadding =
+      const EdgeInsetsGeometry.all(kHorizontalPadding);
 
-  static GlobalKey<ScaffoldMessengerState> rootScaffoldKey = GlobalKey<ScaffoldMessengerState>();
+  static GlobalKey<ScaffoldMessengerState> rootScaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 // bool isBottomSheetOpened = false;
 //
@@ -21,4 +25,4 @@ class AppConst {
 
 enum PageState { initial, loading, loaded, error }
 
-enum SearchType { PAGE, EXPLANATION, REGULATION, CONTENT }
+enum SearchType { page, explanation, regulation, content }

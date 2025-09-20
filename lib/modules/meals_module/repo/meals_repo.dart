@@ -55,7 +55,7 @@ class MealsRepo {
     try {
       // final result = mealsLocalDatasource.getAllData();
 
-      return Right([]);
+      return const Right([]);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -65,7 +65,7 @@ class MealsRepo {
     try {
       // final result = await mealsLocalDatasource.addData(data);
 
-      return Right(null);
+      return const Right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }

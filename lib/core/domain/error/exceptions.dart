@@ -50,7 +50,7 @@ class ServerException extends Equatable implements Exception {
             },
             builder: (BuildContext context) {
               return PopScope(
-                onPopInvokedWithResult: (bool, dynamic) {
+                onPopInvokedWithResult: (bool didPop, dynamic result) {
                   context.canPop() ? context.pop() : null;
                   AppConst.isBottomSheetOpened = false;
                   Session().logout();
@@ -67,7 +67,8 @@ class ServerException extends Equatable implements Exception {
                         "",
                         height: 70,
                         width: 70,
-                        color: Colors.blue,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.blue, BlendMode.srcIn),
                       ),
                       // Checkmark icon
                       // Icon(
@@ -139,7 +140,7 @@ class ServerException extends Equatable implements Exception {
             },
             builder: (BuildContext context) {
               return PopScope(
-                onPopInvokedWithResult: (bool, dynamic) {
+                onPopInvokedWithResult: (bool didPop, dynamic result) {
                   print("closing");
                   AppConst.isBottomSheetOpened = false;
                 },

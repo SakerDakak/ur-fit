@@ -9,14 +9,15 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 class CaloriesAndSteps extends StatelessWidget {
   final num calories;
   final num sets;
-  const CaloriesAndSteps({super.key, required this.calories, required this.sets});
+  const CaloriesAndSteps(
+      {super.key, required this.calories, required this.sets});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         // calories
-         Expanded(
+        Expanded(
           child: _InfoCard(
             iconPath: Assets.iconsFlam,
             contentColor: Co.selectedFont,
@@ -34,7 +35,7 @@ class CaloriesAndSteps extends StatelessWidget {
             iconPath: Assets.iconsStep,
             contentColor: Co.whiteColor,
             cardColor: Co.cardColor,
-            backgroundCirclesColor: Co.strockColor.withOpacity(0.4),
+            backgroundCirclesColor: Co.strockColor.withValues(alpha: 0.4),
             value: sets.toInt(),
             unit: L10n.tr().group,
           ),

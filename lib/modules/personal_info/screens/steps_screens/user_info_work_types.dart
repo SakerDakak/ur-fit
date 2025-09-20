@@ -23,7 +23,7 @@ class UserInfoWorkTypesOrLocation extends StatelessWidget {
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (p, c) => c is WorkoutTypesStates,
       builder: (context, state) {
-        if (state is! WorkoutTypesStates) return SizedBox.shrink();
+        if (state is! WorkoutTypesStates) return const SizedBox.shrink();
         if (state is WorkoutTypesError) {
           return FailureWidget(
             message: state.error,

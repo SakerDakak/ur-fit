@@ -39,11 +39,10 @@ class UrFitApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => di<SettingCubit>()),
       ],
       child: Sizer(
-        builder: (BuildContext context, Orientation orientation, ScreenType screenType) {
+        builder: (BuildContext context, Orientation orientation,
+            ScreenType screenType) {
           return GlobalLoaderOverlay(
             overlayColor: Colors.transparent,
-            useDefaultLoading: true,
-
             overlayWidgetBuilder: (_) {
               return Center(
                 child: BlocBuilder<AppCubit, AppState>(
@@ -61,7 +60,8 @@ class UrFitApp extends StatelessWidget {
 
             //cdcd
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(1.0)),
               child: BlocBuilder<AppCubit, AppState>(
                 // buildWhen: (previous, current) {
                 //   return previous != current;

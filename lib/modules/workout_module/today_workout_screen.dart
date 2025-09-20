@@ -25,7 +25,8 @@ class TodayWorkoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
-    final List<String> workoutList = exercises.map((e) => stringFromInt(e.id)).toList();
+    final List<String> workoutList =
+        exercises.map((e) => stringFromInt(e.id)).toList();
     return Scaffold(
         appBar: CustomAppBar(
             title: L10n.tr().detailsOfTodayExercises,
@@ -58,9 +59,11 @@ class TodayWorkoutScreen extends StatelessWidget {
                           height: 300.px,
                           child: GridTile(
                               footer: GridTileBar(
-                                backgroundColor: Co.backGround.withOpacity(0.7),
+                                backgroundColor:
+                                    Co.backGround.withValues(alpha: 0.7),
                                 title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       exercises[state.progressValue - 1].name,
@@ -82,7 +85,8 @@ class TodayWorkoutScreen extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(
                                         AssetsManager.time,
-                                        colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                        colorFilter: const ColorFilter.mode(
+                                            Colors.white, BlendMode.srcIn),
                                       ),
                                       SizedBox(
                                         width: 4.px,
@@ -101,15 +105,19 @@ class TodayWorkoutScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8.px),
                                 child: Gif(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage("${exercises[state.progressValue - 1].gifUrl}"),
+                                  image: NetworkImage(
+                                      exercises[state.progressValue - 1]
+                                          .gifUrl),
                                   autostart: Autostart.no,
-                                  placeholder: (context) =>  Center(child: Text(L10n.tr().loading)),
+                                  placeholder: (context) =>
+                                      Center(child: Text(L10n.tr().loading)),
                                 ),
                               )),
                         ),
                         SizedBox(height: 16.px),
                         TrainingDescription(
-                          description: exercises[state.progressValue - 1].instructions,
+                          description:
+                              exercises[state.progressValue - 1].instructions,
                         ),
                       ],
                     ),
@@ -119,8 +127,11 @@ class TodayWorkoutScreen extends StatelessWidget {
                     CustomElevatedButton(
                         text: L10n.tr().start,
                         onPressed: () {
-                          context.pushNamed(PlayWorkoutScreen.routeWzTitleAnExtra,
-                              pathParameters: {'title': exercises[state.progressValue - 1].name},
+                          context.pushNamed(
+                              PlayWorkoutScreen.routeWzTitleAnExtra,
+                              pathParameters: {
+                                'title': exercises[state.progressValue - 1].name
+                              },
                               extra: exercises[state.progressValue - 1]);
                         }),
                     SizedBox(
@@ -146,13 +157,15 @@ class TrainingDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final exercisePlan = context.read<WorkoutCubit>().getPlanForToday();
-    print("excersize plan : ${exercisePlan}");
+    print("excersize plan : $exercisePlan");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           L10n.tr().instructions,
-          style: TStyle.bold_16.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
+          style: TStyle.bold_16.copyWith(
+              fontWeight: FontWeight.w800,
+              color: Theme.of(context).colorScheme.primary),
         ),
         ...description.map(
           (des) => Padding(
@@ -167,7 +180,9 @@ class TrainingDescription extends StatelessWidget {
         ),
         Text(
           L10n.tr().excerciseDescription,
-          style: TStyle.bold_16.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.primary),
+          style: TStyle.bold_16.copyWith(
+              fontWeight: FontWeight.w800,
+              color: Theme.of(context).colorScheme.primary),
         ),
         SizedBox(
           height: 16.px,
@@ -256,7 +271,9 @@ class WorkOutProgressHeader extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       AssetsManager.workout,
-                      colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn),
                       width: 16.px,
                       height: 10.px,
                     ),
@@ -273,7 +290,9 @@ class WorkOutProgressHeader extends StatelessWidget {
                         maxLines: 3,
                         style: TStyle.regular_14.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: state.progressValue >= 1 ? Theme.of(context).colorScheme.primary : Co.whiteColor,
+                          color: state.progressValue >= 1
+                              ? Theme.of(context).colorScheme.primary
+                              : Co.whiteColor,
                         ),
                       ),
                     )
@@ -292,7 +311,9 @@ class WorkOutProgressHeader extends StatelessWidget {
                       workout,
                       style: TStyle.regular_14.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: state.progressValue >= index ? Theme.of(context).colorScheme.primary : Co.whiteColor,
+                        color: state.progressValue >= index
+                            ? Theme.of(context).colorScheme.primary
+                            : Co.whiteColor,
                       ),
                     ),
                   );
@@ -309,16 +330,18 @@ class WorkOutProgressHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${workoutList[progressValue - 1]}',
+                  workoutList[progressValue - 1],
                   style: TStyle.bold_14.copyWith(
                     fontWeight: FontWeight.w800,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 TextButton(
-                  onPressed: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
+                  onPressed: cubit.state.progressValue !=
+                          cubit.getPlanForToday()!.exercises.length
                       ? () {
-                          final value = context.read<WorkoutCubit>().state.progressValue;
+                          final value =
+                              context.read<WorkoutCubit>().state.progressValue;
                           cubit.updateProgress(value + 1);
                           context.pop();
                         }
@@ -327,7 +350,8 @@ class WorkOutProgressHeader extends StatelessWidget {
                     L10n.tr().skip,
                     style: TStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: cubit.state.progressValue != cubit.getPlanForToday()!.exercises.length
+                      color: cubit.state.progressValue !=
+                              cubit.getPlanForToday()!.exercises.length
                           ? Co.whiteColor
                           : Co.greyColor,
                     ),

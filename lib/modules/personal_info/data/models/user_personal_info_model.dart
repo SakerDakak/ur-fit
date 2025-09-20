@@ -28,7 +28,8 @@ abstract class UserPersonalInfoModel with _$UserPersonalInfoModel {
     int? weaklyTrainingCount,
   }) = _UserPersonalInfoModel;
 
-  factory UserPersonalInfoModel.fromJson(Map<String, dynamic> json) => _$UserPersonalInfoModelFromJson(json);
+  factory UserPersonalInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$UserPersonalInfoModelFromJson(json);
 }
 
 class UserInfoRequest {
@@ -101,15 +102,22 @@ class UserInfoRequest {
         age = user.age,
         currentWeight = user.currentWeight?.toDouble(),
         dietId = user.diet?.id,
-        equipmentsIds = user.equipments?.map((equipment) => equipment.id).toSet() ?? {},
+        equipmentsIds =
+            user.equipments?.map((equipment) => equipment.id).toSet() ?? {},
         targetWeight = user.targetWeight?.toDouble(),
-        likedMealsIds = user.recipeTypes?.map((recipe) => recipe.id).toSet() ?? {},
-        exerciseDayes = user.exerciseDays?.map((e) => Day.values.firstWhere((d) => e == d.name)).toSet() ?? {},
+        likedMealsIds =
+            user.recipeTypes?.map((recipe) => recipe.id).toSet() ?? {},
+        exerciseDayes = user.exerciseDays
+                ?.map((e) => Day.values.firstWhere((d) => e == d.name))
+                .toSet() ??
+            {},
         mealsVariantsId = user.mealVariety?.id,
         weaklyTrainingCount = user.trainingDaysPerWeek,
-        notLikedMealsIds = user.foodsNotLiked?.map((notLiked) => notLiked.id).toSet() ?? {},
+        notLikedMealsIds =
+            user.foodsNotLiked?.map((notLiked) => notLiked.id).toSet() ?? {},
         bodyPartsIds = user.bodyParts?.toSet() ?? {},
-        workoutTypesIds = user.workoutTypes?.map((workout) => workout.id).toSet() ?? {};
+        workoutTypesIds =
+            user.workoutTypes?.map((workout) => workout.id).toSet() ?? {};
 
   bool get isValid {
     return gender != null &&
@@ -178,13 +186,13 @@ enum Day {
   const Day(this.value);
 
   static Day ofInt(int value) {
-    return Day.values.firstWhere((day) => day.value == value, orElse: () => Day.sunday);
+    return Day.values
+        .firstWhere((day) => day.value == value, orElse: () => Day.sunday);
   }
 
   /// The integer representation of [Day].
   final int value;
 
-  @override
   String get name {
     switch (this) {
       case Day.sunday:

@@ -321,7 +321,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getGoals() async {
     emit(state.copyWith(getGoalsState: RequestState.loading));
 
-    var result = await _repo.getGoals();
+    final result = await _repo.getGoals();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -346,7 +346,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getNotLikedMealsOptions() async {
     emit(state.copyWith(getNotLikedMealsState: RequestState.loading));
 
-    var result = await _repo.getNotLikedMealsOptions();
+    final result = await _repo.getNotLikedMealsOptions();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -363,7 +363,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getLikedMealsOptions() async {
     emit(state.copyWith(getLikedMealsState: RequestState.loading));
 
-    var result = await _repo.getLikedMealsOptions();
+    final result = await _repo.getLikedMealsOptions();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -380,7 +380,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getDietOptions() async {
     emit(state.copyWith(getDietOptionsState: RequestState.loading));
 
-    var result = await _repo.getDietOptions();
+    final result = await _repo.getDietOptions();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -397,7 +397,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getMealVariantsOptions() async {
     emit(state.copyWith(getMealVariantsState: RequestState.loading));
 
-    var result = await _repo.getMealsVariantsOptions();
+    final result = await _repo.getMealsVariantsOptions();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -414,7 +414,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getMuscleFocusData() async {
     emit(state.copyWith(getMuscleFocusState: RequestState.loading));
 
-    var result = await _repo.getMuscleFocus();
+    final result = await _repo.getMuscleFocus();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -431,7 +431,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getWorkoutTypes() async {
     emit(state.copyWith(getWorkoutTypesState: RequestState.loading));
 
-    var result = await _repo.getWorkoutTypes();
+    final result = await _repo.getWorkoutTypes();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -448,7 +448,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getEquipments() async {
     emit(state.copyWith(getEquipmentsState: RequestState.loading));
 
-    var result = await _repo.getEquipments();
+    final result = await _repo.getEquipments();
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -465,7 +465,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   Future<void> getNoOfDailyMeals() async {
     emit(state.copyWith(getNoOfDailyMealsState: RequestState.loading));
 
-    var result = await _repo.getNoOfDailyMealsOptions();
+    final result = await _repo.getNoOfDailyMealsOptions();
 
     result.fold(
       (failure) {
@@ -490,7 +490,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     emit(state.copyWith(updatePersonalInfo: RequestState.loading));
 
     // var result = await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
-    var result = await _repo.updatePersonalInfo(personalInfoModel: UserInfoRequest());
+    final result = await _repo.updatePersonalInfo(personalInfoModel: UserInfoRequest());
 
     result.fold(
       (failure) {
