@@ -698,6 +698,12 @@ abstract class AppLocalizations {
   /// **'Email not found'**
   String get emailNotFound;
 
+  /// No description provided for @invalidVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid verification code'**
+  String get invalidVerificationCode;
+
   /// No description provided for @youHaveSuccessfullySubscribedToPlan.
   ///
   /// In en, this message translates to:
@@ -1061,7 +1067,7 @@ abstract class AppLocalizations {
   /// No description provided for @pressToResendOtp.
   ///
   /// In en, this message translates to:
-  /// **' Press here to resend'**
+  /// **'Press here to resend'**
   String get pressToResendOtp;
 
   /// No description provided for @confirm.

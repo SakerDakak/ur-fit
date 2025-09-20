@@ -13,15 +13,13 @@ import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/style/fonts.dart';
 
 class OTPWidget extends StatefulWidget {
-  const OTPWidget(
-      {super.key,
-      required this.submitOtp,
-      required this.resendCode,
-      required this.shouldResend});
-  // static const String route = "/otpScreen";
-  // static String routeWithData(String email, {bool shouldResend = false}) {
-  //   return "/otpScreen?email=$email&should_resend=$shouldResend";
-  // }
+  const OTPWidget({
+    super.key,
+    required this.submitOtp,
+    required this.resendCode,
+    required this.shouldResend,
+  });
+
   final Future<void> Function(String otp) submitOtp;
   final Future<bool> Function() resendCode;
 
@@ -57,8 +55,9 @@ class _OTPWidgetState extends State<OTPWidget> {
 
   Future<void> _verifyOTP() async {
     final otp = otpCode.toString();
-    if (otp.length != 4)
+    if (otp.length != 4) {
       return Alerts.showToast(L10n.tr().valueMustBeNum(4, "OTP"));
+    }
 
     setState(() {
       isLoading = true;
@@ -105,7 +104,7 @@ class _OTPWidgetState extends State<OTPWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 150.px,
+                height: 80.px,
               ),
               Center(
                   child: SvgPicture.asset(
@@ -138,7 +137,7 @@ class _OTPWidgetState extends State<OTPWidget> {
                 height: 32.px,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 38),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Directionality(
                   textDirection: TextDirection.ltr,
                   child: OtpTextField(
@@ -168,23 +167,25 @@ class _OTPWidgetState extends State<OTPWidget> {
                   ),
                 ),
               ),
-              SizedBox(height: 16.px),
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
+              SizedBox(height: 26.px),
+              Row(
                 children: [
-                  SvgPicture.asset(
-                    AssetsManager.msg,
-                    width: 18.px,
-                    height: 18.px,
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        AssetsManager.msg,
+                        width: 18.px,
+                        height: 18.px,
+                      ),
+                      SizedBox(width: 8.px),
+                    ],
                   ),
-                  SizedBox(width: 8.px),
-                  Text(
-                    L10n.tr().didntGetOtp,
-                    style: TStyle.regular_16,
+                  Expanded(
+                    child: Text(
+                      L10n.tr().didntGetOtp,
+                      style: TStyle.regular_16,
+                    ),
                   ),
-                  SizedBox(width: 8.px),
                   ValueListenableBuilder(
                     valueListenable: seconds,
                     builder: (context, value, child) => value < 1
@@ -209,16 +210,17 @@ class _OTPWidgetState extends State<OTPWidget> {
                           child!,
                           if (value)
                             const SizedBox(
-                                height: 24,
-                                width: 24,
-                                child: CircularProgressIndicator())
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(),
+                            )
                         ],
                       ),
                       child: TextButton(
                         onPressed: _resendOtp,
                         child: Text(
                           L10n.tr().pressToResendOtp,
-                          style: TStyle.regular_16.copyWith(
+                          style: TStyle.regular_14.copyWith(
                               color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
@@ -233,7 +235,6 @@ class _OTPWidgetState extends State<OTPWidget> {
                   text: L10n.tr().confirm,
                   isLoading: isLoading,
                   onPressed: () {
-                    /// TODO : Implement OTP code verification logic
                     _verifyOTP();
                   })
             ],

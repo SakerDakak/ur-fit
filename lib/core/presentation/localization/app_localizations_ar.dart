@@ -320,6 +320,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailNotFound => 'الايميل غير موجود';
 
   @override
+  String get invalidVerificationCode => 'كود التحقق غير صحيح';
+
+  @override
   String get youHaveSuccessfullySubscribedToPlan =>
       'تم الاشتراك في الخطة بنجاح';
 
@@ -511,7 +514,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get didntGetOtp => 'لم يصلك رمز التحقق؟';
 
   @override
-  String get pressToResendOtp => ' اضغط هنا لاعادة الارسال';
+  String get pressToResendOtp => 'اضغط هنا لاعادة الارسال';
 
   @override
   String get confirm => 'تاكيد';

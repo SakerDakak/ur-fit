@@ -320,6 +320,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailNotFound => 'Email not found';
 
   @override
+  String get invalidVerificationCode => 'Invalid verification code';
+
+  @override
   String get youHaveSuccessfullySubscribedToPlan =>
       'You have successfully subscribed to the plan';
 
@@ -510,7 +513,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get didntGetOtp => 'Didn\'t get otp?';
 
   @override
-  String get pressToResendOtp => ' Press here to resend';
+  String get pressToResendOtp => 'Press here to resend';
 
   @override
   String get confirm => 'Confirm';

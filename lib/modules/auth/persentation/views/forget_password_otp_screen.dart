@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
@@ -18,8 +19,16 @@ class ForgetPasswordOtpScreen extends StatelessWidget {
       final resp = await repo.otpForgetPassword(email: email, code: otp);
       resp.fold(
         (error) {
-          // عرض رسالة الخطأ من الأعلى
-          Alerts.showToast(error.message, error: true);
+          // التحقق من نوع الخطأ وعرض الرسالة المناسبة
+          final String errorMessage = error.message;
+          if (errorMessage.contains('422') ||
+              errorMessage.contains('unprocessable') ||
+              errorMessage.contains('invalid') ||
+              errorMessage.contains('unverified')) {
+            Alerts.showToast(L10n.tr().invalidVerificationCode, error: true);
+          } else {
+            Alerts.showToast(errorMessage, error: true);
+          }
         },
         (user) =>
             context.pushReplacement(UpdatePasswordScreen.routeWzEmail(email)),
