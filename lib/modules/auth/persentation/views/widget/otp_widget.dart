@@ -7,14 +7,17 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
 import '../../../../../core/presentation/style/fonts.dart';
 
 class OTPWidget extends StatefulWidget {
-  const OTPWidget({super.key, required this.submitOtp, required this.resendCode, required this.shouldResend});
+  const OTPWidget(
+      {super.key,
+      required this.submitOtp,
+      required this.resendCode,
+      required this.shouldResend});
   // static const String route = "/otpScreen";
   // static String routeWithData(String email, {bool shouldResend = false}) {
   //   return "/otpScreen?email=$email&should_resend=$shouldResend";
@@ -32,6 +35,7 @@ class _OTPWidgetState extends State<OTPWidget> {
   late Timer _timer;
   final seconds = ValueNotifier<int>(30);
   final isResending = ValueNotifier<bool>(false);
+  bool isLoading = false;
 
   _setTimer() {
     seconds.value = 30;
@@ -53,10 +57,20 @@ class _OTPWidgetState extends State<OTPWidget> {
 
   Future<void> _verifyOTP() async {
     final otp = otpCode.toString();
-    if (otp.length != 4) return Alerts.showToast(L10n.tr().valueMustBeNum(4, "OTP"));
-    LoadingHelper.startLoading();
+    if (otp.length != 4)
+      return Alerts.showToast(L10n.tr().valueMustBeNum(4, "OTP"));
+
+    setState(() {
+      isLoading = true;
+    });
+
     await widget.submitOtp(otp);
-    if (mounted) LoadingHelper.stopLoading();
+
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
@@ -132,7 +146,9 @@ class _OTPWidgetState extends State<OTPWidget> {
                     contentPadding: EdgeInsets.zero,
                     showCursor: false,
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(borderSide: BorderSide(color: Co.greenColor, width: 3))),
+                        border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Co.greenColor, width: 3))),
                     numberOfFields: 4,
                     borderColor: Co.blackColor,
                     fieldWidth: 50,
@@ -178,7 +194,9 @@ class _OTPWidgetState extends State<OTPWidget> {
                               TextSpan(text: L10n.tr().resendAfter),
                               TextSpan(
                                 text: " $value ",
-                                style: TStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                                style: TStyle.regular_16.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                               ),
                               TextSpan(text: L10n.tr().seconds),
                             ]),
@@ -189,14 +207,19 @@ class _OTPWidgetState extends State<OTPWidget> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           child!,
-                          if (value) const SizedBox(height: 24, width: 24, child: CircularProgressIndicator())
+                          if (value)
+                            const SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: CircularProgressIndicator())
                         ],
                       ),
                       child: TextButton(
                         onPressed: _resendOtp,
                         child: Text(
                           L10n.tr().pressToResendOtp,
-                          style: TStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                          style: TStyle.regular_16.copyWith(
+                              color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                     ),
@@ -208,6 +231,7 @@ class _OTPWidgetState extends State<OTPWidget> {
               ),
               CustomElevatedButton(
                   text: L10n.tr().confirm,
+                  isLoading: isLoading,
                   onPressed: () {
                     /// TODO : Implement OTP code verification logic
                     _verifyOTP();

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/colors.dart';
@@ -15,7 +16,8 @@ import 'home_screen.dart';
 
 class MainPage extends StatefulWidget {
   final bool isGuest;
-  static String routeWithBool(bool? isGuest) => "/mainPage${isGuest != null ? "?guest=$isGuest" : ""}";
+  static String routeWithBool(bool? isGuest) =>
+      "/mainPage${isGuest != null ? "?guest=$isGuest" : ""}";
 
   const MainPage({super.key, required this.isGuest});
 
@@ -46,14 +48,20 @@ class _MainPageState extends State<MainPage> {
       ),
       const WorkoutScreen(),
       const MealsScreen(),
-      SizedBox(),
+      const SizedBox(),
       ProfileScreen(
         isGuest: widget.isGuest,
       ),
     ];
   }
 
-  final List<String> titles = [L10n.tr().home, L10n.tr().exercises, L10n.tr().nutritions, "", L10n.tr().profile];
+  final List<String> titles = [
+    L10n.tr().home,
+    L10n.tr().exercises,
+    L10n.tr().nutritions,
+    "",
+    L10n.tr().profile
+  ];
   int _selectedIndex = 0;
 
   // late bool
@@ -74,12 +82,8 @@ class _MainPageState extends State<MainPage> {
           _selectedIndex = index;
         });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(L10n.tr().youHaveToSubscripeToAccessThisFeature),
-            duration: Duration(seconds: 2),
-          ),
-        );
+        Alerts.showToast(L10n.tr().youHaveToSubscripeToAccessThisFeature,
+            error: true);
       }
     }
   }
@@ -91,7 +95,8 @@ class _MainPageState extends State<MainPage> {
   //   });
   // }
 
-  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   List<PersistentBottomNavBarItem> get _navBarsItems {
     return [
@@ -132,22 +137,24 @@ class _MainPageState extends State<MainPage> {
         onPressed: (_) {
           showDialog(
               context: context,
-              builder: (_) => new AlertDialog(
+              builder: (_) => AlertDialog(
                     backgroundColor: Colors.blue,
                     insetPadding: EdgeInsets.zero,
                     contentPadding: EdgeInsets.zero,
                     titlePadding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(16.0))),
                     content: Builder(
                       builder: (context) {
                         // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                        var height = MediaQuery.of(context).size.height;
-                        var width = MediaQuery.of(context).size.width;
+                        final height = MediaQuery.of(context).size.height;
+                        final width = MediaQuery.of(context).size.width;
 
                         return Container(
                           // color: Colors.red,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(16.0)),
                             image: DecorationImage(
                               image: AssetImage(AssetsManager.medical),
                               fit: BoxFit.cover,
@@ -168,11 +175,13 @@ class _MainPageState extends State<MainPage> {
                                     children: [
                                       CircleAvatar(
                                         radius: 220,
-                                        backgroundColor: Co.strockColor.withValues(alpha: 0.2),
+                                        backgroundColor: Co.strockColor
+                                            .withValues(alpha: 0.2),
                                       ),
                                       CircleAvatar(
                                         radius: 150,
-                                        backgroundColor: Co.strockColor.withValues(alpha: 0.4),
+                                        backgroundColor: Co.strockColor
+                                            .withValues(alpha: 0.4),
                                       ),
                                     ],
                                   ),
@@ -186,12 +195,14 @@ class _MainPageState extends State<MainPage> {
                                         horizontal: 10,
                                         vertical: 4,
                                       ),
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           color: Co.yellow,
-                                          borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(16.0))),
                                       child: Text(
                                         L10n.tr().soon,
-                                        style: TStyle.semiBold_16.copyWith(color: Co.blackColor),
+                                        style: TStyle.semiBold_16
+                                            .copyWith(color: Co.blackColor),
                                       ))),
                               Align(
                                   alignment: Alignment.center,
@@ -204,9 +215,11 @@ class _MainPageState extends State<MainPage> {
                                       ),
                                       Center(
                                         child: Text(
-                                          L10n.tr().becauseWeKeenToProvideAnIntegratedService,
+                                          L10n.tr()
+                                              .becauseWeKeenToProvideAnIntegratedService,
                                           textAlign: TextAlign.center,
-                                          style: TStyle.bold_20.copyWith(color: Co.whiteColor),
+                                          style: TStyle.bold_20
+                                              .copyWith(color: Co.whiteColor),
                                         ),
                                       ),
                                       const SizedBox(
@@ -217,12 +230,15 @@ class _MainPageState extends State<MainPage> {
                                           children: [
                                             TextSpan(
                                                 text: "${L10n.tr().waitFor} ",
-                                                style: TStyle.bold_20.copyWith(color: Co.primaryColor),
+                                                style: TStyle.bold_20.copyWith(
+                                                    color: Co.primaryColor),
                                                 children: [
                                                   TextSpan(
                                                     text: L10n.tr().launching,
-                                                    style:
-                                                        TStyle.bold_20.copyWith(color: Co.whiteColor),
+                                                    style: TStyle.bold_20
+                                                        .copyWith(
+                                                            color:
+                                                                Co.whiteColor),
                                                   ),
                                                 ]),
                                           ],
@@ -233,7 +249,8 @@ class _MainPageState extends State<MainPage> {
                                       ),
                                       Text(
                                         L10n.tr().ourMedicalServicesSoon,
-                                        style: TStyle.bold_20.copyWith(color: Co.whiteColor),
+                                        style: TStyle.bold_20
+                                            .copyWith(color: Co.whiteColor),
                                       ),
                                     ],
                                   ))),
@@ -331,7 +348,8 @@ class _MainPageState extends State<MainPage> {
           stateManagement: false,
           screens: _widgetOptions,
           items: _navBarsItems,
-          bottomScreenMargin: _selectedIndex == 0 ? 0 : MediaQuery.of(context).padding.top,
+          bottomScreenMargin:
+              _selectedIndex == 0 ? 0 : MediaQuery.of(context).padding.top,
 
           backgroundColor: Co.backGround,
           handleAndroidBackButtonPress: false,
@@ -394,7 +412,8 @@ class CustomNavBarItem extends StatelessWidget {
           iconPath,
           color: isActive ? activeColor : inactiveColor,
         ),
-        const SizedBox(height: 4), // Adjust this value for spacing between icon and text
+        const SizedBox(
+            height: 4), // Adjust this value for spacing between icon and text
         FittedBox(
           child: Text(
             title,

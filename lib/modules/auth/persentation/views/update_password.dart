@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
@@ -29,6 +28,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -44,7 +44,8 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppConst.kHorizontalPadding),
           children: [
             SvgPicture.asset(
               Assets.imageLogo,
@@ -94,20 +95,32 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
             // change button
             CustomElevatedButton(
               text: L10n.tr().send,
+              isLoading: isLoading,
               onPressed: () async {
                 if (_formKey.currentState?.validate() != true) return;
-                LoadingHelper.startLoading();
+
+                setState(() {
+                  isLoading = true;
+                });
+
                 try {
-                  final respo = await di<AuthRepo>()
-                      .updatePassword(password: passwordController.text, email: widget.email);
-                  respo.fold((l) {}, (r) {
+                  final respo = await di<AuthRepo>().updatePassword(
+                      password: passwordController.text, email: widget.email);
+                  respo.fold((error) {
+                    Alerts.showToast(error.message, error: true);
+                  }, (r) {
                     Alerts.showToast(r ?? '', error: false);
                     context.go(AuthScreen.route);
                   });
                 } catch (e) {
                   print("Error updating password: $e");
+                  Alerts.showToast("حدث خطأ ما", error: true);
                 } finally {
-                  LoadingHelper.stopLoading();
+                  if (mounted) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                  }
                 }
               },
               padding: EdgeInsets.zero,

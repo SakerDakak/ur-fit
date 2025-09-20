@@ -8,7 +8,6 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
 import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
@@ -32,6 +31,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   var user = Session().currentUser;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text(L10n.tr().settings),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
+        padding:
+            const EdgeInsets.symmetric(horizontal: AppConst.kHorizontalPadding),
         children: [
           const SizedBox(height: 20),
 
@@ -87,11 +88,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // delete account
           BlocConsumer<SettingCubit, SettingState>(
             listener: (context, state) {
-              if (state.deleteAccountState == RequestState.loading) {
-                LoadingHelper.startLoading();
-              } else {
-                LoadingHelper.stopLoading();
-              }
               if (state.deleteAccountState == RequestState.success) {
                 Session().clearUserData();
                 Alerts.showToast(state.deleteAccountMessage, error: false);
@@ -126,12 +122,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (context) => const ChangeNameSheet(),
     );
     if (name != null) {
-      LoadingHelper.startLoading();
-      final response = await di<PersonalInfoRepoImpl>()
-          .updatePersonalInfo(personalInfoModel: UserInfoRequest.fromUserModel(user!.copyWith(name: name)));
-      LoadingHelper.stopLoading();
+      setState(() {
+        isLoading = true;
+      });
+
+      final response = await di<PersonalInfoRepoImpl>().updatePersonalInfo(
+          personalInfoModel:
+              UserInfoRequest.fromUserModel(user!.copyWith(name: name)));
+
+      setState(() {
+        isLoading = false;
+      });
+
       response.fold(
-        (ifLeft) {},
+        (ifLeft) {
+          Alerts.showToast(ifLeft.message, error: true);
+        },
         (ifRight) {
           Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
           Session().setCurrentUser = ifRight;

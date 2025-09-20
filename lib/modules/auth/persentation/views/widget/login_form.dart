@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
@@ -102,9 +101,13 @@ class _LoginFormState extends State<LoginForm> {
                                 value: value,
                                 onChanged: (val) {},
                                 checkColor: Co.whiteColor,
-                                focusColor: Theme.of(context).colorScheme.primary,
-                                activeColor: Theme.of(context).colorScheme.primary,
-                                side: BorderSide(color: Theme.of(context).colorScheme.primary),
+                                focusColor:
+                                    Theme.of(context).colorScheme.primary,
+                                activeColor:
+                                    Theme.of(context).colorScheme.primary,
+                                side: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                               ),
                             ),
                             Text(
@@ -122,7 +125,8 @@ class _LoginFormState extends State<LoginForm> {
                         },
                         child: Text(
                           L10n.tr().forgetPassword,
-                          style: TStyle.regular_16.copyWith(color: Theme.of(context).colorScheme.primary),
+                          style: TStyle.regular_16.copyWith(
+                              color: Theme.of(context).colorScheme.primary),
                         )),
                   ],
                 ),
@@ -133,11 +137,6 @@ class _LoginFormState extends State<LoginForm> {
               BlocConsumer<AuthCubit, AuthStates>(
                 listenWhen: (previous, current) => current is LoginStates,
                 listener: (context, state) {
-                  if (state is LoginLoadingState) {
-                    LoadingHelper.startLoading();
-                  } else {
-                    LoadingHelper.stopLoading();
-                  }
                   if (state is LoginSuccessState) {
                     AuthHelper.setUserAndNavigate(context, state.user);
                   }
@@ -147,14 +146,15 @@ class _LoginFormState extends State<LoginForm> {
                     isLoading: state is LoginLoadingState,
                     onPressed: () {
                       if (_formKey.currentState?.validate() != true) return;
-                      TextInput.finishAutofillContext(shouldSave: shouldRemember.value);
+                      TextInput.finishAutofillContext(
+                          shouldSave: shouldRemember.value);
                       context.read<AuthCubit>().login(shouldRemember.value);
                     }),
               ),
               SizedBox(
                 height: 24.px,
               ),
-              SocialMediaWidget(),
+              const SocialMediaWidget(),
               SizedBox(
                 height: 24.px,
               ),

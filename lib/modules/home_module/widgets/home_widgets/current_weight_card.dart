@@ -7,7 +7,6 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/edit_weight_bottom_sheet.dart';
 import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
@@ -22,6 +21,7 @@ class CurrentWeightCard extends StatefulWidget {
 
 class _CurrentWeightCardState extends State<CurrentWeightCard> {
   var user = Session().currentUser;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +46,7 @@ class _CurrentWeightCardState extends State<CurrentWeightCard> {
                   svgIconPath: Assets.iconsWeightIcon,
                   weight: user?.currentWeight?.toDouble() ?? 0,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 45,
                   child: VerticalDivider(
                     color: Co.strockColor,
@@ -94,12 +94,22 @@ class _CurrentWeightCardState extends State<CurrentWeightCard> {
       builder: (context) => const EditWeightBottomSheet(),
     );
     if (weight != null) {
-      LoadingHelper.startLoading();
+      setState(() {
+        isLoading = true;
+      });
+
       final response = await di<PersonalInfoRepoImpl>().updatePersonalInfo(
-          personalInfoModel: UserInfoRequest.fromUserModel(Session().currentUser!.copyWith(currentWeight: weight)));
-      LoadingHelper.stopLoading();
+          personalInfoModel: UserInfoRequest.fromUserModel(
+              Session().currentUser!.copyWith(currentWeight: weight)));
+
+      setState(() {
+        isLoading = false;
+      });
+
       response.fold(
-        (ifLeft) {},
+        (ifLeft) {
+          Alerts.showToast(ifLeft.message, error: true);
+        },
         (ifRight) {
           Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
           Session().setCurrentUser = ifRight;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/update_password.dart';
@@ -16,8 +17,12 @@ class ForgetPasswordOtpScreen extends StatelessWidget {
     submitOTp(String otp) async {
       final resp = await repo.otpForgetPassword(email: email, code: otp);
       resp.fold(
-        (error) {},
-        (user) => context.pushReplacement(UpdatePasswordScreen.routeWzEmail(email)),
+        (error) {
+          // عرض رسالة الخطأ من الأعلى
+          Alerts.showToast(error.message, error: true);
+        },
+        (user) =>
+            context.pushReplacement(UpdatePasswordScreen.routeWzEmail(email)),
       );
     }
 
@@ -29,6 +34,7 @@ class ForgetPasswordOtpScreen extends StatelessWidget {
       );
     }
 
-    return OTPWidget(submitOtp: submitOTp, resendCode: resendOTp, shouldResend: false);
+    return OTPWidget(
+        submitOtp: submitOTp, resendCode: resendOTp, shouldResend: false);
   }
 }

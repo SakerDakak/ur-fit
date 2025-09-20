@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
-import 'package:urfit/core/presentation/utils/loading_helper.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
@@ -125,18 +124,14 @@ class _RegisterFormState extends State<RegisterForm> {
               BlocConsumer<AuthCubit, AuthStates>(
                 listenWhen: (previous, current) => current is RegisterStates,
                 listener: (context, state) {
-                  if (state is RegisterLoadingState) {
-                    LoadingHelper.startLoading();
-                  } else {
-                    LoadingHelper.stopLoading();
-                  }
                   if (state is RegisterSuccessState) {
                     Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail,
                         error: false);
                     final email = authCubit.emailController.text.trim();
                     context.push(RegisterOTPScreen.route(email));
                   } else if (state is RegisterErrorState) {
-                    // Alerts.showToast(state.error?? '');
+                    // عرض رسالة الخطأ من الأعلى
+                    Alerts.showToast(state.error ?? '', error: true);
                   }
                 },
                 buildWhen: (previous, current) => current is! RegisterStates,

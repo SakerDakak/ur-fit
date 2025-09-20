@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
@@ -17,6 +18,20 @@ class ServerException extends Equatable implements Exception {
   final String? message;
   final bool showSnackbar;
   // bool isBottomSheetOpened = false;
+
+  // دالة مساعدة لعرض Toast من الأعلى
+  static void _showToast(String message, {bool error = true}) {
+    final color = error ? Co.redColor : Co.blackColor;
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 3,
+      fontSize: 16,
+      backgroundColor: color,
+      textColor: Co.fontColor,
+    );
+  }
 
   _showSubscriptionEndBottomSheet() {
     if (!AppConst.isBottomSheetOpened) {
@@ -39,7 +54,6 @@ class ServerException extends Equatable implements Exception {
                   context.canPop() ? context.pop() : null;
                   AppConst.isBottomSheetOpened = false;
                   Session().logout();
-                  ;
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -76,7 +90,8 @@ class ServerException extends Equatable implements Exception {
                       ),
                       const SizedBox(height: 16.0),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 10.0),
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -86,9 +101,11 @@ class ServerException extends Equatable implements Exception {
                               // sl<AuthenticationBloc>().add(LoggedOut());
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue, padding: const EdgeInsets.all(15)),
-                            child:
-                                Text(L10n.tr().logout, style: TStyle.semiBold_14.copyWith(color: Colors.white)),
+                                backgroundColor: Colors.blue,
+                                padding: const EdgeInsets.all(15)),
+                            child: Text(L10n.tr().logout,
+                                style: TStyle.semiBold_14
+                                    .copyWith(color: Colors.white)),
                           ),
                         ),
                       ),
@@ -141,7 +158,7 @@ class ServerException extends Equatable implements Exception {
                         textAlign: TextAlign.center,
                         style: TStyle.semiBold_16,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 14,
                       ),
                       Text(
@@ -166,7 +183,8 @@ class ServerException extends Equatable implements Exception {
                           },
                           child: Text(
                             L10n.tr().retry,
-                            style: TStyle.semiBold_14.copyWith(color: Colors.white),
+                            style: TStyle.semiBold_14
+                                .copyWith(color: Colors.white),
                           ),
                         ),
                       ),
@@ -198,28 +216,26 @@ class ServerException extends Equatable implements Exception {
 }
 
 class FetchDataException extends ServerException {
-  FetchDataException([message]) : super(message ?? "Error During Communication");
+  FetchDataException([message])
+      : super(message ?? "Error During Communication");
 }
 
 class BadRequestException extends ServerException {
   BadRequestException([message]) : super(message ?? "Bad Request", false) {
-    if (AppConst.rootScaffoldKey.currentState != null) {
-      AppConst.rootScaffoldKey.currentState!.showSnackBar(SnackBar(content: Center(child: Text(message!))));
-    }
+    ServerException._showToast(message ?? "Bad Request", error: true);
   }
 }
 
 class UnauthorizedException extends ServerException {
   UnauthorizedException([message]) : super(message ?? "Unauthorized") {
     TokenService.deleteToken().then((value) {});
-    if (AppConst.rootScaffoldKey.currentState != null) {
-      AppConst.rootScaffoldKey.currentState!.showSnackBar(SnackBar(content: Center(child: Text(message!))));
-    }
+    ServerException._showToast(message ?? "Unauthorized", error: true);
   }
 }
 
 class ForbiddenException extends ServerException {
-  ForbiddenException([message]) : super(message ?? "This action is unauthorized") {
+  ForbiddenException([message])
+      : super(message ?? "This action is unauthorized") {
     print("ForbiddenException $message");
     if (message == 'false') {
       _showSubscriptionEndBottomSheet();
@@ -240,17 +256,20 @@ class TooManyRequestsException extends ServerException {
 }
 
 class UnprocessableEntityException extends ServerException {
-  UnprocessableEntityException([message, errors]) : super(message ?? "Unprocessable Entity");
+  UnprocessableEntityException([message, errors])
+      : super(message ?? "Unprocessable Entity");
 
 // Additional handling for the 'errors' property can be added here if needed
 }
 
 class InternalServerErrorException extends ServerException {
-  InternalServerErrorException([message]) : super(message ?? "Internal Server Error");
+  InternalServerErrorException([message])
+      : super(message ?? "Internal Server Error");
 }
 
 class NoInternetConnectionException extends ServerException {
-  NoInternetConnectionException([message]) : super(message ?? "No Internet Connection") {
+  NoInternetConnectionException([message])
+      : super(message ?? "No Internet Connection") {
     _showNetworkErrorBottomSheet();
   }
 }
