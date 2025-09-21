@@ -108,7 +108,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     children: [
                       SizedBox(height: 20),
                       SubscriptionScreenAppBar(),
-                      SizedBox(height: 50),
+                      SizedBox(height: 30),
                     ],
                   ),
                 ),
@@ -152,7 +152,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                       );
                     },
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
 
                   // selected plan description مع البادينج
                   Padding(
@@ -173,7 +173,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 10),
                 ],
 
                 // عرض عناصر الدفع والكوبون فقط للمستخدمين غير المشتركين
@@ -187,11 +187,13 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                         Expanded(
                           child: CompactTextFormField(
                             hintText: L10n.tr().couponCode,
+                            padding: EdgeInsets.zero,
                             onChanged: (String? value) {
                               _checkCoupon(value);
                             },
                           ),
                         ),
+                        const SizedBox(width: 10),
                         BlocBuilder<SubscriptionCubit, SubscriptionState>(
                             builder: (context, state) =>
                                 switch (state.couponState) {
@@ -214,7 +216,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                     ),
                   ),
                   // start payment and cancel button
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 10),
 
                   // عرض تفاصيل الخصم مع البادينج
                   Padding(
@@ -239,33 +241,108 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                             if (state.discountValue == null) {
                               return const SizedBox.shrink();
                             }
-                            return Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(L10n.tr().priceBeforeDiscount,
-                                        style: TStyle.semiBold_16),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                        "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
-                                        style: TStyle.bold_16
-                                            .copyWith(color: Co.primaryColor)),
-                                  ],
+                            return Container(
+                              padding: const EdgeInsets.all(16),
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: Colors.white.withValues(alpha: 0.2),
+                                  width: 1,
                                 ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    Text(L10n.tr().priceAfterDiscount,
-                                        style: TStyle.semiBold_16),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      "${state.discountValue?.final_price.toStringAsFixed(2)} ${L10n.tr().sar}",
-                                      style: TStyle.bold_16
-                                          .copyWith(color: Co.primaryColor),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // عنوان تفاصيل الخصم
+                                  Text(
+                                    L10n.tr().discountDetails,
+                                    style: TStyle.bold_16.copyWith(
+                                      color: Colors.white,
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                  const SizedBox(height: 16),
+
+                                  // السعر قبل الخصم
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        L10n.tr().priceBeforeDiscount,
+                                        style: TStyle.medium_16.copyWith(
+                                          color: Colors.white70,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${state.packages.firstWhere((package) => package.id == state.selectedPackage).price} ${L10n.tr().sar}",
+                                        style: TStyle.bold_16.copyWith(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  const SizedBox(height: 12),
+
+                                  // خط فاصل
+                                  Container(
+                                    height: 1,
+                                    color: Colors.white.withValues(alpha: 0.2),
+                                  ),
+
+                                  const SizedBox(height: 12),
+
+                                  // السعر بعد الخصم
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        L10n.tr().priceAfterDiscount,
+                                        style: TStyle.medium_16.copyWith(
+                                          color: Colors.white70,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${state.discountValue?.final_price.toStringAsFixed(2)} ${L10n.tr().sar}",
+                                        style: TStyle.bold_20.copyWith(
+                                          color: Co.primaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  const SizedBox(height: 8),
+
+                                  // مبلغ الخصم
+                                  if (state.discountValue
+                                              ?.discount_value_price !=
+                                          null &&
+                                      state.discountValue!
+                                              .discount_value_price >
+                                          0)
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          L10n.tr().discountAmount,
+                                          style: TStyle.medium_16.copyWith(
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                        Text(
+                                          "-${state.discountValue!.discount_value_price.toStringAsFixed(2)} ${L10n.tr().sar}",
+                                          style: TStyle.bold_16.copyWith(
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                ],
+                              ),
                             );
                         }
                       },
@@ -289,41 +366,61 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                         }
                       },
                       builder: (context, state) {
-                        if (state.getPaymentUrlState == RequestState.loading ||
-                            state.getPaymentUrlState == RequestState.success) {
-                          return const Center(
-                              child: AdaptiveProgressIndicator());
-                        }
                         return CustomElevatedButton(
                           padding: EdgeInsets.zero,
                           text: state.discountValue?.final_price != null &&
                                   state.discountValue!.final_price <= 0
                               ? L10n.tr().subscribe
                               : L10n.tr().paymentGetWay,
-                          onPressed: () async {
-                            await context
-                                .read<SubscriptionCubit>()
-                                .getPaymentUrl();
-                            if (!context.mounted) return;
-                            if (state.paymentUrl == null) {
-                              await Session().getUserDataFromServer();
-                              Alerts.showToast(
-                                  L10n.tr().youHaveSuccessfullySubscribedToPlan,
-                                  error: false);
-                              if (context.mounted) {
-                                context.go(MainPage.routeWithBool(false));
-                              }
-                            } else {
-                              final res = await context.pushNamed<String>(
-                                  PaymentWebView.route,
-                                  queryParameters: {"url": state.paymentUrl});
-                              if (res != null && context.mounted) {
-                                context
-                                    .read<SubscriptionCubit>()
-                                    .paymentResponse(res);
-                              }
-                            }
-                          },
+                          isLoading:
+                              state.getPaymentUrlState == RequestState.loading,
+                          onPressed: (state.getPaymentUrlState ==
+                                      RequestState.loading ||
+                                  state.getPackagesState ==
+                                      RequestState.loading ||
+                                  state.getPackagesState ==
+                                      RequestState.failure ||
+                                  state.packages.isEmpty)
+                              ? null
+                              : () async {
+                                  // منع الضغط المتعدد على الزر
+                                  if (state.getPaymentUrlState ==
+                                      RequestState.loading) return;
+
+                                  await context
+                                      .read<SubscriptionCubit>()
+                                      .getPaymentUrl();
+                                  if (!context.mounted) return;
+
+                                  // الحصول على الحالة المحدثة بعد استدعاء getPaymentUrl
+                                  final updatedState =
+                                      context.read<SubscriptionCubit>().state;
+
+                                  if (updatedState.paymentUrl == null ||
+                                      updatedState.paymentUrl!.isEmpty) {
+                                    // إذا لم يتم إرجاع رابط دفع، فهذا يعني أن الاشتراك مجاني
+                                    await Session().getUserDataFromServer();
+                                    Alerts.showToast(
+                                        L10n.tr()
+                                            .youHaveSuccessfullySubscribedToPlan,
+                                        error: false);
+                                    if (context.mounted) {
+                                      context.go(MainPage.routeWithBool(false));
+                                    }
+                                  } else {
+                                    // إذا تم إرجاع رابط دفع، انتقل إلى شاشة الدفع
+                                    final res = await context.pushNamed<String>(
+                                        PaymentWebView.route,
+                                        queryParameters: {
+                                          "url": updatedState.paymentUrl!
+                                        });
+                                    if (res != null && context.mounted) {
+                                      context
+                                          .read<SubscriptionCubit>()
+                                          .paymentResponse(res);
+                                    }
+                                  }
+                                },
                         );
                       },
                     ),

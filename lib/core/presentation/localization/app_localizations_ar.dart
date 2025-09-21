@@ -620,6 +620,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get paymentGetWay => 'الانتقال للدفع';
 
   @override
+  String get payment => 'الدفع';
+
+  @override
+  String get paymentFailed => 'فشل في الدفع';
+
+  @override
+  String get paymentSuccessful => 'تم الدفع بنجاح';
+
+  @override
+  String get discountDetails => 'تفاصيل الخصم';
+
+  @override
+  String get discountAmount => 'مبلغ الخصم';
+
+  @override
   String get homeWelcome => 'اهلا';
 
   @override

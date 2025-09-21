@@ -1274,6 +1274,36 @@ abstract class AppLocalizations {
   /// **'Payment GetWay'**
   String get paymentGetWay;
 
+  /// No description provided for @payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get payment;
+
+  /// No description provided for @paymentFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Failed'**
+  String get paymentFailed;
+
+  /// No description provided for @paymentSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Successful'**
+  String get paymentSuccessful;
+
+  /// No description provided for @discountDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount Details'**
+  String get discountDetails;
+
+  /// No description provided for @discountAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount Amount'**
+  String get discountAmount;
+
   /// No description provided for @homeWelcome.
   ///
   /// In en, this message translates to:

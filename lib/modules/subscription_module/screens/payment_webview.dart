@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
 
 class PaymentWebView extends StatefulWidget {
   final String url;
@@ -13,6 +16,7 @@ class PaymentWebView extends StatefulWidget {
 
 class _PaymentWebViewState extends State<PaymentWebView> {
   late WebViewController controller;
+  bool isLoading = true;
   @override
   void initState() {
     print("url ::: ${widget.url}");
@@ -23,13 +27,21 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            // Update loading bar.
+            // تحديث شريط التحميل
+            if (progress == 100 && mounted) {
+              setState(() {
+                isLoading = false;
+              });
+            }
           },
           onUrlChange: (UrlChange url) {
             print("url : ${url.url}");
             if (url.url != null &&
-                (url.url!.contains("http://urfit-app.rmz.im/") || url.url!.contains("https://urfit-app.rmz.im/"))) {
-              context.pop(url.url);
+                (url.url!.contains("http://urfit-app.rmz.im/") ||
+                    url.url!.contains("https://urfit-app.rmz.im/"))) {
+              if (mounted) {
+                context.pop(url.url);
+              }
             }
           },
           onPageStarted: (String url) {},
@@ -54,7 +66,51 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   }
 
   @override
+  void dispose() {
+    // تنظيف الموارد إذا لزم الأمر
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return WebViewWidget(controller: controller);
+    return Scaffold(
+      backgroundColor: Co.backGround,
+      appBar: AppBar(
+        backgroundColor: Co.backGround,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+        title: Text(
+          L10n.tr().payment,
+          style: TStyle.bold_16.copyWith(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            WebViewWidget(controller: controller),
+            if (isLoading)
+              Container(
+                color: Co.backGround,
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }

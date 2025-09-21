@@ -619,6 +619,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentGetWay => 'Payment GetWay';
 
   @override
+  String get payment => 'Payment';
+
+  @override
+  String get paymentFailed => 'Payment Failed';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful';
+
+  @override
+  String get discountDetails => 'Discount Details';
+
+  @override
+  String get discountAmount => 'Discount Amount';
+
+  @override
   String get homeWelcome => 'Welcome';
 
   @override
