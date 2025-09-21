@@ -641,6 +641,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get subscribeNow => ' اشترك الآن!';
 
   @override
+  String get motivationalExerciseTitle => 'استمر في رحلتك نحو اللياقة!';
+
+  @override
+  String get motivationalExerciseSubtitle => 'اجعل كل تمرين خطوة نحو هدفك';
+
+  @override
+  String get motivationalExerciseAction => 'ابدأ تمرينك الآن';
+
+  @override
+  String get motivationalSubscriptionTitle => 'ابدأ رحلتك نحو جسم أحلامك';
+
+  @override
+  String get motivationalSubscriptionSubtitle =>
+      'احصل على خطة تمارين وتغذية مخصصة لك';
+
+  @override
+  String get motivationalSubscriptionAction => 'اشترك الآن';
+
+  @override
   String get goal => 'الهدف';
 
   @override

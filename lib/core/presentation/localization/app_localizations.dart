@@ -1316,6 +1316,42 @@ abstract class AppLocalizations {
   /// **' Subscribe now!'**
   String get subscribeNow;
 
+  /// No description provided for @motivationalExerciseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going on your fitness journey!'**
+  String get motivationalExerciseTitle;
+
+  /// No description provided for @motivationalExerciseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make every workout a step towards your goal'**
+  String get motivationalExerciseSubtitle;
+
+  /// No description provided for @motivationalExerciseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your workout now'**
+  String get motivationalExerciseAction;
+
+  /// No description provided for @motivationalSubscriptionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your journey to your dream body'**
+  String get motivationalSubscriptionTitle;
+
+  /// No description provided for @motivationalSubscriptionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get personalized workout and nutrition plans'**
+  String get motivationalSubscriptionSubtitle;
+
+  /// No description provided for @motivationalSubscriptionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe now'**
+  String get motivationalSubscriptionAction;
+
   /// No description provided for @goal.
   ///
   /// In en, this message translates to:

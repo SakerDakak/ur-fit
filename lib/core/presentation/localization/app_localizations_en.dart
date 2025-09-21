@@ -640,6 +640,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get subscribeNow => ' Subscribe now!';
 
   @override
+  String get motivationalExerciseTitle => 'Keep going on your fitness journey!';
+
+  @override
+  String get motivationalExerciseSubtitle =>
+      'Make every workout a step towards your goal';
+
+  @override
+  String get motivationalExerciseAction => 'Start your workout now';
+
+  @override
+  String get motivationalSubscriptionTitle =>
+      'Start your journey to your dream body';
+
+  @override
+  String get motivationalSubscriptionSubtitle =>
+      'Get personalized workout and nutrition plans';
+
+  @override
+  String get motivationalSubscriptionAction => 'Subscribe now';
+
+  @override
   String get goal => 'Goal';
 
   @override
