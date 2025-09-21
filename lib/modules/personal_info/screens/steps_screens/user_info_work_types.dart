@@ -5,7 +5,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
@@ -18,7 +17,7 @@ class UserInfoWorkTypesOrLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SetupPersonalInfoCubit>();
-    cubit.getWorkoutTypes();
+    cubit.getExercisePlaces(); // استخدام الدالة الجديدة لأماكن التمرين
 
     return BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
       buildWhen: (p, c) => c is WorkoutTypesStates,
@@ -30,7 +29,9 @@ class UserInfoWorkTypesOrLocation extends StatelessWidget {
             onRetry: () => cubit.getWorkoutTypes(),
           );
         }
-        final tools = state is WorkoutTypesLoaded ? state.workoutTypes : Fakers().selectionModels;
+        final tools = state is WorkoutTypesLoaded
+            ? state.workoutTypes
+            : Fakers().selectionModels;
         return Skeletonizer(
           enabled: state is! WorkoutTypesLoaded,
           child: SingleChildScrollView(
@@ -46,29 +47,6 @@ class UserInfoWorkTypesOrLocation extends StatelessWidget {
                         style: TStyle.semiBold_16,
                         textAlign: TextAlign.start,
                       ),
-                      if (tools.length > 4)
-                        GestureDetector(
-                          onTap: () async {
-                            final res = await showModalBottomSheet(
-                              backgroundColor: Colors.white,
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                              ),
-                              builder: (ctx) => SeeMoreSheet(
-                                items: tools.map((e) => (e.id, e.name)).toList(),
-                                selected: state.userInfo.workoutTypesIds,
-                              ),
-                            );
-                            if (res != null) cubit.toggleWorkoutType(0, addSet: res);
-                          },
-                          child: Text(
-                            L10n.tr().seeMore,
-                            style: TStyle.semiBold_16.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ),
@@ -78,7 +56,7 @@ class UserInfoWorkTypesOrLocation extends StatelessWidget {
                   effects: const [FadeEffect()],
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: tools.length > 4 ? 4 : tools.length,
+                    itemCount: tools.length,
                     itemBuilder: (context, index) => RadioBoxWithImage(
                         title: tools[index].name,
                         imageUrl: tools[index].image ?? "",

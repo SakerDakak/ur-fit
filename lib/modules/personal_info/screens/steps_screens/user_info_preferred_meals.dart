@@ -44,55 +44,27 @@ class _UserInfoPreferredMealsState extends State<UserInfoPreferredMeals> {
             onRetry: () => cubit.getLikedMealsOptions(),
           );
         }
-        final meals = state is! MealsLikedLoaded ? Fakers().selectionModels : state.meals;
-        final isAllSelected = state.userInfo.likedMealsIds.length == meals.length;
+        final meals =
+            state is! MealsLikedLoaded ? Fakers().selectionModels : state.meals;
+        final isAllSelected =
+            state.userInfo.likedMealsIds.length == meals.length;
         return Column(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 32,
-              child: Row(
-                children: [
-                  Text(
-                    L10n.tr().mealsYouLike,
-                    style: TStyle.semiBold_16,
-                    textAlign: TextAlign.start,
-                  ),
-                  // Spacer(),
-                  // GestureDetector(
-                  //   onTap: () async {
-                  //     final res = await showModalBottomSheet<Set<int>>(
-                  //       backgroundColor: Colors.white,
-                  //       context: context,
-                  //       shape: const RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                  //       ),
-                  //       builder: (ctx) => SeeMoreSheet(
-                  //         items: meals.map((e) => (e.id, e.name)).toList(),
-                  //         selected: state.userInfo.likedMealsIds,
-                  //       ),
-                  //     );
-                  //     if (res != null) cubit.toggleLikedMeal(0, addSet: res);
-                  //   },
-                  //   child: Text(
-                  //     L10n.tr().seeMore,
-                  //     style: TStyle.semiBold_16.copyWith(
-                  //       color: cubit.colorScheme.primary,
-                  //     ),
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Text(
+                  L10n.tr().mealsYouLike,
+                  style: TStyle.semiBold_16,
+                  textAlign: TextAlign.start,
+                ),
                 TextButton(
                     onPressed: () {
                       if (isAllSelected) {
                         cubit.toggleLikedMeal(0, addSet: {});
                       } else {
-                        cubit.toggleLikedMeal(0, addSet: state.meals.map((e) => e.id).toSet());
+                        cubit.toggleLikedMeal(0,
+                            addSet: state.meals.map((e) => e.id).toSet());
                       }
                     },
                     style: TextButton.styleFrom(
@@ -100,7 +72,9 @@ class _UserInfoPreferredMealsState extends State<UserInfoPreferredMeals> {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: Text(
-                      isAllSelected ? L10n.tr().unselectAll : L10n.tr().selectAll,
+                      isAllSelected
+                          ? L10n.tr().unselectAll
+                          : L10n.tr().selectAll,
                       style: TStyle.bold_16.copyWith(
                         color: isAllSelected
                             ? cubit.colorScheme.tertiary
@@ -126,7 +100,8 @@ class _UserInfoPreferredMealsState extends State<UserInfoPreferredMeals> {
                           title: meals[index].name,
                           imageUrl: meals[index].image ?? "",
                           onTap: () => cubit.toggleLikedMeal(meals[index].id),
-                          isSelected: state.userInfo.likedMealsIds.contains(meals[index].id)),
+                          isSelected: state.userInfo.likedMealsIds
+                              .contains(meals[index].id)),
                     ),
                   ),
                 ),

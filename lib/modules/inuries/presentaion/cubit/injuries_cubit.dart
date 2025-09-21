@@ -14,19 +14,27 @@ class InjuriesCubit extends Cubit<InjuriesState> {
   final List<QuestionModel> _questions = [];
 
   Future<void> getQuestions() async {
-    emit(state.copyWith(fetchStatus: RequestState.loading, questions: Fakers().questions));
+    emit(state.copyWith(
+        fetchStatus: RequestState.loading, questions: Fakers().questions));
     try {
       final result = await _repo.getInjuryQuestions();
       result.fold(
-        (failure) => emit(state.copyWith(fetchStatus: RequestState.failure, message: failure.message, questions: [])),
+        (failure) => emit(state.copyWith(
+            fetchStatus: RequestState.failure,
+            message: failure.message,
+            questions: [])),
         (questions) {
           _questions.clear();
           _questions.addAll(questions);
-          emit(state.copyWith(fetchStatus: RequestState.success, questions: _questions));
+          emit(state.copyWith(
+              fetchStatus: RequestState.success, questions: _questions));
         },
       );
     } catch (e) {
-      emit(state.copyWith(fetchStatus: RequestState.failure, message: e.toString(), questions: []));
+      emit(state.copyWith(
+          fetchStatus: RequestState.failure,
+          message: e.toString(),
+          questions: []));
     }
   }
 
@@ -37,16 +45,20 @@ class InjuriesCubit extends Cubit<InjuriesState> {
   }
 
   Future<void> sendInjuries() async {
-    final answeredQuestions = _questions.where((q) => state.answers[q.id] == true).toList();
+    final answeredQuestions =
+        _questions.where((q) => state.answers[q.id] == true).toList();
     emit(state.copyWith(sendStatus: RequestState.loading));
     try {
-      final result = await _repo.updateAffectedBodyParts(answeredQuestions.map((e) => e.key.value).toList());
+      final result = await _repo.updateAffectedBodyParts(
+          answeredQuestions.map((e) => e.key.value).toList());
       result.fold(
-        (failure) => emit(state.copyWith(sendStatus: RequestState.failure, message: failure.message)),
+        (failure) => emit(state.copyWith(
+            sendStatus: RequestState.failure, message: failure.message)),
         (_) => emit(state.copyWith(sendStatus: RequestState.success)),
       );
     } catch (e) {
-      emit(state.copyWith(sendStatus: RequestState.failure, message: e.toString()));
+      emit(state.copyWith(
+          sendStatus: RequestState.failure, message: e.toString()));
     }
   }
 }

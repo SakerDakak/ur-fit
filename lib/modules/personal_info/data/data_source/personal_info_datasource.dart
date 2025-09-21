@@ -124,6 +124,20 @@ class PersonalInfoDataSourceImpl {
     return data;
   }
 
+  Future<List<SelectionItemModel>> getExercisePlaces() async {
+    final res = await dioServices.get(
+      EndPoints.exercisePlaces,
+    );
+
+    final List<SelectionItemModel> data = [];
+
+    for (var element in res.data['data']) {
+      data.add(SelectionItemModel.fromJson(element));
+    }
+
+    return data;
+  }
+
   Future<List<SelectionItemModel>> getEquipments() async {
     final res = await dioServices.get(
       EndPoints.equipments,

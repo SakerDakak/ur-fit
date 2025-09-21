@@ -19,7 +19,6 @@ class EndPoints {
   static const checkVersion = "/version";
   static const deleteAccount = '/api/deleteAccount';
 
-
   static const getUserTypes = "/register/user-types";
   static const register = "/api/register";
   static const registerUpdatePhone = "/register/update-phone";
@@ -35,9 +34,11 @@ class EndPoints {
   static const recipeTypes = "/api/recipeTypes";
   static const muscleFocus = "/api/bodyParts";
   static const workoutTypes = "/api/workoutTypes";
+  static const exercisePlaces = "/api/exercisePlaces";
   static const equipments = "/api/equipments";
-  static packages(PlanType? planType) =>
-      planType != null ? "/api/getPackages?type=${planType.name}" : "/api/getPackages";
+  static packages(PlanType? planType) => planType != null
+      ? "/api/getPackages?type=${planType.name}"
+      : "/api/getPackages";
   static const updateProfile = '/api/updateProfile';
   static const searchRecipe = '/api/recipes/search';
   static getRecipeDetails(int id) => '/api/recipes/$id?includeNutrition=true';

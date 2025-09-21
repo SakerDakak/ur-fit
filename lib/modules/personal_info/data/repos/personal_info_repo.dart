@@ -24,7 +24,8 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, List<SelectionItemModel>>> getLikedMealsOptions() async {
+  Future<Either<Failure, List<SelectionItemModel>>>
+      getLikedMealsOptions() async {
     try {
       final result = await _dataSource.getLikedMealsOptions();
 
@@ -34,7 +35,8 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, List<SelectionItemModel>>> getMealsVariantsOptions() async {
+  Future<Either<Failure, List<SelectionItemModel>>>
+      getMealsVariantsOptions() async {
     try {
       final result = await _dataSource.getMealsVariantsOptions();
 
@@ -44,7 +46,8 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, List<SelectionItemModel>>> getNotLikedMealsOptions() async {
+  Future<Either<Failure, List<SelectionItemModel>>>
+      getNotLikedMealsOptions() async {
     try {
       final result = await _dataSource.getNotLikedMealsOptions();
 
@@ -84,6 +87,16 @@ class PersonalInfoRepoImpl {
     }
   }
 
+  Future<Either<Failure, List<SelectionItemModel>>> getExercisePlaces() async {
+    try {
+      final result = await _dataSource.getExercisePlaces();
+
+      return right(result);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
   Future<Either<Failure, List<SelectionItemModel>>> getEquipments() async {
     try {
       final result = await _dataSource.getEquipments();
@@ -94,7 +107,8 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, List<NoOfDailyMealsModel>>> getNoOfDailyMealsOptions() async {
+  Future<Either<Failure, List<NoOfDailyMealsModel>>>
+      getNoOfDailyMealsOptions() async {
     try {
       final result = await _dataSource.getNoOfDailyMealsOptions();
 
@@ -104,9 +118,11 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  Future<Either<Failure, UserModel>> updatePersonalInfo({required UserInfoRequest personalInfoModel}) async {
+  Future<Either<Failure, UserModel>> updatePersonalInfo(
+      {required UserInfoRequest personalInfoModel}) async {
     try {
-      final result = await _dataSource.updatePersonalInfo(personalInfoModel: personalInfoModel);
+      final result = await _dataSource.updatePersonalInfo(
+          personalInfoModel: personalInfoModel);
       // await sl<AuthenticationRepo>().saveUser(CacheUser.fromUserModel(result));
 
       return right(result);

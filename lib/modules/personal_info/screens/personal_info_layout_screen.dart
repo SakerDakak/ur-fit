@@ -21,6 +21,7 @@ import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_targ
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_week_days.dart';
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_weight.dart';
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_work_types.dart';
+import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_injuries.dart';
 
 class PresonalInfoLayoutScreen extends StatefulWidget {
   const PresonalInfoLayoutScreen({super.key, required this.isEditingProfile});
@@ -60,53 +61,69 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
   }
 
   List<Widget> get _personalInfoPages => [
-        const UserInfoGender(), //0
-        const UserInfoAge(), //1
-        const UserInfoHeight(), //2
-        const UserInfoWeight(), //3
-        const UserInfoTargetWeight(), //4
-        // body mass index
+        // القسم الأول: المعلومات الشخصية
+        const UserInfoGender(), //0 - ذكر / أنثى
+        const UserInfoAge(), //1 - السن
+        const UserInfoHeight(), //2 - الطول
+        const UserInfoWeight(), //3 - الوزن الحالي
+        const UserInfoTargetWeight(), //4 - الوزن الهدف
+        const UserInfoGoals(), //5 - ما هي أهدافك
 
-        ///
-        const UserInfoGoals(), //5
+        // القسم الثاني: المعلومات الرياضية
+        const UserInfoBodyParts(), //6 - الجزء الذي تريد التركيز عليه
+        const UserInfoWeekDays(), //7 - أيام التمرين
+        const UserInfoWorkTypesOrLocation(), //8 - مكان التمرين
+        UserInfoEquipmentScreen(
+            isEditMode: widget.isEditingProfile), //9 - معدات التمرين
 
-        ///
-        const UserInfoVariety(), //6
-        const UserInfoPreferredMeals(), //7
-        const UserInfoNotPreferredMeals(), //8
-        const UserInfoDietType(), //9
-        const UserInfoBodyParts(), //10
-        // const UserInfoWeeklyExerciseTimes(), //11
-        const UserInfoWeekDays(), //12
-        const UserInfoWorkTypesOrLocation(), //13
+        // القسم الثالث: معلومات النظام الغذائي
+        const UserInfoVariety(), //10 - مستوى التنوع في الوجبات
+        const UserInfoPreferredMeals(), //11 - الوجبات التي تفضلها
+        const UserInfoNotPreferredMeals(), //12 - الوجبات التي لا تفضلها
+        const UserInfoDietType(), //13 - نوع الحمية الغذائية
 
-        ///
-        UserInfoEquipmentScreen(isEditMode: widget.isEditingProfile), //14
+        // القسم الرابع: المعلومات الطبية
+        const UserInfoInjuries(), //14 - الإصابات أو الأمراض
       ];
 
   _calculateStep(int index) {
-    if (index < 5) {
+    // القسم الأول: المعلومات الشخصية (0-5)
+    if (index <= 5) {
       return 1;
-    } else if (index < 6) {
+    }
+    // القسم الثاني: المعلومات الرياضية (6-9)
+    else if (index <= 9) {
       return 2;
-    } else if (index < 14) {
+    }
+    // القسم الثالث: معلومات النظام الغذائي (10-13)
+    else if (index <= 13) {
       return 3;
     }
+    // القسم الرابع: المعلومات الطبية (14)
+    else if (index <= 14) {
+      return 4;
+    }
     return 0;
+  }
+
+  // حساب التقدم الفعلي للخطوات
+  double _calculateProgress(int currentIndex) {
+    // إجمالي عدد الخطوات = 15 خطوة (من 0 إلى 14)
+    return (currentIndex + 1) / 15;
   }
 
   String _getCurrentStepTxt(int step) {
     switch (step) {
       case 1:
-        return L10n.tr().firstStep;
+        return L10n.tr().personalInfo; // القسم الأول
       case 2:
-        return L10n.tr().secondStep;
+        return L10n.tr().sportsInfo; // القسم الثاني
       case 3:
-        return L10n.tr().thirdStep;
-
+        return L10n.tr().dietInfo; // القسم الثالث
+      case 4:
+        return L10n.tr().medicalInfo; // القسم الرابع
       default:
         return '';
-      // return '';
     }
   }
 
@@ -158,7 +175,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
                 ValueListenableBuilder(
                     valueListenable: currentPAge,
                     builder: (context, value, child) {
-                      if (value > 13) return const SizedBox.shrink();
+                      if (value > 14) return const SizedBox.shrink();
                       return Column(
                         children: [
                           Row(
@@ -177,7 +194,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
 
                           // progress bar
                           LinearPercentIndicator(
-                            percent: _calculateStep(value) / 3,
+                            percent: _calculateProgress(value),
                             isRTL:
                                 Directionality.of(context) == TextDirection.rtl,
                             barRadius: const Radius.circular(8),

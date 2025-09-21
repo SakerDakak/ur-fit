@@ -5,7 +5,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
@@ -30,90 +29,73 @@ class UserInfoNotPreferredMeals extends StatelessWidget {
             onRetry: () => cubit.getNotLikedMealsOptions(),
           );
         }
-        final meals = state is MealsNotLikedLoading ? Fakers().selectionModels : state.meals;
-        final isAllSelected = state.userInfo.notLikedMealsIds.length == meals.length;
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 32,
-                child: Row(
-                  children: [
-                    Text(
-                      L10n.tr().mealsNotLiked,
-                      style: TStyle.semiBold_16,
-                      textAlign: TextAlign.start,
-                    ),
-                    const Spacer(),
-                    if (meals.length > 4)
-                      GestureDetector(
-                        onTap: () async {
-                          final res = await showModalBottomSheet<Set<int>>(
-                            backgroundColor: Colors.white,
-                            context: context,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                            ),
-                            builder: (ctx) => SeeMoreSheet<int>(
-                              items: meals.map((e) => (e.id, e.name)).toList(),
-                              selected: state.userInfo.notLikedMealsIds,
-                            ),
-                          );
-                          if (res != null) cubit.toggleNotLikedMeal(0, addSet: res);
-                        },
-                        child: Text(
-                          L10n.tr().seeMore,
-                          style: TStyle.semiBold_16.copyWith(
-                            color: cubit.colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                  ],
+        final meals = state is MealsNotLikedLoading
+            ? Fakers().selectionModels
+            : state.meals;
+        final isAllSelected =
+            state.userInfo.notLikedMealsIds.length == meals.length;
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  L10n.tr().mealsNotLiked,
+                  style: TStyle.semiBold_16,
+                  textAlign: TextAlign.start,
                 ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  TextButton(
-                      onPressed: () => cubit.toggleNotLikedMeal(0,
-                          addSet: isAllSelected ? {} : state.meals.map((e) => e.id).toSet()),
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                TextButton(
+                    onPressed: () => cubit.toggleNotLikedMeal(0,
+                        addSet: isAllSelected
+                            ? {}
+                            : state.meals.map((e) => e.id).toSet()),
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    child: Text(
+                      isAllSelected
+                          ? L10n.tr().unselectAll
+                          : L10n.tr().selectAll,
+                      style: TStyle.bold_16.copyWith(
+                        color: isAllSelected
+                            ? cubit.colorScheme.tertiary
+                            : cubit.colorScheme.primary,
                       ),
-                      child: Text(
-                        isAllSelected ? L10n.tr().unselectAll : L10n.tr().selectAll,
-                        style: TStyle.bold_16.copyWith(
-                          color: isAllSelected ? cubit.colorScheme.tertiary : cubit.colorScheme.primary,
-                        ),
-                      ))
-                ],
-              ),
-              const SizedBox(height: 16),
-              Skeletonizer(
+                    ))
+              ],
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Skeletonizer(
                 enabled: state is! MealsNotLikedLoaded,
                 child: Animate(
                   effects: const [FadeEffect()],
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: meals.length > 4 ? 4 : meals.length,
+                    itemCount: meals.length,
                     itemBuilder: (context, index) => RadioBoxWithImage(
                         title: meals[index].name,
                         imageUrl: meals[index].image ?? "",
-                        onTap: () => cubit.toggleNotLikedMeal(
-                            meals[index].id), //  cubit.updateSelectedNotLikedMeals(meals[index].id),
-                        isSelected: state.userInfo.notLikedMealsIds.contains(meals[index].id)),
+                        onTap: () => cubit.toggleNotLikedMeal(meals[index]
+                            .id), //  cubit.updateSelectedNotLikedMeals(meals[index].id),
+                        isSelected: state.userInfo.notLikedMealsIds
+                            .contains(meals[index].id)),
                   ),
                 ),
               ),
-              CustomElevatedButton(
-                text: state.userInfo.notLikedMealsIds.isEmpty ? L10n.tr().skip : L10n.tr().continuee,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: CustomElevatedButton(
+                text: state.userInfo.notLikedMealsIds.isEmpty
+                    ? L10n.tr().skip
+                    : L10n.tr().continuee,
                 padding: EdgeInsets.zero,
                 onPressed: () => cubit.nextPage(),
               ),
-            ],
-          ),
+            ),
+          ],
         );
         // }
       },

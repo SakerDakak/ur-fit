@@ -535,7 +535,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get later => 'Not now';
 
   @override
-  String get personalInfo => 'Personal information';
+  String get personalInfo => 'Personal Information';
 
   @override
   String get step => 'Steps';
@@ -598,7 +598,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mealsVerity => 'Level of variety in the meal?';
 
   @override
-  String get createMyPlan => 'Create my plan';
+  String get createMyPlan => 'Create My Plan';
 
   @override
   String get focusedBodyPart => 'The part you want to focus on?';
@@ -997,4 +997,59 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get heightMustBeBetween => 'Height must be between 100 and 250 cm';
+
+  @override
+  String get weightMustBeBetween => 'Weight must be between 25 and 300 kg';
+
+  @override
+  String get ageMustBeBetween => 'Age must be between 16 and 99 years';
+
+  @override
+  String get targetWeightMustBeBetween =>
+      'Target weight must be between 25 and 300 kg';
+
+  @override
+  String get acceptedValuesHeight => 'Accepted values: 100 - 250 cm';
+
+  @override
+  String get acceptedValuesWeight => 'Accepted values: 25 - 300 kg';
+
+  @override
+  String get acceptedValuesAge => 'Accepted values: 16 - 99 years';
+
+  @override
+  String get acceptedValuesTargetWeight => 'Accepted values: 25 - 300 kg';
+
+  @override
+  String get sportsInfo => 'Sports Information';
+
+  @override
+  String get dietInfo => 'Diet Information';
+
+  @override
+  String get medicalInfo => 'Medical Information';
+
+  @override
+  String get sunday => 'Sunday';
+
+  @override
+  String get monday => 'Monday';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get wednesday => 'Wednesday';
+
+  @override
+  String get thursday => 'Thursday';
+
+  @override
+  String get friday => 'Friday';
+
+  @override
+  String get saturday => 'Saturday';
 }

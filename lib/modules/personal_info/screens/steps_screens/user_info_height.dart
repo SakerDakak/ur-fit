@@ -88,6 +88,13 @@ class _UserInfoHeightState extends State<UserInfoHeight> {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
+          const SizedBox(height: 8),
+          Text(
+            L10n.tr().acceptedValuesHeight,
+            style: TStyle.regular_12.copyWith(
+              color: Colors.white.withValues(alpha: 0.7),
+            ),
+          ),
           const SizedBox(height: 100),
           // continue button
           ListenableBuilder(
@@ -100,8 +107,7 @@ class _UserInfoHeightState extends State<UserInfoHeight> {
                   : () {
                       final height = int.tryParse(controller.text.trim()) ?? 0;
                       if (height < 100 || height > 250) {
-                        return Alerts.showToast(
-                            L10n.tr().pleaseEnterValidHeight);
+                        return Alerts.showToast(L10n.tr().heightMustBeBetween);
                       }
                       cubit.updateUserHeight(height);
                       cubit.nextPage(false);

@@ -83,14 +83,12 @@ class DiscountSection extends StatelessWidget {
 
               // background image
               Positioned.directional(
-                top: -12,
-                start: 18,
+                bottom: 0,
+                start: -8,
                 textDirection: Directionality.of(context),
                 child: Image.asset(
-                  Session().currentUser?.gender == GenderEnum.female
-                      ? Assets.imageFamaleCharacter
-                      : Assets.imageMan,
-                  height: 117,
+                  Assets.imageMan,
+                  height: 118,
                 ),
               ),
 

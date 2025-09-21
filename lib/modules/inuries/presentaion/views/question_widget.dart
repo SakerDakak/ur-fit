@@ -14,7 +14,7 @@ class QuestionWidget extends StatelessWidget {
   final bool? isYes;
   @override
   Widget build(BuildContext context) {
-    if (question.question.trim().isNotEmpty == true) {
+    if (question.question.trim().isEmpty) {
       return const SizedBox.shrink();
     }
     return Column(

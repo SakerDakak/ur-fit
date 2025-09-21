@@ -1109,7 +1109,7 @@ abstract class AppLocalizations {
   /// No description provided for @personalInfo.
   ///
   /// In en, this message translates to:
-  /// **'Personal information'**
+  /// **'Personal Information'**
   String get personalInfo;
 
   /// No description provided for @step.
@@ -1235,7 +1235,7 @@ abstract class AppLocalizations {
   /// No description provided for @createMyPlan.
   ///
   /// In en, this message translates to:
-  /// **'Create my plan'**
+  /// **'Create My Plan'**
   String get createMyPlan;
 
   /// No description provided for @focusedBodyPart.
@@ -2011,6 +2011,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
+
+  /// No description provided for @heightMustBeBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Height must be between 100 and 250 cm'**
+  String get heightMustBeBetween;
+
+  /// No description provided for @weightMustBeBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight must be between 25 and 300 kg'**
+  String get weightMustBeBetween;
+
+  /// No description provided for @ageMustBeBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Age must be between 16 and 99 years'**
+  String get ageMustBeBetween;
+
+  /// No description provided for @targetWeightMustBeBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Target weight must be between 25 and 300 kg'**
+  String get targetWeightMustBeBetween;
+
+  /// No description provided for @acceptedValuesHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted values: 100 - 250 cm'**
+  String get acceptedValuesHeight;
+
+  /// No description provided for @acceptedValuesWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted values: 25 - 300 kg'**
+  String get acceptedValuesWeight;
+
+  /// No description provided for @acceptedValuesAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted values: 16 - 99 years'**
+  String get acceptedValuesAge;
+
+  /// No description provided for @acceptedValuesTargetWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted values: 25 - 300 kg'**
+  String get acceptedValuesTargetWeight;
+
+  /// No description provided for @sportsInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Sports Information'**
+  String get sportsInfo;
+
+  /// No description provided for @dietInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet Information'**
+  String get dietInfo;
+
+  /// No description provided for @medicalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Information'**
+  String get medicalInfo;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
 }
 
 class _AppLocalizationsDelegate

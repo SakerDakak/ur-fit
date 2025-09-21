@@ -32,7 +32,8 @@ class _UserInfoGoalsState extends State<UserInfoGoals> {
         // title
         Text(
           L10n.tr().whatIsyourGoals,
-          style: TStyle.bold_16.copyWith(color: Theme.of(context).colorScheme.primary),
+          style: TStyle.bold_16
+              .copyWith(color: Theme.of(context).colorScheme.primary),
         ),
         const SizedBox(height: 8),
 
@@ -53,7 +54,7 @@ class _UserInfoGoalsState extends State<UserInfoGoals> {
               enabled: state is GoalsLoading,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
+                spacing: 12,
                 children: [
                   Text(
                     L10n.tr().sectionOne,
@@ -64,32 +65,40 @@ class _UserInfoGoalsState extends State<UserInfoGoals> {
                     (index) => GoalItem(
                       onTap: () => cubit.toggleGoal(goals[index].id),
                       goal: goals[index],
-                      isSelected: state.userInfo.selectedGaols.contains(goals[index].id),
+                      isSelected: state.userInfo.selectedGaols
+                          .contains(goals[index].id),
                     ),
                   ),
-                  const SizedBox.shrink(),
+                  // const SizedBox.shrink(),
 
                   ///
-                  Text(
-                    L10n.tr().sectionTwo,
-                    style: TStyle.semiBold_16,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      L10n.tr().sectionTwo,
+                      style: TStyle.semiBold_16,
+                    ),
                   ),
                   ...List.generate(
                     2,
                     (index) => GoalItem(
                       onTap: () => cubit.toggleGoal(goals[index + 2].id),
                       goal: goals[index + 2],
-                      isSelected: state.userInfo.selectedGaols.contains(goals[index + 2].id),
+                      isSelected: state.userInfo.selectedGaols
+                          .contains(goals[index + 2].id),
                     ),
                   ),
 
                   CustomElevatedButton(
                     text: L10n.tr().continuee,
-                    padding: EdgeInsets.zero,
-                    onPressed: state.userInfo.selectedGaols.isEmpty ? null : () {
-                      print('Selected Goals: ${state.userInfo.selectedGaols}');
-                      cubit.nextPage();
-                    },
+                    padding: const EdgeInsets.only(top: 8),
+                    onPressed: state.userInfo.selectedGaols.isEmpty
+                        ? null
+                        : () {
+                            print(
+                                'Selected Goals: ${state.userInfo.selectedGaols}');
+                            cubit.nextPage();
+                          },
                   ),
                 ],
               ),

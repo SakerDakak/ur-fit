@@ -200,8 +200,9 @@ class _UserInfoTargetWeightState extends State<UserInfoTargetWeight> {
                       const TextSpan(text: "Target BMI"),
                       const TextSpan(text: '\n'),
                       TextSpan(
-                        text:
-                            calculateBMI(cubit.state.userInfo.height ?? 0, double.tryParse(controller.text) ?? 0).toStringAsFixed(1),
+                        text: calculateBMI(cubit.state.userInfo.height ?? 0,
+                                double.tryParse(controller.text) ?? 0)
+                            .toStringAsFixed(1),
                         style: TStyle.primarySemi(15).copyWith(
                             color: getColorForBMI(
                           calculateBMI(cubit.state.userInfo.height ?? 0,
@@ -233,7 +234,7 @@ class _UserInfoTargetWeightState extends State<UserInfoTargetWeight> {
                           double.tryParse(controller.text.trim()) ?? 0;
                       if (weight < 25 || weight > 300) {
                         return Alerts.showToast(
-                            L10n.tr().pleaseEnterValidWeight);
+                            L10n.tr().targetWeightMustBeBetween);
                       }
                       cubit.updateTargetWeight(weight);
                       cubit.nextPage();

@@ -8,9 +8,7 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
-import 'package:urfit/modules/inuries/presentaion/views/injuries_screen.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
-import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 
 import '../../../core/presentation/views/widgets/selection_item_model_list.dart';
 
@@ -19,7 +17,8 @@ class UserInfoEquipmentScreen extends StatefulWidget {
   static const route = '/EquipmentSelectionScreen';
   final bool isEditMode;
   @override
-  State<UserInfoEquipmentScreen> createState() => _UserInfoEquipmentScreenState();
+  State<UserInfoEquipmentScreen> createState() =>
+      _UserInfoEquipmentScreenState();
 }
 
 class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
@@ -44,7 +43,9 @@ class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
             onRetry: () => cubit.getEquipments(),
           );
         }
-        final equipments = state is EquipmentsLoading ? Fakers().selectionModels : state.equipments;
+        final equipments = state is EquipmentsLoading
+            ? Fakers().selectionModels
+            : state.equipments;
         return Skeletonizer(
             enabled: state is EquipmentsLoading,
             child: Column(
@@ -70,37 +71,31 @@ class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
                   ),
                 ),
                 BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-                  buildWhen: (previous, current) => current is UpdateUserInfoStates,
+                  buildWhen: (previous, current) =>
+                      current is UpdateUserInfoStates,
                   builder: (context, state) {
                     if (state is UpdateInfoLoading) {
                       return const Center(child: CircularProgressIndicator());
                     }
                     return CustomElevatedButton(
-                      text: widget.isEditMode? L10n.tr().save :  L10n.tr().createMyPlan,
+                      text: widget.isEditMode
+                          ? L10n.tr().save
+                          : L10n.tr().continuee,
                       padding: EdgeInsets.zero,
                       onPressed: state.userInfo.equipmentsIds.isEmpty
                           ? null
                           : () async {
                               print(state.userInfo.toString());
-                              if (!state.userInfo.isValid) {
-                                return Alerts.showToast(L10n.tr().pleaseMakeSureThatYouSelectedAllTheRequiredFields);
-                              }
-                              await cubit.sendUpdateData();
-                              if (!context.mounted) return;
                               if (widget.isEditMode) {
-                                Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
+                                await cubit.sendUpdateData();
+                                if (!context.mounted) return;
+                                Alerts.showToast(
+                                    L10n.tr().infoUpdatedSuccessfully,
+                                    error: false);
                                 return context.pop();
                               }
-                              final diet = {1, 2};
-                              final excercise = {3, 4};
-                              if (state.userInfo.selectedGaols.any((e) => diet.contains(e)) &&
-                                  state.userInfo.selectedGaols.any((e) => excercise.contains(e))) {
-                                context.push(InjuriesScreen.routeWzExtra, extra: PlanType.both);
-                              } else if (state.userInfo.selectedGaols.any((e) => diet.contains(e))) {
-                                context.push(InjuriesScreen.routeWzExtra, extra: PlanType.diet);
-                              } else if (state.userInfo.selectedGaols.any((e) => excercise.contains(e))) {
-                                context.push(InjuriesScreen.routeWzExtra, extra: PlanType.exercise);
-                              }
+                              // الانتقال إلى الخطوة التالية
+                              cubit.nextPage();
                             },
                     );
                   },

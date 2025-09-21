@@ -88,6 +88,13 @@ class _UserInfoWeightState extends State<UserInfoWeight> {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
+          const SizedBox(height: 8),
+          Text(
+            L10n.tr().acceptedValuesWeight,
+            style: TStyle.regular_12.copyWith(
+              color: Colors.white.withValues(alpha: 0.7),
+            ),
+          ),
           const SizedBox(height: 100),
           // continue button
           ListenableBuilder(
@@ -101,8 +108,7 @@ class _UserInfoWeightState extends State<UserInfoWeight> {
                       final weight =
                           double.tryParse(controller.text.trim()) ?? 0;
                       if (weight < 25 || weight > 300) {
-                        return Alerts.showToast(
-                            L10n.tr().pleaseEnterValidWeight);
+                        return Alerts.showToast(L10n.tr().weightMustBeBetween);
                       }
                       cubit.updateUserWeight(weight);
                       cubit.nextPage();

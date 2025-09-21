@@ -5,6 +5,7 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_otp_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/forget_password_screen.dart';
 import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
+import 'package:urfit/modules/health_module/screens/health_screen.dart';
 import 'package:urfit/modules/home_module/screens/my_tasks_screen.dart';
 import 'package:urfit/modules/inuries/presentaion/cubit/injuries_cubit.dart';
 import 'package:urfit/modules/inuries/presentaion/views/injuries_screen.dart';
@@ -104,7 +105,8 @@ class AppRouter {
         path: RegisterOTPScreen.route(null),
         name: RegisterOTPScreen.route(null),
         builder: (context, state) {
-          return RegisterOTPScreen(email: state.pathParameters['email'].toString());
+          return RegisterOTPScreen(
+              email: state.pathParameters['email'].toString());
         },
       ),
 
@@ -124,7 +126,8 @@ class AppRouter {
       GoRoute(
         path: UpdatePasswordScreen.route,
         name: UpdatePasswordScreen.route,
-        builder: (context, state) => UpdatePasswordScreen(email: state.pathParameters['email']!),
+        builder: (context, state) =>
+            UpdatePasswordScreen(email: state.pathParameters['email']!),
       ),
 
       ///
@@ -146,7 +149,8 @@ class AppRouter {
         path: MainPage.routeWithBool(null),
         name: MainPage.routeWithBool(null),
         builder: (context, state) {
-          return MainPage(isGuest: state.uri.queryParameters["guest"] == "true");
+          return MainPage(
+              isGuest: state.uri.queryParameters["guest"] == "true");
         },
         // onExit: (context, state) {
         //   return context.read<AuthenticationBloc>().state.runtimeType == AuthenticationUnauthenticated;
@@ -158,6 +162,11 @@ class AppRouter {
         //   }
         //   return null;
         // }
+      ),
+      GoRoute(
+        path: "/health",
+        name: "/health",
+        builder: (context, state) => const HealthScreen(),
       ),
       GoRoute(
         path: MealsPickerScreen.route,
@@ -213,7 +222,8 @@ class AppRouter {
         path: InjuriesScreen.routeWzExtra,
         name: InjuriesScreen.routeWzExtra,
         builder: (context, state) => BlocProvider(
-            create: (context) => di<InjuriesCubit>(), child: InjuriesScreen(planType: state.extra as PlanType)),
+            create: (context) => di<InjuriesCubit>(),
+            child: InjuriesScreen(planType: state.extra as PlanType)),
       ),
 
       /// setup personal info route
@@ -226,9 +236,13 @@ class AppRouter {
         path: PresonalInfoLayoutScreen.routeWzExtra,
         name: PresonalInfoLayoutScreen.routeWzExtra,
         builder: (context, state) {
-          return BlocProvider(
-            create: (context) => di<SetupPersonalInfoCubit>(),
-            child: PresonalInfoLayoutScreen(isEditingProfile: state.extra as bool? ?? false),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => di<SetupPersonalInfoCubit>()),
+              BlocProvider(create: (context) => di<InjuriesCubit>()),
+            ],
+            child: PresonalInfoLayoutScreen(
+                isEditingProfile: state.extra as bool? ?? false),
           );
         },
       ),

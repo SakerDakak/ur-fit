@@ -9,6 +9,7 @@ import 'package:urfit/core/presentation/utils/alerts.dart';
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/colors.dart';
 import '../../../core/presentation/style/fonts.dart';
+import '../../health_module/screens/health_screen.dart';
 import '../../meals_module/screens/meals_screen.dart';
 import '../../profile_module/screens/profile_screen.dart';
 import '../../workout_module/workout_screen.dart';
@@ -48,29 +49,26 @@ class _MainPageState extends State<MainPage> {
       ),
       const WorkoutScreen(),
       const MealsScreen(),
-      const SizedBox(),
+      const HealthScreen(),
       ProfileScreen(
         isGuest: widget.isGuest,
       ),
     ];
   }
 
-  final List<String> titles = [
-    L10n.tr().home,
-    L10n.tr().exercises,
-    L10n.tr().nutritions,
-    "",
-    L10n.tr().profile
-  ];
+  List<String> get titles => [
+        L10n.tr().home,
+        L10n.tr().exercises,
+        L10n.tr().nutritions,
+        L10n.tr().medicalSection,
+        L10n.tr().profile
+      ];
   int _selectedIndex = 0;
 
   // late bool
 
   void _onItemTapped(int index) {
     final user = Session().currentUser;
-    if (index == 3) {
-      return;
-    }
     // print("continue");
     if (user?.hasValidSubscription ?? false) {
       setState(() {
@@ -134,136 +132,10 @@ class _MainPageState extends State<MainPage> {
         inactiveColorPrimary: const Color(0xff6B7280),
       ),
       PersistentBottomNavBarItem(
-        onPressed: (_) {
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    backgroundColor: Colors.blue,
-                    insetPadding: EdgeInsets.zero,
-                    contentPadding: EdgeInsets.zero,
-                    titlePadding: EdgeInsets.zero,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                    content: Builder(
-                      builder: (context) {
-                        // تم حذف المتغيرات غير المستخدمة
-                        return Container(
-                          // color: Colors.red,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(16.0)),
-                            image: DecorationImage(
-                              image: AssetImage(AssetsManager.medical),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          height: 473,
-                          width: 343,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 0,
-                                top: -100,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  clipBehavior: Clip.none,
-                                  fit: StackFit.loose,
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 220,
-                                      backgroundColor:
-                                          Co.strockColor.withValues(alpha: 0.2),
-                                    ),
-                                    CircleAvatar(
-                                      radius: 150,
-                                      backgroundColor:
-                                          Co.strockColor.withValues(alpha: 0.4),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                  top: 20,
-                                  left: 20,
-                                  child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 4,
-                                      ),
-                                      decoration: const BoxDecoration(
-                                          color: Co.yellow,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(16.0))),
-                                      child: Text(
-                                        L10n.tr().soon,
-                                        style: TStyle.semiBold_16
-                                            .copyWith(color: Co.blackColor),
-                                      ))),
-                              Align(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          L10n.tr()
-                                              .becauseWeKeenToProvideAnIntegratedService,
-                                          textAlign: TextAlign.center,
-                                          style: TStyle.bold_20
-                                              .copyWith(color: Co.whiteColor),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                                text: "${L10n.tr().waitFor} ",
-                                                style: TStyle.bold_20.copyWith(
-                                                    color: Co.primaryColor),
-                                                children: [
-                                                  TextSpan(
-                                                    text: L10n.tr().launching,
-                                                    style: TStyle.bold_20
-                                                        .copyWith(
-                                                            color:
-                                                                Co.whiteColor),
-                                                  ),
-                                                ]),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Text(
-                                        L10n.tr().ourMedicalServicesSoon,
-                                        style: TStyle.bold_20
-                                            .copyWith(color: Co.whiteColor),
-                                      ),
-                                    ],
-                                  )),
-                              const Align(
-                                alignment: Alignment.topRight,
-                                child: CloseButton(),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ));
-          // _showBottomSheet();
-        },
         icon: CustomNavBarItem(
           iconPath: Assets.iconsMedical,
           title: L10n.tr().medicalSection,
-          isActive: false,
+          isActive: _selectedIndex == 3,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
         ),
@@ -274,7 +146,7 @@ class _MainPageState extends State<MainPage> {
         icon: CustomNavBarItem(
           iconPath: AssetsManager.profile,
           title: L10n.tr().profile,
-          isActive: _selectedIndex == 3,
+          isActive: _selectedIndex == 4,
           activeColor: Theme.of(context).colorScheme.primary,
           inactiveColor: const Color(0xff6B7280),
         ),

@@ -24,8 +24,10 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   List<BodyPartsModel> _bodyPartsData = [];
   List<SelectionItemModel> _workoutTypes = [];
   List<SelectionItemModel> _equipments = [];
-  late  ColorScheme colorScheme;
-  SetupPersonalInfoCubit(this._repo) : super(PersonalInfoInit(UserInfoRequest.fromUserModel(Session().currentUser!)));
+  late ColorScheme colorScheme;
+  SetupPersonalInfoCubit(this._repo)
+      : super(PersonalInfoInit(
+            UserInfoRequest.fromUserModel(Session().currentUser!)));
 
   setInitPage() async {
     print('Setting initial page');
@@ -40,38 +42,39 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       index = 4;
     } else if (state.userInfo.selectedGaols.isEmpty) {
       index = 5;
-    } else if ((state.userInfo.mealsVariantsId ?? 0) < 1) {
-      index = 6;
-    } else if (state.userInfo.likedMealsIds.isEmpty) {
-      index = 7;
-      // } else if (state.userInfo.notLikedMealsIds.isEmpty) {
-      //   index = 8;
-    } else if ((state.userInfo.dietId ?? 0) < 1) {
-      index = 9;
     } else if (state.userInfo.bodyPartsIds.isEmpty) {
-      index = 10;
+      index = 6;
     } else if (state.userInfo.exerciseDayes.isEmpty) {
-      index = 11;
+      index = 7;
     } else if (state.userInfo.workoutTypesIds.isEmpty) {
-      index = 12;
+      index = 8;
     } else if (state.userInfo.equipmentsIds.isEmpty) {
+      index = 9;
+    } else if ((state.userInfo.mealsVariantsId ?? 0) < 1) {
+      index = 10;
+    } else if (state.userInfo.likedMealsIds.isEmpty) {
+      index = 11;
+    } else if ((state.userInfo.dietId ?? 0) < 1) {
       index = 13;
     }
     //  else if ((state.userInfo.weaklyTrainingCount ?? 0) < 1) {
     //   index = 14;
     // }
-    await pageController.animateToPage(index, duration: Durations.medium1, curve: Curves.fastOutSlowIn);
+    await pageController.animateToPage(index,
+        duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 
   nextPage([bool sendToBack = true]) {
     if (isClosed) return;
     if (sendToBack) sendUpdateData();
-    pageController.nextPage(duration: Durations.medium1, curve: Curves.fastOutSlowIn);
+    pageController.nextPage(
+        duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 
   previousPage() {
     if (isClosed) return;
-    pageController.previousPage(duration: Durations.medium1, curve: Curves.fastOutSlowIn);
+    pageController.previousPage(
+        duration: Durations.medium1, curve: Curves.fastOutSlowIn);
   }
 
   /// update user info
@@ -145,8 +148,10 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
     }
   }
 
-  void updateTargetWeight(double weight) => state.userInfo.targetWeight = weight;
-  void updateWeeklyTrainingCount(int count) => state.userInfo.weaklyTrainingCount = count;
+  void updateTargetWeight(double weight) =>
+      state.userInfo.targetWeight = weight;
+  void updateWeeklyTrainingCount(int count) =>
+      state.userInfo.weaklyTrainingCount = count;
 
   void toggleWorkoutType(int id, {Set<int>? addSet}) {
     if (addSet != null) {
@@ -215,7 +220,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getBodyPartsData() async {
-    if (_bodyPartsData.isNotEmpty) return emit(MuscleFocusLoaded(state.userInfo, _bodyPartsData));
+    if (_bodyPartsData.isNotEmpty) {
+      return emit(MuscleFocusLoaded(state.userInfo, _bodyPartsData));
+    }
     emit(MuscleFocusLoading(state.userInfo));
     final result = await _repo.getMuscleFocus();
     result.fold(
@@ -228,7 +235,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getNotLikedMealsOptions() async {
-    if (_mealsNotLiked.isNotEmpty) return emit(MealsNotLikedLoaded(state.userInfo, _mealsNotLiked));
+    if (_mealsNotLiked.isNotEmpty) {
+      return emit(MealsNotLikedLoaded(state.userInfo, _mealsNotLiked));
+    }
     emit(MealsNotLikedLoading(state.userInfo));
     final result = await _repo.getNotLikedMealsOptions();
     result.fold(
@@ -241,7 +250,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getLikedMealsOptions() async {
-    if (_mealsLiked.isNotEmpty) return emit(MealsLikedLoaded(state.userInfo, _mealsLiked));
+    if (_mealsLiked.isNotEmpty) {
+      return emit(MealsLikedLoaded(state.userInfo, _mealsLiked));
+    }
     emit(MealsLikedLoading(state.userInfo));
     final result = await _repo.getLikedMealsOptions();
     result.fold(
@@ -267,7 +278,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getMealVariantsOptions() async {
-    if (_mealVariants.isNotEmpty) return emit(MealVariantsLoaded(state.userInfo, _mealVariants));
+    if (_mealVariants.isNotEmpty) {
+      return emit(MealVariantsLoaded(state.userInfo, _mealVariants));
+    }
     emit(MealVariantsLoading(state.userInfo));
     final result = await _repo.getMealsVariantsOptions();
     result.fold(
@@ -280,7 +293,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getWorkoutTypes() async {
-    if (_workoutTypes.isNotEmpty) return emit(WorkoutTypesLoaded(state.userInfo, _workoutTypes));
+    if (_workoutTypes.isNotEmpty) {
+      return emit(WorkoutTypesLoaded(state.userInfo, _workoutTypes));
+    }
     emit(WorkoutTypesLoading(state.userInfo));
     final result = await _repo.getWorkoutTypes();
     result.fold(
@@ -292,8 +307,25 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
     );
   }
 
+  Future<void> getExercisePlaces() async {
+    if (_workoutTypes.isNotEmpty) {
+      return emit(WorkoutTypesLoaded(state.userInfo, _workoutTypes));
+    }
+    emit(WorkoutTypesLoading(state.userInfo));
+    final result = await _repo.getExercisePlaces();
+    result.fold(
+      (failure) => emit(WorkoutTypesError(state.userInfo, failure.message)),
+      (successData) {
+        _workoutTypes = successData;
+        emit(WorkoutTypesLoaded(state.userInfo, successData));
+      },
+    );
+  }
+
   Future<void> getNoOfDailyMeals() async {
-    if (_noOfDailyMeals.isNotEmpty) return emit(NoOfDailyMealsLoaded(state.userInfo, _noOfDailyMeals));
+    if (_noOfDailyMeals.isNotEmpty) {
+      return emit(NoOfDailyMealsLoaded(state.userInfo, _noOfDailyMeals));
+    }
     emit(NoOfDailyMealsLoading(state.userInfo));
     final result = await _repo.getNoOfDailyMealsOptions();
     result.fold(
@@ -308,7 +340,9 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   }
 
   Future<void> getEquipments() async {
-    if (_equipments.isNotEmpty) return emit(EquipmentsLoaded(state.userInfo, _equipments));
+    if (_equipments.isNotEmpty) {
+      return emit(EquipmentsLoaded(state.userInfo, _equipments));
+    }
     emit(EquipmentsLoading(state.userInfo));
     final result = await _repo.getEquipments();
     result.fold(
@@ -323,7 +357,8 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
   sendUpdateData({bool validate = false}) async {
     if (validate) {}
     emit(UpdateInfoLoading(state.userInfo));
-    final result = await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
+    final result =
+        await _repo.updatePersonalInfo(personalInfoModel: state.userInfo);
     result.fold(
       (failure) {
         emit(UpdateInfoError(state.userInfo, failure.message));

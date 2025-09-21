@@ -536,7 +536,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get later => 'ليس الان';
 
   @override
-  String get personalInfo => 'معلومات شخصية';
+  String get personalInfo => 'المعلومات الشخصية';
 
   @override
   String get step => 'الخطوة';
@@ -599,7 +599,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mealsVerity => 'مستوى التنوع فى الوجبة؟';
 
   @override
-  String get createMyPlan => 'انشاء خطتى الخاصة';
+  String get createMyPlan => 'إنشاء خطتي الخاصة';
 
   @override
   String get focusedBodyPart => 'الجزء الذى تريد التركيز عليه؟';
@@ -999,4 +999,59 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get save => 'حفظ';
+
+  @override
+  String get heightMustBeBetween => 'الطول يجب أن يكون بين 100 و 250 سم';
+
+  @override
+  String get weightMustBeBetween => 'الوزن يجب أن يكون بين 25 و 300 كيلوغرام';
+
+  @override
+  String get ageMustBeBetween => 'العمر يجب أن يكون بين 16 و 99 سنة';
+
+  @override
+  String get targetWeightMustBeBetween =>
+      'الوزن الهدف يجب أن يكون بين 25 و 300 كيلوغرام';
+
+  @override
+  String get acceptedValuesHeight => 'القيم المقبولة: 100 - 250 سم';
+
+  @override
+  String get acceptedValuesWeight => 'القيم المقبولة: 25 - 300 كيلوغرام';
+
+  @override
+  String get acceptedValuesAge => 'القيم المقبولة: 16 - 99 سنة';
+
+  @override
+  String get acceptedValuesTargetWeight => 'القيم المقبولة: 25 - 300 كيلوغرام';
+
+  @override
+  String get sportsInfo => 'المعلومات الرياضية';
+
+  @override
+  String get dietInfo => 'معلومات النظام الغذائي';
+
+  @override
+  String get medicalInfo => 'المعلومات الطبية';
+
+  @override
+  String get sunday => 'الأحد';
+
+  @override
+  String get monday => 'الإثنين';
+
+  @override
+  String get tuesday => 'الثلاثاء';
+
+  @override
+  String get wednesday => 'الأربعاء';
+
+  @override
+  String get thursday => 'الخميس';
+
+  @override
+  String get friday => 'الجمعة';
+
+  @override
+  String get saturday => 'السبت';
 }

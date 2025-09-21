@@ -6,7 +6,6 @@ import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/screens/widgets/body_parts_image_widget.dart';
-import 'package:urfit/modules/personal_info/screens/widgets/see_more_sheet.dart';
 
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/views/widgets/custom_buttons.dart';
@@ -22,6 +21,16 @@ class UserInfoBodyParts extends StatefulWidget {
 
 class _UserInfoBodyPartsState extends State<UserInfoBodyParts> {
   late final SetupPersonalInfoCubit cubit;
+
+  // دالة لتصحيح أسماء أجزاء الجسم
+  String _correctBodyPartName(String originalName) {
+    // تصحيح "العودة" إلى "الظهر"
+    if (originalName.contains('العودة')) {
+      return originalName.replaceAll('العودة', 'الظهر');
+    }
+    return originalName;
+  }
+
   @override
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
@@ -41,8 +50,11 @@ class _UserInfoBodyPartsState extends State<UserInfoBodyParts> {
             onRetry: () => cubit.getBodyPartsData(),
           );
         }
-        final bodyParts = state is MuscleFocusLoading ? Fakers().bodyPartsModel : state.muscleFocusData;
-        final isAllSelected = state.userInfo.bodyPartsIds.length == bodyParts.length;
+        final bodyParts = state is MuscleFocusLoading
+            ? Fakers().bodyPartsModel
+            : state.muscleFocusData;
+        final isAllSelected =
+            state.userInfo.bodyPartsIds.length == bodyParts.length;
         return Skeletonizer(
           enabled: state is MuscleFocusLoading,
           child: Column(
@@ -51,50 +63,27 @@ class _UserInfoBodyPartsState extends State<UserInfoBodyParts> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    spacing: 6,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(L10n.tr().focusedBodyPart, style: TStyle.semiBold_16, textAlign: TextAlign.start),
-                      AbsorbPointer(
-                        absorbing: state is MuscleFocusLoading,
-                        child: GestureDetector(
-                          onTap: () async {
-                            if (isAllSelected) {
-                              cubit.toggleBodyParts('', addSet: {});
-                            } else {
-                              cubit.toggleBodyParts('', addSet: bodyParts.map((e) => e.key).toSet());
-                            }
-                          },
-                          child: Text(
-                            isAllSelected ? L10n.tr().unselectAll : L10n.tr().selectAll,
-                            style: TStyle.semiBold_16.copyWith(
-                                color: isAllSelected ? Colors.blueGrey : cubit.colorScheme.primary),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                if(!isAllSelected && bodyParts.length> 4)  AbsorbPointer(
+                  Text(L10n.tr().focusedBodyPart,
+                      style: TStyle.semiBold_16, textAlign: TextAlign.start),
+                  AbsorbPointer(
                     absorbing: state is MuscleFocusLoading,
                     child: GestureDetector(
                       onTap: () async {
-                        final selected = await showModalBottomSheet<Set<String>>(
-                          backgroundColor: Colors.white,
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                          ),
-                          builder: (ctx) => SeeMoreSheet<String>(
-                            items: state.muscleFocusData.map((e) => (e.key, e.value)).toList(),
-                            selected: state.userInfo.bodyPartsIds,
-                          ),
-                        );
-                        if (selected != null) cubit.toggleBodyParts('', addSet: selected);
+                        if (isAllSelected) {
+                          cubit.toggleBodyParts('', addSet: {});
+                        } else {
+                          cubit.toggleBodyParts('',
+                              addSet: bodyParts.map((e) => e.key).toSet());
+                        }
                       },
                       child: Text(
-                        L10n.tr().seeMore,
-                        style: TStyle.semiBold_16.copyWith(color: cubit.colorScheme.primary),
+                        isAllSelected
+                            ? L10n.tr().unselectAll
+                            : L10n.tr().selectAll,
+                        style: TStyle.semiBold_16.copyWith(
+                            color: isAllSelected
+                                ? Colors.blueGrey
+                                : cubit.colorScheme.primary),
                       ),
                     ),
                   ),
@@ -112,15 +101,16 @@ class _UserInfoBodyPartsState extends State<UserInfoBodyParts> {
                         effects: const [FadeEffect()],
                         child: ListView.builder(
                             shrinkWrap: true,
-                            itemCount: isAllSelected ? bodyParts.length : bodyParts.length > 4 ? 4 : bodyParts.length,
+                            itemCount: bodyParts.length,
                             itemBuilder: (context, index) {
                               final item = bodyParts[index];
                               return RadioBoxWithImage(
                                   shortMode: true,
-                                  title: item.value,
+                                  title: _correctBodyPartName(item.value),
                                   imageUrl: item.image,
                                   onTap: () => cubit.toggleBodyParts(item.key),
-                                  isSelected: state.userInfo.bodyPartsIds.contains(item.key));
+                                  isSelected: state.userInfo.bodyPartsIds
+                                      .contains(item.key));
                             }),
                       ),
                     ),

@@ -91,6 +91,13 @@ class _UserInfoAgeState extends State<UserInfoAge> {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
+          const SizedBox(height: 8),
+          Text(
+            L10n.tr().acceptedValuesAge,
+            style: TStyle.regular_12.copyWith(
+              color: Colors.white.withValues(alpha: 0.7),
+            ),
+          ),
           const SizedBox(height: 100),
           // continue button
           ListenableBuilder(
@@ -103,7 +110,7 @@ class _UserInfoAgeState extends State<UserInfoAge> {
                   : () {
                       final age = int.tryParse(controller.text.trim()) ?? 0;
                       if (age < 16 || age > 99) {
-                        return Alerts.showToast(L10n.tr().pleaseEnterValidAge);
+                        return Alerts.showToast(L10n.tr().ageMustBeBetween);
                       }
                       cubit.updateUserAge(age);
                       cubit.nextPage(false);
