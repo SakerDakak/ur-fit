@@ -34,7 +34,10 @@ class NoSubscriptionWidget extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primary
+                      .withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -64,7 +67,10 @@ class NoSubscriptionWidget extends StatelessWidget {
               _getDescriptionText(),
               style: TextStyle(
                 fontSize: 14,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),
@@ -124,7 +130,7 @@ class ExpiredSubscriptionWidget extends StatelessWidget {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: Colors.orange.withOpacity(0.1),
+                color: Colors.orange.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -154,7 +160,10 @@ class ExpiredSubscriptionWidget extends StatelessWidget {
               "جدد اشتراكك للمتابعة",
               style: TextStyle(
                 fontSize: 14,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),

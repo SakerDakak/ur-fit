@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -23,6 +24,31 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
     context.read<SetupPersonalInfoCubit>().getBodyPartsData();
     context.read<SetupPersonalInfoCubit>().getWorkoutTypes();
     super.initState();
+  }
+
+  // دالة للحصول على اسم اليوم المترجم
+  String _getLocalizedDayName(DateTime date, BuildContext context) {
+    final weekday = date.weekday;
+    final isArabic = L10n.isAr(context);
+
+    switch (weekday) {
+      case DateTime.sunday:
+        return isArabic ? 'الأحد' : 'Sun';
+      case DateTime.monday:
+        return isArabic ? 'الإثنين' : 'Mon';
+      case DateTime.tuesday:
+        return isArabic ? 'الثلاثاء' : 'Tue';
+      case DateTime.wednesday:
+        return isArabic ? 'الأربعاء' : 'Wed';
+      case DateTime.thursday:
+        return isArabic ? 'الخميس' : 'Thu';
+      case DateTime.friday:
+        return isArabic ? 'الجمعة' : 'Fri';
+      case DateTime.saturday:
+        return isArabic ? 'السبت' : 'Sat';
+      default:
+        return '';
+    }
   }
 
   @override
@@ -158,68 +184,76 @@ class _FinalStepSectionTwoState extends State<FinalStepSectionTwo> {
 
   _buildExerciseDays(SetupPersonalInfoCubit cubit) {
     final user = Session().currentUser;
-    return FittedBox(
-      fit: BoxFit.scaleDown,
-      child: BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
-        buildWhen: (p, c) =>
-            p.userInfo.exerciseDayes != c.userInfo.exerciseDayes,
-        builder: (context, state) {
-          return Row(
-            children: [
-              for (int i = 0; i < 7; i++)
-                Builder(builder: (context) {
-                  print(
-                      "date : ${DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i])}");
-                  final bool isSelected = state.userInfo.exerciseDayes.any(
-                          (day) =>
-                              day.name ==
-                              DateFormat.EEEE().format(
-                                  WeakDaysDate.getCurrentWeekDays()[i])) ||
-                      (user != null &&
-                          user.exerciseDays != null &&
-                          user.exerciseDays!.any((day) =>
-                              day ==
-                              DateFormat.EEEE().format(
-                                  WeakDaysDate.getCurrentWeekDays()[i])));
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, appState) {
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: BlocBuilder<SetupPersonalInfoCubit, SetupPersonalInfoState>(
+            buildWhen: (p, c) =>
+                p.userInfo.exerciseDayes != c.userInfo.exerciseDayes,
+            builder: (context, state) {
+              return Row(
+                children: [
+                  for (int i = 0; i < 7; i++)
+                    Builder(builder: (context) {
+                      print(
+                          "date : ${DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i])}");
+                      final bool isSelected = state.userInfo.exerciseDayes.any(
+                              (day) =>
+                                  day.name ==
+                                  DateFormat.EEEE().format(
+                                      WeakDaysDate.getCurrentWeekDays()[i])) ||
+                          (user != null &&
+                              user.exerciseDays != null &&
+                              user.exerciseDays!.any((day) =>
+                                  day ==
+                                  DateFormat.EEEE().format(
+                                      WeakDaysDate.getCurrentWeekDays()[i])));
 
-                  return GestureDetector(
-                    onTap: () {
-                      print('asd asddas');
-                      // cubit.updateSelectedExerciseDaysData(
-                      //     DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i]));
-                    },
-                    child: Container(
-                      margin: EdgeInsetsDirectional.only(end: i != 6 ? 8 : 0),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 11, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? Theme.of(context).colorScheme.primary
-                            : Co.cardColor,
-                        borderRadius:
-                            BorderRadius.circular(AppConst.kBorderRadius),
-                        border: Border.all(color: Co.strockColor),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            DateFormat.E()
-                                .format(WeakDaysDate.getCurrentWeekDays()[i]),
-                            style: TStyle.regular_14.copyWith(
-                              fontWeight: isSelected ? FontWeight.w700 : null,
-                              color:
-                                  isSelected ? Co.selectedFont : Co.fontColor,
-                            ),
+                      return GestureDetector(
+                        onTap: () {
+                          print('asd asddas');
+                          // cubit.updateSelectedExerciseDaysData(
+                          //     DateFormat.EEEE().format(WeakDaysDate.getCurrentWeekDays()[i]));
+                        },
+                        child: Container(
+                          margin:
+                              EdgeInsetsDirectional.only(end: i != 6 ? 8 : 0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 11, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? Theme.of(context).colorScheme.primary
+                                : Co.cardColor,
+                            borderRadius:
+                                BorderRadius.circular(AppConst.kBorderRadius),
+                            border: Border.all(color: Co.strockColor),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-            ],
-          );
-        },
-      ),
+                          child: Column(
+                            children: [
+                              Text(
+                                _getLocalizedDayName(
+                                    WeakDaysDate.getCurrentWeekDays()[i],
+                                    context),
+                                style: TStyle.regular_14.copyWith(
+                                  fontWeight:
+                                      isSelected ? FontWeight.w700 : null,
+                                  color: isSelected
+                                      ? Co.selectedFont
+                                      : Co.fontColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
