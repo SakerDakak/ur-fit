@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-
 
 class SubscriptionScreenAppBar extends StatelessWidget {
   const SubscriptionScreenAppBar({
@@ -31,7 +29,8 @@ class SubscriptionScreenAppBar extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TStyle.bold_16,
           ),
-        )
+        ),
+        const SizedBox(width: 40),
       ],
     );
   }
