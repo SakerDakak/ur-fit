@@ -356,5 +356,8 @@
   "wednesday": "Wednesday",
   "thursday": "Thursday",
   "friday": "Friday",
-  "saturday": "Saturday"
+  "saturday": "Saturday",
+  "subscribeToAccessExercises": "Subscribe to access personalized workouts",
+  "subscribeToAccessMeals": "Subscribe to access custom meal plans",
+  "subscribeToAccessAllFeatures": "Subscribe to access all personalized features"
 }

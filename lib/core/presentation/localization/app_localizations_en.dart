@@ -1079,4 +1079,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saturday => 'Saturday';
+
+  @override
+  String get subscribeToAccessExercises =>
+      'Subscribe to access personalized workouts';
+
+  @override
+  String get subscribeToAccessMeals => 'Subscribe to access custom meal plans';
+
+  @override
+  String get subscribeToAccessAllFeatures =>
+      'Subscribe to access all personalized features';
 }

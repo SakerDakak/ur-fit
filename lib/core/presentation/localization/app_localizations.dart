@@ -2167,6 +2167,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Saturday'**
   String get saturday;
+
+  /// No description provided for @subscribeToAccessExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe to access personalized workouts'**
+  String get subscribeToAccessExercises;
+
+  /// No description provided for @subscribeToAccessMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe to access custom meal plans'**
+  String get subscribeToAccessMeals;
+
+  /// No description provided for @subscribeToAccessAllFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe to access all personalized features'**
+  String get subscribeToAccessAllFeatures;
 }
 
 class _AppLocalizationsDelegate

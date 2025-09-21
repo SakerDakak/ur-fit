@@ -10,6 +10,7 @@ import 'package:urfit/modules/subscription_module/data/models/discount_value_mod
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
 
+import '../../../core/presentation/style/colors.dart';
 import '../../../core/presentation/utils/enums.dart';
 
 part 'subscription_cubit.freezed.dart';

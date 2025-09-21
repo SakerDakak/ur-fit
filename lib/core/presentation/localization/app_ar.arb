@@ -356,5 +356,8 @@
   "wednesday": "الأربعاء",
   "thursday": "الخميس",
   "friday": "الجمعة",
-  "saturday": "السبت"
+  "saturday": "السبت",
+  "subscribeToAccessExercises": "اشترك للوصول إلى التمارين المخصصة",
+  "subscribeToAccessMeals": "اشترك للوصول إلى خطط الوجبات المخصصة",
+  "subscribeToAccessAllFeatures": "اشترك للوصول إلى جميع الميزات المخصصة"
 }

@@ -7,12 +7,14 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/core/presentation/views/widgets/package_progress_meals.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
+import 'package:urfit/core/presentation/views/widgets/no_subscription_widget.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/widgets/meals_listview.dart';
 import 'package:urfit/modules/meals_module/widgets/shimmer/what_ur_body_needs_shimmer.dart';
 import 'package:urfit/modules/meals_module/widgets/what_ur_body_need_section.dart';
 
 import '../../../core/presentation/utils/enums.dart';
+import '../../subscription_module/data/models/package_model.dart';
 
 class MealsScreen extends StatefulWidget {
   const MealsScreen({super.key});
@@ -52,72 +54,90 @@ class _MealsScreenState extends State<MealsScreen> {
 
     return BlocBuilder<MealsCubit, MealsState>(
       builder: (context, state) {
+        // التحقق من حالة الاشتراك
+        if (user?.hasValidSubscription != true) {
+          return Scaffold(
+            body: NoSubscriptionWidget(
+              message: L10n.tr().noSubscription,
+              planType: PlanType.diet,
+            ),
+          );
+        }
+
+        // التحقق من وجود خطة وجبات
+        if (user?.haveMealPlan != true &&
+            state.getMealPlansState != RequestState.loading &&
+            state.allPlans.isEmpty) {
+          return const Scaffold(
+            body: NoSubscriptionWidget(
+              message: "لا توجد خطة وجبات",
+              planType: PlanType.diet,
+            ),
+          );
+        }
+
         return Scaffold(
-          body: user?.haveMealPlan != true &&
-                  state.getMealPlansState != RequestState.loading &&
-                  state.allPlans.isEmpty
-              ? Center(child: Text(L10n.tr().noSubscription))
-              : RefreshIndicator(
-                  onRefresh: () async {
-                    cubit.getMealPlans();
+          body: RefreshIndicator(
+            onRefresh: () async {
+              cubit.getMealPlans();
+            },
+            child: ListView(
+              padding: const EdgeInsets.only(
+                bottom: AppConst.kBottomPadding,
+                left: AppConst.kHorizontalPadding,
+                right: AppConst.kHorizontalPadding,
+              ),
+              children: [
+                // plan remaining time
+                const PackageProgressMeals(),
+
+                const SizedBox(height: 16),
+
+                // dates
+                const WeakDaysDate(),
+
+                const SizedBox(height: 16),
+
+                // what ur body needs today card
+                BlocBuilder<MealsCubit, MealsState>(
+                  buildWhen: (p, c) =>
+                      p.allPlans != c.allPlans ||
+                      p.getMealPlansState != c.getMealPlansState,
+                  builder: (context, state) {
+                    if (state.getMealPlansState == RequestState.loading ||
+                        state.getMealPlansState == RequestState.failure) {
+                      return const WhatUrBodyNeedsShimmer();
+                    } else {
+                      // تم حذف المتغير غير المستخدم
+                      return const WhatUrBodyNeedSection();
+                    }
                   },
-                  child: ListView(
-                    padding: const EdgeInsets.only(
-                      bottom: AppConst.kBottomPadding,
-                      left: AppConst.kHorizontalPadding,
-                      right: AppConst.kHorizontalPadding,
-                    ),
-                    children: [
-                      // plan remaining time
-                      const PackageProgressMeals(),
-
-                      const SizedBox(height: 16),
-
-                      // dates
-                      const WeakDaysDate(),
-
-                      const SizedBox(height: 16),
-
-                      // what ur body needs today card
-                      BlocBuilder<MealsCubit, MealsState>(
-                        buildWhen: (p, c) =>
-                            p.allPlans != c.allPlans ||
-                            p.getMealPlansState != c.getMealPlansState,
-                        builder: (context, state) {
-                          if (state.getMealPlansState == RequestState.loading ||
-                              state.getMealPlansState == RequestState.failure) {
-                            return const WhatUrBodyNeedsShimmer();
-                          } else {
-                            // تم حذف المتغير غير المستخدم
-                            return const WhatUrBodyNeedSection();
-                          }
-                        },
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      // meals list
-                      BlocBuilder<MealsCubit, MealsState>(
-                        buildWhen: (p, c) =>
-                            p.allPlans != c.allPlans ||
-                            p.getMealPlansState != c.getMealPlansState,
-                        builder: (context, state) {
-                          if (state.getMealPlansState == RequestState.failure) {
-                            return FailureWidget(
-                              message: state.errMessage,
-                              onRetry: () => cubit.getMealPlans(),
-                            );
-                          }
-
-                          return Skeletonizer(
-                              enabled: state.getMealPlansState ==
-                                  RequestState.loading,
-                              child: const MealsListview());
-                        },
-                      ),
-                    ],
-                  ),
                 ),
+
+                const SizedBox(height: 16),
+
+                // meals list
+                BlocBuilder<MealsCubit, MealsState>(
+                  buildWhen: (p, c) =>
+                      p.allPlans != c.allPlans ||
+                      p.getMealPlansState != c.getMealPlansState,
+                  builder: (context, state) {
+                    if (state.getMealPlansState == RequestState.failure) {
+                      return FailureWidget(
+                        message: state.errMessage,
+                        onRetry: () => cubit.getMealPlans(),
+                      );
+                    }
+
+                    return Skeletonizer(
+                        enabled:
+                            state.getMealPlansState == RequestState.loading,
+                        child: const MealsListview());
+                  },
+                ),
+              ],
+            ),
+          ),
         );
       },
     );

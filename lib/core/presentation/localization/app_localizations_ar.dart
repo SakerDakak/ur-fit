@@ -1079,4 +1079,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get saturday => 'السبت';
+
+  @override
+  String get subscribeToAccessExercises => 'اشترك للوصول إلى التمارين المخصصة';
+
+  @override
+  String get subscribeToAccessMeals => 'اشترك للوصول إلى خطط الوجبات المخصصة';
+
+  @override
+  String get subscribeToAccessAllFeatures =>
+      'اشترك للوصول إلى جميع الميزات المخصصة';
 }
