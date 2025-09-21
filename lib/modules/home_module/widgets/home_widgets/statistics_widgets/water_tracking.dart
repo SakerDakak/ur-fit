@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health/health.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -16,79 +16,87 @@ class WaterTracking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Co.cardColor,
-        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: Co.strockColor),
-      ),
-      child: Column(
-        children: [
-          Text(
-            L10n.tr().water,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TStyle.regular_14.copyWith(
-              fontWeight: FontWeight.w700,
-              color: Co.whiteColor,
-            ),
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, appState) {
+        return Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Co.cardColor,
+            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+            border: Border.all(color: Co.strockColor),
           ),
-          const SizedBox(height: 8),
-          Expanded(
-            child:
-                BlocSelector<HealthCubit, HealthState, List<HealthDataPoint>>(
-              selector: (state) => state.healthData,
-              builder: (context, healthData) {
-                return CustomBarChart(
-                  data: [
-                    ...healthData
-                        .where(
-                            (element) => element.type == HealthDataType.WATER)
-                        .map((e) {
-                      final index = healthData.indexOf(e);
-                      return WaterChartData(
-                        amountOfWater: double.tryParse(e.value
-                                .toString()
-                                .split("numericValue: ")
-                                .last) ??
-                            0,
-                        date: DateTime.now().subtract(Duration(days: index)),
-                      );
-                    }),
-                    if (healthData
-                        .where(
-                            (element) => element.type == HealthDataType.WATER)
-                        .isEmpty)
-                      ...List.generate(
-                          6,
-                          (index) => WaterChartData(
-                                amountOfWater: 1,
-                                date: DateTime.now()
-                                    .subtract(Duration(days: index)),
-                              )),
-                  ],
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 8),
-          BlocSelector<HealthCubit, HealthState, num>(
-            selector: (state) => state.totalLitreOfWater,
-            builder: (context, water) {
-              return Text(
-                '$water ${L10n.tr().litre}',
+          child: Column(
+            children: [
+              Text(
+                L10n.tr().water,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TStyle.regular_14.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Co.fontColor,
+                  fontWeight: FontWeight.w700,
+                  color: Co.whiteColor,
                 ),
-              );
-            },
+              ),
+              const SizedBox(height: 8),
+              Expanded(
+                child: BlocSelector<HealthCubit, HealthState,
+                    List<HealthDataPoint>>(
+                  selector: (state) => state.healthData,
+                  builder: (context, healthData) {
+                    // إنشاء بيانات لـ 7 أيام مع عرض القيمة 0 للأيام التي لم يشرب بها
+                    final waterData = healthData
+                        .where(
+                            (element) => element.type == HealthDataType.WATER)
+                        .toList();
+
+                    // إنشاء خريطة للبيانات الموجودة حسب التاريخ
+                    final Map<String, double> waterByDate = {};
+                    for (final data in waterData) {
+                      final dateKey =
+                          '${data.dateFrom.year}-${data.dateFrom.month}-${data.dateFrom.day}';
+                      final waterAmount = double.tryParse(data.value
+                              .toString()
+                              .split("numericValue: ")
+                              .last) ??
+                          0;
+                      waterByDate[dateKey] = waterAmount;
+                    }
+
+                    // إنشاء بيانات لـ 7 أيام (من اليوم الحالي إلى 6 أيام سابقة)
+                    final chartData = List.generate(7, (index) {
+                      final date =
+                          DateTime.now().subtract(Duration(days: index));
+                      final dateKey = '${date.year}-${date.month}-${date.day}';
+                      final waterAmount = waterByDate[dateKey] ?? 0.0;
+
+                      return WaterChartData(
+                        amountOfWater: waterAmount,
+                        date: date,
+                      );
+                    });
+
+                    return CustomBarChart(data: chartData);
+                  },
+                ),
+              ),
+              const SizedBox(height: 8),
+              BlocSelector<HealthCubit, HealthState, num>(
+                selector: (state) => state.totalLitreOfWater,
+                builder: (context, water) {
+                  return Text(
+                    '$water ${L10n.tr().litre}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TStyle.regular_14.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Co.fontColor,
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

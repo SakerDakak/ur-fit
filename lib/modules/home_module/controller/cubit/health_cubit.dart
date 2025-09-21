@@ -28,59 +28,100 @@ class HealthCubit extends Cubit<HealthState> {
       .toList();
 
   initializeHealth() async {
-    // configure the health plugin before use.
-    await Health().configure();
+    try {
+      // configure the health plugin before use.
+      await Health().configure();
 
-    // define the types to get
-    final types = [
-      HealthDataType.STEPS,
-      HealthDataType.BASAL_ENERGY_BURNED,
-      HealthDataType.WORKOUT,
-      HealthDataType.SLEEP_ASLEEP,
-      HealthDataType.WATER,
-      if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
-      if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
-    ];
+      // define the types to get
+      final types = [
+        HealthDataType.STEPS,
+        HealthDataType.BASAL_ENERGY_BURNED, // السعرات الحرارية الأساسية
+        HealthDataType
+            .ACTIVE_ENERGY_BURNED, // السعرات الحرارية النشطة (المحروقة)
+        HealthDataType.WORKOUT,
+        HealthDataType.SLEEP_ASLEEP,
+        HealthDataType.WATER,
+        if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
+        if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
+      ];
 
-    // requesting access to the data types before reading them
-    final bool requested = await Health().requestAuthorization(types, permissions: [
-      HealthDataAccess.READ_WRITE,
-      HealthDataAccess.READ_WRITE,
-      HealthDataAccess.READ_WRITE,
-      HealthDataAccess.READ_WRITE,
-      HealthDataAccess.READ_WRITE,
-      HealthDataAccess.READ_WRITE
-    ]);
-    // bool?  request  = await Health().hasPermissions(types,permissions: [HealthDataAccess.READ_WRITE,HealthDataAccess.READ_WRITE]);
-    print("request : $requested");
-    final now = DateTime.now();
+      // requesting access to the data types before reading them
+      final bool requested =
+          await Health().requestAuthorization(types, permissions: [
+        HealthDataAccess.READ_WRITE, // STEPS
+        HealthDataAccess.READ_WRITE, // BASAL_ENERGY_BURNED
+        HealthDataAccess.READ_WRITE, // ACTIVE_ENERGY_BURNED
+        HealthDataAccess.READ_WRITE, // WORKOUT
+        HealthDataAccess.READ_WRITE, // SLEEP_ASLEEP
+        HealthDataAccess.READ_WRITE, // WATER
+        HealthDataAccess.READ_WRITE, // DISTANCE
+      ]);
 
-    // fetch health data from the last 24 hours
-    final List<HealthDataPoint> healthData = await Health().getHealthDataFromTypes(
-      types: types,
-      startTime: now.subtract(const Duration(days: 1)),
-      endTime: now,
-    );
+      if (!requested) {
+        return;
+      }
 
-    final num totalCalories = getTotalCalories(healthData);
-    final num totalDistance = getTotalDistance(healthData);
-    final num totalWaterLitre = getTotalWaterInLitre(healthData);
-    final num totalSleep = getTotalSleepTime(healthData);
-    final num exerciseTime = getExerciseTimeInMin(healthData);
-    final int? totalSteps = await Health().getTotalStepsInInterval(
-      now.subtract(const Duration(days: 1)),
-      now,
-    );
+      final now = DateTime.now();
 
-    // Health().writeWorkoutData(activityType: HealthWorkoutActivityType.GYMNASTICS, start: start, end: end,)
-    emit(state.copyWith(
-        healthData: healthData,
-        totalCalories: totalCalories,
-        totalSteps: totalSteps ?? 0,
-        distanceInMeters: totalDistance.toInt(),
-        totalLitreOfWater: totalWaterLitre,
-        totalSleep: totalSleep,
-        exerciseTime: exerciseTime));
+      // fetch health data from the last 24 hours
+      final List<HealthDataPoint> healthData =
+          await Health().getHealthDataFromTypes(
+        types: types,
+        startTime: now.subtract(const Duration(days: 1)),
+        endTime: now,
+      );
+
+      // محاولة استخدام البيانات من المحاولات المختلفة
+      List<HealthDataPoint> finalHealthData = healthData;
+
+      // إذا لم نجد بيانات، جرب البيانات من آخر 7 أيام
+      if (healthData.isEmpty) {
+        final List<HealthDataPoint> weekData =
+            await Health().getHealthDataFromTypes(
+          types: types,
+          startTime: now.subtract(const Duration(days: 7)),
+          endTime: now,
+        );
+
+        if (weekData.isNotEmpty) {
+          finalHealthData = weekData;
+        } else {
+          // محاولة أخيرة: استرداد البيانات من اليوم الحالي فقط
+          final todayStart = DateTime(now.year, now.month, now.day);
+          final List<HealthDataPoint> todayData =
+              await Health().getHealthDataFromTypes(
+            types: [HealthDataType.STEPS, HealthDataType.ACTIVE_ENERGY_BURNED],
+            startTime: todayStart,
+            endTime: now,
+          );
+
+          if (todayData.isNotEmpty) {
+            finalHealthData = todayData;
+          }
+        }
+      }
+
+      final num totalCalories = getTotalCalories(finalHealthData);
+      final num totalDistance = getTotalDistance(finalHealthData);
+      final num totalWaterLitre = getTotalWaterInLitre(finalHealthData);
+      final num totalSleep = getTotalSleepTime(finalHealthData);
+      final num exerciseTime = getExerciseTimeInMin(finalHealthData);
+      final int? totalSteps = await Health().getTotalStepsInInterval(
+        now.subtract(const Duration(days: 1)),
+        now,
+      );
+
+      emit(state.copyWith(
+          healthData: finalHealthData,
+          totalCalories: totalCalories,
+          totalSteps: totalSteps ?? 0,
+          distanceInMeters: totalDistance.toInt(),
+          totalLitreOfWater: totalWaterLitre,
+          totalSleep: totalSleep,
+          exerciseTime: exerciseTime));
+    } catch (e) {
+      // في حالة الخطأ، نترك البيانات كما هي
+    }
   }
 
   num getExerciseTimeInMin(List<HealthDataPoint> healthData) {
@@ -93,11 +134,50 @@ class HealthCubit extends Cubit<HealthState> {
   }
 
   num getTotalCalories(List<HealthDataPoint> healthData) {
-    return healthData
+    // جمع البيانات من كلا النوعين
+    final basalCaloriesData = healthData
         .where((element) => element.type == HealthDataType.BASAL_ENERGY_BURNED)
-        .map((e) =>
-            num.tryParse(e.value.toString().split("numericValue: ").last) ?? 0)
-        .fold(0, (previousValue, element) => previousValue + element);
+        .toList();
+
+    final activeCaloriesData = healthData
+        .where((element) => element.type == HealthDataType.ACTIVE_ENERGY_BURNED)
+        .toList();
+
+    // حساب إجمالي السعرات الأساسية
+    num totalBasalCalories = 0;
+    for (var data in basalCaloriesData) {
+      final num? calories = _extractNumericValue(data.value);
+      totalBasalCalories += calories ?? 0;
+    }
+
+    // حساب إجمالي السعرات النشطة
+    num totalActiveCalories = 0;
+    for (var data in activeCaloriesData) {
+      final num? calories = _extractNumericValue(data.value);
+      totalActiveCalories += calories ?? 0;
+    }
+
+    // إجمالي السعرات (نركز على السعرات النشطة المحروقة)
+    final num totalCalories =
+        totalActiveCalories > 0 ? totalActiveCalories : totalBasalCalories;
+
+    return totalCalories;
+  }
+
+  // دالة مساعدة لاستخراج القيمة الرقمية
+  num? _extractNumericValue(dynamic value) {
+    // الطريقة الأولى: البحث عن "numericValue:"
+    if (value.toString().contains("numericValue:")) {
+      return num.tryParse(value.toString().split("numericValue: ").last);
+    }
+    // الطريقة الثانية: إذا كانت القيمة رقمية مباشرة
+    else if (value is num) {
+      return value;
+    }
+    // الطريقة الثالثة: محاولة التحويل المباشر
+    else {
+      return num.tryParse(value.toString());
+    }
   }
 
   num getTotalDistance(List<HealthDataPoint> healthData) {

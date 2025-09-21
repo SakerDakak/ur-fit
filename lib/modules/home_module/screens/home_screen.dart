@@ -50,7 +50,9 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 16),
 
                     // current and target weight card
-                    if (!isGuest && user?.currentWeight != null && user?.targetWeight != null)
+                    if (!isGuest &&
+                        user?.currentWeight != null &&
+                        user?.targetWeight != null)
                       const CurrentWeightCard(),
 
                     const SizedBox(height: 16),

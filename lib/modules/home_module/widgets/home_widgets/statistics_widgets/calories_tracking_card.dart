@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -13,57 +14,64 @@ class CaloriesTrackingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Co.cardColor,
-        borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
-        border: Border.all(color: Co.strockColor),
-      ),
-      child: Column(
-        children: [
-          Text(
-            L10n.tr().calories,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TStyle.regular_14.copyWith(
-              fontWeight: FontWeight.w700,
-              color: Co.whiteColor,
-            ),
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, appState) {
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Co.cardColor,
+            borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
+            border: Border.all(color: Co.strockColor),
           ),
-          const SizedBox(height: 8),
-
-          // progress
-          Expanded(
-            child: FittedBox(
-              child: BlocSelector<HealthCubit, HealthState, num>(
-                selector: (state) => state.totalCalories,
-                builder: (context, calories) {
-                  return CustomCircularPercentIndicator(percent: calories.toDouble());
-                },
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 8),
-
-          BlocSelector<HealthCubit, HealthState, num>(
-            selector: (state) => state.totalCalories,
-            builder: (context, calories) {
-              return Text(
-                '${calories.toStringAsFixed(0)} ${L10n.tr().calorie} ',
+          child: Column(
+            children: [
+              Text(
+                L10n.tr().calories,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TStyle.regular_14.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Co.fontColor,
+                  fontWeight: FontWeight.w700,
+                  color: Co.whiteColor,
                 ),
-              );
-            },
+              ),
+              const SizedBox(height: 8),
+
+              // progress
+              Expanded(
+                child: FittedBox(
+                  child: BlocSelector<HealthCubit, HealthState, num>(
+                    selector: (state) => state.totalCalories,
+                    builder: (context, calories) {
+                      // تحويل السعرات إلى نسبة مئوية (افتراضياً 2200 سعرة حرارية كحد أقصى)
+                      final double percent =
+                          (calories.toDouble() / 2200).clamp(0.0, 1.0);
+                      return CustomCircularPercentIndicator(percent: percent);
+                    },
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              BlocSelector<HealthCubit, HealthState, num>(
+                selector: (state) => state.totalCalories,
+                builder: (context, calories) {
+                  return Text(
+                    '${calories.toStringAsFixed(0)} ${L10n.tr().calories}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TStyle.regular_14.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Co.fontColor,
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
