@@ -56,19 +56,23 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
             context: AppConst.navigatorKey.currentContext!,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: Co.backGround, // خلفية داكنة
                 title: Text(
                   failure.message,
-                  style: TStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.white),
                 ),
                 content: Text(
                   failure.message,
-                  style: TStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.white70),
                 ),
                 actions: [
                   TextButton(
                       onPressed: () {
                         context.pop();
                       },
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                      ),
                       child: const Text("Ok"))
                 ],
               );
@@ -79,13 +83,14 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
             context: AppConst.navigatorKey.currentContext!,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: Co.backGround, // خلفية داكنة
                 title: Text(
                   successData.toString(),
-                  style: TStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.white),
                 ),
                 content: Text(
                   successData.toString(),
-                  style: TStyle.bold_24.copyWith(color: Colors.black),
+                  style: TStyle.bold_24.copyWith(color: Colors.white70),
                 ),
                 actions: [
                   TextButton(
@@ -94,6 +99,9 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
 
                         context.pop();
                       },
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                      ),
                       child: const Text("Ok"))
                 ],
               );

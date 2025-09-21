@@ -24,9 +24,13 @@ import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_work
 import 'package:urfit/modules/personal_info/screens/steps_screens/user_info_injuries.dart';
 
 class PresonalInfoLayoutScreen extends StatefulWidget {
-  const PresonalInfoLayoutScreen({super.key, required this.isEditingProfile});
+  const PresonalInfoLayoutScreen(
+      {super.key,
+      required this.isEditingProfile,
+      this.showCancelButton = false});
   static const routeWzExtra = '/PresonalInfoLayoutScreen';
   final bool isEditingProfile;
+  final bool showCancelButton; // معامل جديد لإظهار زر الإلغاء
   @override
   State<PresonalInfoLayoutScreen> createState() =>
       _PresonalInfoLayoutScreenState();
@@ -55,7 +59,8 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
     cubit.pageController.addListener(_listenToPageChanges);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       cubit.colorScheme = Theme.of(context).colorScheme;
-      Future.delayed(Durations.short2, () => cubit.setInitPage());
+      Future.delayed(
+          Durations.short2, () => cubit.setInitPage(widget.isEditingProfile));
     });
     super.initState();
   }
@@ -165,6 +170,69 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
             textAlign: TextAlign.center,
             style: TStyle.bold_16,
           ),
+          // إضافة زر الإلغاء إذا كان showCancelButton = true
+          actions: widget.showCancelButton
+              ? [
+                  TextButton(
+                    onPressed: () {
+                      // إظهار تأكيد الإلغاء
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          backgroundColor: Co.backGround, // خلفية داكنة
+                          title: Text(
+                            L10n.tr().cancel,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          content: Text(
+                            L10n.tr().areYouSureYouWantToCancel,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 16,
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors.grey[400],
+                              ),
+                              child: Text(L10n.tr().no),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                context.pop(); // العودة للصفحة السابقة
+                              },
+                              style: TextButton.styleFrom(
+                                foregroundColor:
+                                    Theme.of(context).colorScheme.primary,
+                              ),
+                              child: Text(L10n.tr().yes),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[400], // لون رمادي للنص
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                    ),
+                    child: Text(
+                      L10n.tr().cancel,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ]
+              : null,
         ),
         body: SafeArea(
           child: Padding(

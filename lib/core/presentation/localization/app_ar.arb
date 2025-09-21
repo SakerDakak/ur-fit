@@ -347,6 +347,8 @@
   "dietInfo": "معلومات النظام الغذائي",
   "medicalInfo": "المعلومات الطبية",
   "createMyPlan": "إنشاء خطتي الخاصة",
+  "cancel": "إلغاء",
+  "areYouSureYouWantToCancel": "هل أنت متأكد من أنك تريد الإلغاء؟",
   "back": "الظهر",
   "sunday": "الأحد",
   "monday": "الإثنين",

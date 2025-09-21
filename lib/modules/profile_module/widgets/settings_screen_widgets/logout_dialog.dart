@@ -14,6 +14,7 @@ class LogoutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Co.backGround, // خلفية داكنة
       contentPadding: EdgeInsets.zero,
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -66,7 +67,7 @@ class LogoutDialog extends StatelessWidget {
               L10n.tr().areYouSureYouWantToLogout,
               textAlign: TextAlign.center,
               style: TStyle.bold_14.copyWith(
-                color: Co.selectedFont,
+                color: Colors.white, // لون أبيض للنص
               ),
             ),
           ),

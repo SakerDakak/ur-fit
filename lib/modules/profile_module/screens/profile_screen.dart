@@ -55,7 +55,12 @@ class ProfileScreen extends StatelessWidget {
 
               // my plan tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(PresonalInfoLayoutScreen.routeWzExtra, extra: true),
+                onTap: () => GoRouter.of(context)
+                    .push(PresonalInfoLayoutScreen.routeWzExtra, extra: {
+                  'isEditingProfile': true,
+                  'showCancelButton':
+                      true, // إظهار زر الإلغاء عند الدخول من صفحة حسابي
+                }),
                 title: L10n.tr().myPlan,
                 leadingIconSvgPath: Assets.iconsPaper,
               ),
@@ -66,7 +71,8 @@ class ProfileScreen extends StatelessWidget {
 
               // previous plan tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(PreviousPlanScreen.route),
+                onTap: () =>
+                    GoRouter.of(context).push(PreviousPlanScreen.route),
                 title: L10n.tr().previousPlan,
                 leadingIconSvgPath: Assets.iconsPaper2,
               ),
@@ -77,7 +83,9 @@ class ProfileScreen extends StatelessWidget {
 
               // subscription tile
               DefaultListTile(
-                onTap: () => GoRouter.of(context).push(SubscriptionPlansScreen.routeWzExtra, extra: PlanType.both),
+                onTap: () => GoRouter.of(context).push(
+                    SubscriptionPlansScreen.routeWzExtra,
+                    extra: PlanType.both),
                 title: L10n.tr().subscribe,
                 leadingIconSvgPath: Assets.iconsCopy,
               ),
@@ -99,8 +107,8 @@ class ProfileScreen extends StatelessWidget {
 
               // privacy policy tile
               DefaultListTile(
-                onTap: () =>
-                    context.pushNamed(PrivacyPolicyScreen.routeWzKey, pathParameters: {"key": "privacy_policy"}),
+                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
+                    pathParameters: {"key": "privacy_policy"}),
                 title: L10n.tr().privacyPolicy,
                 leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
@@ -110,8 +118,8 @@ class ProfileScreen extends StatelessWidget {
               ),
               // terms_and_conditions tile
               DefaultListTile(
-                onTap: () =>
-                    context.pushNamed(PrivacyPolicyScreen.routeWzKey, pathParameters: {"key": "terms_and_conditions"}),
+                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
+                    pathParameters: {"key": "terms_and_conditions"}),
                 title: L10n.tr().termsAndConditions,
                 leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
@@ -121,7 +129,8 @@ class ProfileScreen extends StatelessWidget {
               ),
               // about_us
               DefaultListTile(
-                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey, pathParameters: {"key": "about_us"}),
+                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
+                    pathParameters: {"key": "about_us"}),
                 title: L10n.tr().aboutUs,
                 leadingIconSvgPath: Assets.iconsShieldCheck,
               ),
@@ -168,7 +177,8 @@ class ProfileScreen extends StatelessWidget {
                   } else {
                     final data = snapshot.data;
                     return Center(
-                        child: Text("V ${data?.$1.version}+${data?.$1.buildNumber} (${data?.$2?.number ?? 0})"));
+                        child: Text(
+                            "V ${data?.$1.version}+${data?.$1.buildNumber} (${data?.$2?.number ?? 0})"));
                   }
                 },
               )

@@ -236,13 +236,28 @@ class AppRouter {
         path: PresonalInfoLayoutScreen.routeWzExtra,
         name: PresonalInfoLayoutScreen.routeWzExtra,
         builder: (context, state) {
+          // استخراج المعاملات من extra
+          final extraData = state.extra;
+          bool isEditingProfile = false;
+          bool showCancelButton = false;
+
+          if (extraData is Map<String, dynamic>) {
+            isEditingProfile = extraData['isEditingProfile'] as bool? ?? false;
+            showCancelButton = extraData['showCancelButton'] as bool? ?? false;
+          } else if (extraData is bool) {
+            // للتوافق مع الكود السابق
+            isEditingProfile = extraData;
+          }
+
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => di<SetupPersonalInfoCubit>()),
               BlocProvider(create: (context) => di<InjuriesCubit>()),
             ],
             child: PresonalInfoLayoutScreen(
-                isEditingProfile: state.extra as bool? ?? false),
+              isEditingProfile: isEditingProfile,
+              showCancelButton: showCancelButton,
+            ),
           );
         },
       ),

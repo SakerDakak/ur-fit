@@ -1054,6 +1054,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get medicalInfo => 'المعلومات الطبية';
 
   @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get areYouSureYouWantToCancel => 'هل أنت متأكد من أنك تريد الإلغاء؟';
+
+  @override
   String get sunday => 'الأحد';
 
   @override

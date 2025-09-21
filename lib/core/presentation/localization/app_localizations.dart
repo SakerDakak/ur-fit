@@ -2114,6 +2114,18 @@ abstract class AppLocalizations {
   /// **'Medical Information'**
   String get medicalInfo;
 
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @areYouSureYouWantToCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel?'**
+  String get areYouSureYouWantToCancel;
+
   /// No description provided for @sunday.
   ///
   /// In en, this message translates to:

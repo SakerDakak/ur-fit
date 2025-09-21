@@ -347,6 +347,8 @@
   "dietInfo": "Diet Information",
   "medicalInfo": "Medical Information",
   "createMyPlan": "Create My Plan",
+  "cancel": "Cancel",
+  "areYouSureYouWantToCancel": "Are you sure you want to cancel?",
   "back": "Back",
   "sunday": "Sunday",
   "monday": "Monday",

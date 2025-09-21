@@ -29,33 +29,40 @@ class SetupPersonalInfoCubit extends Cubit<SetupPersonalInfoState> {
       : super(PersonalInfoInit(
             UserInfoRequest.fromUserModel(Session().currentUser!)));
 
-  setInitPage() async {
-    print('Setting initial page');
+  setInitPage([bool isEditingProfile = false]) async {
+    print('Setting initial page - isEditingProfile: $isEditingProfile');
     int index = 0;
-    if ((state.userInfo.age ?? 0) < 1) {
+
+    // إذا كان في نمط تعديل البيانات، ابدأ دائماً من أول قسم (الجنس)
+    if (isEditingProfile) {
       index = 0;
-    } else if ((state.userInfo.height ?? 0) < 1) {
-      index = 0;
-    } else if ((state.userInfo.currentWeight ?? 0) < 1) {
-      index = 0;
-    } else if ((state.userInfo.targetWeight ?? 0) < 1) {
-      index = 4;
-    } else if (state.userInfo.selectedGaols.isEmpty) {
-      index = 5;
-    } else if (state.userInfo.bodyPartsIds.isEmpty) {
-      index = 6;
-    } else if (state.userInfo.exerciseDayes.isEmpty) {
-      index = 7;
-    } else if (state.userInfo.workoutTypesIds.isEmpty) {
-      index = 8;
-    } else if (state.userInfo.equipmentsIds.isEmpty) {
-      index = 9;
-    } else if ((state.userInfo.mealsVariantsId ?? 0) < 1) {
-      index = 10;
-    } else if (state.userInfo.likedMealsIds.isEmpty) {
-      index = 11;
-    } else if ((state.userInfo.dietId ?? 0) < 1) {
-      index = 13;
+    } else {
+      // منطق البحث عن أول قسم ناقص البيانات (للمستخدمين الجدد)
+      if ((state.userInfo.age ?? 0) < 1) {
+        index = 0;
+      } else if ((state.userInfo.height ?? 0) < 1) {
+        index = 0;
+      } else if ((state.userInfo.currentWeight ?? 0) < 1) {
+        index = 0;
+      } else if ((state.userInfo.targetWeight ?? 0) < 1) {
+        index = 4;
+      } else if (state.userInfo.selectedGaols.isEmpty) {
+        index = 5;
+      } else if (state.userInfo.bodyPartsIds.isEmpty) {
+        index = 6;
+      } else if (state.userInfo.exerciseDayes.isEmpty) {
+        index = 7;
+      } else if (state.userInfo.workoutTypesIds.isEmpty) {
+        index = 8;
+      } else if (state.userInfo.equipmentsIds.isEmpty) {
+        index = 9;
+      } else if ((state.userInfo.mealsVariantsId ?? 0) < 1) {
+        index = 10;
+      } else if (state.userInfo.likedMealsIds.isEmpty) {
+        index = 11;
+      } else if ((state.userInfo.dietId ?? 0) < 1) {
+        index = 13;
+      }
     }
     //  else if ((state.userInfo.weaklyTrainingCount ?? 0) < 1) {
     //   index = 14;
