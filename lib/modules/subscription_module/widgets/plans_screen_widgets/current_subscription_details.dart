@@ -6,10 +6,21 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
+import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
+import 'package:urfit/di.dart';
 
 /// ويدجت لعرض تفاصيل الاشتراك الحالي للمستخدم
-class CurrentSubscriptionDetails extends StatelessWidget {
+class CurrentSubscriptionDetails extends StatefulWidget {
   const CurrentSubscriptionDetails({super.key});
+
+  @override
+  State<CurrentSubscriptionDetails> createState() =>
+      _CurrentSubscriptionDetailsState();
+}
+
+class _CurrentSubscriptionDetailsState
+    extends State<CurrentSubscriptionDetails> {
+  int _retryCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -78,15 +89,49 @@ class CurrentSubscriptionDetails extends StatelessWidget {
   Widget _buildSubscriptionInfo(BuildContext context, int packageId) {
     return FutureBuilder<List<PackageModel>>(
       future: _getPackageDetails(packageId),
+      key: ValueKey(_retryCount), // إجبار إعادة التحميل عند تغيير _retryCount
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
 
         if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
-          return Text(
-            "لا يمكن تحميل تفاصيل الاشتراك",
-            style: TStyle.regular_14.copyWith(color: Colors.red),
+          return Column(
+            children: [
+              const Icon(
+                Icons.error_outline,
+                color: Colors.red,
+                size: 24,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "لا يمكن تحميل تفاصيل الاشتراك",
+                style: TStyle.regular_14.copyWith(color: Colors.red),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                "يرجى المحاولة مرة أخرى",
+                style: TStyle.regular_12.copyWith(color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              ElevatedButton.icon(
+                onPressed: () {
+                  setState(() {
+                    _retryCount++;
+                  });
+                },
+                icon: const Icon(Icons.refresh, size: 16),
+                label: const Text("إعادة المحاولة"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                ),
+              ),
+            ],
           );
         }
 
@@ -184,8 +229,32 @@ class CurrentSubscriptionDetails extends StatelessWidget {
   }
 
   Future<List<PackageModel>> _getPackageDetails(int packageId) async {
-    // هنا يمكنك إضافة استدعاء API للحصول على تفاصيل الباقة
-    // حالياً سنعيد قائمة فارغة وسيتم التعامل معها في المستقبل
-    return [];
+    try {
+      // الحصول على SubscriptionRepo من dependency injection
+      final subscriptionRepo = di<SubscriptionRepo>();
+
+      // استدعاء API للحصول على جميع الباقات
+      final result = await subscriptionRepo.getPackages();
+
+      return result.fold(
+        (failure) {
+          // في حالة الفشل، نعيد قائمة فارغة وسيتم عرض رسالة الخطأ
+          print("خطأ في تحميل تفاصيل الباقة: ${failure.message}");
+          return <PackageModel>[];
+        },
+        (packages) {
+          // البحث عن الباقة المطلوبة باستخدام packageId
+          final package = packages.where((p) => p.id == packageId).toList();
+          if (package.isEmpty) {
+            print("لم يتم العثور على الباقة مع المعرف: $packageId");
+            print("الباقات المتاحة: ${packages.map((p) => p.id).toList()}");
+          }
+          return package;
+        },
+      );
+    } catch (e) {
+      print("خطأ في تحميل تفاصيل الباقة: $e");
+      return <PackageModel>[];
+    }
   }
 }
