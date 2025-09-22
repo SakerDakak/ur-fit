@@ -405,6 +405,7 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                                             .youHaveSuccessfullySubscribedToPlan,
                                         error: false);
                                     if (context.mounted) {
+                                      // إعادة تحميل الصفحة الرئيسية لتحديث الواجهات
                                       context.go(MainPage.routeWithBool(false));
                                     }
                                   } else {

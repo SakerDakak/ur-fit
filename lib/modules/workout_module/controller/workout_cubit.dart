@@ -40,10 +40,8 @@ class WorkoutCubit extends Cubit<WorkoutState> {
           getWorkOutPlanState: RequestState.success,
           // allMeals: successData,
         ));
-        // sl<AuthenticationBloc>().add(UpdateSubscriptionEvent());
+        // تحديث بيانات المستخدم بعد إنشاء خطة التمارين بنجاح
         Session().getUserDataFromServer();
-
-        // Session().currentUser = ;
       },
     );
   }

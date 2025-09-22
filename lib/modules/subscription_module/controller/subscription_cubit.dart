@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
+import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/subscription_module/data/models/discount_value_model.dart';
 import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
@@ -76,6 +78,11 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
         emit(state.copyWith(
           paymentResponseState: RequestState.success,
         ));
+
+        // إعادة تحميل الصفحة الرئيسية لتحديث الواجهات
+        if (AppConst.navigatorKey.currentContext != null) {
+          AppConst.navigatorKey.currentContext!.go('/main');
+        }
       },
     );
   }
