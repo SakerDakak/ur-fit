@@ -385,7 +385,9 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                               : () async {
                                   // منع الضغط المتعدد على الزر
                                   if (state.getPaymentUrlState ==
-                                      RequestState.loading) return;
+                                      RequestState.loading) {
+                                    return;
+                                  }
 
                                   await context
                                       .read<SubscriptionCubit>()

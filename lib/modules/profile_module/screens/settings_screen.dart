@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
@@ -7,12 +6,9 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/di.dart';
-import 'package:urfit/modules/onboarding/views/on_boarding_2.dart';
 import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
 import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
-import 'package:urfit/modules/profile_module/controller/setting_cubit.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/account_info.dart';
@@ -86,21 +82,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 16),
 
           // delete account
-          BlocConsumer<SettingCubit, SettingState>(
-            listener: (context, state) {
-              if (state.deleteAccountState == RequestState.success) {
-                Session().clearUserData();
-                Alerts.showToast(state.deleteAccountMessage, error: false);
-                if (context.mounted) context.go(OnBoardingSecScreen.route);
-              } else if (state.deleteAccountState == RequestState.failure) {
-                Alerts.showToast(state.deleteAccountMessage);
-              }
-            },
-            builder: (context, state) => SettingsTile(
-              onTap: () => _deleteAccount(context),
-              title: L10n.tr().deleteAccount,
-              svgIconPath: Assets.iconsDelete,
-            ),
+          SettingsTile(
+            onTap: () => _deleteAccount(context),
+            title: L10n.tr().deleteAccount,
+            svgIconPath: Assets.iconsDelete,
           ),
           const SizedBox(height: 16),
         ],

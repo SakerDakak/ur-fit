@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// **'Information updated successfully'**
   String get infoUpdatedSuccessfully;
 
+  /// No description provided for @accountDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deleted successfully'**
+  String get accountDeletedSuccessfully;
+
   /// No description provided for @injuriesOrDiseases.
   ///
   /// In en, this message translates to:

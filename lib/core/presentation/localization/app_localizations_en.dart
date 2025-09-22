@@ -12,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get infoUpdatedSuccessfully => 'Information updated successfully';
 
   @override
+  String get accountDeletedSuccessfully => 'Account deleted successfully';
+
+  @override
   String get injuriesOrDiseases => 'Injuries or Diseases';
 
   @override

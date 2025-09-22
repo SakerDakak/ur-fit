@@ -1,5 +1,6 @@
 {
   "infoUpdatedSuccessfully" : "تم تحديث المعلومات بنجاح",
+  "accountDeletedSuccessfully": "تم حذف الحساب بنجاح",
   "injuriesOrDiseases": "إصابات أو أمراض",
   "doYouHaveCurrentlyAnyPainOrInjury": "هل تعاني حاليا من اي الم او اصابة في جسمك",
   "inWhichBodyPartYouFeelPainOrHaveInjury": "في أي جزء من الجسم تشعر بالألم أو لديك إصابة؟",

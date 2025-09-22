@@ -52,4 +52,11 @@ class Session {
     setCountryId = null;
     setCityId = null;
   }
+
+  // حذف بيانات المستخدم مع الاحتفاظ ببيانات العنوان
+  clearUserDataKeepLocation() async {
+    _currentUser = null;
+    TokenService.deleteToken();
+    // لا نحذف countryId و cityId للاحتفاظ ببيانات العنوان
+  }
 }

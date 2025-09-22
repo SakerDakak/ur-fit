@@ -12,6 +12,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get infoUpdatedSuccessfully => 'تم تحديث المعلومات بنجاح';
 
   @override
+  String get accountDeletedSuccessfully => 'تم حذف الحساب بنجاح';
+
+  @override
   String get injuriesOrDiseases => 'إصابات أو أمراض';
 
   @override
