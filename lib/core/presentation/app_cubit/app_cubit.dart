@@ -18,6 +18,8 @@ class AppCubit extends Cubit<AppState> {
   bool? notificationEnabled;
 
   init() async {
+    // تطبيق ثيم الذكر الافتراضي عند بدء التطبيق أولاً
+    setDefaultTheme();
     getLocal();
     await getThemeFromHive();
   }
@@ -60,11 +62,13 @@ class AppCubit extends Cubit<AppState> {
   }
 
   setMaleTheme() {
+    print("setMaleTheme");
     emit(state.copyWith(isFemale: false));
   }
 
   // دالة جديدة لتعيين الثيم الافتراضي (أزرق) عند عدم وجود معلومات جنس
   setDefaultTheme() {
+    print("setDefaultTheme");
     emit(state.copyWith(isFemale: false)); // أزرق افتراضي
   }
 

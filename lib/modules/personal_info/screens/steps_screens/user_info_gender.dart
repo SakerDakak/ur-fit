@@ -23,8 +23,12 @@ class _UserInfoGenderState extends State<UserInfoGender> {
   void initState() {
     cubit = context.read<SetupPersonalInfoCubit>();
     selected = cubit.state.userInfo.gender;
+    // تطبيق الثيم حسب الجنس المحدد أو الثيم الافتراضي (ذكر)
     if (cubit.state.userInfo.gender == GenderEnum.female) {
       context.read<AppCubit>().setFemaleTheme();
+    } else {
+      // تطبيق ثيم الذكر الافتراضي إذا لم يكن هناك جنس محدد أو كان ذكر
+      context.read<AppCubit>().setMaleTheme();
     }
     super.initState();
   }
