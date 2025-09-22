@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
 import 'package:urfit/modules/meals_module/data/models/cached_nutrition.dart';
 import 'package:urfit/modules/meals_module/data/models/search_recipe_model.dart';
@@ -92,7 +93,10 @@ class MealsCubit extends Cubit<MealsState> {
   }
 
   Future<void> generateMealPlan() async {
-    emit(state.copyWith(getMealPlansState: RequestState.loading));
+    emit(state.copyWith(
+      getMealPlansState: RequestState.loading,
+      errMessage: "", // مسح رسالة الخطأ السابقة
+    ));
     final user = Session().currentUser;
     final double targetCalories = calculateTargetCalories(
       currentWeight: user!.currentWeight!.toDouble(),
@@ -110,17 +114,24 @@ class MealsCubit extends Cubit<MealsState> {
 
         emit(state.copyWith(
           getMealPlansState: RequestState.failure,
-          errMessage: failure.message,
+          errMessage: failure.message.isNotEmpty
+              ? failure.message
+              : L10n.tr().failedToCreateMealPlan,
         ));
       },
-      (successData) {
+      (successData) async {
         print("success $successData");
         emit(state.copyWith(
           getMealPlansState: RequestState.success,
-          // allMeals: successData,
+          errMessage: "", // مسح رسالة الخطأ عند النجاح
         ));
-        Session().getUserDataFromServer();
-        // Session().currentUser = ;
+
+        // تحديث بيانات المستخدم بعد إنشاء خطة التغذية بنجاح
+        await Session().getUserDataFromServer();
+
+        // انتظار قليل ثم تحميل الخطط الجديدة
+        await Future.delayed(const Duration(seconds: 1));
+        await getMealPlans();
       },
     );
   }

@@ -333,7 +333,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get selectAll => 'اختيار الكل';
 
   @override
-  String get retry => 'اعادة المحاولة';
+  String get retry => 'إعادة المحاولة';
 
   @override
   String get pleaseEnterValidAge => 'رجاء ادخال سن صحيح';
@@ -1107,4 +1107,25 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get subscribeToAccessAllFeatures =>
       'اشترك للوصول إلى جميع الميزات المخصصة';
+
+  @override
+  String get creatingWorkoutPlan => 'جاري إنشاء خطة التمارين...';
+
+  @override
+  String get creatingMealPlan => 'جاري إنشاء خطة التغذية...';
+
+  @override
+  String get failedToCreateWorkoutPlan => 'فشل إنشاء خطة التمارين';
+
+  @override
+  String get failedToCreateMealPlan => 'فشل إنشاء خطة التغذية';
+
+  @override
+  String get noWorkoutPlan => 'لا توجد خطة تمارين';
+
+  @override
+  String get noMealPlan => 'لا توجد خطة وجبات';
+
+  @override
+  String get unexpectedError => 'حدث خطأ غير متوقع';
 }

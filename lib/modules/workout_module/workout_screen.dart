@@ -93,6 +93,11 @@ class _WorkoutScreenState extends State<WorkoutScreen>
     final cubit = context.read<WorkoutCubit>();
 
     return BlocBuilder<WorkoutCubit, WorkoutState>(
+      buildWhen: (previous, current) {
+        // إعادة البناء عند تغيير حالة الاشتراك أو الخطط
+        return previous.getWorkOutPlanState != current.getWorkOutPlanState ||
+            previous.allPlans != current.allPlans;
+      },
       builder: (context, state) {
         // التحقق من حالة الاشتراك
         if (user?.hasValidSubscription != true) {
@@ -107,12 +112,88 @@ class _WorkoutScreenState extends State<WorkoutScreen>
         // التحقق من وجود خطة تمارين
         if (user?.hasValidSubscription == true &&
             user?.haveExercisePlan != true &&
-            state.getWorkOutPlanState != RequestState.loading &&
-            state.getWorkOutPlanState != RequestState.success &&
             state.allPlans.isEmpty) {
-          return const Scaffold(
+          // إذا كان المستخدم مشترك ولكن لا توجد خطة تمارين
+          if (user?.packageId != null) {
+            // إذا كان في حالة تحميل
+            if (state.getWorkOutPlanState == RequestState.loading) {
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(
+                        L10n.tr().creatingWorkoutPlan,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            // إذا فشل إنشاء الخطة
+            if (state.getWorkOutPlanState == RequestState.failure) {
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 64,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        L10n.tr().failedToCreateWorkoutPlan,
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          cubit.generateWorkOutPlan();
+                        },
+                        icon: const Icon(Icons.refresh),
+                        label: Text(L10n.tr().retry),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            // إذا لم تكن هناك محاولة سابقة، ابدأ إنشاء الخطة
+            if (state.getWorkOutPlanState != RequestState.loading &&
+                state.getWorkOutPlanState != RequestState.failure) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                cubit.generateWorkOutPlan();
+              });
+
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(
+                        L10n.tr().creatingWorkoutPlan,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+          }
+
+          return Scaffold(
             body: NoSubscriptionWidget(
-              message: "لا توجد خطة تمارين",
+              message: L10n.tr().noWorkoutPlan,
               planType: PlanType.exercise,
             ),
           );
@@ -192,9 +273,9 @@ class _WorkoutScreenState extends State<WorkoutScreen>
         }
 
         // إذا لم تكن هناك خطة تمارين، اعرض رسالة افتراضية
-        return const Scaffold(
+        return Scaffold(
           body: NoSubscriptionWidget(
-            message: "لا توجد خطة تمارين",
+            message: L10n.tr().noWorkoutPlan,
             planType: PlanType.exercise,
           ),
         );

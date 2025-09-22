@@ -365,5 +365,13 @@
   "saturday": "Saturday",
   "subscribeToAccessExercises": "Subscribe to access personalized workouts",
   "subscribeToAccessMeals": "Subscribe to access custom meal plans",
-  "subscribeToAccessAllFeatures": "Subscribe to access all personalized features"
+  "subscribeToAccessAllFeatures": "Subscribe to access all personalized features",
+  "creatingWorkoutPlan": "Creating workout plan...",
+  "creatingMealPlan": "Creating meal plan...",
+  "failedToCreateWorkoutPlan": "Failed to create workout plan",
+  "failedToCreateMealPlan": "Failed to create meal plan",
+  "retry": "Retry",
+  "noWorkoutPlan": "No workout plan",
+  "noMealPlan": "No meal plan",
+  "unexpectedError": "An unexpected error occurred"
 }

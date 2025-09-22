@@ -95,7 +95,7 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
   ];
 
   /// No description provided for @infoUpdatedSuccessfully.
@@ -2221,6 +2221,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Subscribe to access all personalized features'**
   String get subscribeToAccessAllFeatures;
+
+  /// No description provided for @creatingWorkoutPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating workout plan...'**
+  String get creatingWorkoutPlan;
+
+  /// No description provided for @creatingMealPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating meal plan...'**
+  String get creatingMealPlan;
+
+  /// No description provided for @failedToCreateWorkoutPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create workout plan'**
+  String get failedToCreateWorkoutPlan;
+
+  /// No description provided for @failedToCreateMealPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create meal plan'**
+  String get failedToCreateMealPlan;
+
+  /// No description provided for @noWorkoutPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'No workout plan'**
+  String get noWorkoutPlan;
+
+  /// No description provided for @noMealPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'No meal plan'**
+  String get noMealPlan;
+
+  /// No description provided for @unexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred'**
+  String get unexpectedError;
 }
 
 class _AppLocalizationsDelegate
@@ -2250,8 +2292,9 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

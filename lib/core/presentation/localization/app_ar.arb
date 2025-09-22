@@ -365,5 +365,13 @@
   "saturday": "السبت",
   "subscribeToAccessExercises": "اشترك للوصول إلى التمارين المخصصة",
   "subscribeToAccessMeals": "اشترك للوصول إلى خطط الوجبات المخصصة",
-  "subscribeToAccessAllFeatures": "اشترك للوصول إلى جميع الميزات المخصصة"
+  "subscribeToAccessAllFeatures": "اشترك للوصول إلى جميع الميزات المخصصة",
+  "creatingWorkoutPlan": "جاري إنشاء خطة التمارين...",
+  "creatingMealPlan": "جاري إنشاء خطة التغذية...",
+  "failedToCreateWorkoutPlan": "فشل إنشاء خطة التمارين",
+  "failedToCreateMealPlan": "فشل إنشاء خطة التغذية",
+  "retry": "إعادة المحاولة",
+  "noWorkoutPlan": "لا توجد خطة تمارين",
+  "noMealPlan": "لا توجد خطة وجبات",
+  "unexpectedError": "حدث خطأ غير متوقع"
 }

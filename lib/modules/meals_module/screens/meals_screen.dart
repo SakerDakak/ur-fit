@@ -92,6 +92,11 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
     final cubit = context.read<MealsCubit>();
 
     return BlocBuilder<MealsCubit, MealsState>(
+      buildWhen: (previous, current) {
+        // إعادة البناء عند تغيير حالة الاشتراك أو الخطط
+        return previous.getMealPlansState != current.getMealPlansState ||
+            previous.allPlans != current.allPlans;
+      },
       builder: (context, state) {
         // التحقق من حالة الاشتراك
         if (user?.hasValidSubscription != true) {
@@ -106,12 +111,103 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
         // التحقق من وجود خطة وجبات
         if (user?.hasValidSubscription == true &&
             user?.haveMealPlan != true &&
-            state.getMealPlansState != RequestState.loading &&
-            state.getMealPlansState != RequestState.success &&
             state.allPlans.isEmpty) {
-          return const Scaffold(
+          // إذا كان المستخدم مشترك ولكن لا توجد خطة وجبات
+          if (user?.packageId != null &&
+              (user?.packageId == 4 ||
+                  user?.packageId == 5 ||
+                  user?.packageId == 6 ||
+                  user?.packageId == 7 ||
+                  user?.packageId == 8 ||
+                  user?.packageId == 9 ||
+                  user?.packageId == 10)) {
+            // إذا كان في حالة تحميل
+            if (state.getMealPlansState == RequestState.loading) {
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(
+                        L10n.tr().creatingMealPlan,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            // إذا فشل إنشاء الخطة
+            if (state.getMealPlansState == RequestState.failure) {
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 64,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        L10n.tr().failedToCreateMealPlan,
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        state.errMessage.isNotEmpty
+                            ? state.errMessage
+                            : "حدث خطأ غير متوقع",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          cubit.generateMealPlan();
+                        },
+                        icon: const Icon(Icons.refresh),
+                        label: Text(L10n.tr().retry),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            // إذا لم تكن هناك محاولة سابقة، ابدأ إنشاء الخطة
+            if (state.getMealPlansState != RequestState.loading &&
+                state.getMealPlansState != RequestState.failure) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                cubit.generateMealPlan();
+              });
+
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(
+                        L10n.tr().creatingMealPlan,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+          }
+
+          return Scaffold(
             body: NoSubscriptionWidget(
-              message: "لا توجد خطة وجبات",
+              message: L10n.tr().noMealPlan,
               planType: PlanType.diet,
             ),
           );
@@ -188,9 +284,9 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
         }
 
         // إذا لم تكن هناك خطة تغذية، اعرض رسالة افتراضية
-        return const Scaffold(
+        return Scaffold(
           body: NoSubscriptionWidget(
-            message: "لا توجد خطة وجبات",
+            message: L10n.tr().noMealPlan,
             planType: PlanType.diet,
           ),
         );

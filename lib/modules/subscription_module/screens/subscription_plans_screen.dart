@@ -26,6 +26,8 @@ import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/s
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_screen_appbar.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/current_subscription_details.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plan_description_shimmer.dart';
+import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
+import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 
 import '../../../core/presentation/utils/enums.dart';
 import '../data/models/package_model.dart';
@@ -402,6 +404,11 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                                       updatedState.paymentUrl!.isEmpty) {
                                     // إذا لم يتم إرجاع رابط دفع، فهذا يعني أن الاشتراك مجاني
                                     await Session().getUserDataFromServer();
+
+                                    // إنشاء خطط التمرين والتغذية بعد الاشتراك المجاني
+                                    await _createPlansAfterFreeSubscription(
+                                        context);
+
                                     Alerts.showToast(
                                         L10n.tr()
                                             .youHaveSuccessfullySubscribedToPlan,
@@ -458,5 +465,63 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
         ],
       ),
     );
+  }
+
+  // دالة إنشاء خطط التمرين والتغذية بعد الاشتراك المجاني
+  Future<void> _createPlansAfterFreeSubscription(BuildContext context) async {
+    try {
+      final user = Session().currentUser;
+      if (user?.hasValidSubscription != true) return;
+
+      // التحقق من نوع الباقة وإنشاء الخطط المناسبة
+      final packageType = _getPackageType(user?.packageId);
+
+      if (packageType == PlanType.exercise || packageType == PlanType.both) {
+        // إنشاء خطة التمرين إذا لم تكن موجودة
+        if (user?.haveExercisePlan != true) {
+          final workoutCubit = context.read<WorkoutCubit>();
+          await workoutCubit.generateWorkOutPlan();
+
+          // انتظار قليل ثم تحديث بيانات المستخدم مرة أخرى
+          await Future.delayed(const Duration(seconds: 2));
+          await Session().getUserDataFromServer();
+        }
+      }
+
+      if (packageType == PlanType.diet || packageType == PlanType.both) {
+        // إنشاء خطة التغذية إذا لم تكن موجودة
+        if (user?.haveMealPlan != true) {
+          final mealsCubit = context.read<MealsCubit>();
+          await mealsCubit.generateMealPlan();
+        }
+      }
+
+      // تحديث بيانات المستخدم مرة أخيرة بعد إنشاء الخطط
+      await Session().getUserDataFromServer();
+    } catch (e) {
+      print("خطأ في إنشاء الخطط بعد الاشتراك المجاني: $e");
+    }
+  }
+
+  // دالة لتحديد نوع الباقة
+  PlanType _getPackageType(int? packageId) {
+    // يمكنك تعديل هذه القيم حسب معرفات الباقات في نظامك
+    switch (packageId) {
+      case 1:
+      case 2:
+      case 3:
+        return PlanType.exercise;
+      case 4:
+      case 5:
+      case 6:
+        return PlanType.diet;
+      case 7:
+      case 8:
+      case 9:
+      case 10:
+        return PlanType.both;
+      default:
+        return PlanType.both; // افتراضي
+    }
   }
 }

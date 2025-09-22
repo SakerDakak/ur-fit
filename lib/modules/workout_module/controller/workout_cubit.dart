@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gif/gif.dart';
 import 'package:intl/intl.dart';
 import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/workout_module/data/model/exercise_history_data.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
 import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
@@ -18,7 +19,10 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   WorkoutCubit(this._repo) : super(const WorkoutState());
 
   generateWorkOutPlan() async {
-    emit(state.copyWith(getWorkOutPlanState: RequestState.loading));
+    emit(state.copyWith(
+      getWorkOutPlanState: RequestState.loading,
+      errMessage: "", // مسح رسالة الخطأ السابقة
+    ));
 
     final endDate = DateFormat('yyyy-MM-dd')
         .format(DateTime.now().add(const Duration(days: 8)));
@@ -31,17 +35,24 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
         emit(state.copyWith(
           getWorkOutPlanState: RequestState.failure,
-          errMessage: failure.message,
+          errMessage: failure.message.isNotEmpty
+              ? failure.message
+              : L10n.tr().failedToCreateWorkoutPlan,
         ));
       },
-      (successData) {
+      (successData) async {
         print("success $successData");
         emit(state.copyWith(
           getWorkOutPlanState: RequestState.success,
-          // allMeals: successData,
+          errMessage: "", // مسح رسالة الخطأ عند النجاح
         ));
+
         // تحديث بيانات المستخدم بعد إنشاء خطة التمارين بنجاح
-        Session().getUserDataFromServer();
+        await Session().getUserDataFromServer();
+
+        // انتظار قليل ثم تحميل الخطط الجديدة
+        await Future.delayed(const Duration(seconds: 1));
+        await getWorkOutPlan();
       },
     );
   }

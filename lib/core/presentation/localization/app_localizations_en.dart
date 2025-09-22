@@ -1108,4 +1108,25 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get subscribeToAccessAllFeatures =>
       'Subscribe to access all personalized features';
+
+  @override
+  String get creatingWorkoutPlan => 'Creating workout plan...';
+
+  @override
+  String get creatingMealPlan => 'Creating meal plan...';
+
+  @override
+  String get failedToCreateWorkoutPlan => 'Failed to create workout plan';
+
+  @override
+  String get failedToCreateMealPlan => 'Failed to create meal plan';
+
+  @override
+  String get noWorkoutPlan => 'No workout plan';
+
+  @override
+  String get noMealPlan => 'No meal plan';
+
+  @override
+  String get unexpectedError => 'An unexpected error occurred';
 }

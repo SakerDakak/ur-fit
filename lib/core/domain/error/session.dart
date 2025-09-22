@@ -38,6 +38,61 @@ class Session {
     });
   }
 
+  // دالة محدثة لتحميل بيانات المستخدم مع إشعار التطبيق بالتغييرات
+  Future<FutureOr<void>> getUserDataFromServerWithNotify() async {
+    final result = await di<AuthRepo>().getUserDataFromServer();
+    await result.fold((l) {
+      // خطأ في تحميل بيانات المستخدم
+    }, (loadedUser) async {
+      setCurrentUser = loadedUser;
+
+      // إشعار التطبيق بتحديث بيانات المستخدم
+      if (AppConst.navigatorKey.currentContext != null) {
+        // يمكن إضافة منطق إضافي هنا لإشعار الواجهات بالتحديث
+        print(
+            "تم تحديث بيانات المستخدم: hasValidSubscription=${loadedUser.hasValidSubscription}, haveExercisePlan=${loadedUser.haveExercisePlan}, haveMealPlan=${loadedUser.haveMealPlan}");
+      }
+    });
+  }
+
+  // دالة للتحقق من حالة الاشتراك والخطط مع إعادة المحاولة
+  Future<bool> checkSubscriptionAndPlansStatus() async {
+    int attempts = 0;
+    const maxAttempts = 5;
+
+    while (attempts < maxAttempts) {
+      await getUserDataFromServer();
+      final user = currentUser;
+
+      if (user?.hasValidSubscription == true) {
+        print(
+            "المحاولة ${attempts + 1}: hasValidSubscription=${user?.hasValidSubscription}, haveExercisePlan=${user?.haveExercisePlan}, haveMealPlan=${user?.haveMealPlan}");
+
+        // إذا كانت الخطط موجودة، انتهاء
+        if ((user?.haveExercisePlan == true && user?.haveMealPlan == true) ||
+            (user?.haveExercisePlan == true &&
+                user?.packageId != null &&
+                (user?.packageId == 1 ||
+                    user?.packageId == 2 ||
+                    user?.packageId == 3)) ||
+            (user?.haveMealPlan == true &&
+                user?.packageId != null &&
+                (user?.packageId == 4 ||
+                    user?.packageId == 5 ||
+                    user?.packageId == 6))) {
+          return true;
+        }
+      }
+
+      attempts++;
+      if (attempts < maxAttempts) {
+        await Future.delayed(const Duration(seconds: 2));
+      }
+    }
+
+    return false;
+  }
+
   Future logout() async {
     await di<AuthRepo>().signOut();
     await GoogleSignIn(scopes: ["email", "profile"]).signOut();
