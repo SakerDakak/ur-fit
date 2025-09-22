@@ -78,8 +78,7 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
         const UserInfoBodyParts(), //6 - الجزء الذي تريد التركيز عليه
         const UserInfoWeekDays(), //7 - أيام التمرين
         const UserInfoWorkTypesOrLocation(), //8 - مكان التمرين
-        UserInfoEquipmentScreen(
-            isEditMode: widget.isEditingProfile), //9 - معدات التمرين
+        const UserInfoEquipmentScreen(), //9 - معدات التمرين
 
         // القسم الثالث: معلومات النظام الغذائي
         const UserInfoVariety(), //10 - مستوى التنوع في الوجبات
@@ -88,7 +87,9 @@ class _PresonalInfoLayoutScreenState extends State<PresonalInfoLayoutScreen> {
         const UserInfoDietType(), //13 - نوع الحمية الغذائية
 
         // القسم الرابع: المعلومات الطبية
-        const UserInfoInjuries(), //14 - الإصابات أو الأمراض
+        UserInfoInjuries(
+          isEditMode: widget.isEditingProfile,
+        ), //14 - الإصابات أو الأمراض
       ];
 
   _calculateStep(int index) {

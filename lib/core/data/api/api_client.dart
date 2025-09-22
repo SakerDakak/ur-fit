@@ -152,7 +152,7 @@ class ApiClient {
             return UnauthorizedException(message);
           case StatusCode.forbidden:
             return ForbiddenException(
-                error.response?.data?['isSubscribe']?.toString());
+                _getErrorMessageFromResponse(error.response?.data));
           case StatusCode.internalServerError:
             return InternalServerErrorException();
           default:

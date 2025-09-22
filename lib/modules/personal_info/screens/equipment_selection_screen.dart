@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/data/fakers.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/failure_widget.dart';
 import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart';
@@ -13,9 +11,8 @@ import 'package:urfit/modules/personal_info/cubit/setup_personal_info_cubit.dart
 import '../../../core/presentation/views/widgets/selection_item_model_list.dart';
 
 class UserInfoEquipmentScreen extends StatefulWidget {
-  const UserInfoEquipmentScreen({super.key, required this.isEditMode});
+  const UserInfoEquipmentScreen({super.key});
   static const route = '/EquipmentSelectionScreen';
-  final bool isEditMode;
   @override
   State<UserInfoEquipmentScreen> createState() =>
       _UserInfoEquipmentScreenState();
@@ -78,22 +75,11 @@ class _UserInfoEquipmentScreenState extends State<UserInfoEquipmentScreen> {
                       return const Center(child: CircularProgressIndicator());
                     }
                     return CustomElevatedButton(
-                      text: widget.isEditMode
-                          ? L10n.tr().save
-                          : L10n.tr().continuee,
+                      text: L10n.tr().continuee,
                       padding: EdgeInsets.zero,
                       onPressed: state.userInfo.equipmentsIds.isEmpty
                           ? null
                           : () async {
-                              print(state.userInfo.toString());
-                              if (widget.isEditMode) {
-                                await cubit.sendUpdateData();
-                                if (!context.mounted) return;
-                                Alerts.showToast(
-                                    L10n.tr().infoUpdatedSuccessfully,
-                                    error: false);
-                                return context.pop();
-                              }
                               // الانتقال إلى الخطوة التالية
                               cubit.nextPage();
                             },

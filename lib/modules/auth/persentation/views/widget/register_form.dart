@@ -24,6 +24,7 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
   final agreeToTerms = ValueNotifier<bool>(false);
+  bool _isValidating = false; // حالة التحقق من صحة النموذج
 
   late final AuthCubit authCubit;
   @override
@@ -125,27 +126,62 @@ class _RegisterFormState extends State<RegisterForm> {
                 listenWhen: (previous, current) => current is RegisterStates,
                 listener: (context, state) {
                   if (state is RegisterSuccessState) {
+                    setState(() {
+                      _isValidating = false; // إيقاف اللودينج عند النجاح
+                    });
                     Alerts.showToast(L10n.tr().otpHasBeenSentToYourEmail,
                         error: false);
                     final email = authCubit.emailController.text.trim();
                     context.push(RegisterOTPScreen.route(email));
                   } else if (state is RegisterErrorState) {
-                    // عرض رسالة الخطأ من الأعلى
-                    Alerts.showToast(state.error ?? '', error: true);
+                    setState(() {
+                      _isValidating = false; // إيقاف اللودينج عند الخطأ
+                    });
+                    // عرض رسالة الخطأ من الباك إند
+                    Alerts.showToast(
+                        state.error ?? L10n.tr().somethingWentWrong,
+                        error: true);
                   }
                 },
                 buildWhen: (previous, current) => current is! RegisterStates,
-                builder: (context, state) => CustomElevatedButton(
-                  text: L10n.tr().registerNewAccount,
-                  isLoading: state is RegisterLoadingState,
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() != true) return;
-                    if (!agreeToTerms.value) {
-                      return Alerts.showToast(L10n.tr().agreeTerms);
-                    }
-                    context.read<AuthCubit>().register();
-                  },
-                ),
+                builder: (context, state) {
+                  return ValueListenableBuilder<bool>(
+                    valueListenable: agreeToTerms,
+                    builder: (context, isAgreed, child) {
+                      // تحديد حالة اللودينج بناءً على التحقق من الشروط أو حالة التسجيل
+                      final bool isLoading =
+                          _isValidating || state is RegisterLoadingState;
+
+                      return CustomElevatedButton(
+                        text: L10n.tr().registerNewAccount,
+                        isLoading: isLoading,
+                        onPressed: isAgreed
+                            ? () async {
+                                if (isLoading) {
+                                  return; // منع الضغط المتكرر أثناء اللودينج
+                                }
+
+                                setState(() {
+                                  _isValidating =
+                                      true; // بدء اللودينج للتحقق من الشروط
+                                });
+
+                                // التحقق من صحة النموذج
+                                if (_formKey.currentState?.validate() != true) {
+                                  setState(() {
+                                    _isValidating = false;
+                                  });
+                                  return;
+                                }
+
+                                // بدء عملية التسجيل
+                                context.read<AuthCubit>().register();
+                              }
+                            : null, // تعطيل الزر إذا لم يتم الموافقة على الشروط
+                      );
+                    },
+                  );
+                },
               )
             ],
           ),

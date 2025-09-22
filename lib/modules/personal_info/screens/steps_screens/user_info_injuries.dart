@@ -16,8 +16,8 @@ import 'package:urfit/modules/personal_info/screens/widgets/injuries_body_parts_
 import 'package:urfit/modules/personal_info/screens/widgets/radio_box_with_img.dart';
 
 class UserInfoInjuries extends StatefulWidget {
-  const UserInfoInjuries({super.key});
-
+  const UserInfoInjuries({super.key, this.isEditMode = false});
+  final bool isEditMode;
   @override
   State<UserInfoInjuries> createState() => _UserInfoInjuriesState();
 }
@@ -161,7 +161,9 @@ class _UserInfoInjuriesState extends State<UserInfoInjuries> {
                 },
                 builder: (context, state) {
                   return CustomElevatedButton(
-                    text: L10n.tr().createMyPlan,
+                    text: widget.isEditMode
+                        ? L10n.tr().save
+                        : L10n.tr().createMyPlan,
                     isLoading: state.sendStatus == RequestState.loading,
                     padding: EdgeInsets.zero,
                     onPressed: () async {

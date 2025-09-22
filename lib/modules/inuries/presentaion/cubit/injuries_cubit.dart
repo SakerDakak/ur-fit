@@ -28,6 +28,9 @@ class InjuriesCubit extends Cubit<InjuriesState> {
           _questions.addAll(questions);
           emit(state.copyWith(
               fetchStatus: RequestState.success, questions: _questions));
+
+          // تحميل الإصابات الحالية بعد تحميل الأسئلة
+          loadCurrentInjuries();
         },
       );
     } catch (e) {
@@ -35,6 +38,30 @@ class InjuriesCubit extends Cubit<InjuriesState> {
           fetchStatus: RequestState.failure,
           message: e.toString(),
           questions: []));
+    }
+  }
+
+  /// تحميل الإصابات الحالية للمستخدم
+  Future<void> loadCurrentInjuries() async {
+    try {
+      final result = await _repo.getAffectedBodyParts();
+      result.fold(
+        (failure) {
+          // فشل في تحميل الإصابات الحالية - يمكن إضافة معالجة خطأ هنا
+        },
+        (currentInjuries) {
+          // تحديث الإجابات بناءً على الإصابات الحالية
+          final newAnswers = <int, bool>{};
+          for (var question in _questions) {
+            // إذا كان نوع الإصابة موجود في الإصابات الحالية، حدده
+            newAnswers[question.id] = currentInjuries.contains(question.key);
+          }
+
+          emit(state.copyWith(answers: newAnswers));
+        },
+      );
+    } catch (e) {
+      // خطأ في تحميل الإصابات الحالية - يمكن إضافة معالجة خطأ هنا
     }
   }
 
@@ -47,10 +74,12 @@ class InjuriesCubit extends Cubit<InjuriesState> {
   Future<void> sendInjuries() async {
     final answeredQuestions =
         _questions.where((q) => state.answers[q.id] == true).toList();
+
     emit(state.copyWith(sendStatus: RequestState.loading));
     try {
-      final result = await _repo.updateAffectedBodyParts(
-          answeredQuestions.map((e) => e.key.value).toList());
+      final bodyParts = answeredQuestions.map((e) => e.key.value).toList();
+
+      final result = await _repo.updateAffectedBodyParts(bodyParts);
       result.fold(
         (failure) => emit(state.copyWith(
             sendStatus: RequestState.failure, message: failure.message)),

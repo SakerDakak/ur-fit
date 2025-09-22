@@ -31,6 +31,7 @@ class InjuriesRepo {
     try {
       final result = await _apiClient.post(EndPoints.updateAffectedBodyParts,
           data: {'affected_body_parts': parts});
+
       if ((result.statusCode ?? 400) < 400) {
         return const Right(null);
       } else {

@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
+import 'package:urfit/core/presentation/utils/number_converter.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 
 import '../../../../../core/presentation/style/colors.dart';
@@ -158,11 +159,22 @@ class _OTPWidgetState extends State<OTPWidget> {
                     focusedBorderColor: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(8),
                     showFieldAsBox: true,
-                    onCodeChanged: (value) => otpCode.clear(),
-                    onSubmit: (String verificationCode) {
-                      print("onSubmit: $verificationCode");
+                    onCodeChanged: (value) {
+                      // تحويل الأرقام العربية إلى إنجليزية
+                      final convertedValue =
+                          NumberConverter.cleanNumericInput(value);
                       otpCode.clear();
-                      otpCode.write(verificationCode);
+                      if (convertedValue.isNotEmpty) {
+                        otpCode.write(convertedValue);
+                      }
+                    },
+                    onSubmit: (String verificationCode) {
+                      // تحويل الأرقام العربية إلى إنجليزية
+                      final convertedCode =
+                          NumberConverter.cleanNumericInput(verificationCode);
+                      print("onSubmit: $convertedCode");
+                      otpCode.clear();
+                      otpCode.write(convertedCode);
                     },
                   ),
                 ),

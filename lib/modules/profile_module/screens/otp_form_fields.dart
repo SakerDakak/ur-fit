@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/utils/number_converter.dart';
 
 class OtpFormFields extends StatefulWidget {
   const OtpFormFields({
@@ -65,9 +66,10 @@ class _OtpFormFieldsState extends State<OtpFormFields> {
                       keyboardType: TextInputType.number,
                       autovalidateMode: AutovalidateMode.always,
 
-                      // filter the input to accept only degits and only 1 number
+                      // filter the input to accept only digits and only 1 number
                       inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
+                        FilteringTextInputFormatter.allow(RegExp(
+                            r'[0-9٠-٩]')), // قبول الأرقام الإنجليزية والعربية
                         LengthLimitingTextInputFormatter(1),
                       ],
 
@@ -82,9 +84,22 @@ class _OtpFormFieldsState extends State<OtpFormFields> {
 
                       // on changing the field value
                       onChanged: (val) {
-                        if (val.length == 1 && i < widget.fieldsCount - 1) {
+                        // تحويل الأرقام العربية إلى إنجليزية
+                        final convertedVal =
+                            NumberConverter.cleanNumericInput(val);
+
+                        // تحديث النص في الكونترولر بالأرقام الإنجليزية
+                        if (convertedVal != val) {
+                          controllers[i].text = convertedVal;
+                          controllers[i].selection = TextSelection.fromPosition(
+                            TextPosition(offset: convertedVal.length),
+                          );
+                        }
+
+                        if (convertedVal.length == 1 &&
+                            i < widget.fieldsCount - 1) {
                           FocusScope.of(context).nextFocus();
-                        } else if (val.isEmpty && i > 0) {
+                        } else if (convertedVal.isEmpty && i > 0) {
                           FocusScope.of(context).previousFocus();
                         }
                         if (formKey.currentState!.validate()) {

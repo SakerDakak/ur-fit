@@ -15,13 +15,18 @@ class AuthCubit extends Cubit<AuthStates> {
   Future<void> login(bool remember) async {
     emit(LoginLoadingState());
     // AppConst.latestFunctionCalled = login;
-    final user = await _repo.login(email: emailController.text.trim(), password: loginPasswordController.text.trim());
+    final user = await _repo.login(
+        email: emailController.text.trim(),
+        password: loginPasswordController.text.trim());
     user.fold((l) async {
-      emit(LoginErrorState());
+      emit(LoginErrorState(error: l.message));
     }, (response) async {
       await Future.wait([
-        if (remember) FlutterKeychain.put(key: 'email', value: emailController.text.trim()),
-        if (remember) FlutterKeychain.put(key: 'password', value: loginPasswordController.text.trim()),
+        if (remember)
+          FlutterKeychain.put(key: 'email', value: emailController.text.trim()),
+        if (remember)
+          FlutterKeychain.put(
+              key: 'password', value: loginPasswordController.text.trim()),
       ]);
       TokenService.setToken(response.token);
       emit(LoginSuccessState(response.user));

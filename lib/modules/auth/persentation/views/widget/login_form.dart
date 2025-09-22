@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/validators.dart';
+import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/modules/auth/data/repo/auth_helper.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/auth/persentation/cubit/auth_states.dart';
@@ -78,58 +79,53 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: 16.px,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.px),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ValueListenableBuilder(
-                      valueListenable: shouldRemember,
-                      builder: (context, value, child) => TextButton(
-                        onPressed: () {
-                          shouldRemember.value = !value;
-                        },
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          alignment: Alignment.centerLeft,
-                        ),
-                        child: Row(
-                          children: [
-                            AbsorbPointer(
-                              child: Checkbox(
-                                value: value,
-                                onChanged: (val) {},
-                                checkColor: Co.whiteColor,
-                                focusColor:
-                                    Theme.of(context).colorScheme.primary,
-                                activeColor:
-                                    Theme.of(context).colorScheme.primary,
-                                side: BorderSide(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: shouldRemember,
+                    builder: (context, value, child) => TextButton(
+                      onPressed: () {
+                        shouldRemember.value = !value;
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        alignment: Alignment.centerLeft,
+                      ),
+                      child: Row(
+                        children: [
+                          AbsorbPointer(
+                            child: Checkbox(
+                              value: value,
+                              onChanged: (val) {},
+                              checkColor: Co.whiteColor,
+                              focusColor: Theme.of(context).colorScheme.primary,
+                              activeColor:
+                                  Theme.of(context).colorScheme.primary,
+                              side: BorderSide(
+                                  color: Theme.of(context).colorScheme.primary),
                             ),
-                            Text(
-                              L10n.tr().rememberMe,
-                              style: TStyle.regular_16,
-                            ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            L10n.tr().rememberMe,
+                            style: TStyle.regular_16,
+                          ),
+                        ],
                       ),
                     ),
-                    const Spacer(),
-                    TextButton(
-                        onPressed: () {
-                          context.push(ForgetPasswordScreen.route);
-                        },
-                        child: Text(
-                          L10n.tr().forgetPassword,
-                          style: TStyle.regular_16.copyWith(
-                              color: Theme.of(context).colorScheme.primary),
-                        )),
-                  ],
-                ),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                      onPressed: () {
+                        context.push(ForgetPasswordScreen.route);
+                      },
+                      child: Text(
+                        L10n.tr().forgetPassword,
+                        style: TStyle.regular_16.copyWith(
+                            color: Theme.of(context).colorScheme.primary),
+                      )),
+                ],
               ),
               SizedBox(
                 height: 24.px,
@@ -139,6 +135,11 @@ class _LoginFormState extends State<LoginForm> {
                 listener: (context, state) {
                   if (state is LoginSuccessState) {
                     AuthHelper.setUserAndNavigate(context, state.user);
+                  } else if (state is LoginErrorState) {
+                    // عرض رسالة الخطأ من الباك إند
+                    Alerts.showToast(
+                        state.error ?? L10n.tr().somethingWentWrong,
+                        error: true);
                   }
                 },
                 builder: (context, state) => CustomElevatedButton(
