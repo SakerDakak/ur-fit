@@ -62,49 +62,67 @@ class HealthCubit extends Cubit<HealthState> {
       }
 
       final now = DateTime.now();
+      final todayStart = DateTime(now.year, now.month, now.day);
 
-      // fetch health data from the last 24 hours
-      final List<HealthDataPoint> healthData =
+      // جلب بيانات اليوم الحالي للسعرات الحرارية والنوم فقط
+      final List<HealthDataPoint> todayCaloriesAndSleepData =
           await Health().getHealthDataFromTypes(
-        types: types,
+        types: [
+          HealthDataType.BASAL_ENERGY_BURNED,
+          HealthDataType.ACTIVE_ENERGY_BURNED,
+          HealthDataType.SLEEP_ASLEEP,
+        ],
+        startTime: todayStart,
+        endTime: now,
+      );
+
+      // جلب باقي البيانات من آخر 24 ساعة (المياه والخطوات والمسافة والتمارين)
+      final List<HealthDataPoint> otherHealthData =
+          await Health().getHealthDataFromTypes(
+        types: [
+          HealthDataType.STEPS,
+          HealthDataType.WORKOUT,
+          HealthDataType.WATER,
+          if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
+          if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
+        ],
         startTime: now.subtract(const Duration(days: 1)),
         endTime: now,
       );
 
-      // محاولة استخدام البيانات من المحاولات المختلفة
-      List<HealthDataPoint> finalHealthData = healthData;
+      // دمج البيانات
+      List<HealthDataPoint> finalHealthData = [
+        ...todayCaloriesAndSleepData,
+        ...otherHealthData,
+      ];
 
-      // إذا لم نجد بيانات، جرب البيانات من آخر 7 أيام
-      if (healthData.isEmpty) {
+      // إذا لم نجد بيانات أخرى، جرب البيانات من آخر 7 أيام للمياه والخطوات فقط
+      if (otherHealthData.isEmpty) {
         final List<HealthDataPoint> weekData =
             await Health().getHealthDataFromTypes(
-          types: types,
+          types: [
+            HealthDataType.STEPS,
+            HealthDataType.WORKOUT,
+            HealthDataType.WATER,
+            if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
+            if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
+          ],
           startTime: now.subtract(const Duration(days: 7)),
           endTime: now,
         );
 
         if (weekData.isNotEmpty) {
-          finalHealthData = weekData;
-        } else {
-          // محاولة أخيرة: استرداد البيانات من اليوم الحالي فقط
-          final todayStart = DateTime(now.year, now.month, now.day);
-          final List<HealthDataPoint> todayData =
-              await Health().getHealthDataFromTypes(
-            types: [HealthDataType.STEPS, HealthDataType.ACTIVE_ENERGY_BURNED],
-            startTime: todayStart,
-            endTime: now,
-          );
-
-          if (todayData.isNotEmpty) {
-            finalHealthData = todayData;
-          }
+          finalHealthData = [
+            ...todayCaloriesAndSleepData,
+            ...weekData,
+          ];
         }
       }
 
-      final num totalCalories = getTotalCalories(finalHealthData);
+      final num totalCalories = getTotalCalories(todayCaloriesAndSleepData);
       final num totalDistance = getTotalDistance(finalHealthData);
       final num totalWaterLitre = getTotalWaterInLitre(finalHealthData);
-      final num totalSleep = getTotalSleepTime(finalHealthData);
+      final num totalSleep = getTotalSleepTime(todayCaloriesAndSleepData);
       final num exerciseTime = getExerciseTimeInMin(finalHealthData);
       final int? totalSteps = await Health().getTotalStepsInInterval(
         now.subtract(const Duration(days: 1)),

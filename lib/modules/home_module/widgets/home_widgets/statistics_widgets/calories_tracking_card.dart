@@ -58,7 +58,7 @@ class CaloriesTrackingCard extends StatelessWidget {
                 selector: (state) => state.totalCalories,
                 builder: (context, calories) {
                   return Text(
-                    '${calories.toStringAsFixed(0)} ${L10n.tr().calories}',
+                    '${calories.toStringAsFixed(0)} ${L10n.tr().calorie}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TStyle.regular_14.copyWith(

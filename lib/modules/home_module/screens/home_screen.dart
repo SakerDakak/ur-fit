@@ -60,9 +60,8 @@ class HomeScreen extends StatelessWidget {
                     // horizontal divider
                     const Divider(color: Co.strockColor),
 
-                    const SizedBox(height: 16),
-
                     // today tasks
+                    // const SizedBox(height: 16),
                     // StartTodyTasksSection(),
 
                     const SizedBox(height: 16),

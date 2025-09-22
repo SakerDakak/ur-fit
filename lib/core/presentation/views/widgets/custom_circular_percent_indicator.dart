@@ -16,7 +16,7 @@ class CustomCircularPercentIndicator extends StatelessWidget {
     return Stack(
       children: [
         CircularPercentIndicator(
-          percent: ((0.9 - percent)).clamp(0.1, 1),
+          percent: 1,
           startAngle: 368,
           progressColor: Co.whiteColor,
           backgroundColor: Colors.transparent,

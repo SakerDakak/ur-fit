@@ -712,7 +712,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get calories => 'سعرات حرارية';
 
   @override
-  String get calorie => 'وحدة';
+  String get calorie => 'سعرة';
 
   @override
   String get sleep => 'نوم';
