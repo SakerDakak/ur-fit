@@ -754,6 +754,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get packageEndsIn => 'تنتهي الباقه في';
 
   @override
+  String get mealPlanEndsIn => 'تنتهي خطة التغذية في';
+
+  @override
   String get todayExerciseDetails => 'تفاصيل تمارين اليوم';
 
   @override

@@ -30,12 +30,19 @@ class ComponentItem extends StatelessWidget {
                         height: 35.px,
                         width: 35.px,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return SizedBox(
+                            height: 35.px,
+                            width: 35.px,
+                            child: const Icon(Icons.fastfood_outlined),
+                          );
+                        },
                       )),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Expanded(
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     alignment: AlignmentDirectional.center,
@@ -47,8 +54,9 @@ class ComponentItem extends StatelessWidget {
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerEnd,
-                  child: Text('${ingredient.amount} ${ingredient.unit}',
-                      style: TStyle.regular_16.copyWith(
+                  child: Text(
+                      '${ingredient.amount.toStringAsFixed(2)} ${ingredient.unit}',
+                      style: TStyle.regular_14.copyWith(
                           color: Theme.of(context).colorScheme.primary)),
                 ),
               )

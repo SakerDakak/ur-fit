@@ -755,6 +755,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get packageEndsIn => 'Package Ends in';
 
   @override
+  String get mealPlanEndsIn => 'Meal Plan Ends in';
+
+  @override
   String get todayExerciseDetails => 'Today exercise details';
 
   @override

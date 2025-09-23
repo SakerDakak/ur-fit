@@ -48,7 +48,7 @@ class DailyMealsListItem extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const SizedBox(width: 88),
+                  const SizedBox(width: 100),
 
                   // meal name
                   Expanded(

@@ -1538,6 +1538,12 @@ abstract class AppLocalizations {
   /// **'Package Ends in'**
   String get packageEndsIn;
 
+  /// No description provided for @mealPlanEndsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal Plan Ends in'**
+  String get mealPlanEndsIn;
+
   /// No description provided for @todayExerciseDetails.
   ///
   /// In en, this message translates to:

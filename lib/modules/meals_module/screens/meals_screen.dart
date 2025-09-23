@@ -58,17 +58,7 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
           if (mounted) setState(() {});
         });
       } else if (user?.haveMealPlan == false &&
-          user?.hasValidSubscription == true &&
-          (user?.packageId == 1 ||
-              user?.packageId == 2 ||
-              user?.packageId == 3 ||
-              user?.packageId == 4 ||
-              user?.packageId == 5 ||
-              user?.packageId == 6 ||
-              user?.packageId == 7 ||
-              user?.packageId == 8 ||
-              user?.packageId == 9 ||
-              user?.packageId == 10)) {
+          user?.hasValidSubscription == true) {
         // إنشاء خطة التغذية وانتظار اكتمال العملية
         await cubit.generateMealPlan();
 
@@ -113,14 +103,7 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
             user?.haveMealPlan != true &&
             state.allPlans.isEmpty) {
           // إذا كان المستخدم مشترك ولكن لا توجد خطة وجبات
-          if (user?.packageId != null &&
-              (user?.packageId == 4 ||
-                  user?.packageId == 5 ||
-                  user?.packageId == 6 ||
-                  user?.packageId == 7 ||
-                  user?.packageId == 8 ||
-                  user?.packageId == 9 ||
-                  user?.packageId == 10)) {
+          if (user?.packageId != null) {
             // إذا كان في حالة تحميل
             if (state.getMealPlansState == RequestState.loading) {
               return Scaffold(
@@ -162,7 +145,7 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
                       Text(
                         state.errMessage.isNotEmpty
                             ? state.errMessage
-                            : "حدث خطأ غير متوقع",
+                            : L10n.tr().somethingWentWrong,
                         style: Theme.of(context).textTheme.bodyMedium,
                         textAlign: TextAlign.center,
                       ),
@@ -225,7 +208,6 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
               },
               child: ListView(
                 padding: const EdgeInsets.only(
-                  bottom: AppConst.kBottomPadding,
                   left: AppConst.kHorizontalPadding,
                   right: AppConst.kHorizontalPadding,
                 ),

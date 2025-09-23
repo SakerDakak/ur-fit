@@ -22,11 +22,12 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
           // title
           Row(
             children: [
-              SvgPicture.asset(Assets.iconsSpoonFork, width: 16,
+              SvgPicture.asset(Assets.iconsSpoonFork,
+                  width: 16,
                   colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.primary,
-                BlendMode.srcIn,
-              )),
+                    Theme.of(context).colorScheme.primary,
+                    BlendMode.srcIn,
+                  )),
               const SizedBox(width: 8),
               Text(
                 'ما يحتاجه جسمك لليوم',
@@ -37,9 +38,9 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
               ),
             ],
           ),
-      
+
           const SizedBox(height: 16),
-      
+
           // card
           Container(
             padding: const EdgeInsets.all(8),
@@ -55,23 +56,29 @@ class WhatUrBodyNeedsShimmer extends StatelessWidget {
                   calories: 300,
                   title: 'سعر حرارى للتغذية',
                 ),
-      
+
                 SizedBox(height: 16),
-      
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ProgressItem(
                       title: 'سعرات',
                       percent: (10 / 100),
+                      currentValue: 10,
+                      targetValue: 100,
                     ),
                     ProgressItem(
                       title: 'بروتينات',
                       percent: (10 / 100),
+                      currentValue: 10,
+                      targetValue: 100,
                     ),
                     ProgressItem(
                       title: 'كاربوهيدرات',
                       percent: (10 / 100),
+                      currentValue: 10,
+                      targetValue: 100,
                     ),
                   ],
                 ),

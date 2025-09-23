@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -32,6 +33,16 @@ class PackageProgressMeals extends StatelessWidget {
           }
         }
 
+        String formatDate(String? dateString) {
+          if (dateString == null || dateString.isEmpty) return '';
+          try {
+            final date = DateTime.parse(dateString);
+            return DateFormat('yyyy/MM/dd').format(date);
+          } catch (e) {
+            return dateString; // إرجاع التاريخ الأصلي في حالة الخطأ
+          }
+        }
+
         return Column(
           children: [
             // weak number and end date
@@ -46,20 +57,19 @@ class PackageProgressMeals extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                Expanded(
-                  child: Text(
-                    weekText(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TStyle.regular_14.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Co.whiteColor,
-                    ),
+                Text(
+                  weekText(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TStyle.regular_14.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Co.whiteColor,
                   ),
                 ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    '${L10n.tr().packageEndsIn} ${meal?.endDate}',
+                    '${L10n.tr().mealPlanEndsIn} ${formatDate(meal?.endDate)}',
                     textAlign: TextAlign.end,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
