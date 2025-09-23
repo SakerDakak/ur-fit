@@ -7,10 +7,12 @@ import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/fonts.dart';
 
 class MealProperties extends StatelessWidget {
-  final int readyInMinutes ;
-  final num kcal ;
+  final int readyInMinutes;
+  final num kcal;
   const MealProperties({
-    super.key, required this.readyInMinutes, required this.kcal,
+    super.key,
+    required this.readyInMinutes,
+    required this.kcal,
   });
 
   @override
@@ -20,44 +22,65 @@ class MealProperties extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(AssetsManager.time),
-              SizedBox(
-                width: 4.px,
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: AlignmentDirectional.centerStart,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(AssetsManager.time),
+                  SizedBox(
+                    width: 4.px,
+                  ),
+                  Text(
+                    '$readyInMinutes ${L10n.tr().minutes}',
+                    style: TStyle.regular_14,
+                  ),
+                ],
               ),
-              Text(
-                '$readyInMinutes ${L10n.tr().minutes}',
-                style: TStyle.regular_16,
-              ),
-            ],
+            ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(AssetsManager.calories),
-              SizedBox(
-                width: 4.px,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(AssetsManager.calories),
+                    SizedBox(
+                      width: 4.px,
+                    ),
+                    Text(
+                      '$kcal ${L10n.tr().calories}',
+                      style: TStyle.regular_14,
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                '$kcal ${L10n.tr().calories}',
-                style: TStyle.regular_16,
-              ),
-            ],
+            ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(AssetsManager.cooking),
-              SizedBox(
-                width: 4.px,
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: AlignmentDirectional.centerEnd,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SvgPicture.asset(AssetsManager.cooking),
+                  SizedBox(
+                    width: 4.px,
+                  ),
+                  Text(
+                    L10n.tr().easyPreparation,
+                    style: TStyle.regular_14,
+                  ),
+                ],
               ),
-              Text(
-                L10n.tr().easyPreparation,
-                style: TStyle.regular_16,
-              ),
-            ],
+            ),
           ),
         ],
       ),

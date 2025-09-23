@@ -373,5 +373,8 @@
   "retry": "Retry",
   "noWorkoutPlan": "No workout plan",
   "noMealPlan": "No meal plan",
-  "unexpectedError": "An unexpected error occurred"
+  "unexpectedError": "An unexpected error occurred",
+  "mealSelectedSuccessfully": "Meal selected successfully!",
+  "mealAlreadySelected": "Meal already selected",
+  "errorSelectingMeal": "Error selecting meal"
 }

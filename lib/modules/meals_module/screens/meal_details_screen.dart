@@ -30,93 +30,145 @@ class MealDetailsScreen extends StatelessWidget {
             context.pop();
             // context.read<MealsCubit>().clearMealDetails();
           }),
-      body: BlocBuilder<MealsCubit, MealsState>(
-        buildWhen: (p, c) => p.mealDetails != c.mealDetails || p.getMealDetailsState != c.getMealDetailsState,
-        builder: (context, state) {
-          if (state.getMealDetailsState == RequestState.loading ||
-              state.getMealDetailsState == RequestState.failure) {
-            // return const ValuesGridviewShimmer();
-            return const Center(child: AdaptiveProgressIndicator());
-          } else {
-            final meal = state.mealDetails!;
-            final kcal = meal.nutrition.nutrients.first.amount;
-            final readyInMinutes = meal.readyInMinutes;
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 16.px,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.px),
-                    child: Center(
+      body: SafeArea(
+        child: BlocBuilder<MealsCubit, MealsState>(
+          buildWhen: (p, c) =>
+              p.mealDetails != c.mealDetails ||
+              p.getMealDetailsState != c.getMealDetailsState,
+          builder: (context, state) {
+            if (state.getMealDetailsState == RequestState.loading ||
+                state.getMealDetailsState == RequestState.failure) {
+              // return const ValuesGridviewShimmer();
+              return const Center(child: AdaptiveProgressIndicator());
+            } else {
+              final meal = state.mealDetails!;
+              final kcal = meal.nutrition.nutrients.first.amount;
+              final readyInMinutes = meal.readyInMinutes;
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.px),
+                      child: Center(
+                          child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
                         child: Image.network(
-                      meal.image.toString(),
-                      height: 290.px,
-                      fit: BoxFit.fill,
-                    )),
-                  ),
-                  SizedBox(
-                    height: 16.px,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.px),
-                    child: Text(
-                      meal.title.toString(),
-                      style: TStyle.semiBold_16,
+                          meal.image.toString(),
+                          height: 290.px,
+                          fit: BoxFit.fill,
+                        ),
+                      )),
                     ),
-                  ),
-                  SizedBox(
-                    height: 16.px,
-                  ),
-                  MealProperties(
-                    readyInMinutes: readyInMinutes,
-                    kcal: kcal,
-                  ),
-                  SizedBox(
-                    height: 24.px,
-                  ),
-                  BlocBuilder<MealsCubit, MealsState>(
-                    builder: (context, state) {
-                      return CustomElevatedButton(
-                          text: L10n.tr().selectMeal,
-                          onPressed: state.nutritionData.any((data) => data.id == meal.id.toString())
-                              ? null
-                              : () async {
-                                  final calories =
-                                      meal.nutrition.nutrients.firstWhere((nut) => nut.name == "Calories").amount;
-                                  final carbohydrates =
-                                      meal.nutrition.nutrients.firstWhere((nut) => nut.name == "Carbohydrates").amount;
-                                  final protein =
-                                      meal.nutrition.nutrients.firstWhere((nut) => nut.name == "Protein").amount;
-                    
-                                  await context.read<MealsCubit>().addMealNutrients(
-                                      mealId: meal.id.toString(),
-                                      calories: calories,
-                                      carb: carbohydrates,
-                                      protein: protein);
-                                });
-                    },
-                  ),
-                  SizedBox(
-                    height: 24.px,
-                  ),
-                  MealDescription(
-                    description: meal.summary,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.px),
-                    child: const Divider(),
-                  ),
-                  MealComponentWidget(
-                    ingredients: meal.extendedIngredients,
-                  )
-                ],
-              ),
-            );
-          }
-        },
+                    SizedBox(
+                      height: 16.px,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.px),
+                      child: Text(
+                        meal.title.toString(),
+                        style: TStyle.semiBold_16,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 18.px,
+                    ),
+                    MealProperties(
+                      readyInMinutes: readyInMinutes,
+                      kcal: kcal,
+                    ),
+                    SizedBox(
+                      height: 24.px,
+                    ),
+                    BlocBuilder<MealsCubit, MealsState>(
+                      buildWhen: (previous, current) =>
+                          previous.nutritionData != current.nutritionData,
+                      builder: (context, state) {
+                        final isMealSelected = state.nutritionData
+                            .any((data) => data.id == meal.id.toString());
+                        return CustomElevatedButton(
+                            text: isMealSelected
+                                ? L10n.tr().mealAlreadySelected
+                                : L10n.tr().selectMeal,
+                            onPressed: isMealSelected
+                                ? null
+                                : () async {
+                                    try {
+                                      final calories = meal.nutrition.nutrients
+                                          .firstWhere(
+                                              (nut) => nut.name == "Calories")
+                                          .amount;
+                                      final carbohydrates = meal
+                                          .nutrition.nutrients
+                                          .firstWhere((nut) =>
+                                              nut.name == "Carbohydrates")
+                                          .amount;
+                                      final protein = meal.nutrition.nutrients
+                                          .firstWhere(
+                                              (nut) => nut.name == "Protein")
+                                          .amount;
+
+                                      await context
+                                          .read<MealsCubit>()
+                                          .addMealNutrients(
+                                              mealId: meal.id.toString(),
+                                              calories: calories,
+                                              carb: carbohydrates,
+                                              protein: protein);
+
+                                      // إظهار رسالة تأكيد للمستخدم
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(L10n.tr()
+                                                .mealSelectedSuccessfully),
+                                            backgroundColor: Colors.green,
+                                            duration:
+                                                const Duration(seconds: 2),
+                                          ),
+                                        );
+                                      }
+                                    } catch (e) {
+                                      // إظهار رسالة خطأ في حالة فشل العملية
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                                '${L10n.tr().errorSelectingMeal}: $e'),
+                                            backgroundColor: Colors.red,
+                                            duration:
+                                                const Duration(seconds: 3),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  });
+                      },
+                    ),
+                    SizedBox(
+                      height: 24.px,
+                    ),
+                    MealDescription(
+                      description: meal.summary,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.px),
+                      child: const Divider(),
+                    ),
+                    const SizedBox(height: 12),
+                    MealComponentWidget(
+                      ingredients: meal.extendedIngredients,
+                    )
+                  ],
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

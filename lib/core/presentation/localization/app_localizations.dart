@@ -2263,6 +2263,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred'**
   String get unexpectedError;
+
+  /// No description provided for @mealSelectedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal selected successfully!'**
+  String get mealSelectedSuccessfully;
+
+  /// No description provided for @mealAlreadySelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal already selected'**
+  String get mealAlreadySelected;
+
+  /// No description provided for @errorSelectingMeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Error selecting meal'**
+  String get errorSelectingMeal;
 }
 
 class _AppLocalizationsDelegate

@@ -8,6 +8,7 @@ import 'package:urfit/modules/auth/persentation/cubit/auth_cubit.dart';
 import 'package:urfit/modules/inuries/data/injuries_repo.dart';
 import 'package:urfit/modules/inuries/presentaion/cubit/injuries_cubit.dart';
 import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
+import 'package:urfit/modules/meals_module/data/data_source/meals_local_datasource.dart';
 import 'package:urfit/modules/meals_module/data/data_source/meals_remote_datasource.dart';
 import 'package:urfit/modules/meals_module/repo/meals_repo.dart';
 import 'package:urfit/modules/onboarding/controller/onboarding_cubit.dart';
@@ -64,18 +65,23 @@ Future<void> init() async {
   /// Repository
   di.registerLazySingleton<AuthRepo>(() => AuthRepo(di()));
   di.registerLazySingleton<SubscriptionRepo>(() => SubscriptionRepo(di()));
-  di.registerLazySingleton<MealsRepo>(() => MealsRepo(di()));
+  di.registerLazySingleton<MealsLocalDatasource>(() => MealsLocalDatasource());
+  di.registerLazySingleton<MealsRepo>(() => MealsRepo(di(), di()));
   di.registerLazySingleton<WorkoutRepo>(() => WorkoutRepo(di()));
   di.registerLazySingleton<SettingRepo>(() => SettingRepo(di()));
   di.registerLazySingleton<InjuriesRepo>(() => InjuriesRepo(di()));
 
   // sl.registerLazySingleton<AuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSource(sl()));
   // sl.registerLazySingleton<UserLocalDataSource>(() => UserLocalDataSource());
-  di.registerLazySingleton<SubscriptionRemoteDataSource>(() => SubscriptionRemoteDataSource(di()));
-  di.registerLazySingleton<MealsRemoteDataSource>(() => MealsRemoteDataSource(di()));
+  di.registerLazySingleton<SubscriptionRemoteDataSource>(
+      () => SubscriptionRemoteDataSource(di()));
+  di.registerLazySingleton<MealsRemoteDataSource>(
+      () => MealsRemoteDataSource(di()));
   // di.registerLazySingleton<MealsLocalDatasource>(() => MealsLocalDatasource());
-  di.registerLazySingleton<WorkoutRemoteDataSource>(() => WorkoutRemoteDataSource(di()));
-  di.registerLazySingleton<SettingRemoteDataSource>(() => SettingRemoteDataSource(di()));
+  di.registerLazySingleton<WorkoutRemoteDataSource>(
+      () => WorkoutRemoteDataSource(di()));
+  di.registerLazySingleton<SettingRemoteDataSource>(
+      () => SettingRemoteDataSource(di()));
 
   /// Bloc
   ///
@@ -89,7 +95,7 @@ Future<void> init() async {
   di.registerFactory(() => SettingCubit(di()));
   di.registerFactory(() => AuthCubit());
   di.registerFactory(() => UpdateUserInfoCubit(di()));
-  di.registerFactory(() => InjuriesCubit  (di()));
+  di.registerFactory(() => InjuriesCubit(di()));
 
   // sl.registerFactoryParam((int? param1, param2) => QuranCubit(quranRepository: sl(),initialIndex: param1),);
   // sl.registerFactory(() => LiveCubit(sl()));

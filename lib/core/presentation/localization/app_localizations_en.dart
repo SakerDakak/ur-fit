@@ -1129,4 +1129,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unexpectedError => 'An unexpected error occurred';
+
+  @override
+  String get mealSelectedSuccessfully => 'Meal selected successfully!';
+
+  @override
+  String get mealAlreadySelected => 'Meal already selected';
+
+  @override
+  String get errorSelectingMeal => 'Error selecting meal';
 }

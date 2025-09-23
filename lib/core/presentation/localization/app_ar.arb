@@ -373,5 +373,8 @@
   "retry": "إعادة المحاولة",
   "noWorkoutPlan": "لا توجد خطة تمارين",
   "noMealPlan": "لا توجد خطة وجبات",
-  "unexpectedError": "حدث خطأ غير متوقع"
+  "unexpectedError": "حدث خطأ غير متوقع",
+  "mealSelectedSuccessfully": "تم اختيار الوجبة بنجاح!",
+  "mealAlreadySelected": "تم اختيار الوجبة",
+  "errorSelectingMeal": "حدث خطأ في اختيار الوجبة"
 }

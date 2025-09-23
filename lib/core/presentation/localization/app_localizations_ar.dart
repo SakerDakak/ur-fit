@@ -1128,4 +1128,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'حدث خطأ غير متوقع';
+
+  @override
+  String get mealSelectedSuccessfully => 'تم اختيار الوجبة بنجاح!';
+
+  @override
+  String get mealAlreadySelected => 'تم اختيار الوجبة';
+
+  @override
+  String get errorSelectingMeal => 'حدث خطأ في اختيار الوجبة';
 }

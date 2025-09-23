@@ -364,7 +364,12 @@ class MealsCubit extends Cubit<MealsState> {
 
   Future<void> calculateNutritionData(
       {required num calories, required num carb, required num protein}) async {
-    state.allPlans.first.id;
+    // التحقق من وجود خطط الوجبات قبل المتابعة
+    if (state.allPlans.isEmpty) {
+      print("لا توجد خطط وجبات متاحة");
+      return;
+    }
+
     final result = await _repo.calculateNutrients(
         mealPlanId: state.allPlans.first.id,
         calories: state.gainedCalories,
@@ -372,22 +377,18 @@ class MealsCubit extends Cubit<MealsState> {
         carbs: state.gainedCarb);
     result.fold(
       (failure) {
-        print("failure $failure");
+        print("فشل في حساب العناصر الغذائية: $failure");
 
         emit(state.copyWith(
-          // getMealPlansState: RequestState.failure,
           errMessage: failure.message,
         ));
       },
       (successData) {
+        print("تم حساب العناصر الغذائية بنجاح");
+        // تحديث الحالة لإظهار نجاح العملية
         emit(state.copyWith(
-            // getMealPlansState: RequestState.success,
-            // nutritionData: [],
-            // gainedCarb: 0,
-            // gainedProtein: 0,
-            // gainedCalories: 0,
-            ));
-        // Session().currentUser = ;
+          errMessage: "", // مسح أي رسائل خطأ سابقة
+        ));
       },
     );
   }
