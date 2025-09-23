@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
+import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/modules/meals_module/screens/meal_details_screen.dart';
 
 import '../data/models/meal_model.dart';
@@ -15,7 +17,8 @@ class MealsGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(MealDetailsScreen.routeWzId,pathParameters: {'id':meal.id.toString()});
+        context.pushNamed(MealDetailsScreen.routeWzId,
+            pathParameters: {'id': meal.id.toString()});
       },
       child: GridTile(
         footer: Container(
@@ -29,8 +32,16 @@ class MealsGridItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: Text(meal.title.toString(),maxLines: 2,overflow: TextOverflow.ellipsis,)),
-                Text("${L10n.tr().price} ${meal.nutrition?.nutrients.first.amount}")
+                AutoSizeText(
+                  meal.title.toString(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TStyle.semiBold_14,
+                  minFontSize: 10,
+                ),
+                const Spacer(),
+                Text(
+                    "${meal.nutrition?.nutrients.first.amount} ${L10n.tr().calorie}")
 
                 // Text('١٥ دقيقة'),
               ],

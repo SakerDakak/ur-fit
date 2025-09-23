@@ -249,6 +249,8 @@
   "week4": "الاسبوع الرابع",
   "packageEndsIn": "تنتهي الباقه في",
   "mealPlanEndsIn": "تنتهي خطة التغذية في",
+  "noMealsFound": "لم يتم العثور على وجبات",
+  "tryDifferentFilters": "جرب فلاتر مختلفة أو غير معايير البحث",
   "todayExerciseDetails": "تفاصيل تمارين اليوم",
   "exerciseTime": "مدة التمرين",
   "exerciseTodayWillFocusOn": " تمرين اليوم سوف يركز على ",

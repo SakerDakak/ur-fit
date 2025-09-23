@@ -1544,6 +1544,18 @@ abstract class AppLocalizations {
   /// **'Meal Plan Ends in'**
   String get mealPlanEndsIn;
 
+  /// No description provided for @noMealsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No meals found'**
+  String get noMealsFound;
+
+  /// No description provided for @tryDifferentFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Try different filters or change search criteria'**
+  String get tryDifferentFilters;
+
   /// No description provided for @todayExerciseDetails.
   ///
   /// In en, this message translates to:
