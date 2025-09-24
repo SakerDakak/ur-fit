@@ -906,6 +906,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailIsRequired => 'يجب ادخال البريد الالكترونى';
 
   @override
+  String get emailFormatIsInvalid => 'تنسيق الإيميل غير صحيح';
+
+  @override
+  String get changeEmailDescription => 'أدخل الإيميل الجديد الذي تريد استخدامه';
+
+  @override
   String get emailMustBeValid => 'يجب ان يكون البريد الالكترونى صحيح';
 
   @override

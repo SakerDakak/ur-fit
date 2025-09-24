@@ -1838,6 +1838,18 @@ abstract class AppLocalizations {
   /// **'Email is required'**
   String get emailIsRequired;
 
+  /// No description provided for @emailFormatIsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Email format is invalid'**
+  String get emailFormatIsInvalid;
+
+  /// No description provided for @changeEmailDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the new email you want to use'**
+  String get changeEmailDescription;
+
   /// No description provided for @emailMustBeValid.
   ///
   /// In en, this message translates to:

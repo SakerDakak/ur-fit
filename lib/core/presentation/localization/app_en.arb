@@ -299,6 +299,8 @@
   "passwordIsRequired": "Password is required",
   "passwordMustBeAtLeast6Characters": "Password must be at least 6 characters",
   "emailIsRequired": "Email is required",
+  "emailFormatIsInvalid": "Email format is invalid",
+  "changeEmailDescription": "Enter the new email you want to use",
   "emailMustBeValid": "Email must be valid",
   "fullNameIsRequired": "Full name is required",
   "fullNameMustBeAtLeast3Characters": "Full name must be at least 3 characters",

@@ -34,6 +34,7 @@ abstract class UserPersonalInfoModel with _$UserPersonalInfoModel {
 
 class UserInfoRequest {
   String? name;
+  String? email; // إضافة حقل الإيميل
   GenderEnum? gender;
   int? age;
   int? height;
@@ -54,6 +55,7 @@ class UserInfoRequest {
 
   UserInfoRequest({
     this.name,
+    this.email, // إضافة حقل الإيميل
     this.gender,
     this.age,
     this.height,
@@ -76,6 +78,7 @@ class UserInfoRequest {
   Map<String, dynamic> toJson() {
     return {
       if (name != null) "name": name,
+      if (email != null) "email": email, // إضافة الإيميل إلى JSON
       "gender": gender?.name,
       "age": age?.toDouble(),
       "height": height,
@@ -97,6 +100,7 @@ class UserInfoRequest {
   UserInfoRequest.fromUserModel(UserModel user)
       : selectedGaols = user.goals?.map((goal) => goal.id).toSet() ?? {},
         name = user.name,
+        email = user.email, // إضافة الإيميل من UserModel
         gender = user.gender,
         height = user.height,
         age = user.age,

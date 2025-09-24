@@ -908,6 +908,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailIsRequired => 'Email is required';
 
   @override
+  String get emailFormatIsInvalid => 'Email format is invalid';
+
+  @override
+  String get changeEmailDescription => 'Enter the new email you want to use';
+
+  @override
   String get emailMustBeValid => 'Email must be valid';
 
   @override
