@@ -6,6 +6,7 @@ class StorageKeys {
   static String token = "token";
   static const String isDarkTheme = 'isDarkTheme';
   static const String lang = 'lang';
+  static const String notificationsEnabled = 'notificationsEnabled';
   static const String cityId = 'city_id';
   static const String countryId = 'country_id';
   static const String isOnboardingCompleted = 'isOnboardingCompleted';

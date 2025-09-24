@@ -23,11 +23,16 @@ import 'package:urfit/modules/subscription_module/screens/subscription_plans_scr
 
 import '../../subscription_module/data/models/package_model.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   final bool isGuest;
 
   const ProfileScreen({super.key, required this.isGuest});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
@@ -142,13 +147,22 @@ class ProfileScreen extends StatelessWidget {
                         context,
                         title: L10n.tr().notification,
                         icon: Assets.iconsNotifications,
-                        onTap: () {},
+                        onTap: () {
+                          // تبديل حالة التنبيهات عند الضغط على العنصر
+                          context
+                              .read<AppCubit>()
+                              .toggleNotifications(!state.notificationsEnabled);
+                        },
                         trailing: SizedBox(
                           height: 35,
                           child: FittedBox(
                             child: Switch(
-                              value: true,
-                              onChanged: (value) {},
+                              value: state.notificationsEnabled,
+                              onChanged: (value) {
+                                context
+                                    .read<AppCubit>()
+                                    .toggleNotifications(value);
+                              },
                             ),
                           ),
                         ),

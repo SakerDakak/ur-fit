@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/core/data/services/firebase/fcm_service.dart';
 import 'package:urfit/di.dart';
 
 part 'app_state.dart';
@@ -12,10 +13,12 @@ class AppCubit extends Cubit<AppState> {
   AppCubit()
       : super(AppState(
             currentLocal:
-                di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar'));
+                di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar',
+            notificationsEnabled: di<SharedPreferences>()
+                    .getBool(StorageKeys.notificationsEnabled) ??
+                true));
   // late Box themeBox;
   late String lang;
-  bool? notificationEnabled;
 
   init() async {
     // تطبيق ثيم الذكر الافتراضي عند بدء التطبيق أولاً
@@ -78,24 +81,56 @@ class AppCubit extends Cubit<AppState> {
             di<SharedPreferences>().getBool(StorageKeys.isDarkTheme) ?? false));
   }
 
-  // notificationTrigger(bool enable) async {
-  //   if(enable){
-  //     // FirebaseMessaging.instance.subscribeToTopic(topic);
-  //     // FirebaseMessaging.instance.subscribeToTopic(topic);
-  //     // FirebaseMessaging.instance.subscribeToTopic(topic);
-  //     // final controller = sl<AuthenticationCubit>();
-  //
-  //     sl<AuthenticationCubit>().updateUserData();
-  //     notificationEnabled = true;
-  //     emit(state.copyWith(notification: true));
-  //   }else{
-  //     // FirebaseMessaging.instance.unsubscribeFromTopic(topic);
-  //     // FirebaseMessaging.instance.unsubscribeFromTopic(topic);
-  //     // FirebaseMessaging.instance.unsubscribeFromTopic(topic);
-  //     notificationEnabled = false;
-  //
-  //     emit(state.copyWith(notification: false));
-  //
-  //   }
-  // }
+  /// تبديل حالة الإشعارات
+  Future<void> toggleNotifications(bool enabled) async {
+    // تحديث الحالة فوراً لتحسين الاستجابة
+    emit(state.copyWith(notificationsEnabled: enabled));
+
+    // حفظ الحالة محلياً
+    await di<SharedPreferences>()
+        .setBool(StorageKeys.notificationsEnabled, enabled);
+
+    // تشغيل العمليات في الخلفية بدون انتظار
+    if (enabled) {
+      _enableNotificationsAsync();
+    } else {
+      _disableNotificationsAsync();
+    }
+  }
+
+  /// تفعيل الإشعارات بشكل غير متزامن
+  void _enableNotificationsAsync() {
+    // تشغيل العملية في الخلفية بدون انتظار
+    Future.microtask(() async {
+      try {
+        // إعادة تفعيل FCM token
+        final fcmService = FCMService();
+        await fcmService.getDeviceToken();
+
+        print('الإشعارات تم تفعيلها بنجاح');
+      } catch (e) {
+        print('خطأ في تفعيل الإشعارات: $e');
+        // في حالة الخطأ، يمكن إعادة الحالة إلى false
+        // emit(state.copyWith(notificationsEnabled: false));
+      }
+    });
+  }
+
+  /// إيقاف الإشعارات بشكل غير متزامن
+  void _disableNotificationsAsync() {
+    // تشغيل العملية في الخلفية بدون انتظار
+    Future.microtask(() async {
+      try {
+        // حذف FCM token
+        final fcmService = FCMService();
+        await fcmService.deleteToken();
+
+        print('الإشعارات تم إيقافها بنجاح');
+      } catch (e) {
+        print('خطأ في إيقاف الإشعارات: $e');
+        // في حالة الخطأ، يمكن إعادة الحالة إلى true
+        // emit(state.copyWith(notificationsEnabled: true));
+      }
+    });
+  }
 }

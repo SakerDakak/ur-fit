@@ -4,7 +4,10 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/firebase/local_notification_services.dart';
+import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/di.dart';
 
 // import 'package:provider/provider.dart';
 
@@ -34,7 +37,8 @@ class FCMService {
       announcement: true,
       carPlay: false,
     );
-    debugPrint(" FCM ::: userPermissions.authorizationStatus: ${_userPermissions.authorizationStatus}");
+    debugPrint(
+        " FCM ::: userPermissions.authorizationStatus: ${_userPermissions.authorizationStatus}");
     // only for ios as andoid won't show pop up notification whilst foreground
     await _fcm.setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification in ios
@@ -78,6 +82,17 @@ class FCMService {
       debugPrint('fcmForegroundHandler');
       debugPrint(message.data.toString());
       print(message.toMap());
+
+      // التحقق من حالة الإشعارات المحفوظة
+      final notificationsEnabled =
+          di<SharedPreferences>().getBool(StorageKeys.notificationsEnabled) ??
+              true;
+
+      if (!notificationsEnabled) {
+        debugPrint('الإشعارات معطلة - تجاهل الإشعار');
+        return;
+      }
+
       if (!Platform.isIOS) {
         await LocalNotificationServices.inst.showNotification(message);
         _printOrder(message.data);
@@ -92,6 +107,17 @@ class FCMService {
       debugPrint('fcmOnBackground');
       debugPrint(message.data.toString());
       print(message.toMap());
+
+      // التحقق من حالة الإشعارات المحفوظة
+      final prefs = await SharedPreferences.getInstance();
+      final notificationsEnabled =
+          prefs.getBool(StorageKeys.notificationsEnabled) ?? true;
+
+      if (!notificationsEnabled) {
+        debugPrint('الإشعارات معطلة - تجاهل الإشعار في الخلفية');
+        return;
+      }
+
       await _printOrder(message.data);
     });
   }
@@ -100,6 +126,16 @@ class FCMService {
   void fcmBackgroundOpenedAppHandler() {
     // Returns a [Stream] that is called when a user presses a notification message displayed via FCM
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      // التحقق من حالة الإشعارات المحفوظة
+      final prefs = await SharedPreferences.getInstance();
+      final notificationsEnabled =
+          prefs.getBool(StorageKeys.notificationsEnabled) ?? true;
+
+      if (!notificationsEnabled) {
+        debugPrint('الإشعارات معطلة - تجاهل فتح التطبيق من الإشعار');
+        return;
+      }
+
       await _printOrder(message.data);
     });
   }
