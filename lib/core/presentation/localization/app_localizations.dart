@@ -1406,6 +1406,18 @@ abstract class AppLocalizations {
   /// **'Update Weight'**
   String get updateWeight;
 
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @changeNameDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Update your personal name'**
+  String get changeNameDescription;
+
   /// No description provided for @today.
   ///
   /// In en, this message translates to:

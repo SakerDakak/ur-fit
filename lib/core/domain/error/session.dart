@@ -17,6 +17,11 @@ class Session {
   UserModel? _currentUser;
   UserModel? get currentUser => _currentUser;
 
+  // StreamController لإشعار الـ widgets بتغييرات بيانات المستخدم
+  final StreamController<UserModel?> _userController =
+      StreamController<UserModel?>.broadcast();
+  Stream<UserModel?> get userStream => _userController.stream;
+
   int? get countryId => di<SharedPreferences>().getInt(StorageKeys.countryId);
   int? get cityId => di<SharedPreferences>().getInt(StorageKeys.cityId);
 
@@ -27,7 +32,10 @@ class Session {
       ? di<SharedPreferences>().remove(StorageKeys.cityId)
       : di<SharedPreferences>().setInt(StorageKeys.cityId, id);
 
-  set setCurrentUser(UserModel? user) => _currentUser = user;
+  set setCurrentUser(UserModel? user) {
+    _currentUser = user;
+    _userController.add(user); // إشعار جميع المستمعين بالتغيير
+  }
 
   Future<FutureOr<void>> getUserDataFromServer() async {
     final result = await di<AuthRepo>().getUserDataFromServer();
@@ -103,6 +111,7 @@ class Session {
 
   clearUserData() async {
     _currentUser = null;
+    _userController.add(null); // إشعار بإزالة بيانات المستخدم
     TokenService.deleteToken();
     setCountryId = null;
     setCityId = null;
@@ -111,7 +120,13 @@ class Session {
   // حذف بيانات المستخدم مع الاحتفاظ ببيانات العنوان
   clearUserDataKeepLocation() async {
     _currentUser = null;
+    _userController.add(null); // إشعار بإزالة بيانات المستخدم
     TokenService.deleteToken();
     // لا نحذف countryId و cityId للاحتفاظ ببيانات العنوان
+  }
+
+  // إغلاق الـ StreamController عند إغلاق التطبيق
+  void dispose() {
+    _userController.close();
   }
 }

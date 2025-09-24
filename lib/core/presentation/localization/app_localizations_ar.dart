@@ -687,6 +687,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get updateWeight => 'تحديث الوزن';
 
   @override
+  String get update => 'تحديث';
+
+  @override
+  String get changeNameDescription => 'قم بتحديث اسمك الشخصي';
+
+  @override
   String get today => 'اليوم';
 
   @override

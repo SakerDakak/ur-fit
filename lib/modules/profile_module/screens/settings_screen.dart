@@ -6,14 +6,10 @@ import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/di.dart';
-import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
-import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
-import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/change_name_sheet.dart';
+import 'package:urfit/modules/profile_module/screens/change_username_screen.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/delete_account_dialog.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -59,7 +55,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context,
                   title: L10n.tr().changeName,
                   icon: Assets.iconsProfile,
-                  onTap: () => _editName(context),
+                  onTap: () =>
+                      GoRouter.of(context).push(ChangeUsernameScreen.route),
                 ),
 
                 _buildDivider(),
@@ -109,47 +106,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ],
       ),
     );
-  }
-
-  Future<void> _editName(BuildContext context) async {
-    final name = await showModalBottomSheet<String>(
-      backgroundColor: Co.whiteColor,
-      useSafeArea: true,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(24),
-        ),
-      ),
-      context: context,
-      builder: (context) => const ChangeNameSheet(),
-    );
-    if (name != null) {
-      setState(() {
-        isLoading = true;
-      });
-
-      final response = await di<PersonalInfoRepoImpl>().updatePersonalInfo(
-          personalInfoModel:
-              UserInfoRequest.fromUserModel(user!.copyWith(name: name)));
-
-      setState(() {
-        isLoading = false;
-      });
-
-      response.fold(
-        (ifLeft) {
-          Alerts.showToast(ifLeft.message, error: true);
-        },
-        (ifRight) {
-          Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
-          Session().setCurrentUser = ifRight;
-          setState(() {
-            user = ifRight;
-          });
-        },
-      );
-    }
   }
 
   void _deleteAccount(BuildContext context) {

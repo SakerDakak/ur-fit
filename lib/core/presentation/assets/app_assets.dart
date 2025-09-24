@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   static const String iconsAmericaFlag = "assets/icons/america_flag.svg";
 
   static const String iconsApple = "assets/icons/apple.svg";
@@ -108,13 +108,16 @@ class Assets {
 
   static const String imageBreakFast = "assets/image/break_fast.png";
 
-  static const String imageCaloriesIndicator = "assets/image/calories_indicator.svg";
+  static const String imageCaloriesIndicator =
+      "assets/image/calories_indicator.svg";
 
-  static const String imageCaloriesIndicatorFemale = "assets/image/calories_indicator_female.svg";
+  static const String imageCaloriesIndicatorFemale =
+      "assets/image/calories_indicator_female.svg";
 
   static const String imageDinner = "assets/image/dinner.png";
 
-  static const String imageFamaleCharacter = "assets/image/famale_character.png";
+  static const String imageFamaleCharacter =
+      "assets/image/famale_character.png";
 
   static const String imageFemaleBody = "assets/image/female_body.png";
 
@@ -126,7 +129,8 @@ class Assets {
 
   static const String imageFoodVariant = "assets/image/food_variant.png";
 
-  static const String imageGoalsBuildmuscles = "assets/image/goals_buildmuscles.png";
+  static const String imageGoalsBuildmuscles =
+      "assets/image/goals_buildmuscles.png";
 
   static const String imageGoalsFitness = "assets/image/goals_fitness.png";
 
@@ -152,7 +156,8 @@ class Assets {
 
   static const String imageMiniLogo = "assets/image/mini_logo.svg";
 
-  static const String imageNumberOfDailyMeals = "assets/image/number_of_daily_meals.png";
+  static const String imageNumberOfDailyMeals =
+      "assets/image/number_of_daily_meals.png";
 
   static const String imageOnboarding = "assets/image/onboarding.png";
 
@@ -176,7 +181,8 @@ class Assets {
 
   static const String imageProfileImage = "assets/image/profile_image.png";
 
-  static const String imageSetupPersonalInfoOnboarding = "assets/image/setup_personal_info_onboarding.png";
+  static const String imageSetupPersonalInfoOnboarding =
+      "assets/image/setup_personal_info_onboarding.png";
 
   static const String imageTomatoDummy = "assets/image/tomato_dummy.jpeg";
 
@@ -186,4 +192,3 @@ class Assets {
 
   static const String logoLarg = "assets/logo_larg.png";
 }
-

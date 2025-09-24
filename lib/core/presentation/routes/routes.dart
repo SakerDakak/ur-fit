@@ -20,6 +20,7 @@ import 'package:urfit/modules/personal_info/screens/personal_info_layout_screen.
 import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_email_screen.dart';
 import 'package:urfit/modules/profile_module/screens/change_password_screen.dart';
+import 'package:urfit/modules/profile_module/screens/change_username_screen.dart';
 import 'package:urfit/modules/profile_module/screens/contact_us_screen.dart';
 import 'package:urfit/modules/profile_module/screens/loading_plan_screen.dart';
 import 'package:urfit/modules/profile_module/screens/otp_screen_new.dart';
@@ -365,6 +366,15 @@ class AppRouter {
         name: ChangeEmailScreen.route,
         builder: (context, state) {
           return const ChangeEmailScreen();
+        },
+      ),
+
+      /// change username screen route
+      GoRoute(
+        path: ChangeUsernameScreen.route,
+        name: ChangeUsernameScreen.route,
+        builder: (context, state) {
+          return const ChangeUsernameScreen();
         },
       ),
 

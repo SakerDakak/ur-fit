@@ -688,6 +688,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateWeight => 'Update Weight';
 
   @override
+  String get update => 'Update';
+
+  @override
+  String get changeNameDescription => 'Update your personal name';
+
+  @override
   String get today => 'Today';
 
   @override

@@ -133,4 +133,11 @@ class AppCubit extends Cubit<AppState> {
       }
     });
   }
+
+  /// تحديث بيانات المستخدم في جميع الصفحات
+  void refreshUserData() {
+    emit(state.copyWith(
+      userDataUpdated: state.userDataUpdated + 1,
+    ));
+  }
 }

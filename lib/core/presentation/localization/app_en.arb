@@ -227,6 +227,8 @@
   "goal": "Goal",
   "currentWeight": "Current Weight",
   "updateWeight": "Update Weight",
+  "update": "Update",
+  "changeNameDescription": "Update your personal name",
   "today": "Today",
   "startDailyPlanCustomizedForYou": "Start daily plan customized for you",
   "startYourExercise": "Start Your Exercise",
