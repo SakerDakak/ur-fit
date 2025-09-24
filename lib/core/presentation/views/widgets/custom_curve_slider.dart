@@ -35,7 +35,10 @@ class CustomCurveSlider extends StatefulWidget {
     this.roundValueToInt = false,
     this.onDragEnd,
   }) : assert(
-          maxValue > minValue && (initialValue != null ? initialValue >= minValue && initialValue <= maxValue : true),
+          maxValue > minValue &&
+              (initialValue != null
+                  ? initialValue >= minValue && initialValue <= maxValue
+                  : true),
         );
 
   @override
@@ -55,15 +58,35 @@ class _CustomCurveSliderState extends State<CustomCurveSlider> {
       _displayedValue?.round();
     }
 
-    _valuePercent = ((widget.initialValue ?? widget.minValue) - widget.minValue) / (widget.maxValue - widget.minValue);
+    _valuePercent =
+        ((widget.initialValue ?? widget.minValue) - widget.minValue) /
+            (widget.maxValue - widget.minValue);
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(CustomCurveSlider oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // تحديث القيمة عند تغيير initialValue من الخارج
+    if (widget.initialValue != oldWidget.initialValue) {
+      _displayedValue = widget.initialValue;
+
+      if (widget.roundValueToInt) {
+        _displayedValue?.round();
+      }
+
+      _valuePercent =
+          ((widget.initialValue ?? widget.minValue) - widget.minValue) /
+              (widget.maxValue - widget.minValue);
+    }
   }
 
   _returnDisplayedValue() {
     return widget.roundValueToInt
         ? _displayedValue!.round()
         : double.parse(
-            _displayedValue!.toStringAsFixed(widget.displayedValueFractionDigits),
+            _displayedValue!
+                .toStringAsFixed(widget.displayedValueFractionDigits),
           );
   }
 
@@ -72,10 +95,12 @@ class _CustomCurveSliderState extends State<CustomCurveSlider> {
     return LayoutBuilder(
       builder: (context, c) {
         final double minCurvePosition = widget.minIconSize.width;
-        final double maxCurvePosition = c.maxWidth - widget.maxIconSize.width - _curveWidth;
+        final double maxCurvePosition =
+            c.maxWidth - widget.maxIconSize.width - _curveWidth;
 
         return GestureDetector(
-          onHorizontalDragEnd: (details) => widget.onDragEnd?.call(_returnDisplayedValue()),
+          onHorizontalDragEnd: (details) =>
+              widget.onDragEnd?.call(_returnDisplayedValue()),
           onHorizontalDragUpdate: (details) {
             setState(
               () {
@@ -90,7 +115,8 @@ class _CustomCurveSliderState extends State<CustomCurveSlider> {
                 _valuePercent = _valuePercent.clamp(0.0, 1.0);
 
                 // get the displayed value from the new value percent
-                _displayedValue = widget.minValue + (_valuePercent * (widget.maxValue - widget.minValue));
+                _displayedValue = widget.minValue +
+                    (_valuePercent * (widget.maxValue - widget.minValue));
 
                 // pass the value to the on value changed fn
                 widget.onValueChanged?.call(_returnDisplayedValue());
@@ -105,11 +131,13 @@ class _CustomCurveSliderState extends State<CustomCurveSlider> {
                 CustomPaint(
                   size: const Size(double.infinity, 50),
                   painter: CurveSliderPainter(
-                    curvePosition: minCurvePosition + (_valuePercent * (maxCurvePosition - minCurvePosition)),
+                    curvePosition: minCurvePosition +
+                        (_valuePercent * (maxCurvePosition - minCurvePosition)),
                     curveWidth: _curveWidth,
                     displayedValue: _displayedValue,
                     roundValueToInt: widget.roundValueToInt,
-                    displayedValueFractionDigits: widget.displayedValueFractionDigits,
+                    displayedValueFractionDigits:
+                        widget.displayedValueFractionDigits,
                   ),
                 ),
 
@@ -197,7 +225,8 @@ class CurveSliderPainter extends CustomPainter {
     // value container size
     const valueContainerHeight = 24.0;
     const valueContainerPadding = 8;
-    final double valueContainerWidth = textPainter.size.width + valueContainerPadding;
+    final double valueContainerWidth =
+        textPainter.size.width + valueContainerPadding;
 
     final h = size.height;
     final w = size.width;
@@ -217,7 +246,10 @@ class CurveSliderPainter extends CustomPainter {
     canvas.drawPath(path, sliderPaint);
 
     // the circle under the curve
-    final controlCirclePaint = Paint()..color = Theme.of(AppConst.rootScaffoldKey.currentContext!).colorScheme.primary;
+    final controlCirclePaint = Paint()
+      ..color = Theme.of(AppConst.rootScaffoldKey.currentContext!)
+          .colorScheme
+          .primary;
     canvas.drawCircle(
       Offset((curveWidth / 2) + curvePosition, h - 4),
       4,
@@ -237,7 +269,10 @@ class CurveSliderPainter extends CustomPainter {
     canvas.drawRRect(rRect, valueContainerPaint);
 
     // paint the text
-    final double textX = ((curveWidth) / 2) - (valueContainerWidth / 2) + (valueContainerPadding / 2) + curvePosition;
+    final double textX = ((curveWidth) / 2) -
+        (valueContainerWidth / 2) +
+        (valueContainerPadding / 2) +
+        curvePosition;
     final double textY = (valueContainerHeight - textPainter.size.height) / 2;
 
     textPainter.paint(canvas, Offset(textX, textY));

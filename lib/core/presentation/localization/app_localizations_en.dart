@@ -1126,6 +1126,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get acceptedValuesTargetWeight => 'Accepted values: 25 - 300 kg';
 
   @override
+  String get weightMustBeBetween30And150 =>
+      'Weight must be between 30 and 150 kg';
+
+  @override
+  String get acceptedValuesWeight30To150 => 'Accepted values: 30 - 150 kg';
+
+  @override
+  String get pleaseEnterValidWeightRange =>
+      'Please enter a valid weight between 30 and 150 kg';
+
+  @override
   String get sportsInfo => 'Sports Information';
 
   @override

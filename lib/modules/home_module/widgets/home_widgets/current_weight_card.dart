@@ -5,12 +5,8 @@ import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
-import 'package:urfit/core/presentation/utils/alerts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
-import 'package:urfit/di.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/edit_weight_bottom_sheet.dart';
-import 'package:urfit/modules/personal_info/data/models/user_personal_info_model.dart';
-import 'package:urfit/modules/personal_info/data/repos/personal_info_repo.dart';
 
 class CurrentWeightCard extends StatefulWidget {
   const CurrentWeightCard({super.key});
@@ -21,7 +17,6 @@ class CurrentWeightCard extends StatefulWidget {
 
 class _CurrentWeightCardState extends State<CurrentWeightCard> {
   var user = Session().currentUser;
-  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,39 +78,18 @@ class _CurrentWeightCardState extends State<CurrentWeightCard> {
 
   void _editWeight(BuildContext context) async {
     final weight = await showModalBottomSheet<int>(
-      backgroundColor: Co.whiteColor,
-      useSafeArea: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(24),
-        ),
-      ),
       context: context,
+
+      useRootNavigator:
+          true, // إضافة هذا السطر لعرض الـ bottom sheet فوق الـ navigator
       builder: (context) => const EditWeightBottomSheet(),
     );
+
+    // تحديث بيانات المستخدم عند نجاح التحديث
     if (weight != null) {
       setState(() {
-        isLoading = true;
+        user = Session().currentUser;
       });
-
-      final response = await di<PersonalInfoRepoImpl>().updatePersonalInfo(
-          personalInfoModel: UserInfoRequest.fromUserModel(
-              Session().currentUser!.copyWith(currentWeight: weight)));
-
-      setState(() {
-        isLoading = false;
-      });
-
-      response.fold(
-        (ifLeft) {
-          Alerts.showToast(ifLeft.message, error: true);
-        },
-        (ifRight) {
-          Alerts.showToast(L10n.tr().infoUpdatedSuccessfully, error: false);
-          Session().setCurrentUser = ifRight;
-          setState(() => user = ifRight);
-        },
-      );
     }
   }
 }

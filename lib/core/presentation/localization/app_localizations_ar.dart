@@ -1124,6 +1124,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get acceptedValuesTargetWeight => 'القيم المقبولة: 25 - 300 كيلوغرام';
 
   @override
+  String get weightMustBeBetween30And150 =>
+      'الوزن يجب أن يكون بين 30 و 150 كيلوغرام';
+
+  @override
+  String get acceptedValuesWeight30To150 => 'القيم المقبولة: 30 - 150 كيلوغرام';
+
+  @override
+  String get pleaseEnterValidWeightRange =>
+      'رجاء أدخل وزن صحيح بين 30 و 150 كيلوغرام';
+
+  @override
   String get sportsInfo => 'المعلومات الرياضية';
 
   @override

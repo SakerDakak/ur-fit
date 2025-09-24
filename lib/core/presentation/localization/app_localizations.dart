@@ -2252,6 +2252,24 @@ abstract class AppLocalizations {
   /// **'Accepted values: 25 - 300 kg'**
   String get acceptedValuesTargetWeight;
 
+  /// No description provided for @weightMustBeBetween30And150.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight must be between 30 and 150 kg'**
+  String get weightMustBeBetween30And150;
+
+  /// No description provided for @acceptedValuesWeight30To150.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted values: 30 - 150 kg'**
+  String get acceptedValuesWeight30To150;
+
+  /// No description provided for @pleaseEnterValidWeightRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid weight between 30 and 150 kg'**
+  String get pleaseEnterValidWeightRange;
+
   /// No description provided for @sportsInfo.
   ///
   /// In en, this message translates to:
