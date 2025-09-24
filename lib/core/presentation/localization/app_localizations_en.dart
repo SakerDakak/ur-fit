@@ -807,13 +807,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myPlan => 'My Plan';
 
   @override
+  String get editPersonalInfo => 'Edit Personal Information';
+
+  @override
   String get previousPlan => 'Previous Plan';
 
   @override
   String get subscribe => 'Subscribe';
 
   @override
+  String get mySubscription => 'My Subscription';
+
+  @override
+  String get subscriptions => 'Subscriptions';
+
+  @override
   String get settings => 'Settings';
+
+  @override
+  String get editAccountSettings => 'Edit Account Settings';
 
   @override
   String get privacyPolicy => 'Privacy Policy';

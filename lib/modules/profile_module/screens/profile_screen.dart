@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                     'showCancelButton':
                         true, // إظهار زر الإلغاء عند الدخول من صفحة حسابي
                   }),
-                  title: L10n.tr().myPlan,
+                  title: L10n.tr().editPersonalInfo,
                   leadingIconSvgPath: Assets.iconsPaper,
                 ),
 
@@ -92,7 +92,9 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () => GoRouter.of(context).push(
                       SubscriptionPlansScreen.routeWzExtra,
                       extra: PlanType.both),
-                  title: L10n.tr().subscribe,
+                  title: Session().currentUser?.hasValidSubscription == true
+                      ? L10n.tr().mySubscription
+                      : L10n.tr().subscriptions,
                   leadingIconSvgPath: Assets.iconsCopy,
                 ),
 
@@ -103,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                 // settings tile
                 DefaultListTile(
                   onTap: () => GoRouter.of(context).push(SettingsScreen.route),
-                  title: L10n.tr().settings,
+                  title: L10n.tr().editAccountSettings,
                   leadingIconSvgPath: Assets.iconsSettings,
                 ),
 

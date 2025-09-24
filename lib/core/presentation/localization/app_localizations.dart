@@ -1640,6 +1640,12 @@ abstract class AppLocalizations {
   /// **'My Plan'**
   String get myPlan;
 
+  /// No description provided for @editPersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Personal Information'**
+  String get editPersonalInfo;
+
   /// No description provided for @previousPlan.
   ///
   /// In en, this message translates to:
@@ -1652,11 +1658,29 @@ abstract class AppLocalizations {
   /// **'Subscribe'**
   String get subscribe;
 
+  /// No description provided for @mySubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'My Subscription'**
+  String get mySubscription;
+
+  /// No description provided for @subscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions'**
+  String get subscriptions;
+
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @editAccountSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Account Settings'**
+  String get editAccountSettings;
 
   /// No description provided for @privacyPolicy.
   ///

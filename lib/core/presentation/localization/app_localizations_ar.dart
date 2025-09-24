@@ -805,19 +805,31 @@ class AppLocalizationsAr extends AppLocalizations {
   String get myPlan => 'خطتي';
 
   @override
+  String get editPersonalInfo => 'تعديل معلوماتي الشخصية';
+
+  @override
   String get previousPlan => 'خطتي السابقة';
 
   @override
   String get subscribe => 'اشترك';
 
   @override
+  String get mySubscription => 'اشتراكي';
+
+  @override
+  String get subscriptions => 'الاشتراكات';
+
+  @override
   String get settings => 'الاعدادات';
+
+  @override
+  String get editAccountSettings => 'تعديل إعدادات الحساب';
 
   @override
   String get privacyPolicy => 'سياسة الخصوصية';
 
   @override
-  String get termsAndConditions => 'اللوائح';
+  String get termsAndConditions => 'الشروط والأحكام';
 
   @override
   String get logout => 'تسجيل الخروج';
