@@ -41,38 +41,16 @@ class DeleteAccountDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             // close button
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: SizedBox(
-                  height: 25,
-                  width: 25,
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    padding: EdgeInsets.zero,
-                    style: IconButton.styleFrom(
-                      visualDensity: VisualDensity.comfortable,
-                      elevation: 4,
-                      shadowColor: Colors.black,
-                      backgroundColor: Co.whiteColor,
-                    ),
-                    icon: const Icon(
-                      Icons.close,
-                      color: Co.backGround,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
+            const SizedBox(
+              height: 25,
             ),
 
             // title icon
             SvgPicture.asset(
               Assets.iconsDelete,
               height: 20,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.primary,
+              colorFilter: const ColorFilter.mode(
+                Co.redColor,
                 BlendMode.srcIn,
               ),
             ),
@@ -120,6 +98,7 @@ class DeleteAccountDialog extends StatelessWidget {
                           current.deleteAccountState,
                       builder: (context, state) => CustomElevatedButton(
                         text: L10n.tr().yes,
+                        backgroundColor: Co.redColor,
                         isLoading:
                             state.deleteAccountState == RequestState.loading,
                         onPressed: state.deleteAccountState ==
