@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -11,6 +12,9 @@ class SubscriptionScreenAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Session().currentUser;
+    final hasValidSubscription = user?.hasValidSubscription == true;
+
     return Row(
       children: [
         IconButton(
@@ -25,7 +29,9 @@ class SubscriptionScreenAppBar extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            L10n.tr().subscribeNow,
+            hasValidSubscription
+                ? L10n.tr().mySubscription
+                : L10n.tr().subscribeNow,
             textAlign: TextAlign.center,
             style: TStyle.bold_16,
           ),
