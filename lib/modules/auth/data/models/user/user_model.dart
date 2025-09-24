@@ -32,14 +32,17 @@ abstract class UserModel with _$UserModel {
     @BodyShapeConverter() required BodyShape? bodyShape,
     // required List<MuscleFocus>? muscleFocuses,
     required int? trainingDaysPerWeek,
-    required List<String>? bodyParts,
-    required List<String>? exerciseDays,
+    @JsonKey(name: 'body_parts') required List<String>? bodyParts,
+    @JsonKey(name: 'exercise_days') required List<String>? exerciseDays,
     required List<WorkoutType>? workoutTypes,
     required List<Equipment>? equipments,
     @DietConverter() required Diet? diet,
-    required List<RecipeType>? recipeTypes,
+    @JsonKey(name: 'recipe_types') required List<RecipeType>? recipeTypes,
+    @JsonKey(name: 'foods_not_liked')
     required List<FoodNotLiked>? foodsNotLiked,
-    @MealVarietyConverter() required MealVariety? mealVariety,
+    @MealVarietyConverter()
+    @JsonKey(name: 'meal_variety')
+    required MealVariety? mealVariety,
     String? emailVerifiedAt,
     required bool? isChecked,
     required bool? isCompleted,

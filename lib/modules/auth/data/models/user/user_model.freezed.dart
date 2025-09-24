@@ -40,15 +40,20 @@ mixin _$UserModel {
   @BodyShapeConverter()
   BodyShape? get bodyShape; // required List<MuscleFocus>? muscleFocuses,
   int? get trainingDaysPerWeek;
+  @JsonKey(name: 'body_parts')
   List<String>? get bodyParts;
+  @JsonKey(name: 'exercise_days')
   List<String>? get exerciseDays;
   List<WorkoutType>? get workoutTypes;
   List<Equipment>? get equipments;
   @DietConverter()
   Diet? get diet;
+  @JsonKey(name: 'recipe_types')
   List<RecipeType>? get recipeTypes;
+  @JsonKey(name: 'foods_not_liked')
   List<FoodNotLiked>? get foodsNotLiked;
   @MealVarietyConverter()
+  @JsonKey(name: 'meal_variety')
   MealVariety? get mealVariety;
   String? get emailVerifiedAt;
   bool? get isChecked;
@@ -192,14 +197,16 @@ abstract mixin class $UserModelCopyWith<$Res> {
       @JsonKey(name: 'target_weight') int? targetWeight,
       @BodyShapeConverter() BodyShape? bodyShape,
       int? trainingDaysPerWeek,
-      List<String>? bodyParts,
-      List<String>? exerciseDays,
+      @JsonKey(name: 'body_parts') List<String>? bodyParts,
+      @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
       List<WorkoutType>? workoutTypes,
       List<Equipment>? equipments,
       @DietConverter() Diet? diet,
-      List<RecipeType>? recipeTypes,
-      List<FoodNotLiked>? foodsNotLiked,
-      @MealVarietyConverter() MealVariety? mealVariety,
+      @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+      @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+      @MealVarietyConverter()
+      @JsonKey(name: 'meal_variety')
+      MealVariety? mealVariety,
       String? emailVerifiedAt,
       bool? isChecked,
       bool? isCompleted,
@@ -568,14 +575,16 @@ extension UserModelPatterns on UserModel {
             @JsonKey(name: 'target_weight') int? targetWeight,
             @BodyShapeConverter() BodyShape? bodyShape,
             int? trainingDaysPerWeek,
-            List<String>? bodyParts,
-            List<String>? exerciseDays,
+            @JsonKey(name: 'body_parts') List<String>? bodyParts,
+            @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
             List<WorkoutType>? workoutTypes,
             List<Equipment>? equipments,
             @DietConverter() Diet? diet,
-            List<RecipeType>? recipeTypes,
-            List<FoodNotLiked>? foodsNotLiked,
-            @MealVarietyConverter() MealVariety? mealVariety,
+            @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+            @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+            @MealVarietyConverter()
+            @JsonKey(name: 'meal_variety')
+            MealVariety? mealVariety,
             String? emailVerifiedAt,
             bool? isChecked,
             bool? isCompleted,
@@ -658,14 +667,16 @@ extension UserModelPatterns on UserModel {
             @JsonKey(name: 'target_weight') int? targetWeight,
             @BodyShapeConverter() BodyShape? bodyShape,
             int? trainingDaysPerWeek,
-            List<String>? bodyParts,
-            List<String>? exerciseDays,
+            @JsonKey(name: 'body_parts') List<String>? bodyParts,
+            @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
             List<WorkoutType>? workoutTypes,
             List<Equipment>? equipments,
             @DietConverter() Diet? diet,
-            List<RecipeType>? recipeTypes,
-            List<FoodNotLiked>? foodsNotLiked,
-            @MealVarietyConverter() MealVariety? mealVariety,
+            @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+            @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+            @MealVarietyConverter()
+            @JsonKey(name: 'meal_variety')
+            MealVariety? mealVariety,
             String? emailVerifiedAt,
             bool? isChecked,
             bool? isCompleted,
@@ -746,14 +757,16 @@ extension UserModelPatterns on UserModel {
             @JsonKey(name: 'target_weight') int? targetWeight,
             @BodyShapeConverter() BodyShape? bodyShape,
             int? trainingDaysPerWeek,
-            List<String>? bodyParts,
-            List<String>? exerciseDays,
+            @JsonKey(name: 'body_parts') List<String>? bodyParts,
+            @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
             List<WorkoutType>? workoutTypes,
             List<Equipment>? equipments,
             @DietConverter() Diet? diet,
-            List<RecipeType>? recipeTypes,
-            List<FoodNotLiked>? foodsNotLiked,
-            @MealVarietyConverter() MealVariety? mealVariety,
+            @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+            @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+            @MealVarietyConverter()
+            @JsonKey(name: 'meal_variety')
+            MealVariety? mealVariety,
             String? emailVerifiedAt,
             bool? isChecked,
             bool? isCompleted,
@@ -824,14 +837,18 @@ class _User implements UserModel {
       @JsonKey(name: 'target_weight') required this.targetWeight,
       @BodyShapeConverter() required this.bodyShape,
       required this.trainingDaysPerWeek,
-      required final List<String>? bodyParts,
-      required final List<String>? exerciseDays,
+      @JsonKey(name: 'body_parts') required final List<String>? bodyParts,
+      @JsonKey(name: 'exercise_days') required final List<String>? exerciseDays,
       required final List<WorkoutType>? workoutTypes,
       required final List<Equipment>? equipments,
       @DietConverter() required this.diet,
+      @JsonKey(name: 'recipe_types')
       required final List<RecipeType>? recipeTypes,
+      @JsonKey(name: 'foods_not_liked')
       required final List<FoodNotLiked>? foodsNotLiked,
-      @MealVarietyConverter() required this.mealVariety,
+      @MealVarietyConverter()
+      @JsonKey(name: 'meal_variety')
+      required this.mealVariety,
       this.emailVerifiedAt,
       required this.isChecked,
       required this.isCompleted,
@@ -898,6 +915,7 @@ class _User implements UserModel {
   final int? trainingDaysPerWeek;
   final List<String>? _bodyParts;
   @override
+  @JsonKey(name: 'body_parts')
   List<String>? get bodyParts {
     final value = _bodyParts;
     if (value == null) return null;
@@ -908,6 +926,7 @@ class _User implements UserModel {
 
   final List<String>? _exerciseDays;
   @override
+  @JsonKey(name: 'exercise_days')
   List<String>? get exerciseDays {
     final value = _exerciseDays;
     if (value == null) return null;
@@ -941,6 +960,7 @@ class _User implements UserModel {
   final Diet? diet;
   final List<RecipeType>? _recipeTypes;
   @override
+  @JsonKey(name: 'recipe_types')
   List<RecipeType>? get recipeTypes {
     final value = _recipeTypes;
     if (value == null) return null;
@@ -951,6 +971,7 @@ class _User implements UserModel {
 
   final List<FoodNotLiked>? _foodsNotLiked;
   @override
+  @JsonKey(name: 'foods_not_liked')
   List<FoodNotLiked>? get foodsNotLiked {
     final value = _foodsNotLiked;
     if (value == null) return null;
@@ -961,6 +982,7 @@ class _User implements UserModel {
 
   @override
   @MealVarietyConverter()
+  @JsonKey(name: 'meal_variety')
   final MealVariety? mealVariety;
   @override
   final String? emailVerifiedAt;
@@ -1118,14 +1140,16 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: 'target_weight') int? targetWeight,
       @BodyShapeConverter() BodyShape? bodyShape,
       int? trainingDaysPerWeek,
-      List<String>? bodyParts,
-      List<String>? exerciseDays,
+      @JsonKey(name: 'body_parts') List<String>? bodyParts,
+      @JsonKey(name: 'exercise_days') List<String>? exerciseDays,
       List<WorkoutType>? workoutTypes,
       List<Equipment>? equipments,
       @DietConverter() Diet? diet,
-      List<RecipeType>? recipeTypes,
-      List<FoodNotLiked>? foodsNotLiked,
-      @MealVarietyConverter() MealVariety? mealVariety,
+      @JsonKey(name: 'recipe_types') List<RecipeType>? recipeTypes,
+      @JsonKey(name: 'foods_not_liked') List<FoodNotLiked>? foodsNotLiked,
+      @MealVarietyConverter()
+      @JsonKey(name: 'meal_variety')
+      MealVariety? mealVariety,
       String? emailVerifiedAt,
       bool? isChecked,
       bool? isCompleted,

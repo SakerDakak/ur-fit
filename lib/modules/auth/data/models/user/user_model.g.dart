@@ -26,10 +26,10 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
       targetWeight: (json['target_weight'] as num?)?.toInt(),
       bodyShape: const BodyShapeConverter().fromJson(json['bodyShape']),
       trainingDaysPerWeek: (json['trainingDaysPerWeek'] as num?)?.toInt(),
-      bodyParts: (json['bodyParts'] as List<dynamic>?)
+      bodyParts: (json['body_parts'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      exerciseDays: (json['exerciseDays'] as List<dynamic>?)
+      exerciseDays: (json['exercise_days'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       workoutTypes: (json['workoutTypes'] as List<dynamic>?)
@@ -39,13 +39,13 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
           ?.map((e) => Equipment.fromJson(e as Map<String, dynamic>))
           .toList(),
       diet: const DietConverter().fromJson(json['diet']),
-      recipeTypes: (json['recipeTypes'] as List<dynamic>?)
+      recipeTypes: (json['recipe_types'] as List<dynamic>?)
           ?.map((e) => RecipeType.fromJson(e as Map<String, dynamic>))
           .toList(),
-      foodsNotLiked: (json['foodsNotLiked'] as List<dynamic>?)
+      foodsNotLiked: (json['foods_not_liked'] as List<dynamic>?)
           ?.map((e) => FoodNotLiked.fromJson(e as Map<String, dynamic>))
           .toList(),
-      mealVariety: const MealVarietyConverter().fromJson(json['mealVariety']),
+      mealVariety: const MealVarietyConverter().fromJson(json['meal_variety']),
       emailVerifiedAt: json['emailVerifiedAt'] as String?,
       isChecked: json['isChecked'] as bool?,
       isCompleted: json['isCompleted'] as bool?,
@@ -72,14 +72,14 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
       'target_weight': instance.targetWeight,
       'bodyShape': const BodyShapeConverter().toJson(instance.bodyShape),
       'trainingDaysPerWeek': instance.trainingDaysPerWeek,
-      'bodyParts': instance.bodyParts,
-      'exerciseDays': instance.exerciseDays,
+      'body_parts': instance.bodyParts,
+      'exercise_days': instance.exerciseDays,
       'workoutTypes': instance.workoutTypes,
       'equipments': instance.equipments,
       'diet': const DietConverter().toJson(instance.diet),
-      'recipeTypes': instance.recipeTypes,
-      'foodsNotLiked': instance.foodsNotLiked,
-      'mealVariety': const MealVarietyConverter().toJson(instance.mealVariety),
+      'recipe_types': instance.recipeTypes,
+      'foods_not_liked': instance.foodsNotLiked,
+      'meal_variety': const MealVarietyConverter().toJson(instance.mealVariety),
       'emailVerifiedAt': instance.emailVerifiedAt,
       'isChecked': instance.isChecked,
       'isCompleted': instance.isCompleted,
