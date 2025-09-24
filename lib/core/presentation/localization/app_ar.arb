@@ -412,5 +412,9 @@
   "dietPlan": "خطة النظام الغذائي",
   "comprehensivePlan": "خطة شاملة",
   "month": "شهر",
-  "months": "شهور"
+  "months": "شهور",
+  "messageSentSuccessfully": "تم إرسال الرسالة بنجاح",
+  "errorSendingMessage": "حدث خطأ في إرسال الرسالة",
+  "phoneNumber": "رقم الهاتف",
+  "enterPhoneNumber": "أدخل رقم الهاتف"
 }

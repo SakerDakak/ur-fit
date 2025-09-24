@@ -1249,4 +1249,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get months => 'Months';
+
+  @override
+  String get messageSentSuccessfully => 'Message sent successfully';
+
+  @override
+  String get errorSendingMessage => 'Error sending message';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get enterPhoneNumber => 'Enter phone number';
 }

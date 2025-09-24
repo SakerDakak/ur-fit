@@ -412,5 +412,9 @@
   "dietPlan": "Diet Plan",
   "comprehensivePlan": "Comprehensive Plan",
   "month": "Month",
-  "months": "Months"
+  "months": "Months",
+  "messageSentSuccessfully": "Message sent successfully",
+  "errorSendingMessage": "Error sending message",
+  "phoneNumber": "Phone Number",
+  "enterPhoneNumber": "Enter phone number"
 }

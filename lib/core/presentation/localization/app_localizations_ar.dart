@@ -1245,4 +1245,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get months => 'شهور';
+
+  @override
+  String get messageSentSuccessfully => 'تم إرسال الرسالة بنجاح';
+
+  @override
+  String get errorSendingMessage => 'حدث خطأ في إرسال الرسالة';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get enterPhoneNumber => 'أدخل رقم الهاتف';
 }

@@ -2491,6 +2491,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Months'**
   String get months;
+
+  /// No description provided for @messageSentSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Message sent successfully'**
+  String get messageSentSuccessfully;
+
+  /// No description provided for @errorSendingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Error sending message'**
+  String get errorSendingMessage;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @enterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter phone number'**
+  String get enterPhoneNumber;
 }
 
 class _AppLocalizationsDelegate
