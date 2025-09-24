@@ -977,7 +977,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get myPlanPhrase =>
-      'تستطيع الاطلاع وتغير معلوماتك الشخصية واهدافك التى\\n تم تحديدها من قبل';
+      'تستطيع الاطلاع وتغير معلوماتك الشخصية واهدافك التى تم تحديدها من قبل';
 
   @override
   String get week => 'اسبوع';
@@ -1004,8 +1004,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newPassword => 'كلمة المرور الجديدة';
 
   @override
-  String get areYouSureYouWantToLogout =>
-      'هل تريد تسجيل خروج\\n من حسابك الشخصى؟';
+  String get areYouSureYouWantToLogout => 'هل تريد تسجيل خروج من حسابك الشخصى؟';
 
   @override
   String get areYouSureYouWantToDeleteAccount =>

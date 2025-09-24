@@ -2027,7 +2027,7 @@ abstract class AppLocalizations {
   /// No description provided for @areYouSureYouWantToLogout.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want \n to logout?'**
+  /// **'Are you sure you want to logout?'**
   String get areYouSureYouWantToLogout;
 
   /// No description provided for @areYouSureYouWantToDeleteAccount.

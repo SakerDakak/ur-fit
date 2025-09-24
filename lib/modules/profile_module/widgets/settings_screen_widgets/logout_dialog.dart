@@ -19,33 +19,7 @@ class LogoutDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // close button
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: SizedBox(
-                height: 25,
-                width: 25,
-                child: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  padding: EdgeInsets.zero,
-                  style: IconButton.styleFrom(
-                    visualDensity: VisualDensity.comfortable,
-                    elevation: 4,
-                    shadowColor: Colors.black,
-                    backgroundColor: Co.whiteColor,
-                  ),
-                  icon: const Icon(
-                    Icons.close,
-                    color: Co.backGround,
-                    size: 20,
-                  ),
-                ),
-              ),
-            ),
-          ),
-
+          const SizedBox(height: 28),
           // title icon
           SvgPicture.asset(
             Assets.iconsLogout,
@@ -57,7 +31,6 @@ class LogoutDialog extends StatelessWidget {
           ),
 
           const SizedBox(height: 16),
-
           // title
           Padding(
             padding: const EdgeInsets.symmetric(

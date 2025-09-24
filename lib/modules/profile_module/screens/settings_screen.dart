@@ -14,7 +14,6 @@ import 'package:urfit/modules/profile_module/screens/change_password_screen.dart
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/account_info.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/change_name_sheet.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/delete_account_dialog.dart';
-import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/logout_dialog.dart';
 import 'package:urfit/modules/profile_module/widgets/settings_screen_widgets/settings_tile.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -32,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.tr().settings),
+        title: Text(L10n.tr().editAccountSettings),
       ),
       body: ListView(
         padding:
@@ -68,15 +67,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () => GoRouter.of(context).push(ChangePasswordScreen.route),
             title: L10n.tr().resetPassword,
             svgIconPath: Assets.iconsPassword,
-          ),
-
-          const SizedBox(height: 16),
-
-          // logout
-          SettingsTile(
-            onTap: () => _logout(context),
-            title: L10n.tr().logout,
-            svgIconPath: Assets.iconsLogout,
           ),
 
           const SizedBox(height: 16),
@@ -132,13 +122,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         },
       );
     }
-  }
-
-  void _logout(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => const LogoutDialog(),
-    );
   }
 
   void _deleteAccount(BuildContext context) {

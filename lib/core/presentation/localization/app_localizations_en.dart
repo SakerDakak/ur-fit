@@ -1005,7 +1005,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newPassword => 'New Password';
 
   @override
-  String get areYouSureYouWantToLogout => 'Are you sure you want \n to logout?';
+  String get areYouSureYouWantToLogout => 'Are you sure you want to logout?';
 
   @override
   String get areYouSureYouWantToDeleteAccount =>
