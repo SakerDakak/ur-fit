@@ -55,6 +55,7 @@ class SleepTrackingCard extends StatelessWidget {
                   selector: (state) => state.totalSleep,
                   builder: (context, sleep) {
                     // تحويل الدقائق إلى ساعات مع تقريب إلى منزلة عشرية واحدة
+                    // ملاحظة: يتم حساب النوم من جميع الأنواع المتاحة (SLEEP_IN_BED, SLEEP_ASLEEP, SLEEP_DEEP, SLEEP_LIGHT, SLEEP_REM)
                     final sleepHours = (sleep / 60).toStringAsFixed(1);
                     return Text(
                       '$sleepHours\n${L10n.tr().hours}',

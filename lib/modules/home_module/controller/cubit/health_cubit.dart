@@ -16,16 +16,28 @@ class HealthCubit extends Cubit<HealthState> {
       .toList();
 
   List<HealthDataPoint> get workOut => state.healthData
-      .where((element) => element.type == HealthDataType.STEPS)
+      .where((element) => element.type == HealthDataType.WORKOUT)
       .toList();
 
   List<HealthDataPoint> get water => state.healthData
-      .where((element) => element.type == HealthDataType.STEPS)
+      .where((element) => element.type == HealthDataType.WATER)
       .toList();
 
   List<HealthDataPoint> get sleep => state.healthData
-      .where((element) => element.type == HealthDataType.STEPS)
+      .where((element) => [
+            HealthDataType.SLEEP_ASLEEP,
+            HealthDataType.SLEEP_IN_BED,
+            HealthDataType.SLEEP_AWAKE,
+            HealthDataType.SLEEP_DEEP,
+            HealthDataType.SLEEP_LIGHT,
+            HealthDataType.SLEEP_REM,
+          ].contains(element.type))
       .toList();
+
+  // دالة لإعادة تحميل البيانات الصحية
+  Future<void> refreshHealthData() async {
+    await initializeHealth();
+  }
 
   initializeHealth() async {
     try {
@@ -39,7 +51,12 @@ class HealthCubit extends Cubit<HealthState> {
         HealthDataType
             .ACTIVE_ENERGY_BURNED, // السعرات الحرارية النشطة (المحروقة)
         HealthDataType.WORKOUT,
-        HealthDataType.SLEEP_ASLEEP,
+        HealthDataType.SLEEP_ASLEEP, // النوم الفعلي
+        HealthDataType.SLEEP_IN_BED, // الوقت في السرير
+        HealthDataType.SLEEP_AWAKE, // وقت الاستيقاظ
+        HealthDataType.SLEEP_DEEP, // النوم العميق
+        HealthDataType.SLEEP_LIGHT, // النوم الخفيف
+        HealthDataType.SLEEP_REM, // نوم حركة العين السريعة
         HealthDataType.WATER,
         if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
         if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
@@ -53,6 +70,11 @@ class HealthCubit extends Cubit<HealthState> {
         HealthDataAccess.READ_WRITE, // ACTIVE_ENERGY_BURNED
         HealthDataAccess.READ_WRITE, // WORKOUT
         HealthDataAccess.READ_WRITE, // SLEEP_ASLEEP
+        HealthDataAccess.READ_WRITE, // SLEEP_IN_BED
+        HealthDataAccess.READ_WRITE, // SLEEP_AWAKE
+        HealthDataAccess.READ_WRITE, // SLEEP_DEEP
+        HealthDataAccess.READ_WRITE, // SLEEP_LIGHT
+        HealthDataAccess.READ_WRITE, // SLEEP_REM
         HealthDataAccess.READ_WRITE, // WATER
         HealthDataAccess.READ_WRITE, // DISTANCE
       ]);
@@ -71,13 +93,18 @@ class HealthCubit extends Cubit<HealthState> {
           HealthDataType.BASAL_ENERGY_BURNED,
           HealthDataType.ACTIVE_ENERGY_BURNED,
           HealthDataType.SLEEP_ASLEEP,
+          HealthDataType.SLEEP_IN_BED,
+          HealthDataType.SLEEP_AWAKE,
+          HealthDataType.SLEEP_DEEP,
+          HealthDataType.SLEEP_LIGHT,
+          HealthDataType.SLEEP_REM,
         ],
         startTime: todayStart,
         endTime: now,
       );
 
-      // جلب باقي البيانات من آخر 24 ساعة (المياه والخطوات والمسافة والتمارين)
-      final List<HealthDataPoint> otherHealthData =
+      // جلب بيانات الخطوات والمياه والتمارين من آخر 7 أيام لضمان عرض البيانات التاريخية
+      final List<HealthDataPoint> weekHealthData =
           await Health().getHealthDataFromTypes(
         types: [
           HealthDataType.STEPS,
@@ -86,19 +113,18 @@ class HealthCubit extends Cubit<HealthState> {
           if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
           if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
         ],
-        startTime: now.subtract(const Duration(days: 1)),
+        startTime: now.subtract(const Duration(days: 7)),
         endTime: now,
       );
 
-      // دمج البيانات
+      // إذا لم نجد بيانات كافية، جرب جلب البيانات من آخر 30 يوم
       List<HealthDataPoint> finalHealthData = [
         ...todayCaloriesAndSleepData,
-        ...otherHealthData,
+        ...weekHealthData,
       ];
 
-      // إذا لم نجد بيانات أخرى، جرب البيانات من آخر 7 أيام للمياه والخطوات فقط
-      if (otherHealthData.isEmpty) {
-        final List<HealthDataPoint> weekData =
+      if (weekHealthData.isEmpty) {
+        final List<HealthDataPoint> monthData =
             await Health().getHealthDataFromTypes(
           types: [
             HealthDataType.STEPS,
@@ -107,14 +133,14 @@ class HealthCubit extends Cubit<HealthState> {
             if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
             if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
           ],
-          startTime: now.subtract(const Duration(days: 7)),
+          startTime: now.subtract(const Duration(days: 30)),
           endTime: now,
         );
 
-        if (weekData.isNotEmpty) {
+        if (monthData.isNotEmpty) {
           finalHealthData = [
             ...todayCaloriesAndSleepData,
-            ...weekData,
+            ...monthData,
           ];
         }
       }
@@ -217,10 +243,40 @@ class HealthCubit extends Cubit<HealthState> {
   }
 
   num getTotalSleepTime(List<HealthDataPoint> healthData) {
-    return healthData
-        .where((element) => element.type == HealthDataType.SLEEP_ASLEEP)
-        .map((e) =>
-            num.tryParse(e.value.toString().split("numericValue: ").last) ?? 0)
-        .fold(0, (previousValue, element) => previousValue + element);
+    // حساب إجمالي وقت النوم من جميع الأنواع المتاحة
+    num totalSleepTime = 0;
+
+    // أولوية للوقت في السرير (SLEEP_IN_BED) إذا كان متوفراً
+    final inBedData = healthData
+        .where((element) => element.type == HealthDataType.SLEEP_IN_BED)
+        .toList();
+
+    if (inBedData.isNotEmpty) {
+      // استخدام الوقت في السرير كإجمالي وقت النوم
+      for (var data in inBedData) {
+        final sleepTime = _extractNumericValue(data.value);
+        totalSleepTime += sleepTime ?? 0;
+      }
+    } else {
+      // إذا لم يكن متوفراً، نجمع جميع أنواع النوم الأخرى
+      final sleepTypes = [
+        HealthDataType.SLEEP_ASLEEP,
+        HealthDataType.SLEEP_DEEP,
+        HealthDataType.SLEEP_LIGHT,
+        HealthDataType.SLEEP_REM,
+      ];
+
+      for (var sleepType in sleepTypes) {
+        final sleepData =
+            healthData.where((element) => element.type == sleepType).toList();
+
+        for (var data in sleepData) {
+          final sleepTime = _extractNumericValue(data.value);
+          totalSleepTime += sleepTime ?? 0;
+        }
+      }
+    }
+
+    return totalSleepTime;
   }
 }

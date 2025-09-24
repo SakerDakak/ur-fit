@@ -132,7 +132,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
             Icon(
               Icons.error_outline,
               size: 64,
-              color: Colors.red.withOpacity(0.7),
+              color: Colors.red.withValues(alpha: 0.7),
             ),
             const SizedBox(height: 16),
 

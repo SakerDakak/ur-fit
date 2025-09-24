@@ -62,9 +62,10 @@ class WaterTracking extends StatelessWidget {
                     }
 
                     // إنشاء بيانات لـ 7 أيام (من اليوم الحالي إلى 6 أيام سابقة)
+                    // ترتيب البيانات من الأقدم إلى الأحدث للعرض الصحيح
                     final chartData = List.generate(7, (index) {
                       final date =
-                          DateTime.now().subtract(Duration(days: index));
+                          DateTime.now().subtract(Duration(days: 6 - index));
                       final dateKey = '${date.year}-${date.month}-${date.day}';
                       final waterAmount = waterByDate[dateKey] ?? 0.0;
 
@@ -74,16 +75,51 @@ class WaterTracking extends StatelessWidget {
                       );
                     });
 
+                    // التحقق من وجود بيانات للعرض
+                    if (waterData.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'لا توجد بيانات مياه متاحة',
+                          style: TStyle.regular_12.copyWith(
+                            color: Co.fontColor,
+                          ),
+                        ),
+                      );
+                    }
+
                     return CustomBarChart(data: chartData);
                   },
                 ),
               ),
               const SizedBox(height: 8),
-              BlocSelector<HealthCubit, HealthState, num>(
-                selector: (state) => state.totalLitreOfWater,
-                builder: (context, water) {
+              BlocSelector<HealthCubit, HealthState, List<HealthDataPoint>>(
+                selector: (state) => state.healthData,
+                builder: (context, healthData) {
+                  // حساب كمية المياه لليوم الحالي فقط
+                  final today = DateTime.now();
+                  final todayKey = '${today.year}-${today.month}-${today.day}';
+
+                  final waterData = healthData
+                      .where((element) => element.type == HealthDataType.WATER)
+                      .toList();
+
+                  // حساب مجموع المياه لليوم الحالي
+                  double todayWaterAmount = 0.0;
+                  for (final data in waterData) {
+                    final dateKey =
+                        '${data.dateFrom.year}-${data.dateFrom.month}-${data.dateFrom.day}';
+                    if (dateKey == todayKey) {
+                      final waterAmount = double.tryParse(data.value
+                              .toString()
+                              .split("numericValue: ")
+                              .last) ??
+                          0;
+                      todayWaterAmount += waterAmount;
+                    }
+                  }
+
                   return Text(
-                    '$water ${L10n.tr().litre}',
+                    '${todayWaterAmount.toStringAsFixed(1)} ${L10n.tr().litre}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TStyle.regular_14.copyWith(

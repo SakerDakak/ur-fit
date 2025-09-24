@@ -73,14 +73,27 @@ class StepsTrackingCard extends StatelessWidget {
                     }
 
                     // إنشاء بيانات لـ 7 أيام (من اليوم الحالي إلى 6 أيام سابقة)
+                    // ترتيب البيانات من الأقدم إلى الأحدث للعرض الصحيح
                     final chartSpots = List.generate(7, (index) {
                       final date =
-                          DateTime.now().subtract(Duration(days: index));
+                          DateTime.now().subtract(Duration(days: 6 - index));
                       final dateKey = '${date.year}-${date.month}-${date.day}';
                       final stepsAmount = stepsByDate[dateKey] ?? 0.0;
 
                       return FlSpot(index.toDouble(), stepsAmount);
                     });
+
+                    // التحقق من وجود بيانات للعرض
+                    if (stepsData.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'لا توجد بيانات خطوات متاحة',
+                          style: TStyle.regular_12.copyWith(
+                            color: Co.fontColor,
+                          ),
+                        ),
+                      );
+                    }
 
                     return CustomLineChart(spots: chartSpots);
                   },
