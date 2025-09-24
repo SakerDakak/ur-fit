@@ -147,9 +147,8 @@ class ApiClient {
             return BadRequestException(
                 _getErrorMessageFromResponse(error.response?.data));
           case StatusCode.unauthorized:
-            final responseData = error.response?.data;
-            final String? message = responseData?['data'];
-            return UnauthorizedException(message);
+            return UnauthorizedException(
+                _getErrorMessageFromResponse(error.response?.data));
           case StatusCode.forbidden:
             return ForbiddenException(
                 _getErrorMessageFromResponse(error.response?.data));
@@ -198,14 +197,16 @@ class ApiClient {
 }
 
 String _getErrorMessageFromResponse(Map<String, dynamic> data) {
+  String? message;
+
   if (data.containsKey('message')) {
-    return data['message'];
+    message = data['message'];
   } else if (data.containsKey('error')) {
-    return data['error'];
+    message = data['error'];
   } else if (data.containsKey('errors')) {
-    return data['errors'];
+    message = data['errors'];
   } else if (data.containsKey('data')) {
-    return data['data'];
+    message = data['data'];
   } else {
     final StringBuffer errorMessage = StringBuffer();
     for (final error in data.values) {
@@ -215,8 +216,19 @@ String _getErrorMessageFromResponse(Map<String, dynamic> data) {
         errorMessage.write(error);
       }
     }
-    return errorMessage.toString();
+    message = errorMessage.toString();
   }
+
+  // معالجة خاصة لرسالة "The old password is wrong" - ترجمتها للعربية
+  if (message == "The old password is wrong") {
+    final currentLang =
+        di<SharedPreferences>().getString(StorageKeys.lang) ?? 'ar';
+    if (currentLang == 'ar') {
+      return "كلمة المرور الحالية غير صحيحة";
+    }
+  }
+
+  return message ?? "حدث خطأ ما";
 }
 
 class RetryOnConnectionChangedInterceptor extends Interceptor {

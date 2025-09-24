@@ -914,6 +914,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get changeEmailDescription => 'Enter the new email you want to use';
 
   @override
+  String get currentPasswordIsRequired => 'Current password is required';
+
+  @override
+  String get newPasswordIsRequired => 'New password is required';
+
+  @override
+  String get confirmPasswordIsRequired => 'Confirm password is required';
+
+  @override
+  String get newPasswordMustBeDifferent =>
+      'New password must be different from current password';
+
+  @override
+  String get passwordUpdatedSuccessfully => 'Password updated successfully';
+
+  @override
+  String get changePasswordDescription =>
+      'Enter your current and new password to update it';
+
+  @override
+  String get oldPasswordIsWrong => 'The old password is wrong';
+
+  @override
   String get emailMustBeValid => 'Email must be valid';
 
   @override

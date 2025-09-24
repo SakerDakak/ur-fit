@@ -131,15 +131,19 @@ class PersonalInfoRepoImpl {
     }
   }
 
-  // Future<Either<Failure, void>> changePassword(
-  //     {required String oldPassword, required String newPassword, required String confirmPassword}) async {
-  //   try {
-  //     var result = await _dataSource.changePassword(
-  //         oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword);
+  Future<Either<Failure, void>> changePassword(
+      {required String oldPassword,
+      required String newPassword,
+      required String confirmPassword}) async {
+    try {
+      final result = await _dataSource.changePassword(
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+          confirmPassword: confirmPassword);
 
-  //     return right(result);
-  //   } catch (e) {
-  //     return left(ServerFailure(e.toString()));
-  //   }
-  // }
+      return right(result);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

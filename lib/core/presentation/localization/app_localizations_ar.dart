@@ -912,6 +912,29 @@ class AppLocalizationsAr extends AppLocalizations {
   String get changeEmailDescription => 'أدخل الإيميل الجديد الذي تريد استخدامه';
 
   @override
+  String get currentPasswordIsRequired => 'يجب إدخال كلمة المرور الحالية';
+
+  @override
+  String get newPasswordIsRequired => 'يجب إدخال كلمة المرور الجديدة';
+
+  @override
+  String get confirmPasswordIsRequired => 'يجب تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get newPasswordMustBeDifferent =>
+      'كلمة المرور الجديدة يجب أن تكون مختلفة عن الحالية';
+
+  @override
+  String get passwordUpdatedSuccessfully => 'تم تحديث كلمة المرور بنجاح';
+
+  @override
+  String get changePasswordDescription =>
+      'أدخل كلمة المرور الحالية والجديدة لتحديثها';
+
+  @override
+  String get oldPasswordIsWrong => 'كلمة المرور الحالية غير صحيحة';
+
+  @override
   String get emailMustBeValid => 'يجب ان يكون البريد الالكترونى صحيح';
 
   @override

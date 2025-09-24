@@ -1850,6 +1850,48 @@ abstract class AppLocalizations {
   /// **'Enter the new email you want to use'**
   String get changeEmailDescription;
 
+  /// No description provided for @currentPasswordIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password is required'**
+  String get currentPasswordIsRequired;
+
+  /// No description provided for @newPasswordIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'New password is required'**
+  String get newPasswordIsRequired;
+
+  /// No description provided for @confirmPasswordIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password is required'**
+  String get confirmPasswordIsRequired;
+
+  /// No description provided for @newPasswordMustBeDifferent.
+  ///
+  /// In en, this message translates to:
+  /// **'New password must be different from current password'**
+  String get newPasswordMustBeDifferent;
+
+  /// No description provided for @passwordUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated successfully'**
+  String get passwordUpdatedSuccessfully;
+
+  /// No description provided for @changePasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your current and new password to update it'**
+  String get changePasswordDescription;
+
+  /// No description provided for @oldPasswordIsWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'The old password is wrong'**
+  String get oldPasswordIsWrong;
+
   /// No description provided for @emailMustBeValid.
   ///
   /// In en, this message translates to:

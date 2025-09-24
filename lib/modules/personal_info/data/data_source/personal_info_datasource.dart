@@ -176,10 +176,15 @@ class PersonalInfoDataSourceImpl {
       {required String oldPassword,
       required String newPassword,
       required String confirmPassword}) async {
-    await dioServices.post(EndPoints.changePassword, data: {
-      "old_password : $oldPassword",
-      "new_password : $newPassword",
-      "new_password_confirmation : $confirmPassword"
+    final res = await dioServices.post(EndPoints.changePassword, data: {
+      "old_password": oldPassword,
+      "new_password": newPassword,
+      "new_password_confirmation": confirmPassword
     });
+
+    // التحقق من وجود رسالة خطأ في الاستجابة
+    if (res.data != null && res.data['error'] != null) {
+      throw Exception(res.data['error']);
+    }
   }
 }
