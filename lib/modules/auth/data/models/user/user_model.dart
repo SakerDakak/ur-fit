@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:flutter/painting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -20,13 +22,13 @@ abstract class UserModel with _$UserModel {
     @CountryConverter() required Country? country,
     @CityConverter() required City? city,
     @GenderEnumConverter() GenderEnum? gender,
-    required int? packageId,
+    @JsonKey(name: 'package_id') required int? packageId,
     required int? age,
-    required int? currentWeight,
+    @JsonKey(name: 'current_weight') required int? currentWeight,
     required int? height,
     required int? otpCode,
     required List<Goal>? goals,
-    required int? targetWeight,
+    @JsonKey(name: 'target_weight') required int? targetWeight,
     @BodyShapeConverter() required BodyShape? bodyShape,
     // required List<MuscleFocus>? muscleFocuses,
     required int? trainingDaysPerWeek,
@@ -43,8 +45,8 @@ abstract class UserModel with _$UserModel {
     required bool? isCompleted,
     required bool? isActive,
     required String? countryKey,
-    required bool? haveExercisePlan,
-    required bool? haveMealPlan,
+    @JsonKey(name: 'is_have_exercise_plan') required bool? haveExercisePlan,
+    @JsonKey(name: 'is_have_meal_plan') required bool? haveMealPlan,
   }) = _User;
 
   factory UserModel.fromJson(Map<String, Object?> json) =>

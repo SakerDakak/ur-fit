@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/home_module/data/models/meal_plan_model.dart';
@@ -10,6 +12,7 @@ import '../../../core/presentation/utils/enums.dart';
 import '../data/models/meal_details_model.dart';
 import '../data/models/meal_model.dart';
 import '../repo/meals_repo.dart';
+import '../../../di.dart';
 
 part 'meals_cubit.freezed.dart';
 part 'meals_state.dart';
@@ -21,9 +24,86 @@ class MealsCubit extends Cubit<MealsState> {
       : super(const MealsState(
             searchRecipeModel: SearchRecipeModel(
                 type: "breakfast",
-                minCalories: 50,
-                maxCalories: 200,
-                maxReadyTime: 20)));
+                minCalories: 30,
+                maxCalories: 1000,
+                maxReadyTime: 60)));
+
+  // تحميل الإعدادات المحفوظة
+  Future<void> loadSavedFilters() async {
+    final prefs = di<SharedPreferences>();
+    final savedFilters = prefs.getString('meal_filters');
+    final savedComponents = prefs.getString('selected_components');
+    final savedDifficulties = prefs.getString('selected_difficulties');
+
+    try {
+      SearchRecipeModel? searchModel;
+      List<String> components = [];
+      List<String> difficulties = [];
+
+      // تحميل الفلاتر الأساسية
+      if (savedFilters != null) {
+        final Map<String, dynamic> filtersMap = jsonDecode(savedFilters);
+        searchModel = SearchRecipeModel.fromJson(filtersMap);
+      }
+
+      // تحميل المكونات المحددة
+      if (savedComponents != null) {
+        final List<dynamic> componentsList = jsonDecode(savedComponents);
+        components = componentsList.cast<String>();
+      }
+
+      // تحميل مستويات الصعوبة المحددة
+      if (savedDifficulties != null) {
+        final List<dynamic> difficultiesList = jsonDecode(savedDifficulties);
+        difficulties = difficultiesList.cast<String>();
+      }
+
+      // تطبيق الإعدادات المحملة
+      emit(state.copyWith(
+        searchRecipeModel: searchModel ?? state.searchRecipeModel,
+        selectedComponents: components,
+        selectedDifficulties: difficulties,
+      ));
+    } catch (e) {
+      print('Error loading saved filters: $e');
+      // في حالة الخطأ، استخدم الإعدادات الافتراضية
+      resetFiltersToDefault();
+    }
+  }
+
+  // حفظ الإعدادات الحالية
+  Future<void> saveFilters() async {
+    try {
+      final prefs = di<SharedPreferences>();
+      final filtersJson = state.searchRecipeModel.toJson();
+
+      // حفظ الفلاتر الأساسية
+      await prefs.setString('meal_filters', jsonEncode(filtersJson));
+
+      // حفظ التحديدات المتعددة
+      await prefs.setString(
+          'selected_components', jsonEncode(state.selectedComponents));
+      await prefs.setString(
+          'selected_difficulties', jsonEncode(state.selectedDifficulties));
+    } catch (e) {
+      print('Error saving filters: $e');
+    }
+  }
+
+  // إعادة تعيين الإعدادات إلى القيم الافتراضية
+  void resetFiltersToDefault() {
+    emit(state.copyWith(
+      searchRecipeModel: const SearchRecipeModel(
+        type: "breakfast",
+        minCalories: 30,
+        maxCalories: 1000,
+        maxReadyTime: 60,
+      ),
+      currentTypeIndex: 0,
+      selectedComponents: [],
+      selectedDifficulties: [],
+    ));
+  }
 
   Future<Nutrients> getMealPlanByDate(String date) async {
     await getMealPlans();
@@ -230,6 +310,7 @@ class MealsCubit extends Cubit<MealsState> {
               state.searchRecipeModel.copyWith(type: "main course"),
           currentTypeIndex: type));
     }
+    saveFilters(); // حفظ الإعدادات
     searchMeals();
   }
 
@@ -237,6 +318,7 @@ class MealsCubit extends Cubit<MealsState> {
     emit(state.copyWith(
         searchRecipeModel:
             state.searchRecipeModel.copyWith(maxReadyTime: min.toInt())));
+    saveFilters(); // حفظ الإعدادات
     searchMeals();
   }
 
@@ -244,6 +326,7 @@ class MealsCubit extends Cubit<MealsState> {
     emit(state.copyWith(
         searchRecipeModel: state.searchRecipeModel
             .copyWith(minCalories: min.toInt(), maxCalories: max.toInt())));
+    saveFilters(); // حفظ الإعدادات
     searchMeals();
   }
 
@@ -251,7 +334,20 @@ class MealsCubit extends Cubit<MealsState> {
     emit(state.copyWith(
         searchRecipeModel:
             state.searchRecipeModel.copyWith(includeIngredients: ingredients)));
+    saveFilters(); // حفظ الإعدادات
     searchMeals();
+  }
+
+  // تحديث المكونات المحددة
+  void updateSelectedComponents(List<String> components) {
+    emit(state.copyWith(selectedComponents: components));
+    saveFilters(); // حفظ الإعدادات
+  }
+
+  // تحديث مستويات الصعوبة المحددة
+  void updateSelectedDifficulties(List<String> difficulties) {
+    emit(state.copyWith(selectedDifficulties: difficulties));
+    saveFilters(); // حفظ الإعدادات
   }
 
   Future getMealPlans({bool fromHistory = false}) async {

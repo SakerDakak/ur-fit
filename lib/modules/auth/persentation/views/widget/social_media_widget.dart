@@ -54,7 +54,9 @@ class _SocialMediaWidgetState extends State<SocialMediaWidget> {
           children: [
             ListenableBuilder(
               listenable: authCommand,
-              builder: (context, child) => authCommand.running ? const AdaptiveProgressIndicator() : child!,
+              builder: (context, child) => authCommand.running
+                  ? const AdaptiveProgressIndicator()
+                  : child!,
               child: IconButton(
                   onPressed: () {
                     authCommand.execute();

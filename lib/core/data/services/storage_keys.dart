@@ -10,6 +10,7 @@ class StorageKeys {
   static const String countryId = 'country_id';
   static const String isOnboardingCompleted = 'isOnboardingCompleted';
   static const String isCitySelectionCompleted = 'isCitySelectionCompleted';
+  static const String userData = 'user_data'; // مفتاح لحفظ بيانات المستخدم
 }
 
 class TokenService {

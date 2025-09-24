@@ -1556,6 +1556,12 @@ abstract class AppLocalizations {
   /// **'Try different filters or change search criteria'**
   String get tryDifferentFilters;
 
+  /// No description provided for @searching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching...'**
+  String get searching;
+
   /// No description provided for @todayExerciseDetails.
   ///
   /// In en, this message translates to:
@@ -2299,6 +2305,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error selecting meal'**
   String get errorSelectingMeal;
+
+  /// No description provided for @currentSubscriptionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Current Subscription Details'**
+  String get currentSubscriptionDetails;
+
+  /// No description provided for @activeSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Subscription'**
+  String get activeSubscription;
+
+  /// No description provided for @cannotLoadSubscriptionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot load subscription details'**
+  String get cannotLoadSubscriptionDetails;
+
+  /// No description provided for @pleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get pleaseTryAgain;
+
+  /// No description provided for @retryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry Again'**
+  String get retryAgain;
+
+  /// No description provided for @package.
+  ///
+  /// In en, this message translates to:
+  /// **'Package'**
+  String get package;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @duration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get duration;
+
+  /// No description provided for @exercisePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise Plan'**
+  String get exercisePlan;
+
+  /// No description provided for @dietPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet Plan'**
+  String get dietPlan;
+
+  /// No description provided for @comprehensivePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Comprehensive Plan'**
+  String get comprehensivePlan;
+
+  /// No description provided for @months.
+  ///
+  /// In en, this message translates to:
+  /// **'Months'**
+  String get months;
 }
 
 class _AppLocalizationsDelegate

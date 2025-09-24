@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
+import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/core/presentation/views/widgets/range_bar.dart';
@@ -11,12 +12,27 @@ import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
 import 'package:urfit/modules/meals_module/widgets/filter_title_widget.dart';
 import 'package:urfit/modules/meals_module/widgets/meals_toggle_buttons.dart';
 
-class FilterScreen extends StatelessWidget {
+class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
   static const route = '/filterScreen';
 
   @override
+  State<FilterScreen> createState() => _FilterScreenState();
+}
+
+class _FilterScreenState extends State<FilterScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // تحميل الإعدادات المحفوظة عند فتح الصفحة
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<MealsCubit>().loadSavedFilters();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final cubit = context.read<MealsCubit>();
     final category = [
       L10n.tr().breakFast,
       L10n.tr().lunch,
@@ -53,11 +69,19 @@ class FilterScreen extends StatelessWidget {
           SizedBox(
             height: 16.px,
           ),
-          MealsToggleButtons(
-            initialIndex: 0,
-            items: category,
-            canSelectMultiple: false,
-            onSelected: (List<bool> selected) {},
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              return MealsToggleButtons(
+                initialIndex: state.currentTypeIndex,
+                items: category,
+                canSelectMultiple: false,
+                onSelected: (List<bool> selected) {
+                  final int selectedIndex =
+                      selected.indexWhere((index) => index == true);
+                  cubit.updateSearchType(selectedIndex);
+                },
+              );
+            },
           ),
           SizedBox(
             height: 16.px,
@@ -67,17 +91,23 @@ class FilterScreen extends StatelessWidget {
             title: L10n.tr().mealPreparationTime,
           ),
           SizedBox(
-            height: 16.px,
+            height: 22.px,
           ),
-          RangeBar(
-            isSingle: false,
-            maxRange: 60,
-            initialValues: [20],
-            onChanged: (int handlerIndex, lowerValue, upperValue) {
-              context.read<MealsCubit>().updateMaxReadyTime(lowerValue);
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              return RangeBar(
+                isSingle: false,
+                maxRange: 60,
+                initialValues: [
+                  state.searchRecipeModel.maxReadyTime?.toDouble() ?? 60
+                ],
+                onChanged: (int handlerIndex, lowerValue, upperValue) {
+                  context.read<MealsCubit>().updateMaxReadyTime(lowerValue);
+                },
+                minRange: 10,
+                title: L10n.tr().minutes,
+              );
             },
-            minRange: 10,
-            title: L10n.tr().minutes,
           ),
           FilterTitleWidget(
             icon: AssetsManager.meals,
@@ -86,28 +116,44 @@ class FilterScreen extends StatelessWidget {
           SizedBox(
             height: 16.px,
           ),
-          MealComponentsGrid(
-            items: components,
-            onSelected: (List<String> selected) {},
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              return MealComponentsGrid(
+                items: components,
+                initialSelected: state.selectedComponents,
+                onSelected: (List<String> selected) {
+                  context.read<MealsCubit>().updateSelectedComponents(selected);
+                },
+              );
+            },
           ),
           SizedBox(
-            height: 16.px,
+            height: 4.px,
           ),
           FilterTitleWidget(
             icon: AssetsManager.calories,
             title: L10n.tr().calories,
           ),
           SizedBox(
-            height: 16.px,
+            height: 22.px,
           ),
-          RangeBar(
-            maxRange: 1000,
-            initialValues: [50, 200],
-            onChanged: (int handlerIndex, lowerValue, upperValue) {
-              context.read<MealsCubit>().updateMinMaxCalories(lowerValue, upperValue);
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              return RangeBar(
+                maxRange: 1000,
+                initialValues: [
+                  state.searchRecipeModel.minCalories?.toDouble() ?? 30,
+                  state.searchRecipeModel.maxCalories?.toDouble() ?? 1000,
+                ],
+                onChanged: (int handlerIndex, lowerValue, upperValue) {
+                  context
+                      .read<MealsCubit>()
+                      .updateMinMaxCalories(lowerValue, upperValue);
+                },
+                minRange: 30,
+                title: L10n.tr().calories,
+              );
             },
-            minRange: 30,
-            title: L10n.tr().calories,
           ),
           FilterTitleWidget(
             icon: AssetsManager.cooking,
@@ -116,28 +162,44 @@ class FilterScreen extends StatelessWidget {
           SizedBox(
             height: 16.px,
           ),
-          MealsToggleButtons(
-            initialIndex: 0,
-            items: difficulty,
-            canSelectMultiple: true,
-            onSelected: (List<bool> selected) {
-              final List<String> ingredients = [];
-              for (int i = 0; i < selected.length; i++) {
-                if (selected[i]) {
-                  ingredients.add(ingredients[i]);
-                }
-              }
-              context.read<MealsCubit>().updateIncludedIngredients(ingredients);
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              return MealsToggleButtons(
+                initialIndex: 0,
+                items: difficulty,
+                canSelectMultiple: true,
+                initialSelectedItems: state.selectedDifficulties,
+                onSelected: (List<bool> selected) {
+                  final List<String> selectedDifficulties = [];
+                  for (int i = 0; i < selected.length; i++) {
+                    if (selected[i]) {
+                      selectedDifficulties.add(difficulty[i]);
+                    }
+                  }
+                  context
+                      .read<MealsCubit>()
+                      .updateSelectedDifficulties(selectedDifficulties);
+                },
+              );
             },
           ),
           SizedBox(
             height: 16.px,
           ),
-          BlocSelector<MealsCubit, MealsState, int>(
-            selector: (state) => state.allMeals.length,
-            builder: (context, mealsLength) {
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              final isLoading = state.getAllMealsState == RequestState.loading;
               return CustomElevatedButton(
-                  text: '${L10n.tr().searchResult} ${mealsLength == 0 ? '' : mealsLength}', onPressed: () {});
+                text: '${L10n.tr().searchResult} ${state.allMeals.length}',
+                isLoading: isLoading,
+                onPressed: isLoading
+                    ? null
+                    : () {
+                        cubit.searchMeals();
+                        context
+                            .pop(); // إغلاق صفحة الفلترة والعودة للشاشة السابقة
+                      },
+              );
             },
           )
         ],

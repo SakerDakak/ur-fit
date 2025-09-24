@@ -44,7 +44,7 @@ class _CurrentSubscriptionDetailsState
         children: [
           // عنوان القسم
           Text(
-            "تفاصيل اشتراكك الحالي",
+            L10n.tr().currentSubscriptionDetails,
             style: TStyle.bold_16.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -75,7 +75,7 @@ class _CurrentSubscriptionDetailsState
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "اشتراك فعال",
+                  L10n.tr().activeSubscription,
                   style: TStyle.regular_14.copyWith(color: Colors.green),
                 ),
               ],
@@ -89,7 +89,7 @@ class _CurrentSubscriptionDetailsState
   Widget _buildSubscriptionInfo(BuildContext context, int packageId) {
     return FutureBuilder<List<PackageModel>>(
       future: _getPackageDetails(packageId),
-      key: ValueKey(_retryCount), // إجبار إعادة التحميل عند تغيير _retryCount
+      key: ValueKey(_retryCount), // إجبار إعادة التحميل عند تغيير عدد المحاولات
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -105,13 +105,13 @@ class _CurrentSubscriptionDetailsState
               ),
               const SizedBox(height: 8),
               Text(
-                "لا يمكن تحميل تفاصيل الاشتراك",
+                L10n.tr().cannotLoadSubscriptionDetails,
                 style: TStyle.regular_14.copyWith(color: Colors.red),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 4),
               Text(
-                "يرجى المحاولة مرة أخرى",
+                L10n.tr().pleaseTryAgain,
                 style: TStyle.regular_12.copyWith(color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
@@ -123,7 +123,7 @@ class _CurrentSubscriptionDetailsState
                   });
                 },
                 icon: const Icon(Icons.refresh, size: 16),
-                label: const Text("إعادة المحاولة"),
+                label: Text(L10n.tr().retryAgain),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: Colors.white,
@@ -143,7 +143,7 @@ class _CurrentSubscriptionDetailsState
             Row(
               children: [
                 Text(
-                  "الباقة: ",
+                  "${L10n.tr().package}: ",
                   style: TStyle.regular_14,
                 ),
                 Expanded(
@@ -164,7 +164,7 @@ class _CurrentSubscriptionDetailsState
             Row(
               children: [
                 Text(
-                  "النوع: ",
+                  "${L10n.tr().type}: ",
                   style: TStyle.regular_14,
                 ),
                 Text(
@@ -182,11 +182,11 @@ class _CurrentSubscriptionDetailsState
             Row(
               children: [
                 Text(
-                  "المدة: ",
+                  "${L10n.tr().duration}: ",
                   style: TStyle.regular_14,
                 ),
                 Text(
-                  "${package.duration} ${package.duration == 1 ? 'شهر' : 'شهر'}",
+                  "${package.duration} ${package.duration == 1 ? L10n.tr().month : L10n.tr().months}",
                   style: TStyle.bold_14.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -200,7 +200,7 @@ class _CurrentSubscriptionDetailsState
             Row(
               children: [
                 Text(
-                  "السعر: ",
+                  "${L10n.tr().price}: ",
                   style: TStyle.regular_14,
                 ),
                 Text(
@@ -220,11 +220,11 @@ class _CurrentSubscriptionDetailsState
   String _getPlanTypeText(PlanType type) {
     switch (type) {
       case PlanType.exercise:
-        return "خطة التمرين";
+        return L10n.tr().exercisePlan;
       case PlanType.diet:
-        return "خطة النظام الغذائي";
+        return L10n.tr().dietPlan;
       case PlanType.both:
-        return "خطة شاملة";
+        return L10n.tr().comprehensivePlan;
     }
   }
 

@@ -26,7 +26,9 @@ mixin _$MealsState {
   String get errMessage;
   RequestState get getAllMealsState;
   RequestState get getMealDetailsState;
-  RequestState get getMealPlansState;
+  RequestState get getMealPlansState; // حفظ حالة التحديدات المتعددة
+  List<String> get selectedComponents;
+  List<String> get selectedDifficulties;
 
   /// Create a copy of MealsState
   /// with the given fields replaced by the non-null parameter values.
@@ -63,7 +65,11 @@ mixin _$MealsState {
             (identical(other.getMealDetailsState, getMealDetailsState) ||
                 other.getMealDetailsState == getMealDetailsState) &&
             (identical(other.getMealPlansState, getMealPlansState) ||
-                other.getMealPlansState == getMealPlansState));
+                other.getMealPlansState == getMealPlansState) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedComponents, selectedComponents) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedDifficulties, selectedDifficulties));
   }
 
   @override
@@ -81,11 +87,13 @@ mixin _$MealsState {
       errMessage,
       getAllMealsState,
       getMealDetailsState,
-      getMealPlansState);
+      getMealPlansState,
+      const DeepCollectionEquality().hash(selectedComponents),
+      const DeepCollectionEquality().hash(selectedDifficulties));
 
   @override
   String toString() {
-    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState)';
+    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState, selectedComponents: $selectedComponents, selectedDifficulties: $selectedDifficulties)';
   }
 }
 
@@ -108,7 +116,9 @@ abstract mixin class $MealsStateCopyWith<$Res> {
       String errMessage,
       RequestState getAllMealsState,
       RequestState getMealDetailsState,
-      RequestState getMealPlansState});
+      RequestState getMealPlansState,
+      List<String> selectedComponents,
+      List<String> selectedDifficulties});
 
   $SearchRecipeModelCopyWith<$Res> get searchRecipeModel;
   $RecipeCopyWith<$Res>? get mealDetails;
@@ -139,6 +149,8 @@ class _$MealsStateCopyWithImpl<$Res> implements $MealsStateCopyWith<$Res> {
     Object? getAllMealsState = null,
     Object? getMealDetailsState = null,
     Object? getMealPlansState = null,
+    Object? selectedComponents = null,
+    Object? selectedDifficulties = null,
   }) {
     return _then(_self.copyWith(
       searchRecipeModel: null == searchRecipeModel
@@ -193,6 +205,14 @@ class _$MealsStateCopyWithImpl<$Res> implements $MealsStateCopyWith<$Res> {
           ? _self.getMealPlansState
           : getMealPlansState // ignore: cast_nullable_to_non_nullable
               as RequestState,
+      selectedComponents: null == selectedComponents
+          ? _self.selectedComponents
+          : selectedComponents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      selectedDifficulties: null == selectedDifficulties
+          ? _self.selectedDifficulties
+          : selectedDifficulties // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 
@@ -327,7 +347,9 @@ extension MealsStatePatterns on MealsState {
             String errMessage,
             RequestState getAllMealsState,
             RequestState getMealDetailsState,
-            RequestState getMealPlansState)?
+            RequestState getMealPlansState,
+            List<String> selectedComponents,
+            List<String> selectedDifficulties)?
         $default, {
     required TResult orElse(),
   }) {
@@ -347,7 +369,9 @@ extension MealsStatePatterns on MealsState {
             _that.errMessage,
             _that.getAllMealsState,
             _that.getMealDetailsState,
-            _that.getMealPlansState);
+            _that.getMealPlansState,
+            _that.selectedComponents,
+            _that.selectedDifficulties);
       case _:
         return orElse();
     }
@@ -381,7 +405,9 @@ extension MealsStatePatterns on MealsState {
             String errMessage,
             RequestState getAllMealsState,
             RequestState getMealDetailsState,
-            RequestState getMealPlansState)
+            RequestState getMealPlansState,
+            List<String> selectedComponents,
+            List<String> selectedDifficulties)
         $default,
   ) {
     final _that = this;
@@ -400,7 +426,9 @@ extension MealsStatePatterns on MealsState {
             _that.errMessage,
             _that.getAllMealsState,
             _that.getMealDetailsState,
-            _that.getMealPlansState);
+            _that.getMealPlansState,
+            _that.selectedComponents,
+            _that.selectedDifficulties);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -433,7 +461,9 @@ extension MealsStatePatterns on MealsState {
             String errMessage,
             RequestState getAllMealsState,
             RequestState getMealDetailsState,
-            RequestState getMealPlansState)?
+            RequestState getMealPlansState,
+            List<String> selectedComponents,
+            List<String> selectedDifficulties)?
         $default,
   ) {
     final _that = this;
@@ -452,7 +482,9 @@ extension MealsStatePatterns on MealsState {
             _that.errMessage,
             _that.getAllMealsState,
             _that.getMealDetailsState,
-            _that.getMealPlansState);
+            _that.getMealPlansState,
+            _that.selectedComponents,
+            _that.selectedDifficulties);
       case _:
         return null;
     }
@@ -475,10 +507,14 @@ class _MealsState implements MealsState {
       this.errMessage = '',
       this.getAllMealsState = RequestState.initial,
       this.getMealDetailsState = RequestState.initial,
-      this.getMealPlansState = RequestState.initial})
+      this.getMealPlansState = RequestState.initial,
+      final List<String> selectedComponents = const [],
+      final List<String> selectedDifficulties = const []})
       : _allMeals = allMeals,
         _nutritionData = nutritionData,
-        _allPlans = allPlans;
+        _allPlans = allPlans,
+        _selectedComponents = selectedComponents,
+        _selectedDifficulties = selectedDifficulties;
 
   @override
   final SearchRecipeModel searchRecipeModel;
@@ -536,6 +572,27 @@ class _MealsState implements MealsState {
   @override
   @JsonKey()
   final RequestState getMealPlansState;
+// حفظ حالة التحديدات المتعددة
+  final List<String> _selectedComponents;
+// حفظ حالة التحديدات المتعددة
+  @override
+  @JsonKey()
+  List<String> get selectedComponents {
+    if (_selectedComponents is EqualUnmodifiableListView)
+      return _selectedComponents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedComponents);
+  }
+
+  final List<String> _selectedDifficulties;
+  @override
+  @JsonKey()
+  List<String> get selectedDifficulties {
+    if (_selectedDifficulties is EqualUnmodifiableListView)
+      return _selectedDifficulties;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedDifficulties);
+  }
 
   /// Create a copy of MealsState
   /// with the given fields replaced by the non-null parameter values.
@@ -573,7 +630,11 @@ class _MealsState implements MealsState {
             (identical(other.getMealDetailsState, getMealDetailsState) ||
                 other.getMealDetailsState == getMealDetailsState) &&
             (identical(other.getMealPlansState, getMealPlansState) ||
-                other.getMealPlansState == getMealPlansState));
+                other.getMealPlansState == getMealPlansState) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedComponents, _selectedComponents) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedDifficulties, _selectedDifficulties));
   }
 
   @override
@@ -591,11 +652,13 @@ class _MealsState implements MealsState {
       errMessage,
       getAllMealsState,
       getMealDetailsState,
-      getMealPlansState);
+      getMealPlansState,
+      const DeepCollectionEquality().hash(_selectedComponents),
+      const DeepCollectionEquality().hash(_selectedDifficulties));
 
   @override
   String toString() {
-    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState)';
+    return 'MealsState(searchRecipeModel: $searchRecipeModel, currentTypeIndex: $currentTypeIndex, allMeals: $allMeals, nutritionData: $nutritionData, mealDetails: $mealDetails, gainedCalories: $gainedCalories, gainedCarb: $gainedCarb, gainedProtein: $gainedProtein, allPlans: $allPlans, errMessage: $errMessage, getAllMealsState: $getAllMealsState, getMealDetailsState: $getMealDetailsState, getMealPlansState: $getMealPlansState, selectedComponents: $selectedComponents, selectedDifficulties: $selectedDifficulties)';
   }
 }
 
@@ -620,7 +683,9 @@ abstract mixin class _$MealsStateCopyWith<$Res>
       String errMessage,
       RequestState getAllMealsState,
       RequestState getMealDetailsState,
-      RequestState getMealPlansState});
+      RequestState getMealPlansState,
+      List<String> selectedComponents,
+      List<String> selectedDifficulties});
 
   @override
   $SearchRecipeModelCopyWith<$Res> get searchRecipeModel;
@@ -653,6 +718,8 @@ class __$MealsStateCopyWithImpl<$Res> implements _$MealsStateCopyWith<$Res> {
     Object? getAllMealsState = null,
     Object? getMealDetailsState = null,
     Object? getMealPlansState = null,
+    Object? selectedComponents = null,
+    Object? selectedDifficulties = null,
   }) {
     return _then(_MealsState(
       searchRecipeModel: null == searchRecipeModel
@@ -707,6 +774,14 @@ class __$MealsStateCopyWithImpl<$Res> implements _$MealsStateCopyWith<$Res> {
           ? _self.getMealPlansState
           : getMealPlansState // ignore: cast_nullable_to_non_nullable
               as RequestState,
+      selectedComponents: null == selectedComponents
+          ? _self._selectedComponents
+          : selectedComponents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      selectedDifficulties: null == selectedDifficulties
+          ? _self._selectedDifficulties
+          : selectedDifficulties // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 

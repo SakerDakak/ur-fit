@@ -763,6 +763,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tryDifferentFilters => 'جرب فلاتر مختلفة أو غير معايير البحث';
 
   @override
+  String get searching => 'جاري البحث...';
+
+  @override
   String get todayExerciseDetails => 'تفاصيل تمارين اليوم';
 
   @override
@@ -1146,4 +1149,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorSelectingMeal => 'حدث خطأ في اختيار الوجبة';
+
+  @override
+  String get currentSubscriptionDetails => 'تفاصيل اشتراكك الحالي';
+
+  @override
+  String get activeSubscription => 'اشتراك فعال';
+
+  @override
+  String get cannotLoadSubscriptionDetails => 'لا يمكن تحميل تفاصيل الاشتراك';
+
+  @override
+  String get pleaseTryAgain => 'يرجى المحاولة مرة أخرى';
+
+  @override
+  String get retryAgain => 'إعادة المحاولة';
+
+  @override
+  String get package => 'الباقة';
+
+  @override
+  String get type => 'النوع';
+
+  @override
+  String get duration => 'المدة';
+
+  @override
+  String get exercisePlan => 'خطة التمرين';
+
+  @override
+  String get dietPlan => 'خطة النظام الغذائي';
+
+  @override
+  String get comprehensivePlan => 'خطة شاملة';
+
+  @override
+  String get months => 'شهور';
 }

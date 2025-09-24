@@ -16,6 +16,8 @@ abstract class MealsState with _$MealsState {
     @Default(RequestState.initial) RequestState getAllMealsState,
     @Default(RequestState.initial) RequestState getMealDetailsState,
     @Default(RequestState.initial) RequestState getMealPlansState,
-
+    // حفظ حالة التحديدات المتعددة
+    @Default([]) List<String> selectedComponents,
+    @Default([]) List<String> selectedDifficulties,
   }) = _MealsState;
 }

@@ -24,6 +24,7 @@ class RegisterOTPScreen extends StatelessWidget {
       return result.fold((l) => false, (response) => true);
     }
 
-    return OTPWidget(submitOtp: submitOtp, resendCode: resendOTP, shouldResend: false);
+    return OTPWidget(
+        submitOtp: submitOtp, resendCode: resendOTP, shouldResend: false);
   }
 }

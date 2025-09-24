@@ -252,6 +252,7 @@
   "mealPlanEndsIn": "Meal Plan Ends in",
   "noMealsFound": "No meals found",
   "tryDifferentFilters": "Try different filters or change search criteria",
+  "searching": "Searching...",
   "todayExerciseDetails": "Today exercise details",
   "exerciseTime": "Exercise Time",
   "exerciseTodayWillFocusOn": "Exercise today will Focus on",
@@ -379,5 +380,18 @@
   "unexpectedError": "An unexpected error occurred",
   "mealSelectedSuccessfully": "Meal selected successfully!",
   "mealAlreadySelected": "Meal already selected",
-  "errorSelectingMeal": "Error selecting meal"
+  "errorSelectingMeal": "Error selecting meal",
+  "currentSubscriptionDetails": "Your Current Subscription Details",
+  "activeSubscription": "Active Subscription",
+  "cannotLoadSubscriptionDetails": "Cannot load subscription details",
+  "pleaseTryAgain": "Please try again",
+  "retryAgain": "Retry Again",
+  "package": "Package",
+  "type": "Type",
+  "duration": "Duration",
+  "exercisePlan": "Exercise Plan",
+  "dietPlan": "Diet Plan",
+  "comprehensivePlan": "Comprehensive Plan",
+  "month": "Month",
+  "months": "Months"
 }

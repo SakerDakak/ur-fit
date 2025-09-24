@@ -7,7 +7,6 @@ import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/utils/enums.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
-import 'package:urfit/modules/auth/persentation/views/register_otp_screen.dart';
 import 'package:urfit/modules/home_module/screens/main_page.dart';
 import 'package:urfit/modules/personal_info/screens/start_personal_info_screen.dart';
 
@@ -20,13 +19,14 @@ class AuthHelper {
   /// 4) else personal info screen
   static void setUserAndNavigate(BuildContext context, UserModel user,
       [bool isSplash = false]) {
-    if (user.isChecked != true) {
-      if (isSplash) {
-        TokenService.deleteToken();
-        context.go(AuthScreen.route);
-      } else {
-        context.push(RegisterOTPScreen.route(user.email));
-      }
+    // التحقق من أن المستخدم مفعل (isChecked يجب أن يكون true، وليس null أو false)
+    // لكن إذا كان isChecked null، نعتبره مفعل إذا كان لديه hasValidSubscription أو بيانات كاملة
+    final bool isUserActivated = user.isChecked == true ||
+        (user.hasValidSubscription == true || user.hasCompleteProfile);
+
+    if (!isUserActivated && isSplash) {
+      TokenService.deleteToken();
+      context.go(AuthScreen.route);
     } else {
       // تطبيق الثيم حسب الجنس أو الثيم الافتراضي (أزرق)
       if (user.gender != null) {
@@ -42,9 +42,10 @@ class AuthHelper {
         // إذا لم يكن هناك معلومات جنس، استخدم الثيم الافتراضي (أزرق)
         context.read<AppCubit>().setDefaultTheme();
       }
+
       Session().setCurrentUser = user;
+
       if (user.hasValidSubscription == true || user.hasCompleteProfile) {
-        // context.go(StartPersonalInfoScreen.route);
         context.go(MainPage.routeWithBool(false));
       } else {
         context.go(StartPersonalInfoScreen.route);

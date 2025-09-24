@@ -20,7 +20,11 @@ class MealsPickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<MealsCubit>().searchMeals();
-    final List<String> items = [L10n.tr().breakFast, L10n.tr().lunch, L10n.tr().dinner];
+    final List<String> items = [
+      L10n.tr().breakFast,
+      L10n.tr().lunch,
+      L10n.tr().dinner
+    ];
     return Scaffold(
       appBar: CustomAppBar(
           title: L10n.tr().nutritions,
@@ -33,14 +37,19 @@ class MealsPickerScreen extends StatelessWidget {
           SizedBox(
             height: 16.px,
           ),
-          MealsToggleButtons(
-            items: items,
-            initialIndex: 0,
-            canSelectMultiple: false,
-            onSelected: (List<bool> selected) {
-              print(selected);
-              final int selectedIndex = selected.indexWhere((index) => index == true);
-              context.read<MealsCubit>().updateSearchType(selectedIndex);
+          BlocBuilder<MealsCubit, MealsState>(
+            builder: (context, state) {
+              return MealsToggleButtons(
+                items: items,
+                initialIndex: state.currentTypeIndex,
+                canSelectMultiple: false,
+                onSelected: (List<bool> selected) {
+                  print(selected);
+                  final int selectedIndex =
+                      selected.indexWhere((index) => index == true);
+                  context.read<MealsCubit>().updateSearchType(selectedIndex);
+                },
+              );
             },
           ),
           SizedBox(
@@ -51,6 +60,9 @@ class MealsPickerScreen extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(AssetsManager.mealCategory),
+                SizedBox(
+                  width: 4.px,
+                ),
                 BlocSelector<MealsCubit, MealsState, int>(
                   selector: (state) => state.currentTypeIndex,
                   builder: (context, index) {

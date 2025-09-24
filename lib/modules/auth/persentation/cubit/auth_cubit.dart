@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/di.dart';
@@ -14,20 +13,12 @@ class AuthCubit extends Cubit<AuthStates> {
 
   Future<void> login(bool remember) async {
     emit(LoginLoadingState());
-    // AppConst.latestFunctionCalled = login;
     final user = await _repo.login(
         email: emailController.text.trim(),
         password: loginPasswordController.text.trim());
     user.fold((l) async {
       emit(LoginErrorState(error: l.message));
     }, (response) async {
-      await Future.wait([
-        if (remember)
-          FlutterKeychain.put(key: 'email', value: emailController.text.trim()),
-        if (remember)
-          FlutterKeychain.put(
-              key: 'password', value: loginPasswordController.text.trim()),
-      ]);
       TokenService.setToken(response.token);
       emit(LoginSuccessState(response.user));
     });
@@ -49,7 +40,6 @@ class AuthCubit extends Cubit<AuthStates> {
       countryId: Session().countryId,
     );
     emit(RegisterLoadingState());
-    // AppConst.latestFunctionCalled = register;
     final user = await _repo.register(req);
     user.fold((l) {
       emit(RegisterErrorState(error: l.message));

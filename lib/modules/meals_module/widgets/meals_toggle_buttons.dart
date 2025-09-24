@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -7,16 +8,17 @@ import '../../../core/presentation/style/fonts.dart';
 class MealsToggleButtons extends StatefulWidget {
   final List<String> items;
   final int initialIndex;
-
   final bool canSelectMultiple;
   final Function(List<bool> selected) onSelected;
+  final List<String>? initialSelectedItems;
 
   const MealsToggleButtons(
       {super.key,
       required this.items,
       required this.initialIndex,
       required this.canSelectMultiple,
-      required this.onSelected});
+      required this.onSelected,
+      this.initialSelectedItems});
 
   @override
   State<MealsToggleButtons> createState() => _MealsToggleButtonsState();
@@ -28,8 +30,39 @@ class _MealsToggleButtonsState extends State<MealsToggleButtons> {
   @override
   void initState() {
     super.initState();
-    isSelected = List.generate(
-        3, (index) => index == widget.initialIndex ? true : false);
+    if (widget.canSelectMultiple && widget.initialSelectedItems != null) {
+      // للتحديد المتعدد، استخدم initialSelectedItems
+      isSelected = List.generate(widget.items.length, (index) {
+        return widget.initialSelectedItems!.contains(widget.items[index]);
+      });
+    } else {
+      // للتحديد الواحد، استخدم initialIndex
+      isSelected = List.generate(widget.items.length,
+          (index) => index == widget.initialIndex ? true : false);
+    }
+  }
+
+  @override
+  void didUpdateWidget(MealsToggleButtons oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.canSelectMultiple) {
+      // للتحديد المتعدد
+      if (oldWidget.initialSelectedItems != widget.initialSelectedItems) {
+        if (widget.initialSelectedItems != null) {
+          isSelected = List.generate(widget.items.length, (index) {
+            return widget.initialSelectedItems!.contains(widget.items[index]);
+          });
+        } else {
+          isSelected = List.generate(widget.items.length, (index) => false);
+        }
+      }
+    } else {
+      // للتحديد الواحد
+      if (oldWidget.initialIndex != widget.initialIndex) {
+        isSelected = List.generate(widget.items.length,
+            (index) => index == widget.initialIndex ? true : false);
+      }
+    }
   }
 
   @override
@@ -65,6 +98,7 @@ class _MealsToggleButtonsState extends State<MealsToggleButtons> {
               child: Container(
                 height: 40.px,
                 width: 110.px,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
                     color: isSelected[index]
                         ? Theme.of(context).colorScheme.primary
@@ -72,12 +106,13 @@ class _MealsToggleButtonsState extends State<MealsToggleButtons> {
                     borderRadius: BorderRadius.circular(8.px),
                     border: Border.all(color: Co.strockColor)),
                 child: Center(
-                    child: Text(
+                    child: AutoSizeText(
                   e,
-                  style: TStyle.bold_16.copyWith(
-                      color: isSelected[index]
-                          ? Co.blackColor
-                          : Colors.white),
+                  maxLines: 2,
+                  minFontSize: 10,
+                  textAlign: TextAlign.center,
+                  style: TStyle.bold_14.copyWith(
+                      color: isSelected[index] ? Co.blackColor : Colors.white),
                 )),
               ),
             );
@@ -91,11 +126,13 @@ class _MealsToggleButtonsState extends State<MealsToggleButtons> {
 class MealComponentsGrid extends StatefulWidget {
   final List<String> items;
   final Function(List<String> selected) onSelected;
+  final List<String>? initialSelected;
 
   const MealComponentsGrid({
     super.key,
     required this.items,
     required this.onSelected,
+    this.initialSelected,
   });
 
   @override
@@ -108,6 +145,23 @@ class _MealComponentsGridState extends State<MealComponentsGrid> {
   @override
   void initState() {
     super.initState();
+    // استخدام التحديدات الأولية إذا كانت متوفرة
+    if (widget.initialSelected != null) {
+      selected = List.from(widget.initialSelected!);
+    }
+  }
+
+  @override
+  void didUpdateWidget(MealComponentsGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // تحديث التحديدات عند تغيير initialSelected
+    if (oldWidget.initialSelected != widget.initialSelected) {
+      if (widget.initialSelected != null) {
+        selected = List.from(widget.initialSelected!);
+      } else {
+        selected = [];
+      }
+    }
   }
 
   @override
@@ -144,8 +198,10 @@ class _MealComponentsGridState extends State<MealComponentsGrid> {
                   borderRadius: BorderRadius.circular(8.px),
                   border: Border.all(color: Co.strockColor)),
               child: Center(
-                  child: Text(
+                  child: AutoSizeText(
                 widget.items[index],
+                maxLines: 1,
+                minFontSize: 10,
                 style: TStyle.bold_16.copyWith(
                     color: selected.contains(widget.items[index])
                         ? Co.blackColor

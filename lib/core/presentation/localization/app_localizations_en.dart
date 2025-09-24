@@ -765,6 +765,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Try different filters or change search criteria';
 
   @override
+  String get searching => 'Searching...';
+
+  @override
   String get todayExerciseDetails => 'Today exercise details';
 
   @override
@@ -1148,4 +1151,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorSelectingMeal => 'Error selecting meal';
+
+  @override
+  String get currentSubscriptionDetails => 'Your Current Subscription Details';
+
+  @override
+  String get activeSubscription => 'Active Subscription';
+
+  @override
+  String get cannotLoadSubscriptionDetails =>
+      'Cannot load subscription details';
+
+  @override
+  String get pleaseTryAgain => 'Please try again';
+
+  @override
+  String get retryAgain => 'Retry Again';
+
+  @override
+  String get package => 'Package';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get duration => 'Duration';
+
+  @override
+  String get exercisePlan => 'Exercise Plan';
+
+  @override
+  String get dietPlan => 'Diet Plan';
+
+  @override
+  String get comprehensivePlan => 'Comprehensive Plan';
+
+  @override
+  String get months => 'Months';
 }

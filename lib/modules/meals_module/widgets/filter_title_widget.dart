@@ -20,8 +20,8 @@ class FilterTitleWidget extends StatelessWidget {
             icon,
             width: 16,
             height: 16,
-            colorFilter:
-                ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary, BlendMode.srcIn),
           ),
           SizedBox(
             width: 4.px,

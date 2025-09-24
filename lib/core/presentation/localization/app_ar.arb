@@ -251,6 +251,7 @@
   "mealPlanEndsIn": "تنتهي خطة التغذية في",
   "noMealsFound": "لم يتم العثور على وجبات",
   "tryDifferentFilters": "جرب فلاتر مختلفة أو غير معايير البحث",
+  "searching": "جاري البحث...",
   "todayExerciseDetails": "تفاصيل تمارين اليوم",
   "exerciseTime": "مدة التمرين",
   "exerciseTodayWillFocusOn": " تمرين اليوم سوف يركز على ",
@@ -379,5 +380,18 @@
   "unexpectedError": "حدث خطأ غير متوقع",
   "mealSelectedSuccessfully": "تم اختيار الوجبة بنجاح!",
   "mealAlreadySelected": "تم اختيار الوجبة",
-  "errorSelectingMeal": "حدث خطأ في اختيار الوجبة"
+  "errorSelectingMeal": "حدث خطأ في اختيار الوجبة",
+  "currentSubscriptionDetails": "تفاصيل اشتراكك الحالي",
+  "activeSubscription": "اشتراك فعال",
+  "cannotLoadSubscriptionDetails": "لا يمكن تحميل تفاصيل الاشتراك",
+  "pleaseTryAgain": "يرجى المحاولة مرة أخرى",
+  "retryAgain": "إعادة المحاولة",
+  "package": "الباقة",
+  "type": "النوع",
+  "duration": "المدة",
+  "exercisePlan": "خطة التمرين",
+  "dietPlan": "خطة النظام الغذائي",
+  "comprehensivePlan": "خطة شاملة",
+  "month": "شهر",
+  "months": "شهور"
 }
