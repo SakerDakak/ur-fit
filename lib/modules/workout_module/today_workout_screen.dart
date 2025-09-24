@@ -18,6 +18,18 @@ import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 import '../../core/presentation/style/colors.dart';
 import '../meals_module/widgets/filter_title_widget.dart';
 
+// دالة لمعالجة أسماء التمارين العربية
+String _fixExerciseName(String name) {
+  // معالجة أسماء التمرين العربي للظهر
+  if (name.toLowerCase().contains('عودة') ||
+      name.toLowerCase().contains('عوده') ||
+      name.toLowerCase().contains('العودة') ||
+      name.toLowerCase().contains('العوده')) {
+    return 'الظهر';
+  }
+  return name;
+}
+
 class TodayWorkoutScreen extends StatelessWidget {
   final List<Exercise> exercises;
   static const routeWzExtra = '/todayWorkOutScreen';
@@ -62,7 +74,8 @@ class TodayWorkoutScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            exercises[state.progressValue - 1].name,
+                            _fixExerciseName(
+                                exercises[state.progressValue - 1].name),
                             style: TStyle.regular_14.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
@@ -79,7 +92,9 @@ class TodayWorkoutScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        exercises[state.progressValue - 1].name,
+                                        _fixExerciseName(
+                                            exercises[state.progressValue - 1]
+                                                .name),
                                         style: TStyle.regular_14.copyWith(
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -143,8 +158,8 @@ class TodayWorkoutScreen extends StatelessWidget {
                             context.pushNamed(
                                 PlayWorkoutScreen.routeWzTitleAnExtra,
                                 pathParameters: {
-                                  'title':
-                                      exercises[state.progressValue - 1].name
+                                  'title': _fixExerciseName(
+                                      exercises[state.progressValue - 1].name)
                                 },
                                 extra: exercises[state.progressValue - 1]);
                           }),

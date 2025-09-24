@@ -18,6 +18,18 @@ import '../../core/presentation/style/colors.dart';
 import '../profile_module/widgets/previous_plan_screen_widgets/calories_and_steps.dart';
 import 'controller/workout_cubit.dart';
 
+// دالة لمعالجة أسماء التمارين العربية
+String _fixExerciseName(String name) {
+  // معالجة أسماء التمرين العربي للظهر
+  if (name.toLowerCase().contains('عودة') ||
+      name.toLowerCase().contains('عوده') ||
+      name.toLowerCase().contains('العودة') ||
+      name.toLowerCase().contains('العوده')) {
+    return 'الظهر';
+  }
+  return name;
+}
+
 class PlayWorkoutScreen extends StatefulWidget {
   final String title;
   final Exercise exercise;
@@ -99,7 +111,7 @@ class _PlayWorkoutScreenState extends State<PlayWorkoutScreen>
       },
       child: Scaffold(
         appBar: CustomAppBar(
-            title: widget.title,
+            title: _fixExerciseName(widget.title),
             onBack: () {
               context.pop();
             }),
