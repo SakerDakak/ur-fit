@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shorebird_code_push/shorebird_code_push.dart';
+import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -30,159 +31,165 @@ class ProfileScreen extends StatelessWidget {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         return Scaffold(
-          body: ListView(
-            padding: const EdgeInsets.only(
-              bottom: 50,
-              left: AppConst.kHorizontalPadding,
-              right: AppConst.kHorizontalPadding,
-            ),
-            children: [
-              // account info
-              const AccountInfo(),
-
-              const SizedBox(height: 12),
-
-              // app language
-              const AppLanguageButtons(),
-
-              const SizedBox(height: 28),
-
-              const Divider(
-                color: Co.strockColor,
+          body: RefreshIndicator(
+            onRefresh: () async {
+              // تحديث بيانات المستخدم
+              await Session().getUserDataFromServer();
+            },
+            child: ListView(
+              padding: const EdgeInsets.only(
+                bottom: 50,
+                left: AppConst.kHorizontalPadding,
+                right: AppConst.kHorizontalPadding,
               ),
+              children: [
+                // account info
+                const AccountInfo(),
 
-              const SizedBox(height: 12),
+                const SizedBox(height: 12),
 
-              // my plan tile
-              DefaultListTile(
-                onTap: () => GoRouter.of(context)
-                    .push(PresonalInfoLayoutScreen.routeWzExtra, extra: {
-                  'isEditingProfile': true,
-                  'showCancelButton':
-                      true, // إظهار زر الإلغاء عند الدخول من صفحة حسابي
-                }),
-                title: L10n.tr().myPlan,
-                leadingIconSvgPath: Assets.iconsPaper,
-              ),
+                // app language
+                const AppLanguageButtons(),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
+                const SizedBox(height: 28),
 
-              // previous plan tile
-              DefaultListTile(
-                onTap: () =>
-                    GoRouter.of(context).push(PreviousPlanScreen.route),
-                title: L10n.tr().previousPlan,
-                leadingIconSvgPath: Assets.iconsPaper2,
-              ),
+                const Divider(
+                  color: Co.strockColor,
+                ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
+                const SizedBox(height: 12),
 
-              // subscription tile
-              DefaultListTile(
-                onTap: () => GoRouter.of(context).push(
-                    SubscriptionPlansScreen.routeWzExtra,
-                    extra: PlanType.both),
-                title: L10n.tr().subscribe,
-                leadingIconSvgPath: Assets.iconsCopy,
-              ),
+                // my plan tile
+                DefaultListTile(
+                  onTap: () => GoRouter.of(context)
+                      .push(PresonalInfoLayoutScreen.routeWzExtra, extra: {
+                    'isEditingProfile': true,
+                    'showCancelButton':
+                        true, // إظهار زر الإلغاء عند الدخول من صفحة حسابي
+                  }),
+                  title: L10n.tr().myPlan,
+                  leadingIconSvgPath: Assets.iconsPaper,
+                ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
+                const Divider(
+                  color: Co.strockColor,
+                ),
 
-              // settings tile
-              DefaultListTile(
-                onTap: () => GoRouter.of(context).push(SettingsScreen.route),
-                title: L10n.tr().settings,
-                leadingIconSvgPath: Assets.iconsSettings,
-              ),
+                // previous plan tile
+                DefaultListTile(
+                  onTap: () =>
+                      GoRouter.of(context).push(PreviousPlanScreen.route),
+                  title: L10n.tr().previousPlan,
+                  leadingIconSvgPath: Assets.iconsPaper2,
+                ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
+                const Divider(
+                  color: Co.strockColor,
+                ),
 
-              // privacy policy tile
-              DefaultListTile(
-                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
-                    pathParameters: {"key": "privacy_policy"}),
-                title: L10n.tr().privacyPolicy,
-                leadingIconSvgPath: Assets.iconsShieldCheck,
-              ),
+                // subscription tile
+                DefaultListTile(
+                  onTap: () => GoRouter.of(context).push(
+                      SubscriptionPlansScreen.routeWzExtra,
+                      extra: PlanType.both),
+                  title: L10n.tr().subscribe,
+                  leadingIconSvgPath: Assets.iconsCopy,
+                ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
-              // terms_and_conditions tile
-              DefaultListTile(
-                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
-                    pathParameters: {"key": "terms_and_conditions"}),
-                title: L10n.tr().termsAndConditions,
-                leadingIconSvgPath: Assets.iconsShieldCheck,
-              ),
+                const Divider(
+                  color: Co.strockColor,
+                ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
-              // about_us
-              DefaultListTile(
-                onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
-                    pathParameters: {"key": "about_us"}),
-                title: L10n.tr().aboutUs,
-                leadingIconSvgPath: Assets.iconsShieldCheck,
-              ),
+                // settings tile
+                DefaultListTile(
+                  onTap: () => GoRouter.of(context).push(SettingsScreen.route),
+                  title: L10n.tr().settings,
+                  leadingIconSvgPath: Assets.iconsSettings,
+                ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
-              // notifications tile
-              DefaultListTile(
-                onTap: () {},
-                title: L10n.tr().notification,
-                leadingIconSvgPath: Assets.iconsNotifications,
-                trailing: SizedBox(
-                  height: 35,
-                  child: FittedBox(
-                    child: Switch(
-                      value: true,
-                      onChanged: (value) {},
+                const Divider(
+                  color: Co.strockColor,
+                ),
+
+                // privacy policy tile
+                DefaultListTile(
+                  onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
+                      pathParameters: {"key": "privacy_policy"}),
+                  title: L10n.tr().privacyPolicy,
+                  leadingIconSvgPath: Assets.iconsShieldCheck,
+                ),
+
+                const Divider(
+                  color: Co.strockColor,
+                ),
+                // terms_and_conditions tile
+                DefaultListTile(
+                  onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
+                      pathParameters: {"key": "terms_and_conditions"}),
+                  title: L10n.tr().termsAndConditions,
+                  leadingIconSvgPath: Assets.iconsShieldCheck,
+                ),
+
+                const Divider(
+                  color: Co.strockColor,
+                ),
+                // about_us
+                DefaultListTile(
+                  onTap: () => context.pushNamed(PrivacyPolicyScreen.routeWzKey,
+                      pathParameters: {"key": "about_us"}),
+                  title: L10n.tr().aboutUs,
+                  leadingIconSvgPath: Assets.iconsShieldCheck,
+                ),
+
+                const Divider(
+                  color: Co.strockColor,
+                ),
+                // notifications tile
+                DefaultListTile(
+                  onTap: () {},
+                  title: L10n.tr().notification,
+                  leadingIconSvgPath: Assets.iconsNotifications,
+                  trailing: SizedBox(
+                    height: 35,
+                    child: FittedBox(
+                      child: Switch(
+                        value: true,
+                        onChanged: (value) {},
+                      ),
                     ),
                   ),
                 ),
-              ),
 
-              const Divider(
-                color: Co.strockColor,
-              ),
+                const Divider(
+                  color: Co.strockColor,
+                ),
 
-              // support tile
-              DefaultListTile(
-                onTap: () => GoRouter.of(context).push(ContactUsScreen.route),
-                title: L10n.tr().contactUs,
-                leadingIconSvgPath: Assets.iconsSupport,
-              ),
-              const SizedBox(height: 12),
-              FutureBuilder(
-                future: () async {
-                  final push = await ShorebirdUpdater().readCurrentPatch();
-                  final info = await PackageInfo.fromPlatform();
-                  return (info, push);
-                }(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const SizedBox.shrink();
-                  } else {
-                    final data = snapshot.data;
-                    return Center(
-                        child: Text(
-                            "V ${data?.$1.version}+${data?.$1.buildNumber} (${data?.$2?.number ?? 0})"));
-                  }
-                },
-              )
-            ],
+                // support tile
+                DefaultListTile(
+                  onTap: () => GoRouter.of(context).push(ContactUsScreen.route),
+                  title: L10n.tr().contactUs,
+                  leadingIconSvgPath: Assets.iconsSupport,
+                ),
+                const SizedBox(height: 12),
+                FutureBuilder(
+                  future: () async {
+                    final push = await ShorebirdUpdater().readCurrentPatch();
+                    final info = await PackageInfo.fromPlatform();
+                    return (info, push);
+                  }(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const SizedBox.shrink();
+                    } else {
+                      final data = snapshot.data;
+                      return Center(
+                          child: Text(
+                              "V ${data?.$1.version}+${data?.$1.buildNumber} (${data?.$2?.number ?? 0})"));
+                    }
+                  },
+                )
+              ],
+            ),
           ),
         );
       },

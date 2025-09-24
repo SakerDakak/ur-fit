@@ -32,43 +32,52 @@ class HomeScreen extends StatelessWidget {
 
               // body
               Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.only(
-                    bottom: AppConst.kBottomPadding,
-                    left: AppConst.kHorizontalPadding,
-                    right: AppConst.kHorizontalPadding,
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    // تحديث بيانات المستخدم
+                    await Session().getUserDataFromServer();
+
+                    // تحديث بيانات الصحة
+                    context.read<HealthCubit>().initializeHealth();
+                  },
+                  child: ListView(
+                    padding: const EdgeInsets.only(
+                      bottom: AppConst.kBottomPadding,
+                      left: AppConst.kHorizontalPadding,
+                      right: AppConst.kHorizontalPadding,
+                    ),
+                    children: [
+                      // discount card
+                      const DiscountSection(),
+
+                      const SizedBox(height: 16),
+
+                      // days of current weak
+                      const WeakDaysDate(),
+
+                      const SizedBox(height: 16),
+
+                      // current and target weight card
+                      if (!isGuest &&
+                          user?.currentWeight != null &&
+                          user?.targetWeight != null)
+                        const CurrentWeightCard(),
+
+                      const SizedBox(height: 16),
+
+                      // horizontal divider
+                      const Divider(color: Co.strockColor),
+
+                      // today tasks
+                      // const SizedBox(height: 16),
+                      // StartTodyTasksSection(),
+
+                      const SizedBox(height: 16),
+
+                      // statistics section
+                      const StatisticsSection(),
+                    ],
                   ),
-                  children: [
-                    // discount card
-                    const DiscountSection(),
-
-                    const SizedBox(height: 16),
-
-                    // days of current weak
-                    const WeakDaysDate(),
-
-                    const SizedBox(height: 16),
-
-                    // current and target weight card
-                    if (!isGuest &&
-                        user?.currentWeight != null &&
-                        user?.targetWeight != null)
-                      const CurrentWeightCard(),
-
-                    const SizedBox(height: 16),
-
-                    // horizontal divider
-                    const Divider(color: Co.strockColor),
-
-                    // today tasks
-                    // const SizedBox(height: 16),
-                    // StartTodyTasksSection(),
-
-                    const SizedBox(height: 16),
-
-                    // statistics section
-                    const StatisticsSection(),
-                  ],
                 ),
               ),
             ],
