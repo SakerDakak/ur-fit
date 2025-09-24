@@ -758,6 +758,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mealPlanEndsIn => 'Meal Plan Ends in';
 
   @override
+  String get exercisePlanEndsIn => 'Exercise Plan Ends in';
+
+  @override
   String get noMealsFound => 'No meals found';
 
   @override

@@ -757,6 +757,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mealPlanEndsIn => 'تنتهي خطة التغذية في';
 
   @override
+  String get exercisePlanEndsIn => 'تنتهي خطة التمرين في';
+
+  @override
   String get noMealsFound => 'لم يتم العثور على وجبات';
 
   @override

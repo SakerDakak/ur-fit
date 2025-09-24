@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
@@ -16,7 +17,8 @@ class PackageProgressExercise extends StatelessWidget {
     return BlocBuilder<WorkoutCubit, WorkoutState>(
       builder: (context, state) {
         final weekNum = state.allPlans.length;
-        final workoutPlan = context.read<WorkoutCubit>().getCurrentWorkOutPlan();
+        final workoutPlan =
+            context.read<WorkoutCubit>().getCurrentWorkOutPlan();
 
         String weekText() {
           switch (weekNum) {
@@ -28,6 +30,16 @@ class PackageProgressExercise extends StatelessWidget {
               return L10n.tr().week3;
             default:
               return L10n.tr().week4;
+          }
+        }
+
+        String formatDate(String? dateString) {
+          if (dateString == null || dateString.isEmpty) return '';
+          try {
+            final date = DateTime.parse(dateString);
+            return DateFormat('yyyy/MM/dd').format(date);
+          } catch (e) {
+            return dateString; // إرجاع التاريخ الأصلي في حالة الخطأ
           }
         }
 
@@ -45,20 +57,19 @@ class PackageProgressExercise extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                Expanded(
-                  child: Text(
-                    weekText(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TStyle.regular_14.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Co.whiteColor,
-                    ),
+                Text(
+                  weekText(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TStyle.regular_14.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Co.whiteColor,
                   ),
                 ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    '${L10n.tr().packageEndsIn}${workoutPlan?.endDate}',
+                    '${L10n.tr().exercisePlanEndsIn} ${formatDate(workoutPlan?.endDate)}',
                     textAlign: TextAlign.end,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -75,7 +86,7 @@ class PackageProgressExercise extends StatelessWidget {
 
             // progress bar
             LinearPercentIndicator(
-              percent: weekNum / 4,
+              percent: weekNum / 4 > 1 ? 1 : weekNum / 4,
               padding: EdgeInsets.zero,
               progressColor: Theme.of(context).colorScheme.primary,
               backgroundColor: Co.whiteColor,

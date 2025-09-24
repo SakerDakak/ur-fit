@@ -250,6 +250,7 @@
   "week4": "fourth week",
   "packageEndsIn": "Package Ends in",
   "mealPlanEndsIn": "Meal Plan Ends in",
+  "exercisePlanEndsIn": "Exercise Plan Ends in",
   "noMealsFound": "No meals found",
   "tryDifferentFilters": "Try different filters or change search criteria",
   "searching": "Searching...",
