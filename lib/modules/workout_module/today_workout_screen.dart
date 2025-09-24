@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+import 'package:urfit/core/domain/error/session.dart';
+import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
@@ -25,124 +27,137 @@ class TodayWorkoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
+    final user = Session().currentUser;
     final List<String> workoutList =
         exercises.map((e) => stringFromInt(e.id)).toList();
-    return Scaffold(
-        appBar: CustomAppBar(
-            title: L10n.tr().detailsOfTodayExercises,
-            onBack: () {
-              context.pop();
-            }),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.px),
-          child: SingleChildScrollView(
-            child: BlocBuilder<WorkoutCubit, WorkoutState>(
-              builder: (context, state) {
-                return Column(
-                  children: [
-                    WorkOutProgressHeader(
-                      progressValue: state.progressValue,
-                      workoutList: workoutList,
-                      numericalList: workoutList,
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          exercises[state.progressValue - 1].name,
-                          style: TStyle.regular_14.copyWith(
-                            fontWeight: FontWeight.w600,
+
+    // الاستماع لتغيير اللغة وإعادة تحميل البيانات
+    return BlocListener<AppCubit, AppState>(
+      listener: (context, appState) {
+        // عند تغيير اللغة، إعادة تحميل بيانات التمارين
+        if (user?.haveExercisePlan == true &&
+            user?.hasValidSubscription == true) {
+          cubit.getWorkOutPlan();
+        }
+      },
+      child: Scaffold(
+          appBar: CustomAppBar(
+              title: L10n.tr().detailsOfTodayExercises,
+              onBack: () {
+                context.pop();
+              }),
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.px),
+            child: SingleChildScrollView(
+              child: BlocBuilder<WorkoutCubit, WorkoutState>(
+                builder: (context, state) {
+                  return Column(
+                    children: [
+                      WorkOutProgressHeader(
+                        progressValue: state.progressValue,
+                        workoutList: workoutList,
+                        numericalList: workoutList,
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            exercises[state.progressValue - 1].name,
+                            style: TStyle.regular_14.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 16.px),
-                        SizedBox(
-                          height: 300.px,
-                          child: GridTile(
-                              footer: GridTileBar(
-                                backgroundColor:
-                                    Co.backGround.withValues(alpha: 0.7),
-                                title: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      exercises[state.progressValue - 1].name,
-                                      style: TStyle.regular_14.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${context.read<WorkoutCubit>().getPlanForToday()!.caloriesBurned} ${L10n.tr().calorie}',
-                                      style: TStyle.regular_14.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                subtitle: Padding(
-                                  padding: EdgeInsets.only(top: 8.px),
-                                  child: Row(
+                          SizedBox(height: 16.px),
+                          SizedBox(
+                            height: 300.px,
+                            child: GridTile(
+                                footer: GridTileBar(
+                                  backgroundColor:
+                                      Co.backGround.withValues(alpha: 0.7),
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SvgPicture.asset(
-                                        AssetsManager.time,
-                                        colorFilter: const ColorFilter.mode(
-                                            Colors.white, BlendMode.srcIn),
-                                      ),
-                                      SizedBox(
-                                        width: 4.px,
+                                      Text(
+                                        exercises[state.progressValue - 1].name,
+                                        style: TStyle.regular_14.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                       Text(
-                                        '${cubit.formattedTime(seconds: cubit.getPlanForToday()!.timePerExercise * cubit.getPlanForToday()!.sets)} ${L10n.tr().min}',
+                                        '${context.read<WorkoutCubit>().getPlanForToday()!.caloriesBurned} ${L10n.tr().calorie}',
                                         style: TStyle.regular_14.copyWith(
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ],
                                   ),
+                                  subtitle: Padding(
+                                    padding: EdgeInsets.only(top: 8.px),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          AssetsManager.time,
+                                          colorFilter: const ColorFilter.mode(
+                                              Colors.white, BlendMode.srcIn),
+                                        ),
+                                        SizedBox(
+                                          width: 4.px,
+                                        ),
+                                        Text(
+                                          '${cubit.formattedTime(seconds: cubit.getPlanForToday()!.timePerExercise * cubit.getPlanForToday()!.sets)} ${L10n.tr().min}',
+                                          style: TStyle.regular_14.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.px),
-                                child: Gif(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      exercises[state.progressValue - 1]
-                                          .gifUrl),
-                                  autostart: Autostart.no,
-                                  placeholder: (context) =>
-                                      Center(child: Text(L10n.tr().loading)),
-                                ),
-                              )),
-                        ),
-                        SizedBox(height: 16.px),
-                        TrainingDescription(
-                          description:
-                              exercises[state.progressValue - 1].instructions,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.px,
-                    ),
-                    CustomElevatedButton(
-                        text: L10n.tr().start,
-                        onPressed: () {
-                          context.pushNamed(
-                              PlayWorkoutScreen.routeWzTitleAnExtra,
-                              pathParameters: {
-                                'title': exercises[state.progressValue - 1].name
-                              },
-                              extra: exercises[state.progressValue - 1]);
-                        }),
-                    SizedBox(
-                      height: 50.px,
-                    ),
-                  ],
-                );
-              },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.px),
+                                  child: Gif(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                        exercises[state.progressValue - 1]
+                                            .gifUrl),
+                                    autostart: Autostart.no,
+                                    placeholder: (context) =>
+                                        Center(child: Text(L10n.tr().loading)),
+                                  ),
+                                )),
+                          ),
+                          SizedBox(height: 16.px),
+                          TrainingDescription(
+                            description:
+                                exercises[state.progressValue - 1].instructions,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.px,
+                      ),
+                      CustomElevatedButton(
+                          text: L10n.tr().start,
+                          onPressed: () {
+                            context.pushNamed(
+                                PlayWorkoutScreen.routeWzTitleAnExtra,
+                                pathParameters: {
+                                  'title':
+                                      exercises[state.progressValue - 1].name
+                                },
+                                extra: exercises[state.progressValue - 1]);
+                          }),
+                      SizedBox(
+                        height: 50.px,
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
 
