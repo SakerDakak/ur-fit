@@ -1238,7 +1238,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get packageDoesNotSupportNutritionDescription =>
-      'الباقة الحالية لا تشمل خطط التغذية المخصصة. يمكنك ترقية باقاتك للاستفادة من هذه الميزة.';
+      'الباقة الحالية لا تشمل خطط التغذية المخصصة.';
+
+  @override
+  String get packageDoesNotSupportExercise =>
+      'الباقة المشترك فيها لا تدعم التمارين';
+
+  @override
+  String get packageDoesNotSupportExerciseDescription =>
+      'الباقة الحالية لا تشمل خطط التمارين المخصصة.';
 
   @override
   String get package => 'الباقة';

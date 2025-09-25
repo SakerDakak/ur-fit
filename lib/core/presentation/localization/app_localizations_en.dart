@@ -1242,7 +1242,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packageDoesNotSupportNutritionDescription =>
-      'Your current package doesn\'t include custom nutrition plans. You can upgrade your package to benefit from this feature.';
+      'Your current package doesn\'t include custom nutrition plans.';
+
+  @override
+  String get packageDoesNotSupportExercise =>
+      'Your package doesn\'t support exercise';
+
+  @override
+  String get packageDoesNotSupportExerciseDescription =>
+      'Your current package doesn\'t include custom exercise plans.';
 
   @override
   String get package => 'Package';

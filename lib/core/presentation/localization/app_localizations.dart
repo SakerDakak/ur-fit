@@ -2471,8 +2471,20 @@ abstract class AppLocalizations {
   /// No description provided for @packageDoesNotSupportNutritionDescription.
   ///
   /// In en, this message translates to:
-  /// **'Your current package doesn\'t include custom nutrition plans. You can upgrade your package to benefit from this feature.'**
+  /// **'Your current package doesn\'t include custom nutrition plans.'**
   String get packageDoesNotSupportNutritionDescription;
+
+  /// No description provided for @packageDoesNotSupportExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Your package doesn\'t support exercise'**
+  String get packageDoesNotSupportExercise;
+
+  /// No description provided for @packageDoesNotSupportExerciseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current package doesn\'t include custom exercise plans.'**
+  String get packageDoesNotSupportExerciseDescription;
 
   /// No description provided for @package.
   ///

@@ -7,14 +7,19 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/package_progress_exercise.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
 import 'package:urfit/core/presentation/views/widgets/no_subscription_widget.dart';
+import 'package:urfit/core/presentation/views/widgets/login_required_widget.dart';
+import 'package:urfit/core/presentation/views/widgets/package_not_support_exercise_widget.dart';
+import 'package:urfit/core/presentation/views/widgets/no_workout_today_widget.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/start_workout_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/widgets/shimmer/workout_detail_card_shimmer.dart';
 import 'package:urfit/modules/workout_module/workout_widgets/start_workout_card.dart';
 import 'package:urfit/modules/workout_module/workout_widgets/today_workout_details_card.dart';
+import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
+import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
+import 'package:urfit/di.dart';
 
 import '../../core/presentation/utils/enums.dart';
-import '../subscription_module/data/models/package_model.dart';
 
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
@@ -25,11 +30,14 @@ class WorkoutScreen extends StatefulWidget {
 
 class _WorkoutScreenState extends State<WorkoutScreen>
     with WidgetsBindingObserver {
+  bool _isInitialized = false;
+  bool? _isExerciseSupported;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _refreshUserDataAndLoadWorkouts();
+    _initializeScreen();
   }
 
   @override
@@ -41,41 +49,133 @@ class _WorkoutScreenState extends State<WorkoutScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      // تحديث البيانات عند العودة للتطبيق
-      _refreshUserDataAndLoadWorkouts();
+      // إعادة تحميل البيانات عند العودة للتطبيق
+      _initializeScreen();
     }
   }
 
-  void _refreshUserDataAndLoadWorkouts() async {
-    // تحديث بيانات المستخدم أولاً
-    await Session().getUserDataFromServer();
+  /// تهيئة الشاشة وفحص الحالات المختلفة
+  Future<void> _initializeScreen() async {
+    if (!mounted) return;
 
-    if (mounted) {
-      final user = Session().currentUser;
-      final cubit = context.read<WorkoutCubit>();
+    setState(() {
+      _isInitialized = false;
+      _isExerciseSupported = null;
+    });
 
-      if (user?.haveExercisePlan == true &&
-          user?.hasValidSubscription == true) {
-        cubit.getWorkOutPlan().then((value) {
-          if (mounted) setState(() {});
-        });
-      } else if (user?.haveExercisePlan == false &&
-          user?.hasValidSubscription == true) {
-        // إنشاء خطة التمارين وانتظار اكتمال العملية
-        await cubit.generateWorkOutPlan();
+    try {
+      // تحديث بيانات المستخدم من الخادم
+      await Session().getUserDataFromServer();
 
-        // تحديث بيانات المستخدم بعد إنشاء الخطة
-        await Session().getUserDataFromServer();
+      if (mounted) {
+        final user = Session().currentUser;
+        final cubit = context.read<WorkoutCubit>();
 
-        // تحميل خطة التمارين الجديدة
-        await cubit.getWorkOutPlan();
+        // إذا كان المستخدم مسجل دخول ولديه اشتراك صالح
+        if (user != null && user.hasValidSubscription == true) {
+          // التحقق من دعم الباقة للتمارين
+          _isExerciseSupported =
+              await _isExercisePackageSupported(user.packageId);
 
-        if (mounted) setState(() {});
+          // إذا كان لديه خطة تمارين، ابدأ تحميلها (بدون انتظار ليعرض skeleton)
+          if (user.haveExercisePlan == true) {
+            cubit.getWorkOutPlan(); // بدون await ليعرض skeleton
+          } else if (_isExerciseSupported == true) {
+            // إذا لم يكن لديه خطة تمارين والباقة تدعم التمارين، قم بإنشاء خطة جديدة
+            await cubit.generateWorkOutPlan();
+            // تحديث بيانات المستخدم بعد إنشاء الخطة
+            await Session().getUserDataFromServer();
+            // تحميل خطة التمارين الجديدة
+            await cubit.getWorkOutPlan();
+          }
+        }
       }
-
-      // إعادة بناء الواجهة لتحديث حالة الاشتراك
-      setState(() {});
+    } catch (e) {
+      print('خطأ في تهيئة الشاشة: $e');
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isInitialized = true;
+        });
+      }
     }
+  }
+
+  /// جلب تفاصيل الباقة من الخادم
+  Future<PackageModel?> _getPackageDetails(int packageId) async {
+    try {
+      final subscriptionRepo = di<SubscriptionRepo>();
+      final result = await subscriptionRepo.getPackages();
+
+      return result.fold(
+        (failure) {
+          print("خطأ في تحميل تفاصيل الباقة: ${failure.message}");
+          return null;
+        },
+        (packages) {
+          final package = packages.where((p) => p.id == packageId).firstOrNull;
+          if (package == null) {
+            print("لم يتم العثور على الباقة مع المعرف: $packageId");
+            print("الباقات المتاحة: ${packages.map((p) => p.id).toList()}");
+          }
+          return package;
+        },
+      );
+    } catch (e) {
+      print("خطأ في تحميل تفاصيل الباقة: $e");
+      return null;
+    }
+  }
+
+  /// التحقق من دعم الباقة للتمارين
+  Future<bool> _isExercisePackageSupported(int? packageId) async {
+    if (packageId == null) return false;
+
+    final package = await _getPackageDetails(packageId);
+    if (package == null) return false;
+
+    // التحقق من نوع الباقة
+    return package.type == PlanType.exercise || package.type == PlanType.both;
+  }
+
+  /// تحديث البيانات (للـ RefreshIndicator)
+  Future<void> _refreshData() async {
+    await _initializeScreen();
+  }
+
+  /// بناء محتوى الـ skeleton loading
+  Widget _buildSkeletonContent(BuildContext context) {
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: ListView(
+          padding: const EdgeInsets.only(
+            bottom: AppConst.kBottomPadding,
+            left: AppConst.kHorizontalPadding,
+            right: AppConst.kHorizontalPadding,
+          ),
+          children: [
+            // وقت انتهاء الباقة
+            const PackageProgressExercise(showSkeleton: true),
+
+            const SizedBox(height: 16),
+
+            // التواريخ
+            const WeakDaysDate(),
+
+            const SizedBox(height: 16),
+
+            // تفاصيل التمرين - skeleton
+            const WorkoutDetailCardShimmer(),
+
+            const SizedBox(height: 16),
+
+            // بطاقة بدء التمرين - skeleton
+            const StartWorkoutCardShimmer(),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -83,40 +183,39 @@ class _WorkoutScreenState extends State<WorkoutScreen>
     final user = Session().currentUser;
     final cubit = context.read<WorkoutCubit>();
 
-    // الاستماع لتغيير اللغة وإعادة تحميل البيانات
     return BlocListener<AppCubit, AppState>(
       listener: (context, appState) {
-        // عند تغيير اللغة، إعادة تحميل بيانات التمارين
+        // عند تغيير اللغة، إعادة تحميل البيانات
         if (user?.haveExercisePlan == true &&
             user?.hasValidSubscription == true) {
           cubit.getWorkOutPlan();
         }
       },
       child: RefreshIndicator(
-        onRefresh: () async {
-          // تحديث بيانات المستخدم أولاً
-          await Session().getUserDataFromServer();
-
-          if (user?.haveExercisePlan == true &&
-              user?.hasValidSubscription == true) {
-            await cubit.getWorkOutPlan();
-          } else if (user?.haveExercisePlan == false &&
-              user?.hasValidSubscription == true) {
-            await cubit.generateWorkOutPlan();
-            await Session().getUserDataFromServer();
-            await cubit.getWorkOutPlan();
-          }
-        },
+        onRefresh: _refreshData,
         child: BlocBuilder<WorkoutCubit, WorkoutState>(
           buildWhen: (previous, current) {
-            // إعادة البناء عند تغيير حالة الاشتراك أو الخطط
             return previous.getWorkOutPlanState !=
                     current.getWorkOutPlanState ||
                 previous.allPlans != current.allPlans;
           },
           builder: (context, state) {
-            // التحقق من حالة الاشتراك
-            if (user?.hasValidSubscription != true) {
+            // إذا لم يتم التهيئة بعد، اعرض skeleton loading
+            if (!_isInitialized) {
+              return _buildSkeletonContent(context);
+            }
+
+            // الحالة 1: المستخدم غير مسجل دخول
+            if (user == null) {
+              return Scaffold(
+                body: LoginRequiredWidget(
+                  message: L10n.tr().loginRequired,
+                ),
+              );
+            }
+
+            // الحالة 2: المستخدم مسجل دخول ولكن ليس لديه اشتراك صالح
+            if (user.hasValidSubscription != true) {
               return Scaffold(
                 body: NoSubscriptionWidget(
                   message: L10n.tr().noSubscription,
@@ -125,29 +224,34 @@ class _WorkoutScreenState extends State<WorkoutScreen>
               );
             }
 
-            // التحقق من وجود خطة تمارين
-            if (user?.hasValidSubscription == true &&
-                user?.haveExercisePlan != true &&
-                state.allPlans.isEmpty) {
-              // إذا كان المستخدم مشترك ولكن لا توجد خطة تمارين
-              if (user?.packageId != null) {
-                // إذا كان في حالة تحميل
+            // الحالة 3: المستخدم لديه اشتراك صالح ولكن الباقة لا تدعم التمارين
+            if (user.hasValidSubscription == true &&
+                _isExerciseSupported == false) {
+              return Scaffold(
+                body: PackageNotSupportExerciseWidget(
+                  message: L10n.tr().packageDoesNotSupportExercise,
+                ),
+              );
+            }
+
+            // الحالة 4: المستخدم لديه اشتراك صالح والباقة تدعم التمارين
+            if (user.hasValidSubscription == true &&
+                _isExerciseSupported == true) {
+              // إذا كان لديه خطة تمارين، اعرض المحتوى (مع skeleton إذا كان في حالة تحميل)
+              if (user.haveExercisePlan == true) {
+                // إذا كان في حالة تحميل البيانات، اعرض skeleton loading
                 if (state.getWorkOutPlanState == RequestState.loading) {
-                  return Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CircularProgressIndicator(),
-                          const SizedBox(height: 16),
-                          Text(
-                            L10n.tr().creatingWorkoutPlan,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+                  return _buildSkeletonContent(context);
+                }
+                // إذا تم تحميل البيانات بنجاح أو لم تكن هناك محاولة تحميل بعد
+                return _buildWorkoutContent(context, state, cubit);
+              }
+
+              // إذا لم يكن لديه خطة تمارين ولكن الباقة تدعم التمارين
+              if (user.haveExercisePlan != true) {
+                // إذا كان في حالة تحميل (إنشاء خطة جديدة)، اعرض skeleton
+                if (state.getWorkOutPlanState == RequestState.loading) {
+                  return _buildSkeletonContent(context);
                 }
 
                 // إذا فشل إنشاء الخطة
@@ -170,8 +274,8 @@ class _WorkoutScreenState extends State<WorkoutScreen>
                           ),
                           const SizedBox(height: 24),
                           ElevatedButton.icon(
-                            onPressed: () {
-                              cubit.generateWorkOutPlan();
+                            onPressed: () async {
+                              await cubit.generateWorkOutPlan();
                             },
                             icon: const Icon(Icons.refresh),
                             label: Text(L10n.tr().retry),
@@ -182,113 +286,19 @@ class _WorkoutScreenState extends State<WorkoutScreen>
                   );
                 }
 
-                // إذا لم تكن هناك محاولة سابقة، ابدأ إنشاء الخطة
+                // إذا لم تكن هناك محاولة سابقة، ابدأ إنشاء الخطة واعرض skeleton
                 if (state.getWorkOutPlanState != RequestState.loading &&
                     state.getWorkOutPlanState != RequestState.failure) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     cubit.generateWorkOutPlan();
                   });
 
-                  return Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CircularProgressIndicator(),
-                          const SizedBox(height: 16),
-                          Text(
-                            L10n.tr().creatingWorkoutPlan,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+                  return _buildSkeletonContent(context);
                 }
               }
-
-              return Scaffold(
-                body: NoSubscriptionWidget(
-                  message: L10n.tr().noWorkoutPlan,
-                  planType: PlanType.exercise,
-                ),
-              );
             }
 
-            // إذا كان المستخدم مشترك ولديه خطة تمارين أو تم تحميل الخطط بنجاح، اعرض المحتوى
-            if (user?.hasValidSubscription == true &&
-                (user?.haveExercisePlan == true ||
-                    (state.getWorkOutPlanState == RequestState.success &&
-                        state.allPlans.isNotEmpty))) {
-              return Scaffold(
-                body: ListView(
-                  padding: const EdgeInsets.only(
-                    bottom: AppConst.kBottomPadding,
-                    left: AppConst.kHorizontalPadding,
-                    right: AppConst.kHorizontalPadding,
-                  ),
-                  children: [
-                    // package progress and end date
-                    const PackageProgressExercise(),
-
-                    const SizedBox(height: 16),
-
-                    // todays date
-                    const WeakDaysDate(),
-
-                    const SizedBox(height: 16),
-
-                    // workout details (calories, workout duration ...)
-                    BlocBuilder<WorkoutCubit, WorkoutState>(
-                      buildWhen: (p, c) =>
-                          p.allPlans != c.allPlans ||
-                          p.getWorkOutPlanState != c.getWorkOutPlanState,
-                      builder: (context, state) {
-                        if (state.getWorkOutPlanState == RequestState.loading ||
-                            state.getWorkOutPlanState == RequestState.failure) {
-                          return const WorkoutDetailCardShimmer();
-                        } else {
-                          if (cubit.getPlanForToday() != null) {
-                            return const TodayWorkoutDetailsCard();
-                          } else {
-                            return const SizedBox();
-                          }
-                        }
-                      },
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    // weight progress bar
-                    // if(cubit.getPlanForToday() != null)
-                    // const WeightProgressCard(),
-                    // if(cubit.getPlanForToday() != null)
-                    const SizedBox(height: 16),
-                    // if(cubit.getPlanForToday() != null)
-
-                    // today's workout card
-                    BlocBuilder<WorkoutCubit, WorkoutState>(
-                        // buildWhen: (p, c) =>
-                        //     p.allPlans != c.allPlans ||
-                        //     p.getWorkOutPlanState != c.getWorkOutPlanState,
-                        builder: (context, state) {
-                      if (state.getWorkOutPlanState == RequestState.loading ||
-                          state.getWorkOutPlanState == RequestState.failure) {
-                        return const StartWorkoutCardShimmer();
-                      } else {
-                        if (cubit.getPlanForToday() == null) {
-                          return Center(child: Text(L10n.tr().noWorkoutToday));
-                        } else {
-                          return const StartWorkoutCard();
-                        }
-                      }
-                    }),
-                  ],
-                ),
-              );
-            }
-
-            // إذا لم تكن هناك خطة تمارين، اعرض رسالة افتراضية
+            // الحالة الافتراضية: عرض رسالة عدم وجود خطة
             return Scaffold(
               body: NoSubscriptionWidget(
                 message: L10n.tr().noWorkoutPlan,
@@ -296,6 +306,73 @@ class _WorkoutScreenState extends State<WorkoutScreen>
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+
+  /// بناء محتوى التمارين (عند وجود خطة صالحة)
+  Widget _buildWorkoutContent(
+      BuildContext context, WorkoutState state, WorkoutCubit cubit) {
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await cubit.getWorkOutPlan();
+        },
+        child: ListView(
+          padding: const EdgeInsets.only(
+            bottom: AppConst.kBottomPadding,
+            left: AppConst.kHorizontalPadding,
+            right: AppConst.kHorizontalPadding,
+          ),
+          children: [
+            // وقت انتهاء الباقة
+            const PackageProgressExercise(),
+
+            const SizedBox(height: 16),
+
+            // التواريخ
+            const WeakDaysDate(),
+
+            const SizedBox(height: 16),
+
+            // تفاصيل التمرين
+            BlocBuilder<WorkoutCubit, WorkoutState>(
+              buildWhen: (p, c) =>
+                  p.allPlans != c.allPlans ||
+                  p.getWorkOutPlanState != c.getWorkOutPlanState,
+              builder: (context, state) {
+                if (state.getWorkOutPlanState == RequestState.loading ||
+                    state.getWorkOutPlanState == RequestState.failure) {
+                  return const WorkoutDetailCardShimmer();
+                } else {
+                  if (cubit.getPlanForToday() != null) {
+                    return const TodayWorkoutDetailsCard();
+                  } else {
+                    return const SizedBox();
+                  }
+                }
+              },
+            ),
+
+            const SizedBox(height: 16),
+
+            // بطاقة بدء التمرين
+            BlocBuilder<WorkoutCubit, WorkoutState>(
+              builder: (context, state) {
+                if (state.getWorkOutPlanState == RequestState.loading ||
+                    state.getWorkOutPlanState == RequestState.failure) {
+                  return const StartWorkoutCardShimmer();
+                } else {
+                  if (cubit.getPlanForToday() == null) {
+                    return const NoWorkoutTodayWidget();
+                  } else {
+                    return const StartWorkoutCard();
+                  }
+                }
+              },
+            ),
+          ],
         ),
       ),
     );

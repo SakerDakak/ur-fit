@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -10,7 +11,12 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
 class PackageProgressExercise extends StatelessWidget {
-  const PackageProgressExercise({super.key});
+  final bool showSkeleton;
+
+  const PackageProgressExercise({
+    super.key,
+    this.showSkeleton = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,25 +63,31 @@ class PackageProgressExercise extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  weekText(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TStyle.regular_14.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: Co.whiteColor,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
+                Skeletonizer(
+                  enabled: showSkeleton,
                   child: Text(
-                    '${L10n.tr().exercisePlanEndsIn} ${formatDate(workoutPlan?.endDate)}',
-                    textAlign: TextAlign.end,
+                    weekText(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TStyle.regular_14.copyWith(
                       fontWeight: FontWeight.w600,
                       color: Co.whiteColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Skeletonizer(
+                    enabled: showSkeleton,
+                    child: Text(
+                      '${L10n.tr().exercisePlanEndsIn} ${formatDate(workoutPlan?.endDate)}',
+                      textAlign: TextAlign.end,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TStyle.regular_14.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: Co.whiteColor,
+                      ),
                     ),
                   ),
                 ),

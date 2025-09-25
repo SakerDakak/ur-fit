@@ -409,6 +409,8 @@
   "pleaseLoginToAccessMeals": "Please login to access custom meal plans",
   "packageDoesNotSupportNutrition": "Your package doesn't support nutrition",
   "packageDoesNotSupportNutritionDescription": "Your current package doesn't include custom nutrition plans.",
+  "packageDoesNotSupportExercise": "Your package doesn't support exercise",
+  "packageDoesNotSupportExerciseDescription": "Your current package doesn't include custom exercise plans.",
   "package": "Package",
   "type": "Type",
   "duration": "Duration",

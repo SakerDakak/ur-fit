@@ -293,7 +293,7 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
           ),
           children: [
             // وقت انتهاء الباقة
-            const PackageProgressMeals(),
+            const PackageProgressMeals(showSkeleton: true),
 
             const SizedBox(height: 16),
 
