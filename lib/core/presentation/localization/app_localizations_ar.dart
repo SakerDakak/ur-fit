@@ -238,34 +238,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bestOffer => 'أفضل عرض';
 
   @override
-  String get first => 'أولا';
+  String get first => 'الأول';
 
   @override
-  String get second => 'ثانيا';
+  String get second => 'الثاني';
 
   @override
-  String get third => 'ثالثا';
+  String get third => 'الثالث';
 
   @override
-  String get fourth => 'رابعا';
+  String get fourth => 'الرابع';
 
   @override
-  String get fifth => 'خامسا';
+  String get fifth => 'الخامس';
 
   @override
-  String get sixth => 'سادسا';
+  String get sixth => 'السادس';
 
   @override
-  String get seventh => 'سابعا';
+  String get seventh => 'السابع';
 
   @override
-  String get eighth => 'ثامنا';
+  String get eighth => 'الثامن';
 
   @override
-  String get ninth => 'تاسعا';
+  String get ninth => 'التاسع';
 
   @override
-  String get tenth => 'عاشرا';
+  String get tenth => 'العاشر';
 
   @override
   String get finaly => 'أخيرا';

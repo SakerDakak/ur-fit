@@ -1,6 +1,7 @@
 import 'package:urfit/core/presentation/assets/app_assets.dart';
 
 export './app_assets.dart';
+
 class AssetsManager {
   static String logo = Assets.iconsLogoLarg;
   static String lonoMini = Assets.iconsLogo;
@@ -44,4 +45,6 @@ class AssetsManager {
   static String noOfDailyMeals = Assets.imageNumberOfDailyMeals;
   static String bodyParts = Assets.imageBodyPart;
   static String foodVarient = Assets.imageFoodVariant;
+  static String paper = Assets.iconsPaper;
+  static String excerciseDescription = Assets.iconsDumbbell;
 }
