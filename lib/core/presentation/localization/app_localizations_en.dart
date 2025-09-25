@@ -1230,6 +1230,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get retryAgain => 'Retry Again';
 
   @override
+  String get loginRequired => 'Login Required';
+
+  @override
+  String get pleaseLoginToAccessMeals =>
+      'Please login to access custom meal plans';
+
+  @override
+  String get packageDoesNotSupportNutrition =>
+      'Your package doesn\'t support nutrition';
+
+  @override
+  String get packageDoesNotSupportNutritionDescription =>
+      'Your current package doesn\'t include custom nutrition plans. You can upgrade your package to benefit from this feature.';
+
+  @override
   String get package => 'Package';
 
   @override

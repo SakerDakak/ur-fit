@@ -2450,6 +2450,30 @@ abstract class AppLocalizations {
   /// **'Retry Again'**
   String get retryAgain;
 
+  /// No description provided for @loginRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Required'**
+  String get loginRequired;
+
+  /// No description provided for @pleaseLoginToAccessMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Please login to access custom meal plans'**
+  String get pleaseLoginToAccessMeals;
+
+  /// No description provided for @packageDoesNotSupportNutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your package doesn\'t support nutrition'**
+  String get packageDoesNotSupportNutrition;
+
+  /// No description provided for @packageDoesNotSupportNutritionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current package doesn\'t include custom nutrition plans. You can upgrade your package to benefit from this feature.'**
+  String get packageDoesNotSupportNutritionDescription;
+
   /// No description provided for @package.
   ///
   /// In en, this message translates to:

@@ -1226,6 +1226,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get retryAgain => 'إعادة المحاولة';
 
   @override
+  String get loginRequired => 'يجب تسجيل الدخول';
+
+  @override
+  String get pleaseLoginToAccessMeals =>
+      'يرجى تسجيل الدخول للوصول إلى خطط التغذية المخصصة';
+
+  @override
+  String get packageDoesNotSupportNutrition =>
+      'الباقة المشترك فيها لا تدعم التغذية';
+
+  @override
+  String get packageDoesNotSupportNutritionDescription =>
+      'الباقة الحالية لا تشمل خطط التغذية المخصصة. يمكنك ترقية باقاتك للاستفادة من هذه الميزة.';
+
+  @override
   String get package => 'الباقة';
 
   @override
