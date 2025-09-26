@@ -398,7 +398,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resendAfter => 'اعادة الارسال بعد';
 
   @override
-  String get seconds => 'ثواني';
+  String get seconds => 'ثانية';
 
   @override
   String get otpHasBeenSentToYourEmail =>
@@ -533,7 +533,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'كى نستطيع وضع خطة تخصص لاجلك\nنحتاج بعض البيانات التى تستغرق اقل من دقيقة.';
 
   @override
-  String get start => 'ابدا';
+  String get start => 'ابدأ';
 
   @override
   String get later => 'ليس الان';
@@ -715,7 +715,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get km => 'كم';
 
   @override
-  String get calories => 'سعرات حرارية';
+  String get calories => 'السعرات';
 
   @override
   String get calorie => 'سعرة';
@@ -727,7 +727,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hours => 'ساعات';
 
   @override
-  String get exercises => 'تمارين';
+  String get exercises => 'التمارين';
 
   @override
   String get min => 'دقيقة';
@@ -859,10 +859,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notification => 'التنبيهات';
 
   @override
-  String get sets => 'مجموعة';
+  String get sets => 'المجموعات';
 
   @override
-  String get time => 'وقت';
+  String get time => 'الوقت';
 
   @override
   String get averageNutritionGained => 'معدل ما تم تناوله في الوجبات';
@@ -1280,4 +1280,64 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enterPhoneNumber => 'أدخل رقم الهاتف';
+
+  @override
+  String get rest => 'استراحة';
+
+  @override
+  String get paused => 'متوقف مؤقتاً';
+
+  @override
+  String get completed => 'منجز';
+
+  @override
+  String get exerciseTimeEnded => 'انتهى وقت التمرين!';
+
+  @override
+  String get exerciseCompleted => 'تم إكمال التمرين بنجاح! 🎉';
+
+  @override
+  String get restTimeEnded => 'انتهى وقت الاستراحة!';
+
+  @override
+  String get ofText => 'من';
+
+  @override
+  String get startWorkout => 'ابدأ التمرين';
+
+  @override
+  String get resumeWorkout => 'استئناف التمرين';
+
+  @override
+  String get remainingGroups => 'المجموعات المتبقية';
+
+  @override
+  String get calorieBurn => 'حرق السعرات';
+
+  @override
+  String get pause => 'إيقاف مؤقت';
+
+  @override
+  String get endSet => 'انهاء المجموعة';
+
+  @override
+  String get continueWorkout => 'أكمل';
+
+  @override
+  String get todayWorkoutStats => 'إحصائيات التمرين اليوم';
+
+  @override
+  String get minute => 'دقيقة';
+
+  @override
+  String get totalTime => 'الوقت الإجمالي';
+
+  @override
+  String get workoutTime => 'وقت التمرين';
+
+  @override
+  String get restTime => 'وقت الاستراحة';
+
+  @override
+  String get exerciseId => 'معرف التمرين';
 }

@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,6 +15,7 @@ import 'package:urfit/core/presentation/views/widgets/custom_appbar.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_buttons.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/data/model/workout_model.dart';
+import 'package:urfit/modules/workout_module/data/models/workout_progress_model.dart';
 import 'package:urfit/modules/workout_module/play_workout_screen.dart';
 
 import '../../core/presentation/style/colors.dart';
@@ -47,14 +49,24 @@ class TodayWorkoutScreen extends StatelessWidget {
         .toList();
 
     // الاستماع لتغيير اللغة وإعادة تحميل البيانات
-    return BlocListener<AppCubit, AppState>(
-      listener: (context, appState) {
-        // عند تغيير اللغة، إعادة تحميل بيانات التمارين
-        if (user?.haveExercisePlan == true &&
-            user?.hasValidSubscription == true) {
-          cubit.getWorkOutPlan();
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AppCubit, AppState>(
+          listener: (context, appState) {
+            // عند تغيير اللغة، إعادة تحميل بيانات التمارين
+            if (user?.haveExercisePlan == true &&
+                user?.hasValidSubscription == true) {
+              cubit.getWorkOutPlan();
+            }
+          },
+        ),
+        BlocListener<WorkoutCubit, WorkoutState>(
+          listener: (context, state) {
+            // إجبار إعادة البناء
+            (context as Element).markNeedsBuild();
+          },
+        ),
+      ],
       child: Scaffold(
           appBar: _WorkoutAppBar(cubit: cubit),
           body: SafeArea(
@@ -85,9 +97,10 @@ class TodayWorkoutScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          _fixExerciseName(
-                                              exercises[state.progressValue - 1]
-                                                  .name),
+                                          _fixExerciseName(exercises[math.min(
+                                                  state.progressValue - 1,
+                                                  exercises.length - 1)]
+                                              .name),
                                           style: TStyle.regular_16.copyWith(
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -134,9 +147,10 @@ class TodayWorkoutScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8.px),
                                     child: Gif(
                                       fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          exercises[state.progressValue - 1]
-                                              .gifUrl),
+                                      image: NetworkImage(exercises[math.min(
+                                              state.progressValue - 1,
+                                              exercises.length - 1)]
+                                          .gifUrl),
                                       autostart: Autostart.no,
                                       placeholder: (context) => Center(
                                           child: Text(L10n.tr().loading)),
@@ -153,18 +167,36 @@ class TodayWorkoutScreen extends StatelessWidget {
                         SizedBox(
                           height: 12.px,
                         ),
-                        CustomElevatedButton(
-                            padding: EdgeInsets.zero,
-                            text: L10n.tr().start,
-                            onPressed: () {
-                              context.pushNamed(
-                                  PlayWorkoutScreen.routeWzTitleAnExtra,
-                                  pathParameters: {
-                                    'title': _fixExerciseName(
-                                        exercises[state.progressValue - 1].name)
-                                  },
-                                  extra: exercises[state.progressValue - 1]);
-                            }),
+                        BlocBuilder<WorkoutCubit, WorkoutState>(
+                          builder: (context, state) {
+                            final cubit = context.read<WorkoutCubit>();
+                            final currentExercise =
+                                exercises[state.progressValue - 1];
+                            final statusText =
+                                cubit.getExerciseStatusText(currentExercise.id);
+
+                            print(
+                                "=== عرض حالة التمرين في TodayWorkoutScreen ===");
+                            print("معرف التمرين: ${currentExercise.id}");
+                            print("النص المعروض: $statusText");
+
+                            return CustomElevatedButton(
+                              padding: EdgeInsets.zero,
+                              text: statusText,
+                              onPressed: statusText == "منجز"
+                                  ? null // تعطيل الزر إذا كان التمرين مكتمل
+                                  : () {
+                                      context.pushNamed(
+                                          PlayWorkoutScreen.routeWzTitleAnExtra,
+                                          pathParameters: {
+                                            'title': _fixExerciseName(
+                                                currentExercise.name)
+                                          },
+                                          extra: currentExercise);
+                                    },
+                            );
+                          },
+                        ),
                         SizedBox(
                           height: 10.px,
                         ),
@@ -206,6 +238,7 @@ class TrainingDescription extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(width: double.infinity),
                 Text(
                   L10n.tr().instructions,
                   style: TStyle.bold_16.copyWith(
@@ -341,7 +374,6 @@ class WorkOutProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<WorkoutCubit>();
     return BlocBuilder<WorkoutCubit, WorkoutState>(
       builder: (context, state) {
         return Column(
@@ -362,20 +394,15 @@ class WorkOutProgressHeader extends StatelessWidget {
                     SizedBox(
                       width: 5.px,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        cubit.updateProgress(1);
-                      },
-                      child: Text(
-                        workoutList.first,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                        style: TStyle.regular_14.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: state.progressValue >= 1
-                              ? Theme.of(context).colorScheme.primary
-                              : Co.whiteColor,
-                        ),
+                    Text(
+                      workoutList.first,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: TStyle.regular_14.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: state.progressValue >= 1
+                            ? Theme.of(context).colorScheme.primary
+                            : Co.whiteColor,
                       ),
                     )
                   ],
@@ -383,20 +410,15 @@ class WorkOutProgressHeader extends StatelessWidget {
                 ...workoutList.skip(1).map((workout) {
                   final index = workoutList.indexOf(workout) + 1;
 
-                  return GestureDetector(
-                    onTap: () {
-                      cubit.updateProgress(index);
-                    },
-                    child: Text(
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      workout,
-                      style: TStyle.regular_14.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: state.progressValue >= index
-                            ? Theme.of(context).colorScheme.primary
-                            : Co.whiteColor,
-                      ),
+                  return Text(
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    workout,
+                    style: TStyle.regular_14.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: state.progressValue >= index
+                          ? Theme.of(context).colorScheme.primary
+                          : Co.whiteColor,
                     ),
                   );
                 }),
@@ -458,27 +480,47 @@ class _WorkoutAppBar extends StatelessWidget implements PreferredSizeWidget {
             context.pop();
           },
           actions: [
-            TextButton(
-              onPressed: () {
-                final value = context.read<WorkoutCubit>().state.progressValue;
+            // إخفاء زر التخطي إذا انتهى المستخدم من جميع التمارين
+            BlocBuilder<WorkoutCubit, WorkoutState>(
+              builder: (context, state) {
                 final totalExercises =
-                    cubit.getPlanForToday()!.exercises.length;
+                    cubit.getPlanForToday()?.exercises.length ?? 0;
+                final currentExerciseIndex = state.progressValue - 1;
 
-                if (value < totalExercises) {
-                  // الانتقال للتمرين التالي
-                  cubit.updateProgress(value + 1);
-                } else {
-                  // إذا كان في التمرين الأخير، إغلاق الشاشة
-                  context.pop();
+                // إذا كان المستخدم في التمرين الأخير وكان مكتملاً، أخفي زر التخطي
+                if (currentExerciseIndex >= totalExercises - 1) {
+                  final lastExerciseId =
+                      cubit.getPlanForToday()?.exercises.last.id;
+                  if (lastExerciseId != null) {
+                    final lastExerciseStatus =
+                        cubit.getTodayExerciseStatus(lastExerciseId);
+                    if (lastExerciseStatus == ExerciseStatus.completed) {
+                      return const SizedBox.shrink(); // إخفاء الزر
+                    }
+                  }
                 }
+
+                return TextButton(
+                  onPressed: () {
+                    final value = state.progressValue;
+
+                    if (value < totalExercises) {
+                      // الانتقال للتمرين التالي
+                      cubit.updateProgress(value + 1);
+                    } else {
+                      // إذا كان في التمرين الأخير، إغلاق الشاشة
+                      context.pop();
+                    }
+                  },
+                  child: Text(
+                    L10n.tr().skip,
+                    style: TStyle.regular_14.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Co.whiteColor,
+                    ),
+                  ),
+                );
               },
-              child: Text(
-                L10n.tr().skip,
-                style: TStyle.regular_14.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Co.whiteColor,
-                ),
-              ),
             ),
           ],
         );

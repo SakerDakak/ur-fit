@@ -10,11 +10,15 @@ class SettingRepo {
 
   SettingRepo(this.settingRemoteDataSource);
   Future<Either<Failure, void>> contactUs(
-      {required String name, required String email, required String phone, required String message}) async {
+      {required String name,
+      required String email,
+      required String phone,
+      required String message}) async {
     try {
-      final result = await settingRemoteDataSource.contactUs(name: name, email: email, phone: phone, message: message);
+      await settingRemoteDataSource.contactUs(
+          name: name, email: email, phone: phone, message: message);
 
-      return Right(result);
+      return const Right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -30,7 +34,8 @@ class SettingRepo {
     }
   }
 
-  Future<Either<Failure, StaticPageModel>> getStaticPage({required String key}) async {
+  Future<Either<Failure, StaticPageModel>> getStaticPage(
+      {required String key}) async {
     try {
       final result = await settingRemoteDataSource.getStaticPage(key: key);
 

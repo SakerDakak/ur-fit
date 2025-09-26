@@ -5,6 +5,7 @@ import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/weak_days_date.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
+import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/current_weight_card.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/discount_section.dart';
 import 'package:urfit/modules/home_module/widgets/home_widgets/statistics_widgets/statistics_section.dart';
@@ -19,7 +20,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<HealthCubit>().initializeHealth();
+
+    // تحميل بيانات التمارين إذا كان المستخدم مسجل دخول ولديه اشتراك صالح
     final user = Session().currentUser;
+    if (user != null && user.hasValidSubscription == true) {
+      context.read<WorkoutCubit>().getWorkOutPlan();
+    }
+
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         return Scaffold(
@@ -39,6 +46,11 @@ class HomeScreen extends StatelessWidget {
 
                     // تحديث بيانات الصحة
                     context.read<HealthCubit>().initializeHealth();
+
+                    // تحديث بيانات التمارين إذا كان المستخدم لديه اشتراك صالح
+                    if (user?.hasValidSubscription == true) {
+                      context.read<WorkoutCubit>().getWorkOutPlan();
+                    }
                   },
                   child: ListView(
                     padding: const EdgeInsets.only(

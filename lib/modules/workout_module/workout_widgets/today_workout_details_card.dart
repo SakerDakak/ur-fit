@@ -10,7 +10,6 @@ import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/calories_indicator.dart';
 
 import '../controller/workout_cubit.dart';
-import '../data/model/workout_model.dart';
 
 class TodayWorkoutDetailsCard extends StatelessWidget {
   const TodayWorkoutDetailsCard({super.key});
@@ -18,7 +17,6 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<WorkoutCubit>();
-    final WorkoutDay? day = cubit.getPlanForToday();
     final user = Session().currentUser;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -54,61 +52,70 @@ class TodayWorkoutDetailsCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppConst.kBorderRadius),
             border: Border.all(color: Co.strockColor),
           ),
-          child: Column(
-            children: [
-              // calories
-              CaloriesIndicator(
-                calories: day!.caloriesBurned.toDouble() * day.exercises.length,
-                title: L10n.tr().calories,
-              ),
+          child: BlocBuilder<WorkoutCubit, WorkoutState>(
+            builder: (context, state) {
+              // الحصول على الإحصائيات المحلية المحفوظة
+              final workoutStats = cubit.getTodayWorkoutStats();
+              final burnedCalories = workoutStats['burnedCalories'] ?? 0;
+              final completedTimeMinutes =
+                  workoutStats['completedTimeMinutes'] ?? 0;
 
-              const SizedBox(height: 16),
-
-              // more details
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              return Column(
                 children: [
-                  // current weight
-                  DetailsItem(
-                    L10n.tr().currentWeight,
-                    Assets.iconsWeightIcon,
-                    user?.currentWeight.toString() ?? "0",
-                    L10n.tr().kg,
+                  // calories
+                  CaloriesIndicator(
+                    calories: burnedCalories.toDouble(),
+                    title: L10n.tr().calories,
                   ),
 
-                  const SizedBox(
-                    height: 40,
-                    child: VerticalDivider(
-                      color: Co.strockColor,
-                    ),
-                  ),
+                  const SizedBox(height: 16),
 
-                  // target weight
-                  DetailsItem(
-                    L10n.tr().goal,
-                    Assets.iconsFlag,
-                    user?.targetWeight.toString() ?? "0",
-                    L10n.tr().kg,
-                  ),
+                  // more details
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // current weight
+                      DetailsItem(
+                        L10n.tr().currentWeight,
+                        Assets.iconsWeightIcon,
+                        user?.currentWeight.toString() ?? "0",
+                        L10n.tr().kg,
+                      ),
 
-                  const SizedBox(
-                    height: 40,
-                    child: VerticalDivider(
-                      color: Co.strockColor,
-                    ),
-                  ),
+                      const SizedBox(
+                        height: 40,
+                        child: VerticalDivider(
+                          color: Co.strockColor,
+                        ),
+                      ),
 
-                  // workout duration
-                  DetailsItem(
-                    L10n.tr().time,
-                    Assets.iconsDumbbell,
-                    (day.timePerExercise * day.exercises.length)
-                        .toStringAsFixed(0),
-                    L10n.tr().min,
+                      // target weight
+                      DetailsItem(
+                        L10n.tr().goal,
+                        Assets.iconsFlag,
+                        user?.targetWeight.toString() ?? "0",
+                        L10n.tr().kg,
+                      ),
+
+                      const SizedBox(
+                        height: 40,
+                        child: VerticalDivider(
+                          color: Co.strockColor,
+                        ),
+                      ),
+
+                      // workout duration
+                      DetailsItem(
+                        L10n.tr().time,
+                        Assets.iconsDumbbell,
+                        completedTimeMinutes.toString(),
+                        L10n.tr().min,
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
+              );
+            },
           ),
         )
       ],

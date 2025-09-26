@@ -8,6 +8,7 @@ import 'package:urfit/core/presentation/style/colors.dart';
 import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
+import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
 class TrainingDurationCard extends StatelessWidget {
   const TrainingDurationCard({super.key});
@@ -50,16 +51,27 @@ class TrainingDurationCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                BlocSelector<HealthCubit, HealthState, num>(
-                  selector: (state) => state.exerciseTime,
-                  builder: (context, exerciseTime) {
-                    return Text(
-                      '$exerciseTime ${L10n.tr().min}',
-                      textAlign: TextAlign.center,
-                      style: TStyle.regular_14.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Co.fontColor,
-                      ),
+                BlocBuilder<WorkoutCubit, WorkoutState>(
+                  builder: (context, workoutState) {
+                    final workoutCubit = context.read<WorkoutCubit>();
+                    final workoutStats = workoutCubit.getTodayWorkoutStats();
+                    final workoutTime =
+                        workoutStats['completedTimeMinutes'] ?? 0;
+
+                    return BlocSelector<HealthCubit, HealthState, num>(
+                      selector: (state) => state.exerciseTime,
+                      builder: (context, exerciseTime) {
+                        // دمج وقت التمارين مع الوقت العام
+                        final totalTime = exerciseTime + workoutTime;
+                        return Text(
+                          '$totalTime ${L10n.tr().min}',
+                          textAlign: TextAlign.center,
+                          style: TStyle.regular_14.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Co.fontColor,
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

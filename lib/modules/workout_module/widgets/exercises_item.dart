@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:urfit/core/presentation/assets/assets_manager.dart';
-import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/modules/workout_module/today_workout_screen.dart';
 
 import '../../../core/presentation/style/colors.dart';
 import '../../../core/presentation/style/fonts.dart';
 import '../../../core/presentation/utils/constants.dart';
 import '../../../core/presentation/views/widgets/custom_image_view.dart';
+import '../controller/workout_cubit.dart';
 import '../data/model/workout_model.dart';
 
 // دالة لمعالجة أسماء التمارين العربية
@@ -96,11 +97,24 @@ class ExercisesItem extends StatelessWidget {
                       borderRadius:
                           BorderRadius.circular(AppConst.kBorderRadius),
                     ),
-                    child: Text(
-                      L10n.tr().start,
-                      style: TStyle.bold_14,
+                    child: BlocBuilder<WorkoutCubit, WorkoutState>(
+                      builder: (context, state) {
+                        final cubit = context.read<WorkoutCubit>();
+                        // الحصول على التمرين الحالي بناءً على progressValue
+                        final currentExerciseIndex = state.progressValue - 1;
+                        final exerciseId =
+                            currentExerciseIndex < exercises.length
+                                ? exercises[currentExerciseIndex].id
+                                : exercises.first.id;
+                        final statusText =
+                            cubit.getExerciseStatusText(exerciseId);
+                        return Text(
+                          statusText,
+                          style: TStyle.bold_14,
+                        );
+                      },
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

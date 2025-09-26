@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:urfit/core/presentation/utils/bloc_observer.dart';
+import 'package:urfit/core/data/services/midnight_data_cleanup_service.dart';
 import 'package:urfit/ur_fit_app.dart';
 
 import 'di.dart';
@@ -17,7 +18,8 @@ Future<void> main() async {
   // await HiveServices().register();
   // await HiveServices().openBoxes();
   try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
     };
@@ -32,6 +34,9 @@ Future<void> main() async {
   }
   await init();
   Bloc.observer = MyBlocObserver();
+
+  // تهيئة خدمة مسح البيانات عند منتصف الليل
+  MidnightDataCleanupService.initialize();
 
   runApp(
     const UrFitApp(),

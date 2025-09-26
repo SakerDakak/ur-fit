@@ -55,13 +55,13 @@ class AccountInfo extends StatelessWidget {
 
             // user name
             Text(
-              user!.name.toString(),
+              user?.name.toString() ?? '',
               style: TStyle.bold_16,
               textAlign: TextAlign.center,
             ),
             // email
             Text(
-              user.email.toString(),
+              user?.email.toString() ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,

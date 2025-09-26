@@ -24,6 +24,7 @@ import 'package:urfit/modules/subscription_module/data/subscription_remote_datas
 import 'package:urfit/modules/subscription_module/data/subscription_repo.dart';
 import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 import 'package:urfit/modules/workout_module/data/workout_remote_datasource.dart';
+import 'package:urfit/modules/workout_module/data/services/workout_progress_local_service.dart';
 import 'package:urfit/modules/workout_module/workout_repo/workout_repo.dart';
 
 import 'core/data/api/api_client.dart';
@@ -66,6 +67,8 @@ Future<void> init() async {
   di.registerLazySingleton<AuthRepo>(() => AuthRepo(di()));
   di.registerLazySingleton<SubscriptionRepo>(() => SubscriptionRepo(di()));
   di.registerLazySingleton<MealsLocalDatasource>(() => MealsLocalDatasource());
+  di.registerLazySingleton<WorkoutProgressLocalService>(
+      () => WorkoutProgressLocalService());
   di.registerLazySingleton<MealsRepo>(() => MealsRepo(di(), di()));
   di.registerLazySingleton<WorkoutRepo>(() => WorkoutRepo(di()));
   di.registerLazySingleton<SettingRepo>(() => SettingRepo(di()));
@@ -91,7 +94,7 @@ Future<void> init() async {
   di.registerFactory(() => SetupPersonalInfoCubit(di()));
   di.registerFactory(() => SubscriptionCubit(di()));
   di.registerFactory(() => MealsCubit(di()));
-  di.registerFactory(() => WorkoutCubit(di()));
+  di.registerFactory(() => WorkoutCubit(di(), di()));
   di.registerFactory(() => SettingCubit(di()));
   di.registerFactory(() => AuthCubit());
   di.registerFactory(() => UpdateUserInfoCubit(di()));

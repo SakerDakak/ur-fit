@@ -63,6 +63,9 @@ class _PlayButtonState extends State<PlayButton>
                           .read<WorkoutCubit>()
                           .playTraining(widget.controller);
                       widget.start();
+
+                      // بدء التمرين في التخزين المحلي
+                      await context.read<WorkoutCubit>().startTodayWorkout();
                     }
                   },
             icon: AnimatedIcon(

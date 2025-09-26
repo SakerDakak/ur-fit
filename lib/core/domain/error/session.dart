@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +10,8 @@ import 'package:urfit/di.dart';
 import 'package:urfit/modules/auth/data/models/user/user_model.dart';
 import 'package:urfit/modules/auth/data/repo/auth_repo.dart';
 import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
+import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
+import 'package:urfit/modules/workout_module/data/services/workout_progress_local_service.dart';
 
 class Session {
   static final _inst = Session._();
@@ -57,8 +60,6 @@ class Session {
       // إشعار التطبيق بتحديث بيانات المستخدم
       if (AppConst.navigatorKey.currentContext != null) {
         // يمكن إضافة منطق إضافي هنا لإشعار الواجهات بالتحديث
-        print(
-            "تم تحديث بيانات المستخدم: hasValidSubscription=${loadedUser.hasValidSubscription}, haveExercisePlan=${loadedUser.haveExercisePlan}, haveMealPlan=${loadedUser.haveMealPlan}");
       }
     });
   }
@@ -73,9 +74,6 @@ class Session {
       final user = currentUser;
 
       if (user?.hasValidSubscription == true) {
-        print(
-            "المحاولة ${attempts + 1}: hasValidSubscription=${user?.hasValidSubscription}, haveExercisePlan=${user?.haveExercisePlan}, haveMealPlan=${user?.haveMealPlan}");
-
         // إذا كانت الخطط موجودة، انتهاء
         if ((user?.haveExercisePlan == true && user?.haveMealPlan == true) ||
             (user?.haveExercisePlan == true &&
@@ -106,6 +104,18 @@ class Session {
     await GoogleSignIn(scopes: ["email", "profile"]).signOut();
     setCurrentUser = null;
     TokenService.deleteToken();
+    // مسح بيانات التمارين المحلية
+    await di<WorkoutProgressLocalService>().clearAllWorkoutProgress();
+
+    // مسح بيانات التمارين من WorkoutCubit أيضاً
+    if (AppConst.navigatorKey.currentContext != null) {
+      try {
+        await AppConst.navigatorKey.currentContext!
+            .read<WorkoutCubit>()
+            .clearAllData();
+      } catch (_) {}
+    }
+
     AppConst.navigatorKey.currentContext?.go(AuthScreen.route);
   }
 
@@ -115,6 +125,17 @@ class Session {
     TokenService.deleteToken();
     setCountryId = null;
     setCityId = null;
+    // مسح بيانات التمارين المحلية
+    await di<WorkoutProgressLocalService>().clearAllWorkoutProgress();
+
+    // مسح بيانات التمارين من WorkoutCubit أيضاً
+    if (AppConst.navigatorKey.currentContext != null) {
+      try {
+        await AppConst.navigatorKey.currentContext!
+            .read<WorkoutCubit>()
+            .clearAllData();
+      } catch (_) {}
+    }
   }
 
   // حذف بيانات المستخدم مع الاحتفاظ ببيانات العنوان
@@ -123,6 +144,17 @@ class Session {
     _userController.add(null); // إشعار بإزالة بيانات المستخدم
     TokenService.deleteToken();
     // لا نحذف countryId و cityId للاحتفاظ ببيانات العنوان
+    // مسح بيانات التمارين المحلية
+    await di<WorkoutProgressLocalService>().clearAllWorkoutProgress();
+
+    // مسح بيانات التمارين من WorkoutCubit أيضاً
+    if (AppConst.navigatorKey.currentContext != null) {
+      try {
+        await AppConst.navigatorKey.currentContext!
+            .read<WorkoutCubit>()
+            .clearAllData();
+      } catch (_) {}
+    }
   }
 
   // إغلاق الـ StreamController عند إغلاق التطبيق

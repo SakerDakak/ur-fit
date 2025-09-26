@@ -8,6 +8,7 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/custom_circular_percent_indicator.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
+import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
 
 class CaloriesTrackingCard extends StatelessWidget {
   const CaloriesTrackingCard({super.key});
@@ -40,13 +41,24 @@ class CaloriesTrackingCard extends StatelessWidget {
               // progress
               Expanded(
                 child: FittedBox(
-                  child: BlocSelector<HealthCubit, HealthState, num>(
-                    selector: (state) => state.totalCalories,
-                    builder: (context, calories) {
-                      // تحويل السعرات إلى نسبة مئوية (افتراضياً 2200 سعرة حرارية كحد أقصى)
-                      final double percent =
-                          (calories.toDouble() / 2200).clamp(0.0, 1.0);
-                      return CustomCircularPercentIndicator(percent: percent);
+                  child: BlocBuilder<WorkoutCubit, WorkoutState>(
+                    builder: (context, workoutState) {
+                      final workoutCubit = context.read<WorkoutCubit>();
+                      final workoutStats = workoutCubit.getTodayWorkoutStats();
+                      final workoutCalories =
+                          workoutStats['burnedCalories'] ?? 0;
+
+                      return BlocSelector<HealthCubit, HealthState, num>(
+                        selector: (state) => state.totalCalories,
+                        builder: (context, calories) {
+                          // دمج سعرات التمارين مع السعرات العامة
+                          final totalCalories = calories + workoutCalories;
+                          final double percent =
+                              (totalCalories.toDouble() / 2200).clamp(0.0, 1.0);
+                          return CustomCircularPercentIndicator(
+                              percent: percent);
+                        },
+                      );
                     },
                   ),
                 ),
@@ -54,17 +66,26 @@ class CaloriesTrackingCard extends StatelessWidget {
 
               const SizedBox(height: 8),
 
-              BlocSelector<HealthCubit, HealthState, num>(
-                selector: (state) => state.totalCalories,
-                builder: (context, calories) {
-                  return Text(
-                    '${calories.toStringAsFixed(0)} ${L10n.tr().calorie}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TStyle.regular_14.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Co.fontColor,
-                    ),
+              BlocBuilder<WorkoutCubit, WorkoutState>(
+                builder: (context, workoutState) {
+                  final workoutCubit = context.read<WorkoutCubit>();
+                  final workoutStats = workoutCubit.getTodayWorkoutStats();
+                  final workoutCalories = workoutStats['burnedCalories'] ?? 0;
+
+                  return BlocSelector<HealthCubit, HealthState, num>(
+                    selector: (state) => state.totalCalories,
+                    builder: (context, calories) {
+                      final totalCalories = calories + workoutCalories;
+                      return Text(
+                        '${totalCalories.toStringAsFixed(0)} ${L10n.tr().calorie}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TStyle.regular_14.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Co.fontColor,
+                        ),
+                      );
+                    },
                   );
                 },
               ),

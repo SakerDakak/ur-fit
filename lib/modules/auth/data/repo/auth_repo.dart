@@ -112,11 +112,6 @@ class AuthRepo {
     }
   }
 
-  // Future<Either<Failure, void>> sendSubscriptionInfo({required String token}) {
-  //   // TODO: implement sendSubscriptionInfo
-  //   throw UnimplementedError();
-  // }
-
   Future<Either<Failure, Map<String, dynamic>>> forgetPassword({
     required String email,
   }) async {

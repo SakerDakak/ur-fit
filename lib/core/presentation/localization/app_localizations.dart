@@ -845,7 +845,7 @@ abstract class AppLocalizations {
   /// No description provided for @seconds.
   ///
   /// In en, this message translates to:
-  /// **'Seconds'**
+  /// **'seconds'**
   String get seconds;
 
   /// No description provided for @otpHasBeenSentToYourEmail.
@@ -2551,6 +2551,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter phone number'**
   String get enterPhoneNumber;
+
+  /// No description provided for @rest.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest'**
+  String get rest;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @exerciseTimeEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise time ended!'**
+  String get exerciseTimeEnded;
+
+  /// No description provided for @exerciseCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise completed successfully! 🎉'**
+  String get exerciseCompleted;
+
+  /// No description provided for @restTimeEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest time ended!'**
+  String get restTimeEnded;
+
+  /// No description provided for @ofText.
+  ///
+  /// In en, this message translates to:
+  /// **'of'**
+  String get ofText;
+
+  /// No description provided for @startWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Workout'**
+  String get startWorkout;
+
+  /// No description provided for @resumeWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume Workout'**
+  String get resumeWorkout;
+
+  /// No description provided for @remainingGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining Groups'**
+  String get remainingGroups;
+
+  /// No description provided for @calorieBurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Calorie Burn'**
+  String get calorieBurn;
+
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @endSet.
+  ///
+  /// In en, this message translates to:
+  /// **'End Set'**
+  String get endSet;
+
+  /// No description provided for @continueWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueWorkout;
+
+  /// No description provided for @todayWorkoutStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Workout Statistics'**
+  String get todayWorkoutStats;
+
+  /// No description provided for @minute.
+  ///
+  /// In en, this message translates to:
+  /// **'minute'**
+  String get minute;
+
+  /// No description provided for @totalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Time'**
+  String get totalTime;
+
+  /// No description provided for @workoutTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout Time'**
+  String get workoutTime;
+
+  /// No description provided for @restTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest Time'**
+  String get restTime;
+
+  /// No description provided for @exerciseId.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise ID'**
+  String get exerciseId;
 }
 
 class _AppLocalizationsDelegate

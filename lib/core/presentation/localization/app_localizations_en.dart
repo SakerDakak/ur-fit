@@ -399,7 +399,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resendAfter => 'Resend after';
 
   @override
-  String get seconds => 'Seconds';
+  String get seconds => 'seconds';
 
   @override
   String get otpHasBeenSentToYourEmail => 'An OTP has been sent to your email';
@@ -1284,4 +1284,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterPhoneNumber => 'Enter phone number';
+
+  @override
+  String get rest => 'Rest';
+
+  @override
+  String get paused => 'Paused';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get exerciseTimeEnded => 'Exercise time ended!';
+
+  @override
+  String get exerciseCompleted => 'Exercise completed successfully! 🎉';
+
+  @override
+  String get restTimeEnded => 'Rest time ended!';
+
+  @override
+  String get ofText => 'of';
+
+  @override
+  String get startWorkout => 'Start Workout';
+
+  @override
+  String get resumeWorkout => 'Resume Workout';
+
+  @override
+  String get remainingGroups => 'Remaining Groups';
+
+  @override
+  String get calorieBurn => 'Calorie Burn';
+
+  @override
+  String get pause => 'Pause';
+
+  @override
+  String get endSet => 'End Set';
+
+  @override
+  String get continueWorkout => 'Continue';
+
+  @override
+  String get todayWorkoutStats => 'Today\'s Workout Statistics';
+
+  @override
+  String get minute => 'minute';
+
+  @override
+  String get totalTime => 'Total Time';
+
+  @override
+  String get workoutTime => 'Workout Time';
+
+  @override
+  String get restTime => 'Rest Time';
+
+  @override
+  String get exerciseId => 'Exercise ID';
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:urfit/core/data/services/storage_keys.dart';
+import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/di.dart';
 
@@ -175,8 +176,8 @@ class ApiClient {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                'Network error occurred. Please try again.',
+              Text(
+                L10n.tr().noInternetConnection,
                 // style: Theme.of(context).textTheme.headline6,
                 textAlign: TextAlign.center,
               ),
@@ -186,7 +187,7 @@ class ApiClient {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('Retry'),
+                child: Text(L10n.tr().retry),
               ),
             ],
           ),
@@ -228,12 +229,10 @@ String _getErrorMessageFromResponse(Map<String, dynamic> data) {
     }
   }
 
-  return message ?? "حدث خطأ ما";
+  return message ?? L10n.tr().somethingWentWrong;
 }
 
 class RetryOnConnectionChangedInterceptor extends Interceptor {
   @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {
-    // TODO: implement onError
-  }
+  void onError(DioException err, ErrorInterceptorHandler handler) {}
 }

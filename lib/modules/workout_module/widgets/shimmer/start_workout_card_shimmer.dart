@@ -7,7 +7,6 @@ import 'package:urfit/core/presentation/localization/l10n.dart';
 import '../../../../core/presentation/style/colors.dart';
 import '../../../../core/presentation/style/fonts.dart';
 import '../../../../core/presentation/utils/constants.dart';
-import '../exercises_item.dart';
 
 class StartWorkoutCardShimmer extends StatelessWidget {
   const StartWorkoutCardShimmer({super.key});
@@ -59,12 +58,12 @@ class StartWorkoutCardShimmer extends StatelessWidget {
             child: Stack(
               children: [
                 // workout image
-                Positioned(
-                  top: -10,
-                  bottom: -10,
-                  child: workoutImage(context,
-                      imageUrl: AssetsManager.trainingDummy),
-                ),
+                // Positioned(
+                //   top: -10,
+                //   bottom: -10,
+                //   child: workoutImage(context,
+                //       imageUrl: AssetsManager.trainingDummy),
+                // ),
 
                 // workout title and start button
                 Padding(
@@ -136,12 +135,12 @@ class StartWorkoutCardShimmer extends StatelessWidget {
             child: Stack(
               children: [
                 // workout image
-                Positioned(
-                  top: -10,
-                  bottom: -10,
-                  child: workoutImage(context,
-                      imageUrl: AssetsManager.trainingDummy),
-                ),
+                // Positioned(
+                //   top: -10,
+                //   bottom: -10,
+                //   child: workoutImage(context,
+                //       imageUrl: AssetsManager.trainingDummy),
+                // ),
 
                 // workout title and start button
                 Padding(
