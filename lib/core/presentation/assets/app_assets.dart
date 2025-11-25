@@ -143,10 +143,13 @@ class Assets {
   static const String imageLunch = "assets/image/lunch.png";
 
   static const String imageMaleCharacter = "assets/image/male_character.png";
+  static const String imageFemaleCharacter =
+      "assets/image/female_character.png";
 
   static const String imageMaleGender = "assets/image/male_gender.png";
 
   static const String imageMan = "assets/image/man.png";
+  static const String imageBanner = "assets/image/banner.jpg";
 
   static const String imageManPullUp = "assets/image/man_pull_up.jpg";
 

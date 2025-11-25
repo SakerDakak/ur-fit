@@ -811,7 +811,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get myPlan => 'خطتي';
 
   @override
-  String get editPersonalInfo => 'تعديل معلوماتي الشخصية';
+  String get editPersonalInfo => 'تعديل الخطة الحالية';
 
   @override
   String get previousPlan => 'خطتي السابقة';

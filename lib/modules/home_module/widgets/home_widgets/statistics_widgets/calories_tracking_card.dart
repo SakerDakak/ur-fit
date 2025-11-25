@@ -40,7 +40,7 @@ class CaloriesTrackingCard extends StatelessWidget {
 
               // progress
               Expanded(
-                child: FittedBox(
+                child: Center(
                   child: BlocBuilder<WorkoutCubit, WorkoutState>(
                     builder: (context, workoutState) {
                       final workoutCubit = context.read<WorkoutCubit>();
@@ -55,8 +55,11 @@ class CaloriesTrackingCard extends StatelessWidget {
                           final totalCalories = calories + workoutCalories;
                           final double percent =
                               (totalCalories.toDouble() / 2200).clamp(0.0, 1.0);
-                          return CustomCircularPercentIndicator(
-                              percent: percent);
+                          return FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: CustomCircularPercentIndicator(
+                                percent: percent),
+                          );
                         },
                       );
                     },

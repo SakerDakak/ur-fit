@@ -86,7 +86,7 @@ class DiscountSection extends StatelessWidget {
                     child: Stack(
                       children: [
                         Positioned.directional(
-                          top: -45,
+                          top: -50,
                           start: -22,
                           textDirection: Directionality.of(context),
                           child: _buildTheStackedCircles(context),
@@ -97,15 +97,15 @@ class DiscountSection extends StatelessWidget {
                 ),
 
                 // background image - في الطرف الأيسر
-                Positioned.directional(
-                  bottom: 0,
-                  start: -8,
-                  textDirection: Directionality.of(context),
-                  child: Image.asset(
-                    Assets.imageMan,
-                    height: 118,
-                  ),
-                ),
+                // Positioned.directional(
+                //   bottom: 0,
+                //   start: -8,
+                //   textDirection: Directionality.of(context),
+                //   child: Image.asset(
+                //     Assets.imageMan,
+                //     height: 118,
+                //   ),
+                // ),
 
                 // content - في الطرف الأيمن لتجنب التضارب مع الصورة
                 Positioned.directional(
@@ -237,6 +237,7 @@ class DiscountSection extends StatelessWidget {
         CircleAvatar(
           radius: 60,
           backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundImage: Image.asset(Assets.imageBanner).image,
         ),
       ],
     );

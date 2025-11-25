@@ -62,9 +62,8 @@ class HealthCubit extends Cubit<HealthState> {
         if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
       ];
 
-      // requesting access to the data types before reading them
-      final bool requested =
-          await Health().requestAuthorization(types, permissions: [
+      // define permissions
+      final permissions = [
         HealthDataAccess.READ_WRITE, // STEPS
         HealthDataAccess.READ_WRITE, // BASAL_ENERGY_BURNED
         HealthDataAccess.READ_WRITE, // ACTIVE_ENERGY_BURNED
@@ -77,10 +76,44 @@ class HealthCubit extends Cubit<HealthState> {
         HealthDataAccess.READ_WRITE, // SLEEP_REM
         HealthDataAccess.READ_WRITE, // WATER
         HealthDataAccess.READ_WRITE, // DISTANCE
-      ]);
+      ];
 
-      if (!requested) {
-        return;
+      // على Android، نتحقق من الصلاحيات أولاً
+      if (Platform.isAndroid) {
+        // التحقق من وجود الصلاحيات
+        bool hasPermissions =
+            await Health().hasPermissions(types, permissions: permissions) ??
+                false;
+
+        // إذا لم تكن الصلاحيات موجودة، نطلبها
+        if (!hasPermissions) {
+          // طلب الصلاحيات - على Android قد يفتح Health Connect تلقائياً
+          // يجب أن نستدعي requestAuthorization حتى لو كان hasPermissions يعيد false
+          // لأن requestAuthorization هو الذي يفتح نافذة الصلاحيات
+          await Health().requestAuthorization(types, permissions: permissions);
+
+          // نعطي وقتاً للنظام لمعالجة الطلب وفتح Health Connect
+          await Future.delayed(const Duration(milliseconds: 1000));
+
+          // التحقق مرة أخرى من الصلاحيات بعد محاولة الطلب
+          hasPermissions =
+              await Health().hasPermissions(types, permissions: permissions) ??
+                  false;
+
+          // إذا لم تكن الصلاحيات موجودة بعد، نترك الدالة
+          // على Android، قد يحتاج المستخدم إلى منح الصلاحيات من Health Connect
+          if (!hasPermissions) {
+            return;
+          }
+        }
+      } else {
+        // على iOS، نطلب الصلاحيات مباشرة
+        final bool requested = await Health()
+            .requestAuthorization(types, permissions: permissions);
+
+        if (requested != true) {
+          return;
+        }
       }
 
       final now = DateTime.now();

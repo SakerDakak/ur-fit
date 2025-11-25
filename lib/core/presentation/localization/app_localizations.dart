@@ -1655,7 +1655,7 @@ abstract class AppLocalizations {
   /// No description provided for @editPersonalInfo.
   ///
   /// In en, this message translates to:
-  /// **'Edit Personal Information'**
+  /// **'Edit Current Plan'**
   String get editPersonalInfo;
 
   /// No description provided for @previousPlan.

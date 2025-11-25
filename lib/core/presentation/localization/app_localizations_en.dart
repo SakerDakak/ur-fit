@@ -813,7 +813,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myPlan => 'My Plan';
 
   @override
-  String get editPersonalInfo => 'Edit Personal Information';
+  String get editPersonalInfo => 'Edit Current Plan';
 
   @override
   String get previousPlan => 'Previous Plan';

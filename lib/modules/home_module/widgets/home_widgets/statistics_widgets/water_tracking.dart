@@ -75,18 +75,7 @@ class WaterTracking extends StatelessWidget {
                       );
                     });
 
-                    // التحقق من وجود بيانات للعرض
-                    if (waterData.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'لا توجد بيانات مياه متاحة',
-                          style: TStyle.regular_12.copyWith(
-                            color: Co.fontColor,
-                          ),
-                        ),
-                      );
-                    }
-
+                    // عرض الرسم البياني دائماً حتى لو كانت القيم 0
                     return CustomBarChart(data: chartData);
                   },
                 ),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -70,23 +71,28 @@ class RadioBoxWithImage extends StatelessWidget {
                 vertical: 20,
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(width: shortMode ? 0 : 88),
-
                   // meal name
-                  Expanded(
-                    child: Text(
-                      title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TStyle.bold_16.copyWith(shadows: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          offset: const Offset(0, 4),
-                          blurRadius: 4,
-                          spreadRadius: 0,
-                        ),
-                      ]),
+                  Flexible(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.only(start: shortMode ? 0 : 88),
+                      child: AutoSizeText(
+                        title,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        minFontSize: 9,
+                        maxFontSize: 14,
+                        style: TStyle.bold_16.copyWith(shadows: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4,
+                            spreadRadius: 0,
+                          ),
+                        ]),
+                      ),
                     ),
                   ),
 

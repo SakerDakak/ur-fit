@@ -57,65 +57,68 @@ class StartPersonalInfoScreen extends StatelessWidget {
               ),
 
               // content
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // user name
-                    Text(
-                      '${L10n.tr().welcome}  ${Session().currentUser?.name}',
-                      style: TStyle.bold_24.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 60),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // user name
+                      Text(
+                        '${L10n.tr().welcome}  ${Session().currentUser?.name}',
+                        style: TStyle.bold_24.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                    // welcome message
-                    Text(
-                      L10n.tr().welcomingPhrase1,
-                      style: TStyle.bold_24,
-                    ),
+                      // welcome message
+                      Text(
+                        L10n.tr().welcomingPhrase1,
+                        style: TStyle.bold_24,
+                      ),
 
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                    // setup instructions
-                    Text(
-                      L10n.tr().welcomingPhrase2,
-                      style: TStyle.medium_16,
-                      textAlign: TextAlign.center,
-                    ),
+                      // setup instructions
+                      Text(
+                        L10n.tr().welcomingPhrase2,
+                        style: TStyle.medium_16,
+                        textAlign: TextAlign.center,
+                      ),
 
-                    const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                    // start setup button
-                    CustomElevatedButton(
-                      text: L10n.tr().start,
-                      onPressed: () =>
-                          context.push(PresonalInfoLayoutScreen.routeWzExtra),
-                    ),
+                      // start setup button
+                      CustomElevatedButton(
+                        text: L10n.tr().start,
+                        onPressed: () =>
+                            context.push(PresonalInfoLayoutScreen.routeWzExtra),
+                      ),
 
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
-                    // skip button
-                    // TextButton(
-                    //   onPressed: () {
-                    //     context.pushNamed(Routes.authenticationScreen);
-                    //     context
-                    //         .read<AuthenticationBloc>()
-                    //         .add(LoggedIn(token: 'token'));
-                    //   },
-                    //   child: Text(
-                    //     L10n.tr().later,
-                    //     style: CustomTextStyle.bold_16.copyWith(
-                    //       color: Theme.of(context).colorScheme.primary,
-                    //     ),
-                    //   ),
-                    // ),
+                      // skip button
+                      // TextButton(
+                      //   onPressed: () {
+                      //     context.pushNamed(Routes.authenticationScreen);
+                      //     context
+                      //         .read<AuthenticationBloc>()
+                      //         .add(LoggedIn(token: 'token'));
+                      //   },
+                      //   child: Text(
+                      //     L10n.tr().later,
+                      //     style: CustomTextStyle.bold_16.copyWith(
+                      //       color: Theme.of(context).colorScheme.primary,
+                      //     ),
+                      //   ),
+                      // ),
 
-                    const SizedBox(height: 30),
-                  ],
+                      const SizedBox(height: 30),
+                    ],
+                  ),
                 ),
               )
             ],

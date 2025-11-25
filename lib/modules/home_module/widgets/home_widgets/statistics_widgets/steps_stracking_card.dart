@@ -83,18 +83,7 @@ class StepsTrackingCard extends StatelessWidget {
                       return FlSpot(index.toDouble(), stepsAmount);
                     });
 
-                    // التحقق من وجود بيانات للعرض
-                    if (stepsData.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'لا توجد بيانات خطوات متاحة',
-                          style: TStyle.regular_12.copyWith(
-                            color: Co.fontColor,
-                          ),
-                        ),
-                      );
-                    }
-
+                    // عرض الرسم البياني دائماً حتى لو كانت القيم 0
                     return CustomLineChart(spots: chartSpots);
                   },
                 ),
