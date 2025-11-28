@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health/health.dart';
+import 'package:urfit/core/data/services/health_local_service.dart';
 import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -8,6 +9,7 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/charts/custom_bar_chart.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
+import 'package:urfit/modules/home_module/widgets/home_widgets/statistics_widgets/edit_health_value_dialog.dart';
 
 class WaterTracking extends StatelessWidget {
   const WaterTracking({
@@ -69,8 +71,13 @@ class WaterTracking extends StatelessWidget {
                       final dateKey = '${date.year}-${date.month}-${date.day}';
                       final waterAmount = waterByDate[dateKey] ?? 0.0;
 
+                      // إضافة التعديلات المحلية لهذا اليوم
+                      final adjustment =
+                          HealthLocalService.getWaterAdjustment(date);
+                      final finalAmount = waterAmount + adjustment;
+
                       return WaterChartData(
-                        amountOfWater: waterAmount,
+                        amountOfWater: finalAmount,
                         date: date,
                       );
                     });
@@ -81,42 +88,59 @@ class WaterTracking extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              BlocSelector<HealthCubit, HealthState, List<HealthDataPoint>>(
-                selector: (state) => state.healthData,
-                builder: (context, healthData) {
-                  // حساب كمية المياه لليوم الحالي فقط
-                  final today = DateTime.now();
-                  final todayKey = '${today.year}-${today.month}-${today.day}';
+              GestureDetector(
+                onTap: () async {
+                  final healthCubit = context.read<HealthCubit>();
+                  final healthData = healthCubit.state.healthData;
 
-                  final waterData = healthData
-                      .where((element) => element.type == HealthDataType.WATER)
-                      .toList();
+                  // الحصول على القيمة الأصلية من Health Connect
+                  final originalValue =
+                      healthCubit.getTodayOriginalWater(healthData).toDouble();
 
-                  // حساب مجموع المياه لليوم الحالي
-                  double todayWaterAmount = 0.0;
-                  for (final data in waterData) {
-                    final dateKey =
-                        '${data.dateFrom.year}-${data.dateFrom.month}-${data.dateFrom.day}';
-                    if (dateKey == todayKey) {
-                      final waterAmount = double.tryParse(data.value
-                              .toString()
-                              .split("numericValue: ")
-                              .last) ??
-                          0;
-                      todayWaterAmount += waterAmount;
-                    }
-                  }
+                  // الحصول على القيمة الحالية (مع التعديلات) من state
+                  final now = DateTime.now();
+                  final adjustment = HealthLocalService.getWaterAdjustment(now);
+                  final currentValue = originalValue + adjustment;
 
-                  return Text(
-                    '${todayWaterAmount.toStringAsFixed(1)} ${L10n.tr().litre}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TStyle.regular_14.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Co.fontColor,
+                  final result = await showDialog<bool>(
+                    context: context,
+                    builder: (context) => EditHealthValueDialog(
+                      type: HealthValueType.water,
+                      currentValue: currentValue,
+                      originalValue: originalValue,
                     ),
                   );
+
+                  if (result == true) {
+                    // إعادة بناء الويدجت لتحديث القيمة
+                    (context as Element).markNeedsBuild();
+                  }
                 },
+                child: Builder(
+                  builder: (context) {
+                    final healthCubit = context.watch<HealthCubit>();
+                    final healthData = healthCubit.state.healthData;
+
+                    // حساب القيمة مع التعديلات مباشرة
+                    final originalValue = healthCubit
+                        .getTodayOriginalWater(healthData)
+                        .toDouble();
+                    final now = DateTime.now();
+                    final adjustment =
+                        HealthLocalService.getWaterAdjustment(now);
+                    final totalWater = originalValue + adjustment;
+
+                    return Text(
+                      '${totalWater.toStringAsFixed(1)} ${L10n.tr().litre}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TStyle.regular_14.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: Co.fontColor,
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

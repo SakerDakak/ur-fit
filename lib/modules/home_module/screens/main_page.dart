@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
-import 'package:urfit/core/presentation/utils/alerts.dart';
 
 import '../../../core/presentation/assets/assets_manager.dart';
 import '../../../core/presentation/style/colors.dart';
@@ -26,10 +25,15 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-// تم حذف المتغير غير المستخدم
-
 class _MainPageState extends State<MainPage> {
   late List<Widget> _widgetOptions;
+  int _selectedIndex = 0;
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
+
+  // مفاتيح فريدة لإعادة بناء صفحات التمارين والتغذية
+  Key _workoutKey = UniqueKey();
+  Key _mealsKey = UniqueKey();
 
   @override
   void initState() {
@@ -43,12 +47,17 @@ class _MainPageState extends State<MainPage> {
     //   statusBarIconBrightness: Brightness.light,
     //   statusBarBrightness: Brightness.dark,
     // ));
+    _buildScreens();
+  }
+
+  /// بناء الصفحات - يتم استدعاؤها عند تغيير التاب
+  void _buildScreens() {
     _widgetOptions = [
       HomeScreen(
         isGuest: widget.isGuest,
       ),
-      const WorkoutScreen(),
-      const MealsScreen(),
+      WorkoutScreen(key: _workoutKey),
+      MealsScreen(key: _mealsKey),
       const HealthScreen(),
       ProfileScreen(
         isGuest: widget.isGuest,
@@ -63,25 +72,43 @@ class _MainPageState extends State<MainPage> {
         L10n.tr().medicalSection,
         L10n.tr().profile
       ];
-  int _selectedIndex = 0;
 
   // late bool
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
+    // تحديث الفهرس أولاً
+    setState(() {
+      _selectedIndex = index;
+    });
+
     final user = Session().currentUser;
-    // print("continue");
-    if (user?.hasValidSubscription ?? false) {
+
+    // تحديث بيانات المستخدم من السيرفر عند الانتقال لصفحة التمارين أو التغذية
+    if (index == 1 || index == 2) {
+      // تحديث بيانات المستخدم أولاً
+      await Session().getUserDataFromServer();
+
+      // إعادة بناء الصفحة بمفتاح جديد
+      if (index == 1) {
+        _workoutKey = UniqueKey();
+      } else if (index == 2) {
+        _mealsKey = UniqueKey();
+      }
+
       setState(() {
-        _selectedIndex = index;
+        _buildScreens();
       });
+    }
+
+    // التحقق من صلاحية الوصول
+    if (user?.hasValidSubscription ?? false) {
+      // المستخدم لديه اشتراك، يمكنه الوصول لجميع الصفحات
+      return;
     } else {
-      if (index != 0 || index != 4) {
-        setState(() {
-          _selectedIndex = index;
-        });
-      } else {
-        Alerts.showToast(L10n.tr().youHaveToSubscripeToAccessThisFeature,
-            error: true);
+      // إذا كانت الصفحة ليست الرئيسية أو الملف الشخصي
+      if (index != 0 && index != 4) {
+        // السماح بالوصول (ستظهر رسالة عدم وجود اشتراك داخل الصفحة)
+        return;
       }
     }
   }
@@ -92,9 +119,6 @@ class _MainPageState extends State<MainPage> {
   //     _isBottomNavVisible = false;
   //   });
   // }
-
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
 
   List<PersistentBottomNavBarItem> get _navBarsItems {
     return [

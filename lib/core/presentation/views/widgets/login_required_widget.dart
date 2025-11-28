@@ -9,16 +9,18 @@ import 'package:urfit/modules/auth/persentation/views/auth_screen.dart';
 class LoginRequiredWidget extends StatelessWidget {
   final String? message;
   final bool showIcon;
+  final VoidCallback? onRefresh;
 
   const LoginRequiredWidget({
     super.key,
     this.message,
     this.showIcon = true,
+    this.onRefresh,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    final content = Center(
       child: Padding(
         padding: const EdgeInsets.all(AppConst.kHorizontalPadding),
         child: Column(
@@ -84,5 +86,25 @@ class LoginRequiredWidget extends StatelessWidget {
         ),
       ),
     );
+
+    // إذا كان هناك دالة تحديث، نضيف RefreshIndicator
+    if (onRefresh != null) {
+      return RefreshIndicator(
+        onRefresh: () async {
+          onRefresh!();
+          // انتظار قليل لإظهار مؤشر التحميل
+          await Future.delayed(const Duration(milliseconds: 500));
+        },
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height - 200,
+            child: content,
+          ),
+        ),
+      );
+    }
+
+    return content;
   }
 }

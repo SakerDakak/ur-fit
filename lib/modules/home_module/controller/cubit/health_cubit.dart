@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:health/health.dart';
+import 'package:urfit/core/data/services/health_local_service.dart';
 
 part 'health_state.dart';
 
@@ -39,8 +40,53 @@ class HealthCubit extends Cubit<HealthState> {
     await initializeHealth();
   }
 
+  /// الحصول على الخطوات الأصلية من Health Connect (بدون التعديلات المحلية)
+  Future<int> getOriginalSteps() async {
+    try {
+      final now = DateTime.now();
+      final steps = await Health().getTotalStepsInInterval(
+        now.subtract(const Duration(days: 1)),
+        now,
+      );
+      return steps ?? 0;
+    } catch (e) {
+      print("خطأ في الحصول على الخطوات الأصلية: $e");
+      return 0;
+    }
+  }
+
+  /// تحديث المياه مباشرة في الـ state
+  void updateWaterValue(double newValue) {
+    print("=== تحديث المياه مباشرة في state ===");
+    print("القيمة الجديدة: $newValue");
+    // إعادة إصدار state جديد لإجبار إعادة البناء
+    emit(state.copyWith(
+      totalLitreOfWater: newValue,
+      // تحديث timestamp لإجبار الويدجت على إعادة البناء
+    ));
+  }
+
+  /// تحديث النوم مباشرة في الـ state (بالدقائق)
+  void updateSleepValue(double newValueInMinutes) {
+    print("=== تحديث النوم مباشرة في state ===");
+    print("القيمة الجديدة (بالدقائق): $newValueInMinutes");
+    emit(state.copyWith(
+      totalSleep: newValueInMinutes,
+    ));
+  }
+
+  /// تحديث الخطوات مباشرة في الـ state
+  void updateStepsValue(int newValue) {
+    print("=== تحديث الخطوات مباشرة في state ===");
+    print("القيمة الجديدة: $newValue");
+    emit(state.copyWith(
+      totalSteps: newValue,
+    ));
+  }
+
   initializeHealth() async {
     try {
+      print("=== بداية initializeHealth ===");
       // configure the health plugin before use.
       await Health().configure();
 
@@ -120,35 +166,43 @@ class HealthCubit extends Cubit<HealthState> {
       final todayStart = DateTime(now.year, now.month, now.day);
 
       // جلب بيانات اليوم الحالي للسعرات الحرارية والنوم فقط
-      final List<HealthDataPoint> todayCaloriesAndSleepData =
-          await Health().getHealthDataFromTypes(
-        types: [
-          HealthDataType.BASAL_ENERGY_BURNED,
-          HealthDataType.ACTIVE_ENERGY_BURNED,
-          HealthDataType.SLEEP_ASLEEP,
-          HealthDataType.SLEEP_IN_BED,
-          HealthDataType.SLEEP_AWAKE,
-          HealthDataType.SLEEP_DEEP,
-          HealthDataType.SLEEP_LIGHT,
-          HealthDataType.SLEEP_REM,
-        ],
-        startTime: todayStart,
-        endTime: now,
-      );
+      List<HealthDataPoint> todayCaloriesAndSleepData = [];
+      try {
+        todayCaloriesAndSleepData = await Health().getHealthDataFromTypes(
+          types: [
+            HealthDataType.BASAL_ENERGY_BURNED,
+            HealthDataType.ACTIVE_ENERGY_BURNED,
+            HealthDataType.SLEEP_ASLEEP,
+            HealthDataType.SLEEP_IN_BED,
+            HealthDataType.SLEEP_AWAKE,
+            HealthDataType.SLEEP_DEEP,
+            HealthDataType.SLEEP_LIGHT,
+            HealthDataType.SLEEP_REM,
+          ],
+          startTime: todayStart,
+          endTime: now,
+        );
+      } catch (e) {
+        print("=== فشل جلب بيانات السعرات والنوم: $e ===");
+      }
 
       // جلب بيانات الخطوات والمياه والتمارين من آخر 7 أيام لضمان عرض البيانات التاريخية
-      final List<HealthDataPoint> weekHealthData =
-          await Health().getHealthDataFromTypes(
-        types: [
-          HealthDataType.STEPS,
-          HealthDataType.WORKOUT,
-          HealthDataType.WATER,
-          if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
-          if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
-        ],
-        startTime: now.subtract(const Duration(days: 7)),
-        endTime: now,
-      );
+      List<HealthDataPoint> weekHealthData = [];
+      try {
+        weekHealthData = await Health().getHealthDataFromTypes(
+          types: [
+            HealthDataType.STEPS,
+            HealthDataType.WORKOUT,
+            HealthDataType.WATER,
+            if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
+            if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
+          ],
+          startTime: now.subtract(const Duration(days: 7)),
+          endTime: now,
+        );
+      } catch (e) {
+        print("=== فشل جلب بيانات الأسبوع: $e ===");
+      }
 
       // إذا لم نجد بيانات كافية، جرب جلب البيانات من آخر 30 يوم
       List<HealthDataPoint> finalHealthData = [
@@ -157,47 +211,102 @@ class HealthCubit extends Cubit<HealthState> {
       ];
 
       if (weekHealthData.isEmpty) {
-        final List<HealthDataPoint> monthData =
-            await Health().getHealthDataFromTypes(
-          types: [
-            HealthDataType.STEPS,
-            HealthDataType.WORKOUT,
-            HealthDataType.WATER,
-            if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
-            if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
-          ],
-          startTime: now.subtract(const Duration(days: 30)),
-          endTime: now,
-        );
+        try {
+          final List<HealthDataPoint> monthData =
+              await Health().getHealthDataFromTypes(
+            types: [
+              HealthDataType.STEPS,
+              HealthDataType.WORKOUT,
+              HealthDataType.WATER,
+              if (Platform.isIOS) HealthDataType.DISTANCE_WALKING_RUNNING,
+              if (Platform.isAndroid) HealthDataType.DISTANCE_DELTA,
+            ],
+            startTime: now.subtract(const Duration(days: 30)),
+            endTime: now,
+          );
 
-        if (monthData.isNotEmpty) {
-          finalHealthData = [
-            ...todayCaloriesAndSleepData,
-            ...monthData,
-          ];
+          if (monthData.isNotEmpty) {
+            finalHealthData = [
+              ...todayCaloriesAndSleepData,
+              ...monthData,
+            ];
+          }
+        } catch (e) {
+          print("=== فشل جلب بيانات الشهر: $e ===");
         }
       }
 
       final num totalCalories = getTotalCalories(todayCaloriesAndSleepData);
       final num totalDistance = getTotalDistance(finalHealthData);
-      final num totalWaterLitre = getTotalWaterInLitre(finalHealthData);
-      final num totalSleep = getTotalSleepTime(todayCaloriesAndSleepData);
+
+      // حساب المياه لليوم الحالي فقط مع إضافة التعديلات المحلية
+      final num todayWaterLitre = getTodayOriginalWater(finalHealthData);
+      final double waterAdjustment = HealthLocalService.getWaterAdjustment(now);
+      final num finalWaterLitre = todayWaterLitre + waterAdjustment;
+
+      print("=== حساب المياه ===");
+      print("المياه من Health Connect لليوم الحالي: $todayWaterLitre");
+      print("التعديل المحلي: $waterAdjustment");
+      print("المجموع النهائي: $finalWaterLitre");
+
+      // حساب النوم لليوم الحالي فقط مع إضافة التعديلات المحلية
+      // استخدام finalHealthData لأنها تحتوي على جميع البيانات بما فيها النوم
+      final num todaySleep = getTodayOriginalSleep(finalHealthData);
+      final double sleepAdjustment = HealthLocalService.getSleepAdjustment(now);
+      final num finalSleep = todaySleep + sleepAdjustment;
+
+      print("=== حساب النوم ===");
+      print("النوم من Health Connect لليوم الحالي (بالدقائق): $todaySleep");
+      print("التعديل المحلي (بالدقائق): $sleepAdjustment");
+      print("المجموع النهائي (بالدقائق): $finalSleep");
+
       final num exerciseTime = getExerciseTimeInMin(finalHealthData);
-      final int? totalSteps = await Health().getTotalStepsInInterval(
-        now.subtract(const Duration(days: 1)),
-        now,
-      );
+      
+      // محاولة الحصول على الخطوات من Health Connect (قد تفشل بسبب الصلاحيات)
+      int? originalSteps;
+      try {
+        originalSteps = await Health().getTotalStepsInInterval(
+          now.subtract(const Duration(days: 1)),
+          now,
+        );
+        print("=== نجحت قراءة الخطوات من Health Connect: $originalSteps ===");
+      } catch (e) {
+        print("=== فشلت قراءة الخطوات من Health Connect: $e ===");
+        originalSteps = 0;
+      }
+      
+      // حساب الخطوات مع إضافة التعديلات المحلية
+      final int stepsAdjustment = HealthLocalService.getStepsAdjustment(now);
+      final int finalSteps = (originalSteps ?? 0) + stepsAdjustment;
+      
+      print("=== حساب الخطوات ===");
+      print("الخطوات من Health Connect: $originalSteps");
+      print("التعديل المحلي: $stepsAdjustment");
+      print("المجموع النهائي: $finalSteps");
+
+      // تنظيف البيانات القديمة
+      await HealthLocalService.cleanOldData();
+
+      print("=== قبل emit - القيم النهائية ===");
+      print("totalSteps: $finalSteps");
+      print("totalLitreOfWater: $finalWaterLitre");
+      print("totalSleep: $finalSleep");
 
       emit(state.copyWith(
           healthData: finalHealthData,
           totalCalories: totalCalories,
-          totalSteps: totalSteps ?? 0,
+          totalSteps: finalSteps,
           distanceInMeters: totalDistance.toInt(),
-          totalLitreOfWater: totalWaterLitre,
-          totalSleep: totalSleep,
+          totalLitreOfWater: finalWaterLitre,
+          totalSleep: finalSleep,
           exerciseTime: exerciseTime));
-    } catch (e) {
-      // في حالة الخطأ، نترك البيانات كما هي
+      
+      print("=== تم emit بنجاح - نهاية initializeHealth ===");
+    } catch (e, stackTrace) {
+      // في حالة الخطأ، نطبع الخطأ ونترك البيانات كما هي
+      print("=== خطأ في initializeHealth ===");
+      print("الخطأ: $e");
+      print("Stack trace: $stackTrace");
     }
   }
 
@@ -273,6 +382,68 @@ class HealthCubit extends Cubit<HealthState> {
         .map((e) =>
             num.tryParse(e.value.toString().split("numericValue: ").last) ?? 0)
         .fold(0, (previousValue, element) => previousValue + element);
+  }
+
+  /// الحصول على قيمة المياه الأصلية لليوم الحالي (من Health Connect فقط)
+  num getTodayOriginalWater(List<HealthDataPoint> healthData) {
+    final today = DateTime.now();
+    final todayKey = '${today.year}-${today.month}-${today.day}';
+
+    return healthData
+        .where((element) =>
+            element.type == HealthDataType.WATER &&
+            '${element.dateFrom.year}-${element.dateFrom.month}-${element.dateFrom.day}' ==
+                todayKey)
+        .map((e) =>
+            num.tryParse(e.value.toString().split("numericValue: ").last) ?? 0)
+        .fold(0, (previousValue, element) => previousValue + element);
+  }
+
+  /// الحصول على قيمة النوم الأصلية لليوم الحالي (من Health Connect فقط - بالدقائق)
+  num getTodayOriginalSleep(List<HealthDataPoint> healthData) {
+    final today = DateTime.now();
+    final todayKey = '${today.year}-${today.month}-${today.day}';
+
+    num totalSleepTime = 0;
+
+    // أولوية للوقت في السرير (SLEEP_IN_BED) إذا كان متوفراً
+    final inBedData = healthData
+        .where((element) =>
+            element.type == HealthDataType.SLEEP_IN_BED &&
+            '${element.dateFrom.year}-${element.dateFrom.month}-${element.dateFrom.day}' ==
+                todayKey)
+        .toList();
+
+    if (inBedData.isNotEmpty) {
+      for (var data in inBedData) {
+        final sleepTime = _extractNumericValue(data.value);
+        totalSleepTime += sleepTime ?? 0;
+      }
+    } else {
+      // إذا لم يكن متوفراً، نجمع جميع أنواع النوم الأخرى
+      final sleepTypes = [
+        HealthDataType.SLEEP_ASLEEP,
+        HealthDataType.SLEEP_DEEP,
+        HealthDataType.SLEEP_LIGHT,
+        HealthDataType.SLEEP_REM,
+      ];
+
+      for (var sleepType in sleepTypes) {
+        final sleepData = healthData
+            .where((element) =>
+                element.type == sleepType &&
+                '${element.dateFrom.year}-${element.dateFrom.month}-${element.dateFrom.day}' ==
+                    todayKey)
+            .toList();
+
+        for (var data in sleepData) {
+          final sleepTime = _extractNumericValue(data.value);
+          totalSleepTime += sleepTime ?? 0;
+        }
+      }
+    }
+
+    return totalSleepTime;
   }
 
   num getTotalSleepTime(List<HealthDataPoint> healthData) {

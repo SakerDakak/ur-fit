@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health/health.dart';
+import 'package:urfit/core/data/services/health_local_service.dart';
 import 'package:urfit/core/presentation/app_cubit/app_cubit.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/style/colors.dart';
@@ -9,6 +10,7 @@ import 'package:urfit/core/presentation/style/fonts.dart';
 import 'package:urfit/core/presentation/utils/constants.dart';
 import 'package:urfit/core/presentation/views/widgets/charts/custom_line_chart.dart';
 import 'package:urfit/modules/home_module/controller/cubit/health_cubit.dart';
+import 'package:urfit/modules/home_module/widgets/home_widgets/statistics_widgets/edit_health_value_dialog.dart';
 
 class StepsTrackingCard extends StatelessWidget {
   const StepsTrackingCard({super.key});
@@ -17,7 +19,33 @@ class StepsTrackingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, appState) {
-        return Container(
+        return GestureDetector(
+          onTap: () async {
+            final healthCubit = context.read<HealthCubit>();
+            
+            // الحصول على القيمة الأصلية من Health Connect
+            final originalValue = await healthCubit.getOriginalSteps();
+            
+            // الحصول على القيمة الحالية (مع التعديلات) من state
+            final now = DateTime.now();
+            final adjustment = HealthLocalService.getStepsAdjustment(now);
+            final currentValue = originalValue + adjustment;
+            
+            final result = await showDialog<bool>(
+              context: context,
+              builder: (context) => EditHealthValueDialog(
+                type: HealthValueType.steps,
+                currentValue: currentValue.toDouble(),
+                originalValue: originalValue.toDouble(),
+              ),
+            );
+            
+            if (result == true) {
+              // إعادة بناء الويدجت لتحديث القيمة
+              (context as Element).markNeedsBuild();
+            }
+          },
+          child: Container(
           clipBehavior: Clip.antiAlias,
           padding: const EdgeInsets.symmetric(vertical: 20),
           decoration: BoxDecoration(
@@ -79,8 +107,12 @@ class StepsTrackingCard extends StatelessWidget {
                           DateTime.now().subtract(Duration(days: 6 - index));
                       final dateKey = '${date.year}-${date.month}-${date.day}';
                       final stepsAmount = stepsByDate[dateKey] ?? 0.0;
+                      
+                      // إضافة التعديلات المحلية لهذا اليوم
+                      final adjustment = HealthLocalService.getStepsAdjustment(date);
+                      final finalAmount = stepsAmount + adjustment;
 
-                      return FlSpot(index.toDouble(), stepsAmount);
+                      return FlSpot(index.toDouble(), finalAmount);
                     });
 
                     // عرض الرسم البياني دائماً حتى لو كانت القيم 0
@@ -94,9 +126,16 @@ class StepsTrackingCard extends StatelessWidget {
               // steps count
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: BlocSelector<HealthCubit, HealthState, int>(
-                  selector: (state) => state.totalSteps,
-                  builder: (context, steps) {
+                child: Builder(
+                  builder: (context) {
+                    final healthCubit = context.watch<HealthCubit>();
+                    
+                    // حساب القيمة مع التعديلات مباشرة
+                    final originalSteps = healthCubit.state.totalSteps;
+                    final now = DateTime.now();
+                    final adjustment = HealthLocalService.getStepsAdjustment(now);
+                    final steps = originalSteps + adjustment;
+                    
                     return Text(
                       '$steps ${L10n.tr().step}',
                       maxLines: 1,
@@ -113,9 +152,16 @@ class StepsTrackingCard extends StatelessWidget {
               // distance calculated from steps
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: BlocSelector<HealthCubit, HealthState, int>(
-                  selector: (state) => state.totalSteps,
-                  builder: (context, steps) {
+                child: Builder(
+                  builder: (context) {
+                    final healthCubit = context.watch<HealthCubit>();
+                    
+                    // حساب القيمة مع التعديلات مباشرة
+                    final originalSteps = healthCubit.state.totalSteps;
+                    final now = DateTime.now();
+                    final adjustment = HealthLocalService.getStepsAdjustment(now);
+                    final steps = originalSteps + adjustment;
+                    
                     // حساب المسافة من عدد الخطوات (متوسط طول الخطوة 0.7 متر)
                     const double averageStepLength = 0.7; // متر
                     final double distanceInKm =
@@ -135,6 +181,7 @@ class StepsTrackingCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
         );
       },
     );

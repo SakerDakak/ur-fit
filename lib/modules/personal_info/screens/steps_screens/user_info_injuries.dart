@@ -164,7 +164,7 @@ class _UserInfoInjuriesState extends State<UserInfoInjuries> {
                     text: widget.isEditMode
                         ? L10n.tr().save
                         : L10n.tr().createMyPlan,
-                    isLoading: state.sendStatus == RequestState.loading,
+                    isLoading: state.sendStatus != RequestState.initial,
                     padding: EdgeInsets.zero,
                     onPressed: () async {
                       if (state.sendStatus == RequestState.loading) return;

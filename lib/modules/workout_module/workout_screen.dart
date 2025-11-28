@@ -143,6 +143,12 @@ class _WorkoutScreenState extends State<WorkoutScreen>
     await _initializeScreen();
   }
 
+  /// يتم استدعاؤها عند العودة من شاشة الاشتراك
+  Future<void> _onSubscribeReturn() async {
+    // إعادة تهيئة الشاشة والتحقق من الاشتراك
+    await _initializeScreen();
+  }
+
   /// بناء محتوى الـ skeleton loading
   Widget _buildSkeletonContent(BuildContext context) {
     return Scaffold(
@@ -210,6 +216,7 @@ class _WorkoutScreenState extends State<WorkoutScreen>
               return Scaffold(
                 body: LoginRequiredWidget(
                   message: L10n.tr().loginRequired,
+                  onRefresh: _refreshData,
                 ),
               );
             }
@@ -220,6 +227,8 @@ class _WorkoutScreenState extends State<WorkoutScreen>
                 body: NoSubscriptionWidget(
                   message: L10n.tr().noSubscription,
                   planType: PlanType.exercise,
+                  onRefresh: _refreshData,
+                  onSubscribeReturn: _onSubscribeReturn,
                 ),
               );
             }
@@ -230,6 +239,7 @@ class _WorkoutScreenState extends State<WorkoutScreen>
               return Scaffold(
                 body: PackageNotSupportExerciseWidget(
                   message: L10n.tr().packageDoesNotSupportExercise,
+                  onRefresh: _refreshData,
                 ),
               );
             }
@@ -303,6 +313,8 @@ class _WorkoutScreenState extends State<WorkoutScreen>
               body: NoSubscriptionWidget(
                 message: L10n.tr().noWorkoutPlan,
                 planType: PlanType.exercise,
+                onRefresh: _refreshData,
+                onSubscribeReturn: _onSubscribeReturn,
               ),
             );
           },

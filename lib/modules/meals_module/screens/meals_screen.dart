@@ -142,6 +142,12 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
     await _initializeScreen();
   }
 
+  /// يتم استدعاؤها عند العودة من شاشة الاشتراك
+  Future<void> _onSubscribeReturn() async {
+    // إعادة تهيئة الشاشة والتحقق من الاشتراك
+    await _initializeScreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Session().currentUser;
@@ -172,6 +178,7 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
               return Scaffold(
                 body: LoginRequiredWidget(
                   message: L10n.tr().loginRequired,
+                  onRefresh: _refreshData,
                 ),
               );
             }
@@ -182,6 +189,8 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
                 body: NoSubscriptionWidget(
                   message: L10n.tr().noSubscription,
                   planType: PlanType.diet,
+                  onRefresh: _refreshData,
+                  onSubscribeReturn: _onSubscribeReturn,
                 ),
               );
             }
@@ -192,6 +201,7 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
               return Scaffold(
                 body: PackageNotSupportNutritionWidget(
                   message: L10n.tr().packageDoesNotSupportNutrition,
+                  onRefresh: _refreshData,
                 ),
               );
             }
@@ -273,6 +283,8 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
               body: NoSubscriptionWidget(
                 message: L10n.tr().noMealPlan,
                 planType: PlanType.diet,
+                onRefresh: _refreshData,
+                onSubscribeReturn: _onSubscribeReturn,
               ),
             );
           },
@@ -377,6 +389,8 @@ class _MealsScreenState extends State<MealsScreen> with WidgetsBindingObserver {
                     child: const MealsListview());
               },
             ),
+
+            const SizedBox(height: 28),
           ],
         ),
       ),

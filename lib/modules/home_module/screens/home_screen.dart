@@ -13,14 +13,32 @@ import 'package:urfit/modules/home_module/widgets/home_widgets/statistics_widget
 import '../../../core/presentation/style/colors.dart';
 import '../widgets/home_widgets/home_header.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   final bool isGuest;
   const HomeScreen({super.key, required this.isGuest});
 
   @override
-  Widget build(BuildContext context) {
-    context.read<HealthCubit>().initializeHealth();
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // استدعاء initializeHealth مرة واحدة عند بناء الصفحة
+    Future.microtask(() {
+      context.read<HealthCubit>().initializeHealth();
+      
+      // تحميل بيانات التمارين إذا كان المستخدم مسجل دخول ولديه اشتراك صالح
+      final user = Session().currentUser;
+      if (user != null && user.hasValidSubscription == true) {
+        context.read<WorkoutCubit>().getWorkOutPlan();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // تحميل بيانات التمارين إذا كان المستخدم مسجل دخول ولديه اشتراك صالح
     final user = Session().currentUser;
     if (user != null && user.hasValidSubscription == true) {
@@ -34,7 +52,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               // app bar
               HomeHeader(
-                isGuest: isGuest,
+                isGuest: widget.isGuest,
               ),
 
               // body
@@ -70,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 16),
 
                       // current and target weight card
-                      if (!isGuest &&
+                      if (!widget.isGuest &&
                           user?.currentWeight != null &&
                           user?.targetWeight != null)
                         const CurrentWeightCard(),

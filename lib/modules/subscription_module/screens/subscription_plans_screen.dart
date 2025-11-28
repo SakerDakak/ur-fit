@@ -26,11 +26,9 @@ import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/s
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/subscription_screen_appbar.dart';
 import 'package:urfit/modules/subscription_module/widgets/plans_screen_widgets/current_subscription_details.dart';
 import 'package:urfit/modules/subscription_module/widgets/shimmer/plan_description_shimmer.dart';
-import 'package:urfit/modules/workout_module/controller/workout_cubit.dart';
-import 'package:urfit/modules/meals_module/controller/meals_cubit.dart';
+import 'package:urfit/modules/subscription_module/data/models/package_model.dart';
 
 import '../../../core/presentation/utils/enums.dart';
-import '../data/models/package_model.dart';
 
 class SubscriptionPlansScreen extends StatefulWidget {
   final PlanType planType;
@@ -368,16 +366,19 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                         }
                       },
                       builder: (context, state) {
+                        // تحديد حالة التحميل - يجب أن تشمل كل من getPaymentUrl و paymentResponse
+                        final isProcessing = state.getPaymentUrlState ==
+                                RequestState.loading ||
+                            state.paymentResponseState == RequestState.loading;
+
                         return CustomElevatedButton(
                           padding: EdgeInsets.zero,
                           text: state.discountValue?.final_price != null &&
                                   state.discountValue!.final_price <= 0
                               ? L10n.tr().subscribe
                               : L10n.tr().paymentGetWay,
-                          isLoading:
-                              state.getPaymentUrlState == RequestState.loading,
-                          onPressed: (state.getPaymentUrlState ==
-                                      RequestState.loading ||
+                          isLoading: isProcessing,
+                          onPressed: (isProcessing ||
                                   state.getPackagesState ==
                                       RequestState.loading ||
                                   state.getPackagesState ==
@@ -387,47 +388,97 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
                               : () async {
                                   // منع الضغط المتعدد على الزر
                                   if (state.getPaymentUrlState ==
-                                      RequestState.loading) {
+                                          RequestState.loading ||
+                                      state.paymentResponseState ==
+                                          RequestState.loading) {
                                     return;
                                   }
 
+                                  // طلب رابط الدفع
                                   await context
                                       .read<SubscriptionCubit>()
                                       .getPaymentUrl();
+
                                   if (!context.mounted) return;
 
                                   // الحصول على الحالة المحدثة بعد استدعاء getPaymentUrl
                                   final updatedState =
                                       context.read<SubscriptionCubit>().state;
 
+                                  // التحقق من وجود خطأ
+                                  if (updatedState.getPaymentUrlState ==
+                                      RequestState.failure) {
+                                    return;
+                                  }
+
                                   if (updatedState.paymentUrl == null ||
                                       updatedState.paymentUrl!.isEmpty) {
-                                    // إذا لم يتم إرجاع رابط دفع، فهذا يعني أن الاشتراك مجاني
-                                    await Session().getUserDataFromServer();
+                                    // اشتراك مجاني - معالجة عبر الـ cubit للحفاظ على اللودينج
+                                    await context
+                                        .read<SubscriptionCubit>()
+                                        .handleFreeSubscription();
 
-                                    // إنشاء خطط التمرين والتغذية بعد الاشتراك المجاني
-                                    await _createPlansAfterFreeSubscription(
-                                        context);
-
-                                    Alerts.showToast(
-                                        L10n.tr()
-                                            .youHaveSuccessfullySubscribedToPlan,
-                                        error: false);
                                     if (context.mounted) {
-                                      // إعادة تحميل الصفحة الرئيسية لتحديث الواجهات
-                                      context.go(MainPage.routeWithBool(false));
+                                      final finalState = context
+                                          .read<SubscriptionCubit>()
+                                          .state;
+
+                                      // التحقق من نجاح العملية
+                                      if (finalState.paymentResponseState ==
+                                          RequestState.success) {
+                                        // إعادة تعيين الحالة بعد انتهاء جميع العمليات
+                                        context
+                                            .read<SubscriptionCubit>()
+                                            .resetPaymentState();
+
+                                        // العودة للشاشة التي جئنا منها أو الذهاب للصفحة الرئيسية
+                                        if (Navigator.of(context).canPop()) {
+                                          Navigator.of(context).pop();
+                                        } else {
+                                          context.go(
+                                              MainPage.routeWithBool(false));
+                                        }
+                                      } else if (finalState
+                                              .paymentResponseState ==
+                                          RequestState.failure) {
+                                        // في حالة الفشل، إعادة تعيين الحالة فقط
+                                        context
+                                            .read<SubscriptionCubit>()
+                                            .resetPaymentState();
+                                      }
                                     }
                                   } else {
-                                    // إذا تم إرجاع رابط دفع، انتقل إلى شاشة الدفع
+                                    // دفع مدفوع - الانتقال لصفحة الدفع
                                     final res = await context.pushNamed<String>(
                                         PaymentWebView.route,
                                         queryParameters: {
                                           "url": updatedState.paymentUrl!
                                         });
+
                                     if (res != null && context.mounted) {
-                                      context
+                                      // هنا سيتم استدعاء paymentResponse الذي سيبقى في حالة loading
+                                      // حتى تنتهي جميع العمليات
+                                      await context
                                           .read<SubscriptionCubit>()
                                           .paymentResponse(res);
+
+                                      // بعد انتهاء paymentResponse بنجاح، العودة للشاشة السابقة
+                                      if (context.mounted) {
+                                        final subscriptionState = context
+                                            .read<SubscriptionCubit>()
+                                            .state;
+                                        if (subscriptionState
+                                                .paymentResponseState ==
+                                            RequestState.success) {
+                                          // العودة للشاشة التي جئنا منها أو الذهاب للصفحة الرئيسية
+                                          if (Navigator.of(context).canPop()) {
+                                            Navigator.of(context).pop();
+                                          } else {
+                                            context.go(
+                                                MainPage.routeWithBool(false));
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 },
@@ -465,63 +516,5 @@ class _SubscriptionPlansScreenState extends State<SubscriptionPlansScreen> {
         ],
       ),
     );
-  }
-
-  // دالة إنشاء خطط التمرين والتغذية بعد الاشتراك المجاني
-  Future<void> _createPlansAfterFreeSubscription(BuildContext context) async {
-    try {
-      final user = Session().currentUser;
-      if (user?.hasValidSubscription != true) return;
-
-      // التحقق من نوع الباقة وإنشاء الخطط المناسبة
-      final packageType = _getPackageType(user?.packageId);
-
-      if (packageType == PlanType.exercise || packageType == PlanType.both) {
-        // إنشاء خطة التمرين إذا لم تكن موجودة
-        if (user?.haveExercisePlan != true) {
-          final workoutCubit = context.read<WorkoutCubit>();
-          await workoutCubit.generateWorkOutPlan();
-
-          // انتظار قليل ثم تحديث بيانات المستخدم مرة أخرى
-          await Future.delayed(const Duration(seconds: 2));
-          await Session().getUserDataFromServer();
-        }
-      }
-
-      if (packageType == PlanType.diet || packageType == PlanType.both) {
-        // إنشاء خطة التغذية إذا لم تكن موجودة
-        if (user?.haveMealPlan != true) {
-          final mealsCubit = context.read<MealsCubit>();
-          await mealsCubit.generateMealPlan();
-        }
-      }
-
-      // تحديث بيانات المستخدم مرة أخيرة بعد إنشاء الخطط
-      await Session().getUserDataFromServer();
-    } catch (e) {
-      print("خطأ في إنشاء الخطط بعد الاشتراك المجاني: $e");
-    }
-  }
-
-  // دالة لتحديد نوع الباقة
-  PlanType _getPackageType(int? packageId) {
-    // يمكنك تعديل هذه القيم حسب معرفات الباقات في نظامك
-    switch (packageId) {
-      case 1:
-      case 2:
-      case 3:
-        return PlanType.exercise;
-      case 4:
-      case 5:
-      case 6:
-        return PlanType.diet;
-      case 7:
-      case 8:
-      case 9:
-      case 10:
-        return PlanType.both;
-      default:
-        return PlanType.both; // افتراضي
-    }
   }
 }

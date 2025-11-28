@@ -28,6 +28,8 @@ android {
 
     kotlinOptions {
         jvmTarget = "11"
+        apiVersion = "2.1"
+        languageVersion = "2.1"
     }
     signingConfigs {
         config {

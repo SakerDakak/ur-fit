@@ -13,7 +13,6 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // await HiveServices().init();
   // await HiveServices().register();
   // await HiveServices().openBoxes();

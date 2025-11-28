@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 import 'package:urfit/core/domain/error/session.dart';
 import 'package:urfit/core/presentation/localization/l10n.dart';
 import 'package:urfit/core/presentation/utils/alerts.dart';
@@ -66,27 +65,23 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
         ));
       },
       (successData) async {
-        // عرض رسالة نجاح الدفع باستخدام Toast
-        Alerts.showToast(
-          L10n.tr().paymentSuccessful, // رسالة مترجمة لنجاح الدفع
-          error: false,
-          length: Toast.LENGTH_LONG,
-        );
-
         // تحديث بيانات المستخدم بعد نجاح الدفع
         await Session().getUserDataFromServer();
 
         // إنشاء خطط التمرين والتغذية بعد نجاح الاشتراك
         await _createPlansAfterSubscription();
 
+        // عرض رسالة نجاح الدفع باستخدام Toast بعد انتهاء جميع العمليات
+        Alerts.showToast(
+          L10n.tr().paymentSuccessful, // رسالة مترجمة لنجاح الدفع
+          error: false,
+          length: Toast.LENGTH_LONG,
+        );
+
+        // تحديث الحالة إلى success بعد انتهاء جميع العمليات
         emit(state.copyWith(
           paymentResponseState: RequestState.success,
         ));
-
-        // إعادة تحميل الصفحة الرئيسية لتحديث الواجهات
-        if (AppConst.navigatorKey.currentContext != null) {
-          AppConst.navigatorKey.currentContext!.go('/main');
-        }
       },
     );
   }
@@ -106,25 +101,59 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
           getPaymentUrlState: RequestState.failure,
           errMessage: failure.message,
         ));
-        // إعادة تعيين الحالة إلى الحالة الأولية بعد عرض رسالة الخطأ
-        Future.delayed(const Duration(milliseconds: 100), () {
-          emit(state.copyWith(getPaymentUrlState: RequestState.initial));
-        });
       },
       (successData) {
         print("successData : $successData");
         emit(state.copyWith(
           getPaymentUrlState: RequestState.success,
           paymentUrl: successData,
-          // packages: successData,
         ));
-        // إعادة تعيين الحالة إلى الحالة الأولية بعد معالجة النتيجة
-        Future.delayed(const Duration(milliseconds: 100), () {
-          emit(state.copyWith(getPaymentUrlState: RequestState.initial));
-        });
       },
     );
-    // }
+  }
+
+  /// معالجة الاشتراك المجاني (كوبون 100%)
+  Future<void> handleFreeSubscription() async {
+    // تحديث الحالة إلى loading للحفاظ على اللودينج
+    emit(state.copyWith(paymentResponseState: RequestState.loading));
+
+    try {
+      // تحديث بيانات المستخدم من السيرفر
+      await Session().getUserDataFromServer();
+
+      // إنشاء خطط التمرين والتغذية بعد الاشتراك المجاني
+      await _createPlansAfterSubscription();
+
+      // عرض رسالة نجاح
+      Alerts.showToast(
+        L10n.tr().youHaveSuccessfullySubscribedToPlan,
+        error: false,
+        length: Toast.LENGTH_LONG,
+      );
+
+      // تحديث الحالة إلى success بعد انتهاء جميع العمليات
+      emit(state.copyWith(paymentResponseState: RequestState.success));
+    } catch (e) {
+      print("خطأ في الاشتراك المجاني: $e");
+
+      // تحديث الحالة إلى failure
+      emit(state.copyWith(
+        paymentResponseState: RequestState.failure,
+        errMessage: 'حدث خطأ أثناء الاشتراك: $e',
+      ));
+
+      // عرض رسالة خطأ
+      Alerts.showToast(
+        'حدث خطأ: $e',
+        error: true,
+        length: Toast.LENGTH_LONG,
+      );
+    }
+  }
+
+  /// إعادة تعيين حالة الدفع إلى الحالة الأولية
+  void resetPaymentState() {
+    emit(state.copyWith(getPaymentUrlState: RequestState.initial));
   }
 
   clearCoupon() {
@@ -159,18 +188,19 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   Future<void> _createPlansAfterSubscription() async {
     try {
       final user = Session().currentUser;
-      if (user?.hasValidSubscription != true) return;
+      if (user?.hasValidSubscription != true || user?.packageId == null) return;
 
       // الحصول على السياق من NavigatorKey
       final context = AppConst.navigatorKey.currentContext;
       if (context == null) return;
 
-      // التحقق من نوع الباقة وإنشاء الخطط المناسبة
-      final packageType = _getPackageType(user?.packageId);
+      // الحصول على تفاصيل الباقة من API
+      final packageType = await _getPackageTypeFromServer(user!.packageId!);
+      if (packageType == null) return;
 
       if (packageType == PlanType.exercise || packageType == PlanType.both) {
         // إنشاء خطة التمرين إذا لم تكن موجودة
-        if (user?.haveExercisePlan != true) {
+        if (user.haveExercisePlan != true) {
           final workoutCubit = context.read<WorkoutCubit>();
           await workoutCubit.generateWorkOutPlan();
 
@@ -182,7 +212,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
 
       if (packageType == PlanType.diet || packageType == PlanType.both) {
         // إنشاء خطة التغذية إذا لم تكن موجودة
-        if (user?.haveMealPlan != true) {
+        if (user.haveMealPlan != true) {
           final mealsCubit = context.read<MealsCubit>();
           await mealsCubit.generateMealPlan();
         }
@@ -195,25 +225,28 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
     }
   }
 
-  // دالة لتحديد نوع الباقة
-  PlanType _getPackageType(int? packageId) {
-    // يمكنك تعديل هذه القيم حسب معرفات الباقات في نظامك
-    switch (packageId) {
-      case 1:
-      case 2:
-      case 3:
-        return PlanType.exercise;
-      case 4:
-      case 5:
-      case 6:
-        return PlanType.diet;
-      case 7:
-      case 8:
-      case 9:
-      case 10:
-        return PlanType.both;
-      default:
-        return PlanType.both; // افتراضي
+  /// الحصول على نوع الباقة من السيرفر
+  Future<PlanType?> _getPackageTypeFromServer(int packageId) async {
+    try {
+      final result = await _subscriptionRepo.getPackages();
+
+      return result.fold(
+        (failure) {
+          print("خطأ في تحميل تفاصيل الباقة: ${failure.message}");
+          return null;
+        },
+        (packages) {
+          final package = packages.where((p) => p.id == packageId).firstOrNull;
+          if (package == null) {
+            print("لم يتم العثور على الباقة مع المعرف: $packageId");
+            return null;
+          }
+          return package.type;
+        },
+      );
+    } catch (e) {
+      print("خطأ في تحميل تفاصيل الباقة: $e");
+      return null;
     }
   }
 }

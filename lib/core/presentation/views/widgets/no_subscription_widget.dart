@@ -12,17 +12,21 @@ class NoSubscriptionWidget extends StatelessWidget {
   final String? message;
   final PlanType planType;
   final bool showIcon;
+  final VoidCallback? onRefresh;
+  final Future<void> Function()? onSubscribeReturn;
 
   const NoSubscriptionWidget({
     super.key,
     this.message,
     this.planType = PlanType.both,
     this.showIcon = true,
+    this.onRefresh,
+    this.onSubscribeReturn,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    final content = Center(
       child: Padding(
         padding: const EdgeInsets.all(AppConst.kHorizontalPadding),
         child: Column(
@@ -80,17 +84,43 @@ class NoSubscriptionWidget extends StatelessWidget {
             // زر الانتقال إلى الاشتراكات
             CustomElevatedButton(
               text: L10n.tr().subscribeNow,
-              onPressed: () {
-                GoRouter.of(context).push(
+              onPressed: () async {
+                // الانتقال لصفحة الاشتراكات
+                await GoRouter.of(context).push(
                   SubscriptionPlansScreen.routeWzExtra,
                   extra: planType,
                 );
+
+                // بعد العودة من شاشة الاشتراك، التحقق من حالة الاشتراك
+                if (onSubscribeReturn != null) {
+                  await onSubscribeReturn!();
+                }
               },
             ),
           ],
         ),
       ),
     );
+
+    // إذا كان هناك دالة تحديث، نضيف RefreshIndicator
+    if (onRefresh != null) {
+      return RefreshIndicator(
+        onRefresh: () async {
+          onRefresh!();
+          // انتظار قليل لإظهار مؤشر التحميل
+          await Future.delayed(const Duration(milliseconds: 500));
+        },
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height - 200,
+            child: content,
+          ),
+        ),
+      );
+    }
+
+    return content;
   }
 
   /// الحصول على النص التوضيحي حسب نوع الخطة
